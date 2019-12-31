@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube",
+    "textures": 
+    {
+        "top": "terrariamod:block/grass_top"
+        "bottom": "terrariamod:block/dirt"
+		"side": "terrariamod:block/grass_side"
+    }
+}
