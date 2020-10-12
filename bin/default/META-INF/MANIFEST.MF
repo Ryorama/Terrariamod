@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: terrariamodfull
-Implementation-Version: 1.0
-Specification-Vendor: examplemodsareus
-Specification-Title: examplemod
-Implementation-Timestamp: 2019-12-22T07:18:58-0800
-Specification-Version: 1
-Implementation-Vendor: examplemodsareus
-

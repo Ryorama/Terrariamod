@@ -1,9 +1,0 @@
-{
-    "parent": "block/cube",
-    "textures": 
-    {
-        "top": "terrariamod:block/log_top"
-        "bottom": "terrariamod:block/log_top"
-		"side": "terrariamod:block/log_side"
-    }
-}
