@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab_top",
+    "textures": {
+        "bottom": "trewrite:block/planks/ebonwood",
+        "top": "trewrite:block/planks/ebonwood",
+        "side": "trewrite:block/planks/ebonwood"
+    }
+}

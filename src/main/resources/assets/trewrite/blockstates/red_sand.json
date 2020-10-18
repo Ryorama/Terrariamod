@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "": [ { "model": "trewrite:block/red_sand" },
+            { "model": "trewrite:block/red_sand2" },
+            { "model": "trewrite:block/red_sand3" } ]
+    }
+}

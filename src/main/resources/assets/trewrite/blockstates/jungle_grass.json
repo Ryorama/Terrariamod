@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "trewrite:block/grasses/jungle_grass" },
+            { "model": "trewrite:block/grasses/jungle_grass", "y": 90 },
+            { "model": "trewrite:block/grasses/jungle_grass", "y": 180 },
+            { "model": "trewrite:block/grasses/jungle_grass", "y": 270 }
+        ]
+    }
+}

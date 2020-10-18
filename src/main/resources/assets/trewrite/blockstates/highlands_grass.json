@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "trewrite:block/grasses/highlands_grass" },
+            { "model": "trewrite:block/grasses/highlands_grass", "y": 90 },
+            { "model": "trewrite:block/grasses/highlands_grass", "y": 180 },
+            { "model": "trewrite:block/grasses/highlands_grass", "y": 270 }
+        ]
+    }
+}

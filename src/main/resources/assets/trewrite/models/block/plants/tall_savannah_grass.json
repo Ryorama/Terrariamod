@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "trewrite:block/plants/tall_savannah_grass"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "trewrite:block/platforms/pearlwood_platform/bottom" },
+        "type=top": { "model": "trewrite:block/platforms/pearlwood_platform/top" },
+        "type=double": { "model": "trewrite:block/wooden_planks/pearlwood" }
+    }
+}

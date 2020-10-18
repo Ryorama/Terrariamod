@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "trewrite:block/sky_block" }
+    }
+}

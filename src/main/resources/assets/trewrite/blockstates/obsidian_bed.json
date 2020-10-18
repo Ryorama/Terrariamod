@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=east,half=lower":  { "model": "trewrite:block/beds/obsidian_bed/front", "y": 270 },
+        "facing=south,half=lower": { "model": "trewrite:block/beds/obsidian_bed/front"},
+        "facing=west,half=lower":  { "model": "trewrite:block/beds/obsidian_bed/front", "y": 90 },
+        "facing=north,half=lower": { "model": "trewrite:block/beds/obsidian_bed/front", "y": 180 },
+        "facing=east,half=upper":  { "model": "trewrite:block/beds/obsidian_bed/back", "y": 270 },
+        "facing=south,half=upper": { "model": "trewrite:block/beds/obsidian_bed/back" },
+        "facing=west,half=upper":  { "model": "trewrite:block/beds/obsidian_bed/back", "y": 90 },
+        "facing=north,half=upper": { "model": "trewrite:block/beds/obsidian_bed/back", "y": 180 }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "variants": {
+        "age=0": { "model": "trewrite:block/trees/logs/hallowed_log_bottom" },
+		"age=1": { "model": "trewrite:block/trees/logs/hallowed_log" },
+		"age=2": { "model": "trewrite:block/trees/logs/hallowed_log_branch_yellow" },
+		"age=3": { "model": "trewrite:block/trees/logs/hallowed_log_branch_yellow", "y": 90 },
+		"age=4": { "model": "trewrite:block/trees/logs/hallowed_log_branch_yellow", "y": 180 },
+		"age=5": { "model": "trewrite:block/trees/logs/hallowed_log_branch_yellow", "y": 270 },
+		"age=6": { "model": "trewrite:block/trees/logs/hallowed_log_branch_green" },
+		"age=7": { "model": "trewrite:block/trees/logs/hallowed_log_branch_green", "y": 90 },
+		"age=8": { "model": "trewrite:block/trees/logs/hallowed_log_branch_green", "y": 180 },
+		"age=9": { "model": "trewrite:block/trees/logs/hallowed_log_branch_green", "y": 270 },
+		"age=10": { "model": "trewrite:block/trees/logs/hallowed_log_branch_blue" },
+		"age=11": { "model": "trewrite:block/trees/logs/hallowed_log_branch_blue", "y": 90 },
+		"age=12": { "model": "trewrite:block/trees/logs/hallowed_log_branch_blue", "y": 180 },
+		"age=13": { "model": "trewrite:block/trees/logs/hallowed_log_branch_blue", "y": 270 },
+		"age=14": { "model": "trewrite:block/trees/logs/hallowed_log_branch_pink" },
+		"age=15": { "model": "trewrite:block/trees/logs/hallowed_log_branch_pink", "y": 90 },
+		"age=16": { "model": "trewrite:block/trees/logs/hallowed_log_branch_pink", "y": 180 },
+		"age=17": { "model": "trewrite:block/trees/logs/hallowed_log_branch_pink", "y": 270 },
+		"age=18": { "model": "trewrite:block/trees/hallowed_leaves_yellow" },
+		"age=19": { "model": "trewrite:block/trees/hallowed_leaves_green" },
+		"age=20": { "model": "trewrite:block/trees/hallowed_leaves_blue" },
+		"age=21": { "model": "trewrite:block/trees/hallowed_leaves_pink" }
+    }
+}

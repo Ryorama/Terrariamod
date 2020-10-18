@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom_rh",
+    "textures": {
+        "bottom": "trewrite:block/doors/door_bottom",
+        "top": "trewrite:block/doors/door_top"
+    }
+}

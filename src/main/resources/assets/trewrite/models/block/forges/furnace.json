@@ -1,0 +1,63 @@
+{
+    "parent": "minecraft:block/block",
+    "textures": {
+        "particle": "trewrite:block/forges/furnace",
+        "furnace": "trewrite:block/forges/furnace"
+    },
+    "elements": [
+        {
+            "from": [ 0, 0, 0 ], 
+            "to": [ 16, 6, 16 ], 
+            "faces": {
+                "north": { "texture": "#furnace", "uv": [ 0, 13, 8, 16 ] },
+                "east": { "texture": "#furnace", "uv": [ 0, 13, 8, 16 ] },
+                "south": { "texture": "#furnace", "uv": [ 0, 13, 8, 16 ] },
+                "west": { "texture": "#furnace", "uv": [ 0, 13, 8, 16 ] },
+                "up": { "texture": "#furnace", "uv": [ 8, 8, 16, 16 ] },
+                "down": { "texture": "#furnace", "uv": [ 8, 8, 16, 16 ] }
+            }
+        },
+        {
+            "from": [ 2, 6, 1 ], 
+            "to": [ 14, 16, 13 ], 
+            "faces": {
+                "north": { "texture": "#furnace", "uv": [ 2, 8, 8, 13 ] },
+                "east": { "texture": "#furnace", "uv": [ 2, 8, 8, 13 ] },
+                "south": { "texture": "#furnace", "uv": [ 2, 3, 8, 8 ] },
+                "west": { "texture": "#furnace", "uv": [ 2, 8, 8, 13 ] },
+                "up": { "texture": "#furnace", "uv": [ 8, 2, 14, 8 ] }
+            }
+        },
+        {
+            "from": [ 4, 12, 13 ], 
+            "to": [ 12, 14, 14 ], 
+            "faces": {
+                "east": { "texture": "#furnace", "uv": [ 4, 2, 5, 2 ] },
+                "south": { "texture": "#furnace", "uv": [ 4, 2, 8, 3 ] },
+                "west": { "texture": "#furnace", "uv": [ 4, 2, 5, 2 ] },
+                "up": { "texture": "#furnace", "uv": [ 4, 2, 8, 2 ] },
+                "down": { "texture": "#furnace", "uv": [ 4, 2, 8, 2 ] }
+            }
+        },
+        {
+            "from": [ 12, 6, 13 ], 
+            "to": [ 15, 9, 14 ], 
+            "faces": {
+                "north": { "texture": "#furnace", "uv": [ 2.5, 1.5, 4, 3 ] },
+                "east": { "texture": "#furnace", "uv": [ 3.5, 1.5, 4, 3 ] },
+                "south": { "texture": "#furnace", "uv": [ 2.5, 1.5, 4, 3 ] },
+                "west": { "texture": "#furnace", "uv": [ 3.5, 1.5, 4, 3 ] },
+                "up": { "texture": "#furnace", "uv": [ 3, 2, 3, 2 ] }
+            }
+        },
+        {
+            "from": [ 11, 5, 13 ], 
+            "to": [ 12, 8, 14 ], 
+            "faces": {
+                "south": { "texture": "#furnace", "uv": [ 2, 2, 2.5, 3.5 ] },
+                "west": { "texture": "#furnace", "uv": [ 2, 2, 2.5, 3.5 ] },
+                "up": { "texture": "#furnace", "uv": [ 2, 2, 2.5, 2.5 ] }
+            }
+        }
+    ]
+}

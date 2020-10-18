@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "trewrite:block/trees/forest_sapling"
+    }
+}

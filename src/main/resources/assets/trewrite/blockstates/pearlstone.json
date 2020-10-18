@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "trewrite:block/pearlstone" },
+            { "model": "trewrite:block/pearlstone", "y": 90 },
+            { "model": "trewrite:block/pearlstone", "y": 180 },
+            { "model": "trewrite:block/pearlstone", "y": 270 }
+        ]
+    }
+}

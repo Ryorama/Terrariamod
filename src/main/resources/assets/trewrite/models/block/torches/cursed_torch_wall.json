@@ -1,0 +1,7 @@
+{
+    "parent": "block/torch_wall",
+    "textures": {
+        "torch": "trewrite:block/torches/cursed_torch"
+    }
+}
+

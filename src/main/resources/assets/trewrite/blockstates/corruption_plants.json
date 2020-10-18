@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "age=0": { "model": "trewrite:block/plants/corrupt/flower0" },
+		"age=1": { "model": "trewrite:block/plants/corrupt/flower1" },
+		"age=2": { "model": "trewrite:block/plants/corrupt/flower2" },
+		"age=3": { "model": "trewrite:block/plants/corrupt/flower3" },
+		"age=4": { "model": "trewrite:block/plants/corrupt/flower4" },
+		"age=5": { "model": "trewrite:block/plants/corrupt/flower5" },
+		"age=6": { "model": "trewrite:block/plants/corrupt/flower6" },
+		"age=7": { "model": "trewrite:block/plants/corrupt/flower7" },
+		"age=8": { "model": "trewrite:block/plants/corrupt/flower8" },
+		"age=9": { "model": "trewrite:block/plants/corrupt/flower9" },
+		"age=10": { "model": "trewrite:block/plants/corrupt/flower10" },
+		"age=11": { "model": "trewrite:block/plants/corrupt/flower11" },
+		"age=12": { "model": "trewrite:block/plants/corrupt/flower12" },
+		"age=13": { "model": "trewrite:block/plants/corrupt/flower13" },
+		"age=14": { "model": "trewrite:block/plants/corrupt/flower14" },
+		"age=15": { "model": "trewrite:block/plants/corrupt/flower15" },
+		"age=16": { "model": "trewrite:block/plants/corrupt/flower16" },
+		"age=17": { "model": "trewrite:block/plants/corrupt/flower17" }
+    }
+}

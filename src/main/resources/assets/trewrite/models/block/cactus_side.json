@@ -1,0 +1,65 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"ambientocclusion": false,
+	"textures": {
+		"0": "trewrite:block/plants/cactus",
+		"particle": "trewrite:block/plants/cactus" 
+	},
+	"elements": [
+		{
+			"name": "shape1",
+			"from": [4, 0, 4],
+			"to": [12, 16, 12],
+			"rotation": {"angle": 0, "axis": "z", "origin": [0, 16, 0]},
+			"faces": {
+				"north": {"uv": [0, 2, 2, 6], "texture": "#0"},
+				"east": {"uv": [6, 2, 8, 6], "texture": "#0"},
+				"south": {"uv": [4, 2, 6, 6], "texture": "#0"},
+				"west": {"uv": [2, 2, 4, 6], "texture": "#0"},
+				"up": {"uv": [4, 2, 2, 0], "texture": "#0"},
+				"down": {"uv": [6, 0, 4, 2], "texture": "#0"}
+			}
+		},
+		{
+			"name": "shape1",
+			"from": [0, 9, 5],
+			"to": [2.4, 12, 11],
+			"rotation": {"angle": 0, "axis": "z", "origin": [16, 16, 8]},
+			"faces": {
+				"north": {"uv": [1.5, 7.5, 2.25, 8.25], "texture": "#0"},
+				"east": {"uv": [0, 7.5, 1.5, 8.25], "texture": "#0"},
+				"south": {"uv": [3.75, 7.5, 4.5, 8.25], "texture": "#0"},
+				"west": {"uv": [2.25, 7.5, 3.75, 8.25], "texture": "#0"},
+				"up": {"uv": [2.25, 7.5, 1.5, 6], "texture": "#0"},
+				"down": {"uv": [5, 0, 4, 3], "texture": "#missing"}
+			}
+		},
+		{
+			"name": "shape1_2",
+			"from": [0, 5, 5],
+			"to": [4, 9, 11],
+			"rotation": {"angle": 0, "axis": "z", "origin": [12, 16, 4]},
+			"faces": {
+				"north": {"uv": [1.25, 9.75, 2.5, 10.75], "texture": "#0"},
+				"east": {"uv": [0, 3, 3, 5], "texture": "#missing"},
+				"south": {"uv": [4, 9.75, 5.25, 10.75], "texture": "#0"},
+				"west": {"uv": [2.5, 9.75, 4, 10.75], "texture": "#0"},
+				"up": {"uv": [2.5, 9.75, 1.5, 8.25], "texture": "#0"},
+				"down": {"uv": [3.5, 8.25, 2.5, 9.75], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "cactus",
+			"origin": [8, 8, 8],
+			"children": [0]
+		},
+		{
+			"name": "cactus_side",
+			"origin": [8, 8, 8],
+			"children": [1, 2]
+		}
+	]
+}
