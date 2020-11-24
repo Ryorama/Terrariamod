@@ -28,6 +28,7 @@ public class TerrariaBiomeProvider extends BiomeProvider {
 	   
 	   public static boolean crimson = false;
 	   public static boolean jungle = false;
+	   public static boolean snow = false;
 	   
 	   private final SharedSeedRandom randomTemp;
 	   private final SharedSeedRandom randomHumidity;
@@ -119,6 +120,9 @@ public class TerrariaBiomeProvider extends BiomeProvider {
 		  }
 		  if (x >= 1000 && x <= 1300) {
 			  current = BiomeT.FROZEN_PLAINS;
+			  snow = true;
+		  } else {
+			  snow = false;
 		  }
 		  if (x >= 1300 && x <= 1500) {
 			  jungle = true;
@@ -149,6 +153,9 @@ public class TerrariaBiomeProvider extends BiomeProvider {
 		  }
 		  if (x <= -900 && x >= -1200) {
 			  current = BiomeT.FROZEN_PLAINS;
+			  snow = true;
+		  } else {
+			  snow = false;
 		  }
 		  if (x <= -1200 && x >= -1400) {
 			  current = BiomeT.JUNGLE;

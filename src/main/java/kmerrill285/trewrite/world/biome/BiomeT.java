@@ -222,6 +222,7 @@ public class BiomeT {
       HIGHLANDS = Biomes.MOUNTAINS;
       CORRUPT_LOWLANDS = Biomes.PLAINS;
       CORRUPT_HIGHLANDS = Biomes.MOUNTAINS;
+      CRIMSON = Biomes.PLAINS;
       DESERT = Biomes.DESERT;
       DESERT_HILLS = Biomes.DESERT;
       HUMID_HIGHLANDS = Biomes.MOUNTAINS;

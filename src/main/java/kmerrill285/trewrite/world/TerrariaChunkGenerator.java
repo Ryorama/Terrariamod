@@ -456,6 +456,17 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator<OverworldGenSett
 				   }
 			   }
 			   
+			   if (TerrariaBiomeProvider.snow == true) {
+				   BlockPos pos = new BlockPos(x, y, z);
+				   BlockState block = chunkIn.getBlockState(pos);
+				   if (block != Blocks.WATER.getDefaultState() && block != Blocks.LAVA.getDefaultState())
+				   {
+					   if (chunkIn.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+						   chunkIn.setBlockState(pos, BlocksT.SNOW.getDefaultState(), false);
+					   }
+				   }
+			   }
+			   
 			   BlockPos pos = new BlockPos(x, y, z);
 			   if (random.nextInt(10) <= 8) {
 				   if (chunkIn.getBlockState(pos) == BlocksT.SAVANNA_GRASS.getDefaultState()) {

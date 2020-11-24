@@ -60,5 +60,6 @@ public class TerrariaFeatures {
 	public static final Feature RUINED_HOUSE = new RuinedHouseFeature(NoFeatureConfig::deserialize);
 	public static final Feature SKY_ISLAND = new SkyIsandFeature(NoFeatureConfig::deserialize);
 	public static final Feature UNDERGROUND_HOUSE = new UndergroundHouseFeature(NoFeatureConfig::deserialize);
+	public static final Feature CRIMSON_CHASM = new CrimsonChasmFeature(NoFeatureConfig::deserialize);
 
 }

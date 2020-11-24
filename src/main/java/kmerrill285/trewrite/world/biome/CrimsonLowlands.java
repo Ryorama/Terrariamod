@@ -23,13 +23,13 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class CrimsonLowlands extends Biome {
 	   protected CrimsonLowlands() {
-		      super((new Builder()).surfaceBuilder(new ConfiguredSurfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(BlocksT.CRIMSON_GRASS.getDefaultState(), BlocksT.DIRT_BLOCK.getDefaultState(), BlocksT.CRIMSTONE.getDefaultState()))).precipitation(RainType.RAIN).category(Category.EXTREME_HILLS).depth(0.125F).scale(0.05F).temperature(0.2F).downfall(0.3F).waterColor(4159204).waterFogColor(329011).parent((String)null));
+		      super((new Builder()).surfaceBuilder(new ConfiguredSurfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(BlocksT.CRIMSON_GRASS.getDefaultState(), BlocksT.DIRT_BLOCK.getDefaultState(), BlocksT.CRIMSTONE.getDefaultState()))).precipitation(RainType.RAIN).category(Category.PLAINS).depth(0.125F).scale(0.05F).temperature(1F).downfall(1F).waterColor(4159204).waterFogColor(329011).parent((String)null));
 		      this.addCarver(Carving.AIR, Biome.createCarver(TerrariaFeatures.CAVE, new ProbabilityConfig(0.14285715F)));
 		      this.setRegistryName("trewrite:crimson_lowlands");
 		      this.addFeature(Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(TerrariaFeatures.TREES, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_HEIGHTMAP_DOUBLE, new FrequencyConfig(48)));
 			  this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(TerrariaFeatures.RUINED_HOUSE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 			  this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(TerrariaFeatures.SKY_ISLAND, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-
+		      this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(TerrariaFeatures.CRIMSON_CHASM, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 	   
 	   }
 }
