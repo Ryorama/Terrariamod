@@ -42,7 +42,7 @@ public class EntityToxicSludge extends SlimeEntity {
 		   }
 
 		   public void init() {
-		      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
+		      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(150.0D);
 		      this.setHealth(25.0F);
 		   }
 
@@ -133,7 +133,7 @@ public class EntityToxicSludge extends SlimeEntity {
 		   }
 
 		   protected int getAttackStrength() {
-		      return 7;
+		      return 50;
 		   }
 
 		   protected float getSoundVolume() {

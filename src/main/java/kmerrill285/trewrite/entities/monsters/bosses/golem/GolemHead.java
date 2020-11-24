@@ -14,6 +14,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -48,6 +50,9 @@ public class GolemHead extends MobEntity implements IHostile {
 	    phase = 1;
 	    isAlive = true;
 	    canBeAttacked = true;
+	    if (!this.world.isRemote()) {
+	         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("Golem has awoken!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+	     }
 	}
 
 	  public GolemHead(World worldIn) {
@@ -60,6 +65,9 @@ public class GolemHead extends MobEntity implements IHostile {
 		   
 		   public void dropLoot(DamageSource source, boolean b) {
 			   isAlive = false;
+			   if (!this.world.isRemote()) {
+			         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("Golem has been defeated!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+			   }
 		   }
 		   
 		   @Nullable

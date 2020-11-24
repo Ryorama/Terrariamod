@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class PreAdamantite1 extends BlockT {
    public PreAdamantite1(Properties properties) {
-      super(properties, BlocksT.ORE_HARDNESS, 20.0F, "stone_block");
+      super(properties.tickRandomly(), BlocksT.ORE_HARDNESS, 20.0F, "stone_block");
       this.pick = true;
       this.setLocation("pre_adamantite1");
       this.sell = 50;

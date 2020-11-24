@@ -28,6 +28,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -66,6 +68,9 @@ public class EntitySkeletronHead extends MobEntity implements IEntityAdditionalS
 	   public EntitySkeletronHead(EntityType<EntitySkeletronHead> type, World worldIn) {
 		   	super(type, worldIn);
 		   	isAlive = true;
+		   	if (!this.world.isRemote()) {
+		         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("Skeletron has awoken!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+		     }
 	   }
 	   
 	   public EntitySkeletronHead(World worldIn) {
@@ -95,6 +100,9 @@ public class EntitySkeletronHead extends MobEntity implements IEntityAdditionalS
 	   
 	   public void dropLoot(DamageSource source, boolean b) {
 		   isAlive = false;
+		   if (!this.world.isRemote()) {
+		         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("Skeletron has been defeated!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+		     }
 	   }
 	   
 	   public void tick() {

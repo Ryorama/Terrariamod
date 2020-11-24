@@ -14,6 +14,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
@@ -21,10 +22,12 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class EntityBrainOfCthulhu extends FlyingEntity implements IEntityAdditionalSpawnData, IHostile {
 
@@ -52,15 +55,21 @@ public class EntityBrainOfCthulhu extends FlyingEntity implements IEntityAdditio
 	public EntityBrainOfCthulhu(EntityType<EntityBrainOfCthulhu> type, World worldIn) {
 		super(type, worldIn);
 		phase = 1;
-		this.maxHealth = 3000;
-	    this.bosshealth = this.maxHealth;
-	    this.setHealth(this.maxHealth);
 	    isBocA = true;
 	    WorldStateHolder.get(worldIn).creepersDefeated = 0;
+	    if (!worldIn.isRemote()) {
+	         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("The Brain of Cthulhu has awoken!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+	    }
 	}
 	
 	 public EntityBrainOfCthulhu(World world) {
 		super(EntitiesT.BOC, world);
+	 }
+	 
+	 public void dropLoot(DamageSource source, boolean b) {
+		 if (!this.world.isRemote()) {
+	         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("The Brain of Cthulhu has been defeated!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+	     }
 	 }
 	 
 	 public SoundEvent getHurtSound(DamageSource source) {
@@ -78,10 +87,9 @@ public class EntityBrainOfCthulhu extends FlyingEntity implements IEntityAdditio
 	   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 
 	      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3000);
-	   
-	      this.maxHealth = 3000;
-	      this.bosshealth = this.maxHealth;
-	      this.setHealth(this.maxHealth);
+	      this.bosshealth = 3000;
+	      this.setHealth(3000);
+	      
 	      return spawnDataIn;
 	   }
 
@@ -102,11 +110,7 @@ public class EntityBrainOfCthulhu extends FlyingEntity implements IEntityAdditio
 	   
 	   public void setFire(int seconds) {
 	   }
-	   
-	   public float getHealth() {
-		   return this.bosshealth;
-	   }
-	   
+
 	   public void tick() {
 		   
 		   double distance = 1000.0D;
@@ -256,5 +260,10 @@ public class EntityBrainOfCthulhu extends FlyingEntity implements IEntityAdditio
 		@Override
 		public void readSpawnData(PacketBuffer additionalData) {
 			
+		}
+		
+		@Override
+		public IPacket createSpawnPacket() {
+		      return NetworkHooks.getEntitySpawningPacket(this);
 		}
 }

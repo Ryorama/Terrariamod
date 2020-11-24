@@ -3,6 +3,7 @@ package kmerrill285.trewrite.blocks;
 import java.util.HashMap;
 
 import kmerrill285.trewrite.blocks.CrossedBlock.Shape;
+import kmerrill285.trewrite.blocks.corruption_orbs.CrimsonHeart;
 import kmerrill285.trewrite.blocks.corruption_orbs.ShadowOrb;
 import kmerrill285.trewrite.blocks.loot_blocks.SkyBlock;
 import kmerrill285.trewrite.blocks.loot_blocks.SurfaceBlock;
@@ -266,6 +267,8 @@ public class BlocksT {
 	public static BlockT SKY_BLOCK;
 	public static BlockT SURFACE_BLOCK;
 	public static BlockT UNDERGROUND_BLOCK;
+	
+	public static BlockT CRIMSON_HEART;
 
 	public static float mul = 1.5f;
 	public static float GROUND_HARDNESS = 30.0f * mul, STONE_HARDNESS = 45.0f * mul, ORE_HARDNESS = 50.0f * mul, DUNGEON_HARDNESS = 60.0f * mul;
@@ -451,7 +454,8 @@ public class BlocksT {
 					CLOUD = new BasicBlock(Properties.create(Material.WOOL).sound(SoundType.CLOTH), STONE_HARDNESS, 5, true, false, false, true, "cloud", "cloud"),
 					SKY_BLOCK = new SkyBlock(Properties.create(Material.ROCK).sound(SoundsT.STONE), GROUND_HARDNESS, 10.0f, null).setLocation("sky_block"),
 					SURFACE_BLOCK = new SurfaceBlock(Properties.create(Material.ROCK).sound(SoundsT.STONE), GROUND_HARDNESS, 10.0f, null).setLocation("surface_block"),
-					UNDERGROUND_BLOCK = new UndergroundBlock(Properties.create(Material.ROCK).sound(SoundsT.STONE), GROUND_HARDNESS, 10.0f, null).setLocation("underground_block")
+					UNDERGROUND_BLOCK = new UndergroundBlock(Properties.create(Material.ROCK).sound(SoundsT.STONE), GROUND_HARDNESS, 10.0f, null).setLocation("underground_block"),
+					CRIMSON_HEART = new CrimsonHeart()
 
 
 

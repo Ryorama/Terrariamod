@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class PrePallidum1 extends BlockT {
    public PrePallidum1(Properties properties) {
-      super(properties, BlocksT.ORE_HARDNESS, 20.0F, "stone_block");
+      super(properties.tickRandomly(), BlocksT.ORE_HARDNESS, 20.0F, "stone_block");
       this.pick = true;
       this.setLocation("pre_pallidum1");
       this.sell = 50;

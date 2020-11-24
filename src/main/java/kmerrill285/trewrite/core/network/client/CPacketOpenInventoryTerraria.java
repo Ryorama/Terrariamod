@@ -1,14 +1,17 @@
 package kmerrill285.trewrite.core.network.client;
 
 import java.util.function.Supplier;
+
 import kmerrill285.trewrite.core.inventory.container.TerrariaInventoryContainerHandler;
 import kmerrill285.trewrite.core.sounds.SoundsT;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundCategory;
-import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class CPacketOpenInventoryTerraria {
    public String playername;
@@ -30,6 +33,7 @@ public class CPacketOpenInventoryTerraria {
          ServerPlayerEntity sender = ((Context)ctx.get()).getSender();
          if (sender != null) {
             NetworkHooks.openGui(sender, new TerrariaInventoryContainerHandler());
+            NetworkHooks.openGui(sender, (INamedContainerProvider) new CreativeScreen(sender));
             Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.MENU_OPEN, SoundCategory.PLAYERS, 100, 1, false);
          }
 

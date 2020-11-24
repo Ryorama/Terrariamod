@@ -158,7 +158,7 @@ public class EntityEowHead extends MobEntity implements IEntityAdditionalSpawnDa
 
          this.segments = 48;
          if (!world.isRemote) {
-            if (this.ai[0] == 0 && this.spawnThings) {
+            if (this.ai[0] == 0 && spawnThings == true) {
                this.world.playSound((PlayerEntity)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_WITHER_SPAWN, SoundCategory.HOSTILE, 2.0F, 0.5F);
                if (!this.world.isRemote()) {
                   this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("The Eater of Worlds has awoken!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
@@ -377,6 +377,7 @@ public class EntityEowHead extends MobEntity implements IEntityAdditionalSpawnDa
       super.registerData();
    }
 
+   @Override
    public void read(CompoundNBT compound) {
       super.read(compound);
       if (compound.getBoolean("spawned")) {
@@ -388,6 +389,7 @@ public class EntityEowHead extends MobEntity implements IEntityAdditionalSpawnDa
 
    }
 
+   @Override
    public void readAdditional(CompoundNBT compound) {
       if (compound.getBoolean("spawned")) {
          this.REMOVED = true;
@@ -398,14 +400,17 @@ public class EntityEowHead extends MobEntity implements IEntityAdditionalSpawnDa
 
    }
 
+   @Override
    public void writeAdditional(CompoundNBT compound) {
       compound.putBoolean("spawned", this.ALREADY_SPAWNED);
    }
 
+   @Override
    public void writeSpawnData(PacketBuffer buffer) {
       buffer.writeBoolean(this.ALREADY_SPAWNED);
    }
 
+   @Override
    public void readSpawnData(PacketBuffer additionalData) {
       if (additionalData.readBoolean()) {
          this.REMOVED = true;
@@ -415,7 +420,8 @@ public class EntityEowHead extends MobEntity implements IEntityAdditionalSpawnDa
       }
 
    }
-
+   
+   @Override
    public IPacket createSpawnPacket() {
       return NetworkHooks.getEntitySpawningPacket(this);
    }

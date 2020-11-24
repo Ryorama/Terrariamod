@@ -59,10 +59,9 @@ public class EntityPossessedArmor extends ZombieEntity implements IHostile {
 
 	   protected void registerAttributes() {
 	      super.registerAttributes();
-	      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((double)(this.rand.nextInt(10) + 35));
-	      this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue((double)(this.rand.nextInt(3) + 4));
-	      this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(this.rand.nextDouble() * 0.1D + 0.5D);
-	      this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((double)(this.rand.nextInt(7) + 12));
+	      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((double)260);
+	      this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue((double)28);
+	      this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((double)55);
 	      this.money = this.rand.nextInt(20) + 50;
 	   }
 	}

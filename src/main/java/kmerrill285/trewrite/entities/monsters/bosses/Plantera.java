@@ -17,6 +17,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -37,6 +39,9 @@ public class Plantera extends MobEntity implements IHostile {
 			super(type, worldIn);
 			phase = 1;
 			isAlive = true;
+			 if (!worldIn.isRemote()) {
+		         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("Plantera has awoken!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+		    }
 		}
 
 	   public Plantera(World worldIn) {
@@ -49,6 +54,9 @@ public class Plantera extends MobEntity implements IHostile {
 		   
 		   public void dropLoot(DamageSource source, boolean b) {
 			   isAlive = false;
+			   if (!this.world.isRemote()) {
+			         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("Plantera has been defeated!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD})); 
+			   }
 		   }
 		   
 		   @Nullable

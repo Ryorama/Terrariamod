@@ -235,6 +235,7 @@ public class EntityEowTail extends MobEntity implements IEntityAdditionalSpawnDa
 
    }
 
+   @Override
    public IPacket createSpawnPacket() {
       return NetworkHooks.getEntitySpawningPacket(this);
    }

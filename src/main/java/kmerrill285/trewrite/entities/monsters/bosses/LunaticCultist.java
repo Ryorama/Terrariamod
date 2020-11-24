@@ -35,6 +35,9 @@ public class LunaticCultist extends MobEntity implements IHostile {
 	public LunaticCultist(EntityType<LunaticCultist> type, World worldIn) {
 		super(type, worldIn);
 		isAlive = true;
+		if (!this.world.isRemote()) {
+	         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("Lunatic Cultist has awoken!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+	     }
 	}
 
 	public LunaticCultist(World worldIn) {
@@ -43,6 +46,10 @@ public class LunaticCultist extends MobEntity implements IHostile {
 	
 	public void dropLoot(DamageSource source, boolean b) {
 		   isAlive = false;
+		   
+		   if (!this.world.isRemote()) {
+		         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("Lunatic Cultist has been defeated!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+		   }
 		   
 		   StardustPillar eye = (StardustPillar)EntitiesT.STARDUST_PILLAR.create(this.world, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, this.getPosition(), SpawnReason.EVENT, false, false);
            eye.setPosition(this.posX + 50, this.posY, this.posZ);

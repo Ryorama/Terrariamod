@@ -33,6 +33,8 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -70,6 +72,9 @@ public class EntityDestroyerHead extends MobEntity implements IEntityAdditionalS
 	   public EntityDestroyerHead(EntityType type, World worldIn) {
 	      super(type, worldIn);
 	      this.isDesA = true;
+	      if (!this.world.isRemote()) {
+		         this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("The Destroyer has awoken!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+		  }
 	   }
 
 	   public EntityDestroyerHead(World worldIn) {
@@ -78,7 +83,7 @@ public class EntityDestroyerHead extends MobEntity implements IEntityAdditionalS
 
 	   public void dropLoot(DamageSource source, boolean b) {
 		   WorldStateHolder.get(world).mechBossesDowned += 1;
-       	System.out.println("test1");
+       		System.out.println("test1");
 		   isDesA = false;
 		   isDesA2 = isDesA;
 		   EntityItemT.spawnItem(this.getEntityWorld(), this.getPosition(), new ItemStackT(ItemsT.MIGHT_SOUL, 20 + rand.nextInt(25), (ItemModifier)null));
@@ -86,6 +91,10 @@ public class EntityDestroyerHead extends MobEntity implements IEntityAdditionalS
 	      if (Util.isChristmas() && this.rand.nextDouble() <= 0.0769D) {
 	         EntityItemT.spawnItem(this.getEntityWorld(), this.getPosition(), new ItemStackT(ItemsT.PRESENT, 1, (ItemModifier)null));
 	      }
+	      
+	      if (!this.world.isRemote()) {
+	    	  this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("The Destroyer has been defeated!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
+		  }
 
 	      if (source.getImmediateSource() instanceof PlayerEntity) {
 	         PlayerEntity player = (PlayerEntity)source.getImmediateSource();

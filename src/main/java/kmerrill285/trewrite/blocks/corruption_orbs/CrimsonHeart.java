@@ -19,12 +19,12 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-public class ShadowOrb extends CrossedBlock implements IWaterLoggable  {
+public class CrimsonHeart extends CrossedBlock implements IWaterLoggable  {
 
 	
-	public ShadowOrb() {
+	public CrimsonHeart() {
 		
-		super(Properties.create(Material.EARTH).doesNotBlockMovement().lightValue(8), BlocksT.GROUND_HARDNESS, 15, false, false, true, false, "shadow_orb", "none");
+		super(Properties.create(Material.EARTH).doesNotBlockMovement().lightValue(8), BlocksT.GROUND_HARDNESS, 15, false, false, true, false, "crimson_heart", "none");
 	}
 	
 	public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
@@ -34,7 +34,7 @@ public class ShadowOrb extends CrossedBlock implements IWaterLoggable  {
 			EntityItemT.spawnItem(world, pos, new ItemStackT(ItemsT.MUSKET, 1));
 			EntityItemT.spawnItem(world, pos, new ItemStackT(ItemsT.MUSKET_BALL, 100));
 		} else {
-			int i = world.rand.nextInt(5);
+			int i = world.rand.nextInt(4);
 			if (i == 0) {
 				EntityItemT.spawnItem(world, pos, new ItemStackT(ItemsT.MUSKET, 1));
 				EntityItemT.spawnItem(world, pos, new ItemStackT(ItemsT.MUSKET_BALL, 100));
@@ -48,9 +48,6 @@ public class ShadowOrb extends CrossedBlock implements IWaterLoggable  {
 			if (i == 3) {
 				EntityItemT.spawnItem(world, pos, new ItemStackT(ItemsT.BAND_OF_STARPOWER, 1));
 			}
-			if (i == 4) {
-				EntityItemT.spawnItem(world, pos, new ItemStackT(ItemsT.SHADOW_ORB_ITEM, 1));
-			}
 		}
 		
 		if (!world.isRemote()) {
@@ -61,7 +58,7 @@ public class ShadowOrb extends CrossedBlock implements IWaterLoggable  {
 		    	world.getServer().getPlayerList().sendMessage(new StringTextComponent("Screams echo around you...").applyTextStyles(TextFormatting.BLUE, TextFormatting.BOLD));
 			}
 			if (orbs % 3 == 2) {
-				world.addEntity(EntitiesT.EOW_HEAD.create(world, null, null, null, new BlockPos(Minecraft.getInstance().player.getPosition()), SpawnReason.EVENT, false, false));
+				world.addEntity(EntitiesT.BOC.create(world, null, null, null, new BlockPos(Minecraft.getInstance().player.getPosition()), SpawnReason.EVENT, false, false));
 			}
 	    }
 		

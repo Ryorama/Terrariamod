@@ -13,9 +13,11 @@ import kmerrill285.trewrite.world.WorldStateHolder;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FlyingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class EntityCreeper extends FlyingEntity implements IHostile {
 
@@ -121,5 +123,9 @@ public class EntityCreeper extends FlyingEntity implements IHostile {
    	   	}
    	   	this.setMotion(motionX, motionY, motionZ);
 	}
-
+	
+	@Override
+	public IPacket createSpawnPacket() {
+	      return NetworkHooks.getEntitySpawningPacket(this);
+	}
 }
