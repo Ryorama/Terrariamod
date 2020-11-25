@@ -147,15 +147,6 @@ public class EntityGuide extends CreatureEntity implements IEntityAdditionalSpaw
    public void read(CompoundNBT compound) {
       super.read(compound);
    }
-
-   public boolean processInteract(PlayerEntity player, Hand hand) {
-	   if (world.isRemote) {
-		   GuideGUI.openGui();
-  		   System.out.println("Guide GUI");
-	   }
-	   
-	   return true;	   
-   }
    
    public void readAdditional(CompoundNBT compound) {
    }

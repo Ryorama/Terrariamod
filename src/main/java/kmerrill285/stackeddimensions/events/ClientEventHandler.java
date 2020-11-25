@@ -18,10 +18,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-@EventBusSubscriber(
-   value = {Dist.CLIENT},
-   bus = Bus.FORGE
-)
+@EventBusSubscriber(value = Dist.CLIENT, bus = Bus.FORGE)
 public class ClientEventHandler {
    @SubscribeEvent
    @OnlyIn(Dist.CLIENT)

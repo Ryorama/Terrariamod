@@ -22,8 +22,10 @@ import kmerrill285.trewrite.entities.EntityItemT;
 import kmerrill285.trewrite.entities.RemoveMaxHealthLimit;
 import kmerrill285.trewrite.entities.monsters.bosses.EntityEyeOfCthulhu;
 import kmerrill285.trewrite.entities.monsters.bosses.destroyer.EntityDestroyerHead;
+import kmerrill285.trewrite.events.BloodmoonHandler;
 import kmerrill285.trewrite.events.EntityEvents;
 import kmerrill285.trewrite.events.ScoreboardEvents;
+import kmerrill285.trewrite.events.SolarHandler;
 import kmerrill285.trewrite.events.WorldEvents;
 import kmerrill285.trewrite.items.Armor;
 import kmerrill285.trewrite.items.ItemsT;
@@ -94,9 +96,11 @@ public class Trewrite
     		DEBUG = true;
     		System.out.println("DEBUG!");
     	}
-    	
-    	TerrariaModConfig.loadConifg();
     	    	
+    	TerrariaModConfig.loadConifg();
+    	
+    	System.out.println(Util.stacked_dimensions);
+    	
     	new StackedDimensions();
     	
     	new ItemModifier();
@@ -194,6 +198,9 @@ public class Trewrite
 		
 		World world = event.world;
 		
+		//BloodmoonHandler.handleBloodmoon(world);
+		//SolarHandler.handleSolarEvents(world);
+		
 		WorldStateHolder holder = WorldStateHolder.get(world);
 		holder.update(world, world.getDimension().getType());
 		
@@ -213,8 +220,6 @@ public class Trewrite
 			meteoriteAttempt = false;
 		}
 		
-		world.getGameRules().get(GameRules.DO_WEATHER_CYCLE).set(true, world.getServer());
-
 		for (PlayerEntity player : world.getPlayers()) {
 			
 			for (BlockPos pos : holder.meteoritePositions) {

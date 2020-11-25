@@ -35,6 +35,7 @@ public class WorldStateHolder extends WorldSavedData {
 	public boolean hardmode = false;
 	public int demonAltarsDestroyed = 0;
 	public boolean bloodmoon = false;
+	public boolean solarEclipse = false;
 	public boolean skeletronDefeated = false;
 	public boolean twinsDefeated = false;
 	public boolean destroyerDefeated = false;
@@ -102,6 +103,7 @@ public class WorldStateHolder extends WorldSavedData {
 	
 	@Override
 	public void read(CompoundNBT nbt) {
+		solarEclipse = nbt.getBoolean("solarEclipse");
 		mechBossesDowned = nbt.getInt("mechBossesDowned");
 		creepersDefeated = nbt.getInt("creepersDefeated");
 		eyeDefeated = nbt.getBoolean("eyeDefeated");
@@ -222,6 +224,7 @@ public class WorldStateHolder extends WorldSavedData {
 
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
+		compound.putBoolean("solarEclipse", solarEclipse);
 		compound.putInt("mechBossesDowned", mechBossesDowned);
 		compound.putInt("creepersDefeated", creepersDefeated);
 		compound.putBoolean("firstJoin", firstJoin);

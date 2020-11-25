@@ -128,15 +128,6 @@ public class EntityOldMan extends CreatureEntity implements IEntityAdditionalSpa
 	   public void read(CompoundNBT compound) {
 	      super.read(compound);
 	   }
-
-	   public boolean processInteract(PlayerEntity player, Hand hand) {
-		   
-		   if (world.isRemote) {
-			   OldManGui.openGui();
-		   }
-		   
-		   return true;	   
-	   }
 	   
 	   public void readAdditional(CompoundNBT compound) {
 	   }

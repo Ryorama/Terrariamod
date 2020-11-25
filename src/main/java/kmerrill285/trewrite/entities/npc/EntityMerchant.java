@@ -134,15 +134,6 @@ public class EntityMerchant extends CreatureEntity implements IEntityAdditionalS
 	      super.read(compound);
 	   }
 
-	   public boolean processInteract(PlayerEntity player, Hand hand) {
-		   
-		   if (world.isRemote) {
-			   MerchantShopGui.openGui();
-		   }
-		   
-		   return true;	   
-	   }
-	   
 	   public void readAdditional(CompoundNBT compound) {
 	   }
 

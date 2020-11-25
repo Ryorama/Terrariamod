@@ -32,7 +32,7 @@ public class EntityWallOfFlesh extends FlyingEntity implements IEntityAdditional
 	public boolean ALREADY_SPAWNED = false;
 	public boolean REMOVED = false;
 	
-	public int bossHealth = 8000;
+	public int bossHealth = 4500;
 	public int maxHealth;
 	public Direction direction = null;
 	public boolean setDirection = false;

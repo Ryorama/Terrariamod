@@ -76,9 +76,6 @@ public class WorldEvents {
 					
 		 if (event.getEntity() instanceof PlayerEntity) {
 			 if (WorldStateHolder.get(event.getWorld()).firstJoin == false) { 
-				 EntityGuide eye = (EntityGuide)EntitiesT.GUIDE.create(event.getWorld(), (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, event.getEntity().getPosition(), SpawnReason.EVENT, false, false);
-	             eye.setPosition(event.getEntity().posX + 12, event.getEntity().posY, event.getEntity().posZ);
-	             event.getWorld().addEntity(eye);	 
 	             WorldStateHolder.get(event.getWorld()).firstJoin = true;
 			 }
 		 }

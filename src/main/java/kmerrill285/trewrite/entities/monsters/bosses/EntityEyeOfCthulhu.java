@@ -81,7 +81,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IEntityAdditiona
          this.world.getServer().getPlayerList().sendMessage((new StringTextComponent("The Eye of Cthulhu has awoken!")).applyTextStyles(new TextFormatting[]{TextFormatting.BLUE, TextFormatting.BOLD}));
       }
 
-      this.maxHealth = 2800 + 500 * (worldIn.getPlayers().size() - 1);
+      this.maxHealth = 1000;
       this.bosshealth = (float)this.maxHealth;
       this.setHealth((float)this.maxHealth);
       phase = 0;
@@ -396,7 +396,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IEntityAdditiona
             }
          }
 
-         if (this.getHealth() <= (float)this.maxHealth * 0.65F && transformed == false) {
+         if (this.getHealth() <= this.getMaxHealth() / 2 && transformed == false) {
         	transformed = true;
         	world.playSound((PlayerEntity)null, this.posX, this.posY, this.posZ, SoundsT.ROAR, SoundCategory.PLAYERS, 100, 1);
             phase = 2;

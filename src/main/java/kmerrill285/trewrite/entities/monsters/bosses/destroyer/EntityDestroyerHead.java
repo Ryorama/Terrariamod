@@ -50,7 +50,7 @@ public class EntityDestroyerHead extends MobEntity implements IEntityAdditionalS
 	   public float oldVelX;
 	   public float oldVelY;
 	   public float oldVelZ;
-	   public int life = 10000;
+	   public int life = 4800;
 	   public int[] ai = new int[5];
 	   public PlayerEntity target = null;
 	   public float rx;

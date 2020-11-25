@@ -250,9 +250,6 @@ public class EntitiesT {
       EntitiesT.SHADOW_ORB = register("trewrite:entityshadoworb", Builder.<EntityShadowOrb>create(EntityShadowOrb::new, EntityClassification.MISC).immuneToFire().setCustomClientFactory((spawnEntity, world) -> {
          return new EntityShadowOrb(world);
       }));
-      EntitiesT.GUIDE = register("trewrite:guide", Builder.<EntityGuide>create(EntityGuide::new, EntityClassification.MISC).size(0.5F, 2.0F).immuneToFire().setCustomClientFactory((spawnEntity, world) -> {
-         return new EntityGuide(world);
-      }));
       EntitiesT.VILE_SPIT = register("trewrite:vile_spit", Builder.<EntityVileSpit>create(EntityVileSpit::new, EntityClassification.MISC).size(0.5F, 0.5F).immuneToFire().setCustomClientFactory((spawnEntity, world) -> {
          return new EntityVileSpit(world);
       }));
@@ -367,12 +364,6 @@ public class EntitiesT {
        EntitiesT.HALLOW_SLIME = register("trewrite:entityhallowslime", Builder.<EntityHallowSlime>create(EntityHallowSlime::new, EntityClassification.MISC).size(1.5F, 1.5F).setCustomClientFactory((spawnEntity, world) -> {
            return new EntityHallowSlime(world);
         }));
-       EntitiesT.MERCHANT = register("trewrite:merchant", Builder.<EntityMerchant>create(EntityMerchant::new, EntityClassification.MISC).immuneToFire().setCustomClientFactory((spawnEntity, world) -> {
-   	  	return new EntityMerchant(world);
-       }));
-       EntitiesT.OLD_MAN = register("trewrite:old_man", Builder.<EntityOldMan>create(EntityOldMan::new, EntityClassification.MISC).immuneToFire().setCustomClientFactory((spawnEntity, world) -> {
-      	  	return new EntityOldMan(world);
-       }));
        EntitiesT.SKELETRON_HEAD = register("trewrite:skeletron_head", Builder.<EntitySkeletronHead>create(EntitySkeletronHead::new, EntityClassification.MISC).size(3, 3).immuneToFire().setCustomClientFactory((spawnEntity, world) -> {
      	  	return new EntitySkeletronHead(world);
       }));
