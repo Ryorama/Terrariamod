@@ -19,9 +19,9 @@ public class ModelDestroyerHead extends EntityModel<EntityDestroyerHead> {
 
 		bb_main = new RendererModel(this);
 		bb_main.setRotationPoint(0.0F, 24.0F, 0.0F);
-		bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -6.0F, -13.0F, -7.0F, 12, 7, 14, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, 20, 21, -4.0F, -8.0F, 7.0F, 1, 1, 9, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, 0, 21, 3.0F, -8.0F, 7.0F, 1, 1, 9, 0.0F, false));
+		bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -7.0F, -14.0F, -7.0F, 14, 14, 14, 0.0F, false));
+		bb_main.cubeList.add(new ModelBox(bb_main, 20, 28, -5.0F, -9.0F, -16.0F, 1, 4, 9, 0.0F, false));
+		bb_main.cubeList.add(new ModelBox(bb_main, 0, 28, 4.0F, -9.0F, -16.0F, 1, 4, 9, 0.0F, false));
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class RenderEowTail extends MobRenderer<MobEntity, ModelEowTail>
     public void doRender(MobEntity entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         this.shadowSize = 0.25F;
-        GlStateManager.scalef(10, 10, 10);
+        GlStateManager.scalef(2, 2, 2);
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 

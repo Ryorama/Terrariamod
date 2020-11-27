@@ -42,7 +42,7 @@ public class RenderEowBody extends MobRenderer<MobEntity, ModelEowBody>
              GlStateManager.rotatef(((EntityEowBody)entitylivingbaseIn).ry, 0, 1, 0);
              GlStateManager.rotatef(((EntityEowBody)entitylivingbaseIn).rz, 0, 0, 1);
              GlStateManager.translatef(0, 2, 0);
-             GlStateManager.scalef(10, 10, 10);
+             GlStateManager.scalef(2, 2, 2);
         }
        
     }

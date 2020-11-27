@@ -14,7 +14,7 @@ public class ModelDestroyerBody extends EntityModel<EntityDestroyerBody> {
 
 		bb_main = new RendererModel(this);
 		bb_main.setRotationPoint(0.0F, 24.0F, 0.0F);
-		bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -6.0F, -13.0F, -7.0F, 12, 7, 14, 0.0F, false));
+		bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -7.0F, -14.0F, -7.0F, 14, 14, 14, 0.0F, false));
 	}
 
 	@Override
