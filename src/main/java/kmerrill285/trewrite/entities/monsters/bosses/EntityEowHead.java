@@ -167,7 +167,7 @@ public class EntityEowHead extends MobEntity implements IEntityAdditionalSpawnDa
                EntityEowBody lastWormBody = null;
 
                for(int i = 0; i < this.segments; ++i) {
-                  EntityEowBody wormBody = EntityEowBody.spawnWormBody(this.world, this.getPosition(), 150.0F, (MobEntity)(lastWormBody == null ? this : lastWormBody));
+                  EntityEowBody wormBody = EntityEowBody.spawnWormBody(this.world, new BlockPos(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ()), 150.0F, (MobEntity)(lastWormBody == null ? this : lastWormBody));
                   if (lastWormBody == null) {
                      this.child = wormBody;
                   } else {
@@ -177,7 +177,7 @@ public class EntityEowHead extends MobEntity implements IEntityAdditionalSpawnDa
                   lastWormBody = wormBody;
                }
 
-               EntityEowTail wormBody = EntityEowTail.spawnWormBody(this.world, this.getPosition(), 220.0F, (MobEntity)(lastWormBody == null ? this : lastWormBody));
+               EntityEowTail wormBody = EntityEowTail.spawnWormBody(this.world, new BlockPos(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ()), 220.0F, (MobEntity)(lastWormBody == null ? this : lastWormBody));
                wormBody.owner = lastWormBody;
                this.ai[0] = 1;
             }

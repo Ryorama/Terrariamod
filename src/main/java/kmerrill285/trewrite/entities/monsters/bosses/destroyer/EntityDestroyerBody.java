@@ -86,8 +86,8 @@ public class EntityDestroyerBody extends MobEntity implements IHostile {
 		   WorldStateHolder.get(world).mechBossesDowned += 1;
 		   EntityDestroyerHead.isDesA = false;
 		   isDBA = false;
-		   EntityItemT.spawnItem(this.getEntityWorld(), this.getPosition(), new ItemStackT(ItemsT.MIGHT_SOUL, 40 + rand.nextInt(25), (ItemModifier)null));
-		   EntityItemT.spawnItem(this.getEntityWorld(), this.getPosition(), new ItemStackT(ItemsT.HALLOW_BAR, 15 + rand.nextInt(15), (ItemModifier)null));
+		   //EntityItemT.spawnItem(this.getEntityWorld(), this.getPosition(), new ItemStackT(ItemsT.MIGHT_SOUL, 40 + rand.nextInt(25), (ItemModifier)null));
+		   //EntityItemT.spawnItem(this.getEntityWorld(), this.getPosition(), new ItemStackT(ItemsT.HALLOW_BAR, 15 + rand.nextInt(15), (ItemModifier)null));
 	      if (Util.isChristmas() && this.rand.nextDouble() <= 0.0769D) {
 	         EntityItemT.spawnItem(this.getEntityWorld(), this.getPosition(), new ItemStackT(ItemsT.PRESENT, 1, (ItemModifier)null));
 	      }
@@ -210,9 +210,18 @@ public class EntityDestroyerBody extends MobEntity implements IHostile {
 		 }
 
 	   public boolean attackEntityFrom(DamageSource source, float amount) {
-		   System.out.println(this.getHealth());
-		   return source != DamageSource.IN_WALL && source != DamageSource.FALL && source != DamageSource.CRAMMING ? super.attackEntityFrom(source, amount) : false;
-	   }
+		if (source == DamageSource.OUT_OF_WORLD)
+			return super.attackEntityFrom(source, amount);
+    	if (source == DamageSource.IN_WALL || source == DamageSource.FALL || source == DamageSource.CRAMMING || source == DamageSource.IN_FIRE || source == DamageSource.LAVA || source == DamageSource.ON_FIRE) return false;
+    	
+    	if (owner != null) {
+    		owner.setHealth(life -= amount);
+    	}
+    	this.performHurtAnimation();
+    	super.attackEntityFrom(source, 0);
+    	return false;
+
+    }
 
 	   public static EntityDestroyerBody spawnWormBody(World worldIn, BlockPos pos, float life, MobEntity owner) {
 		  EntityDestroyerBody head = (EntityDestroyerBody)EntitiesT.DESTROYER_BODY.create(worldIn, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, pos, SpawnReason.EVENT, false, false);

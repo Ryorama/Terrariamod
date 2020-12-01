@@ -27,7 +27,6 @@ public class RenderEowHead extends MobRenderer<MobEntity, ModelEowHead>
     public void doRender(MobEntity entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         this.shadowSize = 0.25F;
-        GlStateManager.scalef(2, 2, 2);
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
@@ -37,7 +36,7 @@ public class RenderEowHead extends MobRenderer<MobEntity, ModelEowHead>
      */
     protected void preRenderCallback(MobEntity entitylivingbaseIn, float partialTickTime)
     {
-        float f = 8;
+        float f = 5;
         if (entitylivingbaseIn instanceof EntityEowHead) {
         	GlStateManager.rotatef(((EntityEowHead)entitylivingbaseIn).rx, 1, 0, 0);
              GlStateManager.rotatef(((EntityEowHead)entitylivingbaseIn).ry, 0, 1, 0);

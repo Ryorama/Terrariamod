@@ -114,8 +114,8 @@ public class EntityDestroyerHead extends MobEntity implements IEntityAdditionalS
 	   
 	   @Nullable
 	   public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-	      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10000);
-	      this.setHealth(10000);
+	      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(life);
+	      this.setHealth(life);
 	      return spawnDataIn;
 	   }
 
@@ -133,6 +133,8 @@ public class EntityDestroyerHead extends MobEntity implements IEntityAdditionalS
 	      } else {
 	         this.isAirBorne = false;
 	      }
+		  
+		  this.setHealth(life);
 	      
 	      if (!this.world.isRemote) {
 	         if (this.segments == 0) {
@@ -321,8 +323,17 @@ public class EntityDestroyerHead extends MobEntity implements IEntityAdditionalS
 	   }
 
 	   public boolean attackEntityFrom(DamageSource source, float amount) {
-	      return source != DamageSource.IN_WALL && source != DamageSource.FALL && source != DamageSource.CRAMMING ? super.attackEntityFrom(source, amount) : false;
-	   }
+		if (source == DamageSource.OUT_OF_WORLD)
+			return super.attackEntityFrom(source, amount);
+    	if (source == DamageSource.IN_WALL || source == DamageSource.FALL || source == DamageSource.CRAMMING || source == DamageSource.IN_FIRE || source == DamageSource.LAVA || source == DamageSource.ON_FIRE) return false;
+    		
+		life -= amount;
+			
+    	this.performHurtAnimation();
+    	super.attackEntityFrom(source, 0);
+    	return false;
+
+	}
 
 	   public static void spawnWormHead(World worldIn, BlockPos pos, float life) {
 	      EntityDestroyerHead head = (EntityDestroyerHead)EntitiesT.DESTROYER_HEAD.create(worldIn, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, pos, SpawnReason.EVENT, false, false);
