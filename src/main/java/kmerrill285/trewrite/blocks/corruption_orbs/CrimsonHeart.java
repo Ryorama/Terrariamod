@@ -58,7 +58,7 @@ public class CrimsonHeart extends CrossedBlock implements IWaterLoggable  {
 		    	world.getServer().getPlayerList().sendMessage(new StringTextComponent("Screams echo around you...").applyTextStyles(TextFormatting.BLUE, TextFormatting.BOLD));
 			}
 			if (orbs % 3 == 2) {
-				world.addEntity(EntitiesT.BOC.create(world, null, null, null, new BlockPos(Minecraft.getInstance().player.getPosition().getPosX() + 10, Minecraft.getInstance().player.getPosition().getPosY(), Minecraft.getInstance().player.getPosition().getPosZ() + 10), SpawnReason.EVENT, false, false));
+				world.addEntity(EntitiesT.BOC.create(world, null, null, null, new BlockPos(Minecraft.getInstance().player.getPosX() + 10, Minecraft.getInstance().player.getPosY(), Minecraft.getInstance().player.getPosZ() + 10), SpawnReason.EVENT, false, false));
 			}
 	    }
 		
