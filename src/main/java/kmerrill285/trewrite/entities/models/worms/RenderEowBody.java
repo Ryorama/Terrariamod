@@ -36,12 +36,13 @@ public class RenderEowBody extends MobRenderer<MobEntity, ModelEowBody>
      */
     protected void preRenderCallback(MobEntity entitylivingbaseIn, float partialTickTime)
     {
-        float f = 8;
+        float f = 5;
         if (entitylivingbaseIn instanceof EntityEowBody) {
         	 GlStateManager.rotatef(((EntityEowBody)entitylivingbaseIn).rx, 1, 0, 0);
              GlStateManager.rotatef(((EntityEowBody)entitylivingbaseIn).ry, 0, 1, 0);
              GlStateManager.rotatef(((EntityEowBody)entitylivingbaseIn).rz, 0, 0, 1);
              GlStateManager.translatef(0, 2, 0);
+             GlStateManager.scalef(f, f, f);
         }
        
     }

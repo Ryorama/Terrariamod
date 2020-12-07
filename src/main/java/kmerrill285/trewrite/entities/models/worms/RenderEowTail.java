@@ -36,7 +36,7 @@ public class RenderEowTail extends MobRenderer<MobEntity, ModelEowTail>
      */
     protected void preRenderCallback(MobEntity entitylivingbaseIn, float partialTickTime)
     {
-        float f = 8;
+        float f = 5;
         if (entitylivingbaseIn instanceof EntityEowTail) {
         	 GlStateManager.rotatef(((EntityEowTail)entitylivingbaseIn).rx, 1, 0, 0);
              GlStateManager.rotatef(((EntityEowTail)entitylivingbaseIn).ry, 0, 1, 0);

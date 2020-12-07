@@ -262,8 +262,8 @@ public class Recipes {
       addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.LESSER_HEALING_POTION, 2), BlocksT.BOTTLE, new ItemStackT[]{new ItemStackT(ItemsT.MUSHROOM, 1), new ItemStackT(ItemsT.BOTTLE, 2), new ItemStackT(ItemsT.GEL, 2)}));
       addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.HEALING_POTION, 1), BlocksT.BOTTLE, new ItemStackT[]{new ItemStackT(ItemsT.LESSER_HEALING_POTION, 2), new ItemStackT(ItemsT.GLOWING_MUSHROOM)}));
       
-      addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.CRIMTANE_BAR, 1), BlocksT.FURNACE, new ItemStackT[]{new ItemStackT(ItemsT.CRIMTANE_ORE, 3)}));
-      
+	  addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.CRIMTANE_BAR, 1), BlocksT.FURNACE, new ItemStackT[]{new ItemStackT(ItemsT.CRIMTANE_ORE, 3)}));
+	  
       addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.CRIMTANE_HELMET, 1), BlocksT.IRON_ANVIL, new ItemStackT[]{new ItemStackT(ItemsT.CRIMTANE_BAR, 10), new ItemStackT(ItemsT.TISSUE_SAMPLES, 10)}));
       addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.CRIMTANE_CHESTPLATE, 1), BlocksT.IRON_ANVIL, new ItemStackT[]{new ItemStackT(ItemsT.CRIMTANE_BAR, 20), new ItemStackT(ItemsT.TISSUE_SAMPLES, 20)}));
       addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.CRIMTANE_BOOTS, 1), BlocksT.IRON_ANVIL, new ItemStackT[]{new ItemStackT(ItemsT.CRIMTANE_BAR, 15), new ItemStackT(ItemsT.TISSUE_SAMPLES, 15)}));

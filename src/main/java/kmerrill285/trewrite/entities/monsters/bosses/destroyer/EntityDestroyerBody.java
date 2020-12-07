@@ -213,7 +213,11 @@ public class EntityDestroyerBody extends MobEntity implements IHostile {
 		if (source == DamageSource.OUT_OF_WORLD)
 			return super.attackEntityFrom(source, amount);
     	if (source == DamageSource.IN_WALL || source == DamageSource.FALL || source == DamageSource.CRAMMING || source == DamageSource.IN_FIRE || source == DamageSource.LAVA || source == DamageSource.ON_FIRE) return false;
-    
+    	
+    	if (owner != null) {
+    		owner.setHealth(life -= amount);
+    	}
+    	
     	this.performHurtAnimation();
     	super.attackEntityFrom(source, 0);
     	return false;

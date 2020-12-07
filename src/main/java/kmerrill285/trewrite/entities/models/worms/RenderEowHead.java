@@ -36,7 +36,7 @@ public class RenderEowHead extends MobRenderer<MobEntity, ModelEowHead>
      */
     protected void preRenderCallback(MobEntity entitylivingbaseIn, float partialTickTime)
     {
-        float f = 8;
+        float f = 5;
         if (entitylivingbaseIn instanceof EntityEowHead) {
         	GlStateManager.rotatef(((EntityEowHead)entitylivingbaseIn).rx, 1, 0, 0);
              GlStateManager.rotatef(((EntityEowHead)entitylivingbaseIn).ry, 0, 1, 0);
