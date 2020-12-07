@@ -5,10 +5,12 @@ import kmerrill285.trewrite.entities.monsters.EntityBat;
 import kmerrill285.trewrite.entities.monsters.EntityBlackSlime;
 import kmerrill285.trewrite.entities.monsters.EntityBlueSlime;
 import kmerrill285.trewrite.entities.monsters.EntityCorruptSlime;
+import kmerrill285.trewrite.entities.monsters.EntityCrimera;
 import kmerrill285.trewrite.entities.monsters.EntityDemon;
 import kmerrill285.trewrite.entities.monsters.EntityDemonEye;
 import kmerrill285.trewrite.entities.monsters.EntityDrownedT;
 import kmerrill285.trewrite.entities.monsters.EntityEaterOfSouls;
+import kmerrill285.trewrite.entities.monsters.EntityFaceMonster;
 import kmerrill285.trewrite.entities.monsters.EntityFlyingFish;
 import kmerrill285.trewrite.entities.monsters.EntityHallowSlime;
 import kmerrill285.trewrite.entities.monsters.EntityHarpy;
@@ -179,10 +181,13 @@ public class EntitiesT {
    public static EntityType<EntityPossessedArmor> POSSESSED_ARMOR;
    public static EntityType<EntityToxicSludge> TOXIC_SLUDGE;
    public static EntityType<MoonLord> MOON_LORD;
+   public static EntityType<EntityCrimera> CRIMERA;
+   public static EntityType<EntityFaceMonster> FACE_MONSTER;
 
 
    
-   @SubscribeEvent
+   @SuppressWarnings("unchecked")
+@SubscribeEvent
    public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
       EntitiesT.ITEM = register("trewrite:entityitemt", Builder.<EntityItemT>create(EntityItemT::new, EntityClassification.MISC).immuneToFire().setCustomClientFactory((spawnEntity, world) -> {
     	  	return new EntityItemT(world);
@@ -436,8 +441,13 @@ public class EntitiesT {
  }));
    EntitiesT.MOON_LORD = register("trewrite:moon_lord", Builder.<MoonLord>create(MoonLord::new, EntityClassification.MISC).size(50, 50).immuneToFire().setCustomClientFactory((spawnEntity, world) -> {
 	  	return new MoonLord(world);
-}));
-    
+   }));
+   EntitiesT.CRIMERA = register("trewrite:crimera", Builder.<EntityCrimera>create(EntityCrimera::new, EntityClassification.MISC).size(0.75F, 0.75F).setCustomClientFactory((spawnEntity, world) -> {
+       return new EntityCrimera(world);
+    }));
+   EntitiesT.FACE_MONSTER = register("trewrite:face_monster", Builder.<EntityFaceMonster>create(EntityFaceMonster::new, EntityClassification.MISC).size(2, 3).immuneToFire().setCustomClientFactory((spawnEntity, world) -> {
+	  	return new EntityFaceMonster(world);
+   }));
      
       
    	  SpawnCondition.spawnConditions.put(EntitiesT.POSSESSED_ARMOR, new SpawnCondition(0, 255, SpawnCondition.COMMON, BlocksT.DIRT_BLOCK, BlocksT.GRASS_BLOCK, BlocksT.HIGHLANDS_GRASS, BlocksT.BOG_GRASS, BlocksT.JUNGLE_GRASS, BlocksT.MUD, BlocksT.SAND, BlocksT.RED_SAND, BlocksT.PODZOL));
@@ -466,6 +476,9 @@ public class EntitiesT {
       SpawnCondition.spawnConditions.put(EntitiesT.CORRUPT_SLIME, new SpawnCondition(0, 255, SpawnCondition.COMMON, BlocksT.EBONSTONE, BlocksT.CORRUPT_GRASS, BlocksT.EBONSAND));
       SpawnCondition.spawnConditions.put(EntitiesT.WYVERN_HEAD, new SpawnCondition(0, 255, SpawnCondition.VERY_COMMON, BlocksT.STONE_BLOCK, BlocksT.DIRT_BLOCK, BlocksT.WOOD, BlocksT.AIR_BLOCK));
       SpawnCondition.spawnConditions.put(EntitiesT.HALLOW_SLIME, new SpawnCondition(0, 255, SpawnCondition.VERY_COMMON, BlocksT.PEARLSTONE, BlocksT.HALLOW_GRASS));
+      SpawnCondition.spawnConditions.put(EntitiesT.CRIMERA, new SpawnCondition(0, 255, SpawnCondition.VERY_COMMON, BlocksT.CRIMSON_GRASS, BlocksT.CRIMSTONE));
+      SpawnCondition.spawnConditions.put(EntitiesT.FACE_MONSTER, new SpawnCondition(0, 255, SpawnCondition.VERY_COMMON, BlocksT.CRIMSON_GRASS, BlocksT.CRIMSTONE));
+      
    }
 
    private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> builder) {

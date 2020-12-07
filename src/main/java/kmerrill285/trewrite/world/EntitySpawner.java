@@ -22,7 +22,7 @@ import net.minecraftforge.common.DimensionManager;
 
 public class EntitySpawner {
 	
-	public static EntityType[] groundDaytime = {EntitiesT.BLUE_SLIME, EntitiesT.BUNNY, EntitiesT.ICE_SLIME, EntitiesT.SAND_SLIME, EntitiesT.EOS};
+	public static EntityType[] groundDaytime = {EntitiesT.BLUE_SLIME, EntitiesT.BUNNY, EntitiesT.ICE_SLIME, EntitiesT.SAND_SLIME, EntitiesT.EOS, EntitiesT.CRIMERA, EntitiesT.FACE_MONSTER};
 	public static EntityType[] hardmodeGroundDaytime = {EntitiesT.HALLOW_SLIME, EntitiesT.CORRUPT_SLIME};
 	public static EntityType[] hardmodeGroundNighttime = {EntitiesT.POSSESSED_ARMOR};
 	public static EntityType[] groundNighttime = {EntitiesT.ZOMBIE, EntitiesT.DEMON_EYE};

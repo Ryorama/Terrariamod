@@ -150,9 +150,9 @@ public class EntityDemonEye extends FlyingEntity implements IHostile {
     {
     	if (entityIn != null)
     	if (entityIn.getPositionVector().distanceTo(getPositionVector()) <= 1.5f) {
-			velX *= -2f;
-			velY *= -2f;
-			velZ *= -2f;
+			//velX *= -2f;
+			//velY *= -2f;
+			//velZ *= -2f;
             this.dealDamage(entityIn);
     	}
     }

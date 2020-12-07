@@ -48,9 +48,11 @@ import kmerrill285.trewrite.entities.monsters.EntityBat;
 import kmerrill285.trewrite.entities.monsters.EntityBlackSlime;
 import kmerrill285.trewrite.entities.monsters.EntityBlueSlime;
 import kmerrill285.trewrite.entities.monsters.EntityCorruptSlime;
+import kmerrill285.trewrite.entities.monsters.EntityCrimera;
 import kmerrill285.trewrite.entities.monsters.EntityDemon;
 import kmerrill285.trewrite.entities.monsters.EntityDemonEye;
 import kmerrill285.trewrite.entities.monsters.EntityEaterOfSouls;
+import kmerrill285.trewrite.entities.monsters.EntityFaceMonster;
 import kmerrill285.trewrite.entities.monsters.EntityFlyingFish;
 import kmerrill285.trewrite.entities.monsters.EntityHallowSlime;
 import kmerrill285.trewrite.entities.monsters.EntityHarpy;
@@ -360,6 +362,12 @@ public class ModelRegistry {
        });
       RenderingRegistry.registerEntityRenderingHandler(MoonLord.class, (manager) -> {
           return new RenderMoonLord(manager);
+       });
+      RenderingRegistry.registerEntityRenderingHandler(EntityCrimera.class, (manager) -> {
+          return new RenderCrimera(manager);
+       });
+      RenderingRegistry.registerEntityRenderingHandler(EntityFaceMonster.class, (manager) -> {
+          return new RenderFaceMonster(manager);
        });
    }
 }

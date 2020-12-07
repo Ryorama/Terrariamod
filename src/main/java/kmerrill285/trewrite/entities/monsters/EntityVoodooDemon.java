@@ -97,9 +97,9 @@ public class EntityVoodooDemon extends FlyingEntity {
 
 	   public void onCollideWithPlayer(PlayerEntity entityIn) {
 	      if (entityIn != null && entityIn.getPositionVector().distanceTo(this.getPositionVector()) <= 1.5D) {
-	         this.velX *= -2.0D;
-	         this.velY *= -2.0D;
-	         this.velZ *= -2.0D;
+	         //this.velX *= -2.0D;
+	         //this.velY *= -2.0D;
+	         //this.velZ *= -2.0D;
 	         this.dealDamage(entityIn);
 	      }
 

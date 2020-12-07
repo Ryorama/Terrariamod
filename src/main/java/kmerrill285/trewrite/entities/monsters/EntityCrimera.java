@@ -32,7 +32,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class EntityEaterOfSouls extends FlyingEntity {
+public class EntityCrimera extends FlyingEntity {
    public float rx;
    public float ry;
    public float rz;
@@ -51,12 +51,12 @@ public class EntityEaterOfSouls extends FlyingEntity {
    public float kbResist = 0.2F;
    public static final DataParameter type_data;
 
-   public EntityEaterOfSouls(EntityType type, World worldIn) {
+   public EntityCrimera(EntityType type, World worldIn) {
       super(type, worldIn);
       this.init();
    }
 
-   public EntityEaterOfSouls(World world) {
+   public EntityCrimera(World world) {
       super(EntitiesT.EOS, world);
       this.init();
    }
@@ -339,6 +339,6 @@ public class EntityEaterOfSouls extends FlyingEntity {
    }
 
    static {
-      type_data = EntityDataManager.createKey(EntityEaterOfSouls.class, DataSerializers.VARINT);
+      type_data = EntityDataManager.createKey(EntityCrimera.class, DataSerializers.VARINT);
    }
 }
