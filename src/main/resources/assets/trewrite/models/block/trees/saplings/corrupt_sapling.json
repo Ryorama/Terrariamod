@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "trewrite:block/trees/corrupt_sapling"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "trewrite:block/planks/pearlwood",
-        "top": "trewrite:block/planks/pearlwood",
-        "side": "trewrite:block/planks/pearlwood"
-    }
-}

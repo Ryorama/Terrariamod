@@ -1,6 +1,0 @@
-{
-    "parent": "block/template_torch",
-    "textures": {
-        "torch": "trewrite:block/torches/pink_torch"
-    }
-}

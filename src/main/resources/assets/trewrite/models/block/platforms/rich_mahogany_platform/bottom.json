@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "trewrite:block/planks/rich_mahogany",
-        "top": "trewrite:block/planks/rich_mahogany",
-        "side": "trewrite:block/planks/rich_mahogany"
-    }
-}

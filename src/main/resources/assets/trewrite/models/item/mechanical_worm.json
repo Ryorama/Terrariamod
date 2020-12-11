@@ -1,7 +1,0 @@
-{
-	"parent": "item/generated",
-	"textures":
-	{
-		"layer0": "trewrite:item/mechanical_worm"
-	}
-}

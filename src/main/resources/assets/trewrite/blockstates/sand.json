@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "": [
-            { "model": "trewrite:block/sand" },
-            { "model": "trewrite:block/sand2" },
-            { "model": "trewrite:block/sand3" }
-        ]
-    }
-}

@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: trewrite1.2
-Implementation-Version: 1.0
-Specification-Vendor: examplemodsareus
-Specification-Title: examplemod
-Implementation-Timestamp: 2020-07-15T13:52:31-0700
-Specification-Version: 1
-Implementation-Vendor: examplemodsareus
-

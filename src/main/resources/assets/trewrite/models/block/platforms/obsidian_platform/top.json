@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "trewrite:block/obsidian_brick",
-        "top": "trewrite:block/obsidian_brick",
-        "side": "trewrite:block/obsidian_brick"
-    }
-}

@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "trewrite:block/platforms/glass_platform/bottom" },
-        "type=top": { "model": "trewrite:block/platforms/glass_platform/top" },
-        "type=double": { "model": "trewrite:block/glass" }
-    }
-}

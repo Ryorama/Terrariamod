@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "trewrite:block/candelbras/obsidian_candelabra"
-    }
-}
