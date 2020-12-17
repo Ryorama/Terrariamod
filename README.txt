@@ -1,53 +1,31 @@
--------------------------------------------
-Source installation information for modders
--------------------------------------------
-This code follows the Minecraft Forge installation methodology. It will apply
-some small patches to the vanilla MCP source code, giving you and it access 
-to some of the data and functions you need to build a successful mod.
 
-Note also that the patches are built against "unrenamed" MCP source code (aka
-srgnames) - this means that you will not be able to read them directly against
-normal code.
+This is a mod based off a game called Terraria. It adds several new things from the game including items, tools, bosses. Currently, it is playable up to the destroyer, but it will be playable up to moon lord by the end of the v1.1 update! 
 
-Source pack installation information:
 
-Standalone source installation
-==============================
+Join the Terrariamod discord to see development progress and participate in polls for the mod
 
-See the Forge Documentation online for more detailed instructions:
-http://mcforge.readthedocs.io/en/latest/gettingstarted/
+https://discord.gg/37rqPbU
 
-Step 1: Open your command-line and browse to the folder where you extracted the zip file.
 
-Step 2: You're left with a choice.
-If you prefer to use Eclipse:
-1. Run the following command: "gradlew genEclipseRuns" (./gradlew genEclipseRuns if you are on Mac/Linux)
-2. Open Eclipse, Import > Existing Gradle Project > Select Folder 
-   or run "gradlew eclipse" to generate the project.
-(Current Issue)
-4. Open Project > Run/Debug Settings > Edit runClient and runServer > Environment
-5. Edit MOD_CLASSES to show [modid]%%[Path]; 2 times rather then the generated 4.
+If you would like to review this mod, feel free to DM me here or on discord at Ryorama#6339 to get an early version of the mod.
 
-If you prefer to use IntelliJ:
-1. Open IDEA, and import project.
-2. Select your build.gradle file and have it import.
-3. Run the following command: "gradlew genIntellijRuns" (./gradlew genIntellijRuns if you are on Mac/Linux)
-4. Refresh the Gradle Project in IDEA if required.
+ 
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can run "gradlew --refresh-dependencies" to refresh the local cache. "gradlew clean" to reset everything {this does not affect your code} and then start the processs again.
+Beta 3 has now been released with play ability up to The  Destroyer! Note: Biome generation has been redone, now you will have to travel positive or negative on the X axis to find new biomes! NOT COMPATIBLE WITH OLDER WORLDS!
 
-Should it still not work, 
-Refer to #ForgeGradle on EsperNet for more information about the gradle environment.
-or the Forge Project Discord discord.gg/UvedJ9m
+ 
 
-Forge source installation
-=========================
-MinecraftForge ships with this code and installs it as part of the forge
-installation process, no further action is required on your part.
+Controls: M to toggle between Terraria and Minecraft hotbars.
 
-LexManos' Install Video
-=======================
-https://www.youtube.com/watch?v=8VEdtQLuLO0&feature=youtu.be
+ 
+Note: New screenshots coming soon
 
-For more details update more often refer to the Forge Forums:
-http://www.minecraftforge.net/forum/index.php/topic,14048.0.html
+ 
+
+Check my YouTube channel out for development previews: https://www.youtube.com/channel/UCIuLP8cttaRiArgewiclpiw
+
+ 
+
+ 
+
+The release date for version 1.1 is 2/1/2021! You can find a quick overview trailer with just very little of the new content that will be coming in the massive sized update coming soon here: https://youtu.be/NURRg8QW0wc
