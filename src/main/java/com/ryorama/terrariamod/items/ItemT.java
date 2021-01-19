@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Multimap;
+import com.ryorama.terrariamod.core.items.modifiers.EnumModifierType;
 import com.ryorama.terrariamod.util.Conversions;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -61,6 +62,8 @@ public class ItemT extends Item {
 	public int potionSickness, manaSickness;
 	
 	public int speed;
+	
+	public EnumModifierType MODIFIER_TYPE = EnumModifierType.NONE;
 	
 	public boolean material;
 	
