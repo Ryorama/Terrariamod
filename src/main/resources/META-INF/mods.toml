@@ -1,0 +1,51 @@
+
+modLoader="javafml" #mandatory
+
+loaderVersion="[34,)"
+
+license="All rights reserved"
+
+issueTrackerURL="http://my.issue.tracker/" #optional
+
+[[mods]] #mandatory
+# The modid of the mod
+modId="terrariamod" #mandatory
+
+version="${file.jarVersion}"
+
+displayName="TerrariaMod" #mandatory
+
+updateJSONURL="http://myurl.me/" #optional
+
+displayURL="https://www.curseforge.com/minecraft/mc-mods/ryoramas-terraria-mod" #optional
+
+logoFile="examplemod.png"
+
+credits="" #optional
+
+authors="Ryorama, Realz, HamburgerBoi, PutoPug" #optional
+
+description='''
+
+'''
+
+[[dependencies.terrariamod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[34,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.terrariamod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.3]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.terrariamod]]
+    modId="hammercore"
+    mandatory=true
+    versionRange="[16.1.2]"
+    ordering="NONE"
+    side="BOTH"
