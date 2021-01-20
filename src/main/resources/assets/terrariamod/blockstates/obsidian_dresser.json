@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=east,half=lower":  { "model": "trewrite:block/dressers/obsidian_dresser/left", "y": 270 },
+        "facing=south,half=lower": { "model": "trewrite:block/dressers/obsidian_dresser/left"},
+        "facing=west,half=lower":  { "model": "trewrite:block/dressers/obsidian_dresser/left", "y": 90 },
+        "facing=north,half=lower": { "model": "trewrite:block/dressers/obsidian_dresser/left", "y": 180 },
+        "facing=east,half=upper":  { "model": "trewrite:block/dressers/obsidian_dresser/right", "y": 270 },
+        "facing=south,half=upper": { "model": "trewrite:block/dressers/obsidian_dresser/right" },
+        "facing=west,half=upper":  { "model": "trewrite:block/dressers/obsidian_dresser/right", "y": 90 },
+        "facing=north,half=upper": { "model": "trewrite:block/dressers/obsidian_dresser/right", "y": 180 }
+    }
+}

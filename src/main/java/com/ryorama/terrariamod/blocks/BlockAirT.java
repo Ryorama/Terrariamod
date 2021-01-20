@@ -19,12 +19,12 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class BlockAirT extends BlockT implements IWaterLoggable {
+public class BlockAirT extends Block implements IWaterLoggable {
 
 	public static BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public BlockAirT() {
-		super(Properties.create(Material.AIR).doesNotBlockMovement(), 0, 0, "none");
-	    this.setDefaultState(this.stateContainer.getBaseState().with(BlockT.light, 0).with(WATERLOGGED, Boolean.valueOf(false)));
+		super(Properties.create(Material.AIR).doesNotBlockMovement());
+	    this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, Boolean.valueOf(false)));
 	}
 	
 	@Override

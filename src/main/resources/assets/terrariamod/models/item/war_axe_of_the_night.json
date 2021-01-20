@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures":
+	{
+		"layer0": "trewrite:item/war_axe_of_the_night"
+	}
+}

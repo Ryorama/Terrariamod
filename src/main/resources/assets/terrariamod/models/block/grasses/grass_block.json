@@ -1,0 +1,8 @@
+{   "parent": "terrariamod:block/grasses/bog_grass",
+    "textures": {
+        "particle": "terrariamod:block/dirt_block",
+        "top": "terrariamod:block/grasses/grass_top",
+        "side": "terrariamod:block/grasses/grass_side",
+        "bottom": "terrariamod:block/dirt_block"
+    }
+}

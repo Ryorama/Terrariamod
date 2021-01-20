@@ -1,0 +1,62 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [16, 32],
+	"textures": {
+		"0": "trewrite:block/statues/angel_statue",
+		"particle": "trewrite:block/statues/angel_statue"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 8, 16],
+			"faces": {
+				"north": {"uv": [0, 12, 8, 16], "texture": "#0"},
+				"east": {"uv": [0, 12, 8, 16], "texture": "#0"},
+				"south": {"uv": [0, 12, 8, 16], "texture": "#0"},
+				"west": {"uv": [0, 12, 8, 16], "texture": "#0"},
+				"up": {"uv": [8, 8, 16, 16], "texture": "#0"},
+				"down": {"uv": [8, 0, 16, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 8, 8],
+			"to": [16, 24, 8],
+			"faces": {
+				"north": {"uv": [0, 3.5, 8, 12], "texture": "#0"},
+				"east": {"uv": [0, 0, 0, 8], "texture": "#missing"},
+				"south": {"uv": [0, 3.5, 8, 12], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 8], "texture": "#missing"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"down": {"uv": [0, 0, 16, 0], "texture": "#missing"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"scale": [0.5, 0.5, 0]
+		},
+		"thirdperson_lefthand": {
+			"scale": [0.5, 0.5, 0]
+		},
+		"firstperson_righthand": {
+			"scale": [0.5, 0.5, 0]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.5, 0.5, 0]
+		},
+		"ground": {
+			"scale": [0.5, 0.5, 0]
+		},
+		"gui": {
+			"translation": [0, -2.5, 0],
+			"scale": [0.65, 0.65, 1]
+		},
+		"head": {
+			"translation": [0, 10.5, 0]
+		},
+		"fixed": {
+			"translation": [0, -1.5, -1],
+			"scale": [0.5, 0.5, 0]
+		}
+	}
+}

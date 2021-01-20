@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "trewrite:block/deep_mud" },
+            { "model": "trewrite:block/deep_mud", "y": 90 },
+            { "model": "trewrite:block/deep_mud", "y": 180 },
+            { "model": "trewrite:block/deep_mud", "y": 270 }
+        ]
+    }
+}

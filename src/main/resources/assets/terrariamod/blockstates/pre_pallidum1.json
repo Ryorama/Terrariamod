@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "trewrite:block/stone_block" },
+            { "model": "trewrite:block/stone_block", "y": 180 },
+            { "model": "trewrite:block/stone_block", "x": 180 , "y": 180 },
+            { "model": "trewrite:block/stone_block", "x": 180 }
+        ]
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "trewrite:block/torches/cursed_torch" }
+    }
+}

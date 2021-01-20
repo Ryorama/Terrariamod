@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "age=0": { "model": "trewrite:block/cactus" },
+		"age=1": { "model": "trewrite:block/cactus_side" },
+		"age=2": { "model": "trewrite:block/cactus_side", "y": 90 },
+		"age=3": { "model": "trewrite:block/cactus_side", "y": 180 },
+		"age=4": { "model": "trewrite:block/cactus_side", "y": 270 }
+    }
+}

@@ -1,0 +1,113 @@
+{
+  "title": "Hair1",
+  "tree": [
+    {
+      "name": "Body_Lower",
+      "position": [ 0, 12, 1 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 8, 4, 5 ],
+      "rotation": [ 0, 0, 0 ],
+      "vertexCoords": [
+        [ 0, 0, 0 ],
+        [ 0, 0, 0 ],
+        [ 0, 0, 0 ],
+        [ 0, 0, 0 ],
+        [ 0, 0, 0 ],
+        [ 0, 0, 0 ],
+        [ 0, 0, 0 ],
+        [ 0, 0, 0 ]
+      ],
+      "texOffset": [ 1, 44 ],
+      "children": [
+        {
+          "name": "Body_Upper",
+          "position": [ 0, 2, -1 ],
+          "offsetFromPivot": [ 0, 3, 1 ],
+          "size": [ 8, 6, 5 ],
+          "rotation": [ 0, 0, 0 ],
+          "vertexCoords": [
+            [ 0, 0, 0 ],
+            [ 0, 0, 0 ],
+            [ 0, 0, 0 ],
+            [ 0, 0, 0 ],
+            [ 0, 0, 0 ],
+            [ 0, 0, 0 ],
+            [ 0, 0, 0 ],
+            [ 0, 0, 0 ]
+          ],
+          "texOffset": [ 0, 30 ],
+          "children": [
+            {
+              "name": "Neck",
+              "position": [ 0, 3.5, 0 ],
+              "offsetFromPivot": [ 0, 0, 0 ],
+              "size": [ 6, 1, 5 ],
+              "rotation": [ 0, 0, 0 ],
+              "vertexCoords": [
+                [ 0, 0, 0 ],
+                [ 0, 0, 0 ],
+                [ 0, 0, 0 ],
+                [ 0, 0, 0 ],
+                [ 0, 0, 0 ],
+                [ 0, 0, 0 ],
+                [ 0, 0, 0 ],
+                [ 0, 0, 0 ]
+              ],
+              "texOffset": [ 15, 22 ],
+              "children": [
+                {
+                  "name": "Head",
+                  "position": [ 0, 5, 0 ],
+                  "offsetFromPivot": [ 0, 0, 0 ],
+                  "size": [ 10, 10, 10 ],
+                  "rotation": [ 0, 0, 0 ],
+                  "vertexCoords": [
+                    [ 0, 0, 0 ],
+                    [ 0, 0, 0 ],
+                    [ 0, 0, 0 ],
+                    [ 0, 0, 0 ],
+                    [ 0, 0, 0 ],
+                    [ 0, 0, 0 ],
+                    [ 0, 0, 0 ],
+                    [ 0, 0, 0 ]
+                  ],
+                  "texOffset": [ 0, 0 ],
+                  "children": [
+                    {
+                      "name": "Hair",
+                      "position": [ 0, 0, 0 ],
+                      "offsetFromPivot": [ 0, 0, 0 ],
+                      "size": [ 10, 10, 10 ],
+                      "rotation": [ 0, 0, 0 ],
+                      "vertexCoords": [
+                        [ -5.25, 5.25, -5.25 ],
+                        [ 5.25, 5.25, -5.25 ],
+                        [ 5.25, -5.25, -5.25 ],
+                        [ -5.25, -5.25, -5.25 ],
+                        [ 5.25, 5.25, 5.25 ],
+                        [ -5.25, 5.25, 5.25 ],
+                        [ -5.25, -5.25, 5.25 ],
+                        [ 5.25, -5.25, 5.25 ]
+                      ],
+                      "texOffset": [ 0, 0 ],
+                      "children": []
+                    },
+                    {
+                      "name": "HairPiece",
+                      "position": [ 0, 5, 2 ],
+                      "offsetFromPivot": [ 0, 0, 0 ],
+                      "size": [ 9, 3, 8 ],
+                      "rotation": [ -11.60268, 0, 0 ],
+                      "texOffset": [ 2, 24 ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

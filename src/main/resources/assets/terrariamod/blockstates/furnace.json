@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "trewrite:block/forges/furnace", "y": 180 },
+        "facing=south": { "model": "trewrite:block/forges/furnace" },
+        "facing=west":  { "model": "trewrite:block/forges/furnace", "y": 90 },
+        "facing=east":  { "model": "trewrite:block/forges/furnace", "y": 270 }
+    }
+}

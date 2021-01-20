@@ -136,7 +136,7 @@ public class BlockT extends Block {
 	
 	public BlockT setLocation(String name) {
 		this.name = name;
-		this.setRegistryName(new ResourceLocation("trewrite", name));
+		this.setRegistryName(new ResourceLocation("terrariamod", name));
 		BlocksT.BLOCKS.put(this.name, this);
 		return this;
 	}

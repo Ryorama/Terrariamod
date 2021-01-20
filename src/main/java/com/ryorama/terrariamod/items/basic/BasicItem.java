@@ -1,24 +1,18 @@
 package com.ryorama.terrariamod.items.basic;
 
-import com.ryorama.terrariamod.items.ItemT;
 import com.ryorama.terrariamod.util.Conversions;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
 
-public class BasicItem extends ItemT {
+public class BasicItem extends Item {
 
 	/***
 	 * 
 	 * @param properties
-	 * @param sellPrice
-	 * @param id
-	 * @param material
 	 */
-	public BasicItem(Properties properties, int sellPrice, String id, boolean material) {
+	public BasicItem(Properties properties) {
 		super(new Properties().group(ItemGroup.MATERIALS));
-		this.material = material;
-		this.sellPrice = sellPrice;
-		this.buyPrice = Conversions.sellToBuy(sellPrice);
-		this.setLocation(id);
 	}
 }

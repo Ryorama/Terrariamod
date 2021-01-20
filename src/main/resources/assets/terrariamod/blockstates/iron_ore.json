@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "": [
+            { "model": "trewrite:block/ores/iron_ore" }
+        ]
+    }
+}

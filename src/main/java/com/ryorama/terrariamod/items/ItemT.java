@@ -192,7 +192,7 @@ public class ItemT extends Item {
 	}
 	
 	protected void setLocation(String name) {
-		this.setRegistryName(new ResourceLocation("trewrite", name));
+		this.setRegistryName(new ResourceLocation("terrariamod", name));
 		ItemsT.items.put(ItemsT.getStringForItem(this), this);
 		this.itemName = name;
 	}
