@@ -24,6 +24,8 @@ public class ItemsT {
 	public static Item GRASS_BLOCK;
 	public static Item DIRT_BLOCK;
 	public static Item STONE_BLOCK;
+	public static Item FALLEN_STAR;
+	public static Item WORKBENCH;
 	
 	public static HashMap<String, ItemT> items = new HashMap<String, ItemT>();
 	
@@ -62,9 +64,11 @@ public class ItemsT {
 				
 				COPPER = new BasicItem(new Properties().group(ItemGroup.MISC)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "copper")),
 				IRON = new BasicItem(new Properties().group(ItemGroup.MISC)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "iron")),
+				FALLEN_STAR = new BasicItem(new Properties().group(ItemGroup.MISC)).setRegistryName(new ResourceLocation(TerrariaMod.modid + "fallen_star")),
 				GRASS_BLOCK = new BlockItem(BlocksT.GRASS_BLOCK, new Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "grass")),
 				DIRT_BLOCK = new BlockItem(BlocksT.DIRT_BLOCK, new Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "dirt")),
-				STONE_BLOCK = new BlockItem(BlocksT.STONE_BLOCK, new Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "stone"))
+				STONE_BLOCK = new BlockItem(BlocksT.STONE_BLOCK, new Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "stone")),
+				WORKBENCH = new BlockItem(BlocksT.WORKBENCH, new Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "workbench"))
 				
 				
 		);

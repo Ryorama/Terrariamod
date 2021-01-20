@@ -22,6 +22,7 @@ public class BlocksT {
 	public static Block GRASS_BLOCK;
 	public static Block DIRT_BLOCK;
 	public static Block STONE_BLOCK;
+	public static Block WORKBENCH;
 	
 	public static float mul = 1.5f;
 	public static float GROUND_HARDNESS = 30.0f * mul, STONE_HARDNESS = 45.0f * mul, ORE_HARDNESS = 50.0f * mul, DUNGEON_HARDNESS = 60.0f * mul;
@@ -34,7 +35,8 @@ public class BlocksT {
 				AIR_BLOCK = new BlockAirT().setRegistryName(new ResourceLocation(TerrariaMod.modid, "air")),
 				GRASS_BLOCK = new GrassBlock(Properties.create(Material.EARTH).sound(SoundsT.DIRT)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "grass")),
 				DIRT_BLOCK = new DirtBlock(Properties.create(Material.EARTH).sound(SoundsT.DIRT)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "dirt")),
-				STONE_BLOCK = new BasicBlock(Properties.create(Material.EARTH).sound(SoundsT.STONE)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "stone"))
+				STONE_BLOCK = new BasicBlock(Properties.create(Material.EARTH).sound(SoundsT.STONE)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "stone")),
+				WORKBENCH = new BasicBlock(Properties.create(Material.EARTH).sound(SoundsT.DIRT)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "workbench"))
 				
 		);
 	}

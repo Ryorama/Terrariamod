@@ -6,7 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.core.network.NetworkHandler;
 import com.ryorama.terrariamod.core.sounds.TMusicTicker;
+import com.ryorama.terrariamod.events.EntityEvents;
+import com.ryorama.terrariamod.world.WorldEvents;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
@@ -52,7 +55,10 @@ public class TerrariaMod
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        // Register ourselves for server and other game events we are interested in
+        
+        MinecraftForge.EVENT_BUS.register(EntityEvents.class);
+        MinecraftForge.EVENT_BUS.register(WorldEvents.class);
+        NetworkHandler.register();
         MinecraftForge.EVENT_BUS.register(this);
     }
     
@@ -72,7 +78,7 @@ public class TerrariaMod
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-    	 try {
+    	try {
  			Field musicTicker = ObfuscationReflectionHelper.findField(Minecraft.class, "field_147126_aw");
  			musicTicker.setAccessible(true);
  			musicTicker.set(Minecraft.getInstance(), new TMusicTicker(Minecraft.getInstance()));
