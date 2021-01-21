@@ -1,7 +1,5 @@
 package com.ryorama.terrariamod.items;
 
-import com.ryorama.terrariamod.core.inventory.InventorySlot;
-
 import net.minecraft.item.ArmorMaterial;
 
 public class Armor extends ItemT {
@@ -23,9 +21,5 @@ public class Armor extends ItemT {
 
 	public ArmorMaterial getArmorMaterial() {
 		return ArmorMaterial.TURTLE;
-	}
-	
-	public int getDefense(InventorySlot[] armor) {
-		return defense;
 	}
 }

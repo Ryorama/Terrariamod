@@ -6,10 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.core.network.NetworkHandler;
 import com.ryorama.terrariamod.core.sounds.TMusicTicker;
-import com.ryorama.terrariamod.events.EntityEvents;
-import com.ryorama.terrariamod.world.WorldEvents;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
@@ -55,10 +52,6 @@ public class TerrariaMod
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        
-        MinecraftForge.EVENT_BUS.register(EntityEvents.class);
-        MinecraftForge.EVENT_BUS.register(WorldEvents.class);
-        NetworkHandler.register();
         MinecraftForge.EVENT_BUS.register(this);
     }
     

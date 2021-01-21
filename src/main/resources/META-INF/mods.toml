@@ -26,7 +26,7 @@ logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
 credits="Thanks for this example mod goes to Java" #optional
 # A text field displayed in the mod UI
-authors="Ryorama, Realz, PutoPug" #optional
+authors="Ryorama, Realz, PutoPug, HamburgurBoi" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 A port of the game Terraria into Minecraft!
