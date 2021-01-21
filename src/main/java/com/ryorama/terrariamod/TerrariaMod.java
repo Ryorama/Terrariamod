@@ -22,12 +22,9 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod("terrariamod")
 public class TerrariaMod
-{	
-    // Directly reference a log4j logger.
-    
+{
 	public static String modid = "terrariamod";
 	
 	private static final Logger LOGGER = LogManager.getLogger();
