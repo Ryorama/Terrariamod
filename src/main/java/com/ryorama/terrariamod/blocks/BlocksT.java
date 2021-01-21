@@ -33,9 +33,9 @@ public class BlocksT {
 				
 				
 				AIR_BLOCK = new BlockAirT().setRegistryName(new ResourceLocation(TerrariaMod.modid, "air")),
-				GRASS_BLOCK = new GrassBlock(Properties.create(Material.EARTH).sound(SoundsT.DIRT)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "grass")),
-				DIRT_BLOCK = new DirtBlock(Properties.create(Material.EARTH).sound(SoundsT.DIRT)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "dirt")),
-				STONE_BLOCK = new BasicBlock(Properties.create(Material.EARTH).sound(SoundsT.STONE)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "stone")),
+				GRASS_BLOCK = new GrassBlock(Properties.create(Material.EARTH).sound(SoundsT.DIRT)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "grass_block")),
+				DIRT_BLOCK = new DirtBlock(Properties.create(Material.EARTH).sound(SoundsT.DIRT)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "dirt_block")),
+				STONE_BLOCK = new BasicBlock(Properties.create(Material.EARTH).sound(SoundsT.STONE)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "stone_block")),
 				WORKBENCH = new BasicBlock(Properties.create(Material.EARTH).sound(SoundsT.DIRT)).setRegistryName(new ResourceLocation(TerrariaMod.modid, "workbench"))
 				
 		);

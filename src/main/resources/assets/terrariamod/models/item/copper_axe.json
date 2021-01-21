@@ -2,6 +2,6 @@
 	"parent": "item/handheld",
 	"textures":
 	{
-		"layer0": "trewrite:item/copper_axe"
+		"layer0": "terrariamod:item/copper_axe"
 	}
 }
