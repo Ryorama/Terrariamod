@@ -25,7 +25,7 @@ public class TerrariamodJEIIntegrationPlugin implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-
+    	
     }
 
     @Override

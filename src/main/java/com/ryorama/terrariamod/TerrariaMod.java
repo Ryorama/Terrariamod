@@ -7,9 +7,11 @@ import org.apache.logging.log4j.Logger;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.core.sounds.TMusicTicker;
+import com.ryorama.terrariamod.world.WorldTypeTerraria;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent.NeighborNotifyEvent;
@@ -39,6 +41,14 @@ public class TerrariaMod
     		DEBUG = true;
     		System.out.println("DEBUG!");
     	}
+    	
+    	WorldType type = WorldType.WORLD_TYPES[0];
+    	WorldType[] types2 = new WorldType[WorldType.WORLD_TYPES.length + 1];
+    	for (int i = 0; i < WorldType.WORLD_TYPES.length; i++) {
+    		types2[i + 1] = WorldType.WORLD_TYPES[i];
+    	}
+    	types2[0] = new WorldTypeTerraria("Terraria-Style");
+    	WorldType.WORLD_TYPES = types2;
     	
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
