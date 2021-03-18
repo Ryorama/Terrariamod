@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "terrariamod",
+  "version": "${version}",
+
+  "name": "TerrariaMod",
+  "description": "A recreation of the popular game Terraria for Minecraft!",
+  "authors": [
+    "Ryorama"
+  ],
+  "contact": {
+    "homepage":"",
+    "sources": ""
+  },
+
+  "license": "",
+  "icon": "",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.ryorama.terrariamod.TerrariaMod"
+    ]
+  },
+  "mixins": [
+    "terrariamod.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.17.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
