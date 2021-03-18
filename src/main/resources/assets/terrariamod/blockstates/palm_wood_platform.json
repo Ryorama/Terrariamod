@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "trewrite:block/platforms/palm_wood_platform/bottom" },
-        "type=top": { "model": "trewrite:block/platforms/palm_wood_platform/top" },
-        "type=double": { "model": "trewrite:block/wooden_planks/palm_wood" }
-    }
-}

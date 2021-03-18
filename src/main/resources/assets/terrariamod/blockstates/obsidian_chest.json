@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "trewrite:block/chests/obsidian_chest" },
-        "facing=south": { "model": "trewrite:block/chests/obsidian_chest", "y": 180 },
-        "facing=west":  { "model": "trewrite:block/chests/obsidian_chest", "y": 270 },
-        "facing=east":  { "model": "trewrite:block/chests/obsidian_chest", "y": 90 }
-    }
-}

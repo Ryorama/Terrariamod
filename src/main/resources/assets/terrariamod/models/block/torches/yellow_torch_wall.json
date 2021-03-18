@@ -1,7 +1,0 @@
-{
-    "parent": "block/torch_wall",
-    "textures": {
-        "torch": "trewrite:block/torches/yellow_torch"
-    }
-}
-

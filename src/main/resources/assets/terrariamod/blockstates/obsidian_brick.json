@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "": [ 
-            { "model": "trewrite:block/obsidian_brick" },
-            { "model": "trewrite:block/obsidian_brick2" }
-        ]
-    }
-}

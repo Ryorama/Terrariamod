@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "half=upper":  { "model": "trewrite:block/lamps/obsidian_lamp/top" },
-        "half=lower": { "model": "trewrite:block/lamps/obsidian_lamp/bottom"}
-        
-    }
-}

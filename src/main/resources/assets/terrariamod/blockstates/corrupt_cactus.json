@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "age=0": { "model": "trewrite:block/corrupt_cactus" },
-		"age=1": { "model": "trewrite:block/corrupt_cactus_side" },
-		"age=2": { "model": "trewrite:block/corrupt_cactus_side", "y": 90 },
-		"age=3": { "model": "trewrite:block/corrupt_cactus_side", "y": 180 },
-		"age=4": { "model": "trewrite:block/corrupt_cactus_side", "y": 270 }
-    }
-}

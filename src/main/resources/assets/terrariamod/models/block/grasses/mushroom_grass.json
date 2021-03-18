@@ -1,8 +1,0 @@
-{   "parent": "trewrite:block/grasses/bog_grass",
-    "textures": {
-        "particle": "trewrite:block/mud",
-        "top": "trewrite:block/grasses/mushroom_top",
-        "side": "trewrite:block/grasses/mushroom_side",
-        "bottom": "trewrite:block/mud"
-    }
-}

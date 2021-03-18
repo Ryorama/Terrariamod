@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "trewrite:block/plants/corrupt/flower16"
-    }
-}

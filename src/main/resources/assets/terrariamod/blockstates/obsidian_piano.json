@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=south": { "model": "trewrite:block/pianos/obsidian_piano", "y": 180 },
-        "facing=north": { "model": "trewrite:block/pianos/obsidian_piano" },
-        "facing=east":  { "model": "trewrite:block/pianos/obsidian_piano", "y": 90 },
-        "facing=west":  { "model": "trewrite:block/pianos/obsidian_piano", "y": 270 }
-    }
-}

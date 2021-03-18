@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "half=upper":  { "model": "trewrite:block/vases/obsidian_vase/top" },
-        "half=lower": { "model": "trewrite:block/vases/obsidian_vase/bottom"}
-        
-    }
-}

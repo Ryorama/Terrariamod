@@ -5,9 +5,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ 1.15.2-rewrite ]
+    branches: [ 1.17-fabric ]
   pull_request:
-    branches: [ 1.15.2-rewrite ]
+    branches: [ 1.17-fabric ]
 
 jobs:
   build:
