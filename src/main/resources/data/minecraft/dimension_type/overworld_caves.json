@@ -12,6 +12,6 @@
   "piglin_safe": false,
   "bed_works": true,
   "has_skylight": true,
-  "has_ceiling": false,
+  "has_ceiling": true,
   "ultrawarm": false
 }
