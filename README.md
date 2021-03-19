@@ -1,9 +1,12 @@
-# Fabric Example Mod
+Please go to the actions tab to get builds for the latest commits, download package.zip under artifacts. The jar will be in the zip
+This is a mod based off a game called Terraria. It adds several new things from the game including items, tools, bosses. Currently, it is playable up to the destroyer, but it will be playable up to moon lord by the end of the v1.1 update!
 
-## Setup
+Join the Terrariamod discord to see development progress and participate in polls for the mod
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+https://discord.gg/37rqPbU
 
-## License
+If you would like to review this mod, feel free to DM me on curseforge or on discord at Ryorama#6339 to get an early version of the mod.
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+Check my YouTube channel out for development previews: https://www.youtube.com/channel/UCIuLP8cttaRiArgewiclpiw
+
+The release date for version 1.1 is 2/1/2021! You can find a quick overview trailer with just very little of the new content that will be coming in the massive sized update coming soon here: https://youtu.be/NURRg8QW0wc
