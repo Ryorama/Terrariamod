@@ -1,12 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.ryorama.terrariamod.mixin",
+  "package": "com.ryorama.terrariamod.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+  	"GeneratorTypeAccessor"
   ],
   "client": [
-  
   ],
   "injectors": {
     "defaultRequire": 1

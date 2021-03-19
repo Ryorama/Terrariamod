@@ -15,6 +15,7 @@
 
   "license": "",
   "icon": "",
+  "accessWidener" : "terrariamod.accesswidener",
 
   "environment": "*",
   "entrypoints": {
