@@ -10,7 +10,8 @@
 	"CaveCarverMixin",
 	"RavineCarverMixin",
 	"ChunkGeneratorSettingsMixin",
-  	"GeneratorTypeAccessor"
+  	"GeneratorTypeAccessor",
+  	"InventoryMixin"
   ],
   "client": [
   ],

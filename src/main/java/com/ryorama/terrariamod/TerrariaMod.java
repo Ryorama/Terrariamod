@@ -6,9 +6,12 @@ import java.util.OptionalLong;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.items.ItemsT;
+import com.ryorama.terrariamod.mixins.InventoryMixin;
+import com.ryorama.terrariamod.world.features.TerrariaFeatures;
 
 import net.fabricmc.api.ModInitializer;
-
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
 import net.minecraft.world.dimension.DimensionType;
@@ -30,6 +33,7 @@ public class TerrariaMod implements ModInitializer {
 		BiomeRegistry.RegisterBiomes();
 		BlocksT.init();
 		ItemsT.init();
+		TerrariaFeatures.init();
 		ModifyWorldHeight();
 	}
 	
@@ -59,4 +63,27 @@ public class TerrariaMod implements ModInitializer {
 				OVERWORLD_ID, 0.0F);
 		 */
 	}
+	
+	/*
+	private static void ChangeMaxStackSize() {
+		Field[] inventoryFields = Inventory.class.getDeclaredFields();
+		for (int i = 0; i < inventoryFields.length; i++) {
+			try {
+				Resources.makeFieldAccessible(inventoryFields[i]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println(inventoryFields[i].getName() + ", " + i);
+		}
+		int stackSizeFieldNum = 12;
+		Field overworld_field = inventoryFields[stackSizeFieldNum];
+		
+		try {
+			Resources.makeFieldAccessible(overworld_field);
+			overworld_field.set(null, 999);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	*/
 }
