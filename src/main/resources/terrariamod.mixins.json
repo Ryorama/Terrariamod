@@ -11,7 +11,8 @@
 	"RavineCarverMixin",
 	"ChunkGeneratorSettingsMixin",
   	"GeneratorTypeAccessor",
-  	"InventoryMixin"
+  	"InventoryMixin",
+  	"PlayerEntityMixin"
   ],
   "client": [
   ],

@@ -1,9 +1,5 @@
 {
     "variants": {
-        "": [
-            { "model": "terrariamod:block/copper_ore", "weight": 20 },
-            { "model": "terrariamod:block/copper_ore", "weight": 5 },
-            { "model": "terrariamod:block/copper_ore", "weight": 1 }
-        ]
+        {"normal":{"model":"cube_all","textures":{"all":"terrariamod:blocks/copper_ore"}}}
     }
 }
