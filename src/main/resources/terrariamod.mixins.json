@@ -12,7 +12,9 @@
 	"ChunkGeneratorSettingsMixin",
   	"GeneratorTypeAccessor",
   	"InventoryMixin",
-  	"PlayerEntityMixin"
+  	"PlayerEntityMixin",
+  	"NoiseChunkGeneratorMixin",
+  	"DefaultBiomeFeaturesMixin"
   ],
   "client": [
   ],

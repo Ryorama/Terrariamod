@@ -11,13 +11,16 @@ import com.ryorama.terrariamod.blocks.BlocksT;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.world.ChunkRegion;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.gen.SimpleRandom;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 @Mixin(ChunkGenerator.class)
 public class ChunkGeneratorMixin {
+	
+	public DoublePerlinNoiseSampler terrainNoise;
 	
 	@Inject(at = @At("HEAD"), method = "getWorldHeight", cancellable = true)
 	public void getWorldHeight(CallbackInfoReturnable<Integer> info) {
@@ -26,6 +29,11 @@ public class ChunkGeneratorMixin {
 	
 	@Inject(at = @At("HEAD"), method = "generateFeatures", cancellable = true)
 	public void generateFeatures(ChunkRegion region, StructureAccessor accessor, CallbackInfo info) {
+		
+		 if (terrainNoise == null) {
+	            terrainNoise = DoublePerlinNoiseSampler.create(new SimpleRandom(region.getRandom().nextLong()), -8,
+	                    new double[]{1.0D});
+	        }
 		
 		ChunkPos chunkPos = region.getCenterPos();
 		BlockPos.Mutable pos = new BlockPos.Mutable();
@@ -58,6 +66,19 @@ public class ChunkGeneratorMixin {
 						if (region.getBlockState(pos).getBlock() == Blocks.DEEPSLATE) {
 							region.setBlockState(pos, BlocksT.STONE_BLOCK.getDefaultState(), 0);
 						}
+						
+						
+						//Underworld Stuff
+						if (y < -150 + terrainNoise.sample(x * 10, y * 0.01f, z * 10) * 25) {
+	                        if (region.getBlockState(pos).getBlock() == Blocks.AIR ||
+	                                region.getBlockState(pos).getBlock() == Blocks.CAVE_AIR) {
+	                            if (y < -230) {
+	                                region.setBlockState(pos, Blocks.LAVA.getDefaultState(), 0);
+	                            }
+	                        } else {
+	                            region.setBlockState(pos, BlocksT.ASH.getDefaultState(), 0);
+	                        }
+	                    }
 					}
 				}
 			}

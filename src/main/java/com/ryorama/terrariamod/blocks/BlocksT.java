@@ -13,7 +13,8 @@ public class BlocksT {
 	public static Block GRASS_BLOCK = new Block(FabricBlockSettings.of(Material.SOIL).strength(4.0f));
 	public static Block DIRT_BLOCK = new Block(FabricBlockSettings.of(Material.SOIL).strength(4.0f));
 	public static Block STONE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).strength(4.0f));
-	
+	public static Block ASH = new Block(FabricBlockSettings.of(Material.STONE).strength(4.0f));
+
 	public static Block COPPER_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(4.0f));
 	
 	public static void init() {
@@ -21,6 +22,7 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "dirt_block"), DIRT_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "stone_block"), STONE_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "copper_ore"), COPPER_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "ash"), ASH);
 
 	}
 }

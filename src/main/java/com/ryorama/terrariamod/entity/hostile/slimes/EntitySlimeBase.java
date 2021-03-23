@@ -1,9 +1,11 @@
-package com.ryorama.terrariamod.entity;
+package com.ryorama.terrariamod.entity.hostile.slimes;
 
 import java.util.ArrayList;
 
+import com.ryorama.terrariamod.entity.EntitiesT;
+import com.ryorama.terrariamod.entity.EntityBaseMob;
+import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.items.ItemsT;
-import com.ryorama.terrariamod.mixins.PlayerEntityMixin;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -13,62 +15,71 @@ import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
-public class EntitySlimeBase extends EntityBaseMob {
+public abstract class EntitySlimeBase extends EntityBaseMob {
 	
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
-
+	
 	public boolean onGroundLastTick;
+	
+	public boolean jumping = false;
+	public float jumpCooldown;
 	
 	public EntitySlimeBase(EntityType<? extends LivingEntity> entityType, World world) {
 		super(entityType, world);
 	}
-
+	
 	@Override
 	public void AI() {
-		if (this.onGround && !this.onGroundLastTick) {
-			double motionY = this.velY;
-		    double motionX = this.velX;
-		    double motionZ = this.velZ;
-		    
+				
+		if (!jumping) {
+			jumpCooldown += 1;
+			if (jumpCooldown >= 60) {
+				jumping = true;
+				jumpCooldown = 0;
+			}
+		}
+		
+		double motionY = this.velY;
+	    double motionX = this.velX;
+	    double motionZ = this.velZ;
+		if (this.onGround && jumping) {
 		    lookRandomly();
-		    
+		   
 		    if (this.random.nextInt(1) == 0) {
-		    	motionY = 1.5f;
-		    	motionX = 1.5f;
+			    if (this.random.nextInt(2) == 0) {
+			    	motionY = 0.5f;
+			    	motionX = 0.5f;
+			    } else {
+			    	motionY = 0.5f;
+			    	motionZ = 0.5f;
+			    }
 		    } else {
-		    	motionY = 1.5f;
-		    	motionZ = 1.5f;
+		    	if (this.random.nextInt(2) == 0) {
+			    	motionY = -0.5f;
+			    	motionX = -0.5f;
+			    } else {
+			    	motionY = -0.5f;
+			    	motionZ = -0.5f;
+			    }
 		    }
 		    this.setVelocity(motionX, motionY, motionZ);
-		    motionX = 0;
-		    motionY = 0;
-		    motionZ = 0;
-		    this.setVelocity(motionX, motionY, motionZ);
 		}
-		this.onGroundLastTick = this.onGround;
+		
+		if (!this.onGround && jumping) {
+			jumping = false;
+		}
+		
 	}
 
 	public void lookRandomly() {
 		this.setRotation(this.headYaw + this.random.nextInt(3), this.pitch);
-	}
-
-	@Override
-	public void initProps(EntityProps props) {
-		props.lifeMax = 15;
-		props.damage = 4;
-	}
-
-	@Override
-	public void drops() {
-		if (MinecraftClient.getInstance().player != null) {
-			MinecraftClient.getInstance().player.getInventory().insertStack(new ItemStack(ItemsT.gel(this.random.nextInt(2), "ffee00").getItem()));
-		}
 	}
 	
 	@Environment(EnvType.CLIENT)

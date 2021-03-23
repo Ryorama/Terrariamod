@@ -6,8 +6,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -104,4 +104,19 @@ public abstract class EntityBaseMob extends LivingEntity {
 		public Box getVisibilityBoundingBox() {
 			return this.getBoundingBox();
 		}
+		
+		@Override
+		public CompoundTag writeNbt(CompoundTag tag) {
+			saveData(tag);
+			return tag;
+		}
+		
+		@Override
+		public void readNbt(CompoundTag tag) {
+			loadData(tag);
+		}
+		 
+		public abstract CompoundTag saveData(CompoundTag tag);
+		
+		public abstract void loadData(CompoundTag tag);
 }

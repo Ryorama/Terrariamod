@@ -45,11 +45,14 @@ public abstract class CustomModel<T extends Entity> extends EntityModel<T> {
 				CubePart part = parts.get(i);
 
 				ModelTransform transform = ModelTransform.of((float)part.rotationPoint.x, (float)part.rotationPoint.y, (float)part.rotationPoint.z, (float)part.rotateAngleX, (float)part.rotateAngleY, (float)part.rotateAngleZ);
-				modelPartData.addChild("part"+i, ModelPartBuilder.create().uv((int)part.textureX, (int)part.textureY).cuboid((float)part.position.x, (float)part.position.y - (float)part.size.y * 0.4f, (float)part.position.z, (float)part.size.x, (float)part.size.y, (float)part.size.z),
+				modelPartData.addChild("part"+i, ModelPartBuilder.create().uv((int)part.textureX, (int)part.textureY).cuboid((float)part.position.x, (float)part.position.y, (float)part.position.z, (float)part.size.x, (float)part.size.y, (float)part.size.z),
 						transform);
 				model_parts.add(modelPartData.getChild("part"+i).createPart(textureWidth, textureHeight));
 			}
 		}
+		
+		// - (float)part.size.y * 0.4f
+		
 		TexturedModelData data = TexturedModelData.of(modelData, textureWidth, textureHeight);
 		//model_parts.add(data.createModel());
 		return data;
