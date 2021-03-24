@@ -3,11 +3,9 @@ package com.ryorama.terrariamod.items;
 import java.util.List;
 import java.util.Random;
 
-import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.items.api.IRareItem;
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,10 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.UseAction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemT extends Item {
@@ -180,6 +175,57 @@ public class ItemT extends Item {
 				target.damage(DamageSource.player((PlayerEntity) attacker), (float) (damage));
 		}
 		return true;
+	}
+	
+	public ItemT setFoodStats(double nutrition, double saturation) {
+		this.nutrition = nutrition;
+		this.saturation = saturation;
+		return this;
+	}
+	
+	public ItemT setLightValue(int light) {
+		this.lightValue = light;
+		return this;
+	}
+	
+	public ItemT setConsumable() {
+		this.consumable = true;
+		return this;
+	}
+	
+	public ItemT setHeal(int heal) {
+		this.heal = heal;
+		return this;
+	}
+	
+	public ItemT setManaHeal(int manaHeal) {
+		this.manaHeal = manaHeal;
+		return this;
+	}
+
+	public ItemT setMaterial() {
+		this.material = true;
+		return this;
+	}
+	
+	public ItemT setMaxStack(int maxStack) {
+		this.maxStack = maxStack;
+		return this;
+	}
+
+	public ItemT setManaSickness(int i) {
+		this.manaSickness = i;
+		return this;
+	}
+
+	public ItemT setItemName(String string) {
+		this.itemName = string;
+		return this;
+	}
+
+	public ItemT setAmmo() {
+		this.isAmmo = true;
+		return this;
 	}
 }
  

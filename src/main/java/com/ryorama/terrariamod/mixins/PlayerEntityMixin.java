@@ -5,6 +5,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.ryorama.terrariamod.TAudio;
+import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.client.TMusicTicker;
+
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -22,6 +27,15 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 	@Inject(at = @At("HEAD"), method = "tick")
 	public void tick(CallbackInfo info) {
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
+	
+		if (MinecraftClient.getInstance().world != null) {
+	        boolean night = world.isDay();
+			if (night) {
+				TMusicTicker.getTrack(TAudio.DAYONE);
+			} else {
+				TMusicTicker.getTrack(TAudio.NIGHT);
+			}
+		}
 	}
 	
 	/*

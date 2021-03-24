@@ -14,7 +14,8 @@
   	"InventoryMixin",
   	"PlayerEntityMixin",
   	"NoiseChunkGeneratorMixin",
-  	"DefaultBiomeFeaturesMixin"
+  	"DefaultBiomeFeaturesMixin",
+  	"TitleScreenMixin"
   ],
   "client": [
   ],

@@ -5,13 +5,18 @@ import java.util.OptionalLong;
 
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.world.features.TerrariaFeatures;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
+import net.fabricmc.fabric.api.event.world.WorldTickCallback;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.widget.CyclingButtonWidget.UpdateCallback;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
@@ -37,6 +42,7 @@ public class TerrariaMod implements ModInitializer {
 		TerrariaFeatures.init();
 		EntitiesT.init();
 		
+		onTick();
 		ModifyWorldHeight();
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
 	}
@@ -67,9 +73,15 @@ public class TerrariaMod implements ModInitializer {
 				OVERWORLD_ID, 0.0F);
 		 */
 	}
-	
-	public static boolean isDaytime(World world) {
-		float celestial = (float)(world.getSkyAngleRadians(1.0F) * 57.29577951308232D);
-		return (celestial < 90.0F || celestial > 270.0F);
+
+	public void onTick() {
+		/*
+		TMusicTicker.musicChanged = true;
+		ClientTickEvents.START_CLIENT_TICK.register(client -> {
+		
+			TMusicTicker.onTickUpdate();
+			
+		});
+		*/
 	}
 }

@@ -31,7 +31,6 @@ public abstract class EntityMainData {
 	public int netMode;
 	
 	public void update(Entity ent) {
-	  this.dayTime = TerrariaMod.isDaytime(ent.world);
 	  this.eclipse = WorldDataT.solarEclipse;
 	  this.expertMode = WorldDataT.expert;
 	  this.masterMode = WorldDataT.master;
