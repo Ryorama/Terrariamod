@@ -2,6 +2,7 @@ package com.ryorama.terrariamod.entity.hostile.slimes;
 
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.items.ItemsT;
+import com.ryorama.terrariamod.ui.BossBar;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;

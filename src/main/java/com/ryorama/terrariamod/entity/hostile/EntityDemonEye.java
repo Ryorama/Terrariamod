@@ -6,6 +6,7 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.items.ItemsT;
+import com.ryorama.terrariamod.ui.BossBar;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -27,6 +28,7 @@ public class EntityDemonEye extends EntityBaseMob {
 	
 	public EntityDemonEye(EntityType<? extends LivingEntity> entityType, World worldIn) {
 		super(entityType, worldIn);
+		BossBar.drawBossBar(this);
 	}
 
 	@Override
