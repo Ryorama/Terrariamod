@@ -2,10 +2,19 @@ package com.ryorama.terrariamod.blocks;
 
 import java.util.ArrayList;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.ryorama.terrariamod.items.ItemT;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class BlockT extends Block {
 	
@@ -18,6 +27,8 @@ public class BlockT extends Block {
 	
 	public int potionSickness;
 	
+	public ItemStack drop;
+	
 	public int health, mana;
 	
 	public String tooltip = "";
@@ -27,8 +38,9 @@ public class BlockT extends Block {
 	
 	protected ArrayList<String> allowed = new ArrayList<String>();
 
-	public BlockT(FabricBlockSettings properties, float hardness, float difficulty) {
+	public BlockT(FabricBlockSettings properties, float hardness, float difficulty, ItemStack drop) {
 		super(properties.hardness(hardness * 0.03f));
+		this.drop = drop;
 		this.difficulty = difficulty;
 	}
 	
@@ -52,5 +64,20 @@ public class BlockT extends Block {
 		}
 		
 		return -1;
-	}	
+	}
+	
+	@Override
+	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+		if (this.drop != null) {
+			ItemEntity ie = new ItemEntity(world, player.getPos().x, player.getPos().y, player.getPos().z);
+			world.spawnEntity(ie);
+			ie.setStack(this.drop);
+			ie.setPosition(pos.getX(), pos.getY(), pos.getZ());
+		}
+		System.out.println("droped item");
+	}
+	
+	public ItemStack getDrop() {
+		return this.drop;
+	}
 }

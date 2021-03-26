@@ -23,4 +23,16 @@ public class CopperOreFeature {
 			    .spreadHorizontally()
 			    .repeat(20); // number of veins per chunk
 
+	 public static ConfiguredFeature<?, ?> COPPER_ORE_FEATURE_TWO = Feature.ORE
+			    .configure(new OreFeatureConfig(
+			      new BlockMatchRuleTest(Blocks.STONE),
+			      BlocksT.COPPER_ORE.getDefaultState(),
+			      9)) // vein size
+			    .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(YOffset.aboveBottom(-255), YOffset.belowTop(80))))
+			    .spreadHorizontally()
+			    .repeat(20); // number of veins per chunk
+
+
+
+
 }

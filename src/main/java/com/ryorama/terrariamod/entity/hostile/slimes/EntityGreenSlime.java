@@ -5,6 +5,7 @@ import com.ryorama.terrariamod.items.ItemsT;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -20,9 +21,10 @@ public class EntityGreenSlime extends EntitySlimeBase {
 
 	@Override
 	public void drops() {
-		if (MinecraftClient.getInstance().player != null) {
-			MinecraftClient.getInstance().player.getInventory().insertStack(new ItemStack(ItemsT.gel(this.random.nextInt(2), "ffee00").getItem()));
-		}
+		ItemEntity ie = new ItemEntity(world, this.getPos().x, this.getPos().y, this.getPos().z);
+		world.spawnEntity(ie);
+		ie.setStack(new ItemStack(ItemsT.gel(this.random.nextInt(2), "ffee00").getItem()));
+		ie.setPosition(this.getPos().x, this.getPos().getY(), this.getPos().z);
 	}
 	
 	@Override

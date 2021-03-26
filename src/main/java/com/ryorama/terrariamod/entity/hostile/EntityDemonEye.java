@@ -2,9 +2,10 @@ package com.ryorama.terrariamod.entity.hostile;
 
 import java.util.ArrayList;
 
-import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
+import com.ryorama.terrariamod.entity.IBoss;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.ui.BossBar;
 
@@ -16,11 +17,12 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
-public class EntityDemonEye extends EntityBaseMob {
+public class EntityDemonEye extends EntityBaseMob implements IBoss {
 
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
 	
@@ -28,17 +30,22 @@ public class EntityDemonEye extends EntityBaseMob {
 	
 	public EntityDemonEye(EntityType<? extends LivingEntity> entityType, World worldIn) {
 		super(entityType, worldIn);
-		BossBar.drawBossBar(this);
+		if (world.isClient) {
+			BossBar.render();
+		}
 	}
 
 	@Override
 	public void AI() {
-		
         boolean night = world.getTime() % 24000L > 15000L && world.getTime() % 24000L < 22000L;
-		if (night) {
+		if (!night) {
 			
 		} else {
-			this.velY = 0.2f;
+			this.velY = 0.5f;
+		}
+		
+		if (world.isClient) {
+			BossBar.render();
 		}
 	}
 
@@ -92,6 +99,7 @@ public class EntityDemonEye extends EntityBaseMob {
 	@Override
 	public void initProps(EntityProps props) {
 		this.props2 = props;
+		props.noGravity = true;
 		props.damage = 12;
 		props.lifeMax = 40;
 	}
@@ -107,5 +115,10 @@ public class EntityDemonEye extends EntityBaseMob {
 	public void loadData(CompoundTag tag) {
 		props2.lifeMax = tag.getFloat("lifemax");
 		props2.damage = tag.getFloat("damage");
+	}
+
+	@Override
+	public SoundEvent setBossMusic() {
+		return TAudio.NIGHT;
 	}
 }

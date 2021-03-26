@@ -22,7 +22,7 @@ public class ItemsT {
 	public static CopperShortSword COPPER_SHORTSWORD = (CopperShortSword) new CopperShortSword().setRarity(3);
 	public static CopperPickaxe COPPER_PICKAXE = (CopperPickaxe) new CopperPickaxe(3).setRarity(3);
 	public static CopperAxe COPPER_AXE = (CopperAxe) new CopperAxe(3).setRarity(3);
-
+	
 	public static void init() {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "wood"), WOOD);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_bar"), COPPER_BAR);
