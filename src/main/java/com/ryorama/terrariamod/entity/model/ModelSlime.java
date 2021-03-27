@@ -22,7 +22,7 @@ public class ModelSlime<T extends EntitySlimeBase> extends CustomModel<T> {
 		super(textureHeight, textureWidth);
 		textureWidth = 128;
 		textureHeight = 128;
-
+		
 		bb_main = new CubePart(this);
 		bb_main.setRotationPoint(0.0F, 24.0F, 0.0F);
 		bb_main.setTextureOffset(0, 36).addBox(-6.0F, -9.0F, -6.0F, 12.0F, 2.0F, 12.0F, 0.0F, false);

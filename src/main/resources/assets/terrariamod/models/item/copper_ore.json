@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terraria:items/copper"
+    "layer0": "terrariamod:item/copper"
   }
 }

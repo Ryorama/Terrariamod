@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.entity.hostile;
 import java.util.ArrayList;
 
 import com.ryorama.terrariamod.TAudio;
+import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.entity.IBoss;
@@ -19,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Arm;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
@@ -31,7 +33,8 @@ public class EntityDemonEye extends EntityBaseMob implements IBoss {
 	public EntityDemonEye(EntityType<? extends LivingEntity> entityType, World worldIn) {
 		super(entityType, worldIn);
 		if (world.isClient) {
-			BossBar.render();
+			this.setBossIcon();
+			this.activateBoss();
 		}
 	}
 
@@ -44,8 +47,11 @@ public class EntityDemonEye extends EntityBaseMob implements IBoss {
 			this.velY = 0.5f;
 		}
 		
-		if (world.isClient) {
-			BossBar.render();
+		this.updateBossHealthBar();
+		
+		if (this.getHealth() <= 0 && world.isClient) {
+			this.defeatedBoss();
+			return;
 		}
 	}
 
@@ -101,7 +107,7 @@ public class EntityDemonEye extends EntityBaseMob implements IBoss {
 		this.props2 = props;
 		props.noGravity = true;
 		props.damage = 12;
-		props.lifeMax = 40;
+		props.lifeMax = 17;
 	}
 
 	@Override
@@ -120,5 +126,20 @@ public class EntityDemonEye extends EntityBaseMob implements IBoss {
 	@Override
 	public SoundEvent setBossMusic() {
 		return TAudio.NIGHT;
+	}
+
+	@Override
+	public Identifier bossIcon() {
+		return new Identifier(TerrariaMod.modid, "textures/ui/boss_icons/eoc_icon.png");
+	}
+
+	@Override
+	public float getBossHealth() {
+		return this.getHealth();
+	}
+
+	@Override
+	public float getBossMaxHealth() {
+		return this.getMaxHealth();
 	}
 }

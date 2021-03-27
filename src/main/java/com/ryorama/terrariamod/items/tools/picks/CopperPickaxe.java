@@ -5,7 +5,6 @@ import com.ryorama.terrariamod.items.api.Pickaxe;
 public class CopperPickaxe extends Pickaxe {
 
 	public CopperPickaxe(float pick) {
-		super(3);
+		super(35);
 	}
-
 }

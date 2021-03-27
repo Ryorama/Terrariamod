@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "## ",
+    "!!!"
+  ],
+  "key": {
+    "#": {
+      "item": "terrariamod:copper_bar"
+    },
+    "!": {
+      "item": "terrariamod:wood"
+    }
+  },
+  "result": {
+    "item": "terrariamod:copper_shortsword",
+    "count": 1
+  }
+}

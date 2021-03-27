@@ -5,20 +5,16 @@ import java.util.OptionalLong;
 
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.world.features.TerrariaFeatures;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
-import net.fabricmc.fabric.api.event.world.WorldTickCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.CyclingButtonWidget.UpdateCallback;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -41,12 +37,12 @@ public class TerrariaMod implements ModInitializer {
 		ItemsT.init();
 		TerrariaFeatures.init();
 		EntitiesT.init();
-		
+				
 		onTick();
 		ModifyWorldHeight();
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
 	}
-	
+
 	private static void ModifyWorldHeight() {
 		//OVERWORLD: 12
 		Field[] dimension_fields = DimensionType.class.getDeclaredFields();

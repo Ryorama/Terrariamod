@@ -10,6 +10,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.GlassBlock;
+import net.minecraft.block.GrassBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -21,7 +23,7 @@ public class TreeSegment extends BlockT {
 	public static Random rand = new Random();
 	
 	public TreeSegment(FabricBlockSettings properties, float hardness, float difficulty) {
-		super(properties, hardness, difficulty, new ItemStack(ItemsT.WOOD, rand.nextInt(3) + 1));
+		super(properties.nonOpaque(), hardness, difficulty, new ItemStack(ItemsT.WOOD, rand.nextInt(3) + 1));
 	}
 	
 	public boolean isFullCube(BlockState state) {
@@ -32,8 +34,11 @@ public class TreeSegment extends BlockT {
 		return false;
 	}
 	
-
-	public static VoxelShape createCuboidShape(double xMin, double yMin, double zMin, double xMax, double yMax, double zMax) {
-	      return VoxelShapes.cuboid(0f, 0f, 0f, 0.7f, 1f, 0.7f);
+	public VoxelShape getVisualShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return VoxelShapes.empty();
+	}
+	
+	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+		return true;
 	}
 }
