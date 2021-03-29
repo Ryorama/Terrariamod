@@ -8,7 +8,6 @@ import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.entity.IBoss;
 import com.ryorama.terrariamod.items.ItemsT;
-import com.ryorama.terrariamod.ui.BossBar;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -23,35 +22,38 @@ import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityDemonEye extends EntityBaseMob implements IBoss {
+public class EntityDemonEye extends EntityBaseMob implements IAnimatable {
 
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
 	
 	public EntityProps props2;
 	
+	private AnimationFactory factory = new AnimationFactory(this);
+	
+	private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+		event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.demon_eye.fly", true));
+		return PlayState.CONTINUE;
+	}
+	
 	public EntityDemonEye(EntityType<? extends LivingEntity> entityType, World worldIn) {
 		super(entityType, worldIn);
-		if (world.isClient) {
-			this.setBossIcon();
-			this.activateBoss();
-		}
 	}
 
 	@Override
 	public void AI() {
         boolean night = world.getTime() % 24000L > 15000L && world.getTime() % 24000L < 22000L;
-		if (!night) {
-			
+		if (night) {
+			this.velY = 0;
 		} else {
-			this.velY = 0.5f;
-		}
-		
-		this.updateBossHealthBar();
-		
-		if (this.getHealth() <= 0 && world.isClient) {
-			this.defeatedBoss();
-			return;
+			this.setVelocity(0, 0.05f, 0);
 		}
 	}
 
@@ -124,22 +126,12 @@ public class EntityDemonEye extends EntityBaseMob implements IBoss {
 	}
 
 	@Override
-	public SoundEvent setBossMusic() {
-		return TAudio.NIGHT;
+	public void registerControllers(AnimationData data) {
+		data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
 	}
 
 	@Override
-	public Identifier bossIcon() {
-		return new Identifier(TerrariaMod.modid, "textures/ui/boss_icons/eoc_icon.png");
-	}
-
-	@Override
-	public float getBossHealth() {
-		return this.getHealth();
-	}
-
-	@Override
-	public float getBossMaxHealth() {
-		return this.getMaxHealth();
+	public AnimationFactory getFactory() {
+		return factory;
 	}
 }

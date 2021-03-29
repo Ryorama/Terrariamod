@@ -1,50 +1,24 @@
 package com.ryorama.terrariamod.entity.model;
 
-import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
+import com.ryorama.terrariamod.TerrariaMod;
 
-public class ModelDemonEye extends CustomModel<EntityDemonEye> {
-	private final CubePart shape1;
-	private final CubePart shape2;
-	private final CubePart shape2_1;
-	private final CubePart shape2_2;
-	private final CubePart shape2_3;
-	private final CubePart shape2_4;
+import net.minecraft.util.Identifier;
+import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-	public ModelDemonEye(int textureHeight, int textureWidth) {
-		super(textureHeight, textureWidth);
-		textureWidth = 128;
-		textureHeight = 128;
-
-		shape1 = new CubePart(this);
-		shape1.setRotationPoint(-4.0F, 8.0F, -4.0F);
-		shape1.setTextureOffset(0, 0).addBox(0.0F, 0.0F, 0.0F, 8.0F, 8.0F, 8.0F, 0.0F, false);
-
-		shape2 = new CubePart(this);
-		shape2.setRotationPoint(-3.0F, 14.0F, 4.0F);
-		shape2.setTextureOffset(32, 0).addBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
-
-		shape2_1 = new CubePart(this);
-		shape2_1.setRotationPoint(2.0F, 14.0F, 4.0F);
-		shape2_1.setTextureOffset(32, 0).addBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
-
-		shape2_2 = new CubePart(this);
-		shape2_2.setRotationPoint(-0.5F, 11.5F, 4.0F);
-		shape2_2.setTextureOffset(32, 0).addBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
-
-		shape2_3 = new CubePart(this);
-		shape2_3.setRotationPoint(-3.0F, 9.0F, 4.0F);
-		shape2_3.setTextureOffset(32, 0).addBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
-
-		shape2_4 = new CubePart(this);
-		shape2_4.setRotationPoint(2.0F, 9.0F, 4.0F);
-		shape2_4.setTextureOffset(32, 0).addBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+public class ModelDemonEye extends AnimatedGeoModel {
 	
-		this.getTexturedModelData();
+	@Override
+	public Identifier getAnimationFileLocation(Object entity) {
+		return new Identifier(TerrariaMod.modid, "animations/demon_eye.animation.json");
+	}
+	
+	@Override
+	public Identifier getModelLocation(Object entity) {
+		return new Identifier(TerrariaMod.modid, "geo/demon_eye.geo.json");
 	}
 
-	public void setRotationAngle(CubePart modelRenderer, float x, float y, float z) {
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
+	@Override
+	public Identifier getTextureLocation(Object entity) {
+		return new Identifier(TerrariaMod.modid, "textures/entity/eyes/eye.png");
 	}
 }

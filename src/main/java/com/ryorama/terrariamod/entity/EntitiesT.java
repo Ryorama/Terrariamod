@@ -1,11 +1,13 @@
 package com.ryorama.terrariamod.entity;
 
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
+import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
 import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
 import com.ryorama.terrariamod.entity.hostile.slimes.EntityGreenSlime;
 import com.ryorama.terrariamod.entity.model.RenderBlueSlime;
 import com.ryorama.terrariamod.entity.model.RenderDemonEye;
 import com.ryorama.terrariamod.entity.model.RenderSlime;
+import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
 
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -37,10 +39,17 @@ public class EntitiesT {
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityDemonEye::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 	  
+	  public static final EntityType<EntityKingSlime> KING_SLIME = Registry.register(
+	            Registry.ENTITY_TYPE,
+	            new Identifier("terrariamod", "king_slime"),
+	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityKingSlime::new).dimensions(EntityDimensions.fixed(10, 10)).build()
+	    );
+	  
 	  public static void init() {
 		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, LivingEntity.createLivingAttributes());
 		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, LivingEntity.createLivingAttributes());
 		  FabricDefaultAttributeRegistry.register(DEMON_EYE, LivingEntity.createLivingAttributes());
+		  FabricDefaultAttributeRegistry.register(KING_SLIME, LivingEntity.createLivingAttributes());
 
 		  registerModels();
 	  }
@@ -59,6 +68,11 @@ public class EntitiesT {
 		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_EYE,
 					(context) -> {
 						return new RenderDemonEye(context);
+			});
+	  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.KING_SLIME,
+					(context) -> {
+						return new RenderKingSlime(context);
 			});
 	  }
 }

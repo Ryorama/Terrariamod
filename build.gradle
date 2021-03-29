@@ -30,17 +30,7 @@ dependencies {
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 	
-}
-
-repositories {
-    maven {
-        name = "CottonMC"
-        url = "https://server.bbkr.space/artifactory/libs-release"
-    }
-}
-
-dependencies {
-    modImplementation include("io.github.cottonmc:LibGui:4.0.0-alpha.1+21w11a")
+	compile files('libs/geckolib-fabric-1.17-3.0.20-dev.jar')
 }
 
 minecraft {

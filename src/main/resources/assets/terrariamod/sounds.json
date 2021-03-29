@@ -215,10 +215,10 @@
 		}
 	]
   },
-  "roar0": {
+  "roar_0": {
 	"category": "players",
-	"subtitle": "terrariamod.roar0",
-	"sounds": [ "terrariamod:roar0" ]
+	"subtitle": "terrariamod.roar_0",
+	"sounds": [ "terrariamod:roar_0" ]
   },
   "menu_open": {
 	"category": "players",

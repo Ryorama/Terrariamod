@@ -66,17 +66,6 @@ public class BlockT extends Block {
 		return -1;
 	}
 	
-	@Override
-	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-		if (this.drop != null) {
-			ItemEntity ie = new ItemEntity(world, player.getPos().x, player.getPos().y, player.getPos().z);
-			world.spawnEntity(ie);
-			ie.setStack(this.drop);
-			ie.setPosition(pos.getX(), pos.getY(), pos.getZ());
-		}
-		System.out.println("droped item");
-	}
-	
 	public ItemStack getDrop() {
 		return this.drop;
 	}

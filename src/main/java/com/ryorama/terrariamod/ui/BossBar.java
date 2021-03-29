@@ -52,14 +52,13 @@ public class BossBar extends DrawableHelper {
 				float percent = bossHealth / maxBossHealth;
 				
 				float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
-
 				
-				UIRenderer.instance.renderOverlay(boss_health_bar, 1f, 200, 25, scaledWidth / 2 - 130, 0, -100);
 				UIRenderer.instance.renderOverlay(boss_health_bar_progress_bg, 1f, 189, 8, scaledWidth / 2 - 130, 10, -90);
-				UIRenderer.instance.renderOverlay(boss_health_bar_icon, 1f, 10, 10, scaledWidth / 2 - 128.5f, 9, -80);
 				if (bossHealth > 0) {
 					UIRenderer.instance.renderOverlay(boss_health_bar_progress_fg, 1f, 177 * percent, 8, scaledWidth / 2 - 118, 10, -90);				
 				}
+				UIRenderer.instance.renderOverlay(boss_health_bar, 1f, 200, 25, scaledWidth / 2 - 130, 0, -100);
+				UIRenderer.instance.renderOverlay(boss_health_bar_icon, 1f, 10, 10, scaledWidth / 2 - 128.5f, 9, -80);
 			}
 		});
 	}

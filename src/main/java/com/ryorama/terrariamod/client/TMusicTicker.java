@@ -9,8 +9,8 @@ import net.minecraft.sound.SoundEvent;
 
 @Environment(EnvType.CLIENT)
 public class TMusicTicker extends MusicTracker {
-	  private static MinecraftClient client;
-	  private static SoundEvent currentMusic;
+	  private static MinecraftClient client = MinecraftClient.getInstance();
+	  public static SoundEvent currentMusic;
 	  public static boolean musicChanged;
 	  
 	  public TMusicTicker(MinecraftClient client) {
@@ -18,8 +18,8 @@ public class TMusicTicker extends MusicTracker {
 	  }
 	  
 	  public static void onTickUpdate() {
-		  TMusicTicker.client = MinecraftClient.getInstance();
 		  if (musicChanged) {
+			  client.getMusicTracker().stop();
 			  client.getMusicTracker().play(new MusicSound(currentMusic, 0, 0, true));
 			  musicChanged = false;
 		  }
@@ -29,6 +29,10 @@ public class TMusicTicker extends MusicTracker {
 		  if (currentMusic != event) {
 			  currentMusic = event;
 			  musicChanged = true;
+		  } else if (!client.getMusicTracker().isPlayingType(new MusicSound(currentMusic, 0, 0, true))) {
+			musicChanged = true;
+		  } else {
+		  	return event;
 		  }
 		  return event;
 	  }
