@@ -189,6 +189,8 @@ public class EntityKingSlime extends EntityBaseMob implements IBoss, IAnimatable
 		this.props2 = props;
 		props.lifeMax = 2000;
 		props.damage = 40;
+		props.hitSound = TAudio.NPC_HIT1;
+		props.deathSound = TAudio.NPC_KILL1;
 	}
 
 	@Override
@@ -246,7 +248,7 @@ public class EntityKingSlime extends EntityBaseMob implements IBoss, IAnimatable
 
 	@Override
 	public SoundEvent setBossMusic() {
-		return TAudio.DAYONE;
+		return TAudio.BOSS1;
 	}
 
 	@Override

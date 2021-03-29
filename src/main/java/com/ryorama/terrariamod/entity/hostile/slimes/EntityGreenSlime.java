@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.entity.hostile.slimes;
 
+import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.items.ItemsT;
 
@@ -32,6 +33,8 @@ public class EntityGreenSlime extends EntitySlimeBase {
 		this.props2 = props;
 		props.damage = 4;
 		props.lifeMax = 15;
+		props.hitSound = TAudio.NPC_HIT1;
+		props.deathSound = TAudio.NPC_KILL1;
 	}
 
 	@Override

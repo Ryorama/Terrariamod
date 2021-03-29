@@ -40,14 +40,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		}
 		
 		if (MinecraftClient.getInstance().world != null) {
-	        boolean day = MinecraftClient.getInstance().world.getTimeOfDay() >= 1000 && MinecraftClient.getInstance().world.getTimeOfDay() <= 13000;
-	        if (TMusicTicker.currentMusic != TAudio.DAYONE) {
-	        	if (day) {
-	        		TMusicTicker.getTrack(TAudio.DAYONE);
-	        	}
-			} else if (TMusicTicker.currentMusic != TAudio.NIGHT) {
-				if (!day) {
-					TMusicTicker.getTrack(TAudio.NIGHT);
+			if (!TMusicTicker.bossMusicOverride) {
+		        boolean day = MinecraftClient.getInstance().world.getTimeOfDay() >= 1000 && MinecraftClient.getInstance().world.getTimeOfDay() <= 13000;
+		        if (TMusicTicker.currentMusic != TAudio.DAYONE) {
+		        	if (day) {
+		        		TMusicTicker.getTrack(TAudio.DAYONE);
+		        	}
+				} else if (TMusicTicker.currentMusic != TAudio.NIGHT) {
+					if (!day) {
+						TMusicTicker.getTrack(TAudio.NIGHT);
+					}
 				}
 			}
 		}

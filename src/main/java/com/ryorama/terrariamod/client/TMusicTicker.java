@@ -12,6 +12,9 @@ public class TMusicTicker extends MusicTracker {
 	  private static MinecraftClient client = MinecraftClient.getInstance();
 	  public static SoundEvent currentMusic;
 	  public static boolean musicChanged;
+	  public static boolean bossMusicOverride = false;
+	  
+	  public static SoundEvent currentBossTrack;
 	  
 	  public TMusicTicker(MinecraftClient client) {
 	  	super(client);
@@ -19,20 +22,40 @@ public class TMusicTicker extends MusicTracker {
 	  
 	  public static void onTickUpdate() {
 		  if (musicChanged) {
-			  client.getMusicTracker().stop();
-			  client.getMusicTracker().play(new MusicSound(currentMusic, 0, 0, true));
-			  musicChanged = false;
+			  if (!bossMusicOverride) {
+				  client.getMusicTracker().stop();
+				  client.getMusicTracker().play(new MusicSound(currentMusic, 0, 0, true));
+				  musicChanged = false;
+			  } else {
+				  client.getMusicTracker().stop();
+				  client.getMusicTracker().play(new MusicSound(currentBossTrack, 0, 0, true));
+				  musicChanged = false;
+			  }
+		  }
+		  
+		  if (!bossMusicOverride) {
+			  if (!client.getMusicTracker().isPlayingType(new MusicSound(currentMusic, 0, 0, true))) {
+				  musicChanged = true;
+			  }
+		  } else {
+			  if (!client.getMusicTracker().isPlayingType(new MusicSound(currentBossTrack, 0, 0, true))) {
+				  musicChanged = true;
+			  }
 		  }
 	  }
 	  
 	  public static SoundEvent getTrack(SoundEvent event) {
-		  if (currentMusic != event) {
-			  currentMusic = event;
-			  musicChanged = true;
-		  } else if (!client.getMusicTracker().isPlayingType(new MusicSound(currentMusic, 0, 0, true))) {
-			musicChanged = true;
+		  if (!bossMusicOverride) {
+			  if (currentMusic != event) {
+				  currentMusic = event;
+				  musicChanged = true;
+			  } else {
+			  	return event;
+			  }
 		  } else {
-		  	return event;
+			  if (!client.getMusicTracker().isPlayingType(new MusicSound(currentBossTrack, 0, 0, true))) {
+				  musicChanged = true;
+			  }
 		  }
 		  return event;
 	  }

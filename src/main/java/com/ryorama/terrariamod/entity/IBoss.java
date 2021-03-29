@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.entity;
 
+import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.ui.BossBar;
 
 import net.minecraft.sound.SoundEvent;
@@ -18,11 +19,16 @@ public abstract interface IBoss {
 	public default void activateBoss() {
 		BossBar.isRendering = true;
 		BossBar.renderBossBar();
+		TMusicTicker.bossMusicOverride = true;
+		TMusicTicker.currentBossTrack = setBossMusic();
+		TMusicTicker.getTrack(setBossMusic());
 	}
 	
 	public default void defeatedBoss() {
 		BossBar.isRendering = false;
 		BossBar.renderBossBar();
+		TMusicTicker.bossMusicOverride = false;
+		TMusicTicker.getTrack(TMusicTicker.currentMusic);
 	}
 	
 	public default void updateBossHealthBar() {
