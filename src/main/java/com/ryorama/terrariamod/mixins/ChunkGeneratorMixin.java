@@ -97,6 +97,35 @@ public class ChunkGeneratorMixin {
 								}
 							}
 						}
+						if (y <= 60) {
+							if (region.getRandom().nextInt(90) == 0) {
+								if (region.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.GRASS_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == Blocks.GRASS_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.GRASS_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.STONE.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
+								}
+							}
+						}
+						if (y <= 10) {
+							if (region.getRandom().nextInt(90) == 0) {
+								if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.GOLD_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.STONE.getDefaultState(), BlocksT.GOLD_ORE.getDefaultState());
+								}
+							}
+						}
+						if (y <= -150) {
+							if (region.getRandom().nextInt(90) == 0) {
+								if (region.getBlockState(pos) == BlocksT.ASH.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.ASH.getDefaultState(), BlocksT.HELLSTONE_ORE.getDefaultState());
+								}
+							}
+						}
 					}
 				}
 			}

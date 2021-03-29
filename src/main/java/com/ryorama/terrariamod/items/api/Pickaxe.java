@@ -7,9 +7,11 @@ import net.minecraft.item.ItemGroup;
 
 public class Pickaxe extends ItemT {
 
-	public Pickaxe(float pick) {
+	public Pickaxe() {
 		super(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1));
-		this.pick = pick;
+		this.melee = true;
 		this.maxStack = 1;
+		this.animation = ItemT.PICKAXE_ANIMATION;
+		this.scale = 2.0;
 	}
 }
