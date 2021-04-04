@@ -9,20 +9,29 @@ import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
+import com.ryorama.terrariamod.world.EntitySpawner;
 import com.ryorama.terrariamod.world.features.TerrariaFeatures;
 
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
+import net.fabricmc.fabric.api.event.world.WorldTickCallback;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.attribute.ClampedEntityAttribute;
 import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
 import net.minecraft.world.dimension.DimensionType;
 import software.bernie.geckolib3.GeckoLib;
 
-public class TerrariaMod implements ModInitializer {
+public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static String modid = "terrariamod";
 	
@@ -48,12 +57,19 @@ public class TerrariaMod implements ModInitializer {
 		BlocksT.init();
 		ItemsT.init();
 		TerrariaFeatures.init();
-		EntitiesT.init();
-				
+		
 		GeckoLib.initialize();
-		onTick();
 		ModifyWorldHeight();
+	}
+
+	@Environment(EnvType.CLIENT)
+	@Override
+	public void onInitializeClient() {
+		EntitiesT.init();
+
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
+		onTick();
+		addCutouts();
 	}
 
 	private static void ModifyWorldHeight() {
@@ -81,7 +97,22 @@ public class TerrariaMod implements ModInitializer {
 				384, 384, HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(),
 				OVERWORLD_ID, 0.0F);
 		 */
+	}	
+
+	public void addCutouts() {
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STUMP, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STUMP, RenderLayer.getTranslucent());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STEM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STEM, RenderLayer.getTranslucent());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_TOP, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_TOP, RenderLayer.getTranslucent());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MUSHROOM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.EMPTY_BOTTLE, RenderLayer.getCutout());
 	}
+	
 
 	public void onTick() {
 		
@@ -90,6 +121,27 @@ public class TerrariaMod implements ModInitializer {
 		
 			TMusicTicker.onTickUpdate();
 			
+		});
+		
+		WorldTickCallback.EVENT.register(world -> {
+			
+			if (world.getRandom().nextInt(700) <= 10)
+			if (world.getPlayers().size() > 0) {
+				PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
+				double x = player.getPos().x + world.random.nextInt(80) - 40, y = player.getPos().y + world.random.nextInt(80) - 40, z = player.getPos().z + world.random.nextInt(80) - 40;
+				
+				for (PlayerEntity p2 : world.getPlayers()) {
+						if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
+							new Thread () {
+								public void run() {
+									EntitySpawner.spawnEntities(player, x, y, z);
+								}
+							}.start();
+							
+							break;
+						}
+					}
+				}
 		});
 		
 	}

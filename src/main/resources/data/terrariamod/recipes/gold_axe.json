@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "###",
+    "!!!"
+  ],
+  "key": {
+    "#": {
+      "item": "terrariamod:gold_bar"
+    },
+    "!": {
+      "item": "terrariamod:wood"
+    }
+  },
+  "result": {
+    "item": "terrariamod:gold_axe",
+    "count": 1
+  }
+}

@@ -24,6 +24,12 @@ public class BlocksT {
 	public static BlockT GOLD_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15, new ItemStack(Registry.ITEM.get(new Identifier(TerrariaMod.modid, "copper_ore")), 1));
 	public static BlockT HELLSTONE_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 50, 50, new ItemStack(Registry.ITEM.get(new Identifier(TerrariaMod.modid, "copper_ore")), 1));
 	
+	public static PlantT MUSHROOM = new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f);
+	public static PlantT EMPTY_BOTTLE = new PlantT(FabricBlockSettings.of(Material.GLASS), 0.5f, 0.5f);
+	
+	public static BlockT RUBY_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15, new ItemStack(Registry.ITEM.get(new Identifier(TerrariaMod.modid, "ruby_ore")), 1));
+	public static BlockT SAPPHIRE_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15, new ItemStack(Registry.ITEM.get(new Identifier(TerrariaMod.modid, "sapphire_ore")), 1));
+	
 	public static TreeSegment FOREST_STUMP = new TreeSegment(FabricBlockSettings.of(Material.WOOD), 15, 15);
 	public static TreeSegment FOREST_STEM = new TreeSegment(FabricBlockSettings.of(Material.WOOD), 15, 15);
 	public static TreeSegment FOREST_TOP = new TreeSegment(FabricBlockSettings.of(Material.WOOD), 15, 15);
@@ -34,11 +40,17 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "stone_block"), STONE_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "ash"), ASH);
 
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "empty_bottle"), EMPTY_BOTTLE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "mushroom"), MUSHROOM);
+		
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "copper_ore"), COPPER_ORE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "iron_ore"), IRON_ORE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "gold_ore"), GOLD_ORE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "hellstone_ore"), HELLSTONE_ORE);
 
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "ruby_ore"), RUBY_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "sapphire_ore"), SAPPHIRE_ORE);
+		
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "forest_stump"), FOREST_STUMP);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "forest_stem"), FOREST_STEM);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "forest_top"), FOREST_TOP);

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "  @",
+    "!!#"
+  ],
+  "key": {
+    "!": {
+      "item": "terrariamod:empty_bottle"
+    },
+    "#": {
+      "item": "terrariamod:mushroom"
+    },
+    "@": {
+      "item": "terrariamod:gel"
+    }
+  },
+  "result": {
+    "item": "terrariamod:gold_bar",
+    "count": 1
+  }
+}

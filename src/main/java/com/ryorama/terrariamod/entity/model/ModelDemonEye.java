@@ -1,11 +1,15 @@
 package com.ryorama.terrariamod.entity.model;
 
+import java.util.Random;
+
 import com.ryorama.terrariamod.TerrariaMod;
 
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class ModelDemonEye extends AnimatedGeoModel {
+	
+	public Random rand = new Random(); 
 	
 	@Override
 	public Identifier getAnimationFileLocation(Object entity) {
@@ -19,6 +23,6 @@ public class ModelDemonEye extends AnimatedGeoModel {
 
 	@Override
 	public Identifier getTextureLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "textures/entity/eyes/eye.png");
+		return new Identifier(TerrariaMod.modid, "textures/test");
 	}
 }

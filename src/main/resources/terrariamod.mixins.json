@@ -4,19 +4,20 @@
   "package": "com.ryorama.terrariamod.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-	"ChunkGeneratorMixin",
 	"SpawnSettingsMixin",
 	"BiomeAccessMixin",
 	"CaveCarverMixin",
 	"RavineCarverMixin",
-	"ChunkGeneratorSettingsMixin",
-  	"GeneratorTypeAccessor",
-  	"PlayerEntityMixin",
+	"ChunkGeneratorMixin",
   	"NoiseChunkGeneratorMixin",
   	"DefaultBiomeFeaturesMixin",
-  	"TitleScreenMixin"
+  	"EntityMixin"
   ],
   "client": [
+    "PlayerEntityMixin",
+    "TitleScreenMixin",
+    "GeneratorTypeAccessor",
+	"ChunkGeneratorSettingsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

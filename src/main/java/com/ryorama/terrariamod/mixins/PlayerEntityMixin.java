@@ -12,6 +12,7 @@ import com.ryorama.terrariamod.items.ItemsT;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -37,6 +38,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 			MinecraftClient.getInstance().player.getInventory().insertStack(new ItemStack(ItemsT.COPPER_SHORTSWORD, 1));
 			
 			hasGivingStartingItems = true;
+		}
+		
+		if (MinecraftClient.getInstance().player != null) {
+			MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(10);
 		}
 		
 		if (MinecraftClient.getInstance().world != null) {

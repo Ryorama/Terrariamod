@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "!!!",
+    "! !",
+    "   "
+  ],
+  "key": {
+    "!": {
+      "item": "terrariamod:gold_bar"
+    }
+  },
+  "result": {
+    "item": "terrariamod:gold_helmet",
+    "count": 1
+  }
+}

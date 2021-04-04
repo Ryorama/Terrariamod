@@ -31,7 +31,13 @@ dependencies {
 	// You may need to force-disable transitiveness on them.
 	
 	compile files('libs/geckolib-fabric-1.17-3.0.20-dev.jar')
+	
+	implementation 'javax.vecmath:vecmath:1.5.2'
+
+    implementation project(':mclib'), project(':molang'), project(':particlelib')
+
 }
+
 
 minecraft {
 	accessWidener = file("src/main/resources/terrariamod.accesswidener")

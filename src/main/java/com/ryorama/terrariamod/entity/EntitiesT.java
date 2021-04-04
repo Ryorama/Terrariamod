@@ -9,6 +9,8 @@ import com.ryorama.terrariamod.entity.model.RenderDemonEye;
 import com.ryorama.terrariamod.entity.model.RenderSlime;
 import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -19,6 +21,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+@Environment(EnvType.CLIENT)
 public class EntitiesT {
 
 	  public static final EntityType<EntityGreenSlime> GREEN_SLIME = Registry.register(

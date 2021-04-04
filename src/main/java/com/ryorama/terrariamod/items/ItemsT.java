@@ -1,9 +1,14 @@
 package com.ryorama.terrariamod.items;
 
+import java.nio.channels.NonWritableChannelException;
+
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.items.armor.CopperArmorMaterial;
+import com.ryorama.terrariamod.items.armor.GoldTArmorMaterial;
+import com.ryorama.terrariamod.items.armor.IronTArmorMaterial;
 import com.ryorama.terrariamod.items.boss_summons.SlimeCrown;
+import com.ryorama.terrariamod.items.potions.LesserHealingPotion;
 import com.ryorama.terrariamod.items.tools.axe.CopperAxe;
 import com.ryorama.terrariamod.items.tools.axe.GoldAxe;
 import com.ryorama.terrariamod.items.tools.axe.IronAxe;
@@ -35,6 +40,11 @@ public class ItemsT {
 	
 	public static ItemT SLIME_CROWN = new SlimeCrown(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(3);
 	
+	public static ItemT GOLD_CROWN = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
+	
+	public static ItemT IRON_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
+	public static ItemT GOLD_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
+
 	public static CopperShortsword COPPER_SHORTSWORD = (CopperShortsword) new CopperShortsword().setRarity(3);
 	public static CopperPickaxe COPPER_PICKAXE = (CopperPickaxe) new CopperPickaxe().setRarity(3);
 	public static CopperAxe COPPER_AXE = (CopperAxe) new CopperAxe().setRarity(3);
@@ -51,15 +61,34 @@ public class ItemsT {
 	public static GoldBroadsword GOLD_BROADSWORD = (GoldBroadsword) new GoldBroadsword().setRarity(3);
 	
 	public static CopperArmorMaterial COPPER_MATERIAL = new CopperArmorMaterial();
+	public static IronTArmorMaterial IRON_MATERIAL = new IronTArmorMaterial();
+	public static GoldTArmorMaterial GOLD_MATERIAL = new GoldTArmorMaterial();
 	
 	public static Item COPPER_HELMET = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item COPPER_CHESTPLATE = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item COPPER_LEGGINGS = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
 
+	public static Item IRON_HELMET = new ArmorItem(IRON_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
+	public static Item IRON_CHESTPLATE = new ArmorItem(IRON_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
+	public static Item IRON_LEGGINGS = new ArmorItem(IRON_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
+	
+	public static Item GOLD_HELMET = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
+	public static Item GOLD_CHESTPLATE = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
+	public static Item GOLD_LEGGINGS = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
+
+	public static LesserHealingPotion LESSER_HEALING_POTION = new LesserHealingPotion(new FabricItemSettings().group(ItemGroup.BREWING));
+	
 	public static void init() {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "wood"), WOOD);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_bar"), COPPER_BAR);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "gel"), GEL);
+
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "lesser_healing_potion"), LESSER_HEALING_POTION);
+		
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "iron_bar"), IRON_BAR);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "gold_bar"), GOLD_BAR);
+		
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "gold_crown"), GOLD_CROWN);
 		
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "slime_crown"), SLIME_CROWN);
 
@@ -81,16 +110,31 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_helmet"), COPPER_HELMET);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_chestplate"), COPPER_CHESTPLATE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_leggings"), COPPER_LEGGINGS);
+
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "iron_helmet"), IRON_HELMET);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "iron_chestplate"), IRON_CHESTPLATE);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "iron_leggings"), IRON_LEGGINGS);
+
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "gold_helmet"), GOLD_HELMET);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "gold_chestplate"), GOLD_CHESTPLATE);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "gold_leggings"), GOLD_LEGGINGS);
+
 		
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "grass_block"), new BlockItemT(BlocksT.GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "dirt_block"), new BlockItemT(BlocksT.DIRT_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "stone_block"), new BlockItemT(BlocksT.STONE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "ash"), new BlockItemT(BlocksT.ASH, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "empty_bottle"), new BlockItemT(BlocksT.EMPTY_BOTTLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "mushroom"), new BlockItemT(BlocksT.MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_ore"), new BlockItemT(BlocksT.COPPER_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "iron_ore"), new BlockItemT(BlocksT.IRON_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "gold_ore"), new BlockItemT(BlocksT.GOLD_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "hellstone_ore"), new BlockItemT(BlocksT.HELLSTONE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));		
+	
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "ruby_ore"), new BlockItemT(BlocksT.RUBY_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "sapphire_ore"), new BlockItemT(BlocksT.SAPPHIRE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 	}
 	
 	public static ItemStack gel(int amount, String color) {

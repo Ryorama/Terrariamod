@@ -83,8 +83,8 @@ public abstract class EntityBaseMob extends LivingEntity {
 	  public abstract void drops();
 	  
 	  public void tick() {
-		  AI();
 		  super.tick();
+		  AI();
 	  }
 	  
 	   public void dropLoot(DamageSource source, boolean b) {
@@ -120,11 +120,4 @@ public abstract class EntityBaseMob extends LivingEntity {
 		public abstract CompoundTag saveData(CompoundTag tag);
 		
 		public abstract void loadData(CompoundTag tag);
-
-		@Override
-		public void onPlayerCollision(PlayerEntity playerIn) {
-			super.onPlayerCollision(playerIn);
-			
-			playerIn.damage(DamageSource.mob(this), props.damage);
-		}
 }

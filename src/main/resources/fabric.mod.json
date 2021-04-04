@@ -21,6 +21,9 @@
   "entrypoints": {
     "main": [
       "com.ryorama.terrariamod.TerrariaMod"
+    ],
+    "client": [
+      "com.ryorama.terrariamod.TerrariaMod"
     ]
   },
   "mixins": [
@@ -34,5 +37,10 @@
   },
   "suggests": {
     "another-mod": "*"
-  }
+  },
+  "jars": [
+	  {
+	  	"file": "META-INF/jars/geckolib-fabric-1.17-3.0.20.jar"
+	  }
+   ]
 }
