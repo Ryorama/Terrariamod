@@ -8,14 +8,24 @@ import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.Precipitation;
 import net.minecraft.world.biome.SpawnSettings.Builder;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
 
 public class BiomeRegistry {
 	
 	public static Biome PURITY;
+	public static Biome DESERT;
+	public static Biome SNOW;
+	public static Biome JUNGLE;
+	public static Biome CORRUPTION;
 	
 	public static void RegisterBiomes() {
 		PURITY = createPurityFeatures(0.75F, 1.0F, 0.1F);
+		DESERT = createPurityFeatures(0.75F, 1.0F, 0f);
+		DESERT = createPurityFeatures(0.75F, 1.0F, 1f);
+		JUNGLE = createPurityFeatures(0.75F, 1.0F, 1f);
+		CORRUPTION = createPurityFeatures(0.75F, 1.0F, 0f);
+		
 	}
 	
 	private static Biome createPurityFeatures(float depth, float scale, float downfall) {

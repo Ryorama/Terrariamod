@@ -66,6 +66,8 @@ public class ItemT extends Item {
 	
 	public double saturation, nutrition;
 	
+	public EnumModifierType MODIFIER_TYPE = EnumModifierType.NONE;
+	
 	public UseAction useAction = UseAction.NONE;
 	
 	public ItemT(Settings settings) {

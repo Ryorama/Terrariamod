@@ -10,7 +10,6 @@ import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.world.EntitySpawner;
-import com.ryorama.terrariamod.world.features.TerrariaFeatures;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -56,10 +55,9 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		BiomeRegistry.RegisterBiomes();
 		BlocksT.init();
 		ItemsT.init();
-		TerrariaFeatures.init();
 		
-		GeckoLib.initialize();
 		ModifyWorldHeight();
+		GeckoLib.initialize();
 	}
 
 	@Environment(EnvType.CLIENT)
@@ -72,33 +70,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		addCutouts();
 	}
 
-	private static void ModifyWorldHeight() {
-		//OVERWORLD: 12
-		Field[] dimension_fields = DimensionType.class.getDeclaredFields();
-		for (int i = 0; i < dimension_fields.length; i++) {
-			try {
-				Resources.makeFieldAccessible(dimension_fields[i]);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			System.out.println(dimension_fields[i].getName() + ", " + i);
-		}
-		int overworld_num = 12;
-		Field overworld_field = dimension_fields[overworld_num];
-		
-		try {
-			Resources.makeFieldAccessible(overworld_field);
-			overworld_field.set(null, MODIFIED_OVERWORLD);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		/*
-		 * OVERWORLD = create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -64,
-				384, 384, HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(),
-				OVERWORLD_ID, 0.0F);
-		 */
-	}	
-
 	public void addCutouts() {
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STUMP, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STUMP, RenderLayer.getTranslucent());
@@ -110,6 +81,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_TOP, RenderLayer.getTranslucent());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MUSHROOM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.JUNGLE_SPORES, RenderLayer.getCutout());
+
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.EMPTY_BOTTLE, RenderLayer.getCutout());
 	}
 	
@@ -145,4 +118,32 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		});
 		
 	}
+	
+	private static void ModifyWorldHeight() {
+		//OVERWORLD: 14
+		Field[] dimension_fields = DimensionType.class.getDeclaredFields();
+		for (int i = 0; i < dimension_fields.length; i++) {
+			try {
+				Resources.makeFieldAccessible(dimension_fields[i]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println(dimension_fields[i].getName() + ", " + i);
+		}
+		int overworld_num = 14;
+		Field overworld_field = dimension_fields[overworld_num];
+		
+		try {
+			Resources.makeFieldAccessible(overworld_field);
+			overworld_field.set(null, MODIFIED_OVERWORLD);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/*
+		 * OVERWORLD = create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -64,
+				384, 384, HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(),
+				OVERWORLD_ID, 0.0F);
+		 */
+	}	
 }

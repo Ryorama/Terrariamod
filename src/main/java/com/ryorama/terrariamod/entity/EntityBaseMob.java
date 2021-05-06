@@ -2,19 +2,20 @@ package com.ryorama.terrariamod.entity;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.CreeperEntity;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public abstract class EntityBaseMob extends LivingEntity {
+public abstract class EntityBaseMob extends MobEntity {
 	
 	public EntityProps props;
 	
@@ -56,7 +57,7 @@ public abstract class EntityBaseMob extends LivingEntity {
 	  
 	  protected boolean netUpdate;
 	  
-	  public EntityBaseMob(EntityType<? extends LivingEntity> entityType, World worldIn) {
+	  public EntityBaseMob(EntityType<? extends EntityBaseMob> entityType, World worldIn) {
 		    super(entityType, worldIn);
 		    EntityProps props = new EntityProps();
 		    initProps(props);
@@ -66,6 +67,7 @@ public abstract class EntityBaseMob extends LivingEntity {
 		    setNoGravity(props.noGravity);
 		    this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(props.lifeMax);
 		    setHealth(getMaxHealth());
+		  
 	  }
 	  
 	  protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
@@ -91,33 +93,18 @@ public abstract class EntityBaseMob extends LivingEntity {
 		   drops();
 	   }
 	   
-	   @Environment(EnvType.CLIENT)
-		public boolean shouldRender(double distance) {
-			double d = this.getBoundingBox().getAverageSideLength() * 4.0D;
-			if (Double.isNaN(d) || d == 0.0D) {
-				d = 4.0D;
-			}
-			d *= 64.0D;
-			return distance < d * d;
-		}
-
-		@Environment(EnvType.CLIENT)
-		public Box getVisibilityBoundingBox() {
-			return this.getBoundingBox();
-		}
-		
 		@Override
-		public CompoundTag writeNbt(CompoundTag tag) {
+		public NbtCompound writeNbt(NbtCompound tag) {
 			saveData(tag);
 			return tag;
 		}
 		
 		@Override
-		public void readNbt(CompoundTag tag) {
+		public void readNbt(NbtCompound tag) {
 			loadData(tag);
 		}
 		 
-		public abstract CompoundTag saveData(CompoundTag tag);
+		public abstract NbtCompound saveData(NbtCompound tag);
 		
-		public abstract void loadData(CompoundTag tag);
+		public abstract void loadData(NbtCompound tag);
 }

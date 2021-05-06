@@ -22,7 +22,7 @@ public class RavineCarverMixin {
 		float f = 1.0F;
 
 		for (int j = 0; j < i; ++j) {
-			if (j == 0 || random.nextInt(config.getWidthSmoothness()) == 0) {
+			if (j == 0 || random.nextInt(config.shape.widthSmoothness) == 0) {
 				f = 1.0F + random.nextFloat() * random.nextFloat();
 			}
 
@@ -36,7 +36,7 @@ public class RavineCarverMixin {
 	private void getVerticalScale(RavineCarverConfig config, Random random, double pitch, float branchCount,
 			float branchIndex, CallbackInfoReturnable<Double> info) {
 		float f = 1.0F - MathHelper.abs(0.5F - branchIndex / branchCount) * 2.0F;
-		float g = config.getVerticalRadiusDefaultFactor() + config.getVerticalRadiusCenterFactor() * f;
+		float g = config.shape.verticalRadiusDefaultFactor + config.shape.verticalRadiusDefaultFactor * f;
 		info.setReturnValue((double) g * pitch * (double) MathHelper.nextBetween(random, 0.75F, 1.0F) * 2);
 	}
 }

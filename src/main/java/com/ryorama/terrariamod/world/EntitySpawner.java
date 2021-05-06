@@ -26,7 +26,7 @@ public class EntitySpawner {
 	public static EntityType[] caveEntities = {};
 	public static EntityType[] hardmodeCaveEntities = {};
 	public static EntityType[] caveWaterEntities = {};
-	public static EntityType[] underworldEntities = {};
+	public static EntityType[] underworldEntities = {EntitiesT.DEMON};
 	public static EntityType[] rainEntities = {};
 	
 	public static EntityType[] oceanEntities = {};
@@ -42,7 +42,7 @@ public class EntitySpawner {
 			if (y <= 60) {
 				spawnCaveEntity(world, x, y, z);
 			}
-			if (y <= -150) {
+			if (y <= -125) {
 				spawnUnderworldEntity(world, x, y, z);
 			}
 			if (y > 45) {

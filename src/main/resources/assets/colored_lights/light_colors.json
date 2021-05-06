@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "colors": {
+    "terrariamod:hellstone_ore": "#fc3903",
+    "terrariamod:jungle_spores": "#37ff00",
+    "torch": "#fcb103",
+    "lava": "#fc8c03"
+  }
+}

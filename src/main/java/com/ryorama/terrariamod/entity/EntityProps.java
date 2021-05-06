@@ -1,7 +1,7 @@
 package com.ryorama.terrariamod.entity;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -33,7 +33,7 @@ public class EntityProps {
 		  public boolean overrideVel = true;
 		  
 		  public void loadEntityData(PlayerEntity entity) {
-			 CompoundTag tag = new CompoundTag();
+			  NbtCompound tag = new NbtCompound();
 			 tag.putBoolean("NoGravity", this.noGravity);
 			 tag.putBoolean("OverrideVel", this.overrideVel);
 			 tag.putFloat("LifeMax", this.lifeMax);
@@ -49,7 +49,7 @@ public class EntityProps {
 		  }
 		  
 		  public void saveEntityData(PlayerEntity entity) {
-			  CompoundTag nbt = new CompoundTag();
+			  NbtCompound nbt = new NbtCompound();
 			  this.noGravity = nbt.getBoolean("NoGravity");
 			  this.overrideVel = nbt.getBoolean("OverrideVel");
 			  this.lifeMax = nbt.getFloat("LifeMax");

@@ -42,7 +42,6 @@ public class UIRenderer extends DrawableHelper {
 	    RenderSystem.disableDepthTest();
 	    RenderSystem.depthMask(false);
 	    RenderSystem.defaultBlendFunc();
-	    RenderSystem.setShader(GameRenderer::method_34542);
 	    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, opacity);
 	    RenderSystem.setShaderTexture(0, texture);
 	    Tessellator tessellator = Tessellator.getInstance();

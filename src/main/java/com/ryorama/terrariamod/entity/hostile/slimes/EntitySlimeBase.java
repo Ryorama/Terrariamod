@@ -15,6 +15,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -35,7 +36,7 @@ public abstract class EntitySlimeBase extends EntityBaseMob {
 	public boolean jumping = false;
 	public float jumpCooldown;
 	
-	public EntitySlimeBase(EntityType<? extends LivingEntity> entityType, World world) {
+	public EntitySlimeBase(EntityType<? extends EntitySlimeBase> entityType, World world) {
 		super(entityType, world);
 	}
 	
@@ -85,27 +86,6 @@ public abstract class EntitySlimeBase extends EntityBaseMob {
 		this.setRotation(this.headYaw + this.random.nextInt(3), this.pitch);
 	}
 	
-	@Environment(EnvType.CLIENT)
-	public boolean shouldRender(double distance) {
-		double d = this.getBoundingBox().getAverageSideLength() * 4.0D;
-		if (Double.isNaN(d) || d == 0.0D) {
-			d = 4.0D;
-		}
-		d *= 64.0D;
-		return distance < d * d;
-	}
-	
-	public EntityDimensions getDimensions(EntityPose pose) {
-		return EntitiesT.GREEN_SLIME.getDimensions();
-		
-	}
-
-	@Environment(EnvType.CLIENT)
-	public Box getVisibilityBoundingBox() {
-		return this.getBoundingBox();
-	}
-
-	@Override
 	public Iterable<ItemStack> getArmorItems() {
 		return armorItems;
 	}

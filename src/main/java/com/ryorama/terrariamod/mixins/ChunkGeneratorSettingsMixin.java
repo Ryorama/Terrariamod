@@ -34,7 +34,7 @@ public class ChunkGeneratorSettingsMixin {
 							new NoiseSamplingConfig(0.9999999814507745D, 0.9999999814507745D, 80.0D, 160.0D),
 							new SlideConfig(-10, 3, 0), new SlideConfig(15, 3, 0), 1, 2, 1.0D, -0.46875D, true, true, false,
 							amplified),
-					BlocksT.STONE_BLOCK.getDefaultState(), Blocks.WATER.getDefaultState(), Integer.MIN_VALUE, -255, 63, false, true,
+					BlocksT.STONE_BLOCK.getDefaultState(), Blocks.WATER.getDefaultState(), -2147483648, -255, 63, 40, false, true,
 					true, true);
 			
 			info.setReturnValue(settings);

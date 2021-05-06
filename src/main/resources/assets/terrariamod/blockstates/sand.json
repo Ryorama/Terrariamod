@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "terrariamod:block/sand" },
+            { "model": "terrariamod:block/sand", "y": 90 },
+            { "model": "terrariamod:block/sand", "y": 180 },
+            { "model": "terrariamod:block/sand", "y": 270 }
+        ]
+    }
+}

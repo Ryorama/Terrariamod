@@ -20,7 +20,7 @@ public class PlantT extends BlockT {
 	public static Random rand = new Random();
 	
 	public PlantT(FabricBlockSettings properties, float hardness, float difficulty) {
-		super(properties.nonOpaque(), hardness, difficulty, new ItemStack(ItemsT.WOOD, rand.nextInt(3) + 1));
+		super(properties.nonOpaque(), hardness, difficulty);
 	}
 	
 	public boolean isFullCube(BlockState state) {

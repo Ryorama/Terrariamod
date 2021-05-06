@@ -20,22 +20,19 @@ repositories {
 
 dependencies {
 	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:21w11a"
-	mappings "net.fabricmc:yarn:21w11a+build.4:v2"
-	modImplementation "net.fabricmc:fabric-loader:0.11.3"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:0.32.4+1.17"
-
+  minecraft "com.mojang:minecraft:21w15a"
+    mappings "net.fabricmc:yarn:21w15a+build.16:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.11.3"
+            
+    //Fabric api
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.33.0+1.17"
+	
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 	
 	compile files('libs/geckolib-fabric-1.17-3.0.20-dev.jar')
 	
 	implementation 'javax.vecmath:vecmath:1.5.2'
-
-    implementation project(':mclib'), project(':molang'), project(':particlelib')
-
 }
 
 

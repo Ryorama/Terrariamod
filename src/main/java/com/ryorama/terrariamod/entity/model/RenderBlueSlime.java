@@ -1,19 +1,33 @@
 package com.ryorama.terrariamod.entity.model;
 
 import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
+import com.ryorama.terrariamod.entity.hostile.slimes.EntityGreenSlime;
 
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory.Context;
-import net.minecraft.client.render.entity.LivingEntityRenderer;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib3.renderer.geo.GeoEntityRenderer;
 
-public class RenderBlueSlime extends LivingEntityRenderer<EntityBlueSlime, ModelSlime<EntityBlueSlime>> {
+public class RenderBlueSlime extends GeoEntityRenderer<EntityBlueSlime> {
  
-    public RenderBlueSlime(Context conetext) {
-        super(conetext, new ModelSlime<EntityBlueSlime>(128, 128), 0.5f);
+    public RenderBlueSlime(Context context) {
+        super(context, new ModelBlueSlime());
     }
  
     @Override
-    public Identifier getTexture(EntityBlueSlime entity) {
-        return new Identifier("terrariamod", "textures/entity/blueslime.png");
+	public RenderLayer getRenderType(EntityBlueSlime animatable, float partialTicks, MatrixStack stack,
+			VertexConsumerProvider renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
+			Identifier textureLocation) {
+		return RenderLayer.getEntityTranslucent(getTextureLocation(animatable));
+	}
+    
+    @Override
+    public void renderEarly(EntityBlueSlime animatable, MatrixStack stackIn, float ticks, VertexConsumerProvider renderTypeBuffer,
+			VertexConsumer vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue,
+			float partialTicks) {
+      	
     }
 }

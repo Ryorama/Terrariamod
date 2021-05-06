@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
 
 import net.minecraft.block.BlockState;
@@ -27,11 +28,6 @@ public class ChunkGeneratorMixin {
 	
 	public DoublePerlinNoiseSampler terrainNoise;
 	
-	@Inject(at = @At("HEAD"), method = "getWorldHeight", cancellable = true)
-	public void getWorldHeight(CallbackInfoReturnable<Integer> info) {
-		info.setReturnValue(512);
-	}
-	
 	@Inject(at = @At("HEAD"), method = "generateFeatures", cancellable = true)
 	public void generateFeatures(ChunkRegion region, StructureAccessor accessor, CallbackInfo info) {
 		
@@ -48,20 +44,22 @@ public class ChunkGeneratorMixin {
 				for (int y = region.getBottomY(); y <= region.getTopY(); y++) {
 					pos.set(x, y, z);
 										
-					if (region.isChunkLoaded(pos)) {
-						if (region.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK) {
-							region.setBlockState(pos, BlocksT.GRASS_BLOCK.getDefaultState(), 0);
+					if (region.isChunkLoaded(pos)) {	
+						if (region.getBlockState(pos) != Blocks.WATER.getDefaultState() && region.getBlockState(pos) != Blocks.LAVA.getDefaultState()) {
+							if (region.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK) {
+								region.setBlockState(pos, BlocksT.GRASS_BLOCK.getDefaultState(), 0);
+							}
+							if (region.getBlockState(pos).getBlock() == Blocks.DIRT) {
+								region.setBlockState(pos, BlocksT.DIRT_BLOCK.getDefaultState(), 0);
+							}
+							if (region.getBlockState(pos).getBlock() == Blocks.STONE) {
+								region.setBlockState(pos, BlocksT.STONE_BLOCK.getDefaultState(), 0);
+							}
+							if (region.getBlockState(pos).getBlock() == Blocks.DEEPSLATE) {
+								region.setBlockState(pos, BlocksT.STONE_BLOCK.getDefaultState(), 0);
+							}
 						}
-						if (region.getBlockState(pos).getBlock() == Blocks.DIRT) {
-							region.setBlockState(pos, BlocksT.DIRT_BLOCK.getDefaultState(), 0);
-						}
-						if (region.getBlockState(pos).getBlock() == Blocks.STONE) {
-							region.setBlockState(pos, BlocksT.STONE_BLOCK.getDefaultState(), 0);
-						}
-						if (region.getBlockState(pos).getBlock() == Blocks.DEEPSLATE) {
-							region.setBlockState(pos, BlocksT.STONE_BLOCK.getDefaultState(), 0);
-						}
-						
+				
 						GeneratePurityTrees(region, x, y, z, pos, pos);
 						
 						//Underworld Stuff

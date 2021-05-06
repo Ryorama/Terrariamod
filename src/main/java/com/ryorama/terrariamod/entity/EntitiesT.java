@@ -1,12 +1,16 @@
 package com.ryorama.terrariamod.entity;
 
+import com.ryorama.terrariamod.entity.hostile.EntityDemon;
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
+import com.ryorama.terrariamod.entity.hostile.projectiles.DemonScythProjectile;
 import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
 import com.ryorama.terrariamod.entity.hostile.slimes.EntityGreenSlime;
 import com.ryorama.terrariamod.entity.model.RenderBlueSlime;
+import com.ryorama.terrariamod.entity.model.RenderDemon;
 import com.ryorama.terrariamod.entity.model.RenderDemonEye;
-import com.ryorama.terrariamod.entity.model.RenderSlime;
+import com.ryorama.terrariamod.entity.model.RenderDemonSycth;
+import com.ryorama.terrariamod.entity.model.RenderGreenSlime;
 import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
 
 import net.fabricmc.api.EnvType;
@@ -18,6 +22,7 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -48,11 +53,25 @@ public class EntitiesT {
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityKingSlime::new).dimensions(EntityDimensions.fixed(10, 10)).build()
 	    );
 	  
+	  public static final EntityType<EntityDemon> DEMON = Registry.register(
+	            Registry.ENTITY_TYPE,
+	            new Identifier("terrariamod", "demon"),
+	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityDemon::new).dimensions(EntityDimensions.fixed(1, 1)).build()
+	    );
+	  
+	  public static final EntityType<DemonScythProjectile> DEMON_SYCTH = Registry.register(
+	            Registry.ENTITY_TYPE,
+	            new Identifier("terrariamod", "demon_sycth"),
+	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, DemonScythProjectile::new).dimensions(EntityDimensions.fixed(1, 1)).build()
+	    );
+	  
 	  public static void init() {
-		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, LivingEntity.createLivingAttributes());
-		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, LivingEntity.createLivingAttributes());
-		  FabricDefaultAttributeRegistry.register(DEMON_EYE, LivingEntity.createLivingAttributes());
+		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, MobEntity.createMobAttributes());
+		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, MobEntity.createMobAttributes());
+		  FabricDefaultAttributeRegistry.register(DEMON_EYE, MobEntity.createMobAttributes());
+		  FabricDefaultAttributeRegistry.register(DEMON, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(KING_SLIME, LivingEntity.createLivingAttributes());
+		  FabricDefaultAttributeRegistry.register(DEMON_SYCTH, LivingEntity.createLivingAttributes());
 
 		  registerModels();
 	  }
@@ -60,7 +79,7 @@ public class EntitiesT {
 	  public static void registerModels() {
 		  EntityRendererRegistry.INSTANCE.register(EntitiesT.GREEN_SLIME,
 					(context) -> {
-						return new RenderSlime(context);
+						return new RenderGreenSlime(context);
 			});
 		  
 		  EntityRendererRegistry.INSTANCE.register(EntitiesT.BLUE_SLIME,
@@ -76,6 +95,16 @@ public class EntitiesT {
 		  EntityRendererRegistry.INSTANCE.register(EntitiesT.KING_SLIME,
 					(context) -> {
 						return new RenderKingSlime(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON,
+					(context) -> {
+						return new RenderDemon(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_SYCTH,
+					(context) -> {
+						return new RenderDemonSycth(context);
 			});
 	  }
 }

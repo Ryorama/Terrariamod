@@ -26,6 +26,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 	}
 	
 	public boolean hasGivingStartingItems = false;
+	
+	public PlayerEntity player;
 		
 	@Inject(at = @At("HEAD"), method = "tick")
 	public void tick(CallbackInfo info) {
@@ -42,20 +44,35 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		
 		if (MinecraftClient.getInstance().player != null) {
 			MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(10);
+			player = MinecraftClient.getInstance().player;
 		}
 		
 		if (MinecraftClient.getInstance().world != null) {
 			if (!TMusicTicker.bossMusicOverride) {
 		        boolean day = MinecraftClient.getInstance().world.getTimeOfDay() >= 1000 && MinecraftClient.getInstance().world.getTimeOfDay() <= 13000;
-		        if (TMusicTicker.currentMusic != TAudio.DAYONE) {
-		        	if (day) {
-		        		TMusicTicker.getTrack(TAudio.DAYONE);
-		        	}
-				} else if (TMusicTicker.currentMusic != TAudio.NIGHT) {
-					if (!day) {
-						TMusicTicker.getTrack(TAudio.NIGHT);
+		        if (player != null) {
+			        if (player.getY() >= 10) {
+			        	if (TMusicTicker.currentMusic != TAudio.DAYONE) {
+				        	if (day) {
+				        		TMusicTicker.getTrack(TAudio.DAYONE);
+				        	}
+						} else if (TMusicTicker.currentMusic != TAudio.NIGHT) {
+							if (!day) {
+								TMusicTicker.getTrack(TAudio.NIGHT);
+							}
+						}
+					} else {
+						if (player.getY() <= 10 && player.getY() >= -125) {
+							if (TMusicTicker.currentMusic != TAudio.UNDERGROUND) {
+								TMusicTicker.getTrack(TAudio.UNDERGROUND);
+							}
+						} else if (player.getY() <= -125) {
+							if (TMusicTicker.currentMusic != TAudio.UNDERWORLD) {
+								TMusicTicker.getTrack(TAudio.UNDERWORLD);
+							}
+						}
 					}
-				}
+		        }
 			}
 		}
 	}

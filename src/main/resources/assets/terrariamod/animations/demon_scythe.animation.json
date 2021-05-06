@@ -1,0 +1,59 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.demon_scythe.spin": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"demon_scythe": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [-180, 0, 0]
+						},
+						"0.3333": {
+							"vector": [-263.6, 0, 0]
+						},
+						"0.5": {
+							"vector": [-358.6, 0, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [0, 13, -9]
+						},
+						"0.3333": {
+							"vector": [0, 11.76, 0.32]
+						},
+						"0.5": {
+							"vector": [0, -2.24, 0.32]
+						}
+					},
+					"scale": {
+						"vector": [1, 1, 1]
+					}
+				}
+			}
+		},
+		"animation.demon_scythe.death": {
+			"animation_length": 9.08333,
+			"bones": {
+				"demon_scythe": {
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"9.0833": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		}
+	}
+}

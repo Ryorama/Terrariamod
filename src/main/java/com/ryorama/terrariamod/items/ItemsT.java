@@ -4,6 +4,7 @@ import java.nio.channels.NonWritableChannelException;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.armor.CopperArmorMaterial;
 import com.ryorama.terrariamod.items.armor.GoldTArmorMaterial;
 import com.ryorama.terrariamod.items.armor.IronTArmorMaterial;
@@ -24,16 +25,47 @@ import com.ryorama.terrariamod.items.weapons.shortswords.IronShortsword;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.item.SpawnEggItem;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ItemsT {
 			
+	public static String getStringForItem(Item item) {
+		if (item == null) {
+			return "null";
+		}
+		String str = Registry.ITEM.getId(item).getNamespace()+":"+Registry.ITEM.getId(item).getPath();
+		if (Registry.ITEM.getId(item).toString().contains(Registry.ITEM.getId(item).getNamespace())) {
+			str = Registry.ITEM.getId(item).toString();
+		}
+		return str;
+	}
+	
+	public static Item getItemFromString(String name) {
+		
+		try {
+			return Registry.ITEM.get(new Identifier(name));
+		}catch (Exception e) {
+//			e.printStackTrace();
+		}
+		
+		try {
+			return Registry.ITEM.get(new Identifier("trewrite:"+name));
+		}catch (Exception e) {
+//			e.printStackTrace();
+		}
+		
+		return null;
+//		return ItemsT.items.get(name);
+	}
+	
 	public static ItemT WOOD = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
 	public static ItemT COPPER_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
 	public static ItemT GEL = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
@@ -75,7 +107,7 @@ public class ItemsT {
 	public static Item GOLD_HELMET = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item GOLD_CHESTPLATE = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item GOLD_LEGGINGS = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
-
+	
 	public static LesserHealingPotion LESSER_HEALING_POTION = new LesserHealingPotion(new FabricItemSettings().group(ItemGroup.BREWING));
 	
 	public static void init() {
@@ -135,13 +167,19 @@ public class ItemsT {
 	
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "ruby_ore"), new BlockItemT(BlocksT.RUBY_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "sapphire_ore"), new BlockItemT(BlocksT.SAPPHIRE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "green_slime_spawn_egg"), new SpawnEggItem(EntitiesT.GREEN_SLIME, 0x2ec221, 0x5fed53, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "blue_slime_spawn_egg"), new SpawnEggItem(EntitiesT.BLUE_SLIME, 0x2f7dc4, 0x53a3ed, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "demon_eye_slime_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON_EYE, 0xffffff, 0xff0000, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "demon_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON, 0x704b14, 0x703614, new FabricItemSettings().group(ItemGroup.MISC)));
+
 	}
 	
 	public static ItemStack gel(int amount, String color) {
 		ItemStack stack = GEL.stack(amount);
-		CompoundTag tag;
+		NbtCompound tag;
 		if (!stack.hasTag()) {
-			tag = new CompoundTag();
+			tag = new NbtCompound();
 		} else {
 			System.out.println("Has tag");
 			tag = stack.getTag();

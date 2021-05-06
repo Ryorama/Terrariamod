@@ -22,9 +22,11 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.CreeperEntity;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
@@ -45,7 +47,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParticleListener {
 
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
-	
+		
 	public EntityProps props2;
 	
 	public boolean spawnedBlood = false;
@@ -82,7 +84,7 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 		return PlayState.CONTINUE;
 	}
 	
-	public EntityDemonEye(EntityType<? extends LivingEntity> entityType, World worldIn) {
+	public EntityDemonEye(EntityType<? extends EntityDemonEye> entityType, World worldIn) {
 		super(entityType, worldIn);
 		onInitialSpawn();
 	}
@@ -278,42 +280,6 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 	public void lookRandomly() {
 		this.setRotation(this.headYaw + this.random.nextInt(3), this.pitch);
 	}
-	
-	@Environment(EnvType.CLIENT)
-	public boolean shouldRender(double distance) {
-		double d = this.getBoundingBox().getAverageSideLength() * 4.0D;
-		if (Double.isNaN(d) || d == 0.0D) {
-			d = 4.0D;
-		}
-		d *= 64.0D;
-		return distance < d * d;
-	}
-	
-	@Environment(EnvType.CLIENT)
-	public Box getVisibilityBoundingBox() {
-		return this.getBoundingBox();
-	}
-
-	@Override
-	public Iterable<ItemStack> getArmorItems() {
-		return armorItems;
-	}
-
-	@Override
-	public ItemStack getEquippedStack(EquipmentSlot slot) {
-		return ItemStack.EMPTY;
-	}
-
-	@Override
-	public void equipStack(EquipmentSlot slot, ItemStack stack) {
-		
-	}
-
-	@Override
-	public Arm getMainArm() {
-		return Arm.LEFT;
-	}
-
 
 	@Override
 	public void drops() {
@@ -327,12 +293,12 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 	}
 
 	@Override
-	public CompoundTag saveData(CompoundTag tag) {
+	public NbtCompound saveData(NbtCompound tag) {
 		return tag;
 	}
 
 	@Override
-	public void loadData(CompoundTag tag) {
+	public void loadData(NbtCompound tag) {
 	}
 
 	@Override
@@ -353,8 +319,27 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 			playerIn.damage(DamageSource.mob(this), damage);
 		}
 	}
-	
+
 	@Override
-	public <A extends IAnimatable> void summonParticle(ParticleKeyFrameEvent<A> event) {
+	public <A extends IAnimatable> void summonParticle(ParticleKeyFrameEvent<A> event) {		
+	}
+	
+	public Iterable<ItemStack> getArmorItems() {
+		return armorItems;
+	}
+
+	@Override
+	public ItemStack getEquippedStack(EquipmentSlot slot) {
+		return ItemStack.EMPTY;
+	}
+
+	@Override
+	public void equipStack(EquipmentSlot slot, ItemStack stack) {
+		
+	}
+
+	@Override
+	public Arm getMainArm() {
+		return Arm.LEFT;
 	}
 }
