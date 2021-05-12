@@ -27,7 +27,7 @@ public class RenderKingSlime extends GeoEntityRenderer<EntityKingSlime> {
     public void renderEarly(EntityKingSlime animatable, MatrixStack stackIn, float ticks, VertexConsumerProvider renderTypeBuffer,
 			VertexConsumer vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue,
 			float partialTicks) {
-    	
+    
     	stackIn.scale(10, 10, 10);
     	
     }

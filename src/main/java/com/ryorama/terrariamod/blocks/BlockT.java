@@ -65,6 +65,16 @@ public class BlockT extends Block {
 		return -1;
 	}
 	
+	public BlockT setPick(boolean pick) {
+		this.pick = pick;
+		return this;
+	}
+	
+	public BlockT setAxe(boolean axe) {
+		this.axe = axe;
+		return this;
+	}
+	
 	public ItemStack getDrop() {
 		return this.drop;
 	}

@@ -8,6 +8,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.Tessellator;
@@ -57,8 +58,8 @@ public class BossBar extends DrawableHelper {
 				if (bossHealth > 0) {
 					UIRenderer.instance.renderOverlay(boss_health_bar_progress_fg, 1f, 177 * percent, 8, scaledWidth / 2 - 118, 10, -90);				
 				}
-				UIRenderer.instance.renderOverlay(boss_health_bar, 1f, 200, 25, scaledWidth / 2 - 130, 0, -100);
-				UIRenderer.instance.renderOverlay(boss_health_bar_icon, 1f, 10, 10, scaledWidth / 2 - 128.5f, 9, -80);
+				UIRenderer.instance.renderOverlay(boss_health_bar, 1f, 200, 25, scaledWidth / 2 - 130, 0, -90);
+				UIRenderer.instance.renderOverlay(boss_health_bar_icon, 1f, 10, 10, scaledWidth / 2 - 128.5f, 9, -90);
 			}
 		});
 	}

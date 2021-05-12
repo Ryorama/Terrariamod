@@ -12,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import net.minecraft.world.gen.feature.LakeFeature;
 
 @Mixin(LivingEntity.class)
 public abstract class EntityMixin extends Entity {

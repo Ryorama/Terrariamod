@@ -41,9 +41,6 @@
   "jars": [
 	  {
 	  	"file": "META-INF/jars/geckolib-fabric-1.17-3.0.20.jar"
-	  },
-	  {
-	  	"file": "META-INF/jars/color-lights.jar"
 	  }
    ]
 }

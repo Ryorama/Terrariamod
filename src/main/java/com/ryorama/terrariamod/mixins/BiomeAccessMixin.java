@@ -5,7 +5,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.ryorama.terrariamod.biomes.BiomeCorruption;
+import com.ryorama.terrariamod.biomes.BiomeDesert;
+import com.ryorama.terrariamod.biomes.BiomeJungle;
+import com.ryorama.terrariamod.biomes.BiomePurity;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
+import com.ryorama.terrariamod.biomes.BiomeSnow;
 
 import net.minecraft.client.option.HotbarStorage;
 import net.minecraft.entity.ItemEntity;
@@ -23,28 +28,28 @@ public class BiomeAccessMixin {
 		//return this.type.getBiome(this.seed, pos.getX(), pos.getY(), pos.getZ(), this.storage);
 				
 		if (pos.getX() > 200 && pos.getX() < 400) {
-			biome = BiomeRegistry.CORRUPTION;
+			biome = BiomeCorruption.CORRUPTION;
 			info.setReturnValue(biome);
 		} else if (pos.getX() > 401 && pos.getX() < 602) {
-			biome = BiomeRegistry.DESERT;
+			biome = BiomeDesert.DESERT;
 			info.setReturnValue(biome);
 		} else if (pos.getX() > 603 && pos.getX() < 804) {
-			biome = BiomeRegistry.SNOW;
+			biome = BiomeSnow.SNOW;
 			info.setReturnValue(biome);
 		} else if (pos.getX() > -200 && pos.getX() < -400) {
-			biome = BiomeRegistry.CORRUPTION;
+			biome = BiomeCorruption.CORRUPTION;
 			info.setReturnValue(biome);
 		} else if (pos.getX() > -401 && pos.getX() < -602) {
-			biome = BiomeRegistry.DESERT;
+			biome = BiomeDesert.DESERT;
 			info.setReturnValue(biome);
 		} else if (pos.getX() > -603 && pos.getX() < -804) {
-			biome = BiomeRegistry.SNOW;
+			biome = BiomeSnow.SNOW;
 			info.setReturnValue(biome);
 		} else if (pos.getX() > -1005 && pos.getX() < -1206) {
-			biome = BiomeRegistry.JUNGLE;
+			biome = BiomeJungle.JUNGLE;
 			info.setReturnValue(biome);
 		} else {
-			biome = BiomeRegistry.PURITY;
+			biome = BiomePurity.PUTITY;
 			info.setReturnValue(biome);
 		}
 	}

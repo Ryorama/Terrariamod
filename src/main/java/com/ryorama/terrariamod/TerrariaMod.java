@@ -7,8 +7,10 @@ import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.EntitiesT;
+import com.ryorama.terrariamod.entity.projectiles.TerrariaInventoryScreen;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
+import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.world.EntitySpawner;
 
 import net.fabricmc.api.ClientModInitializer;
@@ -19,13 +21,12 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
 import net.fabricmc.fabric.api.event.world.WorldTickCallback;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.entity.attribute.ClampedEntityAttribute;
-import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
 import net.minecraft.world.dimension.DimensionType;
 import software.bernie.geckolib3.GeckoLib;
@@ -33,14 +34,6 @@ import software.bernie.geckolib3.GeckoLib;
 public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static String modid = "terrariamod";
-	
-	private static EntityAttribute register_attribute(String id, EntityAttribute attribute) {
-		return (EntityAttribute) Registry.register(Registry.ATTRIBUTE, id, attribute);
-	}
-
-	public static final EntityAttribute MODIFIED_MAX_HEALTH = register_attribute("trewrite.max_health",
-			(new ClampedEntityAttribute("attribute.name.trewrite.max_health", 20.0D, 1.0D, 5000000.0D)).setTracked(true));
-	
 	
 	private static final DimensionType MODIFIED_OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, 
 			-256,
@@ -86,8 +79,12 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.EMPTY_BOTTLE, RenderLayer.getCutout());
 	}
 	
-
+ 
 	public void onTick() {
+		
+		TerrariaUIRenderer.renderTerrariaHealth();
+		TerrariaUIRenderer.renderTerrariaDefense();
+		TerrariaUIRenderer.renderTerrariaMana();
 		
 		TMusicTicker.musicChanged = true;
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {
@@ -95,6 +92,37 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 			TMusicTicker.onTickUpdate();
 			
 		});
+		
+		/*
+		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+			if (!player.isCreative()) {
+				if (world.getBlockState(pos).getBlock() instanceof BlockT) {
+					BlockT block = (BlockT)world.getBlockState(pos).getBlock();
+									
+					if (player.getInventory().getMainHandStack().getItem() instanceof ItemT) {
+						ItemT item = (ItemT)player.getInventory().getMainHandStack().getItem();
+						if (block.difficulty > 0) {
+							if (block.pick && item.pick >= block.difficulty) {
+				                return ActionResult.SUCCESS;
+							}
+							if (block.axe && item.axe >= block.difficulty) {
+				                return ActionResult.SUCCESS;
+							}
+							if (block.hammer && item.hammer >= block.difficulty) {
+				                return ActionResult.SUCCESS;
+							}
+							return ActionResult.FAIL;
+						}
+						return ActionResult.FAIL;
+					}
+					return ActionResult.FAIL;
+				}
+				return ActionResult.FAIL;
+			} else {
+				return ActionResult.SUCCESS;
+			}
+		});
+		*/
 		
 		WorldTickCallback.EVENT.register(world -> {
 			

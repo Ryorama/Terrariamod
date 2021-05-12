@@ -94,6 +94,7 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
     	this.getDataTracker().set(EntityDemonEye.typed_data, random.nextInt(6));
 
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(60);
+		this.setHealth(60);
 		this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(2);
 		this.damage = 18;
 		this.kbResist = 0.2f;
@@ -102,7 +103,7 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 	@Override
 	public void AI() {
 		if (this.isAlive()) {
-	        boolean night = MinecraftClient.getInstance().world.getTimeOfDay() <= 23999 && MinecraftClient.getInstance().world.getTimeOfDay() >= 13000;
+	        boolean night = this.world.getTimeOfDay() <= 23999 && this.world.getTimeOfDay() >= 13000;
 
 	    	double motionY = this.getVelocity().y;
 	    	double motionX = this.getVelocity().x;
@@ -284,7 +285,7 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 	@Override
 	public void drops() {
 		if (MinecraftClient.getInstance().player != null) {
-			MinecraftClient.getInstance().player.getInventory().insertStack(new ItemStack(ItemsT.gel(this.random.nextInt(2), "ffee00").getItem()));
+			MinecraftClient.getInstance().player.getInventory().insertStack(new ItemStack(ItemsT.LENS));
 		}
 	}
 	

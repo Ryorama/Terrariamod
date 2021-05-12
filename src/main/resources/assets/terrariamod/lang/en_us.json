@@ -1,4 +1,9 @@
 {
+	"item.terrariamod.green_slime_spawn_egg": "Spawn Green Slime",
+	"item.terrariamod.blue_slime_spawn_egg": "Spawn Blue Slime",
+	"item.terrariamod.demon_eye_slime_spawn_egg": "Spawn Demon Eye",
+	"item.terrariamod.demon_spawn_egg": "Spawn Demon",
+	"item.terrariamod.eater_of_souls_spawn_egg": "Spawn Eater of Souls",
 	"block.terrariamod.cloud": "Cloud",
 	"block.terrariamod.ruby_ore": "Ruby",
 	"block.terrariamod.sapphire_ore": "Sapphire",
@@ -22,6 +27,7 @@
 	"item.terrariamod.slime_crown": "Slime Crown",
 	"item.terrariamod.lucky_horseshoe": "Lucky Horseshoe",
 	"item.terrariamod.excalibur": "Excalibur",
+	"item.terrariamod.life_crystal": "Life Crystal",
 	"item.terrariamod.life_fruit": "Life Fruit",
 	"item.terrariamod.tissue_sample": "Tissue Samples",
 	"item.terrariamod.pallidum_helmet": "Palladium Helmet",

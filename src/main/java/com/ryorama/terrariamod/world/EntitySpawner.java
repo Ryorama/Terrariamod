@@ -1,5 +1,7 @@
 package com.ryorama.terrariamod.world;
 
+import com.ryorama.terrariamod.biomes.BiomeCorruption;
+import com.ryorama.terrariamod.biomes.BiomePurity;
 import com.ryorama.terrariamod.entity.EntitiesT;
 
 import net.minecraft.block.Material;
@@ -15,6 +17,7 @@ public class EntitySpawner {
 
 
 	public static EntityType[] groundDaytime = {EntitiesT.BLUE_SLIME, EntitiesT.GREEN_SLIME};
+	public static EntityType[] groundCorruptionDaytime = {EntitiesT.EATER_OF_SOULS};
 	public static EntityType[] hardmodeGroundDaytime = {};
 	public static EntityType[] hardmodeGroundNighttime = {};
 	public static EntityType[] groundNighttime = {EntitiesT.DEMON_EYE};
@@ -36,8 +39,11 @@ public class EntitySpawner {
 			if (y >= 190) {
 				spawnSkyEntity(world, x, y, z);
 			}
-			if (y > 45) {
+			if (y > 45 && world.getBiome(new BlockPos(x, y, z)) == BiomePurity.PUTITY) {
 				spawnGroundEntity(world, x, y, z);
+			}
+			if (y > 45 && world.getBiome(new BlockPos(x, y, z)) == BiomeCorruption.CORRUPTION) {
+				spawnCorruptionGroundEntity(world, x, y, z);
 			}
 			if (y <= 60) {
 				spawnCaveEntity(world, x, y, z);
@@ -103,6 +109,25 @@ public class EntitySpawner {
 			if (world.getBlockState(spawnpoint).getMaterial() == Material.WATER) {
 				list = EntitySpawner.groundWaterDaytime;
 			}
+		}
+		if (list == null) return false;
+		if (list.length == 0) return false;
+		EntityType e = list[world.random.nextInt(list.length)];
+		if (e == null)
+			return false;
+		spawnEntityAt(e, spawnpoint, world);
+		return true;
+	}
+	
+	public static boolean spawnCorruptionGroundEntity(World world, double x, double y, double z) {
+		BlockPos spawnpoint = getSuitableEntitySpawnpoint(world, x, y, z);
+		if (spawnpoint == null) return false;
+		
+		EntityType[] list = null;
+		if (world.getTimeOfDay() % 24000 > 15000 && world.getTimeOfDay() % 24000 < 22000) {
+			return false;
+		} else if (y < 190) {
+			list = EntitySpawner.groundCorruptionDaytime;
 		}
 		if (list == null) return false;
 		if (list.length == 0) return false;

@@ -10,10 +10,16 @@ public class TAudio {
     public static final SoundEvent NIGHT = new SoundEvent(new Identifier(TerrariaMod.modid, "night"));
     public static final SoundEvent UNDERGROUND = new SoundEvent(new Identifier(TerrariaMod.modid, "underground"));
     public static final SoundEvent UNDERWORLD = new SoundEvent(new Identifier(TerrariaMod.modid, "underworld"));
+    public static final SoundEvent CORRUPTION = new SoundEvent(new Identifier(TerrariaMod.modid, "corruption"));
+    public static final SoundEvent UNDERGROUND_CORRUPTION = new SoundEvent(new Identifier(TerrariaMod.modid, "underground_corruption"));
+    public static final SoundEvent DESERT = new SoundEvent(new Identifier(TerrariaMod.modid, "desert"));
+    public static final SoundEvent SNOW = new SoundEvent(new Identifier(TerrariaMod.modid, "snow"));
+    public static final SoundEvent JUNGLE = new SoundEvent(new Identifier(TerrariaMod.modid, "jungle"));
 
     public static final SoundEvent TITLE_SCREEN = new SoundEvent(new Identifier(TerrariaMod.modid, "title_screen"));
     public static final SoundEvent BOSS1 = new SoundEvent(new Identifier(TerrariaMod.modid, "boss1"));
 
+    public static final SoundEvent HEALTH_CRYSTAL = new SoundEvent(new Identifier(TerrariaMod.modid, "health_crystal"));
     public static final SoundEvent ROAR_0 = new SoundEvent(new Identifier(TerrariaMod.modid, "roar_0"));
     public static final SoundEvent NPC_HIT1 = new SoundEvent(new Identifier(TerrariaMod.modid, "npc_hit1"));
     public static final SoundEvent NPC_KILL1 = new SoundEvent(new Identifier(TerrariaMod.modid, "npc_killed1"));

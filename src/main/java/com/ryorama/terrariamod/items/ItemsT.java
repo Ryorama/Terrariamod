@@ -9,10 +9,12 @@ import com.ryorama.terrariamod.items.armor.CopperArmorMaterial;
 import com.ryorama.terrariamod.items.armor.GoldTArmorMaterial;
 import com.ryorama.terrariamod.items.armor.IronTArmorMaterial;
 import com.ryorama.terrariamod.items.boss_summons.SlimeCrown;
+import com.ryorama.terrariamod.items.boss_summons.SuspiciousLookingEye;
 import com.ryorama.terrariamod.items.potions.LesserHealingPotion;
 import com.ryorama.terrariamod.items.tools.axe.CopperAxe;
 import com.ryorama.terrariamod.items.tools.axe.GoldAxe;
 import com.ryorama.terrariamod.items.tools.axe.IronAxe;
+import com.ryorama.terrariamod.items.tools.bows.CopperBow;
 import com.ryorama.terrariamod.items.tools.picks.CopperPickaxe;
 import com.ryorama.terrariamod.items.tools.picks.GoldPickaxe;
 import com.ryorama.terrariamod.items.tools.picks.IronPickaxe;
@@ -69,9 +71,13 @@ public class ItemsT {
 	public static ItemT WOOD = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
 	public static ItemT COPPER_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
 	public static ItemT GEL = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
+	public static ItemT LENS = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
+
+	public static LifeCrystal HEALTH_CRYSTAL = (LifeCrystal) new LifeCrystal(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
 	
 	public static ItemT SLIME_CROWN = new SlimeCrown(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(3);
-	
+	public static ItemT SUSPICIOUS_LOOKING_EYE = new SuspiciousLookingEye(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(3);
+
 	public static ItemT GOLD_CROWN = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
 	
 	public static ItemT IRON_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
@@ -108,12 +114,16 @@ public class ItemsT {
 	public static Item GOLD_CHESTPLATE = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item GOLD_LEGGINGS = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
 	
+	public static CopperBow COPPER_BOW = new CopperBow(new FabricItemSettings().group(ItemGroup.COMBAT));
+	
 	public static LesserHealingPotion LESSER_HEALING_POTION = new LesserHealingPotion(new FabricItemSettings().group(ItemGroup.BREWING));
 	
 	public static void init() {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "wood"), WOOD);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_bar"), COPPER_BAR);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "gel"), GEL);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "lens"), LENS);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "life_crystal"), HEALTH_CRYSTAL);
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "lesser_healing_potion"), LESSER_HEALING_POTION);
 		
@@ -123,6 +133,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "gold_crown"), GOLD_CROWN);
 		
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "slime_crown"), SLIME_CROWN);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "suspicious_looking_eye"), SUSPICIOUS_LOOKING_EYE);
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_shortsword"), COPPER_SHORTSWORD);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_pickaxe"), COPPER_PICKAXE);
@@ -172,6 +183,9 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "blue_slime_spawn_egg"), new SpawnEggItem(EntitiesT.BLUE_SLIME, 0x2f7dc4, 0x53a3ed, new FabricItemSettings().group(ItemGroup.MISC)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "demon_eye_slime_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON_EYE, 0xffffff, 0xff0000, new FabricItemSettings().group(ItemGroup.MISC)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "demon_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON, 0x704b14, 0x703614, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "eater_of_souls_spawn_egg"), new SpawnEggItem(EntitiesT.EATER_OF_SOULS, 0x704b14, 0x7a8737, new FabricItemSettings().group(ItemGroup.MISC)));
+
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "copper_bow"), COPPER_BOW);
 
 	}
 	

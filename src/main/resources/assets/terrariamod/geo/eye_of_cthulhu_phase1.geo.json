@@ -1,0 +1,54 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.eye_of_cthulhu_phase1",
+				"texture_width": 512,
+				"texture_height": 512,
+				"visible_bounds_width": 14,
+				"visible_bounds_height": 5.5,
+				"visible_bounds_offset": [0, 2.25, 0]
+			},
+			"bones": [
+				{
+					"name": "bone",
+					"pivot": [30, 7, -13],
+					"rotation": [0, 90.00021, 0],
+					"cubes": [
+						{"origin": [-34, 10, -71], "size": [3, 54, 54], "uv": [0, 171]},
+						{"origin": [-37, 15, -67], "size": [4, 46, 46], "uv": [228, 228]}
+					]
+				},
+				{
+					"name": "bb_main",
+					"pivot": [0, 0, 0],
+					"rotation": [0, 90.00021, 0],
+					"cubes": [
+						{"origin": [-48, 7, -31], "size": [60, 60, 60], "uv": [0, 0]},
+						{"origin": [12, 10, -27], "size": [3, 54, 54], "uv": [114, 197]},
+						{"origin": [15, 15, -23], "size": [4, 46, 46], "uv": [240, 0]},
+						{"origin": [19, 21, -19], "size": [4, 34, 34], "uv": [292, 92]},
+						{"origin": [23, 28, -11], "size": [4, 20, 20], "uv": [0, 0]},
+						{"origin": [-43, 67, -26], "size": [49, 3, 48], "uv": [146, 146]},
+						{"origin": [-43, 4, -26], "size": [49, 3, 48], "uv": [0, 120]},
+						{"origin": [-43, 11, 29], "size": [49, 54, 4], "uv": [282, 197]},
+						{"origin": [-43, 11, -35], "size": [49, 54, 4], "uv": [0, 279]}
+					]
+				},
+				{
+					"name": "bone2",
+					"parent": "bb_main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-101, 35, -5], "size": [47, 8, 8], "uv": [146, 120]},
+						{"origin": [-101, 49, -20], "size": [47, 8, 8], "uv": [292, 160]},
+						{"origin": [-101, 18, -20], "size": [47, 8, 8], "uv": [282, 255]},
+						{"origin": [-101, 18, 10], "size": [47, 8, 8], "uv": [60, 171]},
+						{"origin": [-101, 49, 10], "size": [47, 8, 8], "uv": [292, 176]}
+					]
+				}
+			]
+		}
+	]
+}
