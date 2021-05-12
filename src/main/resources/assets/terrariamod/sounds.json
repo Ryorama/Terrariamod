@@ -17,6 +17,15 @@
 		}
 	]
   },
+  "mushroom": {
+	"category": "music",
+	"sounds": [
+		{
+			"name": "terrariamod:music/mushroom",
+			"stream": true
+		}
+	]
+  },
   "snow": {
 	"category": "music",
 	"sounds": [

@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "terrariamod:block/mushroom_grass" },
+            { "model": "terrariamod:block/mushroom_grass", "y": 90 },
+            { "model": "terrariamod:block/mushroom_grass", "y": 180 },
+            { "model": "terrariamod:block/mushroom_grass", "y": 270 }
+        ]
+    }
+}

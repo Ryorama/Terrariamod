@@ -15,9 +15,11 @@ import com.ryorama.terrariamod.biomes.BiomePurity;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.biomes.BiomeSnow;
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.utils.fastnoise.FastNoise;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FungusBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -38,8 +40,41 @@ public class ChunkGeneratorMixin {
 	
 	public DoublePerlinNoiseSampler terrainNoise;
 	
+	public FastNoise noise;
+	public Random random;
+	
+	private boolean corruption = true;
+	private boolean right_jungle = true;
+	
+	private float GetTerrainNoise(int x, int y, int z) {
+		return noise.GetSimplexFractal(x * 1.25f, y * 2.0f, z * 1.25f) * 5;
+	}
+	
 	@Inject(at = @At("HEAD"), method = "generateFeatures", cancellable = true)
 	public void generateFeatures(ChunkRegion region, StructureAccessor accessor, CallbackInfo info) {
+		
+		if (noise == null) {
+			noise = new FastNoise((int)region.toServerWorld().getSeed());
+			random = new Random(region.toServerWorld().getSeed());
+			corruption = random.nextInt(10) >= 4;
+			right_jungle = random.nextBoolean();
+		}
+		
+		int base_height = 75;
+		float threshold = -0.8f;
+		
+		int stone_height = 20;
+		int underworld_height = -190;
+		int underworld_base = -256 + 25;
+		
+		int purity_radius = 350;
+		
+		int world_radius = 2400;
+		
+		int biome_width = 900;
+		int biome_length = 1200;
+		
+		int snow_position = right_jungle ? -1200 : 1200;
 		
 		 if (terrainNoise == null) {
 	            terrainNoise = DoublePerlinNoiseSampler.create(new SimpleRandom(region.getRandom().nextLong()), -8,
@@ -51,190 +86,404 @@ public class ChunkGeneratorMixin {
 
 		for (int x = chunkPos.getStartX(); x <= chunkPos.getEndX(); x++) {
 			for (int z = chunkPos.getStartZ(); z <= chunkPos.getEndZ(); z++) {
+				float flatness = noise.GetSimplex(x, z);
+				int height_offset = 0;
+				
+				double world_distance = Math.sqrt(x * x + z * z);
+
+				
+				boolean beach = world_distance >= 2400;
+				boolean jungle = world_distance > 1900 && (right_jungle ? (x > 0) : (x < 0)) && !beach;
+				
+				boolean snow = ((x + snow_position) * (x + snow_position)) / (float)(biome_width * biome_width) + (z * z) / (float)(biome_length * biome_length) <= 1;
+				boolean desert = ((x - snow_position) * (x - snow_position)) / (float)(biome_width * biome_width) + (z * z) / (float)(biome_length * biome_length) <= 1;
+				
+				if (world_distance >= 2400) {
+					height_offset = (int)(60.0f * (world_distance - 2400) / 300.0f);
+					if (height_offset < 0) height_offset = 0;
+					if (height_offset > 60) height_offset = 60;
+				}
+				
+				if (flatness < 0.05f) flatness = 0.05f;
+				
+				float sine = (float)Math.sin(Math.PI * (world_distance - 2200) / 2400);
+				
+				flatness = MathHelper.lerp(sine > 0 ? sine : 0, flatness, 1);
 				for (int y = region.getBottomY(); y <= region.getTopY(); y++) {
 					pos.set(x, y, z);
 										
 					if (region.isChunkLoaded(pos)) {
 						if (region.getBlockState(pos) != Blocks.WATER.getDefaultState() && region.getBlockState(pos) != Blocks.LAVA.getDefaultState()) {
+							pos.set(x, y, z);
+							BlockState state = Blocks.AIR.getDefaultState();
 							
-							if (region.getBiome(pos) == BiomePurity.PUTITY) {
-								if (region.getBlockState(pos).getBlock() == Blocks.STONE || region.getBlockState(pos).getBlock() == BlocksT.STONE_BLOCK) {
-									region.setBlockState(pos, BlocksT.STONE_BLOCK.getDefaultState(), 0);
-								}
-								if (region.getBlockState(pos).getBlock() == Blocks.DEEPSLATE) {
-									region.setBlockState(pos, BlocksT.STONE_BLOCK.getDefaultState(), 0);
-								}
-							} else if (region.getBiome(pos) == BiomeCorruption.CORRUPTION) {
-								if (region.getBlockState(pos).getBlock() == Blocks.STONE || region.getBlockState(pos).getBlock() == BlocksT.STONE_BLOCK) {
-									region.setBlockState(pos, BlocksT.EBONSTONE.getDefaultState(), 0);
-								}
-								if (region.getBlockState(pos).getBlock() == Blocks.DEEPSLATE) {
-									region.setBlockState(pos, BlocksT.EBONSTONE.getDefaultState(), 0);
-								}
-							} else if (region.getBiome(pos) == BiomeDesert.DESERT) {
-								if (region.getBlockState(pos).getBlock() == Blocks.STONE || region.getBlockState(pos).getBlock() == BlocksT.STONE_BLOCK) {
-									region.setBlockState(pos, BlocksT.SAND.getDefaultState(), 0);
-								}
-								if (region.getBlockState(pos).getBlock() == Blocks.DEEPSLATE) {
-									region.setBlockState(pos, BlocksT.SAND.getDefaultState(), 0);
-								}
-							} else if (region.getBiome(pos) == BiomeSnow.SNOW) {
-								if (region.getBlockState(pos).getBlock() == Blocks.STONE || region.getBlockState(pos).getBlock() == BlocksT.STONE_BLOCK) {
-									region.setBlockState(pos, BlocksT.SNOW.getDefaultState(), 0);
-								}
-								if (region.getBlockState(pos).getBlock() == Blocks.DEEPSLATE) {
-									region.setBlockState(pos, BlocksT.SNOW.getDefaultState(), 0);
-								}
-							} else if (region.getBiome(pos) == BiomeJungle.JUNGLE) {
-								if (region.getBlockState(pos).getBlock() == Blocks.STONE || region.getBlockState(pos).getBlock() == BlocksT.STONE_BLOCK) {
-									region.setBlockState(pos, BlocksT.MUD.getDefaultState(), 0);
-								}
-								if (region.getBlockState(pos).getBlock() == Blocks.DEEPSLATE) {
-									region.setBlockState(pos, BlocksT.MUD.getDefaultState(), 0);
+							float stone_density = (y - stone_height + height_offset) / 15.0f;
+							
+							float density = (y - base_height + height_offset) / 15.0f;
+							float n = GetTerrainNoise(x, y, z);
+							float combined = n * flatness + density;
+							
+							float cave_density = y / 256.0f;
+							if (cave_density > 0) cave_density = 0;
+							cave_density = -cave_density;
+							
+							float underworld_density = (y - underworld_height) / 5.0f;
+							
+							float underworld_base_density = (y - underworld_base) / 15.0f;
+							
+							float combined_stone = n + stone_density;
+							float combined_cave = (n * n) * cave_density;
+							float jungle_cave = jungle ? (n * (cave_density + 0.1f)) : 0;
+
+							float combined_underworld = n + underworld_density;
+							float combined_underworld_base = n + underworld_base_density;
+							
+							boolean pure = Math.sqrt(x * x + y * y + z * z) <= purity_radius;
+			
+							if (y < base_height - 30) {
+								state = Blocks.WATER.getDefaultState();
+							}
+							
+							if (combined < threshold) {
+								if (jungle) {
+									state = BlocksT.MUD.getDefaultState();
+								} else {
+									if (snow) {
+										state = BlocksT.SNOW.getDefaultState();
+									} else {
+										if (beach || desert) {
+											state = BlocksT.SAND.getDefaultState();
+										} else {
+											state = BlocksT.DIRT_BLOCK.getDefaultState();
+										}
+									}
 								}
 							}
+							
+							if (combined_stone < threshold) {
+								if (jungle) {
+									state = BlocksT.MUD.getDefaultState();
+								} else {
+									if (snow && !pure) {
+										state = Blocks.PACKED_ICE.getDefaultState();
+									} else {
+										if (desert) {
+											state = BlocksT.SAND.getDefaultState();
+											//state = sandstone;
+										} else {
+											state = pure ? BlocksT.STONE_BLOCK.getDefaultState() : BlocksT.EBONSTONE.getDefaultState();
+										}
+									}
+								}
+								
+							}
+							
+							
+							if (combined_cave >= 0.8f || jungle_cave <= -0.8f) {
+								if (combined >= threshold) {
+									state = Blocks.AIR.getDefaultState();
+								} else {
+									state = Blocks.CAVE_AIR.getDefaultState();
+								}
+							}
+							
+							if (combined_underworld < threshold) {
+								state = Blocks.CAVE_AIR.getDefaultState();
+								
+							}
+							
+							if (y < underworld_base) {
+								state = Blocks.LAVA.getDefaultState();
+							}
+							
+							if (combined_underworld_base < threshold) {
+								state = BlocksT.ASH.getDefaultState();
+							}
+							
+							if (y <= -253) {
+								state = Blocks.BEDROCK.getDefaultState();
+							}
+							region.setBlockState(pos, state, 0);
+						}
+					}
+				}
+			}
+		}
 		
-				
-							GeneratePurityTrees(region, x, y, z, pos, pos);
-							
-							//Underworld Stuff
-							if (y < -150 + terrainNoise.sample(x * 10, y * 0.01f, z * 10) * 25) {
-		                        if (region.getBlockState(pos).getBlock() == Blocks.AIR ||
-		                                region.getBlockState(pos).getBlock() == Blocks.CAVE_AIR) {
-		                            if (y < -230) {
-		                                region.setBlockState(pos, Blocks.LAVA.getDefaultState(), 0);
-		                            }
-		                        } else {
-		                            region.setBlockState(pos, BlocksT.ASH.getDefaultState(), 0);
-		                        }
-		                    }
-							
-							if (y < -120) {
-								if (region.getBlockState(pos).getBlock() == Blocks.WATER) {
-									region.setBlockState(pos, Blocks.LAVA.getDefaultState(), 0);
-								}
+		for (int x = chunkPos.getStartX(); x <= chunkPos.getEndX(); x++) {
+			for (int z = chunkPos.getStartZ(); z <= chunkPos.getEndZ(); z++) {
+				for (int y = region.getBottomY(); y <= region.getTopY(); y++) {
+					if (y >= 252) continue;
+					boolean pure = Math.sqrt(x * x + y * y + z * z) <= purity_radius;
+
+					int cave_biome = (int)(noise.GetCellular(x * 0.5f, y, z * 0.5f) * 10);
+					
+					pos.set(x, y, z);
+					if (region.isChunkLoaded(pos)) {
+						pos.set(x, y + 1, z);
+						if (region.isChunkLoaded(pos)) {
+							if (region.getBlockState(pos) == Blocks.AIR.getDefaultState()) {
+								pos.set(x, y, z);
+								if (region.getBlockState(pos) == BlocksT.DIRT_BLOCK.getDefaultState())
+								region.setBlockState(pos, BlocksT.GRASS_BLOCK.getDefaultState(), 0);
+								
+								if (region.getBlockState(pos) == BlocksT.MUD.getDefaultState())
+									region.setBlockState(pos, BlocksT.JUNGLE_GRASS.getDefaultState(), 0);
 							}
-							
-							
-							//Ores
-							if (y <= 80) {
-								if (region.getRandom().nextInt(300) == 0) {
-									if (region.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.GRASS_BLOCK.getDefaultState(), BlocksT.COPPER_ORE.getDefaultState());
-									} else if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.COPPER_ORE.getDefaultState());
-									} else if (region.getBlockState(pos) == Blocks.GRASS_BLOCK.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.GRASS_BLOCK.getDefaultState(), BlocksT.COPPER_ORE.getDefaultState());
-									} else if (region.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.STONE.getDefaultState(), BlocksT.COPPER_ORE.getDefaultState());
+							if (region.getBlockState(pos) == BlocksT.SAND.getDefaultState()) {
+								pos.set(x, y, z);
+								if (region.getBlockState(pos) == Blocks.AIR.getDefaultState()) {
+									region.setBlockState(pos, BlocksT.SAND.getDefaultState(), 0);
+								}
+								//region.setBlockState(pos, pure ? Blocks.SANDSTONE.getDefaultState() : sandstone, 0);						
+							}
+							if (random.nextInt(100) == 0 && cave_biome != 1 && cave_biome != 2 && cave_biome != 3) {
+								if (region.getBlockState(pos) == Blocks.STONE.getDefaultState() ||
+										region.getBlockState(pos) == BlocksT.EBONSTONE.getDefaultState() ||
+												region.getBlockState(pos) == BlocksT.DIRT_BLOCK.getDefaultState()) {
+									if (random.nextInt(5) >= 2) {
+										int height = random.nextInt(4) + 1;
+										if (pure) {
+											for (int i = y; i > y - height - 1; i--) {
+												pos.set(x, i, z);
+											}
+											pos.set(x, y - height, z);
+										} else {
+											if (corruption) {
+												for (int i = y; i > y - height - 1; i--) {
+													pos.set(x, i, z);
+												}
+												pos.set(x, y - height, z);
+											} else {
+												for (int i = y; i > y - height - 1; i--) {
+													pos.set(x, i, z);
+													if (region.isChunkLoaded(pos)) {
+														
+													}
+												}
+												pos.set(x, y - height, z);
+												if (region.isChunkLoaded(pos)) {
+													
+												}
+											}
+										}
 									}
-								}
-							}
-							if (y <= 60) {
-								if (region.getRandom().nextInt(320) == 0) {
-									if (region.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.GRASS_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
-									} else if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
-									} else if (region.getBlockState(pos) == Blocks.GRASS_BLOCK.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.GRASS_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
-									} else if (region.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.STONE.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
+									else {
+										pos.set(x, y, z);
 									}
+								}	
+							}
+						}
+						GeneratePurityTrees(region, x, y, z, pos);
+						
+						//Ores
+						if (y <= 80) {
+							if (region.getRandom().nextInt(300) == 0) {
+								if (region.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.GRASS_BLOCK.getDefaultState(), BlocksT.COPPER_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.COPPER_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == Blocks.GRASS_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.GRASS_BLOCK.getDefaultState(), BlocksT.COPPER_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.STONE.getDefaultState(), BlocksT.COPPER_ORE.getDefaultState());
 								}
 							}
-							if (y <= 10) {
-								if (region.getRandom().nextInt(340) == 0) {
-									if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.GOLD_ORE.getDefaultState());
-									} else if (region.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.STONE.getDefaultState(), BlocksT.GOLD_ORE.getDefaultState());
-									}
+						}
+						if (y <= 60) {
+							if (region.getRandom().nextInt(320) == 0) {
+								if (region.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.GRASS_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == Blocks.GRASS_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.GRASS_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.STONE.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
 								}
 							}
-							if (y <= -150) {
-								if (region.getRandom().nextInt(360) == 0) {
-									if (region.getBlockState(pos) == BlocksT.ASH.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.ASH.getDefaultState(), BlocksT.HELLSTONE_ORE.getDefaultState());
-									}
+						}
+						if (y <= 10) {
+							if (region.getRandom().nextInt(340) == 0) {
+								if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.GOLD_ORE.getDefaultState());
+								} else if (region.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, Blocks.STONE.getDefaultState(), BlocksT.GOLD_ORE.getDefaultState());
 								}
 							}
-							if (y <= 60) {
-								if (region.getRandom().nextInt(340) == 0) {
-									if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.RUBY_ORE.getDefaultState());
-									}
+						}
+						if (y <= -150) {
+							if (region.getRandom().nextInt(360) == 0) {
+								if (region.getBlockState(pos) == BlocksT.ASH.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.ASH.getDefaultState(), BlocksT.HELLSTONE_ORE.getDefaultState());
 								}
 							}
-							if (y <= 60) {
-								if (region.getRandom().nextInt(340) == 0) {
-									if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
-										placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.SAPPHIRE_ORE.getDefaultState());
-									}
+						}
+						if (y <= 60) {
+							if (region.getRandom().nextInt(340) == 0) {
+								if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.RUBY_ORE.getDefaultState());
 								}
 							}
-							
-							//Foliage			
-							if (region.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
-								if (region.getRandom().nextInt(100) == 0) {
-									region.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.MUSHROOM.getDefaultState(), 0);
+						}
+						if (y <= 60) {
+							if (region.getRandom().nextInt(340) == 0) {
+								if (region.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+									placeOre(region, region.getRandom(), pos, region.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.SAPPHIRE_ORE.getDefaultState());
 								}
 							}
-							
-							//Underground Corruption
-							if (region.getBiome(pos) == BiomeCorruption.CORRUPTION) {
-								if (region.getBlockState(pos) == BlocksT.CORRUPTED_GRASS_BLOCK.getDefaultState()) {
-									int depth = 40;
-									int depth2 = 50;
-									BlockPos.Mutable pos2 = new BlockPos.Mutable();
-								   
-									for (int i = 0; i < depth2 + 10; i++) {
-									   pos2.set(pos.getX(), pos.getY() - i, pos.getZ());
-									   if (i >= depth - 3 && i <= depth || i >= depth2) {
-										   if (region.getRandom().nextInt(100) <= 95)
-										   region.setBlockState(pos2, BlocksT.EBONSTONE.getDefaultState(), 0);
-									   }
-									   if (i > depth && i < depth2) {
-										   region.setBlockState(pos2, Blocks.AIR.getDefaultState(), 0);
-									   }
+						}
+						
+						//Foliage			
+						if (region.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
+							if (region.getRandom().nextInt(100) == 0) {
+								region.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.MUSHROOM.getDefaultState(), 0);
+							}
+						}
+						
+						//Underground Corruption
+						if (region.getBiome(pos) == BiomeCorruption.CORRUPTION) {
+							if (region.getBlockState(pos) == BlocksT.CORRUPTED_GRASS_BLOCK.getDefaultState()) {
+								int depth = 40;
+								int depth2 = 50;
+								BlockPos.Mutable pos2 = new BlockPos.Mutable();
+							   
+								for (int i = 0; i < depth2 + 10; i++) {
+								   pos2.set(pos.getX(), pos.getY() - i, pos.getZ());
+								   if (i >= depth - 3 && i <= depth || i >= depth2) {
+									   if (region.getRandom().nextInt(100) <= 95)
+									   region.setBlockState(pos2, BlocksT.EBONSTONE.getDefaultState(), 0);
 								   }
-								   if (region.getRandom().nextInt(10) <= 1)
-								   if (x == 8 && z == 8) {
-									   int pitDepth = region.getRandom().nextInt(40) + 40;
-									   double dirX = region.getRandom().nextDouble() - 0.5 * 4.0;
-									   double dirZ = region.getRandom().nextDouble() - 0.5 * 4.0;
-									   double mul = region.getRandom().nextDouble() * 3;
-									   int size = region.getRandom().nextInt(3) + 3;
-									   for (int xx = 0; xx < 16; xx++) {
-										   for (int zz = 0; zz < 16; zz++) {
-											   double dist = Math.sqrt(Math.pow(xx - x, 2) + Math.pow(zz - z, 2));
-											   if (dist <= size) {
-												   for (int i = 0; i < pitDepth; i++) {
-													   pos2.set(xx + (int)(Math.cos(xx) * dirX * mul), pos.getY() - i, zz + (int)(Math.sin(zz) * dirZ * mul));
-														   if (dist <= size - ((region.getRandom().nextInt(10) <= 7) ? 1 : 0)) {
-															   region.setBlockState(pos2, Blocks.AIR.getDefaultState(), 0);
-														   } else {
-															   if (region.getBlockState(pos2).getBlock() != Blocks.AIR &&
-																	   region.getBlockState(pos2).getBlock() != Blocks.AIR) {
-																   region.setBlockState(pos2, BlocksT.EBONSTONE.getDefaultState(), 0);
-														   }
+								   if (i > depth && i < depth2) {
+									   region.setBlockState(pos2, Blocks.AIR.getDefaultState(), 0);
+								   }
+							   }
+							   if (region.getRandom().nextInt(10) <= 1)
+							   if (x == 8 && z == 8) {
+								   int pitDepth = region.getRandom().nextInt(40) + 40;
+								   double dirX = region.getRandom().nextDouble() - 0.5 * 4.0;
+								   double dirZ = region.getRandom().nextDouble() - 0.5 * 4.0;
+								   double mul = region.getRandom().nextDouble() * 3;
+								   int size = region.getRandom().nextInt(3) + 3;
+								   for (int xx = 0; xx < 16; xx++) {
+									   for (int zz = 0; zz < 16; zz++) {
+										   double dist = Math.sqrt(Math.pow(xx - x, 2) + Math.pow(zz - z, 2));
+										   if (dist <= size) {
+											   for (int i = 0; i < pitDepth; i++) {
+												   pos2.set(xx + (int)(Math.cos(xx) * dirX * mul), pos.getY() - i, zz + (int)(Math.sin(zz) * dirZ * mul));
+													   if (dist <= size - ((region.getRandom().nextInt(10) <= 7) ? 1 : 0)) {
+														   region.setBlockState(pos2, Blocks.AIR.getDefaultState(), 0);
+													   } else {
+														   if (region.getBlockState(pos2).getBlock() != Blocks.AIR &&
+																   region.getBlockState(pos2).getBlock() != Blocks.AIR) {
+															   region.setBlockState(pos2, BlocksT.EBONSTONE.getDefaultState(), 0);
 													   }
 												   }
 											   }
 										   }
 									   }
 								   }
+							   }
+							}
+						}
+						
+						if (cave_biome == 0) {
+							pos.set(x, y, z);
+							if (region.getBlockState(pos) == Blocks.STONE.getDefaultState() ||
+									region.getBlockState(pos) == BlocksT.EBONSTONE.getDefaultState()) {
+								region.setBlockState(pos, BlocksT.MUD.getDefaultState(), 0);
+								pos.set(x, y + 1, z);
+								if (region.isChunkLoaded(pos))
+								if (region.getBlockState(pos) == Blocks.AIR.getDefaultState() ||
+										region.getBlockState(pos) == Blocks.CAVE_AIR.getDefaultState()) {
+									
+									
+									if (random.nextInt(100) == 0) {
+										if (random.nextBoolean()) {
+											//fungus.grow(region.toServerWorld(), random, pos, Blocks.WARPED_FUNGUS.getDefaultState());
+											
+											int height = random.nextInt(5) + 7;
+											for (int j = y; j < y + height; j++) {
+												pos.set(x, j, z);
+											}
+											for (int i = - 2; i <= + 2; i++) {
+												for (int j = - 2; j <= + 2; j++) {
+													pos.set(x + i, y + height, z + j);
+													
+													if (Math.abs(i) == 2 && Math.abs(j) == 2) {
+														if (random.nextInt(4) == 0) continue;
+													}
+													
+													if (Math.abs(i) == 1 && j == 0 || Math.abs(j) == 1 && i == 0 || i == 0 && j == 0) {
+														for (int k = 0; k < 2; k++) {
+															if (i != 0 || j != 0) {
+																if (k == 1) {
+																	if (random.nextInt(4) == 0) continue;
+																}
+															}
+															pos.set(x + i, y + height + 1 + k, z + j);
+														}
+													}
+												}
+											}
+										}
+									}
+									pos.set(x, y, z);
+									region.setBlockState(pos, BlocksT.MUSHROOM_GRASS.getDefaultState(), 0);
+								}
+							}
+						} else {
+							if (cave_biome == 1) {
+								if (region.getBlockState(pos) == BlocksT.EBONSTONE.getDefaultState() ||
+										region.getBlockState(pos) == Blocks.STONE.getDefaultState())
+									region.setBlockState(pos, BlocksT.MARBLE.getDefaultState(), 0);
+							} else {
+								if (cave_biome == 2) {
+									if (region.getBlockState(pos) == BlocksT.EBONSTONE.getDefaultState() ||
+											region.getBlockState(pos) == Blocks.STONE.getDefaultState())
+										region.setBlockState(pos, BlocksT.GRANITE.getDefaultState(), 0);
+								} else {
+									if (cave_biome == 3) {
+										pos.set(x, y, z);
+
+										if (region.getBlockState(pos) == BlocksT.EBONSTONE.getDefaultState() ||
+												region.getBlockState(pos) == Blocks.STONE.getDefaultState())
+										{
+											//Stuff
+										}
+										
+									} else {
+										if (cave_biome == 4) {
+											if (region.getBlockState(pos) == BlocksT.EBONSTONE.getDefaultState() ||
+													region.getBlockState(pos) == Blocks.STONE.getDefaultState() ||
+													region.getBlockState(pos) == Blocks.COBWEB.getDefaultState())
+											{
+												pos.set(x, y + 1, z);
+												if (region.getBlockState(pos) == Blocks.AIR.getDefaultState() ||
+														region.getBlockState(pos) == Blocks.CAVE_AIR.getDefaultState())
+												{
+													if (random.nextInt(10) <= 4) {
+														region.setBlockState(pos, Blocks.COBWEB.getDefaultState(), 0);
+													}
+												}
+											}
+											
+										}
+									}
 								}
 							}
 						}
+						
 					}
+					
 				}
+				
 			}
-		}	
+		}
 		info.cancel();
 	}
 	
-	private void GeneratePurityTrees(ChunkRegion region, int x, int y, int z, BlockPos.Mutable pos, BlockPos.Mutable placing_pos) {
+	private void GeneratePurityTrees(ChunkRegion region, int x, int y, int z, BlockPos.Mutable pos) {
 		pos.set(x, y, z);
 		if (region.getBlockState(pos).getBlock() == BlocksT.GRASS_BLOCK || region.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK) {
 			if (region.getRandom().nextInt(80) == 0) {
@@ -359,13 +608,13 @@ public class ChunkGeneratorMixin {
 	   }
 	   
 	/*
-	private void GeneratePurityGrass(ChunkRegion region, int x, int y, int z, BlockPos.Mutable pos, BlockPos.Mutable placing_pos) {
+	private void GeneratePurityGrass(ChunkRegion region, int x, int y, int z, BlockPos.Mutable pos, BlockPos.Mutable pos) {
 		pos.set(x, y, z);
 		if (region.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK) {
 			if (region.getRandom().nextInt(10) == 0) {
-				placing_pos.set(x, y + 1, z);
-				if (region.isChunkLoaded(placing_pos))
-				region.setBlockState(placing_pos, Blocks.GRASS.getDefaultState(), 0);
+				pos.set(x, y + 1, z);
+				if (region.isChunkLoaded(pos))
+				region.setBlockState(pos, Blocks.GRASS.getDefaultState(), 0);
 			}
 		}
 	}

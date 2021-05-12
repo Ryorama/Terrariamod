@@ -15,8 +15,9 @@ import net.minecraft.world.World;
 
 public class Bow extends ItemT {
 
-	public Bow(Settings settings) {
+	public Bow(Settings settings, int damage) {
 		super(settings);
+		this.damage = damage;
 	}
 
 	@Override
@@ -31,7 +32,7 @@ public class Bow extends ItemT {
 	    		ArrowItem item = (ArrowItem)inventory.getStack(i).getItem();
 	    		PersistentProjectileEntity entityArrow = item.createArrow(worldIn, inventory.getStack(i), playerIn);
 	    		entityArrow.setProperties(playerIn, playerIn.pitch, playerIn.yaw, 0.0F, 3.0F, 1.0F);
-	    		entityArrow.setDamage(10);
+	    		entityArrow.setDamage(this.damage);
 	    		worldIn.spawnEntity(entityArrow);
 		      }  
 	      }

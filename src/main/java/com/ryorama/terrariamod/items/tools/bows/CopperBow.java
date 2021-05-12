@@ -5,7 +5,7 @@ import com.ryorama.terrariamod.items.Bow;
 public class CopperBow extends Bow {
 
 	public CopperBow(Settings settings) {
-		super(settings);
+		super(settings, 10);
 	}
 
 }

@@ -24,6 +24,9 @@ public class BlocksT {
 	public static BlockT STONE_BLOCK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT EBONSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
 	public static BlockT ASH = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static BlockT MARBLE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
+	public static BlockT GRANITE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
+	public static BlockT MUSHROOM_GRASS = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
 
 	public static BlockT COPPER_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT IRON_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
@@ -53,6 +56,9 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "sand"), SAND);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "snow"), SNOW);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "ash"), ASH);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "marble"), MARBLE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "granite"), GRANITE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "mushroom_grass"), MUSHROOM_GRASS);
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "empty_bottle"), EMPTY_BOTTLE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "mushroom"), MUSHROOM);

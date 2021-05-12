@@ -15,6 +15,7 @@ public class TAudio {
     public static final SoundEvent DESERT = new SoundEvent(new Identifier(TerrariaMod.modid, "desert"));
     public static final SoundEvent SNOW = new SoundEvent(new Identifier(TerrariaMod.modid, "snow"));
     public static final SoundEvent JUNGLE = new SoundEvent(new Identifier(TerrariaMod.modid, "jungle"));
+    public static final SoundEvent MUSHROOM = new SoundEvent(new Identifier(TerrariaMod.modid, "mushroom"));
 
     public static final SoundEvent TITLE_SCREEN = new SoundEvent(new Identifier(TerrariaMod.modid, "title_screen"));
     public static final SoundEvent BOSS1 = new SoundEvent(new Identifier(TerrariaMod.modid, "boss1"));
