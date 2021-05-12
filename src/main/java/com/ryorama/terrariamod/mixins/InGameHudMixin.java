@@ -25,30 +25,4 @@ public class InGameHudMixin extends DrawableHelper {
 	public Identifier health_icon = new Identifier(TerrariaMod.modid, "textures/ui/heart.png");
 
 	public PlayerEntity player;
-	
-	@Inject(at = @At("TAIL"), method = "<init>()V") 
-	public void InGameHud(MinecraftClient client, CallbackInfo info) {
-		if (MinecraftClient.getInstance().player != null) {
-			player = MinecraftClient.getInstance().player;
-		}
-	}
-	
-	@Inject(at = @At("HEAD"), method = "render")
-	public void render(MatrixStack matrices, float tickDelta, CallbackInfo info) {
-		renderTerrariaHealth();
-	}
-	
-	public void renderTerrariaHealth() {
-		HudRenderCallback.EVENT.register((matrixstack, delta) -> {
-			float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
-			
-			if (player != null) {
-				for (int h = 0; h <= player.getHealth(); h++) {
-					if (h % 20 == 0) {
-						UIRenderer.instance.renderOverlay(health_icon, 1f, 16, 16, scaledWidth + h * 2, 10, -90);
-					}
-				}
-			}
-		});
-	}
 }

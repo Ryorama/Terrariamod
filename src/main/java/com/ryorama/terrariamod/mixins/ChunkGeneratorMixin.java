@@ -139,10 +139,6 @@ public class ChunkGeneratorMixin {
 							float combined_underworld_base = n + underworld_base_density;
 							
 							boolean pure = Math.sqrt(x * x + y * y + z * z) <= purity_radius;
-			
-							if (y < base_height - 30) {
-								state = Blocks.WATER.getDefaultState();
-							}
 							
 							if (combined < threshold) {
 								if (jungle) {
