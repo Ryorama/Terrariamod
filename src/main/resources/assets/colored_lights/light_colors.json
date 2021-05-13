@@ -3,6 +3,8 @@
   "colors": {
     "terrariamod:hellstone_ore": "#fc3903",
     "terrariamod:jungle_spores": "#37ff00",
+    "terrariamod:mushroom_grass": "#4257f5",
+    "terrariamod:life_crystal_block": "#e35656",
     "torch": "#fcb103",
     "lava": "#fc8c03"
   }

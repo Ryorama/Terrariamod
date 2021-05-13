@@ -8,6 +8,7 @@ import com.ryorama.terrariamod.items.ItemsT;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.block.TorchBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -26,7 +27,10 @@ public class BlocksT {
 	public static BlockT ASH = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT MARBLE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
 	public static BlockT GRANITE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
-	public static BlockT MUSHROOM_GRASS = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
+	public static BlockT MUSHROOM_GRASS = new BlockT(FabricBlockSettings.of(Material.SOIL).luminance(15), 15, 15).setPick(true);
+	public static BlockT WOOD = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static BlockT WOODEN_BEAM = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static PlantT LIFE_CRYSTAL_BLOCK = (PlantT) new PlantT(FabricBlockSettings.of(Material.STONE).luminance(10), 15, 15).setPick(true);
 
 	public static BlockT COPPER_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT IRON_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
@@ -59,6 +63,9 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "marble"), MARBLE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "granite"), GRANITE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "mushroom_grass"), MUSHROOM_GRASS);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "wood"), WOOD);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "wooden_beam"), WOODEN_BEAM);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "life_crystal_block"), LIFE_CRYSTAL_BLOCK);
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "empty_bottle"), EMPTY_BOTTLE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "mushroom"), MUSHROOM);

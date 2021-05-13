@@ -18,7 +18,8 @@
     "PlayerEntityMixin",
     "TitleScreenMixin",
     "GeneratorTypeAccessor",
-    "ChunkGeneratorSettingsMixin"
+    "ChunkGeneratorSettingsMixin",
+    "NoiseChunkGeneratorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

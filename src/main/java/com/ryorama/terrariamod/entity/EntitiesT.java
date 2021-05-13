@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.entity;
 import com.ryorama.terrariamod.entity.hostile.EntityDemon;
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
 import com.ryorama.terrariamod.entity.hostile.EntityEaterOfSouls;
+import com.ryorama.terrariamod.entity.hostile.EntityGranityElemental;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
 import com.ryorama.terrariamod.entity.hostile.projectiles.DemonScythProjectile;
@@ -13,6 +14,7 @@ import com.ryorama.terrariamod.entity.model.RenderDemon;
 import com.ryorama.terrariamod.entity.model.RenderDemonEye;
 import com.ryorama.terrariamod.entity.model.RenderDemonSycth;
 import com.ryorama.terrariamod.entity.model.RenderEaterOfSouls;
+import com.ryorama.terrariamod.entity.model.RenderGraniteElemental;
 import com.ryorama.terrariamod.entity.model.RenderGreenSlime;
 import com.ryorama.terrariamod.entity.model.bosses.RenderEyeOfCthulhu;
 import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
@@ -81,6 +83,12 @@ public class EntitiesT {
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityEyeOfCthulhu::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 	  
+	  public static final EntityType<EntityGranityElemental> GRANITE_ELEMETAL = Registry.register(
+	            Registry.ENTITY_TYPE,
+	            new Identifier("terrariamod", "granite_elemental"),
+	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityGranityElemental::new).dimensions(EntityDimensions.fixed(1, 1)).build()
+	    );
+	  
 	  public static void init() {
 		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, MobEntity.createMobAttributes());
@@ -90,6 +98,7 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(DEMON_SYCTH, LivingEntity.createLivingAttributes());
 		  FabricDefaultAttributeRegistry.register(EATER_OF_SOULS, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(EOC, MobEntity.createMobAttributes());
+		  FabricDefaultAttributeRegistry.register(GRANITE_ELEMETAL, MobEntity.createMobAttributes());
 
 		  registerModels();
 	  }
@@ -133,6 +142,11 @@ public class EntitiesT {
 		  EntityRendererRegistry.INSTANCE.register(EntitiesT.EOC,
 					(context) -> {
 						return new RenderEyeOfCthulhu(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.GRANITE_ELEMETAL,
+					(context) -> {
+						return new RenderGraniteElemental(context);
 			});
 	  }
 }

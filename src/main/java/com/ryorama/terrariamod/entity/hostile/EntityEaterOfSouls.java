@@ -249,11 +249,13 @@ public class EntityEaterOfSouls extends EntityBaseMob implements IAnimatable, IP
 
 	    	this.setVelocity(motionX, motionY, motionZ); 
 		} else {
-			this.setVelocity(0, -0.5f, 0);
 			if (!spawnedBlood) {
-				world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.RED_CONCRETE.getDefaultState()), getPos().x, getPos().y, getPos().z, 0, 0, 0);
+				for (int i = 0; i <= 100; i++) {
+					world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.GREEN_CONCRETE.getDefaultState()), getPos().x, getPos().y, getPos().z, 0, 0, 0);
+				}
 				spawnedBlood = true;
 			}
+			this.setVelocity(0, -0.5f, 0);
 		}
 	}
 

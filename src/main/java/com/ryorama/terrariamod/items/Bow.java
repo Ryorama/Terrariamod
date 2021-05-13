@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.items;
 
+import net.minecraft.block.RedstoneWireBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -22,18 +23,23 @@ public class Bow extends ItemT {
 
 	@Override
 	public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-			
-	      ItemStack itemstack = playerIn.getMainHandStack();
+		
+		ItemStack itemstack = playerIn.getMainHandStack();
 	      
 	      Inventory inventory = playerIn.getInventory();
 	      	    
 	      for (int i = 0; i <= inventory.size(); i++) {
-	    	if (inventory.getStack(i).getItem() == Items.ARROW) {
-	    		ArrowItem item = (ArrowItem)inventory.getStack(i).getItem();
-	    		PersistentProjectileEntity entityArrow = item.createArrow(worldIn, inventory.getStack(i), playerIn);
+	    	if (inventory.getStack(i).getItem() instanceof Arrow) {
+	    		Arrow arrowItem = (Arrow)inventory.getStack(i).getItem();
+	    		ArrowEntity entityArrow = new ArrowEntity(worldIn, playerIn);
 	    		entityArrow.setProperties(playerIn, playerIn.pitch, playerIn.yaw, 0.0F, 3.0F, 1.0F);
-	    		entityArrow.setDamage(this.damage);
+	    		entityArrow.setDamage(this.damage + arrowItem.damage);
+    			entityArrow.setOnFire(arrowItem.fireDamage);
+    			if (arrowItem.fireDamage) {
+    				entityArrow.setOnFireFor(10000);
+    			}
 	    		worldIn.spawnEntity(entityArrow);
+	    		inventory.getStack(i).decrement(1);
 		      }  
 	      }
 	      

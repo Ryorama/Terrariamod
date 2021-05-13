@@ -38,9 +38,10 @@ public class EntityDemon extends EntityBaseMob implements IAnimatable, IParticle
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
 	
 	private AnimationFactory factory = new AnimationFactory(this);
+	
+	public boolean spawnedBlood = false;
 
 	public double velX, velY, velZ;
-	public double oldVelX, oldVelY, oldVelZ;
 	
 	public int damage = 20;
 	
@@ -177,6 +178,12 @@ public class EntityDemon extends EntityBaseMob implements IAnimatable, IParticle
 			 } 
 			 this.setVelocity(motionX, motionY, motionZ);
 		} else {
+			if (!spawnedBlood) {
+				for (int i = 0; i <= 100; i++) {
+					world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.RED_CONCRETE.getDefaultState()), getPos().x, getPos().y, getPos().z, 0, 0, 0);
+				}
+				spawnedBlood = true;
+			}
 			this.setVelocity(0, -0.5f, 0);
 		}
 	}

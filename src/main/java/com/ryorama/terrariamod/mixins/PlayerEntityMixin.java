@@ -32,10 +32,14 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 	
 	public float newMaxHealth = 100;
 	
+	private int ticks = 0;
+	
 	public PlayerEntity player;
 		
 	@Inject(at = @At("HEAD"), method = "tick")
 	public void tick(CallbackInfo info) {
+		
+		ticks++;
 		
 		if (MinecraftClient.getInstance().player != null && !hasGivingStartingItems) {
 			this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(newMaxHealth);
@@ -163,76 +167,95 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		                 int crimson = 0;
 		                 int hallow = 0;
 		                 if (world != null) {
-		                     for(int x = -15; x < 15; ++x) {
-		                        for(int y = -15; y < 15; ++y) {
-		                           for(int z = -15; z < 15; ++z) {
-		                              BlockPos pos2 = new BlockPos(cameraPos.getX() + x, cameraPos.getY() + y, cameraPos.getZ() + z);
-		                              Block block = world.getBlockState(pos2).getBlock();
-		                              
-		                              if (block == BlocksT.GRASS_BLOCK) {
-		                            	  ++highlands;
-		                              }
-		                              
-		                              if (block == BlocksT.SNOW) {
-		                                  ++snow;
-		                              }
-		                              
-		                              if (block == BlocksT.STONE_BLOCK || block == BlocksT.GRANITE && player.getPos().y <= 10) {
-		                            	  ++cave;
-		                              }
-		                              
-		                              if (block == BlocksT.CORRUPTED_GRASS_BLOCK) {
-		                                  ++corruption;
-		                              }
-		                              
-		                              if (block == BlocksT.JUNGLE_GRASS) {
-		                                 ++jungle;
-		                              }
-
-		                              if (block == BlocksT.MUSHROOM_GRASS) {
-		                                 ++mushroom;
-		                              }
-		                              if (block == BlocksT.ASH && player.getPos().y <= -125) {
-		                                  ++underworld;
-		                              }
-		                           }
-		                        }
-		                     }
-		                 }
-		                 
-		                 if (!TMusicTicker.bossMusicOverride) {
-			                 if (underworld > 15 && TMusicTicker.currentMusic != TAudio.UNDERWORLD) {
-			                	 TMusicTicker.getTrack(TAudio.UNDERWORLD);
-			                 }
-			                  
-			                 if (cave_corruption > 15 && player.getPos().y <= 10 && TMusicTicker.currentMusic != TAudio.UNDERGROUND_CORRUPTION) {
-			                	 TMusicTicker.getTrack(TAudio.UNDERGROUND_CORRUPTION);
-			                 }
-	
-			                 if (cave > 15 && TMusicTicker.currentMusic != TAudio.UNDERGROUND) {
-			                	 TMusicTicker.getTrack(TAudio.UNDERGROUND);
-			                 }
-			                  
-			                 if (corruption > 15 && TMusicTicker.currentMusic != TAudio.CORRUPTION) {
-			                	 TMusicTicker.getTrack(TAudio.CORRUPTION);
-			                 }
-			                 
-			                 if (snow > 15 && TMusicTicker.currentMusic != TAudio.SNOW) {
-			                	 TMusicTicker.getTrack(TAudio.SNOW);
-			                 }
-			                 
-			                 if (mushroom > 15 && TMusicTicker.currentMusic != TAudio.MUSHROOM) {
-			                	 TMusicTicker.getTrack(TAudio.MUSHROOM);
-			                 }
-			                 
-			                 if (highlands > 15) {
-			                	 if (!day && TMusicTicker.currentMusic != TAudio.NIGHT) {
-				                	 TMusicTicker.getTrack(TAudio.NIGHT);
-			                	 } else if (day && TMusicTicker.currentMusic != TAudio.DAYONE) {
-				                	 TMusicTicker.getTrack(TAudio.DAYONE);
-			                	 }
-			                 }
-		                 }
+                             if (ticks % 100 == 0) {
+			                     for(int x = -15; x < 15; ++x) {
+			                        for(int y = -15; y < 15; ++y) {
+			                           for(int z = -15; z < 15; ++z) {
+			                              BlockPos pos2 = new BlockPos(cameraPos.getX() + x, cameraPos.getY() + y, cameraPos.getZ() + z);
+				                              if (world.isChunkLoaded(pos2)) {
+			                      
+				                              Block block = world.getBlockState(pos2).getBlock();
+				                              
+				                              if (block == BlocksT.GRASS_BLOCK) {
+				                            	  ++highlands;
+				                              }
+				                              
+				                              if (block == BlocksT.SNOW) {
+				                                  ++snow;
+				                              }
+				                              
+				                              if (block == BlocksT.STONE_BLOCK || block == BlocksT.GRANITE && player.getPos().y <= 10) {
+				                            	  ++cave;
+				                              }
+				                              
+				                              if (block == BlocksT.CORRUPTED_GRASS_BLOCK) {
+				                                  ++corruption;
+				                              }
+				                              
+				                              if (block == BlocksT.JUNGLE_GRASS) {
+				                                 ++jungle;
+				                              }
+		
+				                              if (block == BlocksT.MUSHROOM_GRASS) {
+				                                 ++mushroom;
+				                              }
+				                              if (block == BlocksT.ASH && player.getPos().y <= -125) {
+				                                  ++underworld;
+				                              }
+				                           }
+				                        }
+				                     }
+				                 }
+				                 
+				                 if (!TMusicTicker.bossMusicOverride) {
+					                 if (underworld > 15 && TMusicTicker.currentMusic != TAudio.UNDERWORLD) {
+					                	 if (TMusicTicker.currentMusic != TAudio.UNDERWORLD) {
+						                	 TMusicTicker.getTrack(TAudio.UNDERWORLD);
+					                	 }
+					                 }
+					                  
+					                 if (cave_corruption > 15 && player.getPos().y <= 10 && TMusicTicker.currentMusic != TAudio.UNDERGROUND_CORRUPTION) {
+					                	 if (TMusicTicker.currentMusic != TAudio.UNDERGROUND_CORRUPTION) {
+						                	 TMusicTicker.getTrack(TAudio.UNDERGROUND_CORRUPTION);
+					                	 }
+					                 }
+			
+					                 if (cave > 15 && TMusicTicker.currentMusic != TAudio.UNDERGROUND && player.getPos().y <= 10) {
+					                	 if (TMusicTicker.currentMusic != TAudio.UNDERGROUND) {
+						                	 TMusicTicker.getTrack(TAudio.UNDERGROUND);
+					                	 }
+					                 }
+					                  
+					                 if (corruption > 15 && TMusicTicker.currentMusic != TAudio.CORRUPTION) {
+					                	 if (TMusicTicker.currentMusic != TAudio.CORRUPTION) {
+						                	 TMusicTicker.getTrack(TAudio.CORRUPTION);
+					                	 }
+					                 }
+					                 
+					                 if (snow > 15 && TMusicTicker.currentMusic != TAudio.SNOW) {
+					                	 if (TMusicTicker.currentMusic != TAudio.SNOW) {
+						                	 TMusicTicker.getTrack(TAudio.SNOW);
+					                	 }
+					                 }
+					                 
+					                 if (mushroom > 15 && TMusicTicker.currentMusic != TAudio.MUSHROOM) {
+						                	 TMusicTicker.getTrack(TAudio.MUSHROOM);
+					                 }
+					                 
+					                 if (highlands > 15) {
+					                	 if (!day && TMusicTicker.currentMusic != TAudio.NIGHT) {
+					                		 if (TMusicTicker.currentMusic != TAudio.NIGHT) {
+							                	 TMusicTicker.getTrack(TAudio.NIGHT);
+						                	 }
+					                	 } else if (day && TMusicTicker.currentMusic != TAudio.DAYONE) {
+					                		 if (TMusicTicker.currentMusic != TAudio.DAYONE) {
+							                	 TMusicTicker.getTrack(TAudio.DAYONE);
+						                	 }
+					                	 }
+					                 }
+				                 }
+				        	}
+			        	}
 		        	}
 		        }
 			}
