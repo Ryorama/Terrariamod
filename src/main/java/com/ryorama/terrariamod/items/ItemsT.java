@@ -13,6 +13,7 @@ import com.ryorama.terrariamod.items.arrows.WoodenArrow;
 import com.ryorama.terrariamod.items.boss_summons.SlimeCrown;
 import com.ryorama.terrariamod.items.boss_summons.SuspiciousLookingEye;
 import com.ryorama.terrariamod.items.potions.LesserHealingPotion;
+import com.ryorama.terrariamod.items.tools.MagicMirror;
 import com.ryorama.terrariamod.items.tools.axe.CopperAxe;
 import com.ryorama.terrariamod.items.tools.axe.GoldAxe;
 import com.ryorama.terrariamod.items.tools.axe.IronAxe;
@@ -81,7 +82,8 @@ public class ItemsT {
 	public static FlamingArrow FLAMING_ARROW = (FlamingArrow) new FlamingArrow(new FabricItemSettings().group(ItemGroup.COMBAT)).setRarity(2);
 
 	public static LifeCrystal HEALTH_CRYSTAL = (LifeCrystal) new LifeCrystal(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
-	
+	public static MagicMirror MAGIC_MIRROR = (MagicMirror) new MagicMirror(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
+
 	public static ItemT SLIME_CROWN = new SlimeCrown(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(3);
 	public static ItemT SUSPICIOUS_LOOKING_EYE = new SuspiciousLookingEye(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(3);
 
@@ -135,6 +137,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "life_crystal"), HEALTH_CRYSTAL);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "wooden_arrow"), WOODEN_ARROW);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "flaming_arrow"), FLAMING_ARROW);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "magic_mirror"), MAGIC_MIRROR);
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.modid, "lesser_healing_potion"), LESSER_HEALING_POTION);
 		

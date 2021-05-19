@@ -1,8 +1,8 @@
 package com.ryorama.terrariamod.items.weapons.shortswords;
 
-import com.ryorama.terrariamod.items.api.Broadsword;
+import com.ryorama.terrariamod.items.api.Shortsword;
 
-public class SilverShortsword extends Broadsword {
+public class SilverShortsword extends Shortsword {
 	public SilverShortsword() {
 		super();
 		this.damage = 9;

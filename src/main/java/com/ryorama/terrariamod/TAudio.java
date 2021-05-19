@@ -16,6 +16,7 @@ public class TAudio {
     public static final SoundEvent SNOW = new SoundEvent(new Identifier(TerrariaMod.modid, "snow"));
     public static final SoundEvent JUNGLE = new SoundEvent(new Identifier(TerrariaMod.modid, "jungle"));
     public static final SoundEvent MUSHROOM = new SoundEvent(new Identifier(TerrariaMod.modid, "mushroom"));
+    public static final SoundEvent WINDY_DAY = new SoundEvent(new Identifier(TerrariaMod.modid, "windy_day"));
 
     public static final SoundEvent TITLE_SCREEN = new SoundEvent(new Identifier(TerrariaMod.modid, "title_screen"));
     public static final SoundEvent BOSS1 = new SoundEvent(new Identifier(TerrariaMod.modid, "boss1"));
@@ -24,7 +25,8 @@ public class TAudio {
     public static final SoundEvent ROAR_0 = new SoundEvent(new Identifier(TerrariaMod.modid, "roar_0"));
     public static final SoundEvent NPC_HIT1 = new SoundEvent(new Identifier(TerrariaMod.modid, "npc_hit1"));
     public static final SoundEvent NPC_KILL1 = new SoundEvent(new Identifier(TerrariaMod.modid, "npc_killed1"));
-    
+    public static final SoundEvent TELEPORT = new SoundEvent(new Identifier(TerrariaMod.modid, "teleport"));
+
 	public static void registerAudio() {
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.modid, "day1"), DAYONE);
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.modid, "night"), NIGHT);

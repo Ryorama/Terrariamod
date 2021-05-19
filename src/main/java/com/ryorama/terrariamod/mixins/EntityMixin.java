@@ -5,14 +5,18 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.ryorama.terrariamod.client.fx.FXDamageIndicator;
+
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.gen.feature.LakeFeature;
 
 @Mixin(LivingEntity.class)
 public abstract class EntityMixin extends Entity {
@@ -36,5 +40,9 @@ public abstract class EntityMixin extends Entity {
 	    if (this.deathRemovalCooldown == 120) {
 	         this.remove(Entity.RemovalReason.KILLED);
 	      }
+	}
+	
+	@Inject(at = @At("HEAD"), method = "damage")
+	public void onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
 	}
 }

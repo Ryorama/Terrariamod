@@ -17,6 +17,15 @@
 		}
 	]
   },
+  "windy_day": {
+	"category": "music",
+	"sounds": [
+		{
+			"name": "terrariamod:music/windy_day",
+			"stream": true
+		}
+	]
+  },
   "mushroom": {
 	"category": "music",
 	"sounds": [
@@ -228,6 +237,11 @@
 	"category": "players",
 	"subtitle": "terrariamod.roar_0",
 	"sounds": [ "terrariamod:roar_0" ]
+  },
+  "teleport": {
+	"category": "players",
+	"subtitle": "terrariamod.teleport",
+	"sounds": [ "terrariamod:teleport" ]
   },
   "menu_open": {
 	"category": "players",

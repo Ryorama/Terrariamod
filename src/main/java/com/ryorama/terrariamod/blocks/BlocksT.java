@@ -31,6 +31,7 @@ public class BlocksT {
 	public static BlockT WOOD = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT WOODEN_BEAM = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static PlantT LIFE_CRYSTAL_BLOCK = (PlantT) new PlantT(FabricBlockSettings.of(Material.STONE).luminance(10), 15, 15).setPick(true);
+	public static PlantT VINE = (PlantT) new PlantT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true).setAxe(true);
 
 	public static BlockT COPPER_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT IRON_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
@@ -66,6 +67,7 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "wood"), WOOD);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "wooden_beam"), WOODEN_BEAM);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "life_crystal_block"), LIFE_CRYSTAL_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "vine"), VINE);
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "empty_bottle"), EMPTY_BOTTLE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "mushroom"), MUSHROOM);

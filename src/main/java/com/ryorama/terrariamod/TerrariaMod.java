@@ -6,11 +6,12 @@ import java.util.OptionalLong;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.TMusicTicker;
+import com.ryorama.terrariamod.client.fx.TerrariaModParticles;
 import com.ryorama.terrariamod.entity.EntitiesT;
-import com.ryorama.terrariamod.entity.projectiles.TerrariaInventoryScreen;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
+import com.ryorama.terrariamod.weather.WeatherBase;
 import com.ryorama.terrariamod.world.EntitySpawner;
 
 import net.fabricmc.api.ClientModInitializer;
@@ -24,7 +25,6 @@ import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
@@ -45,6 +45,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	
 	@Override
 	public void onInitialize() {
+		TerrariaModParticles.init();	
 		BiomeRegistry.RegisterBiomes();
 		BlocksT.init();
 		ItemsT.init();
@@ -52,12 +53,12 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		ModifyWorldHeight();
 		GeckoLib.initialize();
 	}
-
+	
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void onInitializeClient() {
 		EntitiesT.init();
-
+		TerrariaModParticles.FactoryHandler.registerFactories();
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
 		onTick();
 		addCutouts();
@@ -75,6 +76,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MUSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.JUNGLE_SPORES, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.VINE, RenderLayer.getCutout());
+
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.LIFE_CRYSTAL_BLOCK, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.EMPTY_BOTTLE, RenderLayer.getCutout());
@@ -86,7 +89,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		TerrariaUIRenderer.renderTerrariaHealth();
 		TerrariaUIRenderer.renderTerrariaDefense();
 		TerrariaUIRenderer.renderTerrariaMana();
-		
+				
 		TMusicTicker.musicChanged = true;
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {
 		
@@ -127,6 +130,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		
 		WorldTickCallback.EVENT.register(world -> {
 			
+			WeatherBase.tickWeather();
+		
 			if (world.getRandom().nextInt(700) <= 10)
 			if (world.getPlayers().size() > 0) {
 				PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));

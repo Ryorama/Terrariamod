@@ -10,11 +10,15 @@ import net.minecraft.sound.SoundEvent;
 @Environment(EnvType.CLIENT)
 public class TMusicTicker extends MusicTracker {
 	  private static MinecraftClient client = MinecraftClient.getInstance();
+	  
 	  public static SoundEvent currentMusic;
+	  public static SoundEvent currentBossTrack;
+	  public static SoundEvent currentWeatherTrack;
+	  
 	  public static boolean musicChanged;
+	  public static boolean weatherMusicOverride = false;
 	  public static boolean bossMusicOverride = false;
 	  
-	  public static SoundEvent currentBossTrack;
 	  
 	  public TMusicTicker(MinecraftClient client) {
 	  	super(client);

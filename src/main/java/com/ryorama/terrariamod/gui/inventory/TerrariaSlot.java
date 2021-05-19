@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.entity.projectiles;
+package com.ryorama.terrariamod.gui.inventory;
 
 import net.minecraft.inventory.Inventory;
 import net.minecraft.screen.slot.Slot;

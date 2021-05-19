@@ -2,12 +2,19 @@ package com.ryorama.terrariamod.entity.hostile.slimes;
 
 import java.util.ArrayList;
 
+import com.ryorama.terrariamod.client.fx.DamageParticleData;
+import com.ryorama.terrariamod.client.fx.DamageParticleType;
+import com.ryorama.terrariamod.client.fx.FXDamageIndicator;
+import com.ryorama.terrariamod.client.fx.TerrariaModParticles;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
@@ -79,7 +86,6 @@ public abstract class EntitySlimeBase extends EntityBaseMob {
 		if (!this.onGround && jumping) {
 			jumping = false;
 		}
-		
 	}
 
 	public void lookRandomly() {

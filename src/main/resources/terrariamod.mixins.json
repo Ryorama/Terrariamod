@@ -19,7 +19,9 @@
     "TitleScreenMixin",
     "GeneratorTypeAccessor",
     "ChunkGeneratorSettingsMixin",
-    "NoiseChunkGeneratorMixin"
+    "NoiseChunkGeneratorMixin",
+    "MinecraftClientMixin",
+    "PlayerEntityModelMixin"
   ],
   "injectors": {
     "defaultRequire": 1

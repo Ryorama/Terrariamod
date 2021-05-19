@@ -9,13 +9,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.biomes.BiomeCorruption;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.utils.fastnoise.FastNoise;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.LootableContainerBlockEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.Mutable;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
@@ -55,7 +59,7 @@ public class ChunkGeneratorMixin {
 		
 		int stone_height = 20;
 		int underworld_height = -190;
-		int underworld_base = -256 + 25;
+		//int underworld_base = -256 + 25;
 		
 		int purity_radius = 350;
 		
@@ -80,7 +84,6 @@ public class ChunkGeneratorMixin {
 				int height_offset = 0;
 				
 				double world_distance = Math.sqrt(x * x + z * z);
-
 				
 				boolean beach = world_distance >= 2400;
 				boolean jungle = world_distance > 1900 && (right_jungle ? (x > 0) : (x < 0)) && !beach;
@@ -113,20 +116,20 @@ public class ChunkGeneratorMixin {
 							float n = GetTerrainNoise(x, y, z);
 							float combined = n * flatness + density;
 							
-							float cave_density = y / 256.0f;
+							float cave_density = y / 184.0f;
 							if (cave_density > 0) cave_density = 0;
 							cave_density = -cave_density;
 							
 							float underworld_density = (y - underworld_height) / 5.0f;
 							
-							float underworld_base_density = (y - underworld_base) / 15.0f;
+							//float underworld_base_density = (y - underworld_base) / 15.0f;
 							
 							float combined_stone = n + stone_density;
 							float combined_cave = (n * n) * cave_density;
 							float jungle_cave = jungle ? (n * (cave_density + 0.1f)) : 0;
 
-							float combined_underworld = n + underworld_density;
-							float combined_underworld_base = n + underworld_base_density;
+							//float combined_underworld = n + underworld_density;
+							//float combined_underworld_base = n + underworld_base_density;
 							
 							boolean pure = Math.sqrt(x * x + y * y + z * z) <= purity_radius;
 							
@@ -172,7 +175,8 @@ public class ChunkGeneratorMixin {
 									state = Blocks.CAVE_AIR.getDefaultState();
 								}
 							}
-							
+							/*
+						
 							if (combined_underworld < threshold) {
 								state = Blocks.CAVE_AIR.getDefaultState();
 								
@@ -185,6 +189,8 @@ public class ChunkGeneratorMixin {
 							if (combined_underworld_base < threshold) {
 								state = BlocksT.ASH.getDefaultState();
 							}
+							
+							*/
 							
 							if (y <= -253) {
 								state = Blocks.BEDROCK.getDefaultState();
@@ -235,7 +241,22 @@ public class ChunkGeneratorMixin {
 						GeneratePurityTrees(region, x, y, z, pos);
 						
 						if (region.getRandom().nextInt(1000) == 0) {
-							PlaceStuff(region, region.getRandom(), pos);
+							placeStuff(region, BlocksT.LIFE_CRYSTAL_BLOCK.getDefaultState(), region.getRandom(), pos);
+						}
+						
+						if (region.getRandom().nextInt(3250) == 0) {
+							if (region.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.GRASS_BLOCK.getDefaultState()) {
+								placeStuff(region, Blocks.CHEST.getDefaultState(), region.getRandom(), pos);
+								LootableContainerBlockEntity.setLootTable(region, region.getRandom(), pos, new Identifier(TerrariaMod.modid, "loot_tables/chests/surface_chest"));
+							}
+						}
+						
+						if (region.getRandom().nextInt(1000) == 0) {
+							placeStuff(region, BlocksT.LIFE_CRYSTAL_BLOCK.getDefaultState(), region.getRandom(), pos);
+						}
+						
+						if (region.getRandom().nextInt(100) == 0 && y > 55 && y < 80) {
+							PlaceVine(region, pos);
 						}
 						
 						//Ores
@@ -446,6 +467,16 @@ public class ChunkGeneratorMixin {
 		info.cancel();
 	}
 	
+	private void PlaceVine(ChunkRegion region, Mutable pos) {
+		if (region.getBlockState(pos) == BlocksT.DIRT_BLOCK.getDefaultState() || region.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState() && region.isAir(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ()))) {
+			int length = 3 + region.getRandom().nextInt(5);
+			
+			for (int l = 0; l <= length; l++) {
+				region.setBlockState(new BlockPos(pos.getX(), pos.getY() - l, pos.getZ()), BlocksT.VINE.getDefaultState(), 0);
+			}
+		}
+	}
+
 	private void GeneratePurityTrees(ChunkRegion region, int x, int y, int z, BlockPos.Mutable pos) {
 		pos.set(x, y, z);
 		if (region.getBlockState(pos).getBlock() == BlocksT.GRASS_BLOCK || region.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK) {
@@ -461,7 +492,7 @@ public class ChunkGeneratorMixin {
 	}
 	
 	public boolean placeOre(ChunkRegion worldIn, Random rand, BlockPos pos, int size, BlockState target, BlockState state) {
-		
+		 
 		if (worldIn.getBlockState(pos) != Blocks.WATER.getDefaultState() && worldIn.getBlockState(pos) != Blocks.LAVA.getDefaultState()) {
 		  float f = rand.nextFloat() * (float)Math.PI;
 	      float f1 = (float)size / 8.0F;
@@ -582,7 +613,7 @@ public class ChunkGeneratorMixin {
 	}
 	*/
 	
-public boolean placeOre2(ChunkRegion worldIn, Random rand, BlockPos pos, int size, BlockState target, BlockState state) {
+	public boolean placeOre2(ChunkRegion worldIn, Random rand, BlockPos pos, int size, BlockState target, BlockState state) {
 		
 		if (target == worldIn.getBlockState(pos) && worldIn.getBlockState(pos) != Blocks.WATER.getDefaultState() && worldIn.getBlockState(pos) != Blocks.LAVA.getDefaultState()) {
 			int maxLineLength = 4;
@@ -606,41 +637,14 @@ public boolean placeOre2(ChunkRegion worldIn, Random rand, BlockPos pos, int siz
 		return true;
 	}
 
-	public boolean PlaceStuff(ChunkRegion worldIn, Random rand, BlockPos pos) {
+	public boolean placeStuff(ChunkRegion worldIn, BlockState placeBlock, Random rand, BlockPos pos) {
 	    
 		for(int i = 0; i < 10; ++i) {
-	      BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-	      if (worldIn.isAir(blockpos)) {
-	     	 if (worldIn.getBlockState(new BlockPos(blockpos.getX(), blockpos.getY() - 1, blockpos.getZ())).getBlock() == BlocksT.EBONSTONE) {
-	     		 if (rand.nextInt(100) <= 25) {
-			            	//worldIn.setBlockState(blockpos, BlocksT.DEMON_ALTAR.getDefaultState(), 0);
-		            	}
-	     		 if (rand.nextInt(100) <= 5) {
-			            	//worldIn.setBlockState(blockpos, BlocksT.SHADOW_ORB.getDefaultState(), 0);
-		            	}
-	     	 }
-	     	 
-	     	 /*
-	     	 if (worldIn.getBlockState(new BlockPos(blockpos.getX(), blockpos.getY() - 1, blockpos.getZ())).getBlock() == BlocksT.CRIMSTONE) {
-	     		 if (rand.nextInt(100) <= 5) {
-			            	worldIn.setBlockState(blockpos, BlocksT.CRIMSON_HEART.getDefaultState(), 0);			            	
-		            	}
-	     	 }
-	     	 */
-	     	 
-	     	 
-	         if (worldIn.getBlockState(new BlockPos(blockpos.getX(), blockpos.getY() - 1, blockpos.getZ())).getBlock() == BlocksT.STONE_BLOCK||
-	         		worldIn.getBlockState(new BlockPos(blockpos.getX(), blockpos.getY() - 1, blockpos.getZ())).getBlock() == Blocks.STONE) {
-	         	if (rand.nextInt(75) <= 5) {
-		            worldIn.setBlockState(blockpos, BlocksT.LIFE_CRYSTAL_BLOCK.getDefaultState(), 0);
-	         	}else
-	         	if (rand.nextInt(100) <= 2) {
-	         			//worldIn.setBlockState(blockpos, BlocksT.DEMON_ALTAR.getDefaultState(), 0);
-	         		}
-	         	}
-	         }
-	      }
-	
-	   return true;
+			BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+			if (rand.nextInt(75) <= 5) {
+				worldIn.setBlockState(blockpos, placeBlock, 0);
+			}
+		}
+		return true;
 	}
 }

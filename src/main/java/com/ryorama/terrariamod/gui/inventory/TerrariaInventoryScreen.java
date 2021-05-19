@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.entity.projectiles;
+package com.ryorama.terrariamod.gui.inventory;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.ui.UIRenderer;

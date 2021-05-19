@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.client.fx.FXDamageIndicator;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.entity.IBoss;
@@ -12,6 +13,9 @@ import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.command.argument.EntityAnchorArgumentType.EntityAnchor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -103,7 +107,6 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 	public EntityProps props2;
 	
 	private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-		System.out.println(playShrinkAnim);
 		if (playShrinkAnim == true) {
 			event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.kingslime.shrink", false));
 			playShrinkAnim = false;
@@ -150,7 +153,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
  		}
  		
  		boolean onGround = this.onGround && this.verticalCollision;
-
+ 		
  	    if (!this.world.isClient) {
  		
 	 	    if (this.prevOnGround != onGround && onGround) {
@@ -182,8 +185,6 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 	 	    	if (!world.isClient && this.isAlive()) {
 	 	    		hop(); 
 	 	    	}
-	 	    	
-	 	    	float f = this.headYaw * 0.017453292F;
 	 	    }
 	 	    
 	 	   this.prevOnGround = onGround;
@@ -225,9 +226,6 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 	private void hop() {
 		setTicksBeforeJump(30);
 		this.velY = 1.1f;
-	    float f1 = MathHelper.sin(this.yaw * 0.017453292F);
-	    float f2 = MathHelper.cos(this.yaw * 0.017453292F);
-	    
 	    if (this.getPos().x >= target.getPos().x) {
 		    this.velX = -1;
 	    } else {

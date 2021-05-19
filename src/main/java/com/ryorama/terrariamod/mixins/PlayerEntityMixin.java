@@ -9,6 +9,7 @@ import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.items.ItemsT;
+import com.ryorama.terrariamod.weather.WeatherBase;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
@@ -243,14 +244,17 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 					                 }
 					                 
 					                 if (highlands > 15) {
-					                	 if (!day && TMusicTicker.currentMusic != TAudio.NIGHT) {
-					                		 if (TMusicTicker.currentMusic != TAudio.NIGHT) {
-							                	 TMusicTicker.getTrack(TAudio.NIGHT);
-						                	 }
-					                	 } else if (day && TMusicTicker.currentMusic != TAudio.DAYONE) {
-					                		 if (TMusicTicker.currentMusic != TAudio.DAYONE) {
-							                	 TMusicTicker.getTrack(TAudio.DAYONE);
-						                	 }
+					                	 
+					                	 if (!TMusicTicker.weatherMusicOverride) {
+					                		 if (!day && TMusicTicker.currentMusic != TAudio.NIGHT) {
+						                		 if (TMusicTicker.currentMusic != TAudio.NIGHT) {
+								                	 TMusicTicker.getTrack(TAudio.NIGHT);
+							                	 }
+						                	 } else if (day && TMusicTicker.currentMusic != TAudio.DAYONE) {
+						                		 if (TMusicTicker.currentMusic != TAudio.DAYONE) {
+								                	 TMusicTicker.getTrack(TAudio.DAYONE);
+							                	 }
+						                	 } 
 					                	 }
 					                 }
 				                 }

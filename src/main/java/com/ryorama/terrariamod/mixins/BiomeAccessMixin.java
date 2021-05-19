@@ -26,7 +26,7 @@ public class BiomeAccessMixin {
 	@Inject(at = @At("HEAD"), method = "getBiome", cancellable = true)
 	public void getBiome(BlockPos pos, CallbackInfoReturnable<Biome> info) {
 		//return this.type.getBiome(this.seed, pos.getX(), pos.getY(), pos.getZ(), this.storage);
-				
+		
 		if (pos.getX() > 200 && pos.getX() < 400) {
 			biome = BiomeCorruption.CORRUPTION;
 			info.setReturnValue(biome);

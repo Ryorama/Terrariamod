@@ -1,8 +1,9 @@
 package com.ryorama.terrariamod.items.weapons.shortswords;
 
 import com.ryorama.terrariamod.items.api.Broadsword;
+import com.ryorama.terrariamod.items.api.Shortsword;
 
-public class CopperShortsword extends Broadsword {
+public class CopperShortsword extends Shortsword {
 
 	public CopperShortsword() {
 		super();
