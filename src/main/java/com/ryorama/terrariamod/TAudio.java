@@ -26,6 +26,7 @@ public class TAudio {
     public static final SoundEvent NPC_HIT1 = new SoundEvent(new Identifier(TerrariaMod.modid, "npc_hit1"));
     public static final SoundEvent NPC_KILL1 = new SoundEvent(new Identifier(TerrariaMod.modid, "npc_killed1"));
     public static final SoundEvent TELEPORT = new SoundEvent(new Identifier(TerrariaMod.modid, "teleport"));
+    public static final SoundEvent SUMMON = new SoundEvent(new Identifier(TerrariaMod.modid, "summon"));
 
 	public static void registerAudio() {
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.modid, "day1"), DAYONE);

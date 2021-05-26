@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.ryorama.terrariamod.client.fx.FXDamageIndicator;
+import com.ryorama.terrariamod.utils.callbacks.EntityJoinWorldCallback;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.Particle;
@@ -16,6 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.world.World;
 
 @Mixin(LivingEntity.class)
