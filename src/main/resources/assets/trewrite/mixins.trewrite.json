@@ -1,0 +1,14 @@
+{
+  "minVersion": "0.8",
+  "required": true,
+  "mixinPriority": 1,
+  "package": "kmerrill285.trewrite.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mixins.trewrite.refmap.json",
+  "mixins": [
+    "EntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
