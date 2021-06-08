@@ -1,26 +1,25 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://dist.creeper.host/Sponge/maven' }
         maven { url = "https://repo.spongepowered.org/maven" }
-        maven { url = "https://plugins.gradle.org/m2" }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: "org.spongepowered.mixin"
 
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.0'
-group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'modid'
+version = '1.2'
+group = 'kmerrill285.trewrite' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'trewrite'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -46,8 +45,6 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-
-            property "mixin.debug.export", "true"
 
             mods {
                 examplemod {
@@ -92,8 +89,15 @@ minecraft {
     }
 }
 
-mixin {
-    add sourceSets.main, "mixins.trewrite.refmap.json"
+repositories {
+    // Add repositories to retrieve artifacts from in here.
+    // You should only use this when depending on other mods because
+    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+    // for more information about repositories.
+
+    maven { url = 'https://dist.creeper.host/Sponge/maven' }
+    maven { url = "https://repo.spongepowered.org/maven" }
 }
 
 dependencies {
@@ -121,7 +125,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
 
-    implementation "org.spongepowered:mixin:0.8"
+    compile 'org.spongepowered:mixin:0.8-SNAPSHOT'
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -161,4 +165,10 @@ publishing {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
     }
+}
+
+apply plugin: 'org.spongepowered.mixin'
+
+mixin {
+    add sourceSets.main, "trewrite.refmap.json"
 }

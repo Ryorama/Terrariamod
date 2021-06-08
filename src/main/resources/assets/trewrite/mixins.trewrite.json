@@ -4,7 +4,7 @@
   "mixinPriority": 1,
   "package": "kmerrill285.trewrite.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "mixins.trewrite.refmap.json",
+  "refmap": "trewrite.refmap.json",
   "mixins": [
     "EntityMixin"
   ],

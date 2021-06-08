@@ -27,12 +27,4 @@ public abstract class EntityMixin extends Entity {
             deathRemovalCooldown += 1;
         }
     }
-
-    @Overwrite
-    public void onDeath(DamageSource cause) {
-        if (this.deathRemovalCooldown == 120) {
-            this.remove();
-            System.out.println("Death");
-        }
-    }
 }
