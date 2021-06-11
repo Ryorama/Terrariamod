@@ -26,8 +26,11 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.platform.GlStateManager;
 
+import kmerrill285.trewrite.Trewrite;
 import kmerrill285.trewrite.blocks.BlockT;
 import kmerrill285.trewrite.core.client.KeyRegistry;
+import kmerrill285.trewrite.core.client.TerrariaUIManager;
+import kmerrill285.trewrite.core.client.UIRenderer;
 import kmerrill285.trewrite.core.inventory.InventorySlot;
 import kmerrill285.trewrite.core.inventory.InventorySlot.ItemType;
 import kmerrill285.trewrite.core.inventory.InventoryTerraria;
@@ -51,11 +54,13 @@ import kmerrill285.trewrite.items.terraria.loot_bags.LootBag;
 import kmerrill285.trewrite.items.terraria.loot_bags.LootStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.IngameGui;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -64,11 +69,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.world.NoteBlockEvent;
+import org.lwjgl.system.CallbackI;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerrariaInventory> {
-	
-    public float oldMouseX;
+
+	public ResourceLocation slot_texture = new ResourceLocation(Trewrite.modid, "textures/gui/slot.png");
+	public ResourceLocation slot_texture2 = new ResourceLocation(Trewrite.modid, "textures/gui/slot2.png");
+	public ResourceLocation slot_texture3 = new ResourceLocation(Trewrite.modid, "textures/gui/slot3.png");
+	public ResourceLocation slot_texture4 = new ResourceLocation(Trewrite.modid, "textures/gui/slot4.png");
+
+	public float oldMouseX;
     public float oldMouseY;
     
     private boolean buttonClicked;
@@ -254,7 +266,6 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
             this.minecraft.player.closeScreen();
             return true;
         } else {
-            Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.MENU_CLOSE, SoundCategory.PLAYERS, 100, 1, false);
             return super.keyPressed(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_);
         }
     }
@@ -267,250 +278,171 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public static ResourceLocation INVENTORY_BACKGROUND = new ResourceLocation("trewrite", "textures/gui/terraria_inventory.png");
-    /**
+    //public static ResourceLocation INVENTORY_BACKGROUND = new ResourceLocation("trewrite", "textures/gui/terraria_inventory.png");
+
+	/**
      * Draws the background layer of this container (behind the item).
      */
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-    	
-    	
-    	selectedSlot = null;
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-        int i = 0;
-        int j = -20;
-        this.blit(0, 0, 0, 0, this.WIDTH, this.HEIGHT);
-        this.blit(i + TOP_ARMOR[0], j + TOP_ARMOR[1], ICONS[0] + helmet * 17, ICONS[1], 16, 16);
-        this.blit(i + TOP_ARMOR[0], j + TOP_ARMOR[1] + 16 + 2, ICONS[0] + chestplate * 17, ICONS[1], 16, 16);
-        this.blit(i + TOP_ARMOR[0], j + TOP_ARMOR[1] + 16 * 2 + 4, ICONS[0] + leggings * 17, ICONS[1], 16, 16);
-        
-        this.blit(i + TOP_ARMOR_VANITY[0], j + TOP_ARMOR_VANITY[1], ICONS[0] + hat * 17, ICONS[1], 16, 16);
-        this.blit(i + TOP_ARMOR_VANITY[0], j + TOP_ARMOR_VANITY[1] + 16 + 2, ICONS[0] + shirt * 17, ICONS[1], 16, 16);
-        this.blit(i + TOP_ARMOR_VANITY[0], j + TOP_ARMOR_VANITY[1] + 16 * 2 + 4, ICONS[0] + pants * 17, ICONS[1], 16, 16);
-        
-        for (int h = 0; h < 3; h++) {
-            this.blit(i + TOP_ARMOR_VANITY[0] + 16 + 2, j + TOP_ARMOR_VANITY[1] + h * 16 + h * 2, ICONS[0] + dye * 17, ICONS[1], 16, 16);
-        }
-        
-        
-        this.blit(i + TRASHCAN[0], j + TRASHCAN[1], ICONS[0] + trash * 17, ICONS[1], 16, 16);
-        
-        for (int h = 0; h < 5; h++) {
-        	this.blit(i + ACCESSORY_TOPLEFT[0] + 16 * 2 + 4, j + ACCESSORY_TOPLEFT[1] + h * 16 + h * 2, ICONS[0] + accessory * 17, ICONS[1], 16, 16);
-        	this.blit(i + ACCESSORY_TOPLEFT[0] + 16 + 2, j + ACCESSORY_TOPLEFT[1] + h * 16 + h * 2, ICONS[0] + vanity * 17, ICONS[1], 16, 16);
-        	this.blit(i + ACCESSORY_TOPLEFT[0], j + ACCESSORY_TOPLEFT[1] + h * 16 + h * 2, ICONS[0] + dye * 17, ICONS[1], 16, 16);
-        }
-       
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-        
-        //23, 191
-        InventoryTerraria inventory = ContainerTerrariaInventory.inventory;
-        
-        
-        for (int m = 0; m < InventoryTerraria.MAIN_SLOTS; m++) {
-        	if (inventory.main[m].stack != null) {
-        		GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.main[m].stack, i + inventory.main[m].x, j + inventory.main[m].y);
-        	}
-        	if (mouseInRect(inventory.main[m].x + i, inventory.main[m].y + j, 16, 16, mouseX, mouseY)) {
-        		selectedSlot = inventory.main[m];
-        		this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-        		GuiContainerTerrariaInventory.drawTexturedRectangle(inventory.main[m].x + i, inventory.main[m].y + j, 23, 191, 16, 16);
-        	}
-        }
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        for (int m = 0; m < InventoryTerraria.HOTBAR_SLOTS; m++) {
-        	if (inventory.hotbar[m].stack != null) {
-        		GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.hotbar[m].stack, i + inventory.hotbar[m].x, j + inventory.hotbar[m].y);
-    		}
-        	if (mouseInRect(inventory.hotbar[m].x + i, inventory.hotbar[m].y + j, 16, 16, mouseX, mouseY)) {
-        		selectedSlot = inventory.hotbar[m];
-        		this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-        		GuiContainerTerrariaInventory.drawTexturedRectangle(inventory.hotbar[m].x + i, inventory.hotbar[m].y + j, 23, 191, 16, 16);
-        	}
-        }
-        
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        for (int m = 0; m < InventoryTerraria.ARMOR_SLOTS; m++) {
-        	if (inventory.armor[m].stack != null) {
-        		GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.armor[m].stack, i + 225 + inventory.armor[m].x, j + inventory.armor[m].y + 10 + 45);
-    		}
-        	if (inventory.armorVanity[m].stack != null) {
-        		GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.armorVanity[m].stack, i + inventory.armorVanity[m].x + 135, j + inventory.armorVanity[m].y + 58);
-    		}
-        	if (inventory.armorDyes[m].stack != null) {
-        		GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.armorDyes[m].stack, i + inventory.armorDyes[m].x, j + inventory.armorDyes[m].y);
-    		}
-        	if (mouseInRect(inventory.armor[m].x + i + 225, inventory.armor[m].y + j + 10 + 45, 16, 16, mouseX, mouseY)) {
-        		selectedSlot = inventory.armor[m];
-        		this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-        		GuiContainerTerrariaInventory.drawTexturedRectangle(inventory.armor[m].x + i + 225, j + inventory.armor[m].y + 10 + 45, 23, 191, 16, 16);
-        	}
-        	if (mouseInRect(inventory.armorVanity[m].x + i + 135, inventory.armorVanity[m].y + j + 58, 16, 16, mouseX, mouseY)) {
-        		selectedSlot = inventory.armorVanity[m];
-        		this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-        		GuiContainerTerrariaInventory.drawTexturedRectangle(inventory.armorVanity[m].x + i + 135, inventory.armorVanity[m].y + j + 58, 23, 191, 16, 16);
-        	}
-        	if (mouseInRect(inventory.armorDyes[m].x + i - 2, inventory.armorDyes[m].y + j - 5, 16, 16, mouseX, mouseY)) {
-        		selectedSlot = inventory.armorDyes[m];
-        		this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-        		GuiContainerTerrariaInventory.drawTexturedRectangle(inventory.armorDyes[m].x + i, inventory.armorDyes[m].y + j, 23, 191, 16, 16);
-        	}
-        }
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        for (int m = 0; m < InventoryTerraria.ACCESSORY_SLOTS; m++) {
-        	if (inventory.accessory[m].stack != null) {
-        		GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessory[m].stack, i + inventory.accessory[m].x, j + inventory.accessory[m].y + 50);
-    		}
-        	if (inventory.accessoryVanity[m].stack != null) {
-        		GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessoryVanity[m].stack, i + inventory.accessoryVanity[m].x - 1, j + inventory.accessoryVanity[m].y + 50);
-    		}
-        	if (inventory.accessoryDyes[m].stack != null) {
-        		GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessoryDyes[m].stack, i + inventory.accessoryDyes[m].x, j + inventory.accessoryDyes[m].y);
-    		}
-        	if (mouseInRect(inventory.accessory[m].x + i, inventory.accessory[m].y + j + 50, 16, 16, mouseX, mouseY)) {
-        		selectedSlot = inventory.accessory[m];
-        		this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-        		GuiContainerTerrariaInventory.drawTexturedRectangle(inventory.accessory[m].x + i, inventory.accessory[m].y + j + 50, 23, 191, 16, 16);
-        	}
-        	if (mouseInRect(inventory.accessoryVanity[m].x + i - 1, inventory.accessoryVanity[m].y + j + 50, 16, 16, mouseX, mouseY)) {
-        		selectedSlot = inventory.accessoryVanity[m];
-        		this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-        		GuiContainerTerrariaInventory.drawTexturedRectangle(inventory.accessoryVanity[m].x + i - 1, inventory.accessoryVanity[m].y + j + 50, 23, 191, 16, 16);
-        	}
-        	if (mouseInRect(inventory.accessoryDyes[m].x + i - 2, inventory.accessoryDyes[m].y + j - 5, 16, 16, mouseX, mouseY)) {
-        		selectedSlot = inventory.accessoryDyes[m];
-        		this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-        		GuiContainerTerrariaInventory.drawTexturedRectangle(inventory.accessoryDyes[m].x + i - 2, inventory.accessoryDyes[m].y + j - 5, 23, 191, 16, 16);
-        	}
-        }
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        if (inventory.trash.stack != null) {
-			GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.trash.stack, i + inventory.trash.x + 165, j + inventory.trash.y + 100);
-		}
-        if (mouseInRect(inventory.trash.x + i + 165, j + inventory.trash.y + 100, 16, 16, mouseX, mouseY)) {
-        	selectedSlot = inventory.trash;
-        	this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-            GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-    		GuiContainerTerrariaInventory.drawTexturedRectangle(inventory.trash.x + i + 165, j + inventory.trash.y + 100, 23, 191, 16, 16);
-    	}
-        //inventory start: 7, 83.  Slot size: 18 x 18, Recipe start: 128, 15.  Gap: 1px, Max rows: 2
-        //up arrow: 40, 191
-        //down arrow: 40, 196
-        //arrow size: 7x4
-        
-        //top arrow location in gui: 241, 9
-        //bottom arrow location in gui: 241, 54
-        
-        {
-        	int rx = i + 270;
-        	int ry = j + 50;
-        	int width = 18;
-        	int height = 18;
-        	int gap = 1;
-        	int row = 6;
-        	this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-            GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        	selectedRecipe = null;
-            int r = page * 12;
-            upSelected = false;
-            downSelected = false;
-        	
+		InventoryTerraria inventory = ContainerTerrariaInventory.inventory;
 
-            if (this.availableRecipes.size() > r + 12) {
-            	//more pages available
-            	GuiContainerTerrariaInventory.drawTexturedRectangle(rx + 115, ry + 30, 40, 196, 7, 4);
-            	if (mouseInRect(rx + 115, ry + 30, 7, 4, mouseX, mouseY)) {
-            		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-            		GuiContainerTerrariaInventory.drawTexturedRectangle(rx + 115, ry + 30, 23, 191, 7, 4);
-    	    		downSelected = true;
-            	}
-            }
-            
-            if (page > 0) {
-            	GuiContainerTerrariaInventory.drawTexturedRectangle(rx + 115, ry + 2, 40, 191, 7, 4);
-            	if (mouseInRect(rx + 115, ry + 2, 7, 4, mouseX, mouseY)) {
-            		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-            		GuiContainerTerrariaInventory.drawTexturedRectangle(rx + 115, ry + 2, 23, 191, 7, 4);
-    	    		upSelected = true;
-            	}
-            }
-            
-            for (int x = 0; x < 6; x++) {
-            	for (int y = 0; y < 2; y++) {
-            		if (r < this.availableRecipes.size()) {
-            			int X = x * 18 + rx + x;
-            			int Y = y * 18 + ry + y;
-            			GuiContainerTerrariaInventory.drawTexturedRectangle(X, Y, 7, 83, 18, 18);
-            			GuiContainerTerrariaInventory.renderItemIntoGUI(this.availableRecipes.get(r).output, X, Y);
-            			
-            			if (mouseInRect(X, Y, 18, 18, mouseX, mouseY)) {
-            	        	this.minecraft.getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-            	            GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
-            	    		GuiContainerTerrariaInventory.drawTexturedRectangle(X + 1, Y + 1, 23, 191, 16, 16);
-            	    		
-            	    		selectedRecipe = this.availableRecipes.get(r);
-            	    	}
-            		}
-            		r++;
-            	}
-            }
-        }
-        
-        if (inventory.holdingSlot.stack != null) {
-        	renderItemIntoGUI(inventory.holdingSlot.stack, mouseX - 8, mouseY - 8);
-        } else {
-        	
-        }
-        
-        if (rightDown == true && System.currentTimeMillis() > rightClicked + 500L) {
-        	if (selectedRecipe != null) {
-        		if (inventory.holdingSlot.stack.item == selectedRecipe.output.item) { 
-        			int maxStack = 0;
-    				if (inventory.holdingSlot.stack.item instanceof ItemT) {
-    					maxStack = ((ItemT)inventory.holdingSlot.stack.item).maxStack;
-    				} else {
-    					maxStack = inventory.holdingSlot.stack.itemForRender.getMaxStackSize();
-    				}
-					if (inventory.holdingSlot.stack.size + selectedRecipe.output.size < maxStack) {
-						inventory.holdingSlot.stack.size += selectedRecipe.output.size;
-            			for (ItemStackT stack : selectedRecipe.input) {
-            				this.removeItemCrafting(stack);
-            			}
-            			this.resetRecipes();
+		float scaledWidth = Minecraft.getInstance().mainWindow.getScaledWidth();
+
+		selectedSlot = null;
+
+		int i = 17;
+		int j = 27;
+
+		minecraft.fontRenderer.drawString("Inventory", 17, 1, 0xffffff);
+		for (int m = 0; m < InventoryTerraria.MAIN_SLOTS; m++) {
+			UIRenderer.instance.renderOverlay(slot_texture, 0.75f, 16, 16, i, j, -90);
+			if (inventory.main[m].stack != null) {
+				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.main[m].stack, i, j);
+			}
+			if(mouseInRect(i, j, 16, 16, mouseX, mouseY)) {
+				selectedSlot = inventory.main[m];
+			}
+
+			i += 17;
+			if (i % 170 - 17 == 0 && i != 17) {
+				i = 17;
+				j += 17;
+			}
+		}
+
+		int i2 = 17;
+		int j2 = 10;
+
+		for (int m = 0; m < InventoryTerraria.HOTBAR_SLOTS; m++) {
+			UIRenderer.instance.renderOverlay(slot_texture, 0.75f, 16, 16, i2, j2, -90);
+			if (inventory.hotbar[m].stack != null) {
+				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.hotbar[m].stack, i2, j2);
+			}
+			if(mouseInRect(i2, j2, 16, 16, mouseX, mouseY)) {
+				selectedSlot = inventory.hotbar[m];
+			}
+
+			i2 += 17;
+		}
+
+		int i3 = (int)(scaledWidth - 17);
+		int j3 = 120;
+
+		for (int m = 0; m < InventoryTerraria.ARMOR_SLOTS; m++) {
+			UIRenderer.instance.renderOverlay(slot_texture2, 0.75f, 16, 16, i3, j3, -90);
+			if (inventory.armor[m].stack != null) {
+				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.armor[m].stack, i3, j3);
+			}
+			if(mouseInRect(i3, j3, 16, 16, mouseX, mouseY)) {
+				selectedSlot = inventory.armor[m];
+			}
+
+			j3 += 17;
+		}
+
+		int i4 = (int)(scaledWidth - 17);
+		int j4 = 171;
+
+		for (int m = 0; m < InventoryTerraria.ACCESSORY_SLOTS; m++) {
+			UIRenderer.instance.renderOverlay(slot_texture2, 0.75f, 16, 16, i4, j4, -90);
+			if (inventory.accessory[m].stack != null) {
+				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessory[m].stack, i4, j4);
+			}
+			if(mouseInRect(i4, j4, 16, 16, mouseX, mouseY)) {
+				selectedSlot = inventory.accessory[m];
+			}
+
+			j4 += 17;
+		}
+
+		int i5 = (int)(scaledWidth - 34);
+		int j5 = 120;
+
+		for (int m = 0; m < InventoryTerraria.VANITY_ARMOR; m++) {
+			UIRenderer.instance.renderOverlay(slot_texture3, 0.75f, 16, 16, i5, j5, -90);
+			if (inventory.armorVanity[m].stack != null) {
+				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.armorVanity[m].stack, i5, j5);
+			}
+			if(mouseInRect(i5, j5, 16, 16, mouseX, mouseY)) {
+				selectedSlot = inventory.armorVanity[m];
+			}
+
+			j5 += 17;
+		}
+
+		int i6 = (int)(scaledWidth - 34);
+		int j6 = 171;
+
+		for (int m = 0; m < InventoryTerraria.VANITY_ACCESSORY; m++) {
+			UIRenderer.instance.renderOverlay(slot_texture3, 0.75f, 16, 16, i6, j6, -90);
+			if (inventory.accessoryVanity[m].stack != null) {
+				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessoryVanity[m].stack, i6, j6);
+			}
+			if(mouseInRect(i6, j6, 16, 16, mouseX, mouseY)) {
+				selectedSlot = inventory.accessoryVanity[m];
+			}
+
+			j6 += 17;
+		}
+
+		int i7 = (int)(scaledWidth - 51);
+		int j7 = 120;
+
+		for (int m = 0; m < InventoryTerraria.ARMOR_DYE; m++) {
+			UIRenderer.instance.renderOverlay(slot_texture4, 0.75f, 16, 16, i7, j7, -90);
+			if (inventory.armorDyes[m].stack != null) {
+				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.armorDyes[m].stack, i7, j7);
+			}
+			if(mouseInRect(i7, j7, 16, 16, mouseX, mouseY)) {
+				selectedSlot = inventory.armorDyes[m];
+			}
+
+			j7 += 17;
+		}
+
+		int i8 = (int)(scaledWidth - 51);
+		int j8 = 171;
+
+		for (int m = 0; m < InventoryTerraria.VANITY_ACCESSORY; m++) {
+			UIRenderer.instance.renderOverlay(slot_texture4, 0.75f, 16, 16, i8, j8, -90);
+			if (inventory.accessoryVanity[m].stack != null) {
+				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessoryVanity[m].stack, i8, j8);
+			}
+			if(mouseInRect(i8, j8, 16, 16, mouseX, mouseY)) {
+				selectedSlot = inventory.accessoryVanity[m];
+			}
+
+			j8 += 17;
+		}
+
+		TerrariaUIManager.renderTerrariaDefense();
+
+		if (inventory.holdingSlot.stack != null) {
+			renderItemIntoGUI(inventory.holdingSlot.stack, mouseX - 8, mouseY - 8);
+		}
+
+		if (rightDown == true && System.currentTimeMillis() > rightClicked + 500L) {
+			if (selectedSlot != null && selectedSlot.stack != null)
+			{
+				Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+				if (inventory.holdingSlot.stack == null) {
+					inventory.holdingSlot.stack = new ItemStackT(selectedSlot.stack.item, ItemModifier.getModifier(selectedSlot.stack.modifier));
+					selectedSlot.decrementStack(1);
+				} else {
+					int maxStack = 0;
+					if (inventory.holdingSlot.stack.item instanceof ItemT) {
+						maxStack = ((ItemT)inventory.holdingSlot.stack.item).maxStack;
+					} else {
+						maxStack = inventory.holdingSlot.stack.itemForRender.getMaxStackSize();
+					}
+					if (inventory.holdingSlot.stack.size + 1 < maxStack) {
+						inventory.holdingSlot.stack.size++;
+						selectedSlot.decrementStack(1);
 					}
 				}
-        	}
-        	else
-    		if (selectedSlot != null && selectedSlot.stack != null) 
-    		{
-    			if (inventory.holdingSlot.stack == null) {
-    				inventory.holdingSlot.stack = new ItemStackT(selectedSlot.stack.item, ItemModifier.getModifier(selectedSlot.stack.modifier));
-    				selectedSlot.decrementStack(1);
-    			} else {
-    				int maxStack = 0;
-    				if (inventory.holdingSlot.stack.item instanceof ItemT) {
-    					maxStack = ((ItemT)inventory.holdingSlot.stack.item).maxStack;
-    				} else {
-    					maxStack = inventory.holdingSlot.stack.itemForRender.getMaxStackSize();
-    				}
-    				if (inventory.holdingSlot.stack.size + 1 < maxStack) {
-    					inventory.holdingSlot.stack.size++;
-    					selectedSlot.decrementStack(1);
-    				}
-    			}
-    		}
-        }
-        
+			}
+		}
     }
     
     public static void drawTexturedRectangle(int x, int y, int u, int v, int w, int h) {
@@ -551,7 +483,7 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
             // TODO: check if enabled blending still screws things up down the line.
             GlStateManager.enableBlend();
     	}
-    	
+
     	if (item.renderStack > 0) {
     		GlStateManager.disableLighting();
             GlStateManager.disableDepthTest();
@@ -564,11 +496,9 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
             // TODO: check if enabled blending still screws things up down the line.
             GlStateManager.enableBlend();
     	}
-    	Minecraft.getInstance().getTextureManager().bindTexture(GuiContainerTerrariaInventory.INVENTORY_BACKGROUND);
-    	
     }
     
-    private boolean mouseInRect(int x, int y, int width, int height, int mouseX, int mouseY) {
+    public static boolean mouseInRect(int x, int y, int width, int height, int mouseX, int mouseY) {
     	return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 

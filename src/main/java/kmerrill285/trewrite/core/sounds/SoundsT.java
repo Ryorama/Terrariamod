@@ -14,7 +14,8 @@ public class SoundsT {
 	public static final SoundEvent DIG = new SoundEvent(new ResourceLocation("trewrite", "dig0"));
 	public static final SoundEvent TINK = new SoundEvent(new ResourceLocation("trewrite", "tink0"));
 	public static final SoundEvent SHATTER = new SoundEvent(new ResourceLocation("trewrite", "shatter"));
-	
+	public static final SoundEvent GRAB = new SoundEvent(new ResourceLocation("trewrite", "grab"));
+
 	public static final SoundEvent HIT1 = new SoundEvent(new ResourceLocation("trewrite", "npc_hit1"));
 	public static final SoundEvent HIT2 = new SoundEvent(new ResourceLocation("trewrite", "npc_hit2"));
 	public static final SoundEvent HIT13 = new SoundEvent(new ResourceLocation("trewrite", "npc_hit13"));

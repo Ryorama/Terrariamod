@@ -15,10 +15,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
 public class InventoryTerraria {
-	public static int MAIN = 0, HOTBAR = 1, TRASH = 2, ARMOR = 3, ACCESSORY = 4, VANITY_ARMOR = 5, VANITY_ACCESSORY = 6, EQUIPMENT = 7, COINS = 8, AMMO = 9,
-			PIGGY_BANK = 10, SAFE = 11, ACCESSORY_DYE = 12, ARMOR_DYE = 13, EQUIPMENT_DYE = 14;
+	public static int MAIN = 0, HOTBAR = 1, TRASH = 2, ARMOR = 3, ACCESSORY = 4, VANITY_ARMOR = 3, VANITY_ACCESSORY = 5, EQUIPMENT = 7, COINS = 8, AMMO = 9,
+			PIGGY_BANK = 10, SAFE = 11, ACCESSORY_DYE = 5, ARMOR_DYE = 3, EQUIPMENT_DYE = 14;
 	
-	public static int MAIN_SLOTS = 30, HOTBAR_SLOTS = 10, ARMOR_SLOTS = 3, ACCESSORY_SLOTS = 5, EQUIPMENT_SLOTS = 5;
+	public static int MAIN_SLOTS = 40, HOTBAR_SLOTS = 10, ARMOR_SLOTS = 3, ACCESSORY_SLOTS = 5, EQUIPMENT_SLOTS = 5;
 	//equipment: Pet, Light Pet, Minecart, Mount, Hook
 	
 	private int[] TOP_ARMOR = {8, 8}, TOP_ARMOR_VANITY = {80, 8}, TRASHCAN = {8, 66}, INVENTORY_TOPLEFT = {8, 84}, HOTBAR_LEFT = {8, 142}, 
@@ -34,11 +34,11 @@ public class InventoryTerraria {
 	public InventorySlot[] main = new InventorySlot[MAIN_SLOTS];
 	public InventorySlot[] armor = new InventorySlot[ARMOR_SLOTS];
 	public InventorySlot trash = new InventorySlot(ItemType.ANY, TRASHCAN[0], TRASHCAN[1], 8, 0);
-	public InventorySlot[] armorVanity = new InventorySlot[ARMOR_SLOTS];
-	public InventorySlot[] armorDyes = new InventorySlot[ARMOR_SLOTS];
+	public InventorySlot[] armorVanity = new InventorySlot[VANITY_ARMOR];
+	public InventorySlot[] armorDyes = new InventorySlot[ARMOR_DYE];
 	public InventorySlot[] accessory = new InventorySlot[ACCESSORY_SLOTS];
-	public InventorySlot[] accessoryVanity = new InventorySlot[ACCESSORY_SLOTS];
-	public InventorySlot[] accessoryDyes = new InventorySlot[ACCESSORY_SLOTS];
+	public InventorySlot[] accessoryVanity = new InventorySlot[VANITY_ACCESSORY];
+	public InventorySlot[] accessoryDyes = new InventorySlot[ACCESSORY_DYE];
 	
 	public boolean open = false;
 	
@@ -130,7 +130,7 @@ public class InventoryTerraria {
 		}
 		
 		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < 4; j++) {
 			main[i + j * 10] = new InventorySlot(ItemType.ANY, INVENTORY_TOPLEFT[0] + i * 16 + i * 2, INVENTORY_TOPLEFT[1] + j * 16 + j * 2, 0, i + j * 10);
 			
 			}
@@ -144,16 +144,22 @@ public class InventoryTerraria {
 		armorVanity[1] = new InventorySlot(ItemType.CHESTPLATE, TOP_ARMOR_VANITY[0], TOP_ARMOR_VANITY[1] + 16 + 2, 3, 1);
 		armorVanity[2] = new InventorySlot(ItemType.LEGGINGS, TOP_ARMOR_VANITY[0], TOP_ARMOR_VANITY[1] + 16 * 2 + 4, 3, 2);
 		
-		for (int i = 0; i < ARMOR_SLOTS; i++) {
+		for (int i = 0; i < ARMOR_DYE; i++) {
 			armorDyes[i] = new InventorySlot(ItemType.DYE, TOP_ARMOR_VANITY[0] + 16 + 2, TOP_ARMOR_VANITY[1] + i * 16 + i * 2, 4, i);
 		}
 		
 		for (int i = 0; i < ACCESSORY_SLOTS; i++) {
 			accessory[i] = new InventorySlot(ItemType.ACCESSORY, ACCESSORY_TOPLEFT[0] + 16 * 2 + 4, ACCESSORY_TOPLEFT[1] + i * 16 + i * 2, 5, i);
+		}
+
+		for (int i = 0; i < VANITY_ACCESSORY; i++) {
 			accessoryVanity[i] = new InventorySlot(ItemType.ACCESSORY, ACCESSORY_TOPLEFT[0] + 16 + 2, ACCESSORY_TOPLEFT[1] + i * 16 + i * 2, 6, i);
+		}
+
+		for (int i = 0; i < ACCESSORY_DYE; i++) {
 			accessoryDyes[i] = new InventorySlot(ItemType.DYE, ACCESSORY_TOPLEFT[0], ACCESSORY_TOPLEFT[1] + i * 16 + i * 2, 7, i);
 		}
-		
+
 		trash.isTrashSlot = true;
 		
 //		hotbar[0].stack = new ItemStackT(ItemsT.DIRT_BLOCK, 999);
@@ -387,11 +393,12 @@ public class InventoryTerraria {
 		String savedata = "";
 		
 		for (int i = 0; i < main.length; i++) {
+			System.out.println(main.length);
 			if (main[i].stack == null)
 				savedata += "null\n";
 			else {
-			savedata += ItemsT.getStringForItem(main[i].stack.item) + "," + main[i].stack.size + "," + main[i].stack.modifier + "," + i + "\n";
-			System.out.println(i);
+				savedata += ItemsT.getStringForItem(main[i].stack.item) + "," + main[i].stack.size + "," + main[i].stack.modifier + "," + i + "\n";
+				System.out.println(i);
 			}
 		}
 		

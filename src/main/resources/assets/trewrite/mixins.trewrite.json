@@ -6,7 +6,8 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "trewrite.refmap.json",
   "mixins": [
-    "EntityMixin"
+    "EntityMixin",
+    "InGameGuiMixin"
   ],
   "injectors": {
     "defaultRequire": 1

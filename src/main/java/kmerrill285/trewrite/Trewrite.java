@@ -2,6 +2,7 @@ package kmerrill285.trewrite;
 
 import java.lang.reflect.Field;
 
+import kmerrill285.trewrite.core.client.TerrariaUIManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -84,7 +85,7 @@ public class Trewrite
 
     public static boolean DEBUG = false;
     
-   
+   	public static String modid = "trewrite";
     
     public Trewrite() {
     	
@@ -175,7 +176,6 @@ public class Trewrite
     
 	public static void onWorldTick(WorldTickEvent event)
 	{
-	
 		if (!once) {
 			if (Util.stacked_dimensions == true) {
 				ResourceLocation overworld = new ResourceLocation("minecraft:custom_overworld");

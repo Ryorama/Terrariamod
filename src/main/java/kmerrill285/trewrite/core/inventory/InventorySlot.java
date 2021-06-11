@@ -1,15 +1,15 @@
 package kmerrill285.trewrite.core.inventory;
 
+import kmerrill285.trewrite.Trewrite;
 import kmerrill285.trewrite.core.items.ItemStackT;
 import kmerrill285.trewrite.items.Armor;
 import kmerrill285.trewrite.items.ItemT;
 import kmerrill285.trewrite.items.accessories.Accessory;
 import kmerrill285.trewrite.items.modifiers.ItemModifier;
+import net.minecraft.util.ResourceLocation;
 
 public class InventorySlot {
-	
-	
-	
+
 	public ItemStackT stack;
 	public ItemType itemType;
 	

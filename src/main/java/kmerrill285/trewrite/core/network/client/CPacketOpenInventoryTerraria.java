@@ -33,8 +33,7 @@ public class CPacketOpenInventoryTerraria {
          ServerPlayerEntity sender = ((Context)ctx.get()).getSender();
          if (sender != null) {
             NetworkHooks.openGui(sender, new TerrariaInventoryContainerHandler());
-            NetworkHooks.openGui(sender, (INamedContainerProvider) new CreativeScreen(sender));
-            Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.MENU_OPEN, SoundCategory.PLAYERS, 100, 1, false);
+            Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.MENU_OPEN, SoundCategory.PLAYERS, 500, 1, false);
          }
 
       });
