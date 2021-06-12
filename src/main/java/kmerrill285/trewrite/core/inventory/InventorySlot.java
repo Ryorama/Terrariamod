@@ -12,7 +12,7 @@ public class InventorySlot {
 
 	public ItemStackT stack;
 	public ItemType itemType;
-	
+	public boolean isFavorite;
 	
 	public int x, y, area, id;
 	

@@ -1,6 +1,7 @@
 package kmerrill285.trewrite.core.client;
 
 import java.lang.reflect.Field;
+
 import kmerrill285.trewrite.Trewrite;
 import kmerrill285.trewrite.util.Util;
 import net.minecraft.client.GameSettings;
@@ -29,6 +30,7 @@ public class KeyRegistry {
    public static KeyBinding hotbar8;
    public static KeyBinding hotbar9;
    public static KeyBinding clearSummons;
+   public static KeyBinding favorite_item;
 
    public static void registerKeys() {
       try {
@@ -59,6 +61,7 @@ public class KeyRegistry {
       trash = registerKeybinding(new KeyBinding("key.trewrite.trash.desc", 340, "key.trewrite.category"));
       drop = registerKeybinding(new KeyBinding("key.trewrite.drop.desc", 81, "key.trewrite.category"));
       clearSummons = registerKeybinding(new KeyBinding("key.trewrite.clearsummons.desc", 75, "key.trewrite.category"));
+      favorite_item = registerKeybinding(new KeyBinding("key.trewrite.favorite_item.desc", 342, "key.trewrite.category"));
    }
 
    private static KeyBinding registerKeybinding(KeyBinding key) {

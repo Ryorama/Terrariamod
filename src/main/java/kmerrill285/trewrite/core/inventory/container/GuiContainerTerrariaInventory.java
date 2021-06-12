@@ -79,6 +79,19 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 	public ResourceLocation slot_texture2 = new ResourceLocation(Trewrite.modid, "textures/gui/slot2.png");
 	public ResourceLocation slot_texture3 = new ResourceLocation(Trewrite.modid, "textures/gui/slot3.png");
 	public ResourceLocation slot_texture4 = new ResourceLocation(Trewrite.modid, "textures/gui/slot4.png");
+	public ResourceLocation trash_slot = new ResourceLocation(Trewrite.modid, "textures/gui/trash_slot.png");
+	public ResourceLocation trash_icon = new ResourceLocation(Trewrite.modid, "textures/gui/trash.png");
+	public ResourceLocation fav = new ResourceLocation(Trewrite.modid, "textures/gui/fav.png");
+
+	public ResourceLocation helmet_icon = new ResourceLocation(Trewrite.modid, "textures/gui/helmet.png");
+	public ResourceLocation chestplate_icon = new ResourceLocation(Trewrite.modid, "textures/gui/chestplate.png");
+	public ResourceLocation boots_icon = new ResourceLocation(Trewrite.modid, "textures/gui/boots.png");
+	public ResourceLocation hat_icon = new ResourceLocation(Trewrite.modid, "textures/gui/hat.png");
+	public ResourceLocation shirt_icon = new ResourceLocation(Trewrite.modid, "textures/gui/shirt.png");
+	public ResourceLocation leggings_icon = new ResourceLocation(Trewrite.modid, "textures/gui/leggings.png");
+	public ResourceLocation accessory_icon = new ResourceLocation(Trewrite.modid, "textures/gui/artifact.png");
+	public ResourceLocation dye_icon = new ResourceLocation(Trewrite.modid, "textures/gui/dye.png");
+	public ResourceLocation vanity_icon = new ResourceLocation(Trewrite.modid, "textures/gui/artifact_social.png");
 
 	public float oldMouseX;
     public float oldMouseY;
@@ -294,14 +307,29 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 		int i = 17;
 		int j = 27;
 
+		int altPress = 0;
+		boolean altDown = false;
+
 		minecraft.fontRenderer.drawString("Inventory", 17, 1, 0xffffff);
 		for (int m = 0; m < InventoryTerraria.MAIN_SLOTS; m++) {
+			if (inventory.main[m].isFavorite) {
+				UIRenderer.instance.renderOverlay(fav, 100f, 16, 16, i, j, -90);
+			}
 			UIRenderer.instance.renderOverlay(slot_texture, 0.75f, 16, 16, i, j, -90);
 			if (inventory.main[m].stack != null) {
 				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.main[m].stack, i, j);
 			}
 			if(mouseInRect(i, j, 16, 16, mouseX, mouseY)) {
 				selectedSlot = inventory.main[m];
+				if (KeyRegistry.favorite_item.isPressed()) {
+					if (!inventory.main[m].isFavorite) {
+						Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.TICK, SoundCategory.PLAYERS, 100, 1, false);
+						inventory.main[m].isFavorite = true;
+					} else {
+						Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.TICK, SoundCategory.PLAYERS, 100, 1, false);
+						inventory.main[m].isFavorite = false;
+					}
+				}
 			}
 
 			i += 17;
@@ -315,12 +343,24 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 		int j2 = 10;
 
 		for (int m = 0; m < InventoryTerraria.HOTBAR_SLOTS; m++) {
+			if (inventory.hotbar[m].isFavorite) {
+				UIRenderer.instance.renderOverlay(fav, 100f, 16, 16, i2, j2, -90);
+			}
 			UIRenderer.instance.renderOverlay(slot_texture, 0.75f, 16, 16, i2, j2, -90);
 			if (inventory.hotbar[m].stack != null) {
 				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.hotbar[m].stack, i2, j2);
 			}
 			if(mouseInRect(i2, j2, 16, 16, mouseX, mouseY)) {
 				selectedSlot = inventory.hotbar[m];
+				if (KeyRegistry.favorite_item.isPressed()) {
+					if (!inventory.hotbar[m].isFavorite) {
+						Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.TICK, SoundCategory.PLAYERS, 100, 1, false);
+						inventory.hotbar[m].isFavorite = true;
+					} else {
+						Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.TICK, SoundCategory.PLAYERS, 100, 1, false);
+						inventory.hotbar[m].isFavorite = false;
+					}
+				}
 			}
 
 			i2 += 17;
@@ -331,6 +371,14 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 
 		for (int m = 0; m < InventoryTerraria.ARMOR_SLOTS; m++) {
 			UIRenderer.instance.renderOverlay(slot_texture2, 0.75f, 16, 16, i3, j3, -90);
+			if (m == 0) {
+				UIRenderer.instance.renderOverlay(helmet_icon, 0.75f, 16, 16, i3, j3, -90);
+			} else if (m == 1) {
+				UIRenderer.instance.renderOverlay(chestplate_icon, 0.75f, 16, 16, i3, j3, -90);
+			} else {
+				UIRenderer.instance.renderOverlay(boots_icon, 0.75f, 16, 16, i3, j3, -90);
+			}
+
 			if (inventory.armor[m].stack != null) {
 				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.armor[m].stack, i3, j3);
 			}
@@ -346,6 +394,8 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 
 		for (int m = 0; m < InventoryTerraria.ACCESSORY_SLOTS; m++) {
 			UIRenderer.instance.renderOverlay(slot_texture2, 0.75f, 16, 16, i4, j4, -90);
+			UIRenderer.instance.renderOverlay(accessory_icon, 0.75f, 16, 16, i4, j4, -90);
+
 			if (inventory.accessory[m].stack != null) {
 				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessory[m].stack, i4, j4);
 			}
@@ -361,6 +411,14 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 
 		for (int m = 0; m < InventoryTerraria.VANITY_ARMOR; m++) {
 			UIRenderer.instance.renderOverlay(slot_texture3, 0.75f, 16, 16, i5, j5, -90);
+			if (m == 0) {
+				UIRenderer.instance.renderOverlay(hat_icon, 0.75f, 16, 16, i5, j5, -90);
+			} else if (m == 1) {
+				UIRenderer.instance.renderOverlay(shirt_icon, 0.75f, 16, 16, i5, j5, -90);
+			} else {
+				UIRenderer.instance.renderOverlay(leggings_icon, 0.75f, 16, 16, i5, j5, -90);
+			}
+
 			if (inventory.armorVanity[m].stack != null) {
 				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.armorVanity[m].stack, i5, j5);
 			}
@@ -376,6 +434,8 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 
 		for (int m = 0; m < InventoryTerraria.VANITY_ACCESSORY; m++) {
 			UIRenderer.instance.renderOverlay(slot_texture3, 0.75f, 16, 16, i6, j6, -90);
+			UIRenderer.instance.renderOverlay(vanity_icon, 0.75f, 16, 16, i6, j6, -90);
+
 			if (inventory.accessoryVanity[m].stack != null) {
 				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessoryVanity[m].stack, i6, j6);
 			}
@@ -391,6 +451,8 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 
 		for (int m = 0; m < InventoryTerraria.ARMOR_DYE; m++) {
 			UIRenderer.instance.renderOverlay(slot_texture4, 0.75f, 16, 16, i7, j7, -90);
+			UIRenderer.instance.renderOverlay(dye_icon, 0.75f, 16, 16, i7, j7, -90);
+
 			if (inventory.armorDyes[m].stack != null) {
 				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.armorDyes[m].stack, i7, j7);
 			}
@@ -404,16 +466,32 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 		int i8 = (int)(scaledWidth - 51);
 		int j8 = 171;
 
-		for (int m = 0; m < InventoryTerraria.VANITY_ACCESSORY; m++) {
+		for (int m = 0; m < InventoryTerraria.ACCESSORY_DYE; m++) {
 			UIRenderer.instance.renderOverlay(slot_texture4, 0.75f, 16, 16, i8, j8, -90);
-			if (inventory.accessoryVanity[m].stack != null) {
-				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessoryVanity[m].stack, i8, j8);
+			UIRenderer.instance.renderOverlay(dye_icon, 0.75f, 16, 16, i8, j8, -90);
+
+			if (inventory.accessoryDyes[m].stack != null) {
+				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.accessoryDyes[m].stack, i8, j8);
 			}
 			if(mouseInRect(i8, j8, 16, 16, mouseX, mouseY)) {
-				selectedSlot = inventory.accessoryVanity[m];
+				selectedSlot = inventory.accessoryDyes[m];
 			}
 
 			j8 += 17;
+		}
+
+		int i9 = 170;
+		int j9 = 99;
+
+		UIRenderer.instance.renderOverlay(trash_slot, 0.75f, 16, 16, i9, j9, -90);
+		if (inventory.trash.stack == null) {
+			UIRenderer.instance.renderOverlay(trash_icon, 0.75f, 16, 16, i9, j9, -90);
+		}
+		if (inventory.trash.stack != null) {
+			GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.trash.stack, i9, j9);
+		}
+		if (mouseInRect(i9, j9, 16, 16, mouseX, mouseY)) {
+			selectedSlot = inventory.trash;
 		}
 
 		TerrariaUIManager.renderTerrariaDefense();
@@ -707,7 +785,7 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
     	
     	if (KeyRegistry.trash.isKeyDown()) {
 	        	if (mouseButton == 0) {
-	        		if (selectedSlot.stack != null) {
+	        		if (selectedSlot.stack != null && !selectedSlot.isFavorite) {
 	        			ItemStackT stack = new ItemStackT(selectedSlot.stack.item, selectedSlot.stack.size, ItemModifier.getModifier(selectedSlot.stack.modifier));
 	        			trashSlot.stack = stack;
 	        			selectedSlot.stack = null;
@@ -721,7 +799,8 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 	        }
     	
     	if (mouseButton == 0) {
-    		if (inventory.holdingSlot.stack != null && selectedSlot.itemType == ItemType.ACCESSORY) {
+			Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false); 
+			if (inventory.holdingSlot.stack != null && selectedSlot.itemType == ItemType.ACCESSORY) {
     			boolean a = false;
     			if (selectedSlot.stack != null) {
     				if (selectedSlot.stack.item == inventory.holdingSlot.stack.item) {
@@ -759,7 +838,8 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
     		
     	}
     	if (mouseButton == 1) {
-    		rightDown = true;
+			Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+			rightDown = true;
     		rightClicked = System.currentTimeMillis();
     		if (selectedSlot.stack != null) 
     		{

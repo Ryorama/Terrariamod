@@ -33,7 +33,7 @@ public class InventoryTerraria {
 	public InventorySlot[] hotbar = new InventorySlot[HOTBAR_SLOTS];
 	public InventorySlot[] main = new InventorySlot[MAIN_SLOTS];
 	public InventorySlot[] armor = new InventorySlot[ARMOR_SLOTS];
-	public InventorySlot trash = new InventorySlot(ItemType.ANY, TRASHCAN[0], TRASHCAN[1], 8, 0);
+	public InventorySlot trash = new InventorySlot(ItemType.ANY, 170, 99, 8, 0);
 	public InventorySlot[] armorVanity = new InventorySlot[VANITY_ARMOR];
 	public InventorySlot[] armorDyes = new InventorySlot[ARMOR_DYE];
 	public InventorySlot[] accessory = new InventorySlot[ACCESSORY_SLOTS];

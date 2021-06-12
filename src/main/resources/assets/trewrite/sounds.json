@@ -295,5 +295,10 @@
 	"category": "sounds",
 	"subtitle": "trewrite.zombie1",
 	"sounds": [ "trewrite:zombie1" ]
-  }
+  },
+	"menu_tick": {
+		"category": "sounds",
+		"subtitle": "trewrite.menu_tick",
+		"sounds": [ "trewrite:menu_tick" ]
+	}
 }

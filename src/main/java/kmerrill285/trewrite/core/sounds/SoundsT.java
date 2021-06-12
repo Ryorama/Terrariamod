@@ -27,7 +27,8 @@ public class SoundsT {
 	public static final SoundEvent KILLED12 = new SoundEvent(new ResourceLocation("trewrite", "npc_killed12"));
 	
 	public static final SoundEvent ZOMBIE1 = new SoundEvent(new ResourceLocation("trewrite", "zombie1"));
-	
+	public static final SoundEvent TICK = new SoundEvent(new ResourceLocation("trewrite", "menu_tick"));
+
 	public static final SoundType DIRT = new SoundType(100, 1, DIG, null, null, DIG, DIG);
 	public static final SoundType STONE = new SoundType(100, 1, TINK, null, null, TINK, TINK);
 	public static final SoundType POT = new SoundType(100, 1, SHATTER, null, null, SHATTER, SHATTER);
