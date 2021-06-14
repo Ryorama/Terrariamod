@@ -461,7 +461,9 @@ public class EntityEvents {
 					PlayerEntity player = (PlayerEntity)event.getEntityLiving();
 					if (ScoreboardEvents.getScore(player.getWorldScoreboard(), player, ScoreboardEvents.IRONSKIN).getScorePoints() > 0) {
 						event.setAmount(event.getAmount() - 8);
-						
+					}
+					if (ScoreboardEvents.getScore(player.getWorldScoreboard(), player, ScoreboardEvents.WELL_FEED).getScorePoints() > 0) {
+						event.setAmount(event.getAmount() - 2);
 					}
 				}
 			

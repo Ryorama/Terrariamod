@@ -77,6 +77,7 @@ public class Util {
    public static int renderTitan;
    public static int renderWeakDebuff;
    public static int renderHorrified;
+   public static int renderWellFeed;
 
    public static boolean isChristmas() {
       return LocalDateTime.now().getMonth() == Month.DECEMBER && LocalDateTime.now().getDayOfMonth() >= 15 && LocalDateTime.now().getDayOfMonth() <= 31;

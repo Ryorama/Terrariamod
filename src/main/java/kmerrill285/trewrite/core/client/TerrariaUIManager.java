@@ -60,6 +60,11 @@ public class TerrariaUIManager {
                 armor += 8;
             }
 
+            int wellFeed = ScoreboardEvents.getScore(player.getWorldScoreboard(), player, ScoreboardEvents.WELL_FEED).getScorePoints();
+            if (wellFeed > 0) {
+                armor += 2;
+            }
+
             int weak = ScoreboardEvents.getScore(player.getWorldScoreboard(), player, ScoreboardEvents.WEAK).getScorePoints();
             if (weak > 0) {
                 armor -= 8;

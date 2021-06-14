@@ -8,6 +8,7 @@ import kmerrill285.trewrite.items.modifiers.ItemModifier;
 import kmerrill285.trewrite.util.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.play.server.SScoreboardObjectivePacket;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreCriteria;
 import net.minecraft.scoreboard.ScoreCriteria.RenderType;
@@ -38,7 +39,7 @@ public class ScoreboardEvents {
 			SHINE = "SHN", BATTLE = "BTL",
 			OBSIDIAN_SKIN = "OBSS",
 			MAGIC_POWER = "MPWR", MANA_REGENERATION = "MNRG",
-			TITAN = "TITAN", WEAK = "WEAK", HORRIFIED = "HORROR", LIFE_FRUIT = "LFRUIT";
+			TITAN = "TITAN", WEAK = "WEAK", HORRIFIED = "HORROR", LIFE_FRUIT = "LFRUIT", WELL_FEED = "WELL_FEED";
 	
 	public static int tickTimer = 0;
 	
@@ -104,7 +105,8 @@ public class ScoreboardEvents {
 		getObjective(ScoreboardEvents.TITAN, scoreboard, player),
 		getObjective(ScoreboardEvents.HUNTER, scoreboard, player),
 		getObjective(ScoreboardEvents.WEAK, scoreboard, player),
-		getObjective(ScoreboardEvents.HORRIFIED, scoreboard, player)
+		getObjective(ScoreboardEvents.HORRIFIED, scoreboard, player),
+		getObjective(ScoreboardEvents.WELL_FEED, scoreboard, player)
 		};
 		String[] PTNSTR = {
 			ScoreboardEvents.BUILDER, ScoreboardEvents.CALMING,
@@ -113,7 +115,7 @@ public class ScoreboardEvents {
 			ScoreboardEvents.FLIPPER, ScoreboardEvents.GRAVITATION, ScoreboardEvents.HEARTREACH, ScoreboardEvents.INVISIBILITY,
 			ScoreboardEvents.THORNS, ScoreboardEvents.WATER_WALKING, ScoreboardEvents.SHINE, ScoreboardEvents.BATTLE, ScoreboardEvents.OBSIDIAN_SKIN,
 			ScoreboardEvents.MAGIC_POWER, ScoreboardEvents.MANA_REGENERATION, ScoreboardEvents.TITAN, ScoreboardEvents.HUNTER, ScoreboardEvents.WEAK,
-			ScoreboardEvents.HORRIFIED
+			ScoreboardEvents.HORRIFIED, ScoreboardEvents.WELL_FEED
 		};
 		
 		Score manaSickness = scoreboard.getOrCreateScore(player.getScoreboardName(), MANA_SICKNESS);
@@ -278,6 +280,7 @@ public class ScoreboardEvents {
 		ScoreObjective HUNTER = getObjective(ScoreboardEvents.HUNTER, scoreboard, player);
 		ScoreObjective WEAK = getObjective(ScoreboardEvents.WEAK, scoreboard, player);
 		ScoreObjective HORRIFIED = getObjective(ScoreboardEvents.HORRIFIED, scoreboard, player);
+		ScoreObjective WELL_FEED = getObjective(ScoreboardEvents.WELL_FEED, scoreboard, player);
 		
 		Score builder = scoreboard.getOrCreateScore(player.getScoreboardName(), BUILDER);
 		Score calming = scoreboard.getOrCreateScore(player.getScoreboardName(), CALMING);
@@ -304,6 +307,7 @@ public class ScoreboardEvents {
 		Score titan = scoreboard.getOrCreateScore(player.getScoreboardName(), TITAN);
 		Score weak = scoreboard.getOrCreateScore(player.getScoreboardName(), WEAK);
 		Score horrified = scoreboard.getOrCreateScore(player.getScoreboardName(), HORRIFIED);
+		Score wellFeed = scoreboard.getOrCreateScore(player.getScoreboardName(), WELL_FEED);
 		
 		Score manaSickness = scoreboard.getOrCreateScore(player.getScoreboardName(), MANA_SICKNESS);
 		Score manaSicknessEffect = scoreboard.getOrCreateScore(player.getScoreboardName(), MANA_SICKNESS_EFFECT);
@@ -356,6 +360,8 @@ public class ScoreboardEvents {
 					Util.renderTitan = titan.getScorePoints() / 20;
 					Util.renderWeakDebuff = weak.getScorePoints() / 20;
 					Util.renderHorrified = horrified.getScorePoints() / 20;
+					Util.renderWellFeed = wellFeed.getScorePoints() / 20;
+
 				}
 			}
 		}

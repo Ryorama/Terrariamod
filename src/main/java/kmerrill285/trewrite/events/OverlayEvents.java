@@ -83,6 +83,7 @@ public class OverlayEvents {
 	public static ResourceLocation invisibility_buff = new ResourceLocation(Trewrite.modid, "textures/gui/buffs/invisibility.png");
 	public static ResourceLocation obsidianskin_buff = new ResourceLocation(Trewrite.modid, "textures/gui/buffs/obsidianskin.png");
 	public static ResourceLocation titan_buff = new ResourceLocation(Trewrite.modid, "textures/gui/buffs/titan.png");
+	public static ResourceLocation wellfeef_buff = new ResourceLocation(Trewrite.modid, "textures/gui/buffs/well_fed.png");
 
 	public static boolean debug = false;
 
@@ -306,6 +307,12 @@ public class OverlayEvents {
 					UIRenderer.instance.renderOverlay(battle_buff, 1f, 8, 8, i3 + effectCounter * 10f, j3, -90);
 					effectCounter++;
 				}
+
+				if (Util.renderWellFeed > 0) {
+					UIRenderer.instance.renderOverlay(wellfeef_buff, 1f, 8, 8, i3 + effectCounter * 10f, j3, -90);
+					effectCounter++;
+				}
+
 			}
 		}
 

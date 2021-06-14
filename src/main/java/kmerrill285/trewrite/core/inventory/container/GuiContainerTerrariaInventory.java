@@ -264,11 +264,7 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
            list1.add(itextcomponent.getFormattedText());
         }
 
-        if (selectedSlot.isFavorite) {
-        	list1.add("Marked as favorite");
-        }
-
-		 return list1;
+        return list1;
      }
      
     @Override

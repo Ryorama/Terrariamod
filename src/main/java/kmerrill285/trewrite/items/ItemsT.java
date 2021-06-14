@@ -495,7 +495,11 @@ public class ItemsT {
 	public static ItemT ANY_WOOD = new ItemT().setItemName("ANY_WOOD");
 	public static ItemT ANY_IRON = new ItemT().setItemName("ANY_IRON");
 	public static ItemT ANY_SAND = new ItemT().setItemName("ANY_SAND");
-	
+
+	public static ItemT APPLE;
+	public static ItemT APRICOT;
+	public static ItemT PEACH;
+
 	public static HashMap<String, ItemT> items = new HashMap<String, ItemT>();
 	
 	public static String getStringForItem(Item item) {
@@ -944,7 +948,11 @@ public class ItemsT {
 				EXCALIBUR = new Excalibur(),
 				LIFE_FRUIT = (ItemBlockT) new ItemBlockT(BlocksT.LIFE_FRUIT, "life_fruit").setMaxStack(99),
 				CLOUD = new ItemBlockT(BlocksT.CLOUD, "cloud"),
-				LUCKY_HORSESHOE = new LuckyHorseshoe()
+				LUCKY_HORSESHOE = new LuckyHorseshoe(),
+				APPLE = new DefaultPotion(new Properties().group(ItemGroup.MATERIALS), "apple", true, true,ScoreboardEvents.WELL_FEED, 15*60).setMaterial().setBuySell(100).setMaxStack(99),
+				APRICOT = new DefaultPotion(new Properties().group(ItemGroup.MATERIALS), "apricot", true, true,ScoreboardEvents.WELL_FEED, 15*60).setMaterial().setBuySell(100).setMaxStack(99),
+				PEACH = new DefaultPotion(new Properties().group(ItemGroup.MATERIALS), "peach", true, true,ScoreboardEvents.WELL_FEED, 15*60).setMaterial().setBuySell(100).setMaxStack(99)
+
 
 				);
 		Recipes.addAllRecipes();
