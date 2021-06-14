@@ -31,6 +31,7 @@ public class KeyRegistry {
    public static KeyBinding hotbar9;
    public static KeyBinding clearSummons;
    public static KeyBinding favorite_item;
+   public static KeyBinding autoEquip;
 
    public static void registerKeys() {
       try {
@@ -62,6 +63,7 @@ public class KeyRegistry {
       drop = registerKeybinding(new KeyBinding("key.trewrite.drop.desc", 81, "key.trewrite.category"));
       clearSummons = registerKeybinding(new KeyBinding("key.trewrite.clearsummons.desc", 75, "key.trewrite.category"));
       favorite_item = registerKeybinding(new KeyBinding("key.trewrite.favorite_item.desc", 342, "key.trewrite.category"));
+      autoEquip = registerKeybinding(new KeyBinding("key.trewrite.auto_equip.desc", 341, "key.trewrite.category"));
    }
 
    private static KeyBinding registerKeybinding(KeyBinding key) {

@@ -47,14 +47,14 @@ public class TerrariaWorldType extends WorldType {
 
 	        biomeProviderSettings.setGeneratorSettings(overworldGenSettings);	
 //	        biomeProviderSettings.setBiome(BiomeT.LOWLANDS);
-	        
+
 	        if (Util.stacked_dimensions == false) {
 	        	return new TerrariaChunkGenerator(world, new TerrariaBiomeProvider(biomeProviderSettings), overworldGenSettings);
 	        }
 	        else {
 	        	return new TerrariaChunkGenerator2(world, new TerrariaBiomeProvider(biomeProviderSettings), overworldGenSettings);
-	        }    
-    	}
+	        }
+		}
     	
 //    	else if (world.getDimension().getType() == Dimensions.THE_SKY) {
 //    		System.out.println("skai");

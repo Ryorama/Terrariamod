@@ -1,7 +1,10 @@
 package kmerrill285.trewrite.core.client;
 
 import kmerrill285.trewrite.Trewrite;
+import kmerrill285.trewrite.core.inventory.InventoryTerraria;
+import kmerrill285.trewrite.core.inventory.container.ContainerTerrariaInventory;
 import kmerrill285.trewrite.events.ScoreboardEvents;
+import kmerrill285.trewrite.items.Armor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -49,12 +52,38 @@ public class TerrariaUIManager {
         PlayerEntity player = Minecraft.getInstance().player;
 
         if (player != null) {
+
+            int armor = player.getTotalArmorValue();
+
+            int ironskin = ScoreboardEvents.getScore(player.getWorldScoreboard(), player, ScoreboardEvents.IRONSKIN).getScorePoints();
+            if (ironskin > 0) {
+                armor += 8;
+            }
+
+            int weak = ScoreboardEvents.getScore(player.getWorldScoreboard(), player, ScoreboardEvents.WEAK).getScorePoints();
+            if (weak > 0) {
+                armor -= 8;
+            }
+
+            InventoryTerraria inventory = ContainerTerrariaInventory.inventory;
+            if (inventory != null) {
+
+                for (int i = 0; i < 3; i++) {
+                    if (inventory.armor[i].stack != null) {
+                        if (inventory.armor[i].stack.item instanceof Armor) {
+                            Armor a = (Armor)inventory.armor[i].stack.item;
+                            armor += a.getDefense(inventory.armor);
+                        }
+                    }
+                }
+            }
+
             UIRenderer.instance.renderOverlay(shield, 50, 16, 16, (int)(scaledWidth - 63), 230, -90);
 
             if ((int)player.getAttribute(SharedMonsterAttributes.ARMOR).getValue() >= 10) {
-                Minecraft.getInstance().ingameGUI.drawString(Minecraft.getInstance().fontRenderer, Integer.toString((int)player.getAttribute(SharedMonsterAttributes.ARMOR).getValue()), (int)(scaledWidth - 56), 233, 0xffffff);
+                Minecraft.getInstance().ingameGUI.drawString(Minecraft.getInstance().fontRenderer, Integer.toString(armor), (int)(scaledWidth - 54), 233, 0xffffff);
             } else {
-                Minecraft.getInstance().ingameGUI.drawString(Minecraft.getInstance().fontRenderer, Integer.toString((int)player.getAttribute(SharedMonsterAttributes.ARMOR).getValue()), (int)(scaledWidth - 58), 233,0xffffff);
+                Minecraft.getInstance().ingameGUI.drawString(Minecraft.getInstance().fontRenderer, Integer.toString(armor), (int)(scaledWidth - 58), 233,0xffffff);
             }
         }
     }

@@ -42,12 +42,7 @@ import kmerrill285.trewrite.core.sounds.SoundsT;
 import kmerrill285.trewrite.crafting.CraftingRecipe;
 import kmerrill285.trewrite.crafting.Recipes;
 import kmerrill285.trewrite.entities.EntityItemT;
-import kmerrill285.trewrite.items.Arrow;
-import kmerrill285.trewrite.items.Bow;
-import kmerrill285.trewrite.items.Bullet;
-import kmerrill285.trewrite.items.Gun;
-import kmerrill285.trewrite.items.ItemT;
-import kmerrill285.trewrite.items.ItemsT;
+import kmerrill285.trewrite.items.*;
 import kmerrill285.trewrite.items.modifiers.ItemModifier;
 import kmerrill285.trewrite.items.terraria.clickable.Clickable;
 import kmerrill285.trewrite.items.terraria.loot_bags.LootBag;
@@ -79,6 +74,7 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 	public ResourceLocation slot_texture2 = new ResourceLocation(Trewrite.modid, "textures/gui/slot2.png");
 	public ResourceLocation slot_texture3 = new ResourceLocation(Trewrite.modid, "textures/gui/slot3.png");
 	public ResourceLocation slot_texture4 = new ResourceLocation(Trewrite.modid, "textures/gui/slot4.png");
+	public ResourceLocation slot_selected = new ResourceLocation(Trewrite.modid, "textures/gui/slot_selected.png");
 	public ResourceLocation trash_slot = new ResourceLocation(Trewrite.modid, "textures/gui/trash_slot.png");
 	public ResourceLocation trash_icon = new ResourceLocation(Trewrite.modid, "textures/gui/trash.png");
 	public ResourceLocation fav = new ResourceLocation(Trewrite.modid, "textures/gui/fav.png");
@@ -107,7 +103,7 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
     		ACCESSORY_TOPLEFT = {197, 71}, CRAFTING_TOPLEFT = {120, 8}, ICONS = {69, 168};
     
     private int accessory = 0, trash = 1, dye = 2, vanity = 3, helmet = 4, chestplate = 5, leggings = 6, hat = 7, shirt = 8, pants = 9;
-    
+
     public  ArrayList<CraftingRecipe> recipes = new ArrayList<CraftingRecipe>();
     public  ArrayList<CraftingRecipe> availableRecipes = new ArrayList<CraftingRecipe>();
     public CraftingRecipe selectedRecipe = null;
@@ -268,7 +264,11 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
            list1.add(itextcomponent.getFormattedText());
         }
 
-        return list1;
+        if (selectedSlot.isFavorite) {
+        	list1.add("Marked as favorite");
+        }
+
+		 return list1;
      }
      
     @Override
@@ -307,17 +307,14 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 		int i = 17;
 		int j = 27;
 
-		int altPress = 0;
-		boolean altDown = false;
-
 		minecraft.fontRenderer.drawString("Inventory", 17, 1, 0xffffff);
 		for (int m = 0; m < InventoryTerraria.MAIN_SLOTS; m++) {
-			if (inventory.main[m].isFavorite) {
-				UIRenderer.instance.renderOverlay(fav, 100f, 16, 16, i, j, -90);
-			}
 			UIRenderer.instance.renderOverlay(slot_texture, 0.75f, 16, 16, i, j, -90);
 			if (inventory.main[m].stack != null) {
 				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.main[m].stack, i, j);
+			}
+			if (inventory.main[m].isFavorite) {
+				UIRenderer.instance.renderOverlay(fav, 100f, 16, 16, i, j, -90);
 			}
 			if(mouseInRect(i, j, 16, 16, mouseX, mouseY)) {
 				selectedSlot = inventory.main[m];
@@ -343,12 +340,12 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 		int j2 = 10;
 
 		for (int m = 0; m < InventoryTerraria.HOTBAR_SLOTS; m++) {
-			if (inventory.hotbar[m].isFavorite) {
-				UIRenderer.instance.renderOverlay(fav, 100f, 16, 16, i2, j2, -90);
-			}
 			UIRenderer.instance.renderOverlay(slot_texture, 0.75f, 16, 16, i2, j2, -90);
 			if (inventory.hotbar[m].stack != null) {
 				GuiContainerTerrariaInventory.renderItemIntoGUI(inventory.hotbar[m].stack, i2, j2);
+			}
+			if (inventory.hotbar[m].isFavorite) {
+				UIRenderer.instance.renderOverlay(fav, 100f, 16, 16, i2, j2, -90);
 			}
 			if(mouseInRect(i2, j2, 16, 16, mouseX, mouseY)) {
 				selectedSlot = inventory.hotbar[m];
@@ -521,7 +518,32 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 				}
 			}
 		}
-    }
+
+		selectedRecipe = null;
+
+		int i10 = 17;
+		int j10 = 99;
+
+		selectedRecipe = null;
+
+		for (int r = 0; r <= availableRecipes.size() - 1; r++) {
+			if (availableRecipes.size() > 0) {
+				if (selectedRecipe == availableRecipes.get(r)) {
+					UIRenderer.instance.renderOverlay(slot_selected, 0.75f, 16, 16, i10, j10, -90);
+					renderItemIntoGUI(availableRecipes.get(r).output, i10, j10);
+				} else if (selectedRecipe != availableRecipes.get(r)) {
+					UIRenderer.instance.renderOverlay(slot_texture, 0.75f, 16, 16, i10, j10, -90);
+					renderItemIntoGUI(availableRecipes.get(r).output, i10, j10);
+				}
+
+				if (mouseInRect(i10, j10, 16, 16, mouseX, mouseY)) {
+					selectedRecipe = availableRecipes.get(r);
+				}
+
+				j10 += 17;
+			}
+		}
+	}
     
     public static void drawTexturedRectangle(int x, int y, int u, int v, int w, int h) {
     	GlStateManager.disableLighting();
@@ -538,24 +560,20 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
     	GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();
         
-    	GlStateManager.disableLighting();
         GlStateManager.disableDepthTest();
         GlStateManager.disableBlend();
         Minecraft.getInstance().getItemRenderer().renderItemIntoGUI(item.itemForRender, x, y);
         GlStateManager.enableBlend();
-        GlStateManager.enableLighting();
         GlStateManager.enableDepthTest();
         
     	RenderHelper.disableStandardItemLighting();
         GlStateManager.disableRescaleNormal();
         
     	if (item.size > 1) {
-    		GlStateManager.disableLighting();
             GlStateManager.disableDepthTest();
             GlStateManager.disableBlend();
             Minecraft.getInstance().fontRenderer.drawStringWithShadow(""+item.size, x + 16 - (""+item.size).length()*5.5f, y+8, 0xFFFFFF);
             GlStateManager.enableBlend();
-            GlStateManager.enableLighting();
             GlStateManager.enableDepthTest();
             // Fixes opaque cooldown overlay a bit lower
             // TODO: check if enabled blending still screws things up down the line.
@@ -563,18 +581,62 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
     	}
 
     	if (item.renderStack > 0) {
-    		GlStateManager.disableLighting();
             GlStateManager.disableDepthTest();
             GlStateManager.disableBlend();
             Minecraft.getInstance().fontRenderer.drawStringWithShadow(""+item.renderStack, x + 16 - (""+item.renderStack).length()*5.5f, y+8, 0xFFFFFF);
             GlStateManager.enableBlend();
-            GlStateManager.enableLighting();
             GlStateManager.enableDepthTest();
             // Fixes opaque cooldown overlay a bit lower
             // TODO: check if enabled blending still screws things up down the line.
             GlStateManager.enableBlend();
     	}
     }
+
+	public static void renderItemIntoGUI(ItemStackT item, int x, int y, int width, int height) {
+		//drawString(instance.fontRenderer, ""+Util.watchTime, 5, 10 + i * textSize, 0xFFFFFF);
+		GlStateManager.popMatrix();
+		GlStateManager.scalef(width, height, 0);
+		GlStateManager.enableRescaleNormal();
+		RenderHelper.enableGUIStandardItemLighting();
+
+		GlStateManager.disableLighting();
+		GlStateManager.disableDepthTest();
+		GlStateManager.disableBlend();
+		Minecraft.getInstance().getItemRenderer().renderItemIntoGUI(item.itemForRender, x, y);
+		GlStateManager.enableBlend();
+		GlStateManager.enableLighting();
+		GlStateManager.enableDepthTest();
+
+		RenderHelper.disableStandardItemLighting();
+		GlStateManager.disableRescaleNormal();
+
+		if (item.size > 1) {
+			GlStateManager.disableLighting();
+			GlStateManager.disableDepthTest();
+			GlStateManager.disableBlend();
+			Minecraft.getInstance().fontRenderer.drawStringWithShadow(""+item.size, x + 16 - (""+item.size).length()*5.5f, y+8, 0xFFFFFF);
+			GlStateManager.enableBlend();
+			GlStateManager.enableLighting();
+			GlStateManager.enableDepthTest();
+			// Fixes opaque cooldown overlay a bit lower
+			// TODO: check if enabled blending still screws things up down the line.
+			GlStateManager.enableBlend();
+		}
+
+		if (item.renderStack > 0) {
+			GlStateManager.disableLighting();
+			GlStateManager.disableDepthTest();
+			GlStateManager.disableBlend();
+			Minecraft.getInstance().fontRenderer.drawStringWithShadow("" + item.renderStack, x + 16 - ("" + item.renderStack).length() * 5.5f, y + 8, 0xFFFFFF);
+			GlStateManager.enableBlend();
+			GlStateManager.enableLighting();
+			GlStateManager.enableDepthTest();
+			// Fixes opaque cooldown overlay a bit lower
+			// TODO: check if enabled blending still screws things up down the line.
+			GlStateManager.enableBlend();
+		}
+		GlStateManager.pushMatrix();
+	}
     
     public static boolean mouseInRect(int x, int y, int width, int height, int mouseX, int mouseY) {
     	return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
@@ -670,15 +732,14 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
     	if (downSelected == true && mouseButton == 0) {
     		page++;
     	}
-    	
-    	
-    	
+
     	if (this.selectedRecipe != null) {
     		//System.out.println("selected recipe");
     		if (inventory.holdingSlot == null || inventory.holdingSlot.stack == null) {
     			//System.out.println("no holding slot");
-        		if (mouseButton == 0) {
-        			inventory.holdingSlot.stack = new ItemStackT(selectedRecipe.output.item, selectedRecipe.output.size, ItemModifier.getRandomModifier(selectedRecipe.output.item));
+        		if (mouseButton == 0 && !KeyRegistry.autoEquip.isKeyDown()) {
+					Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+					inventory.holdingSlot.stack = new ItemStackT(selectedRecipe.output.item, selectedRecipe.output.size, ItemModifier.getRandomModifier(selectedRecipe.output.item));
         			for (ItemStackT stack : selectedRecipe.input) {
         				this.removeItemCrafting(stack);
         			}
@@ -689,7 +750,8 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
         	} else {
         		if (inventory.holdingSlot.stack != null) {
         			if (mouseButton == 0) {
-        				if (inventory.holdingSlot.stack.item == selectedRecipe.output.item) { 
+						Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+						if (inventory.holdingSlot.stack.item == selectedRecipe.output.item) {
         					int maxStack = 0;
             				if (inventory.holdingSlot.stack.item instanceof ItemT) {
             					maxStack = ((ItemT)inventory.holdingSlot.stack.item).maxStack;
@@ -707,7 +769,8 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
             			
             		}
         			if (mouseButton == 1) {
-        				if (inventory.holdingSlot.stack.item == selectedRecipe.output.item) {
+						Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+						if (inventory.holdingSlot.stack.item == selectedRecipe.output.item) {
         					int maxStack = 0;
             				if (inventory.holdingSlot.stack.item instanceof ItemT) {
             					maxStack = ((ItemT)inventory.holdingSlot.stack.item).maxStack;
@@ -796,14 +859,45 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 	        		}
 	        		return true;
 	        	}
-	        }
+    	}
+
+		if (KeyRegistry.autoEquip.isKeyDown()) {
+			if (mouseButton == 0) {
+				if (selectedSlot.stack != null && selectedSlot.stack.item instanceof Armor) {
+					if (((Armor) selectedSlot.stack.item).type == Armor.ArmorType.HEAD) {
+						ItemStackT stack = new ItemStackT(selectedSlot.stack.item, selectedSlot.stack.size, ItemModifier.getModifier(selectedSlot.stack.modifier));
+						inventory.armor[0].stack = stack;
+						selectedSlot.stack = null;
+
+						NetworkHandler.INSTANCE.sendToServer(new CPacketSyncInventoryTerraria(0, selectedSlot.area, selectedSlot.id, selectedSlot.stack));
+						NetworkHandler.INSTANCE.sendToServer(new CPacketSyncInventoryTerraria(0, inventory.armor[0].area,inventory.armor[0].id, inventory.armor[0].stack));
+					} else if (((Armor) selectedSlot.stack.item).type == Armor.ArmorType.CHEST) {
+						ItemStackT stack = new ItemStackT(selectedSlot.stack.item, selectedSlot.stack.size, ItemModifier.getModifier(selectedSlot.stack.modifier));
+						inventory.armor[1].stack = stack;
+						selectedSlot.stack = null;
+
+						NetworkHandler.INSTANCE.sendToServer(new CPacketSyncInventoryTerraria(0, selectedSlot.area, selectedSlot.id, selectedSlot.stack));
+						NetworkHandler.INSTANCE.sendToServer(new CPacketSyncInventoryTerraria(0, inventory.armor[1].area,inventory.armor[1].id, inventory.armor[1].stack));
+					} else if (((Armor) selectedSlot.stack.item).type == Armor.ArmorType.LEGS) {
+						ItemStackT stack = new ItemStackT(selectedSlot.stack.item, selectedSlot.stack.size, ItemModifier.getModifier(selectedSlot.stack.modifier));
+						inventory.armor[2].stack = stack;
+						selectedSlot.stack = null;
+
+						NetworkHandler.INSTANCE.sendToServer(new CPacketSyncInventoryTerraria(0, selectedSlot.area, selectedSlot.id, selectedSlot.stack));
+						NetworkHandler.INSTANCE.sendToServer(new CPacketSyncInventoryTerraria(0, inventory.armor[2].area,inventory.armor[2].id, inventory.armor[2].stack));
+					}
+				}
+				return true;
+			}
+		}
     	
-    	if (mouseButton == 0) {
-			Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false); 
+    	if (mouseButton == 0 && !KeyRegistry.autoEquip.isKeyDown()) {
 			if (inventory.holdingSlot.stack != null && selectedSlot.itemType == ItemType.ACCESSORY) {
-    			boolean a = false;
+				Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+				boolean a = false;
     			if (selectedSlot.stack != null) {
     				if (selectedSlot.stack.item == inventory.holdingSlot.stack.item) {
+
     					a = true;
     				}
     			}
@@ -817,21 +911,25 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
     			}
     		}
     		if (inventory.holdingSlot.stack != null && selectedSlot.isTrashSlot == true) {
-    			ItemStackT stack = new ItemStackT(inventory.holdingSlot.stack.item, inventory.holdingSlot.stack.size, ItemModifier.getModifier(inventory.holdingSlot.stack.modifier));
+				Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+				ItemStackT stack = new ItemStackT(inventory.holdingSlot.stack.item, inventory.holdingSlot.stack.size, ItemModifier.getModifier(inventory.holdingSlot.stack.modifier));
     			selectedSlot.stack = stack;
     			inventory.holdingSlot.stack = null;
     		} else {
-    			if (inventory.holdingSlot.stack == null) {
+				Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+				if (inventory.holdingSlot.stack == null) {
         			if (selectedSlot.stack != null) {
         				inventory.holdingSlot.stack = new ItemStackT(selectedSlot.stack.item, selectedSlot.stack.size, ItemModifier.getModifier(selectedSlot.stack.modifier));
         				selectedSlot.stack = null;
         			}
         		} else {
         			if (selectedSlot.stack == null && selectedSlot.canInteractWith(inventory.holdingSlot)) {
-        				selectedSlot.stack = new ItemStackT(inventory.holdingSlot.stack.item, inventory.holdingSlot.stack.size, ItemModifier.getModifier(inventory.holdingSlot.stack.modifier));
+						Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+						selectedSlot.stack = new ItemStackT(inventory.holdingSlot.stack.item, inventory.holdingSlot.stack.size, ItemModifier.getModifier(inventory.holdingSlot.stack.modifier));
         				inventory.holdingSlot.stack = null;
         			} else {
-        				selectedSlot.takeFromStack(inventory.holdingSlot);
+						Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.GRAB, SoundCategory.PLAYERS, 100, 1, false);
+						selectedSlot.takeFromStack(inventory.holdingSlot);
         			}
         		}
     		}

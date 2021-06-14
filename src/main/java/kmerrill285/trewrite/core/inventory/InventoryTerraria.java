@@ -125,6 +125,9 @@ public class InventoryTerraria {
 	}
 	
 	public InventoryTerraria() {
+
+		float scaledWidth = Minecraft.getInstance().mainWindow.getScaledWidth();
+
 		for (int i = 0; i < HOTBAR_SLOTS; i++) {
 			hotbar[i] = new InventorySlot(ItemType.ANY, HOTBAR_LEFT[0] + i * 16 + i * 2, HOTBAR_LEFT[1], 1, i);
 		}
@@ -136,9 +139,9 @@ public class InventoryTerraria {
 			}
 		}
 		
-		armor[0] = new InventorySlot(ItemType.HEAD, TOP_ARMOR[0], TOP_ARMOR[1], 2, 0);
-		armor[1] = new InventorySlot(ItemType.CHESTPLATE, TOP_ARMOR[0], TOP_ARMOR[1] + 16 + 2, 2, 1);
-		armor[2] = new InventorySlot(ItemType.LEGGINGS, TOP_ARMOR[0], TOP_ARMOR[1] + 16 * 2 + 4, 2, 2);
+		armor[0] = new InventorySlot(ItemType.HEAD, (int)(scaledWidth - 17), 120, 2, 0);
+		armor[1] = new InventorySlot(ItemType.CHESTPLATE, (int)(scaledWidth - 17), 137, 2, 1);
+		armor[2] = new InventorySlot(ItemType.LEGGINGS, (int)(scaledWidth - 17), 154, 2, 2);
 		
 		armorVanity[0] = new InventorySlot(ItemType.HEAD, TOP_ARMOR_VANITY[0], TOP_ARMOR_VANITY[1], 3, 0);
 		armorVanity[1] = new InventorySlot(ItemType.CHESTPLATE, TOP_ARMOR_VANITY[0], TOP_ARMOR_VANITY[1] + 16 + 2, 3, 1);
@@ -149,7 +152,7 @@ public class InventoryTerraria {
 		}
 		
 		for (int i = 0; i < ACCESSORY_SLOTS; i++) {
-			accessory[i] = new InventorySlot(ItemType.ACCESSORY, ACCESSORY_TOPLEFT[0] + 16 * 2 + 4, ACCESSORY_TOPLEFT[1] + i * 16 + i * 2, 5, i);
+			accessory[i] = new InventorySlot(ItemType.ACCESSORY, (int)(scaledWidth - 17), 154 + i * 17, 5, i);
 		}
 
 		for (int i = 0; i < VANITY_ACCESSORY; i++) {
@@ -250,12 +253,13 @@ public class InventoryTerraria {
 			
 			if (j == 0) {
 				if (i < MAIN_SLOTS) {
-					//System.out.println("LOADING MAIN SLOT " + i);
+					System.out.println("LOADING MAIN SLOT " + i);
 					if (data[0].equals("null") == false || line.equals("null") == false) {
 						String item = data[0];
 						int stack = Integer.parseInt(data[1]);
 						int modifier = Integer.parseInt(data[2]);
 						main[Integer.parseInt(data[3])].stack = new ItemStackT(ItemsT.getItemFromString(item), stack, ItemModifier.getModifier(modifier));
+						main[Integer.parseInt(data[3])].isFavorite = Boolean.parseBoolean(data[4]);
 						//System.out.println("SERVER: MAIN " + i + " SET TO " + item);
 					}
 					i++;
@@ -272,6 +276,7 @@ public class InventoryTerraria {
 						int stack = Integer.parseInt(data[1]);
 						int modifier = Integer.parseInt(data[2]);
 						hotbar[Integer.parseInt(data[3])].stack = new ItemStackT(ItemsT.getItemFromString(item), stack, ItemModifier.getModifier(modifier));
+						hotbar[Integer.parseInt(data[3])].isFavorite = Boolean.parseBoolean(data[4]);
 						//System.out.println("SERVER: HOTBAR " + i + " SET TO " + item);
 					}
 					i++;
@@ -393,11 +398,10 @@ public class InventoryTerraria {
 		String savedata = "";
 		
 		for (int i = 0; i < main.length; i++) {
-			System.out.println(main.length);
 			if (main[i].stack == null)
 				savedata += "null\n";
 			else {
-				savedata += ItemsT.getStringForItem(main[i].stack.item) + "," + main[i].stack.size + "," + main[i].stack.modifier + "," + i + "\n";
+				savedata += ItemsT.getStringForItem(main[i].stack.item) + "," + main[i].stack.size + "," + main[i].stack.modifier + "," + i + "," + main[i].isFavorite + "\n";
 				System.out.println(i);
 			}
 		}
@@ -406,7 +410,7 @@ public class InventoryTerraria {
 			if (hotbar[i].stack == null)
 				savedata += "null\n";
 			else
-			savedata += ItemsT.getStringForItem(hotbar[i].stack.item) + "," + hotbar[i].stack.size + "," + hotbar[i].stack.modifier + "," + i +  "\n";
+			savedata += ItemsT.getStringForItem(hotbar[i].stack.item) + "," + hotbar[i].stack.size + "," + hotbar[i].stack.modifier + "," + i + "," + hotbar[i].isFavorite + "\n";
 		}
 		
 		for (int i = 0; i < armor.length; i++) {

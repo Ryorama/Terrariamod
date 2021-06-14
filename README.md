@@ -1,5 +1,6 @@
+#TerrariaMod
 
-This is a mod based off a game called Terraria. It adds several new things from the game including items, tools, bosses. Currently, it is playable up to the destroyer, but it will be playable up to moon lord by the end of the v1.1 update! 
+TerrariaMod is a mod based off a game called Terraria. It adds several new things from the game including items, tools, bosses. Currently, it is playable up to the destroyer, but it will be playable up to moon lord by the end of the v1.1 update! 
 
 
 Join the Terrariamod discord to see development progress and participate in polls for the mod

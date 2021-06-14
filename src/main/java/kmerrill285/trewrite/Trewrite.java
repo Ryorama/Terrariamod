@@ -180,15 +180,14 @@ public class Trewrite
 			if (Util.stacked_dimensions == true) {
 				ResourceLocation overworld = new ResourceLocation("minecraft:custom_overworld");
 				DimensionConfigs.configs.clear();
-				DimensionConfigs.configs.add(new DimensionConfiguration(overworld, Dimensions.skyLocation,Dimensions.undergroundLocation, 0, 127));
-				DimensionConfigs.configs.add(new DimensionConfiguration(Dimensions.skyLocation, null,Dimensions.undergroundLocation, 0, 127));
+				DimensionConfigs.configs.add(new DimensionConfiguration(overworld, Dimensions.skyLocation, Dimensions.undergroundLocation, 0, 127));
+				DimensionConfigs.configs.add(new DimensionConfiguration(Dimensions.skyLocation, null, Dimensions.undergroundLocation, 0, 127));
 				DimensionConfigs.configs.add(new DimensionConfiguration(Dimensions.undergroundLocation, overworld, Dimensions.underworldLocation, 0, 127));
 				DimensionConfigs.configs.add(new DimensionConfiguration(Dimensions.underworldLocation, Dimensions.undergroundLocation, null, 0, 127));
 				once = true;
 			}
 			once = true;
 		}
-
 		
 		StackedDimensions.onWorldTick(event);
 		
