@@ -1,3 +1,6 @@
+/*
+CLASS Commented out by PugzAreCute. Reason: Broken code. Commenting to get CI to work again
+
 package com.ryorama.terrariamod.entity.summons;
 
 import java.util.ArrayList;
@@ -99,3 +102,4 @@ public class EntityFinchSummon extends LivingEntity {
 	}
 
 }
+*/
