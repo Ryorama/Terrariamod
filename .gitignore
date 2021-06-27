@@ -31,3 +31,7 @@ bin/
 # fabric
 
 run/
+[Dd]esktop.ini
+.Spotlight-V100
+.Trashes
+Thumbs.db
