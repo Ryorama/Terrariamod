@@ -13,8 +13,8 @@
     "sources": ""
   },
 
-  "license": "",
-  "icon": "",
+  "license": "CC0 1.0 Universal",
+  "icon": "placeholder.png",
   "accessWidener" : "terrariamod.accesswidener",
 
   "environment": "*",

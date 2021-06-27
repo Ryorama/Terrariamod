@@ -35,13 +35,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static String modid = "terrariamod";
 	
-	private static final DimensionType MODIFIED_OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, 
-			-256,
-			256, 
-			256, 
-			HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(),
-			DimensionType.OVERWORLD_ID, 0.0F);
-	
+	private static final DimensionType MODIFIED_OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -256, 256, 256, HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(), DimensionType.OVERWORLD_ID, 0.0F);
 	
 	@Override
 	public void onInitialize() {
