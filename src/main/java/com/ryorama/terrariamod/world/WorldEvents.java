@@ -1,3 +1,6 @@
+/*
+CLASS Commented out by PugzAreCute. Reason: Incomplete code. Commenting to get CI to work again
+
 package com.ryorama.terrariamod.world;
 
 import java.util.HashMap;
@@ -27,14 +30,11 @@ public class WorldEvents {
 	}
 	
 	public static void worldUnloadEvent() {
-		Entity
+		//Entity //PUGZARECUTE: Looks like uncompleted code?
 		WorldStateHolder.get(event.getWorld()).markDirty();
 	}
 	
 	public static void onEntityJoinWorld() {
-					
-		
-		
 		 if (event.getEntity() instanceof PlayerEntity) {
 			 if (WorldStateHolder.get(event.getWorld()).firstJoin == false) { 
 	             WorldStateHolder.get(event.getWorld()).firstJoin = true;
@@ -42,4 +42,4 @@ public class WorldEvents {
 		 }
 	}
 	
-}
+}*/
