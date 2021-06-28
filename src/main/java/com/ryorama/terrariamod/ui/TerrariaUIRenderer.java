@@ -11,9 +11,9 @@ import net.minecraft.util.Identifier;
 
 public class TerrariaUIRenderer {
 	
-	public static Identifier health_icon = new Identifier(TerrariaMod.modid, "textures/ui/heart.png");
-	public static Identifier shield = new Identifier(TerrariaMod.modid, "textures/ui/shield.png");
-	public static Identifier mana = new Identifier(TerrariaMod.modid, "textures/ui/mana.png");
+	public static Identifier health_icon = new Identifier(TerrariaMod.MODID, "textures/ui/heart.png");
+	public static Identifier shield = new Identifier(TerrariaMod.MODID, "textures/ui/shield.png");
+	public static Identifier mana = new Identifier(TerrariaMod.MODID, "textures/ui/mana.png");
 
 	public static PlayerEntity player;
 	

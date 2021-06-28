@@ -13,16 +13,16 @@ public class ModelDemon extends AnimatedGeoModel {
 	
 	@Override
 	public Identifier getAnimationFileLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "animations/demon.animation.json");
+		return new Identifier(TerrariaMod.MODID, "animations/demon.animation.json");
 	}
 	
 	@Override
 	public Identifier getModelLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "geo/demon.geo.json");
+		return new Identifier(TerrariaMod.MODID, "geo/demon.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "textures/entity/demon.png");
+		return new Identifier(TerrariaMod.MODID, "textures/entity/demon.png");
 	}
 }

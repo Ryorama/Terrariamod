@@ -1,15 +1,9 @@
 package com.ryorama.terrariamod.blocks;
 
-import java.util.Random;
-
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.items.ItemsT;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
 import net.minecraft.block.Material;
-import net.minecraft.block.TorchBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -51,38 +45,38 @@ public class BlocksT {
 	public static TreeSegment FOREST_TOP = (TreeSegment) new TreeSegment(FabricBlockSettings.of(Material.WOOD), 15, 15).setAxe(true);
 	
 	public static void init() {
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "grass_block"), GRASS_BLOCK);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "corrupted_grass"), CORRUPTED_GRASS_BLOCK);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "jungle_grass"), JUNGLE_GRASS);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "dirt_block"), DIRT_BLOCK);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "stone_block"), STONE_BLOCK);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "ebonstone"), EBONSTONE);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "mud"), MUD);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "sand"), SAND);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "snow"), SNOW);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "ash"), ASH);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "marble"), MARBLE);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "granite"), GRANITE);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "mushroom_grass"), MUSHROOM_GRASS);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "wood"), WOOD);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "wooden_beam"), WOODEN_BEAM);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "life_crystal_block"), LIFE_CRYSTAL_BLOCK);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "vine"), VINE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "grass_block"), GRASS_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "corrupted_grass"), CORRUPTED_GRASS_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "jungle_grass"), JUNGLE_GRASS);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "dirt_block"), DIRT_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "stone_block"), STONE_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "ebonstone"), EBONSTONE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "mud"), MUD);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "sand"), SAND);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "snow"), SNOW);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "ash"), ASH);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "marble"), MARBLE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "granite"), GRANITE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "mushroom_grass"), MUSHROOM_GRASS);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "wood"), WOOD);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "wooden_beam"), WOODEN_BEAM);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "life_crystal_block"), LIFE_CRYSTAL_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "vine"), VINE);
 
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "empty_bottle"), EMPTY_BOTTLE);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "mushroom"), MUSHROOM);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "jungle_spores"), JUNGLE_SPORES);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "empty_bottle"), EMPTY_BOTTLE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "mushroom"), MUSHROOM);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "jungle_spores"), JUNGLE_SPORES);
 		
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "copper_ore"), COPPER_ORE);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "iron_ore"), IRON_ORE);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "gold_ore"), GOLD_ORE);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "hellstone_ore"), HELLSTONE_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "copper_ore"), COPPER_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "iron_ore"), IRON_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "gold_ore"), GOLD_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "hellstone_ore"), HELLSTONE_ORE);
 
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "ruby_ore"), RUBY_ORE);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "sapphire_ore"), SAPPHIRE_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "ruby_ore"), RUBY_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "sapphire_ore"), SAPPHIRE_ORE);
 		
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "forest_stump"), FOREST_STUMP);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "forest_stem"), FOREST_STEM);
-		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.modid, "forest_top"), FOREST_TOP);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "forest_stump"), FOREST_STUMP);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "forest_stem"), FOREST_STEM);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "forest_top"), FOREST_TOP);
 	}
 }

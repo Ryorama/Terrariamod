@@ -8,19 +8,17 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 
 public class TerrariaInventoryScreen extends AbstractInventoryScreen<TerrariaInventoryScreen.TerrariaInventoryScreenHandler> {
 	
-	public static Identifier SLOT_TEXTURE = new Identifier(TerrariaMod.modid, "textures/gui/inventory/slot");
+	public static Identifier SLOT_TEXTURE = new Identifier(TerrariaMod.MODID, "textures/gui/inventory/slot");
 	
 	public TerrariaInventoryScreen(PlayerEntity player) {
 		super(new TerrariaInventoryScreen.TerrariaInventoryScreenHandler(), player.getInventory(), LiteralText.EMPTY);

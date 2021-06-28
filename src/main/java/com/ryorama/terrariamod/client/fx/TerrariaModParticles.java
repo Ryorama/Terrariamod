@@ -12,7 +12,7 @@ public class TerrariaModParticles {
 	public static final ParticleType<DamageParticleData> DAMAGE = new DamageParticleType();
 	
 	public static void init() {
-		Registry.register(Registry.PARTICLE_TYPE, new Identifier(TerrariaMod.modid, "damage_indicator"), DAMAGE);
+		Registry.register(Registry.PARTICLE_TYPE, new Identifier(TerrariaMod.MODID, "damage_indicator"), DAMAGE);
 	}
 
 	public static class FactoryHandler {

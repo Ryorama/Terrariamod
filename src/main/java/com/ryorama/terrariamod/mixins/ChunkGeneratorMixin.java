@@ -3,7 +3,6 @@ package com.ryorama.terrariamod.mixins;
 import java.util.BitSet;
 import java.util.Random;
 
-import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,7 +23,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.world.ChunkRegion;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.SimpleRandom;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -247,7 +245,7 @@ public class ChunkGeneratorMixin {
 						if (region.getRandom().nextInt(3250) == 0) {
 							if (region.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.GRASS_BLOCK.getDefaultState()) {
 								placeStuff(region, Blocks.CHEST.getDefaultState(), region.getRandom(), pos);
-								LootableContainerBlockEntity.setLootTable(region, region.getRandom(), pos, new Identifier(TerrariaMod.modid, "loot_tables/chests/surface_chest"));
+								LootableContainerBlockEntity.setLootTable(region, region.getRandom(), pos, new Identifier(TerrariaMod.MODID, "loot_tables/chests/surface_chest"));
 							}
 						}
 						

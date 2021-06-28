@@ -13,16 +13,16 @@ public class ModelEaterOfSouls extends AnimatedGeoModel {
 	
 	@Override
 	public Identifier getAnimationFileLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "animations/eater_of_souls.animation.json");
+		return new Identifier(TerrariaMod.MODID, "animations/eater_of_souls.animation.json");
 	}
 	
 	@Override
 	public Identifier getModelLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "geo/eater_of_souls.geo.json");
+		return new Identifier(TerrariaMod.MODID, "geo/eater_of_souls.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "textures/entity/eater_of_souls.png");
+		return new Identifier(TerrariaMod.MODID, "textures/entity/eater_of_souls.png");
 	}
 }

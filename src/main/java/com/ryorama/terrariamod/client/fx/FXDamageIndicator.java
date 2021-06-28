@@ -1,24 +1,15 @@
 package com.ryorama.terrariamod.client.fx;
 
-import org.lwjgl.opengl.GL11;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.client.core.ExtendedTexture;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.ParticleTextureSheet;
 import net.minecraft.client.particle.SpriteBillboardParticle;
 import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.render.VertexFormat.DrawMode;
-import net.minecraft.client.texture.AbstractTexture;
-import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
@@ -26,7 +17,7 @@ import net.minecraft.util.Identifier;
 
 public class FXDamageIndicator extends SpriteBillboardParticle {
 
-	public static Identifier sprite = new Identifier(TerrariaMod.modid, "textures/particle/damage_one.png");
+	public static Identifier sprite = new Identifier(TerrariaMod.MODID, "textures/particle/damage_one.png");
 	
 	public FXDamageIndicator(ClientWorld world, double x, double y, double z) {
 		super(world, x, y, z);

@@ -33,7 +33,7 @@ import software.bernie.geckolib3.GeckoLib;
 
 public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
-	public static String modid = "terrariamod";
+	public static final String MODID = "terrariamod";
 	
 	private static final DimensionType MODIFIED_OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -256, 256, 256, HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(), DimensionType.OVERWORLD_ID, 0.0F);
 	
@@ -85,11 +85,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		TerrariaUIRenderer.renderTerrariaMana();
 				
 		TMusicTicker.musicChanged = true;
-		ClientTickEvents.START_CLIENT_TICK.register(client -> {
-		
-			TMusicTicker.onTickUpdate();
-			
-		});
+		ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
 		
 		/*
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {

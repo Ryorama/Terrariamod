@@ -13,16 +13,16 @@ public class ModelGraniteElemental extends AnimatedGeoModel {
 	
 	@Override
 	public Identifier getAnimationFileLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "animations/granite_elemental.animation.json");
+		return new Identifier(TerrariaMod.MODID, "animations/granite_elemental.animation.json");
 	}
 	
 	@Override
 	public Identifier getModelLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "geo/granite_elemental.geo.json");
+		return new Identifier(TerrariaMod.MODID, "geo/granite_elemental.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "textures/entity/granite_elemental.png");
+		return new Identifier(TerrariaMod.MODID, "textures/entity/granite_elemental.png");
 	}
 }

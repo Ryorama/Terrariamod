@@ -1,7 +1,6 @@
 package com.ryorama.terrariamod.entity.hostile.bosses;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.TerrariaMod;
@@ -9,13 +8,10 @@ import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.IBoss;
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.argument.EntityAnchorArgumentType.EntityAnchor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.FlyingEntity;
@@ -40,6 +36,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatable {
+	//PugzAreCute: Looks like constructor missing, Error: Error:(38, 14) All entities must have a constructor that takes one net.minecraft.world.World parameter.
 
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
 	
@@ -429,7 +426,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 
 	@Override
 	public Identifier bossIcon() {
-		return new Identifier(TerrariaMod.modid, "textures/ui/boss_icons/eoc_icon.png");
+		return new Identifier(TerrariaMod.MODID, "textures/ui/boss_icons/eoc_icon.png");
 	}
 
 	@Override

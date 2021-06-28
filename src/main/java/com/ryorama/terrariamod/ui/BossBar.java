@@ -1,6 +1,5 @@
 package com.ryorama.terrariamod.ui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.ryorama.terrariamod.TerrariaMod;
 
 import net.fabricmc.api.EnvType;
@@ -8,13 +7,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexFormat;
-import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
@@ -22,9 +14,9 @@ public class BossBar extends DrawableHelper {
 		
 	public static BossBar instance = new BossBar();
 	
-	public static Identifier boss_health_bar = new Identifier(TerrariaMod.modid, "textures/ui/boss_bar_background.png");
-	public static Identifier boss_health_bar_progress_bg = new Identifier(TerrariaMod.modid, "textures/ui/boss_bar_progress.png");
-	public static Identifier boss_health_bar_progress_fg = new Identifier(TerrariaMod.modid, "textures/ui/boss_bar_forground.png");
+	public static Identifier boss_health_bar = new Identifier(TerrariaMod.MODID, "textures/ui/boss_bar_background.png");
+	public static Identifier boss_health_bar_progress_bg = new Identifier(TerrariaMod.MODID, "textures/ui/boss_bar_progress.png");
+	public static Identifier boss_health_bar_progress_fg = new Identifier(TerrariaMod.MODID, "textures/ui/boss_bar_forground.png");
 	public static Identifier boss_health_bar_icon;
 
 	public static boolean isRendering = false;

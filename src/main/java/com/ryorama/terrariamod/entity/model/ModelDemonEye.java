@@ -13,16 +13,16 @@ public class ModelDemonEye extends AnimatedGeoModel {
 	
 	@Override
 	public Identifier getAnimationFileLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "animations/demon_eye.animation.json");
+		return new Identifier(TerrariaMod.MODID, "animations/demon_eye.animation.json");
 	}
 	
 	@Override
 	public Identifier getModelLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "geo/demon_eye.geo.json");
+		return new Identifier(TerrariaMod.MODID, "geo/demon_eye.geo.json");
 	}
 
 	@Override
 	public Identifier getTextureLocation(Object entity) {
-		return new Identifier(TerrariaMod.modid, "textures/test");
+		return new Identifier(TerrariaMod.MODID, "textures/test");
 	}
 }

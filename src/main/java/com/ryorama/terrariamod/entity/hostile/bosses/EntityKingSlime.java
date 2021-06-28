@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.client.fx.FXDamageIndicator;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.entity.IBoss;
@@ -13,11 +12,6 @@ import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.command.argument.EntityAnchorArgumentType.EntityAnchor;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -33,7 +27,6 @@ import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -44,6 +37,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable {
+	//PugzAreCute: Looks like constructor missing, Error: Error:(39, 14) All entities must have a constructor that takes one net.minecraft.world.World parameter.
 	
 	public EntityKingSlime(EntityType<? extends LivingEntity> entityType, World worldIn) {
 		super(entityType, worldIn);
@@ -316,7 +310,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 
 	@Override
 	public Identifier bossIcon() {
-		return new Identifier(TerrariaMod.modid, "textures/ui/boss_icons/kingslime_icon.png");
+		return new Identifier(TerrariaMod.MODID, "textures/ui/boss_icons/kingslime_icon.png");
 	}
 
 	@Override
