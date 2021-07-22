@@ -1,6 +1,5 @@
 package kmerrill285.trewrite.core.client.particles;
 
-import com.sun.javafx.geom.Vec2d;
 import kmerrill285.trewrite.Trewrite;
 import kmerrill285.trewrite.core.client.ParticleRegistry;
 import kmerrill285.trewrite.world.WorldStateHolder;
