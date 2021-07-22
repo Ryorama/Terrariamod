@@ -522,8 +522,11 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 
 		selectedRecipe = null;
 
+		int maxRecipesShown = 5;
+
 		for (int r = 0; r <= availableRecipes.size() - 1; r++) {
 			if (availableRecipes.size() > 0) {
+
 				if (selectedRecipe == availableRecipes.get(r)) {
 					UIRenderer.instance.renderOverlay(slot_selected, 0.75f, 16, 16, i10, j10, -90);
 					renderItemIntoGUI(availableRecipes.get(r).output, i10, j10);

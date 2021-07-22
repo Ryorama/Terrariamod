@@ -97,6 +97,8 @@ import kmerrill285.trewrite.items.terraria.throwable.Glowstick;
 import kmerrill285.trewrite.items.terraria.throwable.Grenade;
 import kmerrill285.trewrite.items.terraria.throwable.Shuriken;
 import kmerrill285.trewrite.items.terraria.tools.MagicMirror;
+import kmerrill285.trewrite.items.vanilla.OverworldTeleporter;
+import kmerrill285.trewrite.util.DimensionTeleporter;
 import kmerrill285.trewrite.world.WorldStateHolder;
 import kmerrill285.trewrite.world.dimension.Dimensions;
 import net.minecraft.entity.player.PlayerEntity;
@@ -117,6 +119,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -499,6 +502,8 @@ public class ItemsT {
 	public static ItemT APPLE;
 	public static ItemT APRICOT;
 	public static ItemT PEACH;
+
+	public static ItemT DIMENSION_TELEPORTER;
 
 	public static HashMap<String, ItemT> items = new HashMap<String, ItemT>();
 	
@@ -953,8 +958,11 @@ public class ItemsT {
 				APRICOT = new DefaultPotion(new Properties().group(ItemGroup.MATERIALS), "apricot", true, true,ScoreboardEvents.WELL_FEED, 15*60).setMaterial().setBuySell(100).setMaxStack(99),
 				PEACH = new DefaultPotion(new Properties().group(ItemGroup.MATERIALS), "peach", true, true,ScoreboardEvents.WELL_FEED, 15*60).setMaterial().setBuySell(100).setMaxStack(99)
 
+		);
 
-				);
+		if (ModList.get().isLoaded("overworld_mirror")) {
+			event.getRegistry().register(DIMENSION_TELEPORTER = new OverworldTeleporter(new Properties().group(ItemGroup.TOOLS), "overworld_teleporter"));
+		}
 		Recipes.addAllRecipes();
 		
 	}

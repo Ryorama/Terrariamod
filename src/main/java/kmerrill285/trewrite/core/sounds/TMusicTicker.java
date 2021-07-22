@@ -2,6 +2,7 @@ package kmerrill285.trewrite.core.sounds;
 
 import java.util.Random;
 
+import kmerrill285.trewrite.Trewrite;
 import kmerrill285.trewrite.blocks.BlocksT;
 import kmerrill285.trewrite.entities.monsters.bosses.EntityEowHead;
 import kmerrill285.trewrite.entities.monsters.bosses.EntityEyeOfCthulhu;
@@ -65,7 +66,7 @@ public class TMusicTicker extends MusicTicker {
       } else {
          if (Minecraft.getInstance().world != null) {
             World world = Minecraft.getInstance().world;
-      
+
             if (MoonLord.isAlive == true) {
                 return TMusicTicker.MusicType.MOON_LORD;
             }
@@ -249,7 +250,11 @@ public class TMusicTicker extends MusicTicker {
                       return TMusicTicker.MusicType.JUNGLE;
                   }
                }
-            
+
+            if (Trewrite.isMonsoon) {
+               return TMusicTicker.MusicType.STORM;
+            }
+
 	            if (world.isRaining()) {
 	                return TMusicTicker.MusicType.RAIN;
 	            }
@@ -408,7 +413,8 @@ public class TMusicTicker extends MusicTicker {
 	  MOON_LORD(TAudio.SoundEvents.MOON_LORD.getSound(), 20, 20),
 	  PLANTERA(TAudio.SoundEvents.PLANTERA.getSound(), 20, 20),
 	  GOLEM(TAudio.SoundEvents.GOLEM.getSound(), 20, 20),
-	  RAIN(TAudio.SoundEvents.RAIN.getSound(), 20, 20);
+	  RAIN(TAudio.SoundEvents.RAIN.getSound(), 20, 20),
+      STORM(TAudio.SoundEvents.STORM.getSound(), 20, 20);
 
       private final SoundEvent sound;
       private final int minDelay;

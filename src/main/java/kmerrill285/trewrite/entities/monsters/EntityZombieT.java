@@ -66,9 +66,4 @@ public class EntityZombieT extends ZombieEntity implements IHostile {
       this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((double)(this.rand.nextInt(7) + 12));
       this.money = this.rand.nextInt(20) + 50;
    }
-
-   protected void onDrowned() {
-      this.func_213698_b(EntityType.DROWNED);
-      this.world.playEvent((PlayerEntity)null, 1040, new BlockPos(this), 0);
-   }
 }

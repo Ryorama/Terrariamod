@@ -325,5 +325,8 @@ public class OverlayEvents {
 		if (event.getType() == ElementType.EXPERIENCE) {
 			event.setCanceled(true);
 		}
+		if (event.getType() == ElementType.HOTBAR) {
+			event.setCanceled(true);
+		}
 	}
 }

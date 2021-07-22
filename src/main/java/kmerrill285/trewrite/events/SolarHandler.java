@@ -10,7 +10,11 @@ import net.minecraft.world.World;
 
 public class SolarHandler {
    public static SolarHandler INSTANCE;
+
    static Random rand = new Random();
+
+   public static boolean alreadyAttemptedSolarEclipse;
+
    private static ResourceLocation SUN_TEXTURES = new ResourceLocation("trewrite:textures/environment/sun.png");
    private static ResourceLocation SOLAR_ECLIPSE_SUN_TEXTURES = new ResourceLocation("trewrite:textures/environment/sun_eclipse.png");
 
@@ -18,9 +22,16 @@ public class SolarHandler {
       boolean night = worldIn.getDayTime() % 24000L < 15000L || worldIn.getDayTime() % 24000L > 22500L;
       if (!WorldStateHolder.get(worldIn).solarEclipse && night) {
          WorldRenderer.SUN_TEXTURES = SUN_TEXTURES;
-         if (rand.nextInt(50) <= 5 && WorldStateHolder.get(worldIn).hardmode == true) {
+
+         LunarHandler.alreadyAttemptedBloodMoon = false;
+         LunarHandler.alreadyNight = false;
+
+         if (rand.nextInt(50) <= 5 && WorldStateHolder.get(worldIn).hardmode == true && !alreadyAttemptedSolarEclipse) {
             WorldStateHolder.get(worldIn).solarEclipse = true;
             worldIn.getServer().getPlayerList().sendMessage((new StringTextComponent("A solar eclipse is happening!")).applyTextStyles(new TextFormatting[]{TextFormatting.GREEN, TextFormatting.BOLD}));
+            alreadyAttemptedSolarEclipse = true;
+         } else {
+            alreadyAttemptedSolarEclipse = true;
          }
       }
 

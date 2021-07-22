@@ -2,6 +2,8 @@ package kmerrill285.trewrite.world;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import kmerrill285.trewrite.blocks.BlockAirT;
 import kmerrill285.trewrite.blocks.BlockT;
@@ -13,7 +15,10 @@ import kmerrill285.trewrite.world.dimension.Dimensions;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
@@ -24,10 +29,19 @@ import net.minecraftforge.common.DimensionManager;
 
 public class WorldStateHolder extends WorldSavedData {
 
+
+	public enum WIND_DIR {
+		NONE,
+		NORTH,
+		SOUTH,
+		EAST,
+		WEST,
+	}
+
 	private static final WorldStateHolder CLIENT_DUMMY = new WorldStateHolder();
 
 	public IWorld world;
-	
+
 	public int mechBossesDowned = 0;
 	public boolean eyeDefeated = false;
 	public int shadowOrbsMined = 0;
@@ -56,15 +70,18 @@ public class WorldStateHolder extends WorldSavedData {
 	public int creepersDefeated = 0;
 	public boolean meteoriteSpawn = false;
 	public boolean firstJoin = false;
-	
+	public Vec3d wind = new Vec3d(0, 0, 0);
+	public Enum windDirection = WIND_DIR.NONE;
+	public boolean isMonsoon = false;
+
 	public HashMap<String, BlockPos> spawnPositions = new HashMap<String, BlockPos>();
 	public HashMap<BlockPos, Integer> lights = new HashMap<BlockPos, Integer>();
 	public HashMap<BlockPos, Integer> lights_sky = new HashMap<BlockPos, Integer>();
 	public HashMap<BlockPos, Integer> lights_underground = new HashMap<BlockPos, Integer>();
 	public HashMap<BlockPos, Integer> lights_underworld = new HashMap<BlockPos, Integer>();
-	
+
 	public ArrayList<BlockPos> meteoritePositions = new ArrayList<BlockPos>();
-	
+
 	public HashMap<String, InventoryChestTerraria> chests = new HashMap<String, InventoryChestTerraria>();
 
 	public boolean EaterOfWorldsAlive;
@@ -73,7 +90,7 @@ public class WorldStateHolder extends WorldSavedData {
 	public HashMap<String, InventoryTerraria> inventories = new HashMap<String, InventoryTerraria>();
 
 	public class WorldState {
-		
+
 	}
 	public WorldStateHolder() {
 		super("trewrite:worldstate");
@@ -82,7 +99,7 @@ public class WorldStateHolder extends WorldSavedData {
 	public WorldStateHolder(String name) {
 		super(name);
 	}
-	
+
 	// get the data from the world saved data manager, instantiating it first if it doesn't exist
 
 	public static WorldStateHolder get(IWorld world)
@@ -91,16 +108,16 @@ public class WorldStateHolder extends WorldSavedData {
 		{
 			return CLIENT_DUMMY;
 		}
-		
+
 		ServerWorld overworld = ((ServerWorld)world).getServer().getWorld(DimensionType.OVERWORLD);
 
 		DimensionSavedDataManager storage = overworld.getSavedData();
 		WorldStateHolder stateHolder = storage.getOrCreate(WorldStateHolder::new, "trewrite:worldstate");
 		stateHolder.world = world;
-				
+
 		return stateHolder;
 	}
-	
+
 	@Override
 	public void read(CompoundNBT nbt) {
 		solarEclipse = nbt.getBoolean("solarEclipse");
@@ -130,7 +147,8 @@ public class WorldStateHolder extends WorldSavedData {
 		eaterOfWorldsDefeated = nbt.getBoolean("eaterOfWorldsDefeated");
 		meteoriteSpawn = nbt.getBoolean("meteoriteSpawn");
 		firstJoin = nbt.getBoolean("firstJoin");
-		
+		wind = new Vec3d(nbt.getDouble("windX"), 0, nbt.getDouble("windZ"));
+
 		int size = nbt.getInt("sposLength");
 		for (int i = 0; i < size; i++) {
 			String s = nbt.getString("spawnpos["+i+"]").trim();
@@ -144,9 +162,9 @@ public class WorldStateHolder extends WorldSavedData {
 				int z = Integer.parseInt(data[3]);
 				spawnPositions.put(name, new BlockPos(x, y, z));
 			}
-			
+
 		}
-		
+
 		size = nbt.getInt("inventories");
 		for (int i = 0; i < size; i++) {
 			String s = nbt.getString("inventories["+i+"]").trim();
@@ -254,9 +272,11 @@ public class WorldStateHolder extends WorldSavedData {
 		compound.putInt("sposLength", spawnPositions.size());
 		compound.putInt("inventories", inventories.size());
 		compound.putInt("chests", chests.size());
-		
+		compound.putDouble("windX", wind.getX());
+		compound.putDouble("windZ", wind.getZ());
+
 		int i = 0;
-		
+
 		for (String p : inventories.keySet()) {
 			String savedata = inventories.get(p).getDataForSave();
 			if (savedata == null) {
@@ -314,13 +334,13 @@ public class WorldStateHolder extends WorldSavedData {
 			compound.putString("lights4["+i+"]", p.getX()+","+p.getY()+","+p.getZ()+","+l);
 			i++;
 		}
-		
+
 		compound.putInt("meteoriteAmount", meteoritePositions.size());
 		for (i = 0; i < meteoritePositions.size(); i++) {
 			BlockPos pos = meteoritePositions.get(i);
-			compound.putString("meteorites["+i+"]", pos.getX()+","+pos.getY()+","+pos.getZ());	
+			compound.putString("meteorites["+i+"]", pos.getX()+","+pos.getY()+","+pos.getZ());
 		}
-		
+
 		return compound;
 	}
 
@@ -328,7 +348,7 @@ public class WorldStateHolder extends WorldSavedData {
 		DimensionType sky = DimensionManager.registerOrGetDimension(Dimensions.skyLocation, DimensionRegistry.skyDimension, null, true);
 		DimensionType underground = DimensionManager.registerOrGetDimension(Dimensions.undergroundLocation, DimensionRegistry.undergroundDimension, null, true);
 		DimensionType underworld = DimensionManager.registerOrGetDimension(Dimensions.underworldLocation, DimensionRegistry.underworldDimension, null, true);
-		
+
 		if (type == sky) {
 			lights_sky.put(pos, light);
 		}
@@ -341,7 +361,7 @@ public class WorldStateHolder extends WorldSavedData {
 			lights.put(pos, light);
 		}
 	}
-	
+
 	public void update(World world, DimensionType type) {
 		int updated = 0;
 		HashMap<BlockPos, Integer> lights = null;
@@ -367,7 +387,7 @@ public class WorldStateHolder extends WorldSavedData {
 					break;
 				}
 				lights.put(p, lights.get(p)-1);
-				
+
 				if (lights.get(p) <= 0) {
 					if (world.getBlockState(p).getBlock() instanceof BlockT) {
 						world.getWorld().setBlockState(p, world.getBlockState(p).with(BlockT.light, lights.get(p)));
@@ -392,13 +412,17 @@ public class WorldStateHolder extends WorldSavedData {
 					}
 				}
 			}
-			
+
 		}
-		
-		
+
+
 		this.markDirty();
 	}
-	
+
+	public Vec3d toWindVec3D(double y) {
+		return new Vec3d(wind.x, y, wind.z);
+	}
+
 //	public long lastTick;
 //	public void tick() {
 //		World world = (World)this.world;

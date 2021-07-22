@@ -53,8 +53,8 @@ public class TAudio {
       LUNAR_EVENT("lunar_event"),
       MOON_LORD("moon_lord"),
       GOLEM("golem"),
-      RAIN("rain");
-
+      RAIN("rain"),
+      STORM("storm");
 
       private SoundEvent sound;
 

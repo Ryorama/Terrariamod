@@ -44,28 +44,7 @@ import kmerrill285.trewrite.entities.models.worms.RenderWormTail;
 import kmerrill285.trewrite.entities.models.wyvern.RenderWyvernBody;
 import kmerrill285.trewrite.entities.models.wyvern.RenderWyvernHead;
 import kmerrill285.trewrite.entities.models.wyvern.RenderWyvernTail;
-import kmerrill285.trewrite.entities.monsters.EntityBat;
-import kmerrill285.trewrite.entities.monsters.EntityBlackSlime;
-import kmerrill285.trewrite.entities.monsters.EntityBlueSlime;
-import kmerrill285.trewrite.entities.monsters.EntityCorruptSlime;
-import kmerrill285.trewrite.entities.monsters.EntityCrimera;
-import kmerrill285.trewrite.entities.monsters.EntityDemon;
-import kmerrill285.trewrite.entities.monsters.EntityDemonEye;
-import kmerrill285.trewrite.entities.monsters.EntityEaterOfSouls;
-import kmerrill285.trewrite.entities.monsters.EntityFaceMonster;
-import kmerrill285.trewrite.entities.monsters.EntityFlyingFish;
-import kmerrill285.trewrite.entities.monsters.EntityHallowSlime;
-import kmerrill285.trewrite.entities.monsters.EntityHarpy;
-import kmerrill285.trewrite.entities.monsters.EntityHellbat;
-import kmerrill285.trewrite.entities.monsters.EntityIceSlime;
-import kmerrill285.trewrite.entities.monsters.EntityLavaSlime;
-import kmerrill285.trewrite.entities.monsters.EntityPinky;
-import kmerrill285.trewrite.entities.monsters.EntityPossessedArmor;
-import kmerrill285.trewrite.entities.monsters.EntityRedSlime;
-import kmerrill285.trewrite.entities.monsters.EntitySandSlime;
-import kmerrill285.trewrite.entities.monsters.EntityToxicSludge;
-import kmerrill285.trewrite.entities.monsters.EntityVoodooDemon;
-import kmerrill285.trewrite.entities.monsters.EntityYellowSlime;
+import kmerrill285.trewrite.entities.monsters.*;
 import kmerrill285.trewrite.entities.monsters.bosses.EntityEowBody;
 import kmerrill285.trewrite.entities.monsters.bosses.EntityEowHead;
 import kmerrill285.trewrite.entities.monsters.bosses.EntityEowTail;
@@ -368,6 +347,9 @@ public class ModelRegistry {
        });
       RenderingRegistry.registerEntityRenderingHandler(EntityFaceMonster.class, (manager) -> {
           return new RenderFaceMonster(manager);
+       });
+       RenderingRegistry.registerEntityRenderingHandler(EntityZombieT.class, (manager) -> {
+           return new RenderZombieT(manager);
        });
    }
 }

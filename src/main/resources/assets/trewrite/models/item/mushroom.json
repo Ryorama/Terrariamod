@@ -2,6 +2,6 @@
 	"parent": "item/generated",
 	"textures":
 	{
-		"layer0": "trewrite:block/plants/mushroom"
+		"layer0": "trewrite:item/mushroom"
 	}
 }

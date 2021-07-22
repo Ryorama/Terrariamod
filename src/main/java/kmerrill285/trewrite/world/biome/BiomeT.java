@@ -15,6 +15,7 @@ import kmerrill285.trewrite.world.biome.ocean.FrozenOcean;
 import kmerrill285.trewrite.world.biome.ocean.Glaciers;
 import kmerrill285.trewrite.world.biome.ocean.ShallowOcean;
 import kmerrill285.trewrite.world.biome.ocean.WarmOcean;
+import net.minecraft.block.NetherPortalBlock;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
@@ -210,9 +211,6 @@ public class BiomeT {
          throw new NullPointerException("Biome Registry not set");
       } else {
          biomeRegistry.register(biome);
-         BiomeDictionary.addTypes(biome, types);
-         BiomeManager.addBiome(spawnType, new BiomeEntry(biome, weight));
-         BiomeManager.addSpawnBiome(biome);
          biomes.add(biome);
       }
    }

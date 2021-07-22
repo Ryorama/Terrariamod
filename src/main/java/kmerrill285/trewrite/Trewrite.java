@@ -1,8 +1,16 @@
 package kmerrill285.trewrite;
 
 import java.lang.reflect.Field;
+import java.util.Random;
 
+import kmerrill285.trewrite.core.client.ParticleRegistry;
 import kmerrill285.trewrite.core.client.TerrariaUIManager;
+import kmerrill285.trewrite.events.*;
+import kmerrill285.trewrite.world.dimension.DimensionRegistry;
+import net.minecraft.world.LightType;
+import net.minecraft.world.dimension.Dimension;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.IEventBus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,11 +31,6 @@ import kmerrill285.trewrite.entities.EntityItemT;
 import kmerrill285.trewrite.entities.RemoveMaxHealthLimit;
 import kmerrill285.trewrite.entities.monsters.bosses.EntityEyeOfCthulhu;
 import kmerrill285.trewrite.entities.monsters.bosses.destroyer.EntityDestroyerHead;
-import kmerrill285.trewrite.events.BloodmoonHandler;
-import kmerrill285.trewrite.events.EntityEvents;
-import kmerrill285.trewrite.events.ScoreboardEvents;
-import kmerrill285.trewrite.events.SolarHandler;
-import kmerrill285.trewrite.events.WorldEvents;
 import kmerrill285.trewrite.items.Armor;
 import kmerrill285.trewrite.items.ItemsT;
 import kmerrill285.trewrite.items.accessories.Accessory;
@@ -86,9 +89,13 @@ public class Trewrite
     public static boolean DEBUG = false;
     
    	public static String modid = "trewrite";
-    
-    public Trewrite() {
-    	
+
+	public static ResourceLocation overworld;
+
+	public static boolean isMonsoon = false;
+
+	public Trewrite() {
+		overworld = new ResourceLocation("minecraft:custom_overworld");
     	
 //    	FeatureScript.load();
     	try {
@@ -147,23 +154,27 @@ public class Trewrite
         }
         types2[0] = new TerrariaWorldType("Terraria-Style");
         WorldType.WORLD_TYPES = types2;
+
+        final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+		ParticleRegistry.PARTICLES.register(eventBus);
     }
     
     
     @SubscribeEvent
 	public static void onBlockUpdate(NeighborNotifyEvent e) {
-    	
-    	
-    	
-    	if (e.getState().getBlock() == Blocks.STONE || e.getState().getBlock() == Blocks.COBBLESTONE) {
-    		e.getWorld().setBlockState(e.getPos(), BlocksT.STONE_BLOCK.getDefaultState(), 0);
-    	}
-    	if (e.getState().getBlock() == Blocks.OBSIDIAN) {
-    		e.getWorld().setBlockState(e.getPos(), BlocksT.OBSIDIAN.getDefaultState(), 0);
-    	}
-    	if (e.getState().getBlock() == Blocks.ICE) {
-    		e.getWorld().setBlockState(e.getPos(), Blocks.WATER.getDefaultState(), 0);
-    	}
+
+    	if (e.getWorld().getDimension().getType() == DimensionType.byName(overworld)) {
+			if (e.getState().getBlock() == Blocks.STONE || e.getState().getBlock() == Blocks.COBBLESTONE) {
+				e.getWorld().setBlockState(e.getPos(), BlocksT.STONE_BLOCK.getDefaultState(), 0);
+			}
+			if (e.getState().getBlock() == Blocks.OBSIDIAN) {
+				e.getWorld().setBlockState(e.getPos(), BlocksT.OBSIDIAN.getDefaultState(), 0);
+			}
+			if (e.getState().getBlock() == Blocks.ICE) {
+				e.getWorld().setBlockState(e.getPos(), Blocks.WATER.getDefaultState(), 0);
+			}
+		}
     }
     
     public static int ticks = 0;
@@ -188,7 +199,7 @@ public class Trewrite
 			}
 			once = true;
 		}
-		
+
 		StackedDimensions.onWorldTick(event);
 		
 //		if (DimensionManager.getWorld(event.world.getServer(), t, true, true) == null) {
@@ -196,9 +207,41 @@ public class Trewrite
 //		}
 		
 		World world = event.world;
-		
-		//BloodmoonHandler.handleBloodmoon(world);
-		//SolarHandler.handleSolarEvents(world);
+
+		world.getGameRules().get(GameRules.DO_WEATHER_CYCLE).set(false, world.getServer());
+
+		WorldStateHolder worldStateHolder = WorldStateHolder.get(world);
+
+		isMonsoon = worldStateHolder.isMonsoon;
+
+		if (ticks % 4850 == 0) {
+			worldStateHolder.wind = new Vec3d(new Random().nextInt(31), 0, new Random().nextInt(31));
+			System.out.println(worldStateHolder.wind.getX());
+			System.out.println(worldStateHolder.wind.getZ());
+		}
+
+		if (worldStateHolder.wind.getX() >= 18 || worldStateHolder.wind.getZ() >= 18) {
+			world.setRainStrength(0.5f);
+		} else {
+			world.setRainStrength(0.01f);
+		}
+
+		if (world.isRaining()) {
+			if (worldStateHolder.wind.getX() >= 25 || worldStateHolder.wind.getZ() >= 25) {
+				worldStateHolder.isMonsoon = true;
+			} else {
+				worldStateHolder.isMonsoon = false;
+			}
+		} else {
+			worldStateHolder.isMonsoon = false;
+		}
+
+		if (worldStateHolder.isMonsoon) {
+			world.setRainStrength(0.9f);
+		}
+
+		LunarHandler.handleMoon(world);
+		SolarHandler.handleSolarEvents(world);
 		
 		WorldStateHolder holder = WorldStateHolder.get(world);
 		holder.update(world, world.getDimension().getType());

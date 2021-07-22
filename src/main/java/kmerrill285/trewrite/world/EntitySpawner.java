@@ -56,10 +56,7 @@ public class EntitySpawner {
 		if (eows.size() > 0) {
 			return;
 		}
-		
-		
-		
-		if (world.getEntitiesWithinAABB(Entity.class, player.getBoundingBox().expand(50, 50, 50)).size() <= 30) {
+
 			if (y <= Util.underworldLevel) return;
 			
 			if (y >= 190) {
@@ -88,8 +85,6 @@ public class EntitySpawner {
 					spawnRainEntity(world, x, y, z);
 				}
 			}
-		}
-		
 	}
 	
 	public static boolean spawnSkyEntity(World world, double x, double y, double z) {
