@@ -17,6 +17,15 @@
 		}
 	]
   },
+	"slime_rain": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "trewrite:music/slime_rain",
+				"stream": true
+			}
+		]
+	},
   "day1": {
 	"category": "music",
 	"sounds": [

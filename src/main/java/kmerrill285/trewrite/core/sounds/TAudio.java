@@ -54,7 +54,8 @@ public class TAudio {
       MOON_LORD("moon_lord"),
       GOLEM("golem"),
       RAIN("rain"),
-      STORM("storm");
+      STORM("storm"),
+      SLIME_RAIN("slime_rain");
 
       private SoundEvent sound;
 

@@ -42,6 +42,7 @@ public class WorldStateHolder extends WorldSavedData {
 
 	public IWorld world;
 
+	public boolean slimeRain = false;
 	public int mechBossesDowned = 0;
 	public boolean eyeDefeated = false;
 	public int shadowOrbsMined = 0;
@@ -148,6 +149,7 @@ public class WorldStateHolder extends WorldSavedData {
 		meteoriteSpawn = nbt.getBoolean("meteoriteSpawn");
 		firstJoin = nbt.getBoolean("firstJoin");
 		wind = new Vec3d(nbt.getDouble("windX"), 0, nbt.getDouble("windZ"));
+		slimeRain = nbt.getBoolean("slimeRain");
 
 		int size = nbt.getInt("sposLength");
 		for (int i = 0; i < size; i++) {
@@ -274,6 +276,7 @@ public class WorldStateHolder extends WorldSavedData {
 		compound.putInt("chests", chests.size());
 		compound.putDouble("windX", wind.getX());
 		compound.putDouble("windZ", wind.getZ());
+		compound.putBoolean("slimeRain", slimeRain);
 
 		int i = 0;
 

@@ -8,6 +8,7 @@ import kmerrill285.trewrite.entities.EntityItemT;
 import kmerrill285.trewrite.items.ItemsT;
 import kmerrill285.trewrite.util.AABBUtils;
 import kmerrill285.trewrite.world.WorldStateHolder;
+import kmerrill285.trewrite.world.biome.features.LSystem.L;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -102,23 +103,15 @@ public class Tree extends BasicPlant {
 
 				if (worldIn.isRemote) {
 					for (int i = 0; i < 30; i++) {
-						DustManager dustManager = new DustManager(worldIn, pos.getX(), pos.getY(), pos.getZ());
-						dustManager.setWidthHeight(5);
-						dustManager.setTextureName("leaf");
-						dustManager.setGravity3d(0.0D, 0.05000000074505806D, 0.0D);
-						dustManager.addWindToGravity(0.075f);
-						dustManager.createParticle(AABBUtils.randomPosWithin(aabb, rand));
+						Vec3d particlePos = AABBUtils.randomPosWithin(aabb, rand);
+						worldIn.addParticle(ParticleRegistry.LEAF.get(), particlePos.getX(), particlePos.getY(), particlePos.getZ(), 0, 0, 0);
 					}
 				}
 			} else {
 				if (worldIn.isRemote) {
 					for (int i = 0; i < 15; i++) {
-						DustManager dustManager = new DustManager(worldIn, pos.getX(), pos.getY(), pos.getZ());
-						dustManager.setWidthHeight(5);
-						dustManager.setTextureName("leaf");
-						dustManager.setGravity3d(0.0D, 0.05000000074505806D, 0.0D);
-						dustManager.addWindToGravity(0.075f);
-						dustManager.createParticle(AABBUtils.randomPosWithin(aabb, rand));
+						Vec3d particlePos = AABBUtils.randomPosWithin(aabb, rand);
+						worldIn.addParticle(ParticleRegistry.LEAF.get(), particlePos.getX(), particlePos.getY(), particlePos.getZ(), 0, 0, 0);
 					}
 				}
 			}
@@ -136,16 +129,12 @@ public class Tree extends BasicPlant {
 	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
 		AxisAlignedBB aabb = getDustSpreadAABB(true);
 		aabb = aabb.offset(pos);
-		Vec3d point = AABBUtils.randomPosWithin(aabb, rand), center = (new Vec3d((Vec3i)pos)).add(0.5D, 0.5D, 0.5D);
+		Vec3d particlePos = AABBUtils.randomPosWithin(aabb, rand), center = (new Vec3d((Vec3i)pos)).add(0.5D, 0.5D, 0.5D);
 
 		if (worldIn.isRemote) {
 			for (int i = 0; i < 30; i++) {
-				DustManager dustManager = new DustManager(worldIn, pos.getX(), pos.getY(), pos.getZ());
-				dustManager.setWidthHeight(5);
-				dustManager.setTextureName("leaf");
-				dustManager.setGravity3d(0.0D, 0.05000000074505806D, 0.0D);
-				dustManager.addWindToGravity(0.075f);
-				dustManager.createParticle(point);
+				worldIn.addParticle(ParticleRegistry.LEAF.get(), particlePos.getX(), particlePos.getY(), particlePos.getZ(), 0, 0, 0);
+
 			}
 		}
 	}

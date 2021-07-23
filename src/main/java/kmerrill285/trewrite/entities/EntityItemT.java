@@ -223,7 +223,7 @@ public class EntityItemT extends Entity implements IEntityAdditionalSpawnData {
                }
             }
 
-            if (closest != null && dist < 5.0D) {
+            if (closest != null && dist < 2.0D) {
                InventoryTerraria inventory = WorldEvents.getOrLoadInventory(closest);
                if (world.isRemote) {
                   inventory = ContainerTerrariaInventory.inventory;

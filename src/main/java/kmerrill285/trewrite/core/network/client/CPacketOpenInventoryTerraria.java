@@ -2,8 +2,10 @@ package kmerrill285.trewrite.core.network.client;
 
 import java.util.function.Supplier;
 
+import kmerrill285.trewrite.core.inventory.InventoryTerraria;
 import kmerrill285.trewrite.core.inventory.container.TerrariaInventoryContainerHandler;
 import kmerrill285.trewrite.core.sounds.SoundsT;
+import kmerrill285.trewrite.events.WorldEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -34,6 +36,10 @@ public class CPacketOpenInventoryTerraria {
          if (sender != null) {
             NetworkHooks.openGui(sender, new TerrariaInventoryContainerHandler());
             Minecraft.getInstance().world.playSound(Minecraft.getInstance().player.getPosition(), SoundsT.MENU_OPEN, SoundCategory.PLAYERS, 500, 1, false);
+            InventoryTerraria inventory = WorldEvents.getOrLoadInventory(sender);
+            if (inventory != null) {
+               inventory.open = true;
+            }
          }
 
       });

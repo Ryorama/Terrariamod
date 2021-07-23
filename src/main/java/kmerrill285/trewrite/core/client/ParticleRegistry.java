@@ -19,10 +19,10 @@ public class ParticleRegistry {
 
     public static final DeferredRegister<ParticleType<?>> PARTICLES = new DeferredRegister<>(ForgeRegistries.PARTICLE_TYPES, Trewrite.modid);
 
-    public static RegistryObject<BasicParticleType> DUST = PARTICLES.register("dust", () -> new BasicParticleType(true));
+    public static RegistryObject<BasicParticleType> LEAF = PARTICLES.register("leaf", () -> new BasicParticleType(true));
 
     @SubscribeEvent
     public static void registerParticles(ParticleFactoryRegisterEvent event) {
-        Minecraft.getInstance().particles.registerFactory(ParticleRegistry.DUST.get(), DustManager.Factory::new);
+        Minecraft.getInstance().particles.registerFactory(ParticleRegistry.LEAF.get(), LeafParticle.Factory::new);
     }
 }

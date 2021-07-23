@@ -107,6 +107,7 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
     public  ArrayList<CraftingRecipe> recipes = new ArrayList<CraftingRecipe>();
     public  ArrayList<CraftingRecipe> availableRecipes = new ArrayList<CraftingRecipe>();
     public CraftingRecipe selectedRecipe = null;
+	int currentSelectedRecipe = 0;
     public int page = 0;
     public boolean upSelected = false, downSelected = false;
     
@@ -183,7 +184,7 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
         		}
         		if (ad == true)
         		availableRecipes.add(recipe);
-        		}
+        	}
         }
     	
     }
@@ -515,18 +516,13 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 			}
 		}
 
-		selectedRecipe = null;
-
 		int i10 = 17;
-		int j10 = 99;
+		int j10 = 102;
 
 		selectedRecipe = null;
-
-		int maxRecipesShown = 5;
 
 		for (int r = 0; r <= availableRecipes.size() - 1; r++) {
 			if (availableRecipes.size() > 0) {
-
 				if (selectedRecipe == availableRecipes.get(r)) {
 					UIRenderer.instance.renderOverlay(slot_selected, 0.75f, 16, 16, i10, j10, -90);
 					renderItemIntoGUI(availableRecipes.get(r).output, i10, j10);
@@ -539,7 +535,12 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
 					selectedRecipe = availableRecipes.get(r);
 				}
 
-				j10 += 17;
+				if (j10 % 6 == 0 && j10 != 102) {
+					i10 += 17;
+					j10 = 102;
+				} else {
+					j10 += 17;
+				}
 			}
 		}
 	}
@@ -700,13 +701,11 @@ public class GuiContainerTerrariaInventory extends ContainerScreen<ContainerTerr
     	}
     }
     
-    
     /**
      * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
      */
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-    	
     	this.resetRecipes();
     	
     	InventoryTerraria inventory = ContainerTerrariaInventory.inventory;

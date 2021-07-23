@@ -6,6 +6,12 @@ import com.google.common.base.Function;
 import com.mojang.datafixers.Dynamic;
 
 import kmerrill285.trewrite.blocks.BlocksT;
+import kmerrill285.trewrite.blocks.Chest;
+import kmerrill285.trewrite.core.inventory.container.ContainerTerrariaChest;
+import kmerrill285.trewrite.core.inventory.container.Containers;
+import kmerrill285.trewrite.core.items.ItemStackT;
+import kmerrill285.trewrite.entities.EntityItemT;
+import kmerrill285.trewrite.items.ItemsT;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -25,9 +31,6 @@ public class LootBlockFeature extends Feature<NoFeatureConfig> {
 		   for(int i = 0; i < 10; ++i) {
 	         BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 	         if (worldIn.isAirBlock(blockpos)) {
-	        	 if (blockpos.getY() <= 10 && worldIn.getBlockState(new BlockPos(blockpos.getX(), blockpos.getY() - 1, blockpos.getZ())).getBlock() == BlocksT.STONE_BLOCK) {
-	        		 worldIn.setBlockState(blockpos, BlocksT.UNDERGROUND_BLOCK.getDefaultState(), 0);
-	        	 }
 	            if (worldIn.getBlockState(new BlockPos(blockpos.getX(), blockpos.getY() - 1, blockpos.getZ())).getBlock() == BlocksT.DIRT_BLOCK||
 	            		worldIn.getBlockState(new BlockPos(blockpos.getX(), blockpos.getY() - 1, blockpos.getZ())).getBlock() == BlocksT.STONE_BLOCK) {
 	            	if (rand.nextInt(100) <= 25) {

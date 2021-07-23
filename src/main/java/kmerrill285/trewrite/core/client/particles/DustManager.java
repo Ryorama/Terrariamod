@@ -21,7 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import javax.annotation.Resource;
 
-public class DustManager extends SpriteTexturedParticle {
+public abstract class DustManager extends SpriteTexturedParticle {
 
     public static String particleLocation;
     public static int size;
@@ -67,10 +67,6 @@ public class DustManager extends SpriteTexturedParticle {
         this.move(motionX, motionY, motionZ);
     }
 
-    public void createParticle(Vec3d pos) {
-        worldIn.addParticle(ParticleRegistry.DUST.get(), pos.x, pos.y, pos.z, 0, 0, 0);
-    }
-
     public static int setWidthHeight(int textureSize) {
         size = textureSize;
         return textureSize;
@@ -87,25 +83,6 @@ public class DustManager extends SpriteTexturedParticle {
             this.particleGravity3d = wind;
         } else {
             this.particleGravity3d = this.particleGravity3d.add(wind);
-        }
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite spriteSet;
-
-        public Factory(IAnimatedSprite sprite) {
-            this.spriteSet = sprite;
-        }
-
-        @Nullable
-        @Override
-        public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            DustManager particle = new DustManager(worldIn, x, y, z);
-            particle.setSize(size, size);
-            particle.setColor(1, 1, 1);
-            particle.setSprite(new AtlasTexture("textures/particle/").getSprite(new ResourceLocation("textures/particle/" + particleLocation + ".png")));
-            return particle;
         }
     }
 }

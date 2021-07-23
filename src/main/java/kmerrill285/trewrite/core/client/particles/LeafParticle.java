@@ -3,6 +3,7 @@ package kmerrill285.trewrite.core.client.particles;
 import kmerrill285.trewrite.world.WorldStateHolder;
 import net.minecraft.client.particle.*;
 import net.minecraft.particles.BasicParticleType;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -10,15 +11,18 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
-public class LeafParticle extends SpriteTexturedParticle {
+public class LeafParticle extends DustManager {
 
-    public LeafParticle(World worldIn, double posXIn, double posYIn, double posZIn) {
-        super(worldIn, posXIn, posYIn, posZIn);
+    public LeafParticle(World worldIn, Vec3d pos) {
+        super(worldIn, pos.getX(), pos.getY(), pos.getZ());
         this.maxAge = 100;
         this.canCollide = false;
+        this.setGravity3d(0.0D, 0.05000000074505806D, 0.0D);
+        this.addWindToGravity(0.075f);
         this.setSize(5, 5);
     }
 
+    /*
     @Override
     public void tick() {
         super.tick();
@@ -53,11 +57,7 @@ public class LeafParticle extends SpriteTexturedParticle {
             }
         }
     }
-
-    @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
-    }
+    */
 
     @OnlyIn(Dist.CLIENT)
     public static class Factory implements IParticleFactory<BasicParticleType> {
@@ -70,7 +70,7 @@ public class LeafParticle extends SpriteTexturedParticle {
         @Nullable
         @Override
         public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            LeafParticle particle = new LeafParticle(worldIn, x, y, z);
+            LeafParticle particle = new LeafParticle(worldIn, new Vec3d(x, y, z));
             particle.setColor(1, 1, 1);
             particle.selectSpriteRandomly(spriteSet);
             return particle;

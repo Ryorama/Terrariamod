@@ -5,6 +5,7 @@ import java.util.Random;
 
 import kmerrill285.trewrite.core.client.ParticleRegistry;
 import kmerrill285.trewrite.core.client.TerrariaUIManager;
+import kmerrill285.trewrite.entities.monsters.EntityBlueSlime;
 import kmerrill285.trewrite.events.*;
 import kmerrill285.trewrite.world.dimension.DimensionRegistry;
 import net.minecraft.world.LightType;
@@ -78,6 +79,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.PacketDistributor;
+import org.lwjgl.system.CallbackI;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("trewrite")
@@ -93,6 +95,7 @@ public class Trewrite
 	public static ResourceLocation overworld;
 
 	public static boolean isMonsoon = false;
+	public static  boolean slimeRain = false;
 
 	public Trewrite() {
 		overworld = new ResourceLocation("minecraft:custom_overworld");
@@ -213,8 +216,11 @@ public class Trewrite
 		WorldStateHolder worldStateHolder = WorldStateHolder.get(world);
 
 		isMonsoon = worldStateHolder.isMonsoon;
+		slimeRain = worldStateHolder.slimeRain;
 
-		if (ticks % 4850 == 0) {
+
+
+		if (ticks % 14000 == 0) {
 			worldStateHolder.wind = new Vec3d(new Random().nextInt(31), 0, new Random().nextInt(31));
 			System.out.println(worldStateHolder.wind.getX());
 			System.out.println(worldStateHolder.wind.getZ());
@@ -252,7 +258,7 @@ public class Trewrite
 				meteoriteAttempt = true;
 				int x = (world.getRandom().nextInt(2) * 2 - 1) * (world.getRandom().nextInt(3000) + 1000);
 				int z = (world.getRandom().nextInt(2) * 2 - 1) * (world.getRandom().nextInt(3000) + 1000);
-				
+
 		    	world.getServer().getPlayerList().sendMessage(new StringTextComponent("A meteorite has landed around [" + (x + world.getRandom().nextInt(200) - 100) + ", " + (z + world.getRandom().nextInt(200) - 100) + "]!").applyTextStyles(TextFormatting.GREEN, TextFormatting.BOLD));
 		    	
 		    	holder.meteoritePositions.add(new BlockPos(x, 0, z));
@@ -341,8 +347,47 @@ public class Trewrite
 					}
 				}
 			}
-			
+
 			float maxHealth = player.getMaxHealth();
+			boolean day = world.getDayTime() % 24000L < 15000L || world.getDayTime() % 24000L > 22500L;
+
+			if (maxHealth >= 120) {
+				if (day && !worldStateHolder.slimeRain && worldStateHolder.wind.getX() <= 17 || day && !worldStateHolder.slimeRain && worldStateHolder.slimeRain && worldStateHolder.wind.getZ() <= 17) {
+					if (oncePerDay == false) {
+						oncePerDay = true;
+						if (world.rand.nextInt(10) == 0) {
+							worldStateHolder.slimeRain = true;
+							world.getServer().getPlayerList().sendMessage(new StringTextComponent("Slime is falling from the sky!").applyTextStyles(TextFormatting.DARK_GREEN, TextFormatting.BOLD));
+						}
+					}
+				} else if (!day && worldStateHolder.slimeRain) {
+					worldStateHolder.slimeRain = false;
+					world.getServer().getPlayerList().sendMessage(new StringTextComponent("Slime has stopped falling from the sky.").applyTextStyles(TextFormatting.DARK_GREEN, TextFormatting.BOLD));
+				} else if (worldStateHolder.slimeRain && worldStateHolder.wind.getX() >= 18 || worldStateHolder.slimeRain && worldStateHolder.wind.getZ() >= 18) {
+					worldStateHolder.slimeRain = false;
+					world.getServer().getPlayerList().sendMessage(new StringTextComponent("Slime has stopped falling from the sky.").applyTextStyles(TextFormatting.DARK_GREEN, TextFormatting.BOLD));
+				}
+			}
+
+			if (worldStateHolder.slimeRain) {
+				if (world.rand.nextInt(50) == 0) {
+					EntityBlueSlime slime = EntitiesT.BLUE_SLIME.create(world);
+					if (world.getPlayers().size() > 0) {
+						float posX = 0, posY = world.rand.nextInt(20) - 10, posZ = 0;
+						float rad = 20;
+
+						float rotation = world.rand.nextInt(360);
+						posX = (float) (Math.cos(Math.toDegrees(rotation)) * rad);
+						posZ = (float) (Math.sin(Math.toDegrees(rotation)) * rad);
+						slime.setPosition(posX, 30, posZ);
+						slime.fallDistance = 0;
+
+						world.addEntity(slime);
+					}
+				}
+			}
+
+
 			if (WorldStateHolder.get(world).demonAltarsDestroyed >= 1 && WorldStateHolder.get(world).hardmode == true) {
 				if (!world.isRemote) {
 					if (world.getDayTime() % 24000 >= 11000) {

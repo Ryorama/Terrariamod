@@ -251,6 +251,10 @@ public class TMusicTicker extends MusicTicker {
                   }
                }
 
+            if (Trewrite.slimeRain) {
+               return TMusicTicker.MusicType.SLIME_RAIN;
+            }
+
             if (Trewrite.isMonsoon) {
                return TMusicTicker.MusicType.STORM;
             }
@@ -414,7 +418,8 @@ public class TMusicTicker extends MusicTicker {
 	  PLANTERA(TAudio.SoundEvents.PLANTERA.getSound(), 20, 20),
 	  GOLEM(TAudio.SoundEvents.GOLEM.getSound(), 20, 20),
 	  RAIN(TAudio.SoundEvents.RAIN.getSound(), 20, 20),
-      STORM(TAudio.SoundEvents.STORM.getSound(), 20, 20);
+      STORM(TAudio.SoundEvents.STORM.getSound(), 20, 20),
+      SLIME_RAIN(TAudio.SoundEvents.SLIME_RAIN.getSound(), 20, 20);
 
       private final SoundEvent sound;
       private final int minDelay;
