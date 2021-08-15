@@ -212,14 +212,14 @@ public class ItemsT {
 	public static ItemStack gel(int amount, String color) {
 		ItemStack stack = GEL.stack(amount);
 		NbtCompound tag;
-		if (!stack.hasTag()) {
+		if (!stack.hasNbt()) {
 			tag = new NbtCompound();
 		} else {
 			System.out.println("Has tag");
-			tag = stack.getTag();
+			tag = stack.getNbt();
 		}
 		tag.putString("GelColor", color);
-		stack.setTag(tag);
+		stack.setNbt(tag);
 		return stack;
 	}
 }

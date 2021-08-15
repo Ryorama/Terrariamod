@@ -23,7 +23,7 @@ public class LesserHealingPotion extends ItemT {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
 		if (!playerEntity.getItemCooldownManager().isCoolingDown(this)) {
 			
-			playerEntity.applyStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 4));
+			playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 4));
 			playerEntity.getInventory().getMainHandStack().decrement(1);
 			playerEntity.getItemCooldownManager().set(this, 600);
 			

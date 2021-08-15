@@ -2,8 +2,6 @@ package com.ryorama.terrariamod.entity.hostile;
 
 import java.util.ArrayList;
 
-import javax.activation.DataHandler;
-
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
@@ -111,8 +109,8 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 	        motionY = 0;
 	        this.setNoGravity(true);
 	        this.fallDistance = 0;
-			this.pitch = 0;
-			this.yaw = 0;
+			this.setPitch(0);
+			this.setYaw(0);
 			this.headYaw = 0;
 			World world = this.world;
 			PlayerEntity target = null;
@@ -266,7 +264,7 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 			motionY = velY * 0.075f;
 			motionZ = velZ * 0.075f;
 			
-			this.yaw = (float)Math.toDegrees(Math.atan2(velZ, velX)) - 90;
+			this.setYaw((float)Math.toDegrees(Math.atan2(velZ, velX)) - 90);
 
 	    	this.setVelocity(motionX, motionY, motionZ); 
 		} else {
@@ -281,7 +279,7 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 	}
 
 	public void lookRandomly() {
-		this.setRotation(this.headYaw + this.random.nextInt(3), this.pitch);
+		this.setRotation(this.headYaw + this.random.nextInt(3), this.getPitch());
 	}
 
 	@Override
@@ -322,10 +320,6 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 			playerIn.damage(DamageSource.mob(this), damage);
 		}
 	}
-
-	@Override
-	public <A extends IAnimatable> void summonParticle(ParticleKeyFrameEvent<A> event) {		
-	}
 	
 	public Iterable<ItemStack> getArmorItems() {
 		return armorItems;
@@ -344,5 +338,9 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 	@Override
 	public Arm getMainArm() {
 		return Arm.LEFT;
+	}
+
+	@Override
+	public void summonParticle(ParticleKeyFrameEvent particleKeyFrameEvent) {
 	}
 }

@@ -89,7 +89,7 @@ public abstract class EntitySlimeBase extends EntityBaseMob {
 	}
 
 	public void lookRandomly() {
-		this.setRotation(this.headYaw + this.random.nextInt(3), this.pitch);
+		this.setRotation(this.headYaw + this.random.nextInt(3), this.getPitch());
 	}
 	
 	public Iterable<ItemStack> getArmorItems() {

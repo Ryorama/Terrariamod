@@ -11,6 +11,7 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 }
 
 dependencies {
@@ -20,7 +21,7 @@ dependencies {
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	compile files('libs/geckolib-fabric-1.17-3.0.20-dev.jar')
+	include modImplementation('software.bernie.geckolib:geckolib-fabric-1.17:3.0.12:dev')
 	implementation 'javax.vecmath:vecmath:1.5.2'
 }
 

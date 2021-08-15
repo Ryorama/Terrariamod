@@ -5,9 +5,8 @@ import software.bernie.geckolib3.core.controller.AnimationController.IParticleLi
 import software.bernie.geckolib3.core.event.ParticleKeyFrameEvent;
 
 public class BloodParticalListener implements IParticleListener {
-
 	@Override
-	public <A extends IAnimatable> void summonParticle(ParticleKeyFrameEvent<A> event) {
-		
+	public void summonParticle(ParticleKeyFrameEvent particleKeyFrameEvent) {
+
 	}
 }

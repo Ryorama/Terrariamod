@@ -8,8 +8,8 @@ public class ItemGelColor implements ItemColorProvider {
 
 	@Override
 	public int getColor(ItemStack stack, int tintIndex) {
-		if (stack.hasTag()) {
-			NbtCompound tag = stack.getTag();
+		if (stack.hasNbt()) {
+			NbtCompound tag = stack.getNbt();
 			if (tag.getString("GelColor") == "") {
 				System.out.println(tag.getString("GelColor"));
 				return 0x03fc24;

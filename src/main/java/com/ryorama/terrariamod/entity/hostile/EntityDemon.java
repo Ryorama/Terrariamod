@@ -2,8 +2,6 @@ package com.ryorama.terrariamod.entity.hostile;
 
 import java.util.ArrayList;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
@@ -82,10 +80,6 @@ public class EntityDemon extends EntityBaseMob implements IAnimatable, IParticle
 			playerIn.damage(DamageSource.mob(this), damage);
 		}
 	}
-
-	@Override
-	public <A extends IAnimatable> void summonParticle(ParticleKeyFrameEvent<A> event) {		
-	}
 	
 	public Iterable<ItemStack> getArmorItems() {
 		return armorItems;
@@ -128,8 +122,8 @@ public class EntityDemon extends EntityBaseMob implements IAnimatable, IParticle
 	        motionY = 0;
 	        this.setNoGravity(true);
 	        this.fallDistance = 0;
-			this.pitch = 0;
-			this.yaw = 0;
+			this.setPitch(0);
+			this.setYaw(0);
 			this.headYaw = 0;
 			World world = this.world;
 			PlayerEntity target = null;
@@ -174,7 +168,7 @@ public class EntityDemon extends EntityBaseMob implements IAnimatable, IParticle
 					 demonSycthSpawnCooldownCurrent = 0;
 				 }
 				 
-				 this.yaw = ((float)target.yaw - 180);
+				 this.setYaw((float)target.getYaw() - 180);
 			 } 
 			 this.setVelocity(motionX, motionY, motionZ);
 		} else {
@@ -206,5 +200,10 @@ public class EntityDemon extends EntityBaseMob implements IAnimatable, IParticle
 	@Override
 	public void loadData(NbtCompound tag) {
 		
+	}
+
+	@Override
+	public void summonParticle(ParticleKeyFrameEvent particleKeyFrameEvent) {
+
 	}
 }
