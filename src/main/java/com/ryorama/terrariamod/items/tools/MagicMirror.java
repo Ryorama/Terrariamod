@@ -19,6 +19,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
 public class MagicMirror extends ItemT {
 
 	public MagicMirror(Settings settings) {
@@ -49,6 +52,7 @@ public class MagicMirror extends ItemT {
     }
 
     @Override
+    @Environment(EnvType.CLIENT)
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (player != null) {
             if (tick) {
