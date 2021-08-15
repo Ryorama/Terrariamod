@@ -7,6 +7,7 @@
   "default_block": {
     "Name": "minecraft:stone"
   },
+  "noodle_caves_enabled": true,
   "default_fluid": {
     "Properties": {
       "level": "0"
