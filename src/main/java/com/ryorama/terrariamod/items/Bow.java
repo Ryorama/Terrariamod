@@ -32,7 +32,7 @@ public class Bow extends ItemT {
 	    	if (inventory.getStack(i).getItem() instanceof Arrow) {
 	    		Arrow arrowItem = (Arrow)inventory.getStack(i).getItem();
 	    		ArrowEntity entityArrow = new ArrowEntity(worldIn, playerIn);
-	    		entityArrow.setProperties(playerIn, playerIn.pitch, playerIn.yaw, 0.0F, 3.0F, 1.0F);
+	    		entityArrow.setProperties(playerIn, playerIn.getPitch(), playerIn.getYaw(), 0.0F, 3.0F, 1.0F);
 	    		entityArrow.setDamage(this.damage + arrowItem.damage);
     			entityArrow.setOnFire(arrowItem.fireDamage);
     			if (arrowItem.fireDamage) {

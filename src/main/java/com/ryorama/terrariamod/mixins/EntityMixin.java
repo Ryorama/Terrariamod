@@ -37,6 +37,10 @@ public abstract class EntityMixin extends Entity {
 		}
 	}
 	
+	/**
+	 * @author Ryorama
+	 * @reason HELLO ITS SIMPLY I HAVE NO IDEA WHATS THIS FOR, MAYBE ENTER A REASON
+	 */
 	@Overwrite
 	public void updatePostDeath() {
 	    if (this.deathRemovalCooldown == 120) {

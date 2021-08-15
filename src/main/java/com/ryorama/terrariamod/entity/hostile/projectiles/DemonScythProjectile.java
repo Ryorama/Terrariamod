@@ -137,10 +137,6 @@ public class DemonScythProjectile extends LivingEntity implements IAnimatable, I
 			 }
 		 }
 	}
-
-	@Override
-	public <A extends IAnimatable> void summonParticle(ParticleKeyFrameEvent<A> event) {		
-	}
 	
 	public Iterable<ItemStack> getArmorItems() {
 		return armorItems;
@@ -169,5 +165,10 @@ public class DemonScythProjectile extends LivingEntity implements IAnimatable, I
 	@Override
 	public AnimationFactory getFactory() {
 		return factory;
+	}
+
+	@Override
+	public void summonParticle(ParticleKeyFrameEvent particleKeyFrameEvent) {
+
 	}
 }

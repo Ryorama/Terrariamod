@@ -147,8 +147,8 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 
 	      if (!this.world.isClient) {
 	         motionY = 0.0D;
-	         this.pitch = 0.0F;
-	         this.yaw = 0.0F;
+	         this.setPitch(0);
+	         this.setYaw(0);
 	         this.headYaw = 0.0F;
 	         PlayerEntity target = null;
 	         double distance = 1000.0D;
@@ -348,12 +348,12 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	         if (this.getHealth() <= this.getMaxHealth() / 2 && transformed == false) {
 	        	for (int i = 0; i <= 150; i++) {
 	        		if (i > 60) {
-	        			this.pitch += 1;	
+	        			this.setPitch(this.getPitch() + 1);
 	        		} else {
-	        			this.pitch += 3;
-	        		}
+						this.setPitch(this.getPitch() + 3);
+					}
 	        	}
-	        	this.pitch = 0;
+	        	this.setPitch(0);
 	        	transformed = true;
 	        	world.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), TAudio.ROAR_0, SoundCategory.PLAYERS, 100, 1);
 	            phase = 2;
@@ -401,7 +401,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	         motionX = 0.0D;
 	         motionY = 0.0D;
 	         motionZ = 0.0D;
-	         this.yaw = this.ry;
+	         this.setYaw(this.ry);
 	      }
 	}
 	

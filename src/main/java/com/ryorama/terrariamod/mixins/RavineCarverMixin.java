@@ -17,7 +17,7 @@ public class RavineCarverMixin {
 	
 	@Inject(at = @At("HEAD"), method = "createHorizontalStretchFactors", cancellable = true)
 	private void createHorizontalStretchFactors(CarverContext context, RavineCarverConfig config, Random random, CallbackInfoReturnable<float[]> info) {
-		int i = context.getMaxY();
+		int i = context.getHeight();
 		float[] fs = new float[i];
 		float f = 1.0F;
 

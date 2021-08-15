@@ -57,10 +57,6 @@ public class EntityGranityElemental extends EntityBaseMob implements IAnimatable
 			playerIn.damage(DamageSource.mob(this), 15);
 		}
 	}
-
-	@Override
-	public <A extends IAnimatable> void summonParticle(ParticleKeyFrameEvent<A> event) {		
-	}
 	
 	public Iterable<ItemStack> getArmorItems() {
 		return armorItems;
@@ -135,9 +131,8 @@ public class EntityGranityElemental extends EntityBaseMob implements IAnimatable
 	
 	@Override
 	public void drops() {
-		ItemEntity ie = new ItemEntity(world, this.getPos().x, this.getPos().y, this.getPos().z);
+		ItemEntity ie = new ItemEntity(world, this.getPos().x, this.getPos().y, this.getPos().z, new ItemStack(BlocksT.GRANITE.asItem(), 20 + random.nextInt(10)));
 		world.spawnEntity(ie);
-		ie.setStack(new ItemStack(BlocksT.GRANITE.asItem(), 20 + random.nextInt(10)));
 		ie.setPosition(this.getPos().x, this.getPos().getY(), this.getPos().z);
 	}
 	
@@ -148,5 +143,10 @@ public class EntityGranityElemental extends EntityBaseMob implements IAnimatable
 	@Override
 	public void loadData(NbtCompound tag) {
 		
+	}
+
+	@Override
+	public void summonParticle(ParticleKeyFrameEvent particleKeyFrameEvent) {
+
 	}
 }

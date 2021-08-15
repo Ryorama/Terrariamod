@@ -21,7 +21,7 @@ public class Resources {
 	
 	public static float getDistanceFromDeltas(double dx, double dy, double dz)
     {
-        return MathHelper.sqrt(dx * dx + dy * dy + dz * dz);
+        return MathHelper.sqrt((float) (dx * dx + dy * dy + dz * dz));
     }
 	
 	public static float lerp(float a, float b, float lerp)

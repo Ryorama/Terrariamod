@@ -45,9 +45,8 @@ public class EntityGreenSlime extends EntitySlimeBase implements IAnimatable, IP
 
 	@Override
 	public void drops() {
-		ItemEntity ie = new ItemEntity(world, this.getPos().x, this.getPos().y, this.getPos().z);
+		ItemEntity ie = new ItemEntity(world, this.getPos().x, this.getPos().y, this.getPos().z, new ItemStack(ItemsT.gel(this.random.nextInt(2), "ffee00").getItem()));
 		world.spawnEntity(ie);
-		ie.setStack(new ItemStack(ItemsT.gel(this.random.nextInt(2), "ffee00").getItem()));
 		ie.setPosition(this.getPos().x, this.getPos().getY(), this.getPos().z);
 	}
 	
@@ -79,11 +78,12 @@ public class EntityGreenSlime extends EntitySlimeBase implements IAnimatable, IP
 	}
 	
 	@Override
-	public <A extends IAnimatable> void summonParticle(ParticleKeyFrameEvent<A> event) {		
-	}
-	
-	@Override
 	public void registerControllers(AnimationData data) {
 		data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));		
+	}
+
+	@Override
+	public void summonParticle(ParticleKeyFrameEvent particleKeyFrameEvent) {
+
 	}
 }

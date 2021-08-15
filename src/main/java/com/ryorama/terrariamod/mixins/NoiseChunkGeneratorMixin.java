@@ -1,5 +1,7 @@
 package com.ryorama.terrariamod.mixins;
 
+import net.minecraft.world.gen.chunk.AquiferSampler;
+import net.minecraft.world.gen.chunk.WeightSampler;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,7 +15,6 @@ import net.minecraft.world.ChunkRegion;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.Heightmap.Type;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.AquiferSampler;
 import net.minecraft.world.gen.BlockSource;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.StructureWeightSampler;
@@ -23,10 +24,8 @@ import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 public class NoiseChunkGeneratorMixin {
 	
 	@Inject(at = @At("HEAD"), method = "getBlockState", cancellable = true)
-	protected void getBlockState(StructureWeightSampler structures, @Nullable AquiferSampler aquiferSampler,
-			BlockSource blockInterpolator, int x, int y, int z, double noise, CallbackInfoReturnable<BlockState> info) {
-		info.setReturnValue(Blocks.AIR.getDefaultState());
-
+	protected void getBlockState(StructureWeightSampler structures, AquiferSampler aquiferSampler, BlockSource blockInterpolator, WeightSampler weightSampler, int i, int j, int k, double d, CallbackInfoReturnable<BlockState> cir) {
+		cir.setReturnValue(Blocks.AIR.getDefaultState());
 	}
 	
 	
