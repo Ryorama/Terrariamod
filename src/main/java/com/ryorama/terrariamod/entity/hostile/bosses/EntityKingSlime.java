@@ -39,7 +39,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable {
 	//PugzAreCute: Looks like constructor missing, Error: Error:(39, 14) All entities must have a constructor that takes one net.minecraft.world.World parameter.
 	
-	public EntityKingSlime(EntityType<? extends LivingEntity> entityType, World worldIn) {
+	public EntityKingSlime(EntityType<EntityKingSlime> entityType, World worldIn) {
 		super(entityType, worldIn);
 		if (world.isClient) {
 			this.setBossIcon();
@@ -47,7 +47,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 		}
                 if (!world.isClient()) {
 	    	     for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
-		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("The Eye of Cthulhu has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("King Slime has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
 	    	     }
                 }
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(2000);
@@ -65,7 +65,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 		}
                 if (!world.isClient()) {
 	    	     for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
-		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("The Eye of Cthulhu has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("King Slime has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
 	    	     }
                 }
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(2000);
