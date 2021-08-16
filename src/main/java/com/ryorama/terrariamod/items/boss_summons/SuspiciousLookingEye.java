@@ -29,7 +29,7 @@ public class SuspiciousLookingEye extends ItemT {
 		if (!day) {
 			playerEntity.playSound(TAudio.ROAR_0, 1, 1);
 	        		
-			EntityEyeOfCthulhu ks = new EntityEyeOfCthulhu(EntitiesT.EOC, world);
+			EntityEyeOfCthulhu ks = EntitiesT.EOC.create(world);
 			ks.setPosition(playerEntity.getPos().x + 5, playerEntity.getPos().y + 5, playerEntity.getPos().z + 5);
 			world.spawnEntity(ks);
 			
