@@ -51,6 +51,19 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 		this.getDataTracker().startTracking(EntityKingSlime.TICKS_BEFORE_JUMP, 0);
 
 	}
+
+        public EntityKingSlime(World worldIn) {
+		super(EntitiesT.KING_SLIME, worldIn);
+		if (world.isClient) {
+			this.setBossIcon();
+			this.activateBoss();
+		}
+		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(2000);
+		setHealth(getMaxHealth());
+		this.getDataTracker().startTracking(EntityKingSlime.TELEPORTING, false);
+		this.getDataTracker().startTracking(EntityKingSlime.TICKS_BEFORE_JUMP, 0);
+
+	}
 	
 	 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
