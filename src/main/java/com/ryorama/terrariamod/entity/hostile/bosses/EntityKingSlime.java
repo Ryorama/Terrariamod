@@ -45,6 +45,11 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 			this.setBossIcon();
 			this.activateBoss();
 		}
+                if (!world.isClient()) {
+	    	     for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
+		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("The Eye of Cthulhu has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+	    	     }
+                }
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(2000);
 		setHealth(getMaxHealth());
 		this.getDataTracker().startTracking(EntityKingSlime.TELEPORTING, false);
@@ -58,6 +63,11 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 			this.setBossIcon();
 			this.activateBoss();
 		}
+                if (!world.isClient()) {
+	    	     for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
+		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("The Eye of Cthulhu has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+	    	     }
+                }
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(2000);
 		setHealth(getMaxHealth());
 		this.getDataTracker().startTracking(EntityKingSlime.TELEPORTING, false);
