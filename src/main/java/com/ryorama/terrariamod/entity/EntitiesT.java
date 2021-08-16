@@ -32,9 +32,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-@Environment(EnvType.CLIENT)
 public class EntitiesT {
-
 	  public static final EntityType<EntityGreenSlime> GREEN_SLIME = Registry.register(
 	            Registry.ENTITY_TYPE,
 	            new Identifier("terrariamod", "green_slime"),
@@ -103,6 +101,7 @@ public class EntitiesT {
 		  registerModels();
 	  }
 	  
+          @Environment(EnvType.CLIENT)
 	  public static void registerModels() {
 		  EntityRendererRegistry.INSTANCE.register(EntitiesT.GREEN_SLIME,
 					(context) -> {
