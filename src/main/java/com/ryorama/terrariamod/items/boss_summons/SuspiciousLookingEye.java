@@ -25,7 +25,8 @@ public class SuspiciousLookingEye extends ItemT {
 	@Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         
-        boolean day = MinecraftClient.getInstance().world.getTimeOfDay() >= 1000 && MinecraftClient.getInstance().world.getTimeOfDay() <= 13000;
+        boolean day = world.isDay();
+
 		if (!day) {
 			playerEntity.playSound(TAudio.ROAR_0, 1, 1);
 	        		
