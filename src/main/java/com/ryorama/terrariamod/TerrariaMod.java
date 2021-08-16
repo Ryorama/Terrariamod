@@ -56,6 +56,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
 		onTick();
 		addCutouts();
+                registerModels();
 	}
 
 	public void addCutouts() {
@@ -86,8 +87,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 				
 		TMusicTicker.musicChanged = true;
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
-		
-                registerModels();
 
 		/*
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
