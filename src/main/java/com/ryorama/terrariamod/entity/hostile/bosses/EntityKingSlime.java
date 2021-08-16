@@ -36,6 +36,9 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
+
 public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable {
 	//PugzAreCute: Looks like constructor missing, Error: Error:(39, 14) All entities must have a constructor that takes one net.minecraft.world.World parameter.
 	
