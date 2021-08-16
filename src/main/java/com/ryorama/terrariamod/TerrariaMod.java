@@ -31,6 +31,8 @@ import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
 import net.minecraft.world.dimension.DimensionType;
 import software.bernie.geckolib3.GeckoLib;
 
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+
 public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static final String MODID = "terrariamod";
