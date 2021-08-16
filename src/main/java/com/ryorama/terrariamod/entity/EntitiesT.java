@@ -56,7 +56,7 @@ public class EntitiesT {
 	  public static final EntityType<EntityKingSlime> KING_SLIME = Registry.register(
 	            Registry.ENTITY_TYPE,
 	            new Identifier("terrariamod", "king_slime"),
-	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityKingSlime::new).dimensions(EntityDimensions.fixed(10, 10)).build()
+	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, (EntityType.EntityFactory<EntityKingSlime>) EntityKingSlime::new).dimensions(EntityDimensions.fixed(10, 10)).build()
 	    );
 	  
 	  public static final EntityType<EntityDemon> DEMON = Registry.register(
