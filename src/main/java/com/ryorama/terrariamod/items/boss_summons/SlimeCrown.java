@@ -24,7 +24,7 @@ public class SlimeCrown extends ItemT {
         
 		playerEntity.playSound(TAudio.ROAR_0, 1, 1);
         		
-		EntityKingSlime ks = EntitiesT.KING_SLIME.create(world);
+		EntityKingSlime ks = new EntityKingSlime(world);
 		ks.setPosition(playerEntity.getPos().x + 5, playerEntity.getPos().y + 5, playerEntity.getPos().z + 5);
 		world.spawnEntity(ks);
 		
