@@ -97,5 +97,58 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(EATER_OF_SOULS, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(EOC, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(GRANITE_ELEMETAL, MobEntity.createMobAttributes());
-	 }
+	
+                  ModelRegistry.registerModels();
+          }
+ 
+         @Environment(EnvType.CLIENT)
+         public class ModelRegistry {
+            @Environment(EnvType.CLIENT)
+	  public static void registerModels() {
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.GREEN_SLIME,
+					(context) -> {
+						return new RenderGreenSlime(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.BLUE_SLIME,
+					(context) -> {
+						return new RenderBlueSlime(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_EYE,
+					(context) -> {
+						return new RenderDemonEye(context);
+			});
+	  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.KING_SLIME,
+					(context) -> {
+						return new RenderKingSlime(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON,
+					(context) -> {
+						return new RenderDemon(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_SYCTH,
+					(context) -> {
+						return new RenderDemonSycth(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.EATER_OF_SOULS,
+					(context) -> {
+						return new RenderEaterOfSouls(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.EOC,
+					(context) -> {
+						return new RenderEyeOfCthulhu(context);
+			});
+		  
+		  EntityRendererRegistry.INSTANCE.register(EntitiesT.GRANITE_ELEMETAL,
+					(context) -> {
+						return new RenderGraniteElemental(context);
+			});
+	       }
+         }
 }
