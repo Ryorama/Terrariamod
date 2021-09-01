@@ -12,17 +12,6 @@ import net.minecraft.server.integrated.IntegratedServer;
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
 
-	@Shadow
-	private IntegratedServer server;
-	
-	@Inject(method = "getWindowTitle", at = @At("HEAD"), cancellable = true)
-    public void getAlternativeWindowTitle(CallbackInfoReturnable<String> info){
-    	
-    	String name = "Test";
-    	
-        info.setReturnValue(name);
-    }
-	
 	/*
 	throws IOException {
 	

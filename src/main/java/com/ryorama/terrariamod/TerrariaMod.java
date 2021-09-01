@@ -1,10 +1,12 @@
 package com.ryorama.terrariamod;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.OptionalLong;
 
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.client.CelestialManager;
 import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.client.fx.TerrariaModParticles;
 import com.ryorama.terrariamod.entity.EntitiesT;
@@ -33,6 +35,7 @@ import com.ryorama.terrariamod.entity.model.RenderGreenSlime;
 import com.ryorama.terrariamod.entity.model.bosses.RenderEyeOfCthulhu;
 import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
 
+import com.ryorama.terrariamod.world.WorldDataT;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -40,6 +43,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
@@ -103,8 +107,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		
 		TerrariaUIRenderer.renderTerrariaHealth();
 		TerrariaUIRenderer.renderTerrariaDefense();
-		TerrariaUIRenderer.renderTerrariaMana();
-				
+
 		TMusicTicker.musicChanged = true;
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
 
@@ -142,6 +145,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		WorldTickCallback.EVENT.register(world -> {
 			
 			WeatherBase.tickWeather();
+			CelestialManager.handleMoon(world);
+			CelestialManager.handleSolarEvents(world);
 		
 			if (world.getRandom().nextInt(700) <= 10)
 			if (world.getPlayers().size() > 0) {
@@ -161,7 +166,22 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 					}
 				}
 		});
-		
+
+		ServerWorldEvents.LOAD.register(((server, world) -> {
+			try {
+				WorldDataT.loadData(world);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}));
+
+		ServerWorldEvents.UNLOAD.register(((server, world) -> {
+			try {
+				WorldDataT.saveData(world);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}));
 	}
 	
 	private static void ModifyWorldHeight() {

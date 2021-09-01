@@ -10,6 +10,10 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+loom {
+	accessWidener = file("src/main/resources/terrariamod.accesswidener")
+}
+
 repositories {
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 }
@@ -23,10 +27,6 @@ dependencies {
 
 	include modImplementation('software.bernie.geckolib:geckolib-fabric-1.17:3.0.12:dev')
 	implementation 'javax.vecmath:vecmath:1.5.2'
-}
-
-minecraft {
-	accessWidener = file("src/main/resources/terrariamod.accesswidener")
 }
 
 processResources {

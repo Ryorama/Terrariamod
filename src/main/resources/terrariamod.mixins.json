@@ -11,7 +11,15 @@
   	"EntityMixin",
   	"WaterFluidMixin",
     "FlowingMixin",
-    "RavineCarverMixin"
+    "RavineCarverMixin",
+    "ServerNetworkPlayerHandlerMixin",
+    "ScreenHandlerMixin",
+    "PacketByteBufMixin",
+    "ItemStackMixin",
+    "ItemScattererMixin",
+    "CraftingInventoryMixin",
+    "ClearCommandMixin",
+    "InventoryMixin"
   ],
   "client": [
   	"InGameHudMixin",
@@ -21,7 +29,8 @@
     "ChunkGeneratorSettingsMixin",
     "NoiseChunkGeneratorMixin",
     "MinecraftClientMixin",
-    "PlayerEntityModelMixin"
+    "PlayerEntityModelMixin",
+    "ItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -7,10 +7,12 @@ import net.minecraft.inventory.Inventory;
 
 @Mixin(Inventory.class)
 public interface InventoryMixin {
-	/*
-	@Overwrite
-	default int getMaxCountPerStack() {
-		return 999;
-	}
-	*/
+    /**
+     * @author HalfOf2
+     * @reason increase max stack size
+     */
+    @Overwrite
+    default int getMaxCountPerStack() {
+        return 999;
+    }
 }
