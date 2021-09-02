@@ -19,7 +19,8 @@
     "ItemScattererMixin",
     "CraftingInventoryMixin",
     "ClearCommandMixin",
-    "InventoryMixin"
+    "InventoryMixin",
+    "LavaFluidMixin"
   ],
   "client": [
   	"InGameHudMixin",
