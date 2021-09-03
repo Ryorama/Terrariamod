@@ -98,8 +98,8 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(DEMON_EYE, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(DEMON, MobEntity.createMobAttributes());
-		  FabricDefaultAttributeRegistry.register(SPORE_ZOMBIE, MobEntity.createMobAttributes());
-		  FabricDefaultAttributeRegistry.register(SPORE_SKELETON, MobEntity.createMobAttributes());
+		  FabricDefaultAttributeRegistry.register(SPORE_ZOMBIE, EntitySporeZombie.createZombieAttributes());
+		  FabricDefaultAttributeRegistry.register(SPORE_SKELETON, EntitySporeSkeleton.createZombieAttributes());
 		  FabricDefaultAttributeRegistry.register(DRIPPLER, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(KING_SLIME, LivingEntity.createLivingAttributes());
 		  FabricDefaultAttributeRegistry.register(DEMON_SYCTH, LivingEntity.createLivingAttributes());

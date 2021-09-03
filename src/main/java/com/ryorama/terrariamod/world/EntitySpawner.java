@@ -34,7 +34,6 @@ public class EntitySpawner {
 	public static EntityType[] underworldEntities = {EntitiesT.DEMON};
 	public static EntityType[] rainEntities = {};
 	public static EntityType[] mushroomBiomeEntities = {EntitiesT.SPORE_SKELETON, EntitiesT.SPORE_ZOMBIE};
-	
 	public static EntityType[] oceanEntities = {};
 	
 	public static void spawnEntities(PlayerEntity player, double x, double y, double z) {
@@ -199,20 +198,25 @@ public class EntitySpawner {
 	
 	public static boolean spawnCaveEntity(World world, double x, double y, double z) {
 		BlockPos spawnpoint = getSuitableEntitySpawnpoint(world, x, y, z);
+		System.out.println("Attempt spawn cave entity");
 		if (spawnpoint == null) return false;
-		EntityType[] list = EntitySpawner.caveEntities;
-		if (world.getBlockState(spawnpoint).getMaterial() == Material.WATER) {
-			list = EntitySpawner.caveWaterEntities;
+		for (int i = 1; i <= world.getRandom().nextInt(10); i++) {
+			EntityType[] list = EntitySpawner.caveEntities;
+			if (world.getBlockState(spawnpoint).getMaterial() == Material.WATER) {
+				list = EntitySpawner.caveWaterEntities;
+			}
+			if (world.getBlockState(new BlockPos(spawnpoint.getX(), spawnpoint.getY() - 1, spawnpoint.getZ())) == BlocksT.MUSHROOM_GRASS.getDefaultState()) {
+				list = EntitySpawner.mushroomBiomeEntities;
+			}
+			if (list == null) return false;
+			if (list.length == 0) return false;
+			EntityType e = list[world.random.nextInt(list.length)];
+			if (e == null)
+				return false;
+			spawnEntityAt(e, spawnpoint, world);
+			System.out.println("Attempt spawn cave entity");
 		}
-		if (world.getBlockState(spawnpoint) == BlocksT.MUSHROOM_GRASS.getDefaultState()) {
-			list = EntitySpawner.mushroomBiomeEntities;
-		}
-		if (list == null) return false;
-		if (list.length == 0) return false;
-		EntityType e = list[world.random.nextInt(list.length)];
-		if (e == null)
-			return false;
-		spawnEntityAt(e, spawnpoint, world);
+
 		return true;
 	}
 	
