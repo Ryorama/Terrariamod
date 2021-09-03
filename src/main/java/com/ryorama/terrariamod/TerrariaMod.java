@@ -203,6 +203,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		
 		TerrariaUIRenderer.renderTerrariaHealth();
 		TerrariaUIRenderer.renderTerrariaDefense();
+                TerrariaUIRenderer.renderTerrariaMana();
 
 		TMusicTicker.musicChanged = true;
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
