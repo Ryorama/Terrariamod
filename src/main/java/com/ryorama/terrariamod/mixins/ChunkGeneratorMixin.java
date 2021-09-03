@@ -408,6 +408,9 @@ public class ChunkGeneratorMixin {
 											}
 											pos.set(x, y, z);
 											region.setBlockState(pos, BlocksT.MUSHROOM_GRASS.getDefaultState(), 0);
+											if (region.getRandom().nextInt(20) == 0) {
+												GenerateGiantMushroom(region, x, y, z, pos);
+											}
 										}
 								}
 							} else {
@@ -482,6 +485,18 @@ public class ChunkGeneratorMixin {
 				}
 				region.setBlockState(new BlockPos(pos.getX(), pos.getY() + height + 1, pos.getZ()), BlocksT.FOREST_TOP.getDefaultState(), 0);
 			}
+		}
+	}
+
+	private void GenerateGiantMushroom(ChunkRegion region, int x, int y, int z, BlockPos.Mutable pos) {
+		pos.set(x, y, z);
+		if (region.getBlockState(pos).getBlock() == BlocksT.MUSHROOM_GRASS) {
+			int height = region.getRandom().nextInt(8) + 4;
+			region.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.GIANT_GLOWING_MUSHROOM_STEM.getDefaultState(), 0);
+			for (int h = 2; h <= height; h++) {
+				region.setBlockState(new BlockPos(pos.getX(), pos.getY() + h, pos.getZ()), BlocksT.GIANT_GLOWING_MUSHROOM_STEM.getDefaultState(), 0);
+			}
+			region.setBlockState(new BlockPos(pos.getX(), pos.getY() + height + 1, pos.getZ()), BlocksT.GIANT_GLOWING_MUSHROOM_TOP.getDefaultState(), 0);
 		}
 	}
 

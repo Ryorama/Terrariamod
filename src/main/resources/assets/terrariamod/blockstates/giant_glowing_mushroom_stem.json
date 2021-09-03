@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "": [
+            { "model": "terrariamod:block/trees/giant_glowing_mushroom_stem", "weight": 20 },
+            { "model": "terrariamod:block/trees/giant_glowing_mushroom_stem", "weight": 5 },
+            { "model": "terrariamod:block/trees/giant_glowing_mushroom_stem", "weight": 1 }
+        ]
+    }
+}
