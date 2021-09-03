@@ -45,7 +45,7 @@ public class BlocksT {
 	public static TreeSegment FOREST_TOP = (TreeSegment) new TreeSegment(FabricBlockSettings.of(Material.WOOD), 15, 15).setAxe(true);
 
 	public static TreeSegment GIANT_GLOWING_MUSHROOM_STEM = (TreeSegment) new TreeSegment(FabricBlockSettings.of(Material.WOOD), 15, 15).setAxe(true);
-	public static TreeSegment GIANT_GLOWING_MUSHROOM_TOP = (TreeSegment) new TreeSegment(FabricBlockSettings.of(Material.WOOD), 15, 15).setAxe(true);
+	public static TreeSegment GIANT_GLOWING_MUSHROOM_TOP = (TreeSegment) new TreeSegment(FabricBlockSettings.of(Material.WOOD).luminance(20), 15, 15).setAxe(true);
 
 	public static void init() {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "grass_block"), GRASS_BLOCK);

@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.entity.hostile;
 
+import com.ryorama.terrariamod.entity.EntitiesT;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -32,6 +33,11 @@ public class EntitySporeSkeleton extends ZombieEntity implements IAnimatable {
 
     public EntitySporeSkeleton(EntityType<? extends ZombieEntity> entityType, World worldIn) {
         super(entityType, worldIn);
+        onInitSpawn();
+    }
+
+    public EntitySporeSkeleton(World world) {
+        super(EntitiesT.SPORE_SKELETON, world);
         onInitSpawn();
     }
 

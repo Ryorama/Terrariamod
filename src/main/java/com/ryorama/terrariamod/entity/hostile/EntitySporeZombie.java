@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.entity.hostile;
 
+import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
 import net.minecraft.entity.EntityType;
@@ -39,6 +40,11 @@ public class EntitySporeZombie extends ZombieEntity implements IAnimatable {
 
     public EntitySporeZombie(EntityType<? extends ZombieEntity> entityType, World worldIn) {
         super(entityType, worldIn);
+        onInitSpawn();
+    }
+
+    public EntitySporeZombie(World world) {
+        super(EntitiesT.SPORE_ZOMBIE, world);
         onInitSpawn();
     }
 

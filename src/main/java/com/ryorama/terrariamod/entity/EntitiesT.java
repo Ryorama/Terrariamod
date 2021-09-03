@@ -84,13 +84,13 @@ public class EntitiesT {
 	public static final EntityType<EntitySporeZombie> SPORE_ZOMBIE = Registry.register(
 			Registry.ENTITY_TYPE,
 			new Identifier("terrariamod", "spore_zombie"),
-			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntitySporeZombie::new).dimensions(EntityDimensions.fixed(1, 1)).build()
+			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, (EntityType.EntityFactory<EntitySporeZombie>) EntitySporeZombie::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
 	public static final EntityType<EntitySporeSkeleton> SPORE_SKELETON = Registry.register(
 			Registry.ENTITY_TYPE,
 			new Identifier("terrariamod", "spore_skeleton"),
-			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntitySporeSkeleton::new).dimensions(EntityDimensions.fixed(1, 1)).build()
+			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, (EntityType.EntityFactory<EntitySporeSkeleton>) EntitySporeSkeleton::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 	  
 	  public static void init() {
