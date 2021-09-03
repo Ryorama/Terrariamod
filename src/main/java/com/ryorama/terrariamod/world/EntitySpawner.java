@@ -2,6 +2,7 @@ package com.ryorama.terrariamod.world;
 
 import com.ryorama.terrariamod.biomes.BiomeCorruption;
 import com.ryorama.terrariamod.biomes.BiomePurity;
+import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.entity.EntitiesT;
 
 import net.minecraft.block.Material;
@@ -32,6 +33,7 @@ public class EntitySpawner {
 	public static EntityType[] caveWaterEntities = {};
 	public static EntityType[] underworldEntities = {EntitiesT.DEMON};
 	public static EntityType[] rainEntities = {};
+	public static EntityType[] mushroomBiomeEntities = {EntitiesT.SPORE_SKELETON, EntitiesT.SPORE_ZOMBIE};
 	
 	public static EntityType[] oceanEntities = {};
 	
@@ -201,6 +203,9 @@ public class EntitySpawner {
 		EntityType[] list = EntitySpawner.caveEntities;
 		if (world.getBlockState(spawnpoint).getMaterial() == Material.WATER) {
 			list = EntitySpawner.caveWaterEntities;
+		}
+		if (world.getBlockState(spawnpoint) == BlocksT.MUSHROOM_GRASS.getDefaultState()) {
+			list = EntitySpawner.mushroomBiomeEntities;
 		}
 		if (list == null) return false;
 		if (list.length == 0) return false;

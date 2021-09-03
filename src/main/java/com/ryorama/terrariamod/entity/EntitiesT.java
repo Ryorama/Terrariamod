@@ -80,12 +80,26 @@ public class EntitiesT {
 			new Identifier("terrariamod", "drippler"),
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityDrippler::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
+
+	public static final EntityType<EntitySporeZombie> SPORE_ZOMBIE = Registry.register(
+			Registry.ENTITY_TYPE,
+			new Identifier("terrariamod", "spore_zombie"),
+			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntitySporeZombie::new).dimensions(EntityDimensions.fixed(1, 1)).build()
+	);
+
+	public static final EntityType<EntitySporeSkeleton> SPORE_SKELETON = Registry.register(
+			Registry.ENTITY_TYPE,
+			new Identifier("terrariamod", "spore_skeleton"),
+			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntitySporeSkeleton::new).dimensions(EntityDimensions.fixed(1, 1)).build()
+	);
 	  
 	  public static void init() {
 		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(DEMON_EYE, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(DEMON, MobEntity.createMobAttributes());
+		  FabricDefaultAttributeRegistry.register(SPORE_ZOMBIE, MobEntity.createMobAttributes());
+		  FabricDefaultAttributeRegistry.register(SPORE_SKELETON, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(DRIPPLER, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(KING_SLIME, LivingEntity.createLivingAttributes());
 		  FabricDefaultAttributeRegistry.register(DEMON_SYCTH, LivingEntity.createLivingAttributes());
@@ -93,62 +107,74 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(EOC, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(GRANITE_ELEMETAL, MobEntity.createMobAttributes());
 	
-                  ModelRegistry.registerModels();
-          }
+		  ModelRegistry.registerModels();
+	  }
  
          @Environment(EnvType.CLIENT)
          public class ModelRegistry {
             @Environment(EnvType.CLIENT)
 	  public static void registerModels() {
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.GREEN_SLIME,
-					(context) -> {
-						return new RenderGreenSlime(context);
-			});
-		  
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.BLUE_SLIME,
-					(context) -> {
-						return new RenderBlueSlime(context);
-			});
-		  
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_EYE,
-					(context) -> {
-						return new RenderDemonEye(context);
-			});
-	  
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.KING_SLIME,
-					(context) -> {
-						return new RenderKingSlime(context);
-			});
-		  
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON,
-					(context) -> {
-						return new RenderDemon(context);
-			});
-		  
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_SYCTH,
-					(context) -> {
-						return new RenderDemonSycth(context);
-			});
-		  
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.EATER_OF_SOULS,
-					(context) -> {
-						return new RenderEaterOfSouls(context);
-			});
-		  
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.EOC,
-					(context) -> {
-						return new RenderEyeOfCthulhu(context);
-			});
-		  
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.GRANITE_ELEMETAL,
-					(context) -> {
-						return new RenderGraniteElemental(context);
-			});
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.GREEN_SLIME,
+						(context) -> {
+							return new RenderGreenSlime(context);
+						});
 
-		  EntityRendererRegistry.INSTANCE.register(EntitiesT.DRIPPLER,
-					(context) -> {
-						return new RenderDrippler(context);
-		  });
-	       }
-         }
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.BLUE_SLIME,
+						(context) -> {
+							return new RenderBlueSlime(context);
+						});
+
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_EYE,
+						(context) -> {
+							return new RenderDemonEye(context);
+						});
+
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.KING_SLIME,
+						(context) -> {
+							return new RenderKingSlime(context);
+						});
+
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON,
+						(context) -> {
+							return new RenderDemon(context);
+						});
+
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_SYCTH,
+						(context) -> {
+							return new RenderDemonSycth(context);
+						});
+
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.EATER_OF_SOULS,
+						(context) -> {
+							return new RenderEaterOfSouls(context);
+						});
+
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.EOC,
+						(context) -> {
+							return new RenderEyeOfCthulhu(context);
+						});
+
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.GRANITE_ELEMETAL,
+						(context) -> {
+							return new RenderGraniteElemental(context);
+						});
+
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.DRIPPLER,
+						(context) -> {
+							return new RenderDrippler(context);
+						});
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.DRIPPLER,
+						(context) -> {
+							return new RenderDrippler(context);
+						});
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.SPORE_ZOMBIE,
+						(context) -> {
+							return new RenderSporeZombie(context);
+						});
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.SPORE_SKELETON,
+						(context) -> {
+							return new RenderSporeSkeleton(context);
+						});
+			}
+	  }
 }
