@@ -47,6 +47,9 @@ public class BlocksT {
 	public static TreeSegment GIANT_GLOWING_MUSHROOM_STEM = (TreeSegment) new TreeSegment(FabricBlockSettings.of(Material.WOOD), 15, 15).setAxe(true);
 	public static TreeSegment GIANT_GLOWING_MUSHROOM_TOP = (TreeSegment) new TreeSegment(FabricBlockSettings.of(Material.WOOD).luminance(20), 15, 15).setAxe(true);
 
+	public static BlockT HONEY_BLOCK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static BlockT CRISPY_HONEY_BLOCK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+
 	public static void init() {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "grass_block"), GRASS_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "corrupted_grass"), CORRUPTED_GRASS_BLOCK);
@@ -84,5 +87,8 @@ public class BlocksT {
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "giant_glowing_mushroom_stem"), GIANT_GLOWING_MUSHROOM_STEM);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "giant_glowing_mushroom_top"), GIANT_GLOWING_MUSHROOM_TOP);
+
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "honey_block"), HONEY_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "crispy_honey_block"), CRISPY_HONEY_BLOCK);
 	}
 }

@@ -1,5 +1,9 @@
 package com.ryorama.terrariamod.mixins;
 
+import com.ryorama.terrariamod.TerrariaMod;
+import net.minecraft.tag.FluidTags;
+import net.minecraft.tag.Tag;
+import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,11 +36,16 @@ public abstract class EntityMixin extends Entity {
 	
 	@Inject(at = @At("HEAD"), method = "tick")
 	public void tick(CallbackInfo info) {
+
+		if (this.getFluidHeight(TerrariaMod.HONEY_TAG) > 0.0d) {
+			this.updateMovementInFluid(TerrariaMod.HONEY_TAG, 0.023D); //D original value: 0.014D
+		}
+
 		if (!isAlive()) {
 			deathRemovalCooldown += 1;
 		}
 	}
-	
+
 	/**
 	 * @author Ryorama
 	 * @reason HELLO ITS SIMPLY I HAVE NO IDEA WHATS THIS FOR, MAYBE ENTER A REASON

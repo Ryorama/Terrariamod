@@ -1,5 +1,15 @@
 package com.ryorama.terrariamod.mixins;
 
+import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
+import com.ryorama.terrariamod.world.WorldDataT;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.stat.Stat;
+import net.minecraft.stat.StatType;
+import net.minecraft.stat.Stats;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,32 +38,49 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 	protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
 		super(entityType, world);
 	}
-	
-	public boolean hasGivingStartingItems = false;
-	
+
 	public float newMaxHealth = 100;
 	
 	private int ticks = 0;
+
+	public boolean firstUpdate = false;
 	
 	public PlayerEntity player;
-		
+
+	public int tmpMana = 20;
+	public int tmpMaxMana = 20;
+
 	@Inject(at = @At("HEAD"), method = "tick")
 	public void tick(CallbackInfo info) {
-		
+
 		ticks++;
-		
-		if (MinecraftClient.getInstance().player != null && !hasGivingStartingItems) {
+
+		if (MinecraftClient.getInstance().player != null && !WorldDataT.hasStartingTools) {
 			this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(newMaxHealth);
 			this.setHealth(100);
-			
+
+			MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), 20);
+			MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), 20);
+
 			MinecraftClient.getInstance().player.getInventory().insertStack(new ItemStack(ItemsT.COPPER_PICKAXE, 1));
 			MinecraftClient.getInstance().player.getInventory().insertStack(new ItemStack(ItemsT.COPPER_AXE, 1));
 			MinecraftClient.getInstance().player.getInventory().insertStack(new ItemStack(ItemsT.COPPER_SHORTSWORD, 1));
 			
-			hasGivingStartingItems = true;
+			WorldDataT.hasStartingTools = true;
 		}
 		
 		if (MinecraftClient.getInstance().player != null) {
+
+			if (!firstUpdate && WorldDataT.hasStartingTools) {
+				MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), tmpMana);
+				MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), tmpMaxMana);
+				firstUpdate = true;
+			}
+
+			if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
+				MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
+			}
+
 			MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(10);
 			player = MinecraftClient.getInstance().player;
 		}
@@ -274,11 +301,18 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 	@Inject(at = @At("HEAD"), method = "writeCustomDataToNbt")
 	public void writeCustomDataToNbt(NbtCompound nbt, CallbackInfo info) {
 		nbt.putDouble("newMaxHealth", this.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
+		nbt.putInt("mana", MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)));
+		nbt.putInt("max_mana", MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA)));
 	}
 	
 	@Inject(at = @At("HEAD"), method = "readCustomDataFromNbt")
 	public void readCustomDataFromNbt(NbtCompound nbt, CallbackInfo info) {
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(nbt.getDouble("newMaxHealth"));
 		newMaxHealth = (float)nbt.getDouble("newMaxHealth");
+
+		if (WorldDataT.hasStartingTools) {
+			tmpMana = nbt.getInt("mana");
+			tmpMaxMana = nbt.getInt("max_mana");
+		}
 	}
 }

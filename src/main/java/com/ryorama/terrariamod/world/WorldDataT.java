@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import com.mojang.datafixers.DataFixer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.argument.DimensionArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -32,6 +33,8 @@ public class WorldDataT {
 	  public static boolean hardmode = false;
 	  
 	  public static boolean expert = false, master = false;
+
+	  public static boolean hasStartingTools = false;
 	  
 	  public static boolean isTerrariaWorld = true;
 	  
@@ -70,10 +73,11 @@ public class WorldDataT {
 
 			nbtCompound.putBoolean("bloodmoon", bloodMoon);
 			nbtCompound.putBoolean("solarEclipse", solarEclipse);
+			nbtCompound.putBoolean("hasStartingTools", hasStartingTools);
 
-			File dataFile = new File(WorldSavePath.PLAYERDATA.getRelativePath() + "/worldSaveData.dat");
+			File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
 			if (!dataFile.exists()) {
-				Files.createFile(Path.of(WorldSavePath.PLAYERDATA.getRelativePath() + "/worldSaveData.dat"));
+				Files.createFile(Path.of(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat"));
 			}
 			NbtIo.writeCompressed(nbtCompound, dataFile);
 	  }
@@ -81,11 +85,12 @@ public class WorldDataT {
 	public static void loadData(World world) throws IOException {
 		NbtCompound nbtCompound = new NbtCompound();
 
-		File dataFile = new File(WorldSavePath.PLAYERDATA.getRelativePath() + "/worldSaveData.dat");
+		File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
 		if (dataFile.exists()) {
 			nbtCompound = NbtIo.readCompressed(dataFile);
 		}
 
+		hasStartingTools = nbtCompound.getBoolean("hasStartingTools");
 		bloodMoon = nbtCompound.getBoolean("bloodmoon");
 		solarEclipse = nbtCompound.getBoolean("solarEclipse");
 

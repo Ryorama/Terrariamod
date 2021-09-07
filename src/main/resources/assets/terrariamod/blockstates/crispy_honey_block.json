@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "terrariamod:block/crispy_honey_block" },
+            { "model": "terrariamod:block/crispy_honey_block", "y": 90 },
+            { "model": "terrariamod:block/crispy_honey_block", "y": 180 },
+            { "model": "terrariamod:block/crispy_honey_block", "y": 270 }
+        ]
+    }
+}

@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.util.OptionalLong;
 import java.util.function.Function;
 
+import com.google.common.collect.Lists;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.CelestialManager;
@@ -69,7 +70,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.stat.StatFormatter;
+import net.minecraft.stat.Stats;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.tag.FluidTags;
+import net.minecraft.tag.RequiredTagListRegistry;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -92,6 +98,11 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	public static Item HONEY_BUCKET;
 	public static Block HONEY;
 
+	public static final Tag.Identified<Fluid> HONEY_TAG;
+
+	public static final Identifier MANA = new Identifier(MODID, "mana");
+	public static final Identifier MAX_MANA = new Identifier(MODID, "max_mana");
+
 	@Override
 	public void onInitialize() {
 		TerrariaModParticles.init();	
@@ -108,6 +119,21 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 				new BucketItem(STILL_HONEY, new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1)));
 		HONEY = Registry.register(Registry.BLOCK, new Identifier(MODID, "honey"), new FluidBlock(STILL_HONEY, FabricBlockSettings.copy(Blocks.WATER)){});
 
+		Registry.register(Registry.CUSTOM_STAT, "mana", MANA);
+		Stats.CUSTOM.getOrCreateStat(MANA, StatFormatter.DEFAULT);
+
+		Registry.register(Registry.CUSTOM_STAT, "max_mana", MAX_MANA);
+		Stats.CUSTOM.getOrCreateStat(MAX_MANA, StatFormatter.DEFAULT);
+	}
+
+	static {
+		HONEY_TAG = registerFluidTags("honey");
+	}
+
+	private static Tag.Identified<Fluid> registerFluidTags(String id) {
+		Tag.Identified<Fluid> identified = FluidTags.REQUIRED_TAGS.add(id);
+		FluidTags.getTags().add(identified);
+		return identified;
 	}
 	
 	@Environment(EnvType.CLIENT)

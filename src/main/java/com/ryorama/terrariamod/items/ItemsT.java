@@ -3,7 +3,7 @@ package com.ryorama.terrariamod.items;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.entity.EntitiesT;
-import com.ryorama.terrariamod.items.accessories.BandOfRegeneration;
+import com.ryorama.terrariamod.items.accessories.*;
 import com.ryorama.terrariamod.items.armor.CopperArmorMaterial;
 import com.ryorama.terrariamod.items.armor.GoldTArmorMaterial;
 import com.ryorama.terrariamod.items.armor.IronTArmorMaterial;
@@ -127,6 +127,10 @@ public class ItemsT {
 	public static LesserHealingPotion LESSER_HEALING_POTION = new LesserHealingPotion(new FabricItemSettings().group(ItemGroup.BREWING));
 
 	public static Item BAND_OF_REGENERATION;
+	public static Item BAND_OF_STARPOWER;
+	public static Item AGLET;
+	public static Item MAGMA_STONE;
+	public static Item SHACKLE;
 
 	public static void init() {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood"), WOOD);
@@ -210,7 +214,11 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_bow"), IRON_BOW);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_bow"), GOLD_BOW);
 
-		BAND_OF_REGENERATION = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_regeneration"), new BandOfRegeneration(new Item.Settings().maxCount(1).maxDamage(1)));
+		BAND_OF_REGENERATION = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_regeneration"), new BandOfRegeneration(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
+		BAND_OF_STARPOWER = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_starpower"), new BandOfStarpower(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
+		AGLET = Registry.register(Registry.ITEM, new Identifier("terrariamod:aglet"), new Aglet(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
+		MAGMA_STONE = Registry.register(Registry.ITEM, new Identifier("terrariamod:magma_stone"), new MagmaStone(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
+		SHACKLE = Registry.register(Registry.ITEM, new Identifier("terrariamod:shackle"), new Shackle(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
 
 	}
 	

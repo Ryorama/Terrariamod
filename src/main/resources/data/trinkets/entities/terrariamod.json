@@ -3,6 +3,11 @@
     "player"
   ],
   "slots": [
-    "offhand/ring"
+    "offhand/ring",
+    "acc1/acc1",
+    "acc1//acc2",
+    "acc1//acc3",
+    "acc1//acc4",
+    "acc1/acc5"
   ]
 }
