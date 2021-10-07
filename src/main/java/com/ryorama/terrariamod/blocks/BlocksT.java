@@ -50,6 +50,9 @@ public class BlocksT {
 	public static BlockT HONEY_BLOCK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT CRISPY_HONEY_BLOCK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 
+	public static BlockT TOMBSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static BlockT GOLD_TOMBSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+
 	public static void init() {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "grass_block"), GRASS_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "corrupted_grass"), CORRUPTED_GRASS_BLOCK);
@@ -90,5 +93,9 @@ public class BlocksT {
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "honey_block"), HONEY_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "crispy_honey_block"), CRISPY_HONEY_BLOCK);
+
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "tombstone"), TOMBSTONE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "gold_tombstone"), GOLD_TOMBSTONE);
+
 	}
 }

@@ -10,7 +10,7 @@ import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.CelestialManager;
 import com.ryorama.terrariamod.client.TMusicTicker;
-import com.ryorama.terrariamod.client.fx.TerrariaModParticles;
+import com.ryorama.terrariamod.client.fx.ShadersManager;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
 import com.ryorama.terrariamod.items.ItemGelColor;
@@ -105,7 +105,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	@Override
 	public void onInitialize() {
-		TerrariaModParticles.init();	
 		BiomeRegistry.RegisterBiomes();
 		BlocksT.init();
 		ItemsT.init();
@@ -140,13 +139,13 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		EntitiesT.init();
-		TerrariaModParticles.FactoryHandler.registerFactories();
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
 		onTick();
 		addCutouts();
 		setupFluidRendering(TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY, new Identifier(MODID, "honey"), 0xFFFFFF);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
 
+		ShadersManager.registerShaders();
 	}
 
 	public static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color) {
@@ -214,6 +213,11 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_TOP, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_TOP, RenderLayer.getTranslucent());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.TOMBSTONE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.TOMBSTONE, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GOLD_TOMBSTONE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GOLD_TOMBSTONE, RenderLayer.getTranslucent());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MUSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.JUNGLE_SPORES, RenderLayer.getCutout());

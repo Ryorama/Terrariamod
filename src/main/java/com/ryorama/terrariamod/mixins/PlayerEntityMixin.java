@@ -1,16 +1,22 @@
 package com.ryorama.terrariamod.mixins;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.callbacks.PlayerEquipArmorCallback;
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
+import com.ryorama.terrariamod.items.ItemT;
 import com.ryorama.terrariamod.world.WorldDataT;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.stat.Stat;
 import net.minecraft.stat.StatType;
 import net.minecraft.stat.Stats;
+import net.minecraft.util.ActionResult;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -32,6 +38,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
 
@@ -39,6 +48,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		super(entityType, world);
 	}
 
+	private List<PlayerEquipArmorCallback> playerEquipArmorCallbacks = new ArrayList<>();
 	public float newMaxHealth = 100;
 	
 	private int ticks = 0;
@@ -49,6 +59,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
 	public int tmpMana = 20;
 	public int tmpMaxMana = 20;
+
+	public boolean droppedTombstoneForDeath = false;
 
 	@Inject(at = @At("HEAD"), method = "tick")
 	public void tick(CallbackInfo info) {
@@ -292,9 +304,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 			}
 		}
 	}
-	
+
 	@Inject(at = @At("HEAD"), method = "requestRespawn")
 	public void requestRespawn(CallbackInfo info) {
+		droppedTombstoneForDeath = false;
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(newMaxHealth);
 	}
 	
@@ -313,6 +326,24 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		if (WorldDataT.hasStartingTools) {
 			tmpMana = nbt.getInt("mana");
 			tmpMaxMana = nbt.getInt("max_mana");
+		}
+	}
+
+	@Inject(at = @At("HEAD"), method = "equipStack", cancellable = true)
+	public void equipStack(EquipmentSlot slot, ItemStack stack, CallbackInfo ci) {
+		ActionResult action = PlayerEquipArmorCallback.EVENT.invoker().call(slot, stack);
+
+		if (action == ActionResult.FAIL) {
+			ci.cancel();
+		}
+	}
+
+	@Inject(at = @At("HEAD"), method = "onDeath")
+	public void onDeath(DamageSource source, CallbackInfo ci) {
+		if (!droppedTombstoneForDeath) {
+			this.getEntityWorld().setBlockState(this.getBlockPos(), BlocksT.TOMBSTONE.getDefaultState());
+
+			droppedTombstoneForDeath = true;
 		}
 	}
 }

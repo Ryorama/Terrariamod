@@ -6,6 +6,7 @@ import java.util.Random;
 import com.ryorama.terrariamod.items.api.IRareItem;
 
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;

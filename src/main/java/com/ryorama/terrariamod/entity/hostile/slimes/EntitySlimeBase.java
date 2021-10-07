@@ -2,10 +2,6 @@ package com.ryorama.terrariamod.entity.hostile.slimes;
 
 import java.util.ArrayList;
 
-import com.ryorama.terrariamod.client.fx.DamageParticleData;
-import com.ryorama.terrariamod.client.fx.DamageParticleType;
-import com.ryorama.terrariamod.client.fx.FXDamageIndicator;
-import com.ryorama.terrariamod.client.fx.TerrariaModParticles;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 
