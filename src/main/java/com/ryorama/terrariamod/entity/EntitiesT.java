@@ -15,8 +15,11 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -92,7 +95,14 @@ public class EntitiesT {
 			new Identifier("terrariamod", "spore_skeleton"),
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, (EntityType.EntityFactory<EntitySporeSkeleton>) EntitySporeSkeleton::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
-	  
+
+	public static final EntityType<PlayerEntity> PLAYER_ENTITY_SHADERS =
+			Registry.register(
+					Registry.ENTITY_TYPE,
+					new Identifier("terrariamod", "player_shaders"),
+					FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, PlayerEntity::new).dimensions(EntityType.PLAYER.getDimensions()).build()
+	);
+
 	  public static void init() {
 		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, MobEntity.createMobAttributes());
