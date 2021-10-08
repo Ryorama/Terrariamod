@@ -45,8 +45,11 @@ dependencies {
 	modImplementation "dev.emi:trinkets:3.0.4"
 	implementation 'javax.vecmath:vecmath:1.5.2'
 	modImplementation "io.github.ladysnake:satin:${satin_version}"
-	// Include Satin as a Jar-in-Jar dependency (optional)
+
 	include "io.github.ladysnake:satin:${satin_version}"
+	include "software.bernie.geckolib:geckolib-fabric-1.17:3.0.12:dev"
+	include "dev.emi:trinkets:3.0.4"
+
 }
 
 processResources {
