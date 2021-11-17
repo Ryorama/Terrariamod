@@ -96,13 +96,6 @@ public class EntitiesT {
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, (EntityType.EntityFactory<EntitySporeSkeleton>) EntitySporeSkeleton::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
-	public static final EntityType<PlayerEntity> PLAYER_ENTITY_SHADERS =
-			Registry.register(
-					Registry.ENTITY_TYPE,
-					new Identifier("terrariamod", "player_shaders"),
-					FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, PlayerEntity::new).dimensions(EntityType.PLAYER.getDimensions()).build()
-	);
-
 	  public static void init() {
 		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, MobEntity.createMobAttributes());

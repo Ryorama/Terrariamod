@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import com.google.common.collect.Lists;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
+import com.ryorama.terrariamod.blocks.BlockT;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.CelestialManager;
 import com.ryorama.terrariamod.client.TMusicTicker;
@@ -14,6 +15,7 @@ import com.ryorama.terrariamod.client.fx.ShadersManager;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
 import com.ryorama.terrariamod.items.ItemGelColor;
+import com.ryorama.terrariamod.items.ItemT;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.weather.WeatherBase;
@@ -50,6 +52,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -76,6 +79,7 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.tag.RequiredTagListRegistry;
 import net.minecraft.tag.Tag;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -238,7 +242,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		TMusicTicker.musicChanged = true;
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
 
-		/*
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!player.isCreative()) {
 				if (world.getBlockState(pos).getBlock() instanceof BlockT) {
@@ -248,13 +251,13 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 						ItemT item = (ItemT)player.getInventory().getMainHandStack().getItem();
 						if (block.difficulty > 0) {
 							if (block.pick && item.pick >= block.difficulty) {
-				                return ActionResult.SUCCESS;
+				                return ActionResult.PASS;
 							}
 							if (block.axe && item.axe >= block.difficulty) {
-				                return ActionResult.SUCCESS;
+				                return ActionResult.PASS;
 							}
 							if (block.hammer && item.hammer >= block.difficulty) {
-				                return ActionResult.SUCCESS;
+				                return ActionResult.PASS;
 							}
 							return ActionResult.FAIL;
 						}
@@ -264,11 +267,10 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 				}
 				return ActionResult.FAIL;
 			} else {
-				return ActionResult.SUCCESS;
+				return ActionResult.PASS;
 			}
 		});
-		*/
-		
+
 		WorldTickCallback.EVENT.register(world -> {
 			
 			WeatherBase.tickWeather();

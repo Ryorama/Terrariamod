@@ -19,14 +19,14 @@ import net.minecraft.world.gen.chunk.StructuresConfig;
 
 @Mixin(ChunkGeneratorSettings.class)
 public class ChunkGeneratorSettingsMixin {
-	
+
 	@Inject(at = @At("HEAD"), method = "createSurfaceSettings", cancellable = true)
 	private static void createSurfaceSettings(StructuresConfig structuresConfig, boolean amplified, CallbackInfoReturnable<ChunkGeneratorSettings> info) {
-		
+
 		Constructor<?> construct = ChunkGeneratorSettings.class.getDeclaredConstructors()[0];
-		
+
 		construct.setAccessible(true);
-		
+
 		ChunkGeneratorSettings settings;
 		try {
 			settings = (ChunkGeneratorSettings) construct.newInstance(structuresConfig,
@@ -36,7 +36,7 @@ public class ChunkGeneratorSettingsMixin {
 							amplified),
 					BlocksT.STONE_BLOCK.getDefaultState(), Blocks.WATER.getDefaultState(), -2147483648, -255, 63, 40, false, true,
 					true, true);
-			
+
 			info.setReturnValue(settings);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -47,6 +47,6 @@ public class ChunkGeneratorSettingsMixin {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }
