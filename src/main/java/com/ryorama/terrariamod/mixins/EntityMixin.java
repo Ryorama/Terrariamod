@@ -37,9 +37,11 @@ public abstract class EntityMixin extends Entity {
 	@Inject(at = @At("HEAD"), method = "tick")
 	public void tick(CallbackInfo info) {
 
+		/*
 		if (this.getFluidHeight(TerrariaMod.HONEY_TAG) > 0.0d) {
 			this.updateMovementInFluid(TerrariaMod.HONEY_TAG, 0.023D); //D original value: 0.014D
 		}
+		*/
 
 		if (!isAlive()) {
 			deathRemovalCooldown += 1;
