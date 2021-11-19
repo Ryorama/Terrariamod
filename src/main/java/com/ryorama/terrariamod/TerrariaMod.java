@@ -14,6 +14,7 @@ import com.ryorama.terrariamod.client.CelestialManager;
 import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.client.fx.ShadersManager;
 import com.ryorama.terrariamod.entity.EntitiesT;
+import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemT;
