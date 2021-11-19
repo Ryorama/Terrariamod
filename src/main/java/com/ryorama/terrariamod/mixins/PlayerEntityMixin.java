@@ -1,22 +1,27 @@
 package com.ryorama.terrariamod.mixins;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.blocks.BlockT;
 import com.ryorama.terrariamod.callbacks.PlayerEquipArmorCallback;
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
 import com.ryorama.terrariamod.items.ItemT;
 import com.ryorama.terrariamod.world.WorldDataT;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.stat.Stat;
 import net.minecraft.stat.StatType;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -37,12 +42,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
+
+	@Shadow @Final private PlayerInventory inventory;
 
 	protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
 		super(entityType, world);
@@ -61,6 +69,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 	public int tmpMaxMana = 20;
 
 	public boolean droppedTombstoneForDeath = false;
+
+	/*
+	@Inject(at = @At("HEAD"), method = "getBlockBreakingSpeed", cancellable = true)
+	public void getBlockBreakingSpeed(BlockState block, CallbackInfoReturnable<Float> info) {
+		if (block.getBlock() instanceof BlockT && this.getActiveItem().getItem() instanceof ItemT) {
+			float speed = this.inventory.getBlockBreakingSpeed(block);
+			info.setReturnValue((speed * ((BlockT) block.getBlock()).getMiningSpeed((ItemT) this.getActiveItem().getItem())));
+		}
+	}
+	*/
 
 	@Inject(at = @At("HEAD"), method = "tick")
 	public void tick(CallbackInfo info) {

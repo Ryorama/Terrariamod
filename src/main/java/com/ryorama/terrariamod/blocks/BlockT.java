@@ -42,7 +42,7 @@ public class BlockT extends Block {
 	protected ArrayList<String> allowed = new ArrayList<String>();
 
 	public BlockT(FabricBlockSettings properties, float hardness, float difficulty) {
-		super(properties.hardness(hardness * 0.03f));
+		super(properties);
 		this.difficulty = difficulty;
 	}
 

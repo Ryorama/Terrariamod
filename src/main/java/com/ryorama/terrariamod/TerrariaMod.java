@@ -22,25 +22,6 @@ import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.weather.WeatherBase;
 import com.ryorama.terrariamod.world.EntitySpawner;
 
-import com.ryorama.terrariamod.entity.hostile.EntityDemon;
-import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
-import com.ryorama.terrariamod.entity.hostile.EntityEaterOfSouls;
-import com.ryorama.terrariamod.entity.hostile.EntityGranityElemental;
-import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
-import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
-import com.ryorama.terrariamod.entity.hostile.projectiles.DemonScythProjectile;
-import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
-import com.ryorama.terrariamod.entity.hostile.slimes.EntityGreenSlime;
-import com.ryorama.terrariamod.entity.model.RenderBlueSlime;
-import com.ryorama.terrariamod.entity.model.RenderDemon;
-import com.ryorama.terrariamod.entity.model.RenderDemonEye;
-import com.ryorama.terrariamod.entity.model.RenderDemonSycth;
-import com.ryorama.terrariamod.entity.model.RenderEaterOfSouls;
-import com.ryorama.terrariamod.entity.model.RenderGraniteElemental;
-import com.ryorama.terrariamod.entity.model.RenderGreenSlime;
-import com.ryorama.terrariamod.entity.model.bosses.RenderEyeOfCthulhu;
-import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
-
 import com.ryorama.terrariamod.world.WorldDataT;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
