@@ -64,6 +64,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.entity.SpawnReason;
@@ -109,8 +112,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	public static Item HONEY_BUCKET;
 	public static Block HONEY;
 
-	public static final Tag.Identified<Fluid> HONEY_TAG;
-
 	public static final Identifier MANA = new Identifier(MODID, "mana");
 	public static final Identifier MAX_MANA = new Identifier(MODID, "max_mana");
 
@@ -128,12 +129,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		ModifyWorldHeight();
 		GeckoLib.initialize();
 
-		STILL_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "still_honey"), new HoneyFluid.Still());
-		FLOWING_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "flowing_honey"), new HoneyFluid.Flowing());
-		HONEY_BUCKET = Registry.register(Registry.ITEM, new Identifier(MODID, "honey_bucket"),
-				new BucketItem(STILL_HONEY, new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1)));
-		HONEY = Registry.register(Registry.BLOCK, new Identifier(MODID, "honey"), new FluidBlock(STILL_HONEY, FabricBlockSettings.copy(Blocks.WATER)){});
-
 		Registry.register(Registry.CUSTOM_STAT, "mana", MANA);
 		Stats.CUSTOM.getOrCreateStat(MANA, StatFormatter.DEFAULT);
 
@@ -141,16 +136,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		Stats.CUSTOM.getOrCreateStat(MAX_MANA, StatFormatter.DEFAULT);
 	}
 
-	static {
-		HONEY_TAG = registerFluidTags("honey");
-	}
-
-	private static Tag.Identified<Fluid> registerFluidTags(String id) {
-		Tag.Identified<Fluid> identified = FluidTags.REQUIRED_TAGS.add(id);
-		FluidTags.getTags().add(identified);
-		return identified;
-	}
-	
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void onInitializeClient() {
@@ -158,12 +143,20 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
 		onTick();
 		addCutouts();
+
+		STILL_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "still_honey"), new HoneyFluid.Still());
+		FLOWING_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "flowing_honey"), new HoneyFluid.Flowing());
+		HONEY_BUCKET = Registry.register(Registry.ITEM, new Identifier(MODID, "honey_bucket"),
+				new BucketItem(STILL_HONEY, new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1)));
+		HONEY = Registry.register(Registry.BLOCK, new Identifier(MODID, "honey"), new FluidBlock(STILL_HONEY, FabricBlockSettings.copy(Blocks.WATER)){});
+
 		setupFluidRendering(TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY, new Identifier(MODID, "honey"), 0xFFFFFF);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
 
 		ShadersManager.registerShaders();
 	}
 
+	@Environment(EnvType.CLIENT)
 	public static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color) {
 		final Identifier stillSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_still");
 		final Identifier flowingSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_flow");
@@ -231,9 +224,9 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_TOP, RenderLayer.getTranslucent());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.TOMBSTONE, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.TOMBSTONE, RenderLayer.getTranslucent());
+		//BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.TOMBSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GOLD_TOMBSTONE, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GOLD_TOMBSTONE, RenderLayer.getTranslucent());
+		//BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GOLD_TOMBSTONE, RenderLayer.getTranslucent());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MUSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.JUNGLE_SPORES, RenderLayer.getCutout());

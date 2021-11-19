@@ -215,7 +215,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_bow"), GOLD_BOW);
 
 		BAND_OF_REGENERATION = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_regeneration"), new BandOfRegeneration(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
-		BAND_OF_STARPOWER = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_starpower"), new BandOfStarpower(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
+		//BAND_OF_STARPOWER = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_starpower"), new BandOfStarpower(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
 		AGLET = Registry.register(Registry.ITEM, new Identifier("terrariamod:aglet"), new Aglet(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
 		MAGMA_STONE = Registry.register(Registry.ITEM, new Identifier("terrariamod:magma_stone"), new MagmaStone(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
 		SHACKLE = Registry.register(Registry.ITEM, new Identifier("terrariamod:shackle"), new Shackle(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));

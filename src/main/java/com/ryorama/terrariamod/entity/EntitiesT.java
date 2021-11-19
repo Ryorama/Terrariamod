@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.entity;
 
+import ca.weblite.objc.Client;
 import com.ryorama.terrariamod.entity.hostile.*;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;

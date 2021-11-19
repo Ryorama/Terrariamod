@@ -239,6 +239,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 				                              if (block == BlocksT.MUSHROOM_GRASS) {
 				                                 ++mushroom;
 				                              }
+
 				                              if (block == BlocksT.ASH && player.getPos().y <= -125) {
 				                                  ++underworld;
 				                              }
@@ -307,7 +308,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
 	@Inject(at = @At("HEAD"), method = "requestRespawn")
 	public void requestRespawn(CallbackInfo info) {
-		droppedTombstoneForDeath = false;
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(newMaxHealth);
 	}
 	
@@ -340,10 +340,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
 	@Inject(at = @At("HEAD"), method = "onDeath")
 	public void onDeath(DamageSource source, CallbackInfo ci) {
-		if (!droppedTombstoneForDeath) {
-			this.getEntityWorld().setBlockState(this.getBlockPos(), BlocksT.TOMBSTONE.getDefaultState());
-
-			droppedTombstoneForDeath = true;
-		}
+		this.getEntityWorld().setBlockState(this.getBlockPos(), BlocksT.TOMBSTONE.getDefaultState());
 	}
 }

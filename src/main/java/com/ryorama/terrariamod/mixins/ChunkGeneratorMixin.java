@@ -249,7 +249,7 @@ public class ChunkGeneratorMixin {
 							}
 						}
 
-						if (region.getRandom().nextInt(100) == 0 && y > 55 && y < 80) {
+						if (region.getRandom().nextInt(100) == 0 && y > 60 && y < 80) {
 							PlaceVine(region, pos);
 						}
 
