@@ -146,263 +146,264 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	      }
 
 	      if (!this.world.isClient) {
-	         motionY = 0.0D;
-	         this.setPitch(0);
-	         this.setYaw(0);
-	         this.headYaw = 0.0F;
-	         PlayerEntity target = null;
-	         double distance = 1000.0D;
+			  motionY = 0.0D;
+			  this.setPitch(0);
+			  this.setYaw(0);
+			  this.headYaw = 0.0F;
+			  PlayerEntity target = null;
+			  double distance = 1000.0D;
 
-	         for(int i = 0; i < this.world.getPlayers().size(); ++i) {
-	            double dist = ((PlayerEntity)this.world.getPlayers().get(i)).getPos().distanceTo(this.getPos());
-	            if (dist < distance) {
-	               distance = dist;
-	               target = (PlayerEntity)this.world.getPlayers().get(i);
-	            }
-	         }
+			  for (int i = 0; i < this.world.getPlayers().size(); ++i) {
+				  double dist = ((PlayerEntity) this.world.getPlayers().get(i)).getPos().distanceTo(this.getPos());
+				  if (dist < distance) {
+					  distance = dist;
+					  target = (PlayerEntity) this.world.getPlayers().get(i);
+				  }
+			  }
 
-	         boolean day = this.world.getTimeOfDay() >= 1000 && this.world.getTimeOfDay() <= 13000;
-	         
-	         if (day) {
-	        	 this.setVelocity(0, 1, 0);
-	         }
-	         
-	         if (phase == 0) {
-	            phase = 1;
-	         }
+			  boolean day = this.world.getTimeOfDay() >= 1000 && this.world.getTimeOfDay() <= 13000;
 
-	         if (phase == 1 || phase == 2) {
-	            if (this.spawnEyes) {
-	               if (this.eyesNeeded == 0) {
-	                  this.eyesNeeded = this.random.nextInt(2) + 2;
-	                  if (this.getHealth() <= (float)this.maxHealth * 0.25F) {
-	                     this.eyesNeeded = 1;
-	                  }
-	               } else if (this.ticksExisted % 35 == 0 && this.random.nextBoolean()) {
-	                  if (this.eyes < this.eyesNeeded) {
-	                     ++this.eyes;
-	                     if (phase == 1 && this.world.getEntitiesByClass(EntityDemonEye.class, this.getBoundingBox().expand(15.0D, 15.0D, 15.0D), EntityPredicates.VALID_LIVING_ENTITY).size() <= 8) {
-	                        EntityDemonEye eye = new EntityDemonEye(EntitiesT.DEMON_EYE, this.world);
-	                        eye.setPosition(this.getX(), this.getY(), this.getZ());
-	                        eye.setHealth(8.0F);
-	                        eye.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(12.0D);
-	                        this.world.spawnEntity(eye);
-	                        eye.money = 0;
-	                        eye.noClip = true;
-	                        eye.setCustomName(new TranslatableText("Servant of Cthulhu"));
-	                     }
-	                  } else {
-	                     this.spawnEyes = false;
-	                     this.dashed = 0;
-	                  }
-	               }
+			  if (day) {
+				  this.setVelocity(0, 1, 0);
+			  } else {
 
-	               if (target != null) {
-	            	   
-	            	   if (!target.isAlive()) {
-	            		   isEyeAlive = false;
-	            	   }
-	            	   
-	                  if (this.velX > -4.0D && this.getX() > target.getX() + (double)target.getWidth()) {
-	                     this.velX -= 0.08D;
-	                     if (this.velX > 4.0D) {
-	                        this.velX -= 0.04D;
-	                     } else if (this.velX > 0.0D) {
-	                        this.velX -= 0.2D;
-	                     }
+				  if (phase == 0) {
+					  phase = 1;
+				  }
 
-	                     if (this.velX < -4.0D) {
-	                        this.velX = -4.0D;
-	                     }
-	                  } else if (this.velX < 4.0D && this.getX() + 1.0D < target.getX()) {
-	                     this.velX += 0.08D;
-	                     if (this.velX < -4.0D) {
-	                        this.velX += 0.04D;
-	                     } else if (this.velX < 0.0D) {
-	                        this.velX += 0.2D;
-	                     }
+				  if (phase == 1 || phase == 2) {
+					  if (this.spawnEyes) {
+						  if (this.eyesNeeded == 0) {
+							  this.eyesNeeded = this.random.nextInt(2) + 2;
+							  if (this.getHealth() <= (float)this.maxHealth * 0.25F) {
+								  this.eyesNeeded = 1;
+							  }
+						  } else if (this.ticksExisted % 35 == 0 && this.random.nextBoolean()) {
+							  if (this.eyes < this.eyesNeeded) {
+								  ++this.eyes;
+								  if (phase == 1 && this.world.getEntitiesByClass(EntityDemonEye.class, this.getBoundingBox().expand(15.0D, 15.0D, 15.0D), EntityPredicates.VALID_LIVING_ENTITY).size() <= 8) {
+									  EntityDemonEye eye = new EntityDemonEye(EntitiesT.DEMON_EYE, this.world);
+									  eye.setPosition(this.getX(), this.getY(), this.getZ());
+									  eye.setHealth(8.0F);
+									  eye.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(12.0D);
+									  this.world.spawnEntity(eye);
+									  eye.money = 0;
+									  eye.noClip = true;
+									  eye.setCustomName(new TranslatableText("Servant of Cthulhu"));
+								  }
+							  } else {
+								  this.spawnEyes = false;
+								  this.dashed = 0;
+							  }
+						  }
 
-	                     if (this.velX > 4.0D) {
-	                        this.velX = 4.0D;
-	                     }
-	                  }
+						  if (target != null) {
 
-	                  if (this.velZ > -4.0D && this.getZ() > target.getZ() + (double)target.getWidth()) {
-	                     this.velZ -= 0.08D;
-	                     if (this.velZ > 4.0D) {
-	                        this.velZ -= 0.04D;
-	                     } else if (this.velZ > 0.0D) {
-	                        this.velZ -= 0.2D;
-	                     }
+							  if (!target.isAlive()) {
+								  isEyeAlive = false;
+							  }
 
-	                     if (this.velZ < -4.0D) {
-	                        this.velZ = -4.0D;
-	                     }
-	                  } else if (this.velZ < 4.0D && this.getZ() + 1.0D < target.getZ()) {
-	                     this.velZ += 0.07999999821186066D;
-	                     if (this.velZ < -4.0D) {
-	                        this.velZ += 0.04D;
-	                     } else if (this.velZ < 0.0D) {
-	                        this.velZ += 0.2D;
-	                     }
+							  if (this.velX > -4.0D && this.getX() > target.getX() + (double)target.getWidth()) {
+								  this.velX -= 0.08D;
+								  if (this.velX > 4.0D) {
+									  this.velX -= 0.04D;
+								  } else if (this.velX > 0.0D) {
+									  this.velX -= 0.2D;
+								  }
 
-	                     if (this.velZ > 4.0D) {
-	                        this.velZ = 4.0D;
-	                     }
-	                  }
+								  if (this.velX < -4.0D) {
+									  this.velX = -4.0D;
+								  }
+							  } else if (this.velX < 4.0D && this.getX() + 1.0D < target.getX()) {
+								  this.velX += 0.08D;
+								  if (this.velX < -4.0D) {
+									  this.velX += 0.04D;
+								  } else if (this.velX < 0.0D) {
+									  this.velX += 0.2D;
+								  }
 
-	                  if (this.velY > -2.5D && this.getY() > target.getY() + (double)target.getHeight() + 5.0D) {
-	                     this.velY -= 0.30000001192092896D;
-	                     if (this.velY > 2.5D) {
-	                        this.velY -= 0.05D;
-	                     } else if (this.velY > 0.0D) {
-	                        this.velY -= 0.15D;
-	                     }
+								  if (this.velX > 4.0D) {
+									  this.velX = 4.0D;
+								  }
+							  }
 
-	                     if (this.velY < -2.5D) {
-	                        this.velY = -2.5D;
-	                     }
-	                  } else if (this.velY < 2.5D && this.getY() + 1.0D < target.getY() + 5.0D) {
-	                     this.velY += 0.30000001192092896D;
-	                     if (this.velY < -2.5D) {
-	                        this.velY += 0.05D;
-	                     } else if (this.velY < 0.0D) {
-	                        this.velY += 0.15D;
-	                     }
+							  if (this.velZ > -4.0D && this.getZ() > target.getZ() + (double)target.getWidth()) {
+								  this.velZ -= 0.08D;
+								  if (this.velZ > 4.0D) {
+									  this.velZ -= 0.04D;
+								  } else if (this.velZ > 0.0D) {
+									  this.velZ -= 0.2D;
+								  }
 
-	                     if (this.velY > 2.5D) {
-	                        this.velY = 2.5D;
-	                     }
-	                  }
-	               }
-	            } else {
-	               this.velX *= 0.949999988079071D;
-	               this.velY *= 0.949999988079071D;
-	               this.velZ *= 0.949999988079071D;
-	               float speed = 2.0F;
-	               if (phase == 2) {
-	                  speed = 2.0F;
-	               }
+								  if (this.velZ < -4.0D) {
+									  this.velZ = -4.0D;
+								  }
+							  } else if (this.velZ < 4.0D && this.getZ() + 1.0D < target.getZ()) {
+								  this.velZ += 0.07999999821186066D;
+								  if (this.velZ < -4.0D) {
+									  this.velZ += 0.04D;
+								  } else if (this.velZ < 0.0D) {
+									  this.velZ += 0.2D;
+								  }
 
-	               if (this.getHealth() <= (float)this.maxHealth * 0.4F) {
-	                  speed = 2.0F;
-	               }
+								  if (this.velZ > 4.0D) {
+									  this.velZ = 4.0D;
+								  }
+							  }
 
-	               boolean fast = false;
-	               Vec3d motion = new Vec3d(this.velX, this.velY, this.velZ);
-	               if (target != null && (motion.length() <= 1.0D || this.getHealth() <= (float)this.maxHealth * 0.4F && this.getHealth() >= (float)this.maxHealth * 0.25F && this.dashed >= 3 && motion.length() <= 2.5D || this.getHealth() <= (float)this.maxHealth * 0.25F && motion.length() < 2.5D)) {
-	                  if (this.getHealth() > (float)this.maxHealth * 0.4F) {
-	                     if (this.dashed < 3) {
-	                        ++this.dashed;
-	                     } else {
-	                        this.eyesNeeded = 0;
-	                        this.spawnEyes = true;
-	                        this.eyes = 0;
-	                     }
-	                  } else if (this.getHealth() < (float)this.maxHealth * 0.25F) {
-	                     speed = 4.0F;
-	                     fast = true;
-	                     if (this.lastTarget == null) {
-	                        this.lastTarget = target.getBlockPos();
-	                     }
+							  if (this.velY > -2.5D && this.getY() > target.getY() + (double)target.getHeight() + 5.0D) {
+								  this.velY -= 0.30000001192092896D;
+								  if (this.velY > 2.5D) {
+									  this.velY -= 0.05D;
+								  } else if (this.velY > 0.0D) {
+									  this.velY -= 0.15D;
+								  }
 
-	                     if (this.dashed < 5) {
-	                        ++this.dashed;
-	                     } else {
-	                        this.dashed = 0;
-	                        speed = 1.0F;
-	                        this.lastTarget = null;
-	                     }
-	                  } else {
-	                     if (this.lastTarget == null) {
-	                        this.lastTarget = target.getBlockPos();
-	                     }
+								  if (this.velY < -2.5D) {
+									  this.velY = -2.5D;
+								  }
+							  } else if (this.velY < 2.5D && this.getY() + 1.0D < target.getY() + 5.0D) {
+								  this.velY += 0.30000001192092896D;
+								  if (this.velY < -2.5D) {
+									  this.velY += 0.05D;
+								  } else if (this.velY < 0.0D) {
+									  this.velY += 0.15D;
+								  }
 
-	                     if (this.dashed < 6) {
-	                        ++this.dashed;
-	                     } else {
-	                        this.dashed = 0;
-	                        this.lastTarget = null;
-	                     }
+								  if (this.velY > 2.5D) {
+									  this.velY = 2.5D;
+								  }
+							  }
+						  }
+					  } else {
+						  this.velX *= 0.949999988079071D;
+						  this.velY *= 0.949999988079071D;
+						  this.velZ *= 0.949999988079071D;
+						  float speed = 2.0F;
+						  if (phase == 2) {
+							  speed = 2.0F;
+						  }
 
-	                     if (this.dashed < 3) {
-	                        speed = 2.0F;
-	                     } else {
-	                        speed = 4.0F;
-	                        fast = true;
-	                     }
-	                  }
+						  if (this.getHealth() <= (float)this.maxHealth * 0.4F) {
+							  speed = 2.0F;
+						  }
 
-	                  if (target != null) {
-	                     Vec3d direction = new Vec3d(target.prevX - target.getVelocity().x - this.getX(), target.prevY - target.getVelocity().y - this.getY(), target.prevZ - target.getVelocity().z - this.getZ());
-	                     direction = (new Vec3d(direction.x * 100.0D, direction.y * 100.0D, direction.z * 100.0D)).normalize();
-	                     direction = new Vec3d(direction.x * (double)speed, direction.y * (double)speed, direction.z * (double)speed);
-	                     this.velX = direction.x * 2.0D;
-	                     this.velY = direction.y * 2.0D;
-	                     this.velZ = direction.z * 2.0D;
-	                  }
-	               }
-	            }
-	         }
+						  boolean fast = false;
+						  Vec3d motion = new Vec3d(this.velX, this.velY, this.velZ);
+						  if (target != null && (motion.length() <= 1.0D || this.getHealth() <= (float)this.maxHealth * 0.4F && this.getHealth() >= (float)this.maxHealth * 0.25F && this.dashed >= 3 && motion.length() <= 2.5D || this.getHealth() <= (float)this.maxHealth * 0.25F && motion.length() < 2.5D)) {
+							  if (this.getHealth() > (float)this.maxHealth * 0.4F) {
+								  if (this.dashed < 3) {
+									  ++this.dashed;
+								  } else {
+									  this.eyesNeeded = 0;
+									  this.spawnEyes = true;
+									  this.eyes = 0;
+								  }
+							  } else if (this.getHealth() < (float)this.maxHealth * 0.25F) {
+								  speed = 4.0F;
+								  fast = true;
+								  if (this.lastTarget == null) {
+									  this.lastTarget = target.getBlockPos();
+								  }
 
-	         if (this.getHealth() <= this.getMaxHealth() / 2 && transformed == false) {
-	        	for (int i = 0; i <= 150; i++) {
-	        		if (i > 60) {
-	        			this.setPitch(this.getPitch() + 1);
-	        		} else {
-						this.setPitch(this.getPitch() + 3);
-					}
-	        	}
-	        	this.setPitch(0);
-	        	transformed = true;
-	        	world.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), TAudio.ROAR_0, SoundCategory.PLAYERS, 100, 1);
-	            phase = 2;
-	         }
+								  if (this.dashed < 5) {
+									  ++this.dashed;
+								  } else {
+									  this.dashed = 0;
+									  speed = 1.0F;
+									  this.lastTarget = null;
+								  }
+							  } else {
+								  if (this.lastTarget == null) {
+									  this.lastTarget = target.getBlockPos();
+								  }
 
-	         this.bounce = false;
-	         this.oldVelX = this.velX + 0.0D;
-	         this.oldVelY = this.velY + 0.0D;
-	         this.oldVelZ = this.velZ + 0.0D;
-	         motionX = this.velX * 0.25D;
-	         motionY = this.velY * 0.25D;
-	         motionZ = this.velZ * 0.25D;
-	         if (target != null) {
-	            this.lookAt(EntityAnchor.EYES, target.getPos());
-	         }
+								  if (this.dashed < 6) {
+									  ++this.dashed;
+								  } else {
+									  this.dashed = 0;
+									  this.lastTarget = null;
+								  }
 
-	         if (target != null) {
-	            this.rx = (float)Math.toDegrees(Math.atan2(this.getY() - target.getY(), this.getX() - target.getX()));
-	            this.rz = (float)Math.toDegrees(Math.atan2(this.getY() - target.getY(), this.getZ() - target.getX()));
-	         }
-	      }
+								  if (this.dashed < 3) {
+									  speed = 2.0F;
+								  } else {
+									  speed = 4.0F;
+									  fast = true;
+								  }
+							  }
 
-	      this.setVelocity(motionX, motionY, motionZ);
+							  if (target != null) {
+								  Vec3d direction = new Vec3d(target.prevX - target.getVelocity().x - this.getX(), target.prevY - target.getVelocity().y - this.getY(), target.prevZ - target.getVelocity().z - this.getZ());
+								  direction = (new Vec3d(direction.x * 100.0D, direction.y * 100.0D, direction.z * 100.0D)).normalize();
+								  direction = new Vec3d(direction.x * (double)speed, direction.y * (double)speed, direction.z * (double)speed);
+								  this.velX = direction.x * 2.0D;
+								  this.velY = direction.y * 2.0D;
+								  this.velZ = direction.z * 2.0D;
+							  }
+						  }
+					  }
+				  }
 
-	      this.maxHurtTime = 0;
-	      if (phase != 1 && this.transformedRotation < 1790.0D) {
-	         if (this.ticksExisted % 10 == 0 && this.world.getEntitiesByClass(EntityDemonEye.class, this.getBoundingBox().expand(15.0D, 15.0D, 15.0D), EntityPredicates.VALID_LIVING_ENTITY).size() <= 8) {
-	            EntityDemonEye eye = new EntityDemonEye(EntitiesT.DEMON_EYE, this.getEntityWorld());
-	            eye.setPosition(this.getX(), this.getY(), this.getZ());
-	            eye.setHealth(8.0F);
-	            eye.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(12.0D);
-	            this.world.spawnEntity(eye);
-	            eye.money = 0;
-	            eye.noClip = true;
-	            eye.setCustomName(new TranslatableText("Servant of Cthulhu"));
-	         }
+				  if (this.getHealth() <= this.getMaxHealth() / 2 && transformed == false) {
+					  for (int i = 0; i <= 150; i++) {
+						  if (i > 60) {
+							  this.setPitch(this.getPitch() + 1);
+						  } else {
+							  this.setPitch(this.getPitch() + 3);
+						  }
+					  }
+					  this.setPitch(0);
+					  transformed = true;
+					  world.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), TAudio.ROAR_0, SoundCategory.PLAYERS, 100, 1);
+					  phase = 2;
+				  }
 
-	         this.transformedRotation += (1800.0D - this.transformedRotation) * 0.07999999821186066D;
-	         this.ry = (float)this.transformedRotation;
-	         this.rx = 0.0F;
-	         this.rz = 0.0F;
-	         this.velX = 0.0D;
-	         this.velY = 0.0D;
-	         this.velZ = 0.0D;
-	         motionX = 0.0D;
-	         motionY = 0.0D;
-	         motionZ = 0.0D;
-	         this.setYaw(this.ry);
-	      }
+				  this.bounce = false;
+				  this.oldVelX = this.velX + 0.0D;
+				  this.oldVelY = this.velY + 0.0D;
+				  this.oldVelZ = this.velZ + 0.0D;
+				  motionX = this.velX * 0.25D;
+				  motionY = this.velY * 0.25D;
+				  motionZ = this.velZ * 0.25D;
+				  if (target != null) {
+					  this.lookAt(EntityAnchor.EYES, target.getPos());
+				  }
+
+				  if (target != null) {
+					  this.rx = (float)Math.toDegrees(Math.atan2(this.getY() - target.getY(), this.getX() - target.getX()));
+					  this.rz = (float)Math.toDegrees(Math.atan2(this.getY() - target.getY(), this.getZ() - target.getX()));
+				  }
+			  }
+
+			  this.setVelocity(motionX, motionY, motionZ);
+
+			  this.maxHurtTime = 0;
+			  if (phase != 1 && this.transformedRotation < 1790.0D) {
+				  if (this.ticksExisted % 10 == 0 && this.world.getEntitiesByClass(EntityDemonEye.class, this.getBoundingBox().expand(15.0D, 15.0D, 15.0D), EntityPredicates.VALID_LIVING_ENTITY).size() <= 8) {
+					  EntityDemonEye eye = new EntityDemonEye(EntitiesT.DEMON_EYE, this.getEntityWorld());
+					  eye.setPosition(this.getX(), this.getY(), this.getZ());
+					  eye.setHealth(8.0F);
+					  eye.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(12.0D);
+					  this.world.spawnEntity(eye);
+					  eye.money = 0;
+					  eye.noClip = true;
+					  eye.setCustomName(new TranslatableText("Servant of Cthulhu"));
+				  }
+
+				  this.transformedRotation += (1800.0D - this.transformedRotation) * 0.07999999821186066D;
+				  this.ry = (float)this.transformedRotation;
+				  this.rx = 0.0F;
+				  this.rz = 0.0F;
+				  this.velX = 0.0D;
+				  this.velY = 0.0D;
+				  this.velZ = 0.0D;
+				  motionX = 0.0D;
+				  motionY = 0.0D;
+				  motionZ = 0.0D;
+				  this.setYaw(this.ry);
+			  }
+		  }
 	}
 	
 	public void dropLoot(DamageSource source, boolean b) {
@@ -410,6 +411,12 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 				this.defeatedBoss();
 				return;
 		 }
+
+		if (!world.isClient()) {
+			for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
+				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("The Eye of Cthulhu has been defeated!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+			}
+		}
 	 }
 	
 	public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) {

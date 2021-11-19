@@ -292,6 +292,12 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 				this.defeatedBoss();
 				return;
 		 }
+
+		if (!world.isClient()) {
+			for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
+				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("King Slime has been defeated!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+			}
+		}
 	 }
 
 	@Override

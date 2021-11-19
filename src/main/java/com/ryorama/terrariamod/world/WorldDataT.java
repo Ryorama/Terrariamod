@@ -32,12 +32,10 @@ public class WorldDataT {
 	
 	  public static boolean hardmode = false;
 	  
-	  public static boolean expert = false, master = false;
+	  public static boolean journey = false, expert = false, master = false;
 
 	  public static boolean hasStartingTools = false;
-	  
-	  public static boolean isTerrariaWorld = true;
-	  
+
 	  public static boolean bloodMoon = false;
 	  
 	  public static boolean solarEclipse = false;
@@ -49,13 +47,7 @@ public class WorldDataT {
 	  public static final Set<UUID> activeBosses = new HashSet<>();
 	  
 	  public static int altarsBroken;
-	  
-	  public static long totalTime;
-	  	  
-	  public static boolean firstUpdate;
-	  
-	  public static Identifier bossMusicOverride;
-	  	  
+
 	  public static boolean night;
 	  
 	  public static boolean day;
@@ -65,8 +57,6 @@ public class WorldDataT {
 	  public static boolean thunderstorm;
 	  
 	  public static boolean windyDay;
-	  	  
-	  public static ServerWorld worldMP;
 
 	  public static void saveData(World world) throws IOException {
 			NbtCompound nbtCompound = new NbtCompound();
@@ -74,6 +64,10 @@ public class WorldDataT {
 			nbtCompound.putBoolean("bloodmoon", bloodMoon);
 			nbtCompound.putBoolean("solarEclipse", solarEclipse);
 			nbtCompound.putBoolean("hasStartingTools", hasStartingTools);
+
+			nbtCompound.putBoolean("journey", journey);
+			nbtCompound.putBoolean("expert", expert);
+			nbtCompound.putBoolean("master", master);
 
 			File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
 			if (!dataFile.exists()) {
@@ -94,5 +88,8 @@ public class WorldDataT {
 		bloodMoon = nbtCompound.getBoolean("bloodmoon");
 		solarEclipse = nbtCompound.getBoolean("solarEclipse");
 
+		journey = nbtCompound.getBoolean("journey");
+		expert = nbtCompound.getBoolean("expert");
+		master = nbtCompound.getBoolean("master");
 	}
 }

@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlockT;
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.blocks.TreeSegment;
 import com.ryorama.terrariamod.client.CelestialManager;
 import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.client.fx.ShadersManager;
@@ -53,6 +54,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -64,6 +66,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
@@ -79,7 +84,9 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.tag.RequiredTagListRegistry;
 import net.minecraft.tag.Tag;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -106,6 +113,11 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static final Identifier MANA = new Identifier(MODID, "mana");
 	public static final Identifier MAX_MANA = new Identifier(MODID, "max_mana");
+
+	public static boolean spawningEye = false;
+	public static boolean spawningDestroyer = false;
+	public static boolean oncePerDay = false;
+	public static boolean meteoriteAttempt = false;
 
 	@Override
 	public void onInitialize() {
@@ -242,6 +254,16 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		TMusicTicker.musicChanged = true;
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
 
+		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, entity) -> {
+			if (state.getBlock() instanceof TreeSegment) {
+				for (int i = 0; i <= 10; i++) {
+					if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() + i, pos.getZ())).getBlock() instanceof TreeSegment) {
+						world.setBlockState(new BlockPos(pos.getX(), pos.getY() + i, pos.getZ()), Blocks.AIR.getDefaultState());
+					}
+				}
+			}
+		});
+
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!player.isCreative()) {
 				if (world.getBlockState(pos).getBlock() instanceof BlockT) {
@@ -276,12 +298,51 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 			WeatherBase.tickWeather();
 			CelestialManager.handleMoon(world);
 			CelestialManager.handleSolarEvents(world);
-		
+
+			for (int i = 0; i <= world.getPlayers().size(); i++) {
+				if (world.getPlayers().get(i).getMaxHealth() >= 200 && world.getPlayers().get(i).getAttributeBaseValue(EntityAttributes.GENERIC_ARMOR) >= 2) {
+					if (!world.isClient) {
+						if (world.getTimeOfDay() % 24000 >= 11000) {
+							if (oncePerDay == false) {
+								oncePerDay = true;
+								if (world.getRandom().nextInt(10) == 0) {
+									spawningEye = true;
+									world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("You feel an evil presence watching you.").formatted(Formatting.BOLD).formatted(Formatting.GREEN), false);
+								}
+							}
+						}
+					}
+				}
+			}
+
+			if (!world.isClient) {
+				if (world.getTimeOfDay() % 24000 <= 1000) {
+					oncePerDay = false;
+				}
+				if (spawningEye == true && world.getTimeOfDay() % 24000 > 17500) {
+					if (world.getPlayers().size() > 0) {
+						PlayerEntity player = world.getPlayers().get(world.getRandom().nextInt(world.getPlayers().size()));
+						float posX = 0, posY = world.getRandom().nextInt(20) - 10, posZ = 0;
+						float rad = 20;
+
+						float rotation = world.getRandom().nextInt(360);
+						posX = (float) (Math.cos(Math.toDegrees(rotation)) * rad);
+						posZ = (float) (Math.sin(Math.toDegrees(rotation)) * rad);
+
+						EntityEyeOfCthulhu eye = EntitiesT.EOC.create(world);
+						eye.setPosition(player.getPos().getX() + posX, player.getPos().getY() + posY, player.getPos().getZ() + posZ);
+						world.spawnEntity(eye);
+						spawningEye = false;
+					}
+				}
+			}
+
+
 			if (world.getRandom().nextInt(700) <= 10)
 			if (world.getPlayers().size() > 0) {
 				PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
 				double x = player.getPos().x + world.random.nextInt(80) - 40, y = player.getPos().y + world.random.nextInt(80) - 40, z = player.getPos().z + world.random.nextInt(80) - 40;
-				
+
 				for (PlayerEntity p2 : world.getPlayers()) {
 						if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
 							new Thread () {

@@ -23,6 +23,7 @@ public class CelestialManager {
     private static Identifier BLOOD_MOON_PHASES_TEXTURES = new Identifier("terrariamod:textures/environment/blood_moon_phases.png");
 
     public static boolean alreadyAttemptedSolarEclipse;
+    public static boolean canAttemptEvents;
 
     private static Identifier SUN_TEXTURES = new Identifier("terrariamod:textures/environment/sun.png");
     private static Identifier SOLAR_ECLIPSE_SUN_TEXTURES = new Identifier("terrariamod:textures/environment/sun_eclipse.png");
@@ -53,7 +54,15 @@ public class CelestialManager {
                 alreadyNight = true;
             }
 
-            if (rand.nextInt(10) <= 5 & !alreadyAttemptedBloodMoon) {
+            for (int p = 0; p < worldIn.getPlayers().size(); p++) {
+                if (worldIn.getPlayers().get(p).getMaxHealth() >= 120) {
+                    canAttemptEvents = true;
+                } else {
+                    canAttemptEvents = false;
+                }
+            }
+
+            if (rand.nextInt(200) <= 5 && !alreadyAttemptedBloodMoon && canAttemptEvents) {
                 WorldDataT.bloodMoon = true;
                 for (int p = 0; p < worldIn.getPlayers().size(); p++) {
                     worldIn.getPlayers().get(p).sendMessage((new TranslatableText("A bloodmoon is rising!")).formatted(Formatting.GREEN).formatted(Formatting.BOLD), false);
@@ -81,7 +90,7 @@ public class CelestialManager {
             alreadyAttemptedBloodMoon = false;
             alreadyNight = false;
 
-            if (rand.nextInt(50) <= 5 && WorldDataT.hardmode == true && !alreadyAttemptedSolarEclipse) {
+            if (rand.nextInt(200) <= 5 && WorldDataT.hardmode && !alreadyAttemptedSolarEclipse) {
                 WorldDataT.solarEclipse = true;
                 for (int p = 0; p < worldIn.getPlayers().size(); p++) {
                     worldIn.getPlayers().get(p).sendMessage((new TranslatableText("A solar eclipse is happening!")).formatted(Formatting.GREEN, Formatting.BOLD), false);
