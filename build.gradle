@@ -33,6 +33,9 @@ repositories {
 			includeGroupByRegex 'io\\.github\\.onyxstudios.*'
 		}
 	}
+	maven {
+		url = uri("https://raw.github.com/Ryorama/maven/master")
+	}
 }
 
 dependencies {
@@ -49,7 +52,7 @@ dependencies {
 	modImplementation "dev.emi:trinkets:3.0.4"
 	implementation 'javax.vecmath:vecmath:1.5.2'
 	modImplementation "io.github.ladysnake:satin:${satin_version}"
-
+	modImplementation "de.keksuccino.fancymenu:fancymenu:2.3.6"
 }
 
 processResources {
