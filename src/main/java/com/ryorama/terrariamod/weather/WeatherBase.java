@@ -3,7 +3,7 @@ package com.ryorama.terrariamod.weather;
 import java.util.Random;
 
 import com.ryorama.terrariamod.TAudio;
-import com.ryorama.terrariamod.client.TMusicTicker;
+import com.ryorama.terrariamod.core.client.TMusicTicker;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundEvent;

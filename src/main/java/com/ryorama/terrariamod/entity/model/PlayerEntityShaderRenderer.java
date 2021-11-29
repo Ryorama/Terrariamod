@@ -1,12 +1,10 @@
 package com.ryorama.terrariamod.entity.model;
 
-import com.ryorama.terrariamod.client.fx.ShadersManager;
+import com.ryorama.terrariamod.core.client.fx.ShadersManager;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.Shader;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
-import net.minecraft.entity.player.PlayerEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class PlayerEntityShaderRenderer extends PlayerEntityRenderer {

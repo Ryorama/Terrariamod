@@ -5,7 +5,7 @@ import java.util.OptionalLong;
 
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.client.TMusicTicker;
+import com.ryorama.terrariamod.core.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;

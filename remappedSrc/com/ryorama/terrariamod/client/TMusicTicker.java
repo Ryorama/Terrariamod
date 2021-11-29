@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.client;
+package com.ryorama.terrariamod.core.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
