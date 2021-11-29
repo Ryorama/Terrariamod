@@ -3,13 +3,9 @@ package com.ryorama.terrariamod.items.boss_summons;
 import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
-import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
-import com.ryorama.terrariamod.items.ItemT;
+import com.ryorama.terrariamod.items.api.ItemT;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;

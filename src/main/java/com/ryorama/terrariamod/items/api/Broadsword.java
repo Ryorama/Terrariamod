@@ -1,7 +1,5 @@
 package com.ryorama.terrariamod.items.api;
 
-import com.ryorama.terrariamod.items.ItemT;
-
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.ItemGroup;
 

@@ -1,6 +1,6 @@
 package com.ryorama.terrariamod.items.arrows;
 
-import com.ryorama.terrariamod.items.Arrow;
+import com.ryorama.terrariamod.items.api.Arrow;
 
 public class FlamingArrow extends Arrow {
 

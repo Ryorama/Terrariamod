@@ -5,7 +5,6 @@ import java.lang.reflect.Field;
 import java.util.OptionalLong;
 import java.util.function.Function;
 
-import com.google.common.collect.Lists;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlockT;
 import com.ryorama.terrariamod.blocks.BlocksT;
@@ -17,7 +16,7 @@ import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
 import com.ryorama.terrariamod.items.ItemGelColor;
-import com.ryorama.terrariamod.items.ItemT;
+import com.ryorama.terrariamod.items.api.ItemT;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.weather.WeatherBase;
@@ -46,12 +45,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -66,9 +61,6 @@ import net.minecraft.resource.ResourceType;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.FluidTags;
-import net.minecraft.tag.RequiredTagListRegistry;
-import net.minecraft.tag.Tag;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -80,8 +72,6 @@ import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
 import net.minecraft.world.dimension.DimensionType;
 import software.bernie.geckolib3.GeckoLib;
-
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 
 public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
@@ -136,6 +126,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
 
 		ShadersManager.registerShaders();
+
 	}
 
 	@Environment(EnvType.CLIENT)
@@ -274,7 +265,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 			CelestialManager.handleMoon(world);
 			CelestialManager.handleSolarEvents(world);
 
-			for (int i = 0; i <= world.getPlayers().size(); i++) {
+			for (int i = 0; i < world.getPlayers().size(); i++) {
 				if (world.getPlayers().get(i).getMaxHealth() >= 200 && world.getPlayers().get(i).getAttributeBaseValue(EntityAttributes.GENERIC_ARMOR) >= 2) {
 					if (!world.isClient) {
 						if (world.getTimeOfDay() % 24000 >= 11000) {
@@ -375,5 +366,9 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 				384, 384, HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(),
 				OVERWORLD_ID, 0.0F);
 		 */
-	}	
+	}
+
+	public static EntityAttribute registerNewAttribute(String id, EntityAttribute attribute) {
+		return Registry.register(Registry.ATTRIBUTE, id, attribute);
+	}
 }

@@ -1,6 +1,6 @@
-package com.ryorama.terrariamod.items;
+package com.ryorama.terrariamod.items.api;
 
-import net.minecraft.util.math.Vec3d;
+import com.ryorama.terrariamod.items.api.ItemT;
 
 public class Arrow extends ItemT {
 

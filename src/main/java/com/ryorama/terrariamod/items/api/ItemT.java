@@ -1,12 +1,11 @@
-package com.ryorama.terrariamod.items;
+package com.ryorama.terrariamod.items.api;
 
 import java.util.List;
 import java.util.Random;
 
-import com.ryorama.terrariamod.items.api.IRareItem;
+import com.ryorama.terrariamod.items.EnumModifierType;
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;

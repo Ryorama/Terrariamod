@@ -1,22 +1,12 @@
 package com.ryorama.terrariamod.items.accessories;
 
-import com.google.common.collect.Multimap;
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.items.AccessoryT;
-import dev.emi.trinkets.api.SlotAttributes;
+import com.ryorama.terrariamod.items.api.AccessoryT;
 import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stat.StatType;
 import net.minecraft.stat.Stats;
-
-import java.util.UUID;
 
 public class BandOfStarpower extends AccessoryT {
 

@@ -1,26 +1,15 @@
 package com.ryorama.terrariamod.mixins;
 
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.blocks.BlockT;
 import com.ryorama.terrariamod.callbacks.PlayerEquipArmorCallback;
-import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
-import com.ryorama.terrariamod.items.ItemT;
 import com.ryorama.terrariamod.world.WorldDataT;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.stat.Stat;
-import net.minecraft.stat.StatType;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -30,7 +19,6 @@ import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.items.ItemsT;
-import com.ryorama.terrariamod.weather.WeatherBase;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
@@ -42,7 +30,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.List;

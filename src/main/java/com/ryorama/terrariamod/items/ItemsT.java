@@ -2,17 +2,18 @@ package com.ryorama.terrariamod.items;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.accessories.*;
+import com.ryorama.terrariamod.items.api.ArmorT;
+import com.ryorama.terrariamod.items.api.ItemT;
 import com.ryorama.terrariamod.items.armor.CopperArmorMaterial;
 import com.ryorama.terrariamod.items.armor.GoldTArmorMaterial;
 import com.ryorama.terrariamod.items.armor.IronTArmorMaterial;
+import com.ryorama.terrariamod.items.armor.WoodenArmorMaterial;
 import com.ryorama.terrariamod.items.arrows.FlamingArrow;
 import com.ryorama.terrariamod.items.arrows.WoodenArrow;
 import com.ryorama.terrariamod.items.boss_summons.SlimeCrown;
 import com.ryorama.terrariamod.items.boss_summons.SuspiciousLookingEye;
 import com.ryorama.terrariamod.items.potions.LesserHealingPotion;
-import com.ryorama.terrariamod.items.tools.MagicMirror;
 import com.ryorama.terrariamod.items.tools.axe.CopperAxe;
 import com.ryorama.terrariamod.items.tools.axe.GoldAxe;
 import com.ryorama.terrariamod.items.tools.axe.IronAxe;
@@ -25,6 +26,7 @@ import com.ryorama.terrariamod.items.tools.picks.IronPickaxe;
 import com.ryorama.terrariamod.items.weapons.broadswords.CopperBroadsword;
 import com.ryorama.terrariamod.items.weapons.broadswords.GoldBroadsword;
 import com.ryorama.terrariamod.items.weapons.broadswords.IronBroadsword;
+import com.ryorama.terrariamod.items.weapons.broadswords.WoodenSword;
 import com.ryorama.terrariamod.items.weapons.shortswords.CopperShortsword;
 import com.ryorama.terrariamod.items.weapons.shortswords.GoldShortsword;
 import com.ryorama.terrariamod.items.weapons.shortswords.IronShortsword;
@@ -35,7 +37,6 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -103,11 +104,19 @@ public class ItemsT {
 	public static GoldPickaxe GOLD_PICKAXE = (GoldPickaxe) new GoldPickaxe().setRarity(3);
 	public static GoldAxe GOLD_AXE = (GoldAxe) new GoldAxe().setRarity(3);
 	public static GoldBroadsword GOLD_BROADSWORD = (GoldBroadsword) new GoldBroadsword().setRarity(3);
-	
-	public static CopperArmorMaterial COPPER_MATERIAL = new CopperArmorMaterial();
-	public static IronTArmorMaterial IRON_MATERIAL = new IronTArmorMaterial();
-	public static GoldTArmorMaterial GOLD_MATERIAL = new GoldTArmorMaterial();
-	
+
+	public static WoodenSword WOODEN_SWORD = new WoodenSword();
+
+	//public static CopperArmorMaterial COPPER_MATERIAL = new CopperArmorMaterial();
+	//public static IronTArmorMaterial IRON_MATERIAL = new IronTArmorMaterial();
+	//public static GoldTArmorMaterial GOLD_MATERIAL = new GoldTArmorMaterial();
+	//public static WoodenArmorMaterial WOODEN_MATERIAL = new WoodenArmorMaterial();
+
+	/*
+	public static Item WOODEN_HELMET = new ArmorItem(WOODEN_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
+	public static Item WOODEN_CHESTPLATE = new ArmorItem(WOODEN_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
+	public static Item WOODEN_LEGGINGS = new ArmorItem(WOODEN_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));
+
 	public static Item COPPER_HELMET = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item COPPER_CHESTPLATE = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item COPPER_LEGGINGS = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
@@ -119,10 +128,27 @@ public class ItemsT {
 	public static Item GOLD_HELMET = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item GOLD_CHESTPLATE = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item GOLD_LEGGINGS = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
-	
-	public static CopperBow COPPER_BOW = new CopperBow(new FabricItemSettings().group(ItemGroup.COMBAT));
-	public static IronBow IRON_BOW = new IronBow(new FabricItemSettings().group(ItemGroup.COMBAT));
-	public static GoldBow GOLD_BOW = new GoldBow(new FabricItemSettings().group(ItemGroup.COMBAT));
+	*/
+
+	public static Item WOODEN_HELMET = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.HEAD, 5);
+	public static Item WOODEN_CHESTPLATE = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.CHEST, 5);
+	public static Item WOODEN_LEGGINGS = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.LEGS, 5);
+
+	public static Item COPPER_HELMET = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.HEAD, 5);
+	public static Item COPPER_CHESTPLATE = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.CHEST, 5);
+	public static Item COPPER_LEGGINGS = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.LEGS, 5);
+
+	public static Item IRON_HELMET = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.HEAD, 5);
+	public static Item IRON_CHESTPLATE = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.CHEST, 5);
+	public static Item IRON_LEGGINGS = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.LEGS, 5);
+
+	public static Item GOLD_HELMET = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.HEAD, 5);
+	public static Item GOLD_CHESTPLATE = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.CHEST, 5);
+	public static Item GOLD_LEGGINGS = new ArmorT(new FabricItemSettings().group(ItemGroup.COMBAT), EquipmentSlot.LEGS, 5);
+
+	public static CopperBow COPPER_BOW = (CopperBow) new CopperBow(new FabricItemSettings().group(ItemGroup.COMBAT)).setMaxStack(1);
+	public static IronBow IRON_BOW = (IronBow) new IronBow(new FabricItemSettings().group(ItemGroup.COMBAT)).setMaxStack(1);
+	public static GoldBow GOLD_BOW = (GoldBow) new GoldBow(new FabricItemSettings().group(ItemGroup.COMBAT)).setMaxStack(1);
 	
 	public static LesserHealingPotion LESSER_HEALING_POTION = new LesserHealingPotion(new FabricItemSettings().group(ItemGroup.BREWING));
 
@@ -166,7 +192,11 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_pickaxe"), GOLD_PICKAXE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_axe"), GOLD_AXE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_broadsword"), GOLD_BROADSWORD);
-		
+
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_helmet"), WOODEN_HELMET);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_chestplate"), WOODEN_CHESTPLATE);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_leggings"), WOODEN_LEGGINGS);
+
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_helmet"), COPPER_HELMET);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_chestplate"), COPPER_CHESTPLATE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_leggings"), COPPER_LEGGINGS);
@@ -179,6 +209,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_chestplate"), GOLD_CHESTPLATE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_leggings"), GOLD_LEGGINGS);
 
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_sword"), WOODEN_SWORD);
 		
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "grass_block"), new BlockItemT(BlocksT.GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "dirt_block"), new BlockItemT(BlocksT.DIRT_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)).setRarity(2));

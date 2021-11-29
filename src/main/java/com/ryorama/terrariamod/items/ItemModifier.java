@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import com.ryorama.terrariamod.items.api.ItemT;
 import com.ryorama.terrariamod.items.modifiers.AccessoryModifier;
 import com.ryorama.terrariamod.items.modifiers.CommonModifier;
 import com.ryorama.terrariamod.items.modifiers.MagicModifier;

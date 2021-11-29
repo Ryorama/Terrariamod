@@ -8,11 +8,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class ReflectionUtil
 {
+
 	private static Field modifiersField;
 	private static Object reflectionFactory;
 	private static Method newFieldAccessor;
 	private static Method fieldAccessorSet;
-	
+
 	public static boolean setStaticFinalField(Class<?> cls, String var, Object val)
 	{
 		try
@@ -24,7 +25,7 @@ public class ReflectionUtil
 		}
 		return false;
 	}
-	
+
 	public static boolean setStaticFinalField(Field f, Object val)
 	{
 		try
@@ -38,7 +39,7 @@ public class ReflectionUtil
 		}
 		return false;
 	}
-	
+
 	public static boolean setFinalField(Field f, @Nullable Object instance, Object thing) throws ReflectiveOperationException
 	{
 		if(f == null) return false;
@@ -54,7 +55,7 @@ public class ReflectionUtil
 			return true;
 		}
 	}
-	
+
 	private static Field makeWritable(Field f) throws ReflectiveOperationException
 	{
 		f.setAccessible(true);
@@ -70,7 +71,7 @@ public class ReflectionUtil
 		modifiersField.setInt(f, f.getModifiers() & ~Modifier.FINAL);
 		return f;
 	}
-	
+
 	public static Object getValue(Object object, Class<?> type)
 	{
 		Field field = getField(object.getClass(), type);
@@ -84,7 +85,7 @@ public class ReflectionUtil
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public static Field getField(Class<?> clazz, Class<?> type)
 	{
 		Field ret = null;
@@ -100,7 +101,7 @@ public class ReflectionUtil
 		}
 		return ret;
 	}
-	
+
 	public static Field getFieldByValue(Class<?> clazz, Object instance, Object value)
 	{
 		for(Field field : clazz.getDeclaredFields())
@@ -118,7 +119,7 @@ public class ReflectionUtil
 			}
 		return null;
 	}
-	
+
 	public static Field getField(Class<?> clazz, String name)
 	{
 		Field ret = null;
@@ -134,7 +135,7 @@ public class ReflectionUtil
 		}
 		return ret;
 	}
-	
+
 	public static Class<?> getCaller()
 	{
 		try
@@ -143,6 +144,53 @@ public class ReflectionUtil
 		} catch(ClassNotFoundException e)
 		{
 			return null;
+		}
+	}
+
+	public static Field findField(Class<?> c, String... names) throws NoSuchFieldException {
+		Field f = null;
+		String[] var3 = names;
+		int var4 = names.length;
+		int var5 = 0;
+
+		while(var5 < var4) {
+			String s = var3[var5];
+
+			try {
+				f = c.getDeclaredField(s);
+				f.setAccessible(true);
+				break;
+			} catch (Exception var8) {
+				++var5;
+			}
+		}
+
+		if (f == null) {
+			throw new NoSuchFieldException("No field found matching one of the given names: " + names);
+		} else {
+			return f;
+		}
+	}
+
+	public static Method findMethod(Class<?> c, String deobName, String obName, Class<?>... args) throws NoSuchMethodException {
+		Method m = null;
+
+		try {
+			m = c.getDeclaredMethod(deobName, args);
+			m.setAccessible(true);
+		} catch (Exception var7) {
+		}
+
+		try {
+			m = c.getDeclaredMethod(obName, args);
+			m.setAccessible(true);
+		} catch (Exception var6) {
+		}
+
+		if (m == null) {
+			throw new NoSuchMethodException("No method found matching one of the given names or arguments: " + deobName + ", " + obName);
+		} else {
+			return m;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.items;
+package com.ryorama.terrariamod.items.api;
 
 import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotAttributes;

@@ -98,7 +98,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	    	}
 	    }
 	    
-	    this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(1024);
+	    this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(2048);
 	    this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(35);
 		setHealth(getMaxHealth());
 	    phase = 0;
@@ -164,7 +164,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 			  boolean day = this.world.getTimeOfDay() >= 1000 && this.world.getTimeOfDay() <= 13000;
 
 			  if (day) {
-				  this.setVelocity(0, 1, 0);
+				  this.velY = 1;
 			  } else {
 
 				  if (phase == 0) {
