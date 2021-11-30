@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.client.TMusicTicker;
+import com.ryorama.terrariamod.core.client.TMusicTicker;
 import com.ryorama.terrariamod.items.ItemsT;
 
 import net.minecraft.block.Block;

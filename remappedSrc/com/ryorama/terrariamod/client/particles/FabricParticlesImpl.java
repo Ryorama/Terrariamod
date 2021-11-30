@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.client.particles;
+package com.ryorama.terrariamod.core.client.particles;
 
 import java.util.IdentityHashMap;
 import java.util.Map;
