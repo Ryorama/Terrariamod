@@ -4,6 +4,16 @@ import java.util.Random;
 
 import javax.swing.text.html.BlockView;
 
+<<<<<<< HEAD
+=======
+import com.glisco.owo.particles.ClientParticles;
+import com.glisco.owo.particles.ServerParticles;
+import com.ryorama.terrariamod.client.fx.ParticleManager;
+import com.ryorama.terrariamod.items.ItemsT;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+>>>>>>> parent of 83920b8 (More bugfixes)
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
