@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.client;
+package com.ryorama.terrariamod.core.client;
 
 import org.apache.commons.lang3.Validate;
 

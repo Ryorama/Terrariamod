@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.client.particles;
+package com.ryorama.terrariamod.core.client.particles;
 
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.texture.SpriteAtlasTexture;
