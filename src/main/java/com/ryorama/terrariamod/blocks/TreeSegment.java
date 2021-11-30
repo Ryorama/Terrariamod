@@ -4,6 +4,8 @@ import java.util.Random;
 
 import javax.swing.text.html.BlockView;
 
+import com.glisco.owo.particles.ClientParticles;
+import com.glisco.owo.particles.ServerParticles;
 import com.ryorama.terrariamod.client.fx.ParticleManager;
 import com.ryorama.terrariamod.items.ItemsT;
 
