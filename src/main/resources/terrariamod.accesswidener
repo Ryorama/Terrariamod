@@ -12,5 +12,3 @@ mutable field net/minecraft/entity/attribute/EntityAttributes GENERIC_ARMOR Lnet
 
 extendable method net/minecraft/client/world/GeneratorType <init> (Ljava/lang/String;)V
 extendable method net/minecraft/text/Style <init> (J)V
-accessible    method    net/minecraft/screen/ScreenHandlerType    register    (Ljava/lang/String;Lnet/minecraft/screen/ScreenHandlerType$Factory;)Lnet/minecraft/screen/ScreenHandlerType;
-accessible    class    net/minecraft/screen/ScreenHandlerType$Factory

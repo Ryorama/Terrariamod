@@ -14,6 +14,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -284,8 +285,10 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 
 	@Override
 	public void drops() {
-		if (MinecraftClient.getInstance().player != null) {
-			MinecraftClient.getInstance().player.getInventory().insertStack(new ItemStack(ItemsT.LENS));
+		if (random.nextInt(5) == 0) {
+			ItemEntity ie = new ItemEntity(world, this.getPos().x, this.getPos().y, this.getPos().z, new ItemStack(ItemsT.LENS));
+			world.spawnEntity(ie);
+			ie.setPosition(this.getPos().x, this.getPos().getY(), this.getPos().z);
 		}
 	}
 	

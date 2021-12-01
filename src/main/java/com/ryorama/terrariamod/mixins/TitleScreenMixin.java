@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.ryorama.terrariamod.TAudio;
-import com.ryorama.terrariamod.core.client.TMusicTicker;
+import com.ryorama.terrariamod.client.TMusicTicker;
 
 import net.minecraft.client.gui.screen.TitleScreen;
 

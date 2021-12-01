@@ -1,6 +1,6 @@
 package com.ryorama.terrariamod.entity;
 
-import com.ryorama.terrariamod.core.client.TMusicTicker;
+import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.ui.BossBar;
 
 import net.minecraft.sound.SoundEvent;

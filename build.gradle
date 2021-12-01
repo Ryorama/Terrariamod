@@ -15,7 +15,6 @@ loom {
 }
 
 repositories {
-	maven { url 'https://jitpack.io' }
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 	maven {
 		name = "TerraformersMC"
@@ -45,17 +44,12 @@ dependencies {
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation "com.github.glisco03:owo-lib:${project.owo_version}"
-	include "com.github.glisco03:owo-lib:${project.owo_version}"
-
 	include modImplementation('software.bernie.geckolib:geckolib-fabric-1.17:3.0.12:dev')
 	modImplementation "dev.emi:trinkets:3.0.4"
 	implementation 'javax.vecmath:vecmath:1.5.2'
 	modImplementation "io.github.ladysnake:satin:${satin_version}"
 
-	implementation ("de.keksuccino:fancymenu:2.3.6") {
-		exclude group: "de.keksuccino"
-	}
+	modImplementation ("de.keksuccino:fancymenu:2.3.6")
 }
 
 processResources {

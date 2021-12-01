@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.core.client;
+package com.ryorama.terrariamod.client;
 
 import com.ryorama.terrariamod.world.WorldDataT;
 import net.minecraft.client.render.WorldRenderer;
