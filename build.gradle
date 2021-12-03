@@ -1,5 +1,5 @@
 plugins {
-		id 'fabric-loom' version '0.8-SNAPSHOT'
+	id 'fabric-loom' version '0.9-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -48,8 +48,6 @@ dependencies {
 	modImplementation "dev.emi:trinkets:3.0.4"
 	implementation 'javax.vecmath:vecmath:1.5.2'
 	modImplementation "io.github.ladysnake:satin:${satin_version}"
-
-	modImplementation ("de.keksuccino:fancymenu:2.3.6")
 }
 
 processResources {

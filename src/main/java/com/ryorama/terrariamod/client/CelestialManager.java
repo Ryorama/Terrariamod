@@ -62,7 +62,7 @@ public class CelestialManager {
                 }
             }
 
-            if (rand.nextInt(200) <= 5 && !alreadyAttemptedBloodMoon && canAttemptEvents) {
+            if (rand.nextInt(5) <= 5 && !alreadyAttemptedBloodMoon && canAttemptEvents) {
                 WorldDataT.bloodMoon = true;
                 for (int p = 0; p < worldIn.getPlayers().size(); p++) {
                     worldIn.getPlayers().get(p).sendMessage((new TranslatableText("A bloodmoon is rising!")).formatted(Formatting.GREEN).formatted(Formatting.BOLD), false);
