@@ -9,6 +9,7 @@ import net.minecraft.item.ArrowItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.text.Style;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -27,7 +28,7 @@ public class Bow extends ItemT {
 		ItemStack itemstack = playerIn.getMainHandStack();
 	      
 	      Inventory inventory = playerIn.getInventory();
-	      	    
+
 	      for (int i = 0; i <= inventory.size(); i++) {
 	    	if (inventory.getStack(i).getItem() instanceof Arrow) {
 	    		Arrow arrowItem = (Arrow)inventory.getStack(i).getItem();

@@ -6,6 +6,3 @@ mutable field net/minecraft/client/render/WorldRenderer MOON_PHASES Lnet/minecra
 mutable field net/minecraft/client/render/WorldRenderer SUN Lnet/minecraft/util/Identifier;
 accessible field net/minecraft/tag/FluidTags REQUIRED_TAGS Lnet/minecraft/tag/RequiredTagList;
 accessible field net/minecraft/tag/FluidTags TAGS Ljava/util/List;
-
-extendable method net/minecraft/client/world/GeneratorType <init> (Ljava/lang/String;)V
-extendable method net/minecraft/text/Style <init> (J)V
