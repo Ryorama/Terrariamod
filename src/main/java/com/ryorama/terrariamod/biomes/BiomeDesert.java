@@ -7,18 +7,8 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 public class BiomeDesert {
-	
-	public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> DESERT_SURFACE_BUILDER = SurfaceBuilder.DEFAULT
-		    .withConfig(new TernarySurfaceConfig(
-		      BlocksT.SAND.getDefaultState(),
-		      BlocksT.SAND.getDefaultState(),
-		      BlocksT.SAND.getDefaultState()));
-		 
 	public static final Biome DESERT = createPurity();
 	
 	public static Biome createPurity() {
@@ -30,15 +20,12 @@ public class BiomeDesert {
 	    SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
 	    
 	    GenerationSettings.Builder generationSettings = new GenerationSettings.Builder();
-	    generationSettings.surfaceBuilder(DESERT_SURFACE_BUILDER);
 	    DefaultBiomeFeatures.addLandCarvers(generationSettings);
 	    DefaultBiomeFeatures.addFrozenTopLayer(generationSettings);
 	 
 	    return (new Biome.Builder())
 	      .precipitation(Biome.Precipitation.RAIN)
 	      .category(Biome.Category.NONE)
-	      .depth(0.125F)
-	      .scale(0.05F)
 	      .temperature(0.8F)
 	      .downfall(0.4F)
 	      .effects((new BiomeEffects.Builder())

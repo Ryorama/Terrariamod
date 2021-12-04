@@ -1,7 +1,7 @@
 package com.ryorama.terrariamod.mixins;
 
 import net.minecraft.world.gen.chunk.AquiferSampler;
-import net.minecraft.world.gen.chunk.WeightSampler;
+import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,7 +24,7 @@ import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 public class NoiseChunkGeneratorMixin {
 	
 	@Inject(at = @At("HEAD"), method = "getBlockState", cancellable = true)
-	protected void getBlockState(StructureWeightSampler structures, AquiferSampler aquiferSampler, BlockSource blockInterpolator, WeightSampler weightSampler, int i, int j, int k, double d, CallbackInfoReturnable<BlockState> cir) {
+	protected void getBlockState(ChunkNoiseSampler chunkNoiseSampler, int x, int y, int z, BlockState state, CallbackInfoReturnable<BlockState> cir) {
 		cir.setReturnValue(Blocks.AIR.getDefaultState());
 	}
 	
@@ -53,7 +53,7 @@ public class NoiseChunkGeneratorMixin {
 	}
 	
 	@Inject(at = @At("HEAD"), method = "buildSurface", cancellable = true)
-	public void buildSurface(ChunkRegion region, Chunk chunk, CallbackInfo info) {
+	public void buildSurface(ChunkRegion region, StructureAccessor structures, Chunk chunk, CallbackInfo info) {
 		info.cancel();
 	}
 }

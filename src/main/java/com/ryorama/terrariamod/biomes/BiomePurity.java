@@ -7,17 +7,8 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 public class BiomePurity {
-	
-	public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> PURITY_SURFACE_BUILDER = SurfaceBuilder.DEFAULT
-		    .withConfig(new TernarySurfaceConfig(
-		      BlocksT.GRASS_BLOCK.getDefaultState(),
-		      BlocksT.DIRT_BLOCK.getDefaultState(),
-		      BlocksT.STONE_BLOCK.getDefaultState()));
 		 
 	public static final Biome PUTITY = createPurity();
 	
@@ -30,15 +21,12 @@ public class BiomePurity {
 	    SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
 	    
 	    GenerationSettings.Builder generationSettings = new GenerationSettings.Builder();
-	    generationSettings.surfaceBuilder(PURITY_SURFACE_BUILDER);
 	    DefaultBiomeFeatures.addLandCarvers(generationSettings);
 	    DefaultBiomeFeatures.addFrozenTopLayer(generationSettings);
 	 
 	    return (new Biome.Builder())
 	      .precipitation(Biome.Precipitation.RAIN)
 	      .category(Biome.Category.NONE)
-	      .depth(0.125F)
-	      .scale(0.05F)
 	      .temperature(0.8F)
 	      .downfall(0.4F)
 	      .effects((new BiomeEffects.Builder())
