@@ -44,32 +44,6 @@ public abstract class WeatherBase {
 			maxWeatherTime = 3000 + random.nextInt(2000);
 	
 			isClearWeather = false;
-			
-			if (currentWeather == 1 && day) {
-				weatherMusic = TAudio.WINDY_DAY;
-			}
-		}
-		
-		if (!isClearWeather) {
-			currentWeatherTime += 1;
-					
-			emitWeatherParticles();
-			if (TMusicTicker.currentMusic != weatherMusic && TMusicTicker.weatherMusicOverride == false && weatherMusic != null) {
-				TMusicTicker.weatherMusicOverride = true;
-				TMusicTicker.getTrack(weatherMusic);
-			}
-			
-			if (currentWeatherTime >= maxWeatherTime) {
-				TMusicTicker.weatherMusicOverride = false;
-				currentWeatherTime = 0;
-				isClearWeather = true;
-			}
-			
-			if (currentWeather == 1 && !day) {
-				TMusicTicker.weatherMusicOverride = false;
-				currentWeatherTime = 0;
-				isClearWeather = true;
-			}
 		}
 	}
 }

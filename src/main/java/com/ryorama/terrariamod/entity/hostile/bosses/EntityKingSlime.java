@@ -330,11 +330,6 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 	}
 
 	@Override
-	public SoundEvent setBossMusic() {
-		return TAudio.BOSS1;
-	}
-
-	@Override
 	public Identifier bossIcon() {
 		return new Identifier(TerrariaMod.MODID, "textures/ui/boss_icons/kingslime_icon.png");
 	}

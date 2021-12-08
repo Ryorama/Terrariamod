@@ -420,11 +420,6 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	}
 
 	@Override
-	public SoundEvent setBossMusic() {
-		return TAudio.BOSS1;
-	}
-
-	@Override
 	public Identifier bossIcon() {
 		return new Identifier(TerrariaMod.MODID, "textures/ui/boss_icons/eoc_icon.png");
 	}

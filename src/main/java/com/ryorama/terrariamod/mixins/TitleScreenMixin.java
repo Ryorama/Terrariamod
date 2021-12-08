@@ -15,6 +15,6 @@ public class TitleScreenMixin {
 	
 	@Inject(at = @At("HEAD"), method = "init()V")
 	private void init(CallbackInfo info) {
-		TMusicTicker.getTrack(TAudio.TITLE_SCREEN);
+		//TMusicTicker.getTrack(TAudio.TITLE_SCREEN);
 	}
 }
