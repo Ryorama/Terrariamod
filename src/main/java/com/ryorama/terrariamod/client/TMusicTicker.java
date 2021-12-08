@@ -92,6 +92,7 @@ public class TMusicTicker extends MusicTracker {
 		this.client = client;
 	}
 
+	@Override
 	public void tick() {
 		this.tickMusic();
 		this.tickAmbient();

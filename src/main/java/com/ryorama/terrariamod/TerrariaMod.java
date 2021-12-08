@@ -101,6 +101,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	public static FlowableFluid FLOWING_HONEY;
 	public static Block HONEY;
 
+	public static boolean DEBUG = false;
+
 	public static final Tag.Identified<Fluid> HONEY_TAG;
 
 	public static final Identifier MANA = new Identifier(MODID, "mana");
@@ -114,6 +116,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		
 		ModifyWorldHeight();
 		GeckoLib.initialize();
+		TAudio.registerAudio();
 
 		STILL_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "still_honey"), new HoneyFluid.Still());
 		FLOWING_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "flowing_honey"), new HoneyFluid.Flowing());
@@ -124,6 +127,14 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 		Registry.register(Registry.CUSTOM_STAT, "max_mana", MAX_MANA);
 		Stats.CUSTOM.getOrCreateStat(MAX_MANA, StatFormatter.DEFAULT);
+
+		try {
+			Field musicTicker = MinecraftClient.class.getDeclaredField(DEBUG ? "musicTracker" : "field_1714");
+			musicTicker.setAccessible(true);
+			musicTicker.set(MinecraftClient.getInstance(), new TMusicTicker(MinecraftClient.getInstance()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	static {
@@ -236,8 +247,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		TerrariaUIRenderer.renderTerrariaDefense();
 		TerrariaUIRenderer.renderTerrariaMana();
 
-		TMusicTicker.musicChanged = true;
-		ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
+		//TMusicTicker.musicChanged = true;
+		//ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
 
 		/*
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
