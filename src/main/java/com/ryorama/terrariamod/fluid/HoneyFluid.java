@@ -1,6 +1,7 @@
 package com.ryorama.terrariamod.fluid;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.items.ItemsT;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -22,7 +23,7 @@ public abstract class HoneyFluid extends BaseFluid {
 
     @Override
     public Item getBucketItem() {
-        return TerrariaMod.HONEY_BUCKET;
+        return ItemsT.HONEY_BUCKET;
     }
 
     @Override

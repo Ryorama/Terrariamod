@@ -1,7 +1,5 @@
 package com.ryorama.terrariamod.utils;
 
 public class Util {
-    public static int renderMana;
-    public static int renderMaxMana;
-    public static int renderManaRegeneration;
+    public static double starChance = 10;
 }

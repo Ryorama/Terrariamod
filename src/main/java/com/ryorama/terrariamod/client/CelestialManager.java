@@ -28,7 +28,9 @@ public class CelestialManager {
     private static Identifier SOLAR_ECLIPSE_SUN_TEXTURES = new Identifier("terrariamod:textures/environment/sun_eclipse.png");
 
     public static void handleMoon(World worldIn) {
-        boolean night = worldIn.getTimeOfDay() % 24000L > 15000L && worldIn.getTimeOfDay() % 24000L < 22000L;
+
+        boolean night = !worldIn.isDay();
+        //worldIn.getTimeOfDay() % 24000L > 15000L && worldIn.getTimeOfDay() % 24000L < 22000L;
         if (!WorldDataT.bloodMoon && night) {
 
             alreadyAttemptedSolarEclipse = false;

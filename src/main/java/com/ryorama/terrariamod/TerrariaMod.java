@@ -16,6 +16,7 @@ import com.ryorama.terrariamod.fluid.HoneyFluid;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
+import com.ryorama.terrariamod.utils.Util;
 import com.ryorama.terrariamod.weather.WeatherBase;
 import com.ryorama.terrariamod.world.EntitySpawner;
 
@@ -61,6 +62,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
@@ -71,6 +73,8 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
 import net.minecraft.tag.BlockTags;
@@ -95,7 +99,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static FlowableFluid STILL_HONEY;
 	public static FlowableFluid FLOWING_HONEY;
-	public static Item HONEY_BUCKET;
 	public static Block HONEY;
 
 	public static final Tag.Identified<Fluid> HONEY_TAG;
@@ -273,23 +276,39 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 			CelestialManager.handleMoon(world);
 			CelestialManager.handleSolarEvents(world);
 		
-			if (world.getRandom().nextInt(700) <= 10)
-			if (world.getPlayers().size() > 0) {
-				PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
-				double x = player.getPos().x + world.random.nextInt(80) - 40, y = player.getPos().y + world.random.nextInt(80) - 40, z = player.getPos().z + world.random.nextInt(80) - 40;
-				
-				for (PlayerEntity p2 : world.getPlayers()) {
+			if (world.getRandom().nextInt(700) <= 10) {
+				if (world.getPlayers().size() > 0) {
+					PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
+					double x = player.getPos().x + world.random.nextInt(80) - 40, y = player.getPos().y + world.random.nextInt(80) - 40, z = player.getPos().z + world.random.nextInt(80) - 40;
+
+					for (PlayerEntity p2 : world.getPlayers()) {
 						if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
-							new Thread () {
+							new Thread() {
 								public void run() {
 									EntitySpawner.spawnEntities(player, x, y, z);
 								}
 							}.start();
-							
 							break;
 						}
 					}
 				}
+			}
+
+			if (!world.isDay()) {
+				if (world.getRandom().nextDouble(12) <= Util.starChance) {
+					if (world.getPlayers().size() > 0) {
+						System.out.println("Fallen Star");
+						PlayerEntity player = world.getPlayers().get(world.getRandom().nextInt(world.getPlayers().size()));
+						double x = player.getX() + world.getRandom().nextInt(80) - 40, y = 255, z = player.getZ() + world.getRandom().nextInt(80) - 40;
+						ItemEntity item = new ItemEntity(world, x, y, z, ItemsT.FALLEN_STAR.getDefaultStack());
+						world.spawnEntity(item);
+
+						if (item.isAlive() && !item.isOnGround()) {
+							world.playSound(item.getX(), item.getY(), item.getZ(), TAudio.STAR_FALL, SoundCategory.AMBIENT, 1f, 1f, false);
+						}
+					}
+				}
+			}
 		});
 
 		ServerWorldEvents.LOAD.register(((server, world) -> {

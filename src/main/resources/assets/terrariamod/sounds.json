@@ -233,6 +233,11 @@
 		}
 	]
   },
+  "star_fall": {
+		"category": "players",
+		"subtitle": "terrariamod.star_fall",
+		"sounds": [ "terrariamod:star_fall" ]
+	},
   "roar_0": {
 	"category": "players",
 	"subtitle": "terrariamod.roar_0",

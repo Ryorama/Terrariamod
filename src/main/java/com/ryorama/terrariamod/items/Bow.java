@@ -29,6 +29,7 @@ public class Bow extends ItemT {
 	      
 	      Inventory inventory = playerIn.getInventory();
 
+	      //Change to fix arrow velocity
 	      for (int i = 0; i <= inventory.size(); i++) {
 	    	if (inventory.getStack(i).getItem() instanceof Arrow) {
 	    		Arrow arrowItem = (Arrow)inventory.getStack(i).getItem();
