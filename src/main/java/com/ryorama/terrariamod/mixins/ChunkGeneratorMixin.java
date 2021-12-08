@@ -235,15 +235,15 @@ public class ChunkGeneratorMixin {
 
 						GeneratePurityTrees(world, x, y, z, pos);
 
-						if (world.getRandom().nextInt(3250) == 0) {
+						if (world.getRandom().nextInt(4000) == 0) {
 							if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.GRASS_BLOCK.getDefaultState()) {
 								placeStuff(world, Blocks.CHEST.getDefaultState(), world.getRandom(), pos);
-								LootableContainerBlockEntity.setLootTable(world, world.getRandom(), pos, new Identifier(TerrariaMod.MODID, "loot_tables/chests/surface_chest"));
+								LootableContainerBlockEntity.setLootTable(world, world.getRandom(), pos, new Identifier(TerrariaMod.MODID, "chests/surface_chest"));
 							}
 						}
 
 						if (y <= -5) {
-							if (world.getRandom().nextInt(1000) == 0) {
+							if (world.getRandom().nextInt(3500) == 0) {
 								if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.STONE_BLOCK.getDefaultState()) {
 									placeStuff(world, BlocksT.LIFE_CRYSTAL_BLOCK.getDefaultState(), world.getRandom(), pos);
 								}
@@ -256,7 +256,7 @@ public class ChunkGeneratorMixin {
 
 						//Ores
 						if (y <= 80) {
-							if (world.getRandom().nextInt(600) == 0) {
+							if (world.getRandom().nextInt(1200) == 0) {
 								if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
 									placeOre(world, world.getRandom(), pos, world.getRandom().nextInt(12) + 3, BlocksT.GRASS_BLOCK.getDefaultState(), BlocksT.COPPER_ORE.getDefaultState());
 								} else if (world.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
@@ -269,7 +269,7 @@ public class ChunkGeneratorMixin {
 							}
 						}
 						if (y <= 60) {
-							if (world.getRandom().nextInt(620) == 0) {
+							if (world.getRandom().nextInt(1240) == 0) {
 								if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
 									placeOre(world, world.getRandom(), pos, world.getRandom().nextInt(12) + 3, BlocksT.GRASS_BLOCK.getDefaultState(), BlocksT.IRON_ORE.getDefaultState());
 								} else if (world.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
@@ -282,7 +282,7 @@ public class ChunkGeneratorMixin {
 							}
 						}
 						if (y <= 10) {
-							if (world.getRandom().nextInt(640) == 0) {
+							if (world.getRandom().nextInt(1340) == 0) {
 								if (world.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
 									placeOre(world, world.getRandom(), pos, world.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.GOLD_ORE.getDefaultState());
 								} else if (world.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
@@ -291,21 +291,21 @@ public class ChunkGeneratorMixin {
 							}
 						}
 						if (y <= -150) {
-							if (world.getRandom().nextInt(660) == 0) {
+							if (world.getRandom().nextInt(1340) == 0) {
 								if (world.getBlockState(pos) == BlocksT.ASH.getDefaultState()) {
 									placeOre(world, world.getRandom(), pos, world.getRandom().nextInt(12) + 3, BlocksT.ASH.getDefaultState(), BlocksT.HELLSTONE_ORE.getDefaultState());
 								}
 							}
 						}
 						if (y <= 60) {
-							if (world.getRandom().nextInt(640) == 0) {
+							if (world.getRandom().nextInt(1340) == 0) {
 								if (world.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
 									placeOre(world, world.getRandom(), pos, world.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.RUBY_ORE.getDefaultState());
 								}
 							}
 						}
 						if (y <= 60) {
-							if (world.getRandom().nextInt(640) == 0) {
+							if (world.getRandom().nextInt(1340) == 0) {
 								if (world.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
 									placeOre(world, world.getRandom(), pos, world.getRandom().nextInt(12) + 3, BlocksT.STONE_BLOCK.getDefaultState(), BlocksT.SAPPHIRE_ORE.getDefaultState());
 								}
@@ -647,14 +647,7 @@ public class ChunkGeneratorMixin {
 		return true;
 	}
 
-	public boolean placeStuff(StructureWorldAccess worldIn, BlockState placeBlock, Random rand, BlockPos pos) {
-
-		for(int i = 0; i < 10; ++i) {
-			BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-			if (rand.nextInt(75) <= 5) {
-				worldIn.setBlockState(blockpos, placeBlock, 0);
-			}
-		}
-		return true;
+	public void placeStuff(StructureWorldAccess worldIn, BlockState placeBlock, Random rand, BlockPos pos) {
+		worldIn.setBlockState(pos, placeBlock, 0);
 	}
 }

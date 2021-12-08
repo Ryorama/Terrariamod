@@ -4,7 +4,12 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TAudio {
+
+    public static List<String> musicNames = new ArrayList<>();
 
     /*
     public static final SoundEvent DAYONE = new SoundEvent(new Identifier(TerrariaMod.MODID, "day1"));
@@ -22,15 +27,11 @@ public class TAudio {
     public static final SoundEvent TITLE_SCREEN = new SoundEvent(new Identifier(TerrariaMod.MODID, "title_screen"));
     public static final SoundEvent BOSS1 = new SoundEvent(new Identifier(TerrariaMod.MODID, "boss1"));
 
-
-
 	public static void registerAudio() {
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "day1"), DAYONE);
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "night"), NIGHT);
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "title_screen"), TITLE_SCREEN);
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "boss1"), BOSS1);
-
-
      }
      */
 
@@ -48,9 +49,8 @@ public class TAudio {
 
         for(int var3 = 0; var3 < var2; ++var3) {
             TAudio.SoundEvents e = var1[var3];
-            Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, e.name()), e.getSound());
+            Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID,  e.toString().toLowerCase()), e.getSound());
         }
-
     }
 
     public static enum SoundEvents {
@@ -62,7 +62,7 @@ public class TAudio {
         DESERT("desert"),
         UNDERGROUND("underground"),
         UNDERGROUND_CORRUPTION("underground_corruption"),
-        BLOODMOON("blood_moon"),
+        BLOODMOON("bloodmoon"),
         BOSS1("boss1"),
         BOSS2("boss2"),
         UNDERWORLD("underworld"),
@@ -72,15 +72,6 @@ public class TAudio {
         OCEAN("ocean"),
         JUNGLE("jungle"),
         BOSS3("boss3"),
-        ROAR("roar0"),
-        MENU_OPEN("menu_open"),
-        MENU_CLOSE("menu_close"),
-        GRAB("grab"),
-        HEALTH_CRYSTAL("health_crystal"),
-        CRYSTAL_DESTROY("crystal_destroy"),
-        TINK("tink0"),
-        DIG("dig0"),
-        SHATTER("shatter"),
         PLANTERA("plantera"),
         LUNAR_EVENT("lunar_event"),
         MOON_LORD("moon_lord"),
@@ -92,7 +83,7 @@ public class TAudio {
         private SoundEvent sound;
 
         private SoundEvents(String name) {
-
+            sound = new SoundEvent(new Identifier(TerrariaMod.MODID, name));
         }
 
         public SoundEvent getSound() {
