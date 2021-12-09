@@ -94,6 +94,7 @@ public class TMusicTicker extends MusicTracker {
 
 	@Override
 	public void tick() {
+		System.out.println("Terraria Music Ticker Running!");
 		this.tickMusic();
 		this.tickAmbient();
 

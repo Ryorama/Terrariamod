@@ -127,14 +127,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 		Registry.register(Registry.CUSTOM_STAT, "max_mana", MAX_MANA);
 		Stats.CUSTOM.getOrCreateStat(MAX_MANA, StatFormatter.DEFAULT);
-
-		try {
-			Field musicTicker = MinecraftClient.class.getDeclaredField(DEBUG ? "musicTracker" : "field_1714");
-			musicTicker.setAccessible(true);
-			musicTicker.set(MinecraftClient.getInstance(), new TMusicTicker(MinecraftClient.getInstance()));
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
 	}
 
 	static {
@@ -158,6 +150,13 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
 
 		ShadersManager.registerShaders();
+
+		try {
+			Field f = Resources.findField(MinecraftClient.class, "musicTracker", "field_1714");
+			f.set(MinecraftClient.getInstance(), new TMusicTicker(MinecraftClient.getInstance()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color) {
