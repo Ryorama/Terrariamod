@@ -67,24 +67,24 @@ public class ItemsT {
 //		return ItemsT.items.get(name);
 	}
 	
-	public static ItemT WOOD = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2).setMaxStack(999);
-	public static ItemT COPPER_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2).setMaxStack(999);
-	public static ItemT GEL = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2).setMaxStack(999);
-	public static ItemT LENS = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2).setMaxStack(999);
-	public static ItemT FALLEN_STAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2).setMaxStack(999);
-	public static WoodenArrow WOODEN_ARROW = (WoodenArrow) new WoodenArrow(new FabricItemSettings().group(ItemGroup.COMBAT)).setRarity(2).setMaxStack(999);
-	public static FlamingArrow FLAMING_ARROW = (FlamingArrow) new FlamingArrow(new FabricItemSettings().group(ItemGroup.COMBAT)).setRarity(2).setMaxStack(999);
+	public static ItemT WOOD = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
+	public static ItemT COPPER_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
+	public static ItemT GEL = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
+	public static ItemT LENS = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
+	public static ItemT FALLEN_STAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
+	public static WoodenArrow WOODEN_ARROW = (WoodenArrow) new WoodenArrow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(999)).setRarity(2);
+	public static FlamingArrow FLAMING_ARROW = (FlamingArrow) new FlamingArrow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(999)).setRarity(2);
 
-	public static LifeCrystal HEALTH_CRYSTAL = (LifeCrystal) new LifeCrystal(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2).setMaxStack(999);
-	//public static MagicMirror MAGIC_MIRROR = (MagicMirror) new MagicMirror(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2);
+	public static LifeCrystal HEALTH_CRYSTAL = (LifeCrystal) new LifeCrystal(new FabricItemSettings().group(ItemGroup.MISC).maxCount(99)).setRarity(2);
+	public static MagicMirror MAGIC_MIRROR = (MagicMirror) new MagicMirror(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)).setRarity(2);
 
-	public static ItemT SLIME_CROWN = new SlimeCrown(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(3).setMaxStack(30);
-	public static ItemT SUSPICIOUS_LOOKING_EYE = new SuspiciousLookingEye(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(3).setMaxStack(30);
+	public static ItemT SLIME_CROWN = new SlimeCrown(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30)).setRarity(3);
+	public static ItemT SUSPICIOUS_LOOKING_EYE = new SuspiciousLookingEye(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30)).setRarity(3);
 
-	public static ItemT GOLD_CROWN = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2).setMaxStack(1);
+	public static ItemT GOLD_CROWN = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)).setRarity(2).setMaxStack(1);
 	
-	public static ItemT IRON_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2).setMaxStack(999);
-	public static ItemT GOLD_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC)).setRarity(2).setMaxStack(999);
+	public static ItemT IRON_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
+	public static ItemT GOLD_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
 
 	public static CopperShortsword COPPER_SHORTSWORD = (CopperShortsword) new CopperShortsword().setRarity(3);
 	public static CopperPickaxe COPPER_PICKAXE = (CopperPickaxe) new CopperPickaxe().setRarity(3);
@@ -117,9 +117,9 @@ public class ItemsT {
 	public static Item GOLD_CHESTPLATE = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item GOLD_LEGGINGS = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
 	
-	public static CopperBow COPPER_BOW = new CopperBow(new FabricItemSettings().group(ItemGroup.COMBAT));
-	public static IronBow IRON_BOW = new IronBow(new FabricItemSettings().group(ItemGroup.COMBAT));
-	public static GoldBow GOLD_BOW = new GoldBow(new FabricItemSettings().group(ItemGroup.COMBAT));
+	public static CopperBow COPPER_BOW = new CopperBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1));
+	public static IronBow IRON_BOW = new IronBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1));
+	public static GoldBow GOLD_BOW = new GoldBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1));
 	
 	public static LesserHealingPotion LESSER_HEALING_POTION = new LesserHealingPotion(new FabricItemSettings().group(ItemGroup.BREWING));
 
@@ -140,7 +140,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "life_crystal"), HEALTH_CRYSTAL);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_arrow"), WOODEN_ARROW);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "flaming_arrow"), FLAMING_ARROW);
-		//Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "magic_mirror"), MAGIC_MIRROR);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "magic_mirror"), MAGIC_MIRROR);
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "lesser_healing_potion"), LESSER_HEALING_POTION);
 		
@@ -180,28 +180,28 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_leggings"), GOLD_LEGGINGS);
 
 		
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "grass_block"), new BlockItemT(BlocksT.GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "dirt_block"), new BlockItemT(BlocksT.DIRT_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "stone_block"), new BlockItemT(BlocksT.STONE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ash"), new BlockItemT(BlocksT.ASH, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mud"), new BlockItemT(BlocksT.MUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sand"), new BlockItemT(BlocksT.SAND, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "snow"), new BlockItemT(BlocksT.SNOW, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "marble"), new BlockItemT(BlocksT.MARBLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "granite"), new BlockItemT(BlocksT.GRANITE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_beam"), new BlockItemT(BlocksT.WOODEN_BEAM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ebonstone"), new BlockItemT(BlocksT.EBONSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "grass_block"), new BlockItemT(BlocksT.GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "dirt_block"), new BlockItemT(BlocksT.DIRT_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "stone_block"), new BlockItemT(BlocksT.STONE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ash"), new BlockItemT(BlocksT.ASH, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mud"), new BlockItemT(BlocksT.MUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sand"), new BlockItemT(BlocksT.SAND, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "snow"), new BlockItemT(BlocksT.SNOW, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "marble"), new BlockItemT(BlocksT.MARBLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "granite"), new BlockItemT(BlocksT.GRANITE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_beam"), new BlockItemT(BlocksT.WOODEN_BEAM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ebonstone"), new BlockItemT(BlocksT.EBONSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "empty_bottle"), new BlockItemT(BlocksT.EMPTY_BOTTLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom"), new BlockItemT(BlocksT.MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "empty_bottle"), new BlockItemT(BlocksT.EMPTY_BOTTLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom"), new BlockItemT(BlocksT.MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_ore"), new BlockItemT(BlocksT.COPPER_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_ore"), new BlockItemT(BlocksT.IRON_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_ore"), new BlockItemT(BlocksT.GOLD_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "hellstone_ore"), new BlockItemT(BlocksT.HELLSTONE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_ore"), new BlockItemT(BlocksT.COPPER_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_ore"), new BlockItemT(BlocksT.IRON_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_ore"), new BlockItemT(BlocksT.GOLD_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "hellstone_ore"), new BlockItemT(BlocksT.HELLSTONE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 	
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ruby_ore"), new BlockItemT(BlocksT.RUBY_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sapphire_ore"), new BlockItemT(BlocksT.SAPPHIRE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ruby_ore"), new BlockItemT(BlocksT.RUBY_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sapphire_ore"), new BlockItemT(BlocksT.SAPPHIRE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		
 		//Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "green_slime_spawn_egg"), new SpawnEggItem(EntitiesT.GREEN_SLIME, 0x2ec221, 0x5fed53, new FabricItemSettings().group(ItemGroup.MISC)));
 		//Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "blue_slime_spawn_egg"), new SpawnEggItem(EntitiesT.BLUE_SLIME, 0x2f7dc4, 0x53a3ed, new FabricItemSettings().group(ItemGroup.MISC)));

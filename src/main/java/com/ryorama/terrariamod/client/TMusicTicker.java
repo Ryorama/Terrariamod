@@ -96,6 +96,8 @@ public class TMusicTicker extends MusicTracker {
 	public void tick() {
 		this.tickMusic();
 		this.tickAmbient();
+
+		super.tick();
 	}
 
 	private TMusicTicker.AmbientTrack getAmbientTrackType() {

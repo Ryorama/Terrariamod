@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 public class LesserHealingPotion extends ItemT {
 
 	public LesserHealingPotion(Settings settings) {
-		super(settings);
+		super(settings.maxCount(30));
 	}
 	
 	@Override
