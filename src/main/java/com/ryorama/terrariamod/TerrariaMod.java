@@ -10,6 +10,7 @@ import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.CelestialManager;
 import com.ryorama.terrariamod.client.TMusicTicker;
+import com.ryorama.terrariamod.client.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.client.fx.ShadersManager;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
@@ -111,6 +112,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	@Override
 	public void onInitialize() {
 		BiomeRegistry.RegisterBiomes();
+		ParticleRegistry.init();
 		BlocksT.init();
 		ItemsT.init();
 		
