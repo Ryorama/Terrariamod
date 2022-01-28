@@ -32,6 +32,9 @@ repositories {
 			includeGroupByRegex 'io\\.github\\.onyxstudios.*'
 		}
 	}
+	maven {
+		url = uri("https://raw.github.com/Ryorama/maven/master")
+	}
 }
 
 dependencies {
@@ -40,6 +43,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "com.ryorama:ryolib:1.0.1"
 
 	include modImplementation('software.bernie.geckolib:geckolib-fabric-1.18:3.0.22')
 	modImplementation "dev.emi:trinkets:3.1.0"
@@ -49,7 +53,6 @@ dependencies {
 	include "io.github.ladysnake:satin:${satin_version}"
 	include "software.bernie.geckolib:geckolib-fabric-1.17:3.0.12:dev"
 	include "dev.emi:trinkets:3.0.4"
-
 }
 
 processResources {

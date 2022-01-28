@@ -2,13 +2,10 @@ package com.ryorama.terrariamod.entity;
 
 import java.util.Random;
 
-import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.utils.ImprovedRandom;
+import com.ryorama.ryolib.utils.math.ImprovedRandom;
 import com.ryorama.terrariamod.world.WorldDataT;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.sound.SoundEvent;
 
 public abstract class EntityMainData {
 	

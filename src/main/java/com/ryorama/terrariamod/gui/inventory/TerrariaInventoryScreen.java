@@ -1,7 +1,7 @@
 package com.ryorama.terrariamod.gui.inventory;
 
+import com.ryorama.ryolib.core.client.ui.UIRenderer;
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.ui.UIRenderer;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

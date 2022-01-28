@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.mixins;
 import java.util.BitSet;
 import java.util.Random;
 
+import com.ryorama.ryolib.utils.math.noise.FastNoise;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.random.SimpleRandom;
@@ -14,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.biomes.BiomeCorruption;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.utils.fastnoise.FastNoise;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

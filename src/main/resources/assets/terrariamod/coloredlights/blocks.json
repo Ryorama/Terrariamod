@@ -1,0 +1,60 @@
+{
+  "enabled": true,
+  "lights": [
+    {
+      "name": "terrariamod:mushroom_grass",
+      "r": 40,
+      "g": 65,
+      "b": 226,
+      "radius": 15,
+      "state": {
+        "property": "",
+        "value": ""
+      }
+    },
+    {
+      "name": "terrariamod:giant_glowing_mushroom_top",
+      "r": 40,
+      "g": 65,
+      "b": 226,
+      "radius": 15,
+      "state": {
+        "property": "",
+        "value": ""
+      }
+    },
+    {
+      "name": "terrariamod:hellstone_ore",
+      "r": 232,
+      "g": 13,
+      "b": 13,
+      "radius": 10,
+      "state": {
+        "property": "",
+        "value": ""
+      }
+    },
+    {
+      "name": "terrariamod:jungle_spores",
+      "r": 0,
+      "g": 255,
+      "b": 26,
+      "radius": 10,
+      "state": {
+        "property": "",
+        "value": ""
+      }
+    },
+    {
+      "name": "terrariamod:life_crystal_block",
+      "r": 255,
+      "g": 0,
+      "b": 94,
+      "radius": 10,
+      "state": {
+        "property": "",
+        "value": ""
+      }
+    }
+  ]
+}

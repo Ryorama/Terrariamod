@@ -6,6 +6,8 @@ import java.util.OptionalLong;
 import java.util.function.Function;
 
 import com.google.common.collect.Lists;
+import com.ryorama.ryolib.core.client.world.ModifyWorldColor;
+import com.ryorama.terrariamod.biomes.BiomeCorruption;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.CelestialManager;
@@ -41,6 +43,7 @@ import com.ryorama.terrariamod.entity.model.bosses.RenderEyeOfCthulhu;
 import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
 
 import com.ryorama.terrariamod.world.WorldDataT;
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -283,11 +286,19 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		*/
 		
 		WorldTickCallback.EVENT.register(world -> {
-			
+
 			WeatherBase.tickWeather();
 			CelestialManager.handleMoon(world);
 			CelestialManager.handleSolarEvents(world);
-		
+
+			if (world.isClient) {
+				if (WorldDataT.bloodMoon) {
+					ModifyWorldColor.changeWorldColor("FF0000", 1, "FF0000", 1); //Fix to be (double) 0.4
+				} else {
+					ModifyWorldColor.resetToDefaultColor();
+				}
+			}
+
 			if (world.getRandom().nextInt(700) <= 10) {
 				if (world.getPlayers().size() > 0) {
 					PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
@@ -315,8 +326,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 						ItemEntity item = new ItemEntity(world, x, y, z, ItemsT.FALLEN_STAR.getDefaultStack());
 						world.spawnEntity(item);
 
-						if (item.isAlive() && !item.isOnGround()) {
-							world.playSound(item.getX(), item.getY(), item.getZ(), TAudio.STAR_FALL, SoundCategory.AMBIENT, 1f, 1f, false);
+						while (item.isAlive() && !item.isOnGround()) {
+							world.playSound(item.getX(), item.getY(), item.getZ(), TAudio.STAR_FALL, SoundCategory.AMBIENT, 100f, 1f, false);
 						}
 					}
 				}

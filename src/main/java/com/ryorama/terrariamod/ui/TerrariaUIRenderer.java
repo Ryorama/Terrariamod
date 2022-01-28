@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.ui;
 
+import com.ryorama.ryolib.core.client.ui.UIRenderer;
 import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.mixins.PlayerEntityMixin;
