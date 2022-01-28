@@ -58,20 +58,15 @@ public class CelestialManager {
             if (rand.nextInt(10) <= 5 & !alreadyAttemptedBloodMoon) {
                 WorldDataT.bloodMoon = true;
                 for (int p = 0; p < worldIn.getPlayers().size(); p++) {
+                    System.out.println(p + " : Test");
                     worldIn.getPlayers().get(p).sendMessage((new TranslatableText("A bloodmoon is rising!")).formatted(Formatting.GREEN).formatted(Formatting.BOLD), false);
                 }
-                alreadyAttemptedBloodMoon = true;
-            } else {
-                alreadyAttemptedBloodMoon = true;
             }
+            alreadyAttemptedBloodMoon = true;
         }
 
         if (!night) {
             WorldDataT.bloodMoon = false;
-        }
-
-        if (WorldDataT.bloodMoon) {
-            WorldRenderer.MOON_PHASES = BLOOD_MOON_PHASES_TEXTURES;
         }
     }
 

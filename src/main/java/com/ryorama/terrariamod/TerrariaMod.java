@@ -107,6 +107,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static boolean DEBUG = false;
 
+	public int ticks = 0;
+
 	public static final Tag.Identified<Fluid> HONEY_TAG;
 
 	public static final Identifier MANA = new Identifier(MODID, "mana");
@@ -288,15 +290,19 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		
 		WorldTickCallback.EVENT.register(world -> {
 
+			ticks++;
+
 			WeatherBase.tickWeather();
 			CelestialManager.handleMoon(world);
 			CelestialManager.handleSolarEvents(world);
 
-			if (world.isClient) {
-				if (WorldDataT.bloodMoon) {
-					ModifyWorldColor.changeWorldColor("FF0000", 1, "FF0000", 1); //Fix to be (double) 0.4
-				} else {
-					ModifyWorldColor.resetToDefaultColor();
+			if (ticks % 60 == 0) {
+				if (world.isClient()) {
+					if (WorldDataT.bloodMoon) {
+						ModifyWorldColor.changeWorldColor("FF0000", 1, "FF0000", 0.4f); //Fix to be (double) 0.4
+					} else {
+						ModifyWorldColor.resetToDefaultColor();
+					}
 				}
 			}
 
@@ -319,7 +325,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 			}
 
 			if (!world.isDay()) {
-				if (world.getRandom().nextDouble(12) <= Util.starChance) {
+				if (world.getRandom().nextDouble(100) <= Util.starChance) {
 					if (world.getPlayers().size() > 0) {
 						System.out.println("Fallen Star");
 						PlayerEntity player = world.getPlayers().get(world.getRandom().nextInt(world.getPlayers().size()));
