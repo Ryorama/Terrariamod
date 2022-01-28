@@ -148,6 +148,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		EntitiesT.init();
+		ParticleRegistry.initClient();
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
 		onTick();
 		addCutouts();
