@@ -31,7 +31,9 @@
     "NoiseChunkGeneratorMixin",
     "MinecraftClientMixin",
     "PlayerEntityModelMixin",
-    "ItemRendererMixin"
+    "ItemRendererMixin",
+    "WorldRendererMixin",
+    "LightmapTextureManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
