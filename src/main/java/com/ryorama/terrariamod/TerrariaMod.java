@@ -296,6 +296,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 			CelestialManager.handleMoon(world);
 			CelestialManager.handleSolarEvents(world);
 
+			/*
 			if (world.isClient()) {
 				if (WorldDataT.bloodMoon) {
 					ModifyWorldColor.changeWorldColor("FF0000", 1, "FF0000", 0.4f); //Fix to be (double) 0.4
@@ -303,6 +304,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 					ModifyWorldColor.resetToDefaultColor();
 				}
 			}
+			 */
 
 			if (world.getRandom().nextInt(700) <= 10) {
 				if (world.getPlayers().size() > 0) {
