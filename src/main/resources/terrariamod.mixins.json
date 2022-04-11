@@ -4,14 +4,7 @@
   "package": "com.ryorama.terrariamod.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-	"BiomeAccessMixin",
-	"CaveCarverMixin",
-	"ChunkGeneratorMixin",
-  	"DefaultBiomeFeaturesMixin",
   	"EntityMixin",
-  	"WaterFluidMixin",
-    "FlowingMixin",
-    "RavineCarverMixin",
     "ServerNetworkPlayerHandlerMixin",
     "ScreenHandlerMixin",
     "PacketByteBufMixin",
@@ -19,21 +12,13 @@
     "ItemScattererMixin",
     "CraftingInventoryMixin",
     "ClearCommandMixin",
-    "InventoryMixin",
-    "LavaFluidMixin"
+    "InventoryMixin"
   ],
   "client": [
-  	"InGameHudMixin",
     "PlayerEntityMixin",
     "TitleScreenMixin",
-    "GeneratorTypeAccessor",
-    "ChunkGeneratorSettingsMixin",
-    "NoiseChunkGeneratorMixin",
-    "MinecraftClientMixin",
-    "PlayerEntityModelMixin",
     "ItemRendererMixin",
-    "WorldRendererMixin",
-    "LightmapTextureManagerMixin"
+    "EntityAttributesMixin"
   ],
   "injectors": {
     "defaultRequire": 1

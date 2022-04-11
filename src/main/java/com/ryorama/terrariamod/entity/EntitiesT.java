@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.entity;
 
+import com.ryorama.terrariamod.entity.collectables.HeartEntity;
 import com.ryorama.terrariamod.entity.hostile.*;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
@@ -96,7 +97,14 @@ public class EntitiesT {
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, (EntityType.EntityFactory<EntitySporeSkeleton>) EntitySporeSkeleton::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
-	  public static void init() {
+	public static final EntityType<HeartEntity> HEART = Registry.register(
+			Registry.ENTITY_TYPE,
+			new Identifier("terrariamod", "heart"),
+			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HeartEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build()
+	);
+
+
+	public static void init() {
 		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(DEMON_EYE, MobEntity.createMobAttributes());
@@ -109,8 +117,9 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(EATER_OF_SOULS, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(EOC, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(GRANITE_ELEMETAL, MobEntity.createMobAttributes());
-	
-		  ModelRegistry.registerModels();
+		  FabricDefaultAttributeRegistry.register(HEART, MobEntity.createMobAttributes());
+
+		ModelRegistry.registerModels();
 	  }
  
          @Environment(EnvType.CLIENT)
@@ -177,6 +186,10 @@ public class EntitiesT {
 				EntityRendererRegistry.INSTANCE.register(EntitiesT.SPORE_SKELETON,
 						(context) -> {
 							return new RenderSporeSkeleton(context);
+						});
+				EntityRendererRegistry.INSTANCE.register(EntitiesT.HEART,
+						(context) -> {
+							return new RenderHeart(context);
 						});
 			}
 	  }

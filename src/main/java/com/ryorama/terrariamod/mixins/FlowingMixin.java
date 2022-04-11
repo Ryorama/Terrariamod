@@ -74,26 +74,10 @@ public abstract class FlowingMixin extends Fluid {
 	public void flow(WorldAccess world, BlockPos pos, BlockState state, Direction direction, FluidState fluidState, CallbackInfo ci) {
 		if (direction == Direction.DOWN) {
 			FluidState fluidState2 = world.getFluidState(pos);
-			if (this.isIn(FluidTags.WATER) && fluidState2.isIn(TerrariaMod.HONEY_TAG)) {
-				if (state.getBlock() instanceof FluidBlock) {
-					world.setBlockState(pos, BlocksT.HONEY_BLOCK.getDefaultState(), 3);
-				}
-
-				this.playExtinguishEvent(world, pos);
-				return;
-			}
 		}
 
 		if (direction == Direction.DOWN) {
 			FluidState fluidState2 = world.getFluidState(pos);
-			if (this.isIn(FluidTags.LAVA) && fluidState2.isIn(TerrariaMod.HONEY_TAG)) {
-				if (state.getBlock() instanceof FluidBlock) {
-					world.setBlockState(pos, BlocksT.CRISPY_HONEY_BLOCK.getDefaultState(), 3);
-				}
-
-				this.playExtinguishEvent(world, pos);
-				return;
-			}
 		}
 	}
 

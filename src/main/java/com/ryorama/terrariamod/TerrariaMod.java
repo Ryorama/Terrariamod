@@ -5,51 +5,24 @@ import java.lang.reflect.Field;
 import java.util.OptionalLong;
 import java.util.function.Function;
 
-import com.google.common.collect.Lists;
-import com.ryorama.ryolib.core.client.world.ModifyWorldColor;
-import com.ryorama.terrariamod.biomes.BiomeCorruption;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.client.CelestialManager;
-import com.ryorama.terrariamod.client.TMusicTicker;
-import com.ryorama.terrariamod.client.core.client.ParticleRegistry;
-import com.ryorama.terrariamod.client.fx.ShadersManager;
+import com.ryorama.terrariamod.core.client.CelestialManager;
+import com.ryorama.terrariamod.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
-import com.ryorama.terrariamod.utils.Util;
 import com.ryorama.terrariamod.weather.WeatherBase;
 import com.ryorama.terrariamod.world.EntitySpawner;
 
-import com.ryorama.terrariamod.entity.hostile.EntityDemon;
-import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
-import com.ryorama.terrariamod.entity.hostile.EntityEaterOfSouls;
-import com.ryorama.terrariamod.entity.hostile.EntityGranityElemental;
-import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
-import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
-import com.ryorama.terrariamod.entity.hostile.projectiles.DemonScythProjectile;
-import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
-import com.ryorama.terrariamod.entity.hostile.slimes.EntityGreenSlime;
-import com.ryorama.terrariamod.entity.model.RenderBlueSlime;
-import com.ryorama.terrariamod.entity.model.RenderDemon;
-import com.ryorama.terrariamod.entity.model.RenderDemonEye;
-import com.ryorama.terrariamod.entity.model.RenderDemonSycth;
-import com.ryorama.terrariamod.entity.model.RenderEaterOfSouls;
-import com.ryorama.terrariamod.entity.model.RenderGraniteElemental;
-import com.ryorama.terrariamod.entity.model.RenderGreenSlime;
-import com.ryorama.terrariamod.entity.model.bosses.RenderEyeOfCthulhu;
-import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
-
 import com.ryorama.terrariamod.world.WorldDataT;
-import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -66,40 +39,43 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.client.world.GeneratorType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.FluidTags;
-import net.minecraft.tag.RequiredTagListRegistry;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.BlockRenderView;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.BiomeAccess;
+import net.minecraft.world.biome.source.BiomeSource;
+import net.minecraft.world.biome.source.FixedBiomeSource;
+import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
+import net.minecraft.world.gen.chunk.FlatChunkGeneratorConfig;
 import software.bernie.geckolib3.GeckoLib;
-
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 
 public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static final String MODID = "terrariamod";
 	
-	private static final DimensionType MODIFIED_OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -256, 256, 256, BlockTags.INFINIBURN_OVERWORLD.getId(), DimensionType.OVERWORLD_ID, 0.0F);
+	//private static final DimensionType MODIFIED_OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -256, 512, 512, BlockTags.INFINIBURN_OVERWORLD, DimensionType.OVERWORLD_ID, 0.0F);
 
 	public static FlowableFluid STILL_HONEY;
 	public static FlowableFluid FLOWING_HONEY;
@@ -107,12 +83,10 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static boolean DEBUG = false;
 
-	public int ticks = 0;
-
-	public static final Tag.Identified<Fluid> HONEY_TAG;
-
 	public static final Identifier MANA = new Identifier(MODID, "mana");
 	public static final Identifier MAX_MANA = new Identifier(MODID, "max_mana");
+	public static final Identifier IRON_SKIN = new Identifier(MODID, "iron_skin");
+	public static final Identifier POTION_SICKNESS = new Identifier(MODID, "potion_sickness");
 
 	@Override
 	public void onInitialize() {
@@ -134,16 +108,14 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 		Registry.register(Registry.CUSTOM_STAT, "max_mana", MAX_MANA);
 		Stats.CUSTOM.getOrCreateStat(MAX_MANA, StatFormatter.DEFAULT);
-	}
 
-	static {
-		HONEY_TAG = registerFluidTags("honey");
-	}
+		//Buffs
+		Registry.register(Registry.CUSTOM_STAT, "iron_skin", IRON_SKIN);
+		Stats.CUSTOM.getOrCreateStat(IRON_SKIN, StatFormatter.DEFAULT);
 
-	private static Tag.Identified<Fluid> registerFluidTags(String id) {
-		Tag.Identified<Fluid> identified = FluidTags.REQUIRED_TAGS.add(id);
-		FluidTags.getTags().add(identified);
-		return identified;
+		//DeBuffs
+		Registry.register(Registry.CUSTOM_STAT, "potion_sickness", POTION_SICKNESS);
+		Stats.CUSTOM.getOrCreateStat(POTION_SICKNESS, StatFormatter.DEFAULT);
 	}
 	
 	@Environment(EnvType.CLIENT)
@@ -157,17 +129,17 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		setupFluidRendering(TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY, new Identifier(MODID, "honey"), 0xFFFFFF);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
 
-		ShadersManager.registerShaders();
-
+		/*
 		try {
 			Field f = Resources.findField(MinecraftClient.class, "musicTracker", "field_1714");
 			f.set(MinecraftClient.getInstance(), new TMusicTicker(MinecraftClient.getInstance()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 
-	public static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color) {
+	public static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color)	 {
 		final Identifier stillSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_still");
 		final Identifier flowingSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_flow");
 
@@ -238,7 +210,19 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GOLD_TOMBSTONE, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GOLD_TOMBSTONE, RenderLayer.getTranslucent());
 
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_POT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_POT, RenderLayer.getTranslucent());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.BLINKROOT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.DAYBLOOM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.DEATHWEED, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FIREBLOSSOM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MOONGLOW, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.SHIVERTHORN, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.WATERLEAF, RenderLayer.getCutout());
+
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MUSHROOM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GLOWING_MUSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.JUNGLE_SPORES, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.VINE, RenderLayer.getCutout());
 
@@ -250,9 +234,11 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
  
 	public void onTick() {
 		
-		TerrariaUIRenderer.renderTerrariaHealth();
-		TerrariaUIRenderer.renderTerrariaDefense();
-		TerrariaUIRenderer.renderTerrariaMana();
+		//TerrariaUIRenderer.renderTerrariaHealth();
+		//TerrariaUIRenderer.renderTerrariaDefense();
+		//TerrariaUIRenderer.renderTerrariaMana();
+		TerrariaUIRenderer.renderTerrariaEffects();
+
 
 		//TMusicTicker.musicChanged = true;
 		//ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
@@ -290,11 +276,9 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		
 		WorldTickCallback.EVENT.register(world -> {
 
-			ticks++;
-
-			WeatherBase.tickWeather();
-			CelestialManager.handleMoon(world);
-			CelestialManager.handleSolarEvents(world);
+			//WeatherBase.tickWeather();
+			//CelestialManager.handleMoon(world);
+			//CelestialManager.handleSolarEvents(world);
 
 			/*
 			if (world.isClient()) {
@@ -324,7 +308,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 				}
 			}
 
-			if (!world.isDay()) {
+			/*
+			if (world.isNight()) {
 				if (world.getRandom().nextDouble(100) <= Util.starChance) {
 					if (world.getPlayers().size() > 0) {
 						System.out.println("Fallen Star");
@@ -339,6 +324,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 					}
 				}
 			}
+			*/
 		});
 
 		ServerWorldEvents.LOAD.register(((server, world) -> {
@@ -359,7 +345,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	}
 	
 	private static void ModifyWorldHeight() {
-		//OVERWORLD: 14
+		/*
 		Field[] dimension_fields = DimensionType.class.getDeclaredFields();
 		for (int i = 0; i < dimension_fields.length; i++) {
 			try {
@@ -378,11 +364,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		/*
-		 * OVERWORLD = create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -64,
-				384, 384, HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(),
-				OVERWORLD_ID, 0.0F);
-		 */
+		*/
 	}	
 }

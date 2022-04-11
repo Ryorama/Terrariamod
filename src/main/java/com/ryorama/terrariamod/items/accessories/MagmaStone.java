@@ -1,8 +1,7 @@
 package com.ryorama.terrariamod.items.accessories;
 
-import com.ryorama.terrariamod.items.AccessoryT;
+import com.ryorama.terrariamod.items.api.AccessoryT;
 import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketComponent;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

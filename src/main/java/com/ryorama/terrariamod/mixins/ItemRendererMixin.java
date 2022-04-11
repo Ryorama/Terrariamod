@@ -1,6 +1,6 @@
 package com.ryorama.terrariamod.mixins;
 
-import com.ryorama.terrariamod.client.ItemCountRenderHandler;
+import com.ryorama.terrariamod.core.client.ItemCountRenderHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;

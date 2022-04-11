@@ -1,8 +1,8 @@
 package com.ryorama.terrariamod.ui;
 
-import com.ryorama.ryolib.core.client.ui.UIRenderer;
 import com.ryorama.terrariamod.TerrariaMod;
 
+import com.ryorama.terrariamod.core.client.UIRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;

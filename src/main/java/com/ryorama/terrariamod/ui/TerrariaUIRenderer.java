@@ -1,8 +1,8 @@
 package com.ryorama.terrariamod.ui;
 
-import com.ryorama.ryolib.core.client.ui.UIRenderer;
 import com.ryorama.terrariamod.TerrariaMod;
 
+import com.ryorama.terrariamod.core.client.UIRenderer;
 import com.ryorama.terrariamod.mixins.PlayerEntityMixin;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
@@ -19,6 +19,13 @@ public class TerrariaUIRenderer {
 	public static Identifier health_icon = new Identifier(TerrariaMod.MODID, "textures/ui/heart.png");
 	public static Identifier shield = new Identifier(TerrariaMod.MODID, "textures/ui/shield.png");
 	public static Identifier mana = new Identifier(TerrariaMod.MODID, "textures/ui/mana.png");
+
+	//Buffs
+	public static Identifier iron_skin = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/ironskin.png");
+
+	//DeBuffs
+	public static Identifier potion_sickness = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/potion_sickness.png");
+
 
 	public static ClientPlayerEntity player;
 	
@@ -88,6 +95,31 @@ public class TerrariaUIRenderer {
 						}
 					}
 				}
+		});
+	}
+
+	public static void renderTerrariaEffects() {
+		HudRenderCallback.EVENT.register((matrixstack, delta) -> {
+
+			if (MinecraftClient.getInstance().player != null) {
+				player = MinecraftClient.getInstance().player;
+			}
+
+			int i3 = 17;
+			int j3 = 27;
+			int effectCounter = 0;
+
+			if (player != null) {
+				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) > 0) {
+					UIRenderer.instance.renderOverlay(potion_sickness, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+					effectCounter++;
+				}
+
+				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
+					UIRenderer.instance.renderOverlay(iron_skin, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+					effectCounter++;
+				}
+			}
 		});
 	}
 }

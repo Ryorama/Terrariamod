@@ -1,16 +1,9 @@
 package com.ryorama.terrariamod.items.accessories;
 
-import com.google.common.collect.Multimap;
-import com.ryorama.terrariamod.items.AccessoryT;
-import dev.emi.trinkets.api.SlotAttributes;
+import com.ryorama.terrariamod.items.api.AccessoryT;
 import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.ItemStack;
-
-import java.util.UUID;
 
 public class BandOfRegeneration extends AccessoryT {
 

@@ -1,9 +1,9 @@
 package com.ryorama.terrariamod.items.api;
 
-import com.ryorama.terrariamod.items.Arrow;
-import com.ryorama.terrariamod.items.ItemT;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -23,35 +23,37 @@ public class Bow extends ItemT {
 		
 		ItemStack itemstack = playerIn.getMainHandStack();
 	      
-	      Inventory inventory = playerIn.getInventory();
+		Inventory inventory = playerIn.getInventory();
 
 
-	      boolean gotFirstArrowStack = false;
-	      int arrowSlotId = 0;
+		boolean gotFirstArrowStack = false;
+		int arrowSlotId = 0;
 
-	      for (int i = 0; i <= inventory.size(); i++) {
-				if (inventory.getStack(i).getItem() instanceof Arrow && !gotFirstArrowStack) {
-					gotFirstArrowStack = true;
-					arrowSlotId = i;
-				} else if (inventory.getStack(arrowSlotId).getCount() <= 0 && gotFirstArrowStack) {
-					gotFirstArrowStack = false;
-				}
-	      }
+		for (int i = 0; i <= inventory.size(); i++) {
+			if (inventory.getStack(i).getItem() instanceof Arrow && !gotFirstArrowStack) {
+				gotFirstArrowStack = true;
+				arrowSlotId = i;
+			} else if (inventory.getStack(arrowSlotId).getCount() <= 0 && gotFirstArrowStack) {
+				gotFirstArrowStack = false;
+			}
+		}
 
-	      if (inventory.getStack(arrowSlotId).getCount() > 0 && gotFirstArrowStack) {
-			  Arrow arrowItem = (Arrow)inventory.getStack(arrowSlotId).getItem();
-			  ArrowEntity entityArrow = new ArrowEntity(worldIn, playerIn);
-			  entityArrow.setDamage(this.damage + arrowItem.damage);
-			  entityArrow.setOnFire(arrowItem.fireDamage);
-			  if (arrowItem.fireDamage) {
-				  entityArrow.setOnFireFor(10000);
-			  }
-			  worldIn.spawnEntity(entityArrow);
-			  inventory.getStack(arrowSlotId).decrement(1);
-		  }
+		if (inventory.getStack(arrowSlotId).getCount() > 0 && gotFirstArrowStack) {
+			Arrow arrowItem = (Arrow)inventory.getStack(arrowSlotId).getItem();
+			PersistentProjectileEntity arrow = ProjectileUtil.createArrowProjectile(playerIn, inventory.getStack(arrowSlotId), 0);
+			arrow.setDamage(this.damage + arrowItem.damage);
+			arrow.setOnFire(arrowItem.fireDamage);
+			if (arrowItem.fireDamage) {
+				arrow.setOnFireFor(10000);
+			}
+			arrow.setVelocity(playerIn, playerIn.getPitch(), playerIn.getYaw(), 0.0F, 3.0F, 1.0F);
+			worldIn.spawnEntity(arrow);
+
+			inventory.getStack(arrowSlotId).decrement(1);
+		}
 	      
-	      playerIn.getItemCooldownManager().set(this, (int) ((this.useTime - this.useTime * speed) * (30.0 / 60.0)));	      
+		playerIn.getItemCooldownManager().set(this, (int) ((this.useTime - this.useTime * speed) * (30.0 / 60.0)));
 	      
-	      return new TypedActionResult<>(ActionResult.SUCCESS, itemstack);
-	   }
+		return new TypedActionResult<>(ActionResult.SUCCESS, itemstack);
+	}
 }

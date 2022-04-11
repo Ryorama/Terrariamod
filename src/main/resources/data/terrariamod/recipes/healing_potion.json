@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "terrariamod:healing_potion",
+      "item": "terrariamod:glowing_mushroom"
+    }
+  ],
+  "result": {
+    "item": "terrariamod:healing_potion",
+    "count": 1
+  }
+}

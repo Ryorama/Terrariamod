@@ -14,7 +14,7 @@
   },
 
   "license": "CC0 1.0 Universal",
-  "icon": "placeholder.png",
+  "icon": "icon.png",
   "accessWidener" : "terrariamod.accesswidener",
 
   "environment": "*",
@@ -41,7 +41,7 @@
   },
   "jars": [
 	  {
-	  	"file": "META-INF/jars/geckolib-fabric-1.17-3.0.20.jar"
+	  	"file": "META-INF/jars/colored-lights-1.2.0.jar"
 	  }
    ]
 }

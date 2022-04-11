@@ -1,7 +1,7 @@
 package com.ryorama.terrariamod.items.tools;
 
 import com.ryorama.terrariamod.TAudio;
-import com.ryorama.terrariamod.items.ItemT;
+import com.ryorama.terrariamod.items.api.ItemT;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -32,23 +32,13 @@ public class MagicMirror extends ItemT {
     private int tickCounter = 0;
 
     private ServerPlayerEntity player;
-    private ClientPlayerEntity clientPlayer;
     private ServerWorld serverWorld;
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        if (playerEntity instanceof ServerPlayerEntity) player = (ServerPlayerEntity) playerEntity; // Get server player
-        else if (playerEntity instanceof ClientPlayerEntity) clientPlayer = (ClientPlayerEntity) playerEntity; // Get client player
-        if (world instanceof ServerWorld) serverWorld = (ServerWorld) world; // Get server world
         world.playSound(playerEntity, playerEntity.getBlockPos(), TAudio.TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
 
-        if (!tick) {
-            MinecraftClient.getInstance().particleManager.addEmitter(clientPlayer, ParticleTypes.END_ROD, 30);
-            tick = true;
-            return TypedActionResult.success(playerEntity.getStackInHand(hand));
-        } else {
-            return TypedActionResult.fail(playerEntity.getStackInHand(hand));
-        }
+        return TypedActionResult.success(playerEntity.getStackInHand(hand));
     }
 
     @Override

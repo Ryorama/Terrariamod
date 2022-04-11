@@ -40,41 +40,48 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
 	
-	 public int damage = 18;
-	 public int ticksExisted;
-	   public float rx;
-	   public float ry;
-	   public float rz;
-	   public boolean collision;
-	   public boolean bounce;
-	   public double velX;
-	   public double velY;
-	   public double velZ;
-	   public double oldVelX;
-	   public double oldVelY;
-	   public double oldVelZ;
-	   public double speed = 2.0D;
-	   public double acc = 0.01D;
-	   public static int phase = 1;
-	   public boolean spawnEyes = true;
-	   public int dashed = 0;
-	   public int eyes = 0;
-	   public int eyesNeeded = 0;
-	   public int maxHealth;
-	   public float bosshealth;
-	   public double transformedRotation = 0.0D;
-	   public int defense = 0;
-	   public static boolean isEyeAlive = false;
-	   public static boolean isEyeAlive2 = false;
-	   public boolean ALREADY_SPAWNED = false;
-	   public boolean REMOVED = false;
-	   public BlockPos lastTarget;
-	   public boolean transformed = false;
+	public int damage = 18;
+	public int ticksExisted;
+	public float rx;
+	public float ry;
+	public float rz;
+	public boolean collision;
+	public boolean bounce;
+	public double velX;
+	public double velY;
+	public double velZ;
+	public double oldVelX;
+	public double oldVelY;
+	public double oldVelZ;
+	public double speed = 2.0D;
+	public double acc = 0.01D;
+	public static int phase = 1;
+	public boolean spawnEyes = true;
+	public int dashed = 0;
+	public int eyes = 0;
+	public int eyesNeeded = 0;
+	public int maxHealth;
+	public float bosshealth;
+	public double transformedRotation = 0.0D;
+	public int defense = 0;
+	public static boolean isEyeAlive = false;
+	public static boolean isEyeAlive2 = false;
+	public boolean ALREADY_SPAWNED = false;
+	public boolean REMOVED = false;
+	public BlockPos lastTarget;
+	public boolean transformed = false;
+
+   	public AnimationController animationController;
 	
 	private AnimationFactory factory = new AnimationFactory(this);
 	
 	private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+		animationController = event.getController();
 		if (isAlive()) {
+			if (this.getHealth() <= this.getMaxHealth() / 2 && transformed == false) {
+				animationController.setAnimation(new AnimationBuilder().addAnimation("animation.eye_of_cthulhu_phase1.transition", false));
+			}
+
 			if (phase == 1) {
 				event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.eye_of_cthulhu_phase1.fly", false));
 			} else {
@@ -91,7 +98,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 			this.setBossIcon();
 			this.activateBoss();
 		}
-		world.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), TAudio.ROAR_0, SoundCategory.HOSTILE, 2.0F, 0.5F);
+
 	    if (!world.isClient()) {
 	    	for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
 		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("The Eye of Cthulhu has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
@@ -346,14 +353,6 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	         }
 
 	         if (this.getHealth() <= this.getMaxHealth() / 2 && transformed == false) {
-	        	for (int i = 0; i <= 150; i++) {
-	        		if (i > 60) {
-	        			this.setPitch(this.getPitch() + 1);
-	        		} else {
-						this.setPitch(this.getPitch() + 3);
-					}
-	        	}
-	        	this.setPitch(0);
 	        	transformed = true;
 	        	world.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), TAudio.ROAR_0, SoundCategory.PLAYERS, 100, 1);
 	            phase = 2;

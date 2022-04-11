@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction.Location;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.World;
 
@@ -44,10 +45,10 @@ public class EntitySpawner {
 			if (y > 45 && world.getTimeOfDay() % 24000 > 15000 && world.getTimeOfDay() % 24000 < 22000 && WorldDataT.bloodMoon) {
 				spawnBloodMoonEntity(world, x, y, z);
 			}
-			if (y > 45 && world.getBiome(new BlockPos(x, y, z)) == BiomePurity.PUTITY) {
+			if (y > 45 && world.getBiome(new BlockPos(x, y, z)).equals(RegistryEntry.of(BiomePurity.PUTITY))) {
 				spawnGroundEntity(world, x, y, z);
 			}
-			if (y > 45 && world.getBiome(new BlockPos(x, y, z)) == BiomeCorruption.CORRUPTION) {
+			if (y > 45 && world.getBiome(new BlockPos(x, y, z)).equals(RegistryEntry.of(BiomeCorruption.CORRUPTION))) {
 				spawnCorruptionGroundEntity(world, x, y, z);
 			}
 			if (y <= 60) {

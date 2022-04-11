@@ -43,16 +43,14 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "com.ryorama:ryolib:${ryolib_version}"
+	//modImplementation "com.ryorama:ryolib:${ryolib_version}"
 
-	include modImplementation('software.bernie.geckolib:geckolib-fabric-1.18:3.0.22')
-	modImplementation "dev.emi:trinkets:3.1.0"
+	include modImplementation("software.bernie.geckolib:geckolib-fabric-1.18:${geckolib_version}")
+	modImplementation "dev.emi:trinkets:${trinkets_version}"
 	implementation 'javax.vecmath:vecmath:1.5.2'
-	modImplementation "io.github.ladysnake:satin:${satin_version}"
+	//modImplementation "io.github.ladysnake:satin:${satin_version}"
 
-	include "io.github.ladysnake:satin:${satin_version}"
-	include "software.bernie.geckolib:geckolib-fabric-1.17:3.0.12:dev"
-	include "dev.emi:trinkets:3.0.4"
+	//include "io.github.ladysnake:satin:${satin_version}"
 }
 
 processResources {

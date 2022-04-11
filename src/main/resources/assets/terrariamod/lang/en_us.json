@@ -147,6 +147,8 @@
 	"item.terrariamod.magic_mirror": "Magic Mirror",
 	"item.terrariamod.jesters_arrow": "Jester's Arrow",
 	"item.terrariamod.fallen_star": "Fallen Star",
+	"item.terrariamod.water_bottle": "Bottled Water",
+	"item.terrariamod.honey_bottle": "Bottled Honey",
 	"item.terrariamod.cloud_in_a_bottle": "Cloud in a Bottle",
 	"item.terrariamod.katana": "Katana",
 	"item.terrariamod.hermes_boots": "Hermes Boots",
@@ -193,6 +195,8 @@
 	"item.terrariamod.musket_ball": "Musket Ball",
 	"item.terrariamod.shadow_orb_item": "Shadow Orb",
     "item.terrariamod.glowing_mushroom": "Glowing Mushroom",
+	"block.terrariamod.glowing_mushroom": "Glowing Mushroom",
+	"block.terrariamod.mushroom_grass": "Mushroom Grass",
 	"item.terrariamod.mana_crystal": "Mana Crystal",
 	"item.terrariamod.vilethorn": "Vilethorn",
 	"item.terrariamod.ball_o_hurt": "Ball O' Hurt",
@@ -275,6 +279,13 @@
 	"block.terrariamod.gold_ore": "Gold Ore",
 	"block.terrariamod.stone_block": "Stone",
 	"block.terrariamod.mushroom": "Mushroom",
+	"block.terrariamod.blinkroot": "Brinkroot",
+	"block.terrariamod.daybloom": "Daybloom",
+	"block.terrariamod.deathweed": "Deathweed",
+	"block.terrariamod.fireblossom": "Fireblossom",
+	"block.terrariamod.moonglow": "Moonglow",
+	"block.terrariamod.shiverthorn": "Shiverthorn",
+	"block.terrariamod.waterleaf": "Waterleaf",
 	"block.terrariamod.life_crystal": "Life Crystal",
 	"block.terrariamod.grass_block": "Grass Block",
 	"block.terrariamod.grass_path": "Grass Path",
@@ -371,5 +382,5 @@
 	"key.terrariamod.hotbareight.desc": "Hotbar Slot 8",
 	"key.terrariamod.hotbarnine.desc": "Hotbar Slot 9",
 	"key.terrariamod.clearsummons.desc": "Clear Summons",
-	"generator.Terraria-Style": "Terraria-Style"	
+	"generator.terrariamod": "Terraria"
 }

@@ -2,7 +2,7 @@ package com.ryorama.terrariamod.entity;
 
 import java.util.Random;
 
-import com.ryorama.ryolib.utils.math.ImprovedRandom;
+import com.ryorama.terrariamod.utils.math.ImprovedRandom;
 import com.ryorama.terrariamod.world.WorldDataT;
 
 import net.minecraft.entity.Entity;

@@ -11,7 +11,6 @@ public class TAudio {
 
     public static List<String> musicNames = new ArrayList<>();
 
-    /*
     public static final SoundEvent DAYONE = new SoundEvent(new Identifier(TerrariaMod.MODID, "day1"));
     public static final SoundEvent NIGHT = new SoundEvent(new Identifier(TerrariaMod.MODID, "night"));
     public static final SoundEvent UNDERGROUND = new SoundEvent(new Identifier(TerrariaMod.MODID, "underground"));
@@ -33,7 +32,6 @@ public class TAudio {
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "title_screen"), TITLE_SCREEN);
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "boss1"), BOSS1);
      }
-     */
 
     public static final SoundEvent HEALTH_CRYSTAL = new SoundEvent(new Identifier(TerrariaMod.MODID, "health_crystal"));
     public static final SoundEvent ROAR_0 = new SoundEvent(new Identifier(TerrariaMod.MODID, "roar_0"));
@@ -43,6 +41,7 @@ public class TAudio {
     public static final SoundEvent TELEPORT = new SoundEvent(new Identifier(TerrariaMod.MODID, "teleport"));
     public static final SoundEvent SUMMON = new SoundEvent(new Identifier(TerrariaMod.MODID, "summon"));
 
+    /*
     public static void registerAudio() {
         TAudio.SoundEvents[] var1 = TAudio.SoundEvents.values();
         int var2 = var1.length;
@@ -90,4 +89,5 @@ public class TAudio {
             return this.sound;
         }
     }
+    */
 }

@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.mixins;
 
+import net.minecraft.util.registry.RegistryEntry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,33 +25,24 @@ public class BiomeAccessMixin {
 	private Biome biome;
 	
 	@Inject(at = @At("HEAD"), method = "getBiome", cancellable = true)
-	public void getBiome(BlockPos pos, CallbackInfoReturnable<Biome> info) {
-		//return this.type.getBiome(this.seed, pos.getX(), pos.getY(), pos.getZ(), this.storage);
-		
+	public void getBiome(BlockPos pos, CallbackInfoReturnable<RegistryEntry<Biome>> info) {
 		if (pos.getX() > 200 && pos.getX() < 400) {
 			biome = BiomeCorruption.CORRUPTION;
-			info.setReturnValue(biome);
 		} else if (pos.getX() > 401 && pos.getX() < 602) {
 			biome = BiomeDesert.DESERT;
-			info.setReturnValue(biome);
 		} else if (pos.getX() > 603 && pos.getX() < 804) {
 			biome = BiomeSnow.SNOW;
-			info.setReturnValue(biome);
 		} else if (pos.getX() > -200 && pos.getX() < -400) {
 			biome = BiomeCorruption.CORRUPTION;
-			info.setReturnValue(biome);
 		} else if (pos.getX() > -401 && pos.getX() < -602) {
 			biome = BiomeDesert.DESERT;
-			info.setReturnValue(biome);
 		} else if (pos.getX() > -603 && pos.getX() < -804) {
 			biome = BiomeSnow.SNOW;
-			info.setReturnValue(biome);
 		} else if (pos.getX() > -1005 && pos.getX() < -1206) {
 			biome = BiomeJungle.JUNGLE;
-			info.setReturnValue(biome);
 		} else {
 			biome = BiomePurity.PUTITY;
-			info.setReturnValue(biome);
 		}
+		info.setReturnValue(RegistryEntry.of(biome));
 	}
 }

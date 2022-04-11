@@ -2,32 +2,19 @@ package com.ryorama.terrariamod.mixins;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.callbacks.PlayerEquipArmorCallback;
-import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
-import com.ryorama.terrariamod.items.ItemT;
 import com.ryorama.terrariamod.world.WorldDataT;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.stat.Stat;
-import net.minecraft.stat.StatType;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.items.ItemsT;
-import com.ryorama.terrariamod.weather.WeatherBase;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -35,7 +22,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -47,6 +33,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 	protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
 		super(entityType, world);
 	}
+
+	public boolean ironSkinJustActivated = false;
 
 	private List<PlayerEquipArmorCallback> playerEquipArmorCallbacks = new ArrayList<>();
 	public float newMaxHealth = 100;
@@ -67,6 +55,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
 		ticks++;
 
+		/*
 		if (MinecraftClient.getInstance().player != null && !WorldDataT.hasStartingTools) {
 			this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(newMaxHealth);
 			this.setHealth(100);
@@ -80,6 +69,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 			
 			WorldDataT.hasStartingTools = true;
 		}
+		 */
 		
 		if (MinecraftClient.getInstance().player != null) {
 
@@ -89,11 +79,27 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 				firstUpdate = true;
 			}
 
+			if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
+				if (!ironSkinJustActivated) {
+					MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() + 8);
+					ironSkinJustActivated = true;
+				}
+			} else {
+				if (ironSkinJustActivated) {
+					MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() - 8);
+					ironSkinJustActivated = false;
+				}
+			}
+
+			if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) > 0) {
+				MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) -1);
+			}
+
 			if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
 				MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
 			}
 
-			MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(10);
+			//MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(10);
 			player = MinecraftClient.getInstance().player;
 		}
 

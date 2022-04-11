@@ -1,14 +1,15 @@
 package com.ryorama.terrariamod.items.potions;
 
-import com.ryorama.terrariamod.items.ItemT;
+import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.items.api.ItemT;
 
-import net.minecraft.client.texture.StatusEffectSpriteManager;
-import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.EnderPearlItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -21,13 +22,14 @@ public class LesserHealingPotion extends ItemT {
 	
 	@Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-		if (!playerEntity.getItemCooldownManager().isCoolingDown(this)) {
-			
-			playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 4));
-			playerEntity.getInventory().getMainHandStack().decrement(1);
-			playerEntity.getItemCooldownManager().set(this, 600);
-			
-			return TypedActionResult.success(playerEntity.getStackInHand(hand));
+		if (world.isClient()) {
+			if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) <= 0) {
+				playerEntity.heal(50);
+				playerEntity.getInventory().getMainHandStack().decrement(1);
+				MinecraftClient.getInstance().player.getStatHandler().setStat(playerEntity, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), 1200);
+
+				return TypedActionResult.success(playerEntity.getStackInHand(hand));
+			}
 		}
 		
 		return TypedActionResult.fail(playerEntity.getStackInHand(hand));

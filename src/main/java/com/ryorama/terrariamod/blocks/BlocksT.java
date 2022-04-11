@@ -2,8 +2,10 @@ package com.ryorama.terrariamod.blocks;
 
 import com.ryorama.terrariamod.TerrariaMod;
 
+import com.ryorama.terrariamod.blocks.api.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Material;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -25,7 +27,9 @@ public class BlocksT {
 	public static BlockT WOOD = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT WOODEN_BEAM = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static PlantT LIFE_CRYSTAL_BLOCK = (PlantT) new PlantT(FabricBlockSettings.of(Material.STONE).luminance(10), 15, 15).setPick(true);
-	public static PlantT VINE = (PlantT) new PlantT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true).setAxe(true);
+	public static PlantT VINE = (PlantT) new PlantT(FabricBlockSettings.of(Material.STONE), 0.1f, 0.1f).setPick(true).setAxe(true);
+	public static Pot FOREST_POT = new Pot(FabricBlockSettings.of(Material.GLASS).sounds(BlockSoundGroup.GLASS), 0.1f, 0.1f);
+
 
 	public static BlockT COPPER_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT IRON_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
@@ -33,7 +37,16 @@ public class BlocksT {
 	public static LightBlockT HELLSTONE_ORE = (LightBlockT) new LightBlockT(FabricBlockSettings.of(Material.STONE), 50, 50, 10).setPick(true);
 	
 	public static PlantT MUSHROOM = (PlantT) new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f).setPick(true);
+	public static LightPlantT GLOWING_MUSHROOM = (LightPlantT) new LightPlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f, 15).setPick(true);
 	public static LightPlantT JUNGLE_SPORES = (LightPlantT) new LightPlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f, 10).setPick(true);
+
+	public static PlantT BLINKROOT = (PlantT) new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f).setPick(true);
+	public static PlantT DAYBLOOM = (PlantT) new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f).setPick(true);
+	public static PlantT DEATHWEED = (PlantT) new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f).setPick(true);
+	public static PlantT FIREBLOSSOM = (PlantT) new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f).setPick(true);
+	public static PlantT MOONGLOW = (PlantT) new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f).setPick(true);
+	public static PlantT SHIVERTHORN = (PlantT) new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f).setPick(true);
+	public static PlantT WATERLEAF = (PlantT) new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f).setPick(true);
 
 	public static PlantT EMPTY_BOTTLE = (PlantT) new PlantT(FabricBlockSettings.of(Material.GLASS), 0.5f, 0.5f).setPick(true);
 	
@@ -50,8 +63,8 @@ public class BlocksT {
 	public static BlockT HONEY_BLOCK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT CRISPY_HONEY_BLOCK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 
-	public static BlockT TOMBSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
-	public static BlockT GOLD_TOMBSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static GravestoneT TOMBSTONE = (GravestoneT) new GravestoneT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static GravestoneT GOLD_TOMBSTONE = (GravestoneT) new GravestoneT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 
 	public static void init() {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "grass_block"), GRASS_BLOCK);
@@ -74,8 +87,17 @@ public class BlocksT {
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "empty_bottle"), EMPTY_BOTTLE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "mushroom"), MUSHROOM);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "glowing_mushroom"), GLOWING_MUSHROOM);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "jungle_spores"), JUNGLE_SPORES);
-		
+
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "blinkroot"), BLINKROOT);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "daybloom"), DAYBLOOM);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "deathweed"), DEATHWEED);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "fireblossom"), FIREBLOSSOM);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "moonglow"), MOONGLOW);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "shiverthorn"), SHIVERTHORN);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "waterleaf"), WATERLEAF);
+
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "copper_ore"), COPPER_ORE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "iron_ore"), IRON_ORE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "gold_ore"), GOLD_ORE);
@@ -96,6 +118,8 @@ public class BlocksT {
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "tombstone"), TOMBSTONE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "gold_tombstone"), GOLD_TOMBSTONE);
+
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "pot"), FOREST_POT);
 
 	}
 }

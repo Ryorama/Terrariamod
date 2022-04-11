@@ -1,9 +1,7 @@
 package com.ryorama.terrariamod.entity;
 
-import com.ryorama.terrariamod.client.TMusicTicker;
 import com.ryorama.terrariamod.ui.BossBar;
 
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
 public abstract interface IBoss {

@@ -1,7 +1,7 @@
 package com.ryorama.terrariamod.items.weapons.summons;
 
 import com.ryorama.terrariamod.TAudio;
-import com.ryorama.terrariamod.items.ItemT;
+import com.ryorama.terrariamod.items.api.ItemT;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

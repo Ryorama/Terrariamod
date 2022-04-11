@@ -3,7 +3,8 @@ package com.ryorama.terrariamod.mixins;
 import java.util.BitSet;
 import java.util.Random;
 
-import com.ryorama.ryolib.utils.math.noise.FastNoise;
+import com.ryorama.terrariamod.utils.math.noise.FastNoise;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.random.SimpleRandom;
@@ -244,8 +245,10 @@ public class ChunkGeneratorMixin {
 
 						if (y <= -5) {
 							if (world.getRandom().nextInt(3500) == 0) {
-								if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.STONE_BLOCK.getDefaultState()) {
-									placeStuff(world, BlocksT.LIFE_CRYSTAL_BLOCK.getDefaultState(), world.getRandom(), pos);
+								if (world.getBlockState(pos) == Blocks.AIR.getDefaultState()) {
+									if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.STONE_BLOCK.getDefaultState()) {
+										placeStuff(world, BlocksT.LIFE_CRYSTAL_BLOCK.getDefaultState(), world.getRandom(), pos);
+									}
 								}
 							}
 						}
@@ -319,8 +322,19 @@ public class ChunkGeneratorMixin {
 							}
 						}
 
+						//Underground Objects
+						if (world.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState() || world.getBlockState(pos) == BlocksT.DIRT_BLOCK.getDefaultState()) {
+							if (y <= 50) {
+								if (world.getRandom().nextInt(100) == 0) {
+									if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ())) == Blocks.AIR.getDefaultState()) {
+										world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.FOREST_POT.getDefaultState(), 0);
+									}
+								}
+							}
+						}
+
 						//Underground Corruption
-						if (world.getBiome(pos) == BiomeCorruption.CORRUPTION) {
+						if (world.getBiome(pos).equals(RegistryEntry.of(BiomeCorruption.CORRUPTION))) {
 							if (world.getBlockState(pos) == BlocksT.CORRUPTED_GRASS_BLOCK.getDefaultState()) {
 								int depth = 40;
 								int depth2 = 50;
@@ -412,6 +426,14 @@ public class ChunkGeneratorMixin {
 											if (world.getRandom().nextInt(20) == 0) {
 												GenerateGiantMushroom(world, x, y, z, pos);
 											}
+
+											if (world.getBlockState(pos) == BlocksT.MUSHROOM_GRASS.getDefaultState()) {
+												if (world.getRandom().nextInt(70) == 0) {
+													if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ())) == Blocks.AIR.getDefaultState()) {
+														world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.GLOWING_MUSHROOM.getDefaultState(), 0);
+													}
+												}
+											}
 										}
 								}
 							} else {
@@ -470,7 +492,9 @@ public class ChunkGeneratorMixin {
 			int length = 3 + world.getRandom().nextInt(5);
 
 			for (int l = 0; l <= length; l++) {
-				world.setBlockState(new BlockPos(pos.getX(), pos.getY() - l, pos.getZ()), BlocksT.VINE.getDefaultState(), 0);
+				if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - l, pos.getZ())) == Blocks.AIR.getDefaultState()) {
+					world.setBlockState(new BlockPos(pos.getX(), pos.getY() - l, pos.getZ()), BlocksT.VINE.getDefaultState(), 0);
+				}
 			}
 		}
 	}

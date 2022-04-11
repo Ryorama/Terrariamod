@@ -2,6 +2,7 @@ package com.ryorama.terrariamod.items;
 
 import com.ryorama.terrariamod.TAudio;
 
+import com.ryorama.terrariamod.items.api.ItemT;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

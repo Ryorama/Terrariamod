@@ -3,14 +3,11 @@ package com.ryorama.terrariamod.items.boss_summons;
 import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
-import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
-import com.ryorama.terrariamod.items.ItemT;
+import com.ryorama.terrariamod.items.api.ItemT;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -28,7 +25,7 @@ public class SuspiciousLookingEye extends ItemT {
         boolean day = world.isDay();
 
 		if (!day) {
-			playerEntity.playSound(TAudio.ROAR_0, 1, 1);
+			world.playSound((PlayerEntity) null, playerEntity.getY(), playerEntity.getY(), playerEntity.getZ(), TAudio.ROAR_0, SoundCategory.PLAYERS, 100, 1);
 	        		
 			EntityEyeOfCthulhu ks = EntitiesT.EOC.create(world);
 			ks.setPosition(playerEntity.getPos().x + 5, playerEntity.getPos().y + 5, playerEntity.getPos().z + 5);

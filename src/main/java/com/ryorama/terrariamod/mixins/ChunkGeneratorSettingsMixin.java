@@ -6,6 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 import net.minecraft.world.biome.source.util.VanillaBiomeParameters;
 import net.minecraft.world.biome.source.util.VanillaTerrainParameters;
 import net.minecraft.world.biome.source.util.VanillaTerrainParametersCreator;
+import net.minecraft.world.gen.densityfunction.DensityFunction;
+import net.minecraft.world.gen.densityfunction.DensityFunctionTypes;
+import net.minecraft.world.gen.noise.NoiseRouter;
+import net.minecraft.world.gen.noise.SimpleNoiseRouter;
+import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,7 +23,6 @@ import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.GenerationShapeConfig;
 import net.minecraft.world.gen.chunk.NoiseSamplingConfig;
 import net.minecraft.world.gen.chunk.SlideConfig;
-import net.minecraft.world.gen.chunk.StructuresConfig;
 
 @Mixin(ChunkGeneratorSettings.class)
 public class ChunkGeneratorSettingsMixin {
@@ -32,13 +36,11 @@ public class ChunkGeneratorSettingsMixin {
 		
 		ChunkGeneratorSettings settings;
 		try {
-			settings = (ChunkGeneratorSettings) construct.newInstance(new StructuresConfig(true),
-					GenerationShapeConfig.create(-256, 384,
+			settings = (ChunkGeneratorSettings) construct.newInstance(GenerationShapeConfig.create(-256, 384,
 							new NoiseSamplingConfig(0.9999999814507745D, 0.9999999814507745D, 80.0D, 160.0D),
-							new SlideConfig(-10, 3, 0), new SlideConfig(15, 3, 0), 1, 2, false,
-							amplified, true, VanillaTerrainParametersCreator.createSurfaceParameters(amplified)),
-					BlocksT.STONE_BLOCK.getDefaultState(), Blocks.WATER.getDefaultState(), -2147483648, -255, 63, 40, false, true,
-					true, true);
+							new SlideConfig(-10, 3, 0), new SlideConfig(15, 3, 0), 1, 2, VanillaTerrainParametersCreator.createSurfaceParameters(amplified)),
+					BlocksT.STONE_BLOCK.getDefaultState(), Blocks.WATER.getDefaultState(), new SimpleNoiseRouter(DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero(), DensityFunctionTypes.zero()), MaterialRules.block(BlocksT.STONE_BLOCK.getDefaultState()), 63, false, false,
+					false, false);
 			
 			info.setReturnValue(settings);
 		} catch (InstantiationException e) {
