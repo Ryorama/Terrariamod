@@ -41,6 +41,7 @@ import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.world.GeneratorType;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
@@ -83,6 +84,12 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	public static boolean DEBUG = false;
 
+	public boolean firstUpdate = false;
+	public boolean ironSkinJustActivated = false;
+	public int tmpMana = 20;
+	public int tmpMaxMana = 20;
+
+
 	public static final Identifier MANA = new Identifier(MODID, "mana");
 	public static final Identifier MAX_MANA = new Identifier(MODID, "max_mana");
 	public static final Identifier IRON_SKIN = new Identifier(MODID, "iron_skin");
@@ -121,13 +128,14 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void onInitializeClient() {
-		EntitiesT.init();
+		//EntitiesT.init();
 		ParticleRegistry.initClient();
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
 		onTick();
 		addCutouts();
 		setupFluidRendering(TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY, new Identifier(MODID, "honey"), 0xFFFFFF);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
+		onTickClient();
 
 		/*
 		try {
@@ -230,7 +238,42 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.EMPTY_BOTTLE, RenderLayer.getCutout());
 	}
-	
+
+	@Environment(EnvType.CLIENT)
+	public void onTickClient() {
+		WorldTickCallback.EVENT.register(world -> {
+			if (MinecraftClient.getInstance().player != null) {
+
+				if (!firstUpdate && WorldDataT.hasStartingTools) {
+					MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), tmpMana);
+					MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), tmpMaxMana);
+					firstUpdate = true;
+				}
+
+				if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
+					if (!ironSkinJustActivated) {
+						MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() + 8);
+						ironSkinJustActivated = true;
+					}
+				} else {
+					if (ironSkinJustActivated) {
+						MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() - 8);
+						ironSkinJustActivated = false;
+					}
+				}
+
+				if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) > 0) {
+					MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) -1);
+				}
+
+				if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
+					MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
+				}
+
+				//MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(10);
+			}
+		});
+	}
  
 	public void onTick() {
 		
@@ -288,8 +331,9 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 					ModifyWorldColor.resetToDefaultColor();
 				}
 			}
-			 */
+			*/
 
+			/*
 			if (world.getRandom().nextInt(700) <= 10) {
 				if (world.getPlayers().size() > 0) {
 					PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
@@ -308,7 +352,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 				}
 			}
 
-			/*
 			if (world.isNight()) {
 				if (world.getRandom().nextDouble(100) <= Util.starChance) {
 					if (world.getPlayers().size() > 0) {

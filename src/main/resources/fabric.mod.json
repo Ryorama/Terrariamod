@@ -38,10 +38,5 @@
   },
   "suggests": {
     "another-mod": "*"
-  },
-  "jars": [
-	  {
-	  	"file": "META-INF/jars/colored-lights-1.2.0.jar"
-	  }
-   ]
+  }
 }

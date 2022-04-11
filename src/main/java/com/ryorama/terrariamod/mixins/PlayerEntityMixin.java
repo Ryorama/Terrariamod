@@ -100,7 +100,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 			}
 
 			//MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(10);
-			player = MinecraftClient.getInstance().player;
 		}
 
 		/*

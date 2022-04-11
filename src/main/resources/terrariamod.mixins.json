@@ -4,20 +4,10 @@
   "package": "com.ryorama.terrariamod.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-  	"EntityMixin",
-    "ServerNetworkPlayerHandlerMixin",
-    "ScreenHandlerMixin",
-    "PacketByteBufMixin",
-    "ItemStackMixin",
-    "ItemScattererMixin",
-    "CraftingInventoryMixin",
-    "ClearCommandMixin",
-    "InventoryMixin"
+  	"EntityMixin"
   ],
   "client": [
-    "PlayerEntityMixin",
     "TitleScreenMixin",
-    "ItemRendererMixin",
     "EntityAttributesMixin"
   ],
   "injectors": {

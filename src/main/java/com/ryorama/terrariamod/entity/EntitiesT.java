@@ -119,7 +119,7 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(GRANITE_ELEMETAL, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(HEART, MobEntity.createMobAttributes());
 
-		ModelRegistry.registerModels();
+		  ModelRegistry.registerModels();
 	  }
  
          @Environment(EnvType.CLIENT)
