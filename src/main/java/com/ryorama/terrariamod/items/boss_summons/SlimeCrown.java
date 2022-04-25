@@ -22,9 +22,9 @@ public class SlimeCrown extends ItemT {
 
 		world.playSound((PlayerEntity) null, playerEntity.getY(), playerEntity.getY(), playerEntity.getZ(), TAudio.ROAR_0, SoundCategory.PLAYERS, 100, 1);
         		
-		//EntityKingSlime ks = new EntityKingSlime(world);
-		//ks.setPosition(playerEntity.getPos().x + 5, playerEntity.getPos().y + 5, playerEntity.getPos().z + 5);
-		//world.spawnEntity(ks);
+		EntityKingSlime ks = new EntityKingSlime(world);
+		ks.setPosition(playerEntity.getPos().x + 5, playerEntity.getPos().y + 5, playerEntity.getPos().z + 5);
+		world.spawnEntity(ks);
 		
 		playerEntity.getInventory().getMainHandStack().decrement(1);
 		

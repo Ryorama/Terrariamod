@@ -3,7 +3,8 @@ package com.ryorama.terrariamod.ui;
 import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.core.client.UIRenderer;
-import com.ryorama.terrariamod.mixins.PlayerEntityMixin;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -14,6 +15,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
 
+@Environment(EnvType.CLIENT)
 public class TerrariaUIRenderer {
 	
 	public static Identifier health_icon = new Identifier(TerrariaMod.MODID, "textures/ui/heart.png");

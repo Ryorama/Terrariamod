@@ -42,7 +42,7 @@ import net.minecraft.util.Formatting;
 public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable {
 	//PugzAreCute: Looks like constructor missing, Error: Error:(39, 14) All entities must have a constructor that takes one net.minecraft.world.World parameter.
 	
-	public EntityKingSlime(EntityType<EntityKingSlime> entityType, World worldIn) {
+	public EntityKingSlime(EntityType<? extends EntityKingSlime> entityType, World worldIn) {
 		super(entityType, worldIn);
 		if (world.isClient) {
 			this.setBossIcon();

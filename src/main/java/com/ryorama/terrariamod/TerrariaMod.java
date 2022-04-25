@@ -1,21 +1,16 @@
 package com.ryorama.terrariamod;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.OptionalLong;
 import java.util.function.Function;
 
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.core.client.CelestialManager;
 import com.ryorama.terrariamod.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
-import com.ryorama.terrariamod.weather.WeatherBase;
-import com.ryorama.terrariamod.world.EntitySpawner;
 
 import com.ryorama.terrariamod.world.WorldDataT;
 import net.fabricmc.api.ClientModInitializer;
@@ -39,37 +34,18 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.client.world.GeneratorType;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.FluidTags;
-import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.BlockRenderView;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.BiomeAccess;
-import net.minecraft.world.biome.source.BiomeSource;
-import net.minecraft.world.biome.source.FixedBiomeSource;
-import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
-import net.minecraft.world.gen.chunk.FlatChunkGeneratorConfig;
 import software.bernie.geckolib3.GeckoLib;
 
 public class TerrariaMod implements ModInitializer, ClientModInitializer {
@@ -128,7 +104,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void onInitializeClient() {
-		//EntitiesT.init();
+		EntitiesT.init();
 		ParticleRegistry.initClient();
 		ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
 		onTick();

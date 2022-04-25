@@ -4,7 +4,6 @@ import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.items.api.ItemT;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

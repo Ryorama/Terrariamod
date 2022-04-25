@@ -92,7 +92,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 		return PlayState.CONTINUE;
 	}
 	
-	public EntityEyeOfCthulhu(EntityType<? extends FlyingEntity> entityType, World world) {
+	public EntityEyeOfCthulhu(EntityType<? extends EntityEyeOfCthulhu> entityType, World world) {
 		super(entityType, world);
 		if (world.isClient) {
 			this.setBossIcon();
