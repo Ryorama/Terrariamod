@@ -1,7 +1,7 @@
 package com.ryorama.terrariamod.csharp;
 
-public class Item {
-
+public class Item
+{
     private String _nameOverride;
     public int luckPotionDuration1 = 10800;
     public int luckPotionDuration2 = 18000;
@@ -16,11 +16,11 @@ public class Item {
     public static int restorationDelay = 2700;
     public static int mushroomDelay = 1800;
     public boolean questItem;
-    public static int[] headType = new int[273];
-    public static int[] bodyType = new int[244];
-    public static int[] legType = new int[231];
-    public static boolean[] staff = new boolean[5094];
-    public static boolean[] claw = new boolean[5094];
+    public static int[] headType = new int[277];
+    public static int[] bodyType = new int[246];
+    public static int[] legType = new int[234];
+    public static boolean[] staff = new boolean[5125];
+    public static boolean[] claw = new boolean[5125];
     public boolean flame;
     public boolean mech;
     public int noGrabDelay;
@@ -72,23 +72,39 @@ public class Item {
     public boolean consumable;
     public boolean autoReuse;
     public boolean useTurn;
+    public Color color;
     public int alpha;
     public short glowMask;
     public float scale = 1f;
+    public LegacySoundStyle UseSound;
     public int defense;
     public int headSlot = -1;
     public int bodySlot = -1;
     public int legSlot = -1;
+    public sbyte handOnSlot = -1;
+    public sbyte handOffSlot = -1;
+    public sbyte backSlot = -1;
+    public sbyte frontSlot = -1;
+    public sbyte shoeSlot = -1;
+    public sbyte waistSlot = -1;
+    public sbyte wingSlot = -1;
+    public sbyte shieldSlot = -1;
+    public sbyte neckSlot = -1;
+    public sbyte faceSlot = -1;
+    public sbyte balloonSlot = -1;
+    public sbyte beardSlot = -1;
     public int StringColor;
-    public String ToolTip;
+    public ItemTooltip ToolTip;
     public String BestiaryNotes;
     public int playerIndexTheItemIsReservedFor = 255;
     public int rare;
     public int shoot;
     public float shootSpeed;
-    public int ammo = 0; //AmmoID.None;
+    public int ammo = 0;
+    //AmmoID.None;
     public boolean notAmmo;
-    public int useAmmo = 0; //AmmoID.None;
+    public int useAmmo = 0;
+    //AmmoID.None;
     public int lifeRegen;
     public int manaIncrease;
     public boolean buyOnce;
@@ -276,6 +292,1362 @@ public class Item {
         else {
             SetDefaults(type);
         }
+    }
+
+    public static int BannerToItem(int banner) {
+        int num = 0;
+        if (banner >= 276)
+            return 4965 + banner - 276;
+
+        if (banner >= 274)
+            return 4687 + banner - 274;
+
+        if (banner == 273)
+            return 4602;
+
+        if (banner >= 267)
+            return 4541 + banner - 267;
+
+        if (banner >= 257)
+            return 3837 + banner - 257;
+
+        if (banner >= 252)
+            return 3789 + banner - 252;
+
+        if (banner == 251)
+            return 3780;
+
+        if (banner >= 249)
+            return 3593 + banner - 249;
+
+        if (banner >= 186)
+            return 3390 + banner - 186;
+
+        if (banner >= 88)
+            return 2897 + banner - 88;
+
+        return 1615 + banner - 1;
+    }
+
+    public static int NPCtoBanner(int i) {
+        switch (i) {
+            case 102:
+                return 1;
+            case 250:
+                return 2;
+            case 257:
+                return 3;
+            case 69:
+                return 4;
+            case 157:
+                return 5;
+            case 77:
+                return 6;
+            case 49:
+                return 7;
+            case 74:
+                return 8;
+            case 163:
+            case 238:
+                return 9;
+            case 241:
+                return 10;
+            case 242:
+                return 11;
+            case 239:
+            case 240:
+                return 12;
+            case 39:
+            case 40:
+            case 41:
+                return 13;
+            case 46:
+            case 303:
+            case 337:
+            case 540:
+                return 14;
+            case 120:
+                return 15;
+            case 85:
+            case 629:
+                return 16;
+            case 109:
+            case 378:
+                return 17;
+            case 47:
+                return 18;
+            case 57:
+                return 19;
+            case 67:
+                return 20;
+            case 173:
+                return 21;
+            case 179:
+                return 22;
+            case 83:
+                return 23;
+            case 62:
+            case 66:
+                return 24;
+            case 2:
+            case 190:
+            case 191:
+            case 192:
+            case 193:
+            case 194:
+            case 317:
+            case 318:
+                return 25;
+            case 177:
+                return 26;
+            case 6:
+                return 27;
+            case 84:
+                return 28;
+            case 161:
+            case 431:
+                return 29;
+            case 181:
+                return 30;
+            case 182:
+                return 31;
+            case 224:
+                return 32;
+            case 226:
+                return 33;
+            case 162:
+                return 34;
+            case 259:
+            case 260:
+            case 261:
+                return 35;
+            case 256:
+                return 36;
+            case 122:
+                return 37;
+            case 27:
+                return 38;
+            case 29:
+            case 30:
+                return 39;
+            case 26:
+                return 40;
+            case 73:
+                return 41;
+            case 28:
+                return 42;
+            case 55:
+            case 230:
+                return 43;
+            case 48:
+                return 44;
+            case 60:
+                return 45;
+            case 174:
+                return 46;
+            case 42:
+            case 231:
+            case 232:
+            case 233:
+            case 234:
+            case 235:
+                return 47;
+            case 169:
+                return 48;
+            case 206:
+                return 49;
+            case 24:
+            case 25:
+                return 50;
+            case 63:
+                return 51;
+            case 236:
+            case 237:
+                return 52;
+            case 198:
+            case 199:
+                return 53;
+            case 43:
+                return 54;
+            case 23:
+                return 55;
+            case 205:
+                return 56;
+            case 78:
+                return 57;
+            case 258:
+                return 58;
+            case 252:
+                return 59;
+            case 170:
+            case 171:
+            case 180:
+                return 60;
+            case 58:
+                return 61;
+            case 212:
+                return 62;
+            case 75:
+                return 63;
+            case 223:
+                return 64;
+            case 253:
+                return 65;
+            case 65:
+                return 66;
+            case 21:
+            case 201:
+            case 202:
+            case 203:
+            case 449:
+            case 450:
+            case 451:
+            case 452:
+                return 67;
+            case 32:
+            case 33:
+                return 68;
+            case 1:
+            case 302:
+            case 333:
+            case 334:
+            case 335:
+            case 336:
+                return 69;
+            case 185:
+                return 70;
+            case 164:
+            case 165:
+                return 71;
+            case 254:
+            case 255:
+                return 72;
+            case 166:
+                return 73;
+            case 153:
+                return 74;
+            case 141:
+                return 75;
+            case 225:
+                return 76;
+            case 86:
+                return 77;
+            case 158:
+            case 159:
+                return 78;
+            case 61:
+                return 79;
+            case 195:
+            case 196:
+                return 80;
+            case 104:
+                return 81;
+            case 155:
+                return 82;
+            case 98:
+            case 99:
+            case 100:
+                return 83;
+            case 10:
+            case 11:
+            case 12:
+            case 95:
+            case 96:
+            case 97:
+                return 84;
+            case 82:
+                return 85;
+            case 87:
+            case 88:
+            case 89:
+            case 90:
+            case 91:
+            case 92:
+                return 86;
+            case 3:
+            case 132:
+            case 186:
+            case 187:
+            case 188:
+            case 189:
+            case 200:
+            case 319:
+            case 320:
+            case 321:
+            case 331:
+            case 332:
+            case 430:
+            case 432:
+            case 433:
+            case 434:
+            case 435:
+            case 436:
+            case 590:
+            case 591:
+            case 632:
+                return 87;
+            case 175:
+                return 88;
+            case 197:
+                return 89;
+            case 273:
+            case 274:
+            case 275:
+            case 276:
+                return 91;
+            case 379:
+                return 92;
+            case 438:
+                return 93;
+            case 287:
+                return 95;
+            case 101:
+                return 96;
+            case 217:
+                return 97;
+            case 168:
+                return 98;
+            case -1:
+            case 81:
+                return 99;
+            case 94:
+            case 112:
+                return 100;
+            case 183:
+                return 101;
+            case 34:
+                return 102;
+            case 218:
+                return 103;
+            case 7:
+            case 8:
+            case 9:
+                return 104;
+            case 285:
+            case 286:
+                return 105;
+            case 52:
+                return 106;
+            case 71:
+                return 107;
+            case 288:
+                return 108;
+            case 350:
+                return 109;
+            case 347:
+                return 110;
+            case 251:
+                return 111;
+            case 352:
+                return 112;
+            case 316:
+                return 113;
+            case 93:
+                return 114;
+            case 289:
+                return 115;
+            case 152:
+                return 116;
+            case 342:
+                return 117;
+            case 111:
+                return 118;
+            case 315:
+                return 120;
+            case 277:
+            case 278:
+            case 279:
+            case 280:
+                return 121;
+            case 329:
+                return 122;
+            case 304:
+                return 123;
+            case 150:
+                return 124;
+            case 243:
+                return 125;
+            case 147:
+                return 126;
+            case 268:
+                return 127;
+            case 137:
+                return 128;
+            case 138:
+                return 129;
+            case 51:
+                return 130;
+            case 351:
+                return 132;
+            case 219:
+                return 133;
+            case 151:
+                return 134;
+            case 59:
+                return 135;
+            case 381:
+                return 136;
+            case 388:
+                return 137;
+            case 386:
+                return 138;
+            case 389:
+                return 139;
+            case 385:
+                return 140;
+            case 383:
+            case 384:
+                return 141;
+            case 382:
+                return 142;
+            case 390:
+                return 143;
+            case 387:
+                return 144;
+            case 144:
+                return 145;
+            case -5:
+            case 16:
+                return 146;
+            case 283:
+            case 284:
+                return 147;
+            case 348:
+            case 349:
+                return 148;
+            case 290:
+                return 149;
+            case 148:
+            case 149:
+                return 150;
+            case -4:
+                return 151;
+            case 330:
+                return 152;
+            case 140:
+                return 153;
+            case 341:
+                return 154;
+            case 281:
+            case 282:
+                return 156;
+            case 244:
+                return 157;
+            case 301:
+                return 158;
+            case 172:
+                return 160;
+            case 269:
+            case 270:
+            case 271:
+            case 272:
+                return 161;
+            case 305:
+            case 306:
+            case 307:
+            case 308:
+            case 309:
+            case 310:
+            case 311:
+            case 312:
+            case 313:
+            case 314:
+                return 162;
+            case 391:
+                return 163;
+            case 110:
+                return 164;
+            case 293:
+                return 165;
+            case 291:
+                return 166;
+            case -2:
+            case 121:
+                return 167;
+            case 56:
+                return 168;
+            case 145:
+                return 169;
+            case 143:
+                return 170;
+            case 184:
+                return 171;
+            case 204:
+                return 172;
+            case 326:
+                return 173;
+            case 221:
+                return 174;
+            case 292:
+                return 175;
+            case 53:
+                return 176;
+            case 45:
+            case 665:
+                return 177;
+            case 44:
+                return 178;
+            case 167:
+                return 179;
+            case 380:
+                return 180;
+            case 343:
+                return 184;
+            case 338:
+            case 339:
+            case 340:
+                return 185;
+            case -6:
+                return 90;
+            case -3:
+                return 119;
+            case -10:
+                return 131;
+            case -7:
+                return 155;
+            case -8:
+                return 159;
+            case -9:
+                return 183;
+            case 471:
+            case 472:
+                return 186;
+            case 498:
+            case 499:
+            case 500:
+            case 501:
+            case 502:
+            case 503:
+            case 504:
+            case 505:
+            case 506:
+                return 187;
+            case 496:
+            case 497:
+                return 188;
+            case 494:
+            case 495:
+                return 189;
+            case 462:
+                return 190;
+            case 461:
+                return 191;
+            case 468:
+                return 192;
+            case 477:
+            case 478:
+            case 479:
+                return 193;
+            case 469:
+                return 195;
+            case 460:
+                return 196;
+            case 466:
+                return 197;
+            case 467:
+                return 198;
+            case 463:
+                return 199;
+            case 480:
+                return 201;
+            case 481:
+                return 202;
+            case 483:
+                return 203;
+            case 482:
+                return 204;
+            case 489:
+                return 205;
+            case 490:
+                return 206;
+            case 513:
+            case 514:
+            case 515:
+                return 207;
+            case 510:
+            case 511:
+            case 512:
+                return 208;
+            case 509:
+            case 581:
+                return 209;
+            case 508:
+            case 580:
+                return 210;
+            case 524:
+            case 525:
+            case 526:
+            case 527:
+                return 211;
+            case 528:
+            case 529:
+                return 212;
+            case 533:
+                return 213;
+            case 532:
+                return 214;
+            case 530:
+            case 531:
+                return 215;
+            case 411:
+                return 216;
+            case 402:
+            case 403:
+            case 404:
+                return 217;
+            case 407:
+            case 408:
+                return 218;
+            case 409:
+            case 410:
+                return 219;
+            case 405:
+            case 406:
+                return 221;
+            case 418:
+                return 222;
+            case 417:
+                return 223;
+            case 412:
+            case 413:
+            case 414:
+                return 224;
+            case 416:
+            case 518:
+                return 225;
+            case 415:
+            case 516:
+                return 226;
+            case 419:
+                return 227;
+            case 424:
+                return 228;
+            case 421:
+                return 229;
+            case 420:
+                return 230;
+            case 423:
+                return 231;
+            case 428:
+                return 232;
+            case 426:
+                return 233;
+            case 427:
+                return 234;
+            case 429:
+                return 235;
+            case 425:
+                return 236;
+            case 216:
+                return 237;
+            case 214:
+                return 238;
+            case 213:
+                return 239;
+            case 215:
+                return 240;
+            case 520:
+                return 241;
+            case 156:
+                return 242;
+            case 64:
+                return 243;
+            case 103:
+                return 244;
+            case 79:
+                return 245;
+            case 80:
+                return 246;
+            case 31:
+            case 294:
+            case 295:
+            case 296:
+                return 247;
+            case 154:
+                return 248;
+            case 537:
+                return 249;
+            case 220:
+                return 250;
+            case 541:
+                return 251;
+            case 542:
+                return 252;
+            case 543:
+                return 253;
+            case 544:
+                return 254;
+            case 545:
+                return 255;
+            case 546:
+                return 256;
+            case 555:
+            case 556:
+            case 557:
+                return 257;
+            case 552:
+            case 553:
+            case 554:
+                return 258;
+            case 566:
+            case 567:
+                return 259;
+            case 570:
+            case 571:
+                return 260;
+            case 574:
+            case 575:
+                return 261;
+            case 572:
+            case 573:
+                return 262;
+            case 568:
+            case 569:
+                return 263;
+            case 558:
+            case 559:
+            case 560:
+                return 264;
+            case 561:
+            case 562:
+            case 563:
+                return 265;
+            case 578:
+                return 266;
+            case 536:
+                return 267;
+            case 586:
+                return 268;
+            case 587:
+                return 269;
+            case 619:
+                return 270;
+            case 621:
+            case 622:
+            case 623:
+                return 271;
+            case 620:
+                return 272;
+            case 618:
+                return 273;
+            case 628:
+                return 274;
+            case 624:
+                return 275;
+            case 631:
+                return 276;
+            case 630:
+                return 277;
+            case 635:
+                return 278;
+            case 634:
+                return 279;
+            case 582:
+                return 280;
+            case 464:
+                return 281;
+            case 465:
+                return 282;
+            case 470:
+                return 283;
+            case 473:
+                return 284;
+            case 474:
+                return 285;
+            case 475:
+                return 286;
+            case 176:
+                return 287;
+            case 133:
+                return 288;
+            default:
+                return 0;
+        }
+    }
+
+    public static int BannerToNPC(int i) {
+        switch (i) {
+            case 1:
+                return 102;
+            case 2:
+                return 250;
+            case 3:
+                return 257;
+            case 4:
+                return 69;
+            case 5:
+                return 157;
+            case 6:
+                return 77;
+            case 7:
+                return 49;
+            case 8:
+                return 74;
+            case 9:
+                return 163;
+            case 10:
+                return 241;
+            case 11:
+                return 242;
+            case 12:
+                return 239;
+            case 13:
+                return 39;
+            case 14:
+                return 46;
+            case 15:
+                return 120;
+            case 16:
+                return 85;
+            case 17:
+                return 109;
+            case 18:
+                return 47;
+            case 19:
+                return 57;
+            case 20:
+                return 67;
+            case 21:
+                return 173;
+            case 22:
+                return 179;
+            case 23:
+                return 83;
+            case 24:
+                return 62;
+            case 25:
+                return 2;
+            case 26:
+                return 177;
+            case 27:
+                return 6;
+            case 28:
+                return 84;
+            case 29:
+                return 161;
+            case 30:
+                return 181;
+            case 31:
+                return 182;
+            case 32:
+                return 224;
+            case 33:
+                return 226;
+            case 34:
+                return 162;
+            case 35:
+                return 259;
+            case 36:
+                return 256;
+            case 37:
+                return 122;
+            case 38:
+                return 27;
+            case 39:
+                return 29;
+            case 40:
+                return 26;
+            case 41:
+                return 73;
+            case 42:
+                return 28;
+            case 43:
+                return 55;
+            case 44:
+                return 48;
+            case 45:
+                return 60;
+            case 46:
+                return 174;
+            case 47:
+                return 42;
+            case 48:
+                return 169;
+            case 49:
+                return 206;
+            case 50:
+                return 24;
+            case 51:
+                return 63;
+            case 52:
+                return 236;
+            case 53:
+                return 199;
+            case 54:
+                return 43;
+            case 55:
+                return 23;
+            case 56:
+                return 205;
+            case 57:
+                return 78;
+            case 58:
+                return 258;
+            case 59:
+                return 252;
+            case 60:
+                return 170;
+            case 61:
+                return 58;
+            case 62:
+                return 212;
+            case 63:
+                return 75;
+            case 64:
+                return 223;
+            case 65:
+                return 253;
+            case 66:
+                return 65;
+            case 67:
+                return 21;
+            case 68:
+                return 32;
+            case 69:
+                return 1;
+            case 70:
+                return 185;
+            case 71:
+                return 164;
+            case 72:
+                return 254;
+            case 73:
+                return 166;
+            case 74:
+                return 153;
+            case 75:
+                return 141;
+            case 76:
+                return 225;
+            case 77:
+                return 86;
+            case 78:
+                return 158;
+            case 79:
+                return 61;
+            case 80:
+                return 196;
+            case 81:
+                return 104;
+            case 82:
+                return 155;
+            case 83:
+                return 98;
+            case 84:
+                return 10;
+            case 85:
+                return 82;
+            case 86:
+                return 87;
+            case 87:
+                return 3;
+            case 88:
+                return 175;
+            case 89:
+                return 197;
+            case 91:
+                return 273;
+            case 92:
+                return 379;
+            case 93:
+                return 438;
+            case 95:
+                return 287;
+            case 96:
+                return 101;
+            case 97:
+                return 217;
+            case 98:
+                return 168;
+            case 99:
+                return 81;
+            case 100:
+                return 94;
+            case 101:
+                return 183;
+            case 102:
+                return 34;
+            case 103:
+                return 218;
+            case 104:
+                return 7;
+            case 105:
+                return 285;
+            case 106:
+                return 52;
+            case 107:
+                return 71;
+            case 108:
+                return 288;
+            case 109:
+                return 350;
+            case 110:
+                return 347;
+            case 111:
+                return 251;
+            case 112:
+                return 352;
+            case 113:
+                return 316;
+            case 114:
+                return 93;
+            case 115:
+                return 289;
+            case 116:
+                return 152;
+            case 117:
+                return 342;
+            case 118:
+                return 111;
+            case 120:
+                return 315;
+            case 121:
+                return 277;
+            case 122:
+                return 329;
+            case 123:
+                return 304;
+            case 124:
+                return 150;
+            case 125:
+                return 243;
+            case 126:
+                return 147;
+            case 127:
+                return 268;
+            case 128:
+                return 137;
+            case 129:
+                return 138;
+            case 130:
+                return 51;
+            case 132:
+                return 351;
+            case 133:
+                return 219;
+            case 134:
+                return 151;
+            case 135:
+                return 59;
+            case 136:
+                return 381;
+            case 137:
+                return 388;
+            case 138:
+                return 386;
+            case 139:
+                return 389;
+            case 140:
+                return 385;
+            case 141:
+                return 383;
+            case 142:
+                return 382;
+            case 143:
+                return 390;
+            case 144:
+                return 387;
+            case 145:
+                return 144;
+            case 146:
+                return 16;
+            case 147:
+                return 283;
+            case 148:
+                return 348;
+            case 149:
+                return 290;
+            case 150:
+                return 148;
+            case 151:
+                return -4;
+            case 152:
+                return 330;
+            case 153:
+                return 140;
+            case 154:
+                return 341;
+            case 156:
+                return 281;
+            case 157:
+                return 244;
+            case 158:
+                return 301;
+            case 160:
+                return 172;
+            case 161:
+                return 269;
+            case 162:
+                return 305;
+            case 163:
+                return 391;
+            case 164:
+                return 110;
+            case 165:
+                return 293;
+            case 166:
+                return 291;
+            case 167:
+                return 121;
+            case 168:
+                return 56;
+            case 169:
+                return 145;
+            case 170:
+                return 143;
+            case 171:
+                return 184;
+            case 172:
+                return 204;
+            case 173:
+                return 326;
+            case 174:
+                return 221;
+            case 175:
+                return 292;
+            case 176:
+                return 53;
+            case 177:
+                return 45;
+            case 178:
+                return 44;
+            case 179:
+                return 167;
+            case 180:
+                return 380;
+            case 184:
+                return 343;
+            case 185:
+                return 338;
+            case 90:
+                return -6;
+            case 119:
+                return -3;
+            case 131:
+                return -10;
+            case 155:
+                return -7;
+            case 159:
+                return -8;
+            case 183:
+                return -9;
+            case 186:
+                return 471;
+            case 187:
+                return 498;
+            case 188:
+                return 496;
+            case 189:
+                return 494;
+            case 190:
+                return 462;
+            case 191:
+                return 461;
+            case 192:
+                return 468;
+            case 193:
+                return 477;
+            case 195:
+                return 469;
+            case 196:
+                return 460;
+            case 197:
+                return 466;
+            case 198:
+                return 467;
+            case 199:
+                return 463;
+            case 201:
+                return 480;
+            case 202:
+                return 481;
+            case 203:
+                return 483;
+            case 204:
+                return 482;
+            case 205:
+                return 489;
+            case 206:
+                return 490;
+            case 207:
+                return 513;
+            case 208:
+                return 510;
+            case 209:
+                return 581;
+            case 210:
+                return 580;
+            case 211:
+                return 524;
+            case 212:
+                return 529;
+            case 213:
+                return 533;
+            case 214:
+                return 532;
+            case 215:
+                return 530;
+            case 216:
+                return 411;
+            case 217:
+                return 402;
+            case 218:
+                return 407;
+            case 219:
+                return 409;
+            case 221:
+                return 405;
+            case 222:
+                return 418;
+            case 223:
+                return 417;
+            case 224:
+                return 412;
+            case 225:
+                return 416;
+            case 226:
+                return 415;
+            case 227:
+                return 419;
+            case 228:
+                return 424;
+            case 229:
+                return 421;
+            case 230:
+                return 420;
+            case 231:
+                return 423;
+            case 232:
+                return 428;
+            case 233:
+                return 426;
+            case 234:
+                return 427;
+            case 235:
+                return 429;
+            case 236:
+                return 425;
+            case 237:
+                return 216;
+            case 238:
+                return 214;
+            case 239:
+                return 213;
+            case 240:
+                return 215;
+            case 241:
+                return 520;
+            case 242:
+                return 156;
+            case 243:
+                return 64;
+            case 244:
+                return 103;
+            case 245:
+                return 79;
+            case 246:
+                return 80;
+            case 247:
+                return 31;
+            case 248:
+                return 154;
+            case 249:
+                return 537;
+            case 250:
+                return 220;
+            case 251:
+                return 541;
+            case 252:
+                return 542;
+            case 253:
+                return 543;
+            case 254:
+                return 544;
+            case 255:
+                return 545;
+            case 256:
+                return 546;
+            case 257:
+                return 555;
+            case 258:
+                return 552;
+            case 259:
+                return 566;
+            case 260:
+                return 570;
+            case 261:
+                return 574;
+            case 262:
+                return 572;
+            case 263:
+                return 568;
+            case 264:
+                return 558;
+            case 265:
+                return 561;
+            case 266:
+                return 578;
+            case 267:
+                return 536;
+            case 268:
+                return 586;
+            case 269:
+                return 587;
+            case 270:
+                return 619;
+            case 271:
+                return 621;
+            case 272:
+                return 620;
+            case 273:
+                return 618;
+            case 274:
+                return 628;
+            case 275:
+                return 624;
+            case 276:
+                return 631;
+            case 277:
+                return 630;
+            case 278:
+                return 635;
+            case 279:
+                return 634;
+            case 280:
+                return 582;
+            case 281:
+                return 464;
+            case 282:
+                return 465;
+            case 283:
+                return 470;
+            case 284:
+                return 473;
+            case 285:
+                return 474;
+            case 286:
+                return 475;
+            case 287:
+                return 176;
+            case 288:
+                return 133;
+            default:
+                return 0;
+        }
+    }
+
+    public boolean FitsAmmoSlot() {
+        if ((type != 0 && ammo <= 0 && bait <= 0 && type != 530 && type != 849 && paint <= 0) || notAmmo)
+            return type == 353;
+
+        return true;
+    }
+
+    public boolean CanFillEmptyAmmoSlot() {
+        if (bait <= 0 && paint == 0 && type != 353 && type != 849 && type != 169 && type != 75 && type != 23 && type != 408 && type != 370 && type != 1246)
+            return !notAmmo;
+
+        return false;
     }
 
     public void SetDefaults1(int type) {
@@ -9252,7 +10624,6 @@ public class Item {
                 noMelee = true;
                 value = sellPrice(0, 5);
                 ranged = true;
-                channel = true;
                 autoReuse = true;
                 break;
             case 726:
@@ -15354,7 +16725,7 @@ public class Item {
                 createWall = 88;
                 width = 12;
                 height = 12;
-                value = sellPrice(0, 0, 5);
+                value = sellPrice(0, 0, 0, 20);
                 return;
             case 1268:
                 useStyle = 1;
@@ -15367,7 +16738,7 @@ public class Item {
                 createWall = 89;
                 width = 12;
                 height = 12;
-                value = sellPrice(0, 0, 5);
+                value = sellPrice(0, 0, 0, 40);
                 return;
             case 1269:
                 useStyle = 1;
@@ -15380,7 +16751,7 @@ public class Item {
                 createWall = 90;
                 width = 12;
                 height = 12;
-                value = sellPrice(0, 0, 5);
+                value = sellPrice(0, 0, 0, 60);
                 return;
             case 1270:
                 useStyle = 1;
@@ -15393,7 +16764,7 @@ public class Item {
                 createWall = 91;
                 width = 12;
                 height = 12;
-                value = sellPrice(0, 0, 5);
+                value = sellPrice(0, 0, 0, 80);
                 return;
             case 1271:
                 useStyle = 1;
@@ -15406,7 +16777,7 @@ public class Item {
                 createWall = 92;
                 width = 12;
                 height = 12;
-                value = sellPrice(0, 0, 5);
+                value = sellPrice(0, 0, 1, 20);
                 return;
             case 1272:
                 useStyle = 1;
@@ -15419,7 +16790,7 @@ public class Item {
                 createWall = 93;
                 width = 12;
                 height = 12;
-                value = sellPrice(0, 0, 5);
+                value = sellPrice(0, 0, 1);
                 return;
             case 1273:
                 useStyle = 5;
@@ -24349,9 +25720,9 @@ public class Item {
                             maxStack = 1;
                             value = sellPrice(0, 1);
                             rare = 5;
+                            beardSlot = 1;
                             accessory = true;
                             vanity = true;
-                            canBePlacedInVanityRegardlessOfConditions = true;
                             return;
                         case 2502:
                             useStyle = 1;
@@ -27866,6 +29237,15 @@ public class Item {
         value = buyPrice(0, 10);
     }
 
+    public void DefaultToQuestFish() {
+        questItem = true;
+        maxStack = 1;
+        width = 26;
+        height = 26;
+        uniqueStack = true;
+        rare = -11;
+    }
+
     public void SetDefaults4(int type) {
         switch (type) {
             case 3001:
@@ -27982,7 +29362,7 @@ public class Item {
                 shoot = 10;
                 useAmmo = AmmoID.Dart;
                 UseSound = SoundID.Item98;
-                damage = 33;
+                damage = 28;
                 shootSpeed = 13f;
                 noMelee = true;
                 value = sellPrice(0, 8);
@@ -28002,7 +29382,7 @@ public class Item {
                 shoot = 10;
                 useAmmo = AmmoID.Dart;
                 UseSound = SoundID.Item99;
-                damage = 62;
+                damage = 52;
                 shootSpeed = 14.5f;
                 noMelee = true;
                 value = sellPrice(0, 8);
@@ -30627,6 +32007,7 @@ public class Item {
                 value = 4500;
                 headSlot = 185;
                 defense = 4;
+                rare = 1;
                 return;
             case 3267:
                 width = 18;
@@ -30634,6 +32015,7 @@ public class Item {
                 value = 4500;
                 bodySlot = 187;
                 defense = 6;
+                rare = 1;
                 return;
             case 3268:
                 width = 18;
@@ -30641,6 +32023,7 @@ public class Item {
                 value = 4500;
                 legSlot = 127;
                 defense = 5;
+                rare = 1;
                 return;
             case 3269:
                 useStyle = 4;
@@ -35989,7 +37372,7 @@ public class Item {
         }
     }
 
-    private void DefaultToGolfBall(int projid) {
+    public void DefaultToGolfBall(int projid) {
         shoot = projid;
         useStyle = 1;
         shootSpeed = 12f;
@@ -36072,6 +37455,8 @@ public class Item {
             case 5013:
             case 5041:
             case 5042:
+            case 5092:
+            case 5093:
                 break;
             case 3990:
                 DefaultToAccessory(36, 28);
@@ -36216,7 +37601,7 @@ public class Item {
             case 4047:
             case 4048:
             case 4241:
-                DefaultToPlacableTile((ushort)3, 0);
+                DefaultToPlaceableTile((ushort)3, 0);
                 SetShopValues(ItemRarityColor.White0, buyPrice(0, 0, 5));
                 autoReuse = false;
                 useTime = useAnimation;
@@ -36226,10 +37611,10 @@ public class Item {
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 1));
                 break;
             case 4050:
-                DefaultToPlacableTile((ushort)478, 0);
+                DefaultToPlaceableTile((ushort)478, 0);
                 break;
             case 4051:
-                DefaultToPlacableTile((ushort)479, 0);
+                DefaultToPlaceableTile((ushort)479, 0);
                 break;
             case 4052:
                 DefaultToPlacableWall(234);
@@ -36238,7 +37623,7 @@ public class Item {
                 DefaultToPlacableWall(235);
                 break;
             case 4054:
-                DefaultToPlacableTile((ushort)480, 0);
+                DefaultToPlaceableTile((ushort)480, 0);
                 width = 22;
                 height = 32;
                 rare = 3;
@@ -36284,15 +37669,15 @@ public class Item {
                 SetWeaponValues(60, 5f);
                 break;
             case 4063:
-                DefaultToPlacableTile((ushort)486, 0);
+                DefaultToPlaceableTile((ushort)486, 0);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 10));
                 break;
             case 4064:
-                DefaultToPlacableTile((ushort)487, 0);
+                DefaultToPlaceableTile((ushort)487, 0);
                 SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 0, 80));
                 break;
             case 4065:
-                DefaultToPlacableTile((ushort)487, 1);
+                DefaultToPlaceableTile((ushort)487, 1);
                 SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 1));
                 break;
             case 4061:
@@ -36334,11 +37719,11 @@ public class Item {
                 DefaultToSeaShelll();
                 break;
             case 4074:
-                DefaultToPlacableTile((ushort)489, 0);
+                DefaultToPlaceableTile((ushort)489, 0);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 0, 20));
                 break;
             case 4075:
-                DefaultToPlacableTile((ushort)490, 0);
+                DefaultToPlaceableTile((ushort)490, 0);
                 SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 10));
                 break;
             case 4076:
@@ -36356,11 +37741,11 @@ public class Item {
                 value = 100000;
                 break;
             case 4091:
-                DefaultToPlacableTile((ushort)496, 0);
+                DefaultToPlaceableTile((ushort)496, 0);
                 SetShopValues(ItemRarityColor.White0, buyPrice(0, 0, 1));
                 break;
             case 4090:
-                DefaultToPlacableTile((ushort)495, 0);
+                DefaultToPlaceableTile((ushort)495, 0);
                 SetShopValues(ItemRarityColor.White0, 0);
                 break;
             case 4095:
@@ -36412,7 +37797,7 @@ public class Item {
             case 4086:
             case 4087:
             case 4088:
-                DefaultToPlacableTile((ushort)493, type - 4083);
+                DefaultToPlaceableTile((ushort)493, type - 4083);
                 SetShopValues(ItemRarityColor.White0, buyPrice(0, 0, 20));
                 break;
             case 4096:
@@ -36446,12 +37831,12 @@ public class Item {
             case 4124:
             case 4125:
             case 4126:
-                DefaultToPlacableTile((ushort)497, type - 4096);
+                DefaultToPlaceableTile((ushort)497, type - 4096);
                 maxStack = 99;
                 value = 150;
                 break;
             case 4127:
-                DefaultToPlacableTile((ushort)497, type - 4096);
+                DefaultToPlaceableTile((ushort)497, type - 4096);
                 maxStack = 99;
                 value = 100000;
                 break;
@@ -36548,17 +37933,17 @@ public class Item {
                 value = sellPrice(0, 0, 50);
                 break;
             case 4141:
-                DefaultToPlacableTile((ushort)497, 32);
+                DefaultToPlaceableTile((ushort)497, 32);
                 maxStack = 99;
                 value = 150;
                 break;
             case 4142:
-                DefaultToPlacableTile((ushort)499, 0);
+                DefaultToPlaceableTile((ushort)499, 0);
                 maxStack = 99;
                 SetShopValues(ItemRarityColor.White0, 100000);
                 break;
             case 4139:
-                DefaultToPlacableTile((ushort)498, 0);
+                DefaultToPlaceableTile((ushort)498, 0);
                 SetShopValues(ItemRarityColor.White0, 0);
                 break;
             case 4140:
@@ -36589,42 +37974,42 @@ public class Item {
                 value = sellPrice(0, 5);
                 break;
             case 4145:
-                DefaultToPlacableTile((ushort)90, 34);
+                DefaultToPlaceableTile((ushort)90, 34);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4146:
-                DefaultToPlacableTile((ushort)79, 34);
+                DefaultToPlaceableTile((ushort)79, 34);
                 SetShopValues(ItemRarityColor.White0, 2000);
                 maxStack = 99;
                 width = 28;
                 height = 20;
                 break;
             case 4147:
-                DefaultToPlacableTile((ushort)101, 35);
+                DefaultToPlaceableTile((ushort)101, 35);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4148:
-                DefaultToPlacableTile((ushort)88, 34);
+                DefaultToPlaceableTile((ushort)88, 34);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4149:
-                DefaultToPlacableTile((ushort)100, 34);
+                DefaultToPlaceableTile((ushort)100, 34);
                 SetShopValues(ItemRarityColor.White0, 1500);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4150:
-                DefaultToPlacableTile((ushort)33, 33);
+                DefaultToPlaceableTile((ushort)33, 33);
                 SetShopValues(ItemRarityColor.White0, 0);
                 maxStack = 99;
                 width = 8;
@@ -36633,144 +38018,144 @@ public class Item {
                 noWet = true;
                 break;
             case 4151:
-                DefaultToPlacableTile((ushort)15, 39);
+                DefaultToPlaceableTile((ushort)15, 39);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 30;
                 break;
             case 4152:
-                DefaultToPlacableTile((ushort)34, 40);
+                DefaultToPlaceableTile((ushort)34, 40);
                 SetShopValues(ItemRarityColor.White0, 3000);
                 maxStack = 99;
                 width = 26;
                 height = 26;
                 break;
             case 4153:
-                DefaultToPlacableTile((ushort)467, 5);
+                DefaultToPlaceableTile((ushort)467, 5);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4154:
-                DefaultToPlacableTile((ushort)104, 35);
+                DefaultToPlaceableTile((ushort)104, 35);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4155:
-                DefaultToPlacableTile((ushort)10, 39);
+                DefaultToPlaceableTile((ushort)10, 39);
                 SetShopValues(ItemRarityColor.White0, 200);
                 maxStack = 99;
                 width = 14;
                 height = 28;
                 break;
             case 4156:
-                DefaultToPlacableTile((ushort)93, 34);
+                DefaultToPlaceableTile((ushort)93, 34);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 10;
                 height = 24;
                 break;
             case 4157:
-                DefaultToPlacableTile((ushort)42, 40);
+                DefaultToPlaceableTile((ushort)42, 40);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 28;
                 break;
             case 4158:
-                DefaultToPlacableTile((ushort)87, 34);
+                DefaultToPlaceableTile((ushort)87, 34);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4159:
-                DefaultToPlacableTile((ushort)19, 38);
+                DefaultToPlaceableTile((ushort)19, 38);
                 SetShopValues(ItemRarityColor.White0, 0);
                 width = 8;
                 height = 10;
                 break;
             case 4160:
-                DefaultToPlacableTile((ushort)172, 35);
+                DefaultToPlaceableTile((ushort)172, 35);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4161:
-                DefaultToPlacableTile((ushort)89, 37);
+                DefaultToPlaceableTile((ushort)89, 37);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4162:
-                DefaultToPlacableTile((ushort)469, 3);
+                DefaultToPlaceableTile((ushort)469, 3);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 26;
                 height = 20;
                 break;
             case 4163:
-                DefaultToPlacableTile((ushort)18, 35);
+                DefaultToPlaceableTile((ushort)18, 35);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 28;
                 height = 14;
                 break;
             case 4164:
-                DefaultToPlacableTile((ushort)468, 5);
+                DefaultToPlaceableTile((ushort)468, 5);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4165:
-                DefaultToPlacableTile((ushort)497, 33);
+                DefaultToPlaceableTile((ushort)497, 33);
                 maxStack = 99;
                 value = 150;
                 break;
             case 4166:
-                DefaultToPlacableTile((ushort)90, 35);
+                DefaultToPlaceableTile((ushort)90, 35);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4167:
-                DefaultToPlacableTile((ushort)79, 35);
+                DefaultToPlaceableTile((ushort)79, 35);
                 SetShopValues(ItemRarityColor.White0, 2000);
                 maxStack = 99;
                 width = 28;
                 height = 20;
                 break;
             case 4168:
-                DefaultToPlacableTile((ushort)101, 36);
+                DefaultToPlaceableTile((ushort)101, 36);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4169:
-                DefaultToPlacableTile((ushort)88, 35);
+                DefaultToPlaceableTile((ushort)88, 35);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4170:
-                DefaultToPlacableTile((ushort)100, 35);
+                DefaultToPlaceableTile((ushort)100, 35);
                 SetShopValues(ItemRarityColor.White0, 1500);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4171:
-                DefaultToPlacableTile((ushort)33, 34);
+                DefaultToPlaceableTile((ushort)33, 34);
                 SetShopValues(ItemRarityColor.White0, 0);
                 maxStack = 99;
                 width = 8;
@@ -36779,144 +38164,144 @@ public class Item {
                 noWet = true;
                 break;
             case 4172:
-                DefaultToPlacableTile((ushort)15, 40);
+                DefaultToPlaceableTile((ushort)15, 40);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 30;
                 break;
             case 4173:
-                DefaultToPlacableTile((ushort)34, 41);
+                DefaultToPlaceableTile((ushort)34, 41);
                 SetShopValues(ItemRarityColor.White0, 3000);
                 maxStack = 99;
                 width = 26;
                 height = 26;
                 break;
             case 4174:
-                DefaultToPlacableTile((ushort)467, 6);
+                DefaultToPlaceableTile((ushort)467, 6);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4175:
-                DefaultToPlacableTile((ushort)104, 36);
+                DefaultToPlaceableTile((ushort)104, 36);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4176:
-                DefaultToPlacableTile((ushort)10, 40);
+                DefaultToPlaceableTile((ushort)10, 40);
                 SetShopValues(ItemRarityColor.White0, 200);
                 maxStack = 99;
                 width = 14;
                 height = 28;
                 break;
             case 4177:
-                DefaultToPlacableTile((ushort)93, 35);
+                DefaultToPlaceableTile((ushort)93, 35);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 10;
                 height = 24;
                 break;
             case 4178:
-                DefaultToPlacableTile((ushort)42, 41);
+                DefaultToPlaceableTile((ushort)42, 41);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 28;
                 break;
             case 4179:
-                DefaultToPlacableTile((ushort)87, 35);
+                DefaultToPlaceableTile((ushort)87, 35);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4180:
-                DefaultToPlacableTile((ushort)19, 39);
+                DefaultToPlaceableTile((ushort)19, 39);
                 SetShopValues(ItemRarityColor.White0, 0);
                 width = 8;
                 height = 10;
                 break;
             case 4181:
-                DefaultToPlacableTile((ushort)172, 36);
+                DefaultToPlaceableTile((ushort)172, 36);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4182:
-                DefaultToPlacableTile((ushort)89, 38);
+                DefaultToPlaceableTile((ushort)89, 38);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4183:
-                DefaultToPlacableTile((ushort)469, 4);
+                DefaultToPlaceableTile((ushort)469, 4);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 26;
                 height = 20;
                 break;
             case 4184:
-                DefaultToPlacableTile((ushort)18, 36);
+                DefaultToPlaceableTile((ushort)18, 36);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 28;
                 height = 14;
                 break;
             case 4185:
-                DefaultToPlacableTile((ushort)468, 6);
+                DefaultToPlaceableTile((ushort)468, 6);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4186:
-                DefaultToPlacableTile((ushort)497, 34);
+                DefaultToPlaceableTile((ushort)497, 34);
                 maxStack = 99;
                 value = 150;
                 break;
             case 4187:
-                DefaultToPlacableTile((ushort)90, 36);
+                DefaultToPlaceableTile((ushort)90, 36);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4188:
-                DefaultToPlacableTile((ushort)79, 36);
+                DefaultToPlaceableTile((ushort)79, 36);
                 SetShopValues(ItemRarityColor.White0, 2000);
                 maxStack = 99;
                 width = 28;
                 height = 20;
                 break;
             case 4189:
-                DefaultToPlacableTile((ushort)101, 37);
+                DefaultToPlaceableTile((ushort)101, 37);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4190:
-                DefaultToPlacableTile((ushort)88, 36);
+                DefaultToPlaceableTile((ushort)88, 36);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4191:
-                DefaultToPlacableTile((ushort)100, 36);
+                DefaultToPlaceableTile((ushort)100, 36);
                 SetShopValues(ItemRarityColor.White0, 1500);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4192:
-                DefaultToPlacableTile((ushort)33, 35);
+                DefaultToPlaceableTile((ushort)33, 35);
                 SetShopValues(ItemRarityColor.White0, 0);
                 maxStack = 99;
                 width = 8;
@@ -36925,144 +38310,144 @@ public class Item {
                 noWet = true;
                 break;
             case 4193:
-                DefaultToPlacableTile((ushort)15, 41);
+                DefaultToPlaceableTile((ushort)15, 41);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 30;
                 break;
             case 4194:
-                DefaultToPlacableTile((ushort)34, 42);
+                DefaultToPlaceableTile((ushort)34, 42);
                 SetShopValues(ItemRarityColor.White0, 3000);
                 maxStack = 99;
                 width = 26;
                 height = 26;
                 break;
             case 4195:
-                DefaultToPlacableTile((ushort)467, 7);
+                DefaultToPlaceableTile((ushort)467, 7);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4196:
-                DefaultToPlacableTile((ushort)104, 37);
+                DefaultToPlaceableTile((ushort)104, 37);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4197:
-                DefaultToPlacableTile((ushort)10, 41);
+                DefaultToPlaceableTile((ushort)10, 41);
                 SetShopValues(ItemRarityColor.White0, 200);
                 maxStack = 99;
                 width = 14;
                 height = 28;
                 break;
             case 4198:
-                DefaultToPlacableTile((ushort)93, 36);
+                DefaultToPlaceableTile((ushort)93, 36);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 10;
                 height = 24;
                 break;
             case 4199:
-                DefaultToPlacableTile((ushort)42, 42);
+                DefaultToPlaceableTile((ushort)42, 42);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 28;
                 break;
             case 4200:
-                DefaultToPlacableTile((ushort)87, 36);
+                DefaultToPlaceableTile((ushort)87, 36);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4201:
-                DefaultToPlacableTile((ushort)19, 40);
+                DefaultToPlaceableTile((ushort)19, 40);
                 SetShopValues(ItemRarityColor.White0, 0);
                 width = 8;
                 height = 10;
                 break;
             case 4202:
-                DefaultToPlacableTile((ushort)172, 37);
+                DefaultToPlaceableTile((ushort)172, 37);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4203:
-                DefaultToPlacableTile((ushort)89, 39);
+                DefaultToPlaceableTile((ushort)89, 39);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4204:
-                DefaultToPlacableTile((ushort)469, 5);
+                DefaultToPlaceableTile((ushort)469, 5);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 26;
                 height = 20;
                 break;
             case 4205:
-                DefaultToPlacableTile((ushort)18, 37);
+                DefaultToPlaceableTile((ushort)18, 37);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 28;
                 height = 14;
                 break;
             case 4206:
-                DefaultToPlacableTile((ushort)468, 7);
+                DefaultToPlaceableTile((ushort)468, 7);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4207:
-                DefaultToPlacableTile((ushort)497, 35);
+                DefaultToPlaceableTile((ushort)497, 35);
                 maxStack = 99;
                 value = 150;
                 break;
             case 4208:
-                DefaultToPlacableTile((ushort)90, 37);
+                DefaultToPlaceableTile((ushort)90, 37);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4209:
-                DefaultToPlacableTile((ushort)79, 37);
+                DefaultToPlaceableTile((ushort)79, 37);
                 SetShopValues(ItemRarityColor.White0, 2000);
                 maxStack = 99;
                 width = 28;
                 height = 20;
                 break;
             case 4210:
-                DefaultToPlacableTile((ushort)101, 38);
+                DefaultToPlaceableTile((ushort)101, 38);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4211:
-                DefaultToPlacableTile((ushort)88, 37);
+                DefaultToPlaceableTile((ushort)88, 37);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4212:
-                DefaultToPlacableTile((ushort)100, 37);
+                DefaultToPlaceableTile((ushort)100, 37);
                 SetShopValues(ItemRarityColor.White0, 1500);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4213:
-                DefaultToPlacableTile((ushort)33, 36);
+                DefaultToPlaceableTile((ushort)33, 36);
                 SetShopValues(ItemRarityColor.White0, 0);
                 maxStack = 99;
                 width = 8;
@@ -37071,118 +38456,118 @@ public class Item {
                 noWet = true;
                 break;
             case 4214:
-                DefaultToPlacableTile((ushort)15, 42);
+                DefaultToPlaceableTile((ushort)15, 42);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 30;
                 break;
             case 4215:
-                DefaultToPlacableTile((ushort)34, 43);
+                DefaultToPlaceableTile((ushort)34, 43);
                 SetShopValues(ItemRarityColor.White0, 3000);
                 maxStack = 99;
                 width = 26;
                 height = 26;
                 break;
             case 4216:
-                DefaultToPlacableTile((ushort)467, 8);
+                DefaultToPlaceableTile((ushort)467, 8);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4217:
-                DefaultToPlacableTile((ushort)104, 38);
+                DefaultToPlaceableTile((ushort)104, 38);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4218:
-                DefaultToPlacableTile((ushort)10, 42);
+                DefaultToPlaceableTile((ushort)10, 42);
                 SetShopValues(ItemRarityColor.White0, 200);
                 maxStack = 99;
                 width = 14;
                 height = 28;
                 break;
             case 4219:
-                DefaultToPlacableTile((ushort)93, 37);
+                DefaultToPlaceableTile((ushort)93, 37);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 10;
                 height = 24;
                 break;
             case 4220:
-                DefaultToPlacableTile((ushort)42, 43);
+                DefaultToPlaceableTile((ushort)42, 43);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 28;
                 break;
             case 4221:
-                DefaultToPlacableTile((ushort)87, 37);
+                DefaultToPlaceableTile((ushort)87, 37);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4222:
-                DefaultToPlacableTile((ushort)19, 41);
+                DefaultToPlaceableTile((ushort)19, 41);
                 SetShopValues(ItemRarityColor.White0, 0);
                 width = 8;
                 height = 10;
                 break;
             case 4223:
-                DefaultToPlacableTile((ushort)172, 38);
+                DefaultToPlaceableTile((ushort)172, 38);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4224:
-                DefaultToPlacableTile((ushort)89, 40);
+                DefaultToPlaceableTile((ushort)89, 40);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4225:
-                DefaultToPlacableTile((ushort)469, 6);
+                DefaultToPlaceableTile((ushort)469, 6);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 26;
                 height = 20;
                 break;
             case 4226:
-                DefaultToPlacableTile((ushort)18, 38);
+                DefaultToPlaceableTile((ushort)18, 38);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 28;
                 height = 14;
                 break;
             case 4227:
-                DefaultToPlacableTile((ushort)468, 8);
+                DefaultToPlaceableTile((ushort)468, 8);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4228:
-                DefaultToPlacableTile((ushort)497, 36);
+                DefaultToPlaceableTile((ushort)497, 36);
                 maxStack = 99;
                 value = 150;
                 break;
             case 4229:
-                DefaultToPlacableTile((ushort)500, 0);
+                DefaultToPlaceableTile((ushort)500, 0);
                 break;
             case 4230:
-                DefaultToPlacableTile((ushort)501, 0);
+                DefaultToPlaceableTile((ushort)501, 0);
                 break;
             case 4231:
-                DefaultToPlacableTile((ushort)502, 0);
+                DefaultToPlaceableTile((ushort)502, 0);
                 break;
             case 4232:
-                DefaultToPlacableTile((ushort)503, 0);
+                DefaultToPlaceableTile((ushort)503, 0);
                 break;
             case 4233:
                 DefaultToPlacableWall(237);
@@ -37200,13 +38585,13 @@ public class Item {
                 DefaultToMusicBox(46);
                 break;
             case 4238:
-                DefaultToPlacableTile((ushort)481, 0);
+                DefaultToPlaceableTile((ushort)481, 0);
                 break;
             case 4239:
-                DefaultToPlacableTile((ushort)482, 0);
+                DefaultToPlaceableTile((ushort)482, 0);
                 break;
             case 4240:
-                DefaultToPlacableTile((ushort)483, 0);
+                DefaultToPlaceableTile((ushort)483, 0);
                 break;
             case 4242:
                 DefaultToGolfBall(739);
@@ -37310,7 +38695,7 @@ public class Item {
                 createWall = 241;
                 width = 12;
                 height = 12;
-                value = sellPrice(0, 0, 5);
+                value = sellPrice(0, 0, 1, 60);
                 break;
             case 4261:
                 useStyle = 1;
@@ -37364,28 +38749,28 @@ public class Item {
                 value = sellPrice(0, 10);
                 break;
             case 4265:
-                DefaultToPlacableTile((ushort)467, 9);
+                DefaultToPlaceableTile((ushort)467, 9);
                 SetShopValues(ItemRarityColor.White0, buyPrice(0, 3));
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4266:
-                DefaultToPlacableTile((ushort)468, 9);
+                DefaultToPlaceableTile((ushort)468, 9);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4267:
-                DefaultToPlacableTile((ushort)467, 10);
+                DefaultToPlaceableTile((ushort)467, 10);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4268:
-                DefaultToPlacableTile((ushort)468, 10);
+                DefaultToPlaceableTile((ushort)468, 10);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
@@ -37400,7 +38785,7 @@ public class Item {
                 buffType = 213;
                 width = 26;
                 height = 28;
-                UseSound = SoundID.Item113;
+                UseSound = SoundID.Item83;
                 useAnimation = 36;
                 useTime = 36;
                 rare = 4;
@@ -37520,10 +38905,10 @@ public class Item {
                 height = 20;
                 break;
             case 4277:
-                DefaultToPlacableTile((ushort)507, 0);
+                DefaultToPlaceableTile((ushort)507, 0);
                 break;
             case 4278:
-                DefaultToPlacableTile((ushort)508, 0);
+                DefaultToPlaceableTile((ushort)508, 0);
                 break;
             case 4279:
                 DefaultToPlacableWall(242);
@@ -37540,7 +38925,7 @@ public class Item {
                 buffType = 216;
                 width = 26;
                 height = 28;
-                UseSound = SoundID.Item113;
+                UseSound = SoundID.Item44;
                 useAnimation = 36;
                 useTime = 36;
                 rare = 1;
@@ -37550,42 +38935,42 @@ public class Item {
                 summon = true;
                 break;
             case 4298:
-                DefaultToPlacableTile((ushort)90, 38);
+                DefaultToPlaceableTile((ushort)90, 38);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4299:
-                DefaultToPlacableTile((ushort)79, 38);
+                DefaultToPlaceableTile((ushort)79, 38);
                 SetShopValues(ItemRarityColor.White0, 2000);
                 maxStack = 99;
                 width = 28;
                 height = 20;
                 break;
             case 4300:
-                DefaultToPlacableTile((ushort)101, 39);
+                DefaultToPlaceableTile((ushort)101, 39);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4301:
-                DefaultToPlacableTile((ushort)88, 38);
+                DefaultToPlaceableTile((ushort)88, 38);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4302:
-                DefaultToPlacableTile((ushort)100, 38);
+                DefaultToPlaceableTile((ushort)100, 38);
                 SetShopValues(ItemRarityColor.White0, 1500);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4303:
-                DefaultToPlacableTile((ushort)33, 37);
+                DefaultToPlaceableTile((ushort)33, 37);
                 SetShopValues(ItemRarityColor.White0, 0);
                 maxStack = 99;
                 width = 8;
@@ -37594,90 +38979,90 @@ public class Item {
                 noWet = true;
                 break;
             case 4304:
-                DefaultToPlacableTile((ushort)15, 43);
+                DefaultToPlaceableTile((ushort)15, 43);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 30;
                 break;
             case 4305:
-                DefaultToPlacableTile((ushort)34, 44);
+                DefaultToPlaceableTile((ushort)34, 44);
                 SetShopValues(ItemRarityColor.White0, 3000);
                 maxStack = 99;
                 width = 26;
                 height = 26;
                 break;
             case 4306:
-                DefaultToPlacableTile((ushort)104, 39);
+                DefaultToPlaceableTile((ushort)104, 39);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4307:
-                DefaultToPlacableTile((ushort)10, 43);
+                DefaultToPlaceableTile((ushort)10, 43);
                 SetShopValues(ItemRarityColor.White0, 200);
                 maxStack = 99;
                 width = 14;
                 height = 28;
                 break;
             case 4308:
-                DefaultToPlacableTile((ushort)93, 38);
+                DefaultToPlaceableTile((ushort)93, 38);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 10;
                 height = 24;
                 break;
             case 4309:
-                DefaultToPlacableTile((ushort)42, 44);
+                DefaultToPlaceableTile((ushort)42, 44);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 28;
                 break;
             case 4310:
-                DefaultToPlacableTile((ushort)87, 38);
+                DefaultToPlaceableTile((ushort)87, 38);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4311:
-                DefaultToPlacableTile((ushort)19, 42);
+                DefaultToPlaceableTile((ushort)19, 42);
                 SetShopValues(ItemRarityColor.White0, 0);
                 width = 8;
                 height = 10;
                 break;
             case 4312:
-                DefaultToPlacableTile((ushort)172, 39);
+                DefaultToPlaceableTile((ushort)172, 39);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4313:
-                DefaultToPlacableTile((ushort)89, 41);
+                DefaultToPlaceableTile((ushort)89, 41);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4314:
-                DefaultToPlacableTile((ushort)469, 7);
+                DefaultToPlaceableTile((ushort)469, 7);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 26;
                 height = 20;
                 break;
             case 4315:
-                DefaultToPlacableTile((ushort)18, 39);
+                DefaultToPlaceableTile((ushort)18, 39);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 28;
                 height = 14;
                 break;
             case 4316:
-                DefaultToPlacableTile((ushort)497, 37);
+                DefaultToPlaceableTile((ushort)497, 37);
                 maxStack = 99;
                 value = 150;
                 break;
@@ -37696,7 +39081,7 @@ public class Item {
                 height = 20;
                 break;
             case 4318:
-                DefaultToPlacableTile((ushort)509, 0);
+                DefaultToPlaceableTile((ushort)509, 0);
                 width = 22;
                 height = 32;
                 rare = 9;
@@ -37774,7 +39159,7 @@ public class Item {
                 value = sellPrice(0, 2);
                 break;
             case 4326:
-                DefaultToPlacableTile((ushort)520, 0);
+                DefaultToPlaceableTile((ushort)520, 0);
                 maxStack = 99;
                 value = 150;
                 break;
@@ -37784,13 +39169,13 @@ public class Item {
             case 4330:
             case 4331:
             case 4332:
-                DefaultToPlacableTile((ushort)(type - 4327 + 521));
+                DefaultToPlaceableTile((ushort)(type - 4327 + 521));
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4333:
-                DefaultToPlacableTile((ushort)527, 0);
+                DefaultToPlaceableTile((ushort)527, 0);
                 value = sellPrice(0, 10);
                 rare = 3;
                 maxStack = 99;
@@ -37822,7 +39207,7 @@ public class Item {
                 SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 1));
                 break;
             case 4342:
-                DefaultToPlacableTile((ushort)105, 78);
+                DefaultToPlaceableTile((ushort)105, 78);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 0, 60));
                 maxStack = 99;
                 width = 20;
@@ -37880,13 +39265,13 @@ public class Item {
             case 4351:
             case 4352:
             case 4353:
-                DefaultToPlacableTile(179 + type - 4349);
+                DefaultToPlaceableTile(179 + type - 4349);
                 break;
             case 4354:
-                DefaultToPlacableTile((ushort)381, 0);
+                DefaultToPlaceableTile((ushort)381, 0);
                 break;
             case 4355:
-                DefaultToPlacableTile((ushort)531, 0);
+                DefaultToPlaceableTile((ushort)531, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 0, 60));
                 maxStack = 99;
                 width = 20;
@@ -37908,7 +39293,7 @@ public class Item {
                 height = 20;
                 break;
             case 4360:
-                DefaultToPlacableTile((ushort)105, 77);
+                DefaultToPlaceableTile((ushort)105, 77);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 0, 60));
                 maxStack = 99;
                 width = 20;
@@ -37937,7 +39322,7 @@ public class Item {
                 bait = 22;
                 break;
             case 4364:
-                DefaultToPlacableTile((ushort)532, 0);
+                DefaultToPlaceableTile((ushort)532, 0);
                 maxStack = 99;
                 width = 20;
                 height = 20;
@@ -37979,28 +39364,28 @@ public class Item {
                 height = 12;
                 break;
             case 4376:
-                DefaultToPlacableTile((ushort)533, 0);
+                DefaultToPlaceableTile((ushort)533, 0);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4377:
-                DefaultToPlacableTile((ushort)534, 0);
+                DefaultToPlaceableTile((ushort)534, 0);
                 rare = 1;
                 break;
             case 4378:
-                DefaultToPlacableTile((ushort)536, 0);
+                DefaultToPlaceableTile((ushort)536, 0);
                 rare = 1;
                 break;
             case 4389:
-                DefaultToPlacableTile((ushort)539, 0);
+                DefaultToPlaceableTile((ushort)539, 0);
                 rare = 1;
                 break;
             case 4379:
                 DefaultTokite(771);
                 break;
             case 4380:
-                DefaultToPlacableTile((ushort)538, 0);
+                DefaultToPlaceableTile((ushort)538, 0);
                 maxStack = 99;
                 break;
             case 4382:
@@ -38033,13 +39418,13 @@ public class Item {
                 DefaultToTorch(21);
                 break;
             case 4390:
-                DefaultToPlacableTile((ushort)484, 0);
+                DefaultToPlaceableTile((ushort)484, 0);
                 break;
             case 4391:
-                DefaultToPlacableTile((ushort)162, 0);
+                DefaultToPlaceableTile((ushort)162, 0);
                 break;
             case 4392:
-                DefaultToPlacableTile((ushort)541, 0);
+                DefaultToPlaceableTile((ushort)541, 0);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 0, 10));
                 break;
             case 4393:
@@ -38053,25 +39438,25 @@ public class Item {
                 height = 12;
                 break;
             case 4396:
-                DefaultToPlacableTile((ushort)542, 0);
+                DefaultToPlaceableTile((ushort)542, 0);
                 maxStack = 99;
                 break;
             case 4397:
-                DefaultToPlacableTile((ushort)105, 76);
+                DefaultToPlaceableTile((ushort)105, 76);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 0, 60));
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4398:
-                DefaultToPlacableTile((ushort)543, 0);
+                DefaultToPlaceableTile((ushort)543, 0);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 value = sellPrice(0, 0, 20);
                 break;
             case 4399:
-                DefaultToPlacableTile((ushort)544, 0);
+                DefaultToPlaceableTile((ushort)544, 0);
                 value = sellPrice(0, 10);
                 rare = 3;
                 maxStack = 99;
@@ -38112,7 +39497,7 @@ public class Item {
             case 4406:
             case 4407:
             case 4408:
-                DefaultToPlacableTile((ushort)376, 18 + type - 4405);
+                DefaultToPlaceableTile((ushort)376, 18 + type - 4405);
                 SetShopValues(ItemRarityColor.Green2, sellPrice(0, 1));
                 maxStack = 99;
                 break;
@@ -38134,13 +39519,13 @@ public class Item {
                 height = 22;
                 break;
             case 4413:
-                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 5));
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 3));
                 maxStack = 999;
                 width = 22;
                 height = 22;
                 break;
             case 4414:
-                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 25));
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 15));
                 maxStack = 999;
                 width = 22;
                 height = 22;
@@ -38161,26 +39546,26 @@ public class Item {
                 bait = 50;
                 break;
             case 4415:
-                DefaultToPlacableTile((ushort)10, 44);
+                DefaultToPlaceableTile((ushort)10, 44);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 0, 40));
                 maxStack = 99;
                 width = 14;
                 height = 28;
                 break;
             case 4416:
-                DefaultToPlacableTile((ushort)19, 43);
+                DefaultToPlaceableTile((ushort)19, 43);
                 SetShopValues(ItemRarityColor.White0, 0);
                 width = 8;
                 height = 10;
                 break;
             case 4417:
-                DefaultToPlacableTile((ushort)207, 9);
+                DefaultToPlaceableTile((ushort)207, 9);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 4));
                 width = 8;
                 height = 10;
                 break;
             case 4420:
-                DefaultToPlacableTile((ushort)545, 0);
+                DefaultToPlaceableTile((ushort)545, 0);
                 SetShopValues(ItemRarityColor.White0, buyPrice(0, 5));
                 maxStack = 99;
                 width = 20;
@@ -38190,7 +39575,7 @@ public class Item {
                 DefaultToMusicBox(50);
                 break;
             case 4422:
-                DefaultToPlacableTile((ushort)546, 0);
+                DefaultToPlaceableTile((ushort)546, 0);
                 break;
             case 4423:
                 useStyle = 1;
@@ -38231,51 +39616,51 @@ public class Item {
                 SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 50));
                 break;
             case 4430:
-                DefaultToPlacableTile((ushort)547, 0);
+                DefaultToPlaceableTile((ushort)547, 0);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4431:
-                DefaultToPlacableTile((ushort)547, 1);
+                DefaultToPlaceableTile((ushort)547, 1);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4432:
-                DefaultToPlacableTile((ushort)547, 2);
+                DefaultToPlaceableTile((ushort)547, 2);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4433:
-                DefaultToPlacableTile((ushort)547, 3);
+                DefaultToPlaceableTile((ushort)547, 3);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4434:
-                DefaultToPlacableTile((ushort)547, 4);
+                DefaultToPlaceableTile((ushort)547, 4);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4435:
-                DefaultToPlacableTile((ushort)548, 0);
+                DefaultToPlaceableTile((ushort)548, 0);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4436:
-                DefaultToPlacableTile((ushort)548, 1);
+                DefaultToPlaceableTile((ushort)548, 1);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4437:
-                DefaultToPlacableTile((ushort)548, 2);
+                DefaultToPlaceableTile((ushort)548, 2);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4438:
-                DefaultToPlacableTile((ushort)548, 3);
+                DefaultToPlaceableTile((ushort)548, 3);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4439:
-                DefaultToPlacableTile((ushort)548, 4);
+                DefaultToPlaceableTile((ushort)548, 4);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4440:
-                DefaultToPlacableTile((ushort)548, 5);
+                DefaultToPlaceableTile((ushort)548, 5);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4441:
-                DefaultToPlacableTile((ushort)548, 6);
+                DefaultToPlaceableTile((ushort)548, 6);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 3));
                 break;
             case 4442:
@@ -38465,18 +39850,18 @@ public class Item {
                 value = sellPrice(0, 0, 10);
                 break;
             case 4466:
-                DefaultToPlacableTile((ushort)105, 79);
+                DefaultToPlaceableTile((ushort)105, 79);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 0, 60));
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4461:
-                DefaultToPlacableTile((ushort)550, 0);
+                DefaultToPlaceableTile((ushort)550, 0);
                 maxStack = 99;
                 break;
             case 4462:
-                DefaultToPlacableTile((ushort)551, 0);
+                DefaultToPlaceableTile((ushort)551, 0);
                 maxStack = 99;
                 break;
             case 4467:
@@ -38484,19 +39869,19 @@ public class Item {
                 SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 1));
                 break;
             case 4473:
-                DefaultToPlacableTile((ushort)553, 0);
+                DefaultToPlaceableTile((ushort)553, 0);
                 maxStack = 99;
                 break;
             case 4474:
-                DefaultToPlacableTile((ushort)554, 0);
+                DefaultToPlaceableTile((ushort)554, 0);
                 maxStack = 99;
                 break;
             case 4475:
-                DefaultToPlacableTile((ushort)555, 0);
+                DefaultToPlaceableTile((ushort)555, 0);
                 maxStack = 99;
                 break;
             case 4476:
-                DefaultToPlacableTile((ushort)556, 0);
+                DefaultToPlaceableTile((ushort)556, 0);
                 maxStack = 99;
                 value = sellPrice(0, 10);
                 rare = 3;
@@ -38568,7 +39953,7 @@ public class Item {
                 value = sellPrice(0, 0, 15);
                 break;
             case 4481:
-                DefaultToPlacableTile((ushort)558, 0);
+                DefaultToPlaceableTile((ushort)558, 0);
                 maxStack = 99;
                 break;
             case 4482:
@@ -38577,7 +39962,7 @@ public class Item {
                 rare = 3;
                 break;
             case 4483:
-                DefaultToPlacableTile((ushort)559, 0);
+                DefaultToPlaceableTile((ushort)559, 0);
                 value = sellPrice(0, 10);
                 rare = 3;
                 maxStack = 99;
@@ -38693,7 +40078,7 @@ public class Item {
             case 4599:
             case 4600:
             case 4601:
-                DefaultToPlacableTile((ushort)560, type - 4599);
+                DefaultToPlaceableTile((ushort)560, type - 4599);
                 SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 1));
                 maxStack = 99;
                 break;
@@ -38749,42 +40134,42 @@ public class Item {
                 SetShopValues(ItemRarityColor.Orange3, buyPrice(1));
                 break;
             case 4566:
-                DefaultToPlacableTile((ushort)90, 39);
+                DefaultToPlaceableTile((ushort)90, 39);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4567:
-                DefaultToPlacableTile((ushort)79, 39);
+                DefaultToPlaceableTile((ushort)79, 39);
                 SetShopValues(ItemRarityColor.White0, 2000);
                 maxStack = 99;
                 width = 28;
                 height = 20;
                 break;
             case 4568:
-                DefaultToPlacableTile((ushort)101, 40);
+                DefaultToPlaceableTile((ushort)101, 40);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4569:
-                DefaultToPlacableTile((ushort)88, 39);
+                DefaultToPlaceableTile((ushort)88, 39);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4570:
-                DefaultToPlacableTile((ushort)100, 39);
+                DefaultToPlaceableTile((ushort)100, 39);
                 SetShopValues(ItemRarityColor.White0, 1500);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4571:
-                DefaultToPlacableTile((ushort)33, 38);
+                DefaultToPlaceableTile((ushort)33, 38);
                 SetShopValues(ItemRarityColor.White0, 0);
                 maxStack = 99;
                 width = 8;
@@ -38793,119 +40178,119 @@ public class Item {
                 noWet = true;
                 break;
             case 4572:
-                DefaultToPlacableTile((ushort)15, 44);
+                DefaultToPlaceableTile((ushort)15, 44);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 30;
                 break;
             case 4573:
-                DefaultToPlacableTile((ushort)34, 45);
+                DefaultToPlaceableTile((ushort)34, 45);
                 SetShopValues(ItemRarityColor.White0, 2000);
                 maxStack = 99;
                 width = 26;
                 height = 26;
                 break;
             case 4574:
-                DefaultToPlacableTile((ushort)467, 11);
+                DefaultToPlaceableTile((ushort)467, 11);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4575:
-                DefaultToPlacableTile((ushort)104, 40);
+                DefaultToPlaceableTile((ushort)104, 40);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4576:
-                DefaultToPlacableTile((ushort)10, 45);
+                DefaultToPlaceableTile((ushort)10, 45);
                 SetShopValues(ItemRarityColor.White0, 200);
                 maxStack = 99;
                 width = 14;
                 height = 28;
                 break;
             case 4577:
-                DefaultToPlacableTile((ushort)93, 39);
+                DefaultToPlaceableTile((ushort)93, 39);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 10;
                 height = 24;
                 break;
             case 4578:
-                DefaultToPlacableTile((ushort)42, 45);
+                DefaultToPlaceableTile((ushort)42, 45);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 12;
                 height = 28;
                 break;
             case 4579:
-                DefaultToPlacableTile((ushort)87, 39);
+                DefaultToPlaceableTile((ushort)87, 39);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4580:
-                DefaultToPlacableTile((ushort)19, 44);
+                DefaultToPlaceableTile((ushort)19, 44);
                 SetShopValues(ItemRarityColor.White0, 0);
                 width = 8;
                 height = 10;
                 break;
             case 4581:
-                DefaultToPlacableTile((ushort)172, 40);
+                DefaultToPlaceableTile((ushort)172, 40);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4582:
-                DefaultToPlacableTile((ushort)89, 42);
+                DefaultToPlaceableTile((ushort)89, 42);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4583:
-                DefaultToPlacableTile((ushort)469, 8);
+                DefaultToPlaceableTile((ushort)469, 8);
                 SetShopValues(ItemRarityColor.White0, 300);
                 maxStack = 99;
                 width = 26;
                 height = 20;
                 break;
             case 4584:
-                DefaultToPlacableTile((ushort)18, 40);
+                DefaultToPlaceableTile((ushort)18, 40);
                 SetShopValues(ItemRarityColor.White0, 150);
                 maxStack = 99;
                 width = 28;
                 height = 14;
                 break;
             case 4586:
-                DefaultToPlacableTile((ushort)497, 38);
+                DefaultToPlaceableTile((ushort)497, 38);
                 maxStack = 99;
                 value = 150;
                 break;
             case 4585:
-                DefaultToPlacableTile((ushort)468, 11);
+                DefaultToPlaceableTile((ushort)468, 11);
                 SetShopValues(ItemRarityColor.White0, 500);
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4554:
-                DefaultToPlacableTile((ushort)561, 0);
+                DefaultToPlaceableTile((ushort)561, 0);
                 break;
             case 4564:
-                DefaultToPlacableTile((ushort)562, 0);
+                DefaultToPlaceableTile((ushort)562, 0);
                 SetShopValues(ItemRarityColor.White0, buyPrice(0, 0, 1));
                 break;
             case 4565:
                 DefaultToPlacableWall(312);
                 break;
             case 4547:
-                DefaultToPlacableTile((ushort)563, 0);
+                DefaultToPlaceableTile((ushort)563, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 0, 20));
                 break;
             case 4548:
@@ -38920,7 +40305,7 @@ public class Item {
                 buffType = 263;
                 width = 26;
                 height = 28;
-                UseSound = SoundID.Item113;
+                UseSound = SoundID.Item44;
                 useAnimation = 36;
                 useTime = 36;
                 rare = 8;
@@ -38999,14 +40384,14 @@ public class Item {
                 value = sellPrice(0, 0, 50);
                 break;
             case 4553:
-                DefaultToPlacableTile((ushort)564, 0);
+                DefaultToPlaceableTile((ushort)564, 0);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 2));
                 break;
             case 4551:
                 DefaultToVanitypet(821, 261);
                 break;
             case 4609:
-                DefaultToPlacableTile((ushort)567, 0);
+                DefaultToPlaceableTile((ushort)567, 0);
                 SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 1));
                 break;
             case 4608:
@@ -39109,31 +40494,31 @@ public class Item {
                 placeStyle = 7 + (type - 4638);
                 break;
             case 4640:
-                DefaultToPlacableTile((ushort)67, 0);
+                DefaultToPlaceableTile((ushort)67, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 1));
                 break;
             case 4641:
-                DefaultToPlacableTile((ushort)66, 0);
+                DefaultToPlaceableTile((ushort)66, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 1));
                 break;
             case 4642:
-                DefaultToPlacableTile((ushort)63, 0);
+                DefaultToPlaceableTile((ushort)63, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 1));
                 break;
             case 4643:
-                DefaultToPlacableTile((ushort)65, 0);
+                DefaultToPlaceableTile((ushort)65, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 1));
                 break;
             case 4644:
-                DefaultToPlacableTile((ushort)64, 0);
+                DefaultToPlaceableTile((ushort)64, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 1));
                 break;
             case 4645:
-                DefaultToPlacableTile((ushort)68, 0);
+                DefaultToPlaceableTile((ushort)68, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 1));
                 break;
             case 4646:
-                DefaultToPlacableTile((ushort)566, 0);
+                DefaultToPlaceableTile((ushort)566, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 1));
                 break;
             case 4647:
@@ -39170,25 +40555,25 @@ public class Item {
                 value = sellPrice(0, 0, 50);
                 break;
             case 4655:
-                DefaultToPlacableTile((ushort)568, 0);
+                DefaultToPlaceableTile((ushort)568, 0);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4656:
-                DefaultToPlacableTile((ushort)569, 0);
+                DefaultToPlaceableTile((ushort)569, 0);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4657:
-                DefaultToPlacableTile((ushort)570, 0);
+                DefaultToPlaceableTile((ushort)570, 0);
                 maxStack = 99;
                 width = 20;
                 height = 20;
                 break;
             case 4552:
-                DefaultToPlacableTile((ushort)565, 0);
+                DefaultToPlaceableTile((ushort)565, 0);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 4));
                 break;
             case 4658:
@@ -39527,14 +40912,14 @@ public class Item {
                 melee = true;
                 break;
             case 4712:
-                DefaultToPlacableTile((ushort)467, 12);
+                DefaultToPlaceableTile((ushort)467, 12);
                 SetShopValues(ItemRarityColor.White0, buyPrice(0, 0, 25));
                 maxStack = 99;
                 width = 26;
                 height = 22;
                 break;
             case 4713:
-                DefaultToPlacableTile((ushort)468, 12);
+                DefaultToPlaceableTile((ushort)468, 12);
                 SetShopValues(ItemRarityColor.White0, buyPrice(0, 0, 5));
                 maxStack = 99;
                 width = 26;
@@ -39577,7 +40962,7 @@ public class Item {
             case 4719:
             case 4720:
             case 4721:
-                DefaultToPlacableTile(574 + type - 4717);
+                DefaultToPlaceableTile(574 + type - 4717);
                 break;
             case 4722:
                 useStyle = 5;
@@ -39707,7 +41092,7 @@ public class Item {
                 value = 400000;
                 break;
             case 4731:
-                DefaultToPlacableTile((ushort)497, 39);
+                DefaultToPlaceableTile((ushort)497, 39);
                 maxStack = 99;
                 value = 150;
                 rare = 8;
@@ -39919,7 +41304,7 @@ public class Item {
                 buffType = 271;
                 width = 26;
                 height = 28;
-                UseSound = SoundID.Item113;
+                UseSound = SoundID.Item44;
                 useAnimation = 36;
                 useTime = 36;
                 rare = 5;
@@ -40398,7 +41783,7 @@ public class Item {
                 bait = 15;
                 break;
             case 4846:
-                DefaultToPlacableTile((ushort)580, 0);
+                DefaultToPlaceableTile((ushort)580, 0);
                 maxStack = 99;
                 break;
             case 4847:
@@ -40409,7 +41794,7 @@ public class Item {
                 bait = 25;
                 break;
             case 4848:
-                DefaultToPlacableTile((ushort)581, 0);
+                DefaultToPlaceableTile((ushort)581, 0);
                 maxStack = 99;
                 break;
             case 4849:
@@ -40420,35 +41805,35 @@ public class Item {
                 bait = 35;
                 break;
             case 4850:
-                DefaultToPlacableTile((ushort)582, 0);
+                DefaultToPlaceableTile((ushort)582, 0);
                 maxStack = 99;
                 break;
             case 4851:
-                DefaultToPlacableTile((ushort)590, 0);
+                DefaultToPlaceableTile((ushort)590, 0);
                 value = sellPrice(0, 0, 7, 50);
                 break;
             case 4852:
-                DefaultToPlacableTile((ushort)590, 1);
+                DefaultToPlaceableTile((ushort)590, 1);
                 value = sellPrice(0, 0, 3, 75);
                 break;
             case 4853:
-                DefaultToPlacableTile((ushort)590, 2);
+                DefaultToPlaceableTile((ushort)590, 2);
                 value = sellPrice(0, 0, 11, 25);
                 break;
             case 4854:
-                DefaultToPlacableTile((ushort)590, 3);
+                DefaultToPlaceableTile((ushort)590, 3);
                 value = sellPrice(0, 0, 15);
                 break;
             case 4855:
-                DefaultToPlacableTile((ushort)590, 4);
+                DefaultToPlaceableTile((ushort)590, 4);
                 value = sellPrice(0, 0, 22, 50);
                 break;
             case 4856:
-                DefaultToPlacableTile((ushort)590, 5);
+                DefaultToPlaceableTile((ushort)590, 5);
                 value = sellPrice(0, 0, 30);
                 break;
             case 4857:
-                DefaultToPlacableTile((ushort)590, 6);
+                DefaultToPlaceableTile((ushort)590, 6);
                 value = sellPrice(0, 0, 30);
                 break;
             case 4858:
@@ -40460,16 +41845,16 @@ public class Item {
             case 4864:
             case 4865:
             case 4866:
-                DefaultToPlacableTile((ushort)591, type - 4858);
+                DefaultToPlaceableTile((ushort)591, type - 4858);
                 value = sellPrice(0, 0, 25);
                 break;
             case 4867:
-                DefaultToPlacableTile((ushort)592, 0);
+                DefaultToPlaceableTile((ushort)592, 0);
                 value = sellPrice(0, 0, 25);
                 break;
             case 4868:
             case 4869:
-                DefaultToPlacableTile(593 + (type - 4868));
+                DefaultToPlaceableTile(593 + (type - 4868));
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 2));
                 break;
             case 4870:
@@ -40485,7 +41870,7 @@ public class Item {
                 rare = 1;
                 break;
             case 4871:
-                DefaultToPlacableTile((ushort)595, 0);
+                DefaultToPlaceableTile((ushort)595, 0);
                 value = buyPrice(0, 1);
                 break;
             case 4872:
@@ -40515,16 +41900,16 @@ public class Item {
                 canBePlacedInVanityRegardlessOfConditions = true;
                 break;
             case 4876:
-                DefaultToPlacableTile((ushort)597, 0);
+                DefaultToPlaceableTile((ushort)597, 0);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 10));
                 break;
             case 4875:
-                DefaultToPlacableTile((ushort)597, 1);
+                DefaultToPlaceableTile((ushort)597, 1);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 10));
                 break;
             case 4877:
             case 4878:
-                DefaultToPlacableTile((ushort)376, 22 + type - 4877);
+                DefaultToPlaceableTile((ushort)376, 22 + type - 4877);
                 SetShopValues(ItemRarityColor.Green2, sellPrice(0, 1));
                 maxStack = 99;
                 break;
@@ -40536,7 +41921,7 @@ public class Item {
                 value = buyPrice(0, 2);
                 break;
             case 4880:
-                DefaultToPlacableTile((ushort)598, 0);
+                DefaultToPlaceableTile((ushort)598, 0);
                 maxStack = 99;
                 width = 20;
                 height = 20;
@@ -40560,7 +41945,7 @@ public class Item {
             case 4893:
             case 4894:
             case 4895:
-                DefaultToPlacableTile(599 + (type - 4882));
+                DefaultToPlaceableTile(599 + (type - 4882));
                 maxStack = 99;
                 break;
             case 4896:
@@ -40612,27 +41997,27 @@ public class Item {
                 value = 150000;
                 break;
             case 4902:
-                DefaultToPlacableTile((ushort)548, 7);
+                DefaultToPlaceableTile((ushort)548, 7);
                 SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 3));
                 break;
             case 4903:
-                DefaultToPlacableTile((ushort)548, 8);
+                DefaultToPlaceableTile((ushort)548, 8);
                 SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 3));
                 break;
             case 4904:
-                DefaultToPlacableTile((ushort)613, 0);
+                DefaultToPlaceableTile((ushort)613, 0);
                 SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 3));
                 break;
             case 4905:
-                DefaultToPlacableTile((ushort)613, 1);
+                DefaultToPlaceableTile((ushort)613, 1);
                 SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 3));
                 break;
             case 4906:
-                DefaultToPlacableTile((ushort)614, 0);
+                DefaultToPlaceableTile((ushort)614, 0);
                 SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 3));
                 break;
             case 4907:
-                DefaultToPlacableTile((ushort)615, 0);
+                DefaultToPlaceableTile((ushort)615, 0);
                 value = buyPrice(0, 1);
                 break;
             case 4908:
@@ -40692,31 +42077,31 @@ public class Item {
                 ranged = true;
                 break;
             case 4916:
-                DefaultToPlacableTile((ushort)597, 2);
+                DefaultToPlaceableTile((ushort)597, 2);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 10));
                 break;
             case 4917:
-                DefaultToPlacableTile((ushort)597, 3);
+                DefaultToPlaceableTile((ushort)597, 3);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 10));
                 break;
             case 4918:
-                DefaultToPlacableTile((ushort)597, 4);
+                DefaultToPlaceableTile((ushort)597, 4);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 10));
                 break;
             case 4919:
-                DefaultToPlacableTile((ushort)597, 5);
+                DefaultToPlaceableTile((ushort)597, 5);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 10));
                 break;
             case 4920:
-                DefaultToPlacableTile((ushort)597, 6);
+                DefaultToPlaceableTile((ushort)597, 6);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 10));
                 break;
             case 4921:
-                DefaultToPlacableTile((ushort)597, 7);
+                DefaultToPlaceableTile((ushort)597, 7);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 10));
                 break;
             case 4922:
-                DefaultToPlacableTile((ushort)207, 8);
+                DefaultToPlaceableTile((ushort)207, 8);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 4));
                 width = 8;
                 height = 10;
@@ -40768,13 +42153,13 @@ public class Item {
             case 4948:
             case 4949:
             case 4950:
-                DefaultToPlacableTile((ushort)617, type - 4924);
+                DefaultToPlaceableTile((ushort)617, type - 4924);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 5));
                 rare = -13;
                 maxStack = 99;
                 break;
             case 4951:
-                DefaultToPlacableTile((ushort)597, 8);
+                DefaultToPlaceableTile((ushort)597, 8);
                 SetShopValues(ItemRarityColor.Cyan9, buyPrice(1));
                 break;
             case 4954:
@@ -40896,14 +42281,14 @@ public class Item {
                 height = 12;
                 break;
             case 4962:
-                DefaultToPlacableTile((ushort)618, 0);
+                DefaultToPlaceableTile((ushort)618, 0);
                 break;
             case 4963:
-                DefaultToPlacableTile((ushort)619, 0);
+                DefaultToPlaceableTile((ushort)619, 0);
                 maxStack = 99;
                 break;
             case 4964:
-                DefaultToPlacableTile((ushort)620, 0);
+                DefaultToPlaceableTile((ushort)620, 0);
                 maxStack = 99;
                 break;
             case 4965:
@@ -41053,7 +42438,7 @@ public class Item {
                 DefaultToMusicBox(56);
                 break;
             case 4993:
-                DefaultToPlacableTile((ushort)89, 43);
+                DefaultToPlaceableTile((ushort)89, 43);
                 SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 50));
                 maxStack = 99;
                 width = 20;
@@ -41116,7 +42501,7 @@ public class Item {
                 break;
             case 5002:
             case 5003:
-                DefaultToPlacableTile((ushort)376, 24 + type - 5002);
+                DefaultToPlaceableTile((ushort)376, 24 + type - 5002);
                 SetShopValues(ItemRarityColor.Green2, sellPrice(0, 1));
                 maxStack = 99;
                 break;
@@ -41129,7 +42514,7 @@ public class Item {
                 buffType = 322;
                 width = 26;
                 height = 28;
-                UseSound = SoundID.Item113;
+                UseSound = SoundID.Item82;
                 useAnimation = 36;
                 useTime = 36;
                 rare = 5;
@@ -41158,7 +42543,7 @@ public class Item {
                 vanity = true;
                 break;
             case 5008:
-                DefaultToPlacableTile((ushort)622, 0);
+                DefaultToPlaceableTile((ushort)622, 0);
                 SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 2));
                 break;
             case 5001:
@@ -41459,11 +42844,11 @@ public class Item {
                 SetShopValues(ItemRarityColor.Pink5, sellPrice(0, 10));
                 break;
             case 5066:
-                DefaultToPlacableTile((ushort)444, 0);
+                DefaultToPlaceableTile((ushort)444, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 0, 50));
                 break;
             case 5067:
-                DefaultToPlacableTile((ushort)485, 0);
+                DefaultToPlaceableTile((ushort)485, 0);
                 SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 0, 50));
                 break;
             case 5068:
@@ -41483,7 +42868,7 @@ public class Item {
                 buffType = 325;
                 width = 26;
                 height = 28;
-                UseSound = SoundID.Item113;
+                UseSound = SoundID.Item44;
                 useAnimation = 36;
                 useTime = 36;
                 rare = 3;
@@ -41573,19 +42958,19 @@ public class Item {
                 SetShopValues(ItemRarityColor.Pink5, sellPrice(0, 10));
                 break;
             case 5081:
-                DefaultToPlacableTile((ushort)623, 0);
+                DefaultToPlaceableTile((ushort)623, 0);
                 SetShopValues(ItemRarityColor.Pink5, buyPrice(0, 10));
                 break;
             case 5082:
-                DefaultToPlacableTile((ushort)623, 1);
+                DefaultToPlaceableTile((ushort)623, 1);
                 SetShopValues(ItemRarityColor.Pink5, buyPrice(0, 10));
                 break;
             case 5083:
-                DefaultToPlacableTile((ushort)623, 2);
+                DefaultToPlaceableTile((ushort)623, 2);
                 SetShopValues(ItemRarityColor.Pink5, buyPrice(0, 10));
                 break;
             case 5084:
-                DefaultToPlacableTile((ushort)623, 3);
+                DefaultToPlaceableTile((ushort)623, 3);
                 SetShopValues(ItemRarityColor.Pink5, buyPrice(0, 10));
                 break;
             case 5085:
@@ -41631,88 +43016,300 @@ public class Item {
                 placeStyle = 74;
                 break;
             case 5088:
-                width = 16;
-                height = 16;
-                maxStack = 999;
-                value = 500;
+                DefaultToVanitypet(956, 327);
+                SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 25));
+                value = buyPrice(0, 25);
                 break;
             case 5089:
-                UseSound = SoundID.Item3;
-                useStyle = 9;
-                useTurn = true;
-                useAnimation = 17;
-                useTime = 17;
-                maxStack = 30;
-                consumable = true;
-                width = 14;
-                height = 24;
-                buffType = 327;
-                buffTime = 28800;
-                value = 1000;
-                rare = 2;
+                DefaultToVanitypet(957, 328);
+                SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 25));
+                value = buyPrice(0, 25);
                 break;
             case 5090:
+                DefaultToVanitypet(958, 329);
+                value = buyPrice(0, 25);
+                rare = -13;
+                break;
+            case 5091:
+                DefaultToVanitypet(959, 330);
+                SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 5));
+                break;
+            case 5094:
+                useStyle = 1;
+                useTurn = false;
+                useAnimation = 23;
+                useTime = 23;
+                width = 24;
+                height = 28;
+                damage = 19;
+                knockBack = 5.5f;
+                UseSound = SoundID.Item1;
+                scale = 1.2f;
+                SetShopValues(ItemRarityColor.Green2, sellPrice(0, 0, 50));
+                melee = true;
+                break;
+            case 5095:
+                useStyle = 1;
+                useTurn = true;
+                autoReuse = true;
+                useAnimation = 17;
+                useTime = 17;
+                width = 24;
+                height = 28;
+                damage = 26;
+                knockBack = 5f;
+                UseSound = SoundID.Item1;
+                scale = 1.2f;
+                SetShopValues(ItemRarityColor.Green2, sellPrice(0, 1, 50));
+                melee = true;
+                axe = 30;
+                crit = 10;
+                break;
+            case 5096:
+                useStyle = 1;
+                useTurn = true;
+                autoReuse = true;
+                useAnimation = 20;
+                useTime = 20;
+                width = 24;
+                height = 28;
+                damage = 57;
+                knockBack = 6.5f;
+                UseSound = SoundID.Item1;
+                scale = 1.2f;
+                SetShopValues(ItemRarityColor.LightRed4, sellPrice(0, 1));
+                melee = true;
+                break;
+            case 5097:
+                useStyle = 1;
+                useTurn = false;
+                useAnimation = 45;
+                useTime = 45;
+                width = 24;
+                height = 28;
+                damage = 31;
+                knockBack = 5.5f;
+                UseSound = SoundID.Item1;
+                scale = 1.15f;
+                SetShopValues(ItemRarityColor.Green2, sellPrice(0, 0, 25));
+                melee = true;
+                break;
+            case 5098:
+                DefaultToVanitypet(960, 331);
+                SetShopValues(ItemRarityColor.Orange3, buyPrice(0, 10));
+                break;
+            case 5099:
+                width = 18;
+                height = 14;
+                headSlot = 273;
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 1));
+                vanity = true;
+                break;
+            case 5100:
+                width = 18;
+                height = 14;
+                faceSlot = 19;
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 2));
+                accessory = true;
+                expert = true;
+                break;
+            case 5101:
+                width = 28;
+                height = 20;
+                headSlot = 275;
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 50));
+                vanity = true;
+                break;
+            case 5102:
+                width = 18;
+                height = 14;
+                bodySlot = 244;
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 40));
+                vanity = true;
+                break;
+            case 5103:
+                width = 18;
+                height = 14;
+                legSlot = 231;
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 40));
+                vanity = true;
+                break;
+            case 5104:
+            case 5105:
+            case 5106:
+                width = 18;
+                height = 14;
+                maxStack = 1;
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 1));
+                beardSlot = (sbyte)(2 + (type - 5104));
+                color = Main.player[Main.myPlayer].hairColor;
+                accessory = true;
+                vanity = true;
+                break;
+            case 5107:
+                DefaultToAccessory(26, 30);
+                neckSlot = 11;
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 1));
+                break;
+            case 5109:
+                width = 18;
+                height = 18;
+                headSlot = 276;
+                rare = 1;
+                value = sellPrice(0, 0, 75);
+                vanity = true;
+                break;
+            case 5108:
                 useStyle = 1;
                 useTurn = true;
                 useAnimation = 15;
                 useTime = 10;
                 autoReuse = true;
+                maxStack = 99;
+                consumable = true;
+                createTile = 240;
+                width = 30;
+                height = 30;
+                value = sellPrice(0, 1);
+                rare = 1;
+                placeStyle = 75;
+                break;
+            case 5110:
+                DefaultToPlaceableTile((ushort)617, 27);
+                SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 5));
+                rare = -13;
+                maxStack = 99;
+                break;
+            case 5111:
                 maxStack = 999;
                 consumable = true;
-                createTile = 624;
-                width = 12;
-                height = 12;
-                break;
-            case 5091:
-                useStyle = 1;
-                useTurn = false;
-                useAnimation = 21;
-                useTime = 21;
-                width = 16;
-                height = 16;
-                damage = 23;
-                knockBack = 7f;
-                UseSound = SoundID.Item1;
-                scale = 1f;
-                value = 1800;
-                melee = true;
-                break;
-            case 5092:
-                useStyle = 1;
-                useAnimation = 21;
-                useTime = 21;
-                autoReuse = true;
-                knockBack = 4.5f;
-                width = 44;
-                height = 48;
-                damage = 44;
-                scale = 1.15f;
-                UseSound = SoundID.Item1;
+                width = 24;
+                height = 24;
                 rare = 3;
-                value = sellPrice(0, 4);
-                melee = true;
+                expert = true;
                 break;
-            case 5093:
-                useStyle = 1;
-                useAnimation = 26;
-                useTime = 26;
-                autoReuse = true;
-                shoot = 157;
+            case 5112:
+                DefaultToMusicBox(86);
+                break;
+            case 5113:
+                DefaultToAccessory(26, 30);
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 1));
+                vanity = true;
+                canBePlacedInVanityRegardlessOfConditions = true;
+                break;
+            case 5114:
+                mana = 10;
+                damage = 6;
+                useStyle = 4;
                 shootSpeed = 10f;
-                knockBack = 4.75f;
-                width = 40;
-                height = 40;
-                damage = 110;
-                scale = 1.15f;
+                shoot = 970;
+                buffType = 335;
+                width = 26;
+                height = 28;
+                UseSound = SoundID.AbigailSummon;
+                useAnimation = 36;
+                useTime = 36;
+                rare = 3;
+                noMelee = true;
+                knockBack = 2f;
+                value = sellPrice(0, 0, 50);
+                summon = true;
+                break;
+            case 5115:
+                width = 18;
+                height = 14;
+                bodySlot = 245;
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 40));
+                vanity = true;
+                break;
+            case 5116:
+                width = 18;
+                height = 14;
+                legSlot = 232;
+                SetShopValues(ItemRarityColor.Blue1, sellPrice(0, 0, 40));
+                vanity = true;
+                break;
+            case 5117:
+                SetShopValues(ItemRarityColor.Green2, sellPrice(0, 1, 50));
+                autoReuse = true;
+                useStyle = 5;
+                useAnimation = 15;
+                useTime = 15;
+                width = 24;
+                height = 24;
+                shoot = 968;
+                UseSound = SoundID.Item61;
+                useAmmo = AmmoID.Bullet;
+                damage = 20;
+                shootSpeed = 14f;
+                knockBack = 1f;
+                ranged = true;
+                noMelee = true;
+                break;
+            case 5118:
+                SetShopValues(ItemRarityColor.Green2, sellPrice(0, 1, 50));
+                useStyle = 5;
+                useAnimation = 45;
+                useTime = 45;
+                width = 24;
+                height = 24;
+                shoot = 969;
+                UseSound = SoundID.Item66;
+                damage = 13;
+                shootSpeed = 1f;
+                knockBack = 1f;
+                magic = true;
+                noMelee = true;
+                mana = 30;
+                break;
+            case 5119:
+                SetShopValues(ItemRarityColor.Green2, sellPrice(0, 1, 50));
+                useStyle = 1;
+                shootSpeed = 14f;
+                shoot = 966;
+                damage = 24;
+                width = 18;
+                height = 20;
                 UseSound = SoundID.Item1;
-                rare = 8;
-                value = sellPrice(0, 10);
-                melee = true;
+                useAnimation = 30;
+                useTime = 30;
+                noMelee = true;
+                knockBack = 7.5f;
+                summon = true;
+                mana = 20;
+                sentry = true;
+                break;
+            case 5120:
+                SetShopValues(ItemRarityColor.Blue1, 0);
+                useStyle = 4;
+                width = 22;
+                height = 14;
+                consumable = true;
+                useAnimation = 45;
+                useTime = 45;
+                maxStack = 20;
+                break;
+            case 5121:
+            case 5122:
+            case 5123:
+            case 5124:
+                SetShopValues(ItemRarityColor.White0, sellPrice(0, 0, 20));
+                useStyle = 1;
+                useTurn = true;
+                useAnimation = 15;
+                useTime = 10;
+                autoReuse = true;
+                maxStack = 99;
+                consumable = true;
+                createTile = 242;
+                width = 30;
+                height = 30;
+                placeStyle = 46 + (type - 5121);
                 break;
         }
     }
 
-    private void DefaultToWhip(int projectileId, int dmg, float kb, float shootspeed, int animationTotalTime = 30) {
+    public void DefaultToWhip(int projectileId, int dmg, float kb, float shootspeed, int animationTotalTime = 30) {
         autoReuse = false;
         useStyle = 1;
         useAnimation = animationTotalTime;
@@ -41799,7 +43396,7 @@ public class Item {
         }
     }
 
-    private void DefaultToCapturedCritter(short npcIdToSpawnOnUse) {
+    public void DefaultToCapturedCritter(short npcIdToSpawnOnUse) {
         useStyle = 1;
         autoReuse = true;
         useTurn = true;
@@ -41813,7 +43410,7 @@ public class Item {
         makeNPC = npcIdToSpawnOnUse;
     }
 
-    private void DefaultToStaff(int projType, float pushForwardSpeed, int singleShotTime, int manaPerShot) {
+    public void DefaultToStaff(int projType, float pushForwardSpeed, int singleShotTime, int manaPerShot) {
         DefaultToMagicWeapon(projType, singleShotTime, pushForwardSpeed, hasAutoReuse: true);
         mana = manaPerShot;
         width = 40;
@@ -41821,7 +43418,7 @@ public class Item {
         UseSound = SoundID.Item43;
     }
 
-    private void DefaultToSpear(int projType, float pushForwardSpeed, int animationTime) {
+    public void DefaultToSpear(int projType, float pushForwardSpeed, int animationTime) {
         useStyle = 5;
         useAnimation = 31;
         useTime = 31;
@@ -41970,10 +43567,6 @@ public class Item {
                 DefaultToFood(22, 22, 206, 36000);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 1));
                 break;
-            case 4033:
-                DefaultToFood(22, 22, 206, 36000);
-                SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 1));
-                break;
             case 4035:
                 DefaultToFood(22, 22, 206, 64800);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 2, 50));
@@ -41997,6 +43590,14 @@ public class Item {
             case 4297:
                 DefaultToFood(22, 22, 206, 18000);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 1));
+                break;
+            case 5092:
+                DefaultToFood(22, 22, 206, 28800);
+                SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 0, 50));
+                break;
+            case 5093:
+                DefaultToFood(22, 22, 206, 28800);
+                SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 2));
                 break;
             case 4009:
                 DefaultToFood(22, 22, 26, 18000);
@@ -42140,6 +43741,10 @@ public class Item {
                 DefaultToFood(22, 22, 26, 54000, useGulpSound: true);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 1));
                 break;
+            case 4033:
+                DefaultToFood(22, 22, 26, 36000);
+                SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 1));
+                break;
             case 2266:
                 DefaultToFood(22, 22, 25, 14400, useGulpSound: true);
                 SetShopValues(ItemRarityColor.Blue1, buyPrice(0, 0, 5));
@@ -42164,13 +43769,13 @@ public class Item {
         rare = (int)(num / 4f);
     }
 
-    private void DefaultToMount(int mount) {
+    public void DefaultToMount(int mount) {
         width = 36;
         height = 26;
         mountType = mount;
     }
 
-    private void DefaultToPlacableWall(ushort wallToPlace) {
+    public void DefaultToPlacableWall(ushort wallToPlace) {
         useStyle = 1;
         useTurn = true;
         useAnimation = 15;
@@ -42183,20 +43788,20 @@ public class Item {
         height = 12;
     }
 
-    private void SetWeaponValues(int dmg, float knockback, int bonusCritChance = 0) {
+    public void SetWeaponValues(int dmg, float knockback, int bonusCritChance = 0) {
         damage = dmg;
         knockBack = knockback;
         crit = bonusCritChance;
     }
 
-    private void DefaultToBow(int singleShotTime, float shotVelocity, boolean hasAutoReuse = false) {
+    public void DefaultToBow(int singleShotTime, float shotVelocity, boolean hasAutoReuse = false) {
         DefaultToRangedWeapon(1, AmmoID.Arrow, singleShotTime, shotVelocity, hasAutoReuse);
         width = 14;
         height = 30;
         UseSound = SoundID.Item5;
     }
 
-    private void DefaultToMagicWeapon(int projType, int singleShotTime, float shotVelocity, boolean hasAutoReuse = false) {
+    public void DefaultToMagicWeapon(int projType, int singleShotTime, float shotVelocity, boolean hasAutoReuse = false) {
         autoReuse = hasAutoReuse;
         useStyle = 5;
         useAnimation = singleShotTime;
@@ -42207,7 +43812,7 @@ public class Item {
         magic = true;
     }
 
-    private void DefaultToRangedWeapon(int baseProjType, int ammoID, int singleShotTime, float shotVelocity, boolean hasAutoReuse = false) {
+    public void DefaultToRangedWeapon(int baseProjType, int ammoID, int singleShotTime, float shotVelocity, boolean hasAutoReuse = false) {
         autoReuse = hasAutoReuse;
         useStyle = 5;
         useAnimation = singleShotTime;
@@ -42219,7 +43824,7 @@ public class Item {
         ranged = true;
     }
 
-    private void DefaultToThrownWeapon(int baseProjType, int singleShotTime, float shotVelocity, boolean hasAutoReuse = false) {
+    public void DefaultToThrownWeapon(int baseProjType, int singleShotTime, float shotVelocity, boolean hasAutoReuse = false) {
         autoReuse = hasAutoReuse;
         useStyle = 1;
         useAnimation = singleShotTime;
@@ -42250,11 +43855,11 @@ public class Item {
         useTime = 10;
     }
 
-    private void DefaultToPlacableTile(int tileIDToPlace, int tileStyleToPlace = 0) {
-        DefaultToPlacableTile((ushort)tileIDToPlace, tileStyleToPlace);
+    public void DefaultToPlaceableTile(int tileIDToPlace, int tileStyleToPlace = 0) {
+        DefaultToPlaceableTile((ushort)tileIDToPlace, tileStyleToPlace);
     }
 
-    private void DefaultToPlacableTile(ushort tileIDToPlace, int tileStyleToPlace = 0) {
+    public void DefaultToPlaceableTile(ushort tileIDToPlace, int tileStyleToPlace = 0) {
         createTile = tileIDToPlace;
         placeStyle = tileStyleToPlace;
         width = 14;
@@ -42268,7 +43873,7 @@ public class Item {
         consumable = true;
     }
 
-    private void DefaultToGolfClub(int newwidth, int newheight) {
+    public void DefaultToGolfClub(int newwidth, int newheight) {
         width = newwidth;
         height = newheight;
         channel = true;
@@ -42281,7 +43886,7 @@ public class Item {
         noMelee = true;
     }
 
-    private void DefaultToLawnMower(int newwidth, int newheight) {
+    public void DefaultToLawnMower(int newwidth, int newheight) {
         width = newwidth;
         height = newheight;
         holdStyle = 1;
@@ -42292,7 +43897,7 @@ public class Item {
         autoReuse = true;
     }
 
-    private void DefaultToFood(int newwidth, int newheight, int foodbuff, int foodbuffduration, boolean useGulpSound = false, int animationTime = 17) {
+    public void DefaultToFood(int newwidth, int newheight, int foodbuff, int foodbuffduration, boolean useGulpSound = false, int animationTime = 17) {
         if (useGulpSound)
             UseSound = SoundID.Item3;
         else
@@ -42315,7 +43920,7 @@ public class Item {
         value = buyPrice(0, 0, 20);
     }
 
-    private void DefaultToHealingPotion(int newwidth, int newheight, int healingAmount, int animationTime = 17) {
+    public void DefaultToHealingPotion(int newwidth, int newheight, int healingAmount, int animationTime = 17) {
         UseSound = SoundID.Item3;
         useStyle = 9;
         useTurn = true;
@@ -42330,24 +43935,24 @@ public class Item {
         healLife = healingAmount;
     }
 
-    private void SetShopValues(ItemRarityColor rarity, int coinValue) {
+    public void SetShopValues(ItemRarityColor rarity, int coinValue) {
         rare = (int)rarity;
         value = coinValue;
     }
 
-    private void DefaultToHeadgear(int newwidth, int newheight, int helmetArtID) {
+    public void DefaultToHeadgear(int newwidth, int newheight, int helmetArtID) {
         width = newwidth;
         height = newheight;
         headSlot = helmetArtID;
     }
 
-    private void DefaultToAccessory(int newwidth = 24, int newheight = 24) {
+    public void DefaultToAccessory(int newwidth = 24, int newheight = 24) {
         width = newwidth;
         height = newheight;
         accessory = true;
     }
 
-    private void DefaultToGuitar(int newwidth = 24, int newheight = 24) {
+    public void DefaultToGuitar(int newwidth = 24, int newheight = 24) {
         width = newwidth;
         height = newheight;
         autoReuse = true;
@@ -42356,7 +43961,7 @@ public class Item {
         useAnimation = (useTime = 12);
     }
 
-    private void DefaultToMusicBox(int style) {
+    public void DefaultToMusicBox(int style) {
         useStyle = 1;
         useTurn = true;
         useAnimation = 15;
@@ -42389,7 +43994,7 @@ public class Item {
             playerIndexTheItemIsReservedFor = Main.myPlayer;
 
         ResetStats(Type);
-        if (type >= 5094)
+        if (type >= 5125)
             type = 0;
 
         if (type == 0) {
@@ -42568,7 +44173,7 @@ public class Item {
             material = ItemID.Sets.IsAMaterial[type];
 
         RebuildTooltip();
-        if (type > 0 && type < 5094 && ItemID.Sets.Deprecated[type]) {
+        if (type > 0 && type < 5125 && ItemID.Sets.Deprecated[type]) {
             netID = 0;
             type = 0;
             stack = 0;
@@ -42674,6 +44279,7 @@ public class Item {
         neckSlot = -1;
         faceSlot = -1;
         balloonSlot = -1;
+        beardSlot = -1;
         uniqueStack = false;
         favorited = false;
         type = Type;
@@ -42701,6 +44307,7 @@ public class Item {
             case 3862:
             case 4782:
             case 4957:
+            case 5111:
                 return Color.Lerp(newColor, Color.White, 0.4f);
             case 5043:
                 return new Color(255, 255, 255, newColor.A - alpha);
@@ -43609,7 +45216,7 @@ public class Item {
                 dust.noLight = true;
             }
         }
-        else if ((type >= 3318 && type <= 3332) || type == 3860 || type == 3862 || type == 3861 || type == 4782 || type == 4957) {
+        else if ((type >= 3318 && type <= 3332) || type == 3860 || type == 3862 || type == 3861 || type == 4782 || type == 4957 || type == 5111) {
             Lighting.AddLight((int)((position.X + (float)width) / 16f), (int)((position.Y + (float)(height / 2)) / 16f), 0.4f, 0.4f, 0.4f);
             if (timeSinceItemSpawned % 12 == 0) {
                 Dust dust2 = Dust.NewDustPerfect(base.Center + new Vector2(0f, (float)height * -0.1f) + Main.rand.NextVector2CircularEdge((float)width * 0.6f, (float)height * 0.6f) * (0.3f + Main.rand.NextFloat() * 0.5f), 279, new Vector2(0f, (0f - Main.rand.NextFloat()) * 0.3f - 1.5f), 127);
@@ -43650,15 +45257,33 @@ public class Item {
         }
     }
 
-    public static int NewItem(Vector2 pos, Vector2 randomBox, int Type, int Stack = 1, boolean noBroadcast = false, int prefixGiven = 0, boolean noGrabDelay = false, boolean reverseLookup = false) => NewItem((int)pos.X, (int)pos.Y, (int)randomBox.X, (int)randomBox.Y, Type, Stack, noBroadcast, prefixGiven, noGrabDelay, reverseLookup);
-    public static int NewItem(Vector2 pos, int Width, int Height, int Type, int Stack = 1, boolean noBroadcast = false, int prefixGiven = 0, boolean noGrabDelay = false, boolean reverseLookup = false) => NewItem((int)pos.X, (int)pos.Y, Width, Height, Type, Stack, noBroadcast, prefixGiven, noGrabDelay, reverseLookup);
+    public static int NewItem(IEntitySource source, Vector2 pos, Vector2 randomBox, int Type, int Stack = 1, boolean noBroadcast = false, int prefixGiven = 0, boolean noGrabDelay = false, boolean reverseLookup = false) => NewItem(source, (int)pos.X, (int)pos.Y, (int)randomBox.X, (int)randomBox.Y, Type, Stack, noBroadcast, prefixGiven, noGrabDelay, reverseLookup);
+    public static int NewItem(IEntitySource source, Vector2 pos, int Width, int Height, int Type, int Stack = 1, boolean noBroadcast = false, int prefixGiven = 0, boolean noGrabDelay = false, boolean reverseLookup = false) => NewItem(source, (int)pos.X, (int)pos.Y, Width, Height, Type, Stack, noBroadcast, prefixGiven, noGrabDelay, reverseLookup);
 
-    public static int NewItem(int X, int Y, int Width, int Height, int Type, int Stack = 1, boolean noBroadcast = false, int pfix = 0, boolean noGrabDelay = false, boolean reverseLookup = false) {
+    public static int NewItem(IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack = 1, boolean noBroadcast = false, int pfix = 0, boolean noGrabDelay = false, boolean reverseLookup = false) {
         if (WorldGen.gen)
             return 0;
 
         if (Main.rand == null)
             Main.rand = new UnifiedRandom();
+
+        if (Main.tenthAnniversaryWorld) {
+            if (Type == 58) {
+                Type = Main.rand.NextFromList(new short[3] {
+                    1734,
+                            1867,
+                            58
+                });
+            }
+
+            if (Type == 184) {
+                Type = Main.rand.NextFromList(new short[3] {
+                    1735,
+                            1868,
+                            184
+                });
+            }
+        }
 
         if (Main.halloween) {
             if (Type == 58)
@@ -43836,6 +45461,7 @@ public class Item {
     public void TurnToAir() {
         type = 0;
         stack = 0;
+        prefix = 0;
         netID = 0;
         dye = 0;
         shoot = 0;
@@ -43871,7 +45497,7 @@ public class Item {
             Prefix(reader.ReadByte());
         }
 
-        if (type >= 5094)
+        if (type >= 5125)
             TurnToAir();
     }
 
@@ -43884,13 +45510,5 @@ public class Item {
         Prefix(pre);
         stack = num;
         favorited = flag;
-    }
-
-    public void setJsonDefaults() {
-        for (int i = 0; i <= Main.itemJson.jsonItemObjects.Count; i++) {
-            this.width = Main.itemJson.jsonItemObjects[i].width;
-            this.height = Main.itemJson.jsonItemObjects[i].height;
-            this.maxStack = Main.itemJson.jsonItemObjects[i].maxStack;
-        }
     }
 }
