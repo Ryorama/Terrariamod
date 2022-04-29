@@ -30,12 +30,13 @@ public class BlocksT {
 	public static PlantT VINE = (PlantT) new PlantT(FabricBlockSettings.of(Material.STONE), 0.1f, 0.1f).setPick(true).setAxe(true);
 	public static Pot FOREST_POT = new Pot(FabricBlockSettings.of(Material.GLASS).sounds(BlockSoundGroup.GLASS), 0.1f, 0.1f);
 
-
 	public static BlockT COPPER_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT IRON_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT GOLD_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static BlockT DEMONITE_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static BlockT CRIMTANE_ORE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static LightBlockT HELLSTONE_ORE = (LightBlockT) new LightBlockT(FabricBlockSettings.of(Material.STONE), 50, 50, 10).setPick(true);
-	
+
 	public static PlantT MUSHROOM = (PlantT) new PlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f).setPick(true);
 	public static LightPlantT GLOWING_MUSHROOM = (LightPlantT) new LightPlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f, 15).setPick(true);
 	public static LightPlantT JUNGLE_SPORES = (LightPlantT) new LightPlantT(FabricBlockSettings.of(Material.PLANT), 0.1f, 0.1f, 10).setPick(true);
@@ -101,6 +102,8 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "copper_ore"), COPPER_ORE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "iron_ore"), IRON_ORE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "gold_ore"), GOLD_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "demonite_ore"), DEMONITE_ORE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "crimtane_ore"), CRIMTANE_ORE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "hellstone_ore"), HELLSTONE_ORE);
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "ruby_ore"), RUBY_ORE);

@@ -218,6 +218,8 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_ore"), new BlockItemT(BlocksT.COPPER_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_ore"), new BlockItemT(BlocksT.IRON_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_ore"), new BlockItemT(BlocksT.GOLD_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "demonite_ore"), new BlockItemT(BlocksT.DEMONITE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimtane_ore"), new BlockItemT(BlocksT.CRIMTANE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "hellstone_ore"), new BlockItemT(BlocksT.HELLSTONE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 	
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ruby_ore"), new BlockItemT(BlocksT.RUBY_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
