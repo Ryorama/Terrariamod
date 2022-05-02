@@ -69,8 +69,6 @@ public class ItemsT {
 //		return ItemsT.items.get(name);
 	}
 	
-	public static ItemT WOOD = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
-	public static ItemT COPPER_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
 	public static ItemT GEL = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
 	public static ItemT LENS = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
 	public static ItemT FALLEN_STAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
@@ -84,9 +82,12 @@ public class ItemsT {
 	public static ItemT SUSPICIOUS_LOOKING_EYE = new SuspiciousLookingEye(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30)).setRarity(3);
 
 	public static ItemT GOLD_CROWN = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)).setRarity(2).setMaxStack(1);
-	
+
+	public static ItemT COPPER_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
 	public static ItemT IRON_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
 	public static ItemT GOLD_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
+	public static ItemT DEMONITE_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
+	public static ItemT CRIMTANE_BAR = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(999)).setRarity(2);
 
 	public static CopperShortsword COPPER_SHORTSWORD = (CopperShortsword) new CopperShortsword().setRarity(3);
 	public static CopperPickaxe COPPER_PICKAXE = (CopperPickaxe) new CopperPickaxe().setRarity(3);
@@ -138,8 +139,6 @@ public class ItemsT {
 	public static Item HONEY_BUCKET;
 
 	public static void init() {
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood"), WOOD);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_bar"), COPPER_BAR);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gel"), GEL);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "lens"), LENS);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "fallen_star"), FALLEN_STAR);
@@ -147,6 +146,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_arrow"), WOODEN_ARROW);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "flaming_arrow"), FLAMING_ARROW);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "magic_mirror"), MAGIC_MIRROR);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_crown"), GOLD_CROWN);
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "water_bottle"), WATER_BOTTLE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "lesser_healing_potion"), LESSER_HEALING_POTION);
@@ -154,10 +154,11 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_bottle"), HONEY_BOTTLE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ironskin_potion"), IRONSKIN_POTION);
 
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_bar"), COPPER_BAR);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_bar"), IRON_BAR);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_bar"), GOLD_BAR);
-		
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_crown"), GOLD_CROWN);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "demonite_bar"), DEMONITE_BAR);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimtane_bar"), CRIMTANE_BAR);
 		
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "slime_crown"), SLIME_CROWN);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "suspicious_looking_eye"), SUSPICIOUS_LOOKING_EYE);
@@ -202,6 +203,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_beam"), new BlockItemT(BlocksT.WOODEN_BEAM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ebonstone"), new BlockItemT(BlocksT.EBONSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom_grass"), new BlockItemT(BlocksT.MUSHROOM_GRASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood"), new BlockItemT(BlocksT.WOOD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "empty_bottle"), new BlockItemT(BlocksT.EMPTY_BOTTLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom"), new BlockItemT(BlocksT.MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));

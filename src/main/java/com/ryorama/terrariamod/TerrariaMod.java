@@ -70,6 +70,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	public static final Identifier MAX_MANA = new Identifier(MODID, "max_mana");
 	public static final Identifier IRON_SKIN = new Identifier(MODID, "iron_skin");
 	public static final Identifier POTION_SICKNESS = new Identifier(MODID, "potion_sickness");
+	public static final Identifier HAPPY = new Identifier(MODID, "happy");
+	public static final Identifier COZY_FIRE = new Identifier(MODID, "cozy_fire");
 
 	@Override
 	public void onInitialize() {
@@ -88,13 +90,16 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 		Registry.register(Registry.CUSTOM_STAT, "mana", MANA);
 		Stats.CUSTOM.getOrCreateStat(MANA, StatFormatter.DEFAULT);
-
 		Registry.register(Registry.CUSTOM_STAT, "max_mana", MAX_MANA);
 		Stats.CUSTOM.getOrCreateStat(MAX_MANA, StatFormatter.DEFAULT);
 
 		//Buffs
 		Registry.register(Registry.CUSTOM_STAT, "iron_skin", IRON_SKIN);
 		Stats.CUSTOM.getOrCreateStat(IRON_SKIN, StatFormatter.DEFAULT);
+		Registry.register(Registry.CUSTOM_STAT, "happy", HAPPY);
+		Stats.CUSTOM.getOrCreateStat(HAPPY, StatFormatter.DEFAULT);
+		Registry.register(Registry.CUSTOM_STAT, "cozy_fire", COZY_FIRE);
+		Stats.CUSTOM.getOrCreateStat(COZY_FIRE, StatFormatter.DEFAULT);
 
 		//DeBuffs
 		Registry.register(Registry.CUSTOM_STAT, "potion_sickness", POTION_SICKNESS);
@@ -218,6 +223,9 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	@Environment(EnvType.CLIENT)
 	public void onTickClient() {
 		WorldTickCallback.EVENT.register(world -> {
+
+			int ticks = 0;
+
 			if (MinecraftClient.getInstance().player != null) {
 
 				if (!firstUpdate && WorldDataT.hasStartingTools) {
@@ -227,6 +235,8 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 				}
 
 				if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
+					MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) -1);
+
 					if (!ironSkinJustActivated) {
 						MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() + 8);
 						ironSkinJustActivated = true;
@@ -242,12 +252,21 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 					MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) -1);
 				}
 
+				if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
+					if (ticks % 20 == 0) {
+						MinecraftClient.getInstance().player.heal(2);
+					}
+				}
+
 				if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
 					MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
 				}
 
 				//MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(10);
 			}
+
+			ticks++;
+
 		});
 	}
  
