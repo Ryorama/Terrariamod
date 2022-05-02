@@ -22,7 +22,7 @@ public class HealingPotion extends ItemT {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
 		if (world.isClient()) {
 			if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) <= 0) {
-				playerEntity.heal(100);
+				playerEntity.setHealth(playerEntity.getHealth() + 100);
 				playerEntity.getInventory().getMainHandStack().decrement(1);
 				MinecraftClient.getInstance().player.getStatHandler().setStat(playerEntity, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), 1200);
 

@@ -254,7 +254,7 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 				if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
 					if (ticks % 20 == 0) {
-						MinecraftClient.getInstance().player.heal(2);
+						MinecraftClient.getInstance().player.setHealth(MinecraftClient.getInstance().player.getHealth() + 2);
 					}
 				}
 
