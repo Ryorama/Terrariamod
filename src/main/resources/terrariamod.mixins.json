@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   	"EntityMixin",
-    "CampfireBlockEntityMixin"
+    "CampfireBlockEntityMixin",
+    "BlockMixin"
   ],
   "client": [
     "TitleScreenMixin",
