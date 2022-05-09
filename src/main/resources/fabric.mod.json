@@ -23,7 +23,7 @@
       "com.ryorama.terrariamod.TerrariaMod"
     ],
     "client": [
-      "com.ryorama.terrariamod.TerrariaMod"
+      "com.ryorama.terrariamod.TerrariaModClient"
     ]
   },
   "mixins": [
