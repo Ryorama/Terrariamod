@@ -64,8 +64,6 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 	public boolean ironSkinJustActivated = false;
 	public int tmpMana = 20;
 	public int tmpMaxMana = 20;
-
-
 	public static final Identifier MANA = new Identifier(MODID, "mana");
 	public static final Identifier MAX_MANA = new Identifier(MODID, "max_mana");
 	public static final Identifier IRON_SKIN = new Identifier(MODID, "iron_skin");
@@ -75,12 +73,12 @@ public class TerrariaMod implements ModInitializer, ClientModInitializer {
 
 	@Override
 	public void onInitialize() {
-		BiomeRegistry.RegisterBiomes();
-		ParticleRegistry.init();
+		//BiomeRegistry.RegisterBiomes();
+		//ParticleRegistry.init();
 		BlocksT.init();
 		ItemsT.init();
 		
-		ModifyWorldHeight();
+		//ModifyWorldHeight();
 		GeckoLib.initialize();
 		TAudio.registerAudio();
 
