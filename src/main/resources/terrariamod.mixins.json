@@ -4,13 +4,13 @@
   "package": "com.ryorama.terrariamod.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-  	"EntityMixin",
-    "CampfireBlockEntityMixin",
-    "BlockMixin"
+  	"EntityMixin"
   ],
   "client": [
     "TitleScreenMixin",
-    "EntityAttributesMixin"
+    "EntityAttributesMixin",
+    "BlockMixin",
+    "CampfireBlockEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
