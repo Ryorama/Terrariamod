@@ -48,7 +48,7 @@ public class TerrariaModClient implements ClientModInitializer {
     @Environment(EnvType.CLIENT)
     @Override
     public void onInitializeClient() {
-        EntitiesT.init();
+        EntitiesT.initClient();
         ParticleRegistry.initClient();
         ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
         onTick();
@@ -194,6 +194,12 @@ public class TerrariaModClient implements ClientModInitializer {
                 if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
                     if (ticks % 100 == 0) {
                         MinecraftClient.getInstance().player.setHealth(MinecraftClient.getInstance().player.getHealth() + 2);
+                    }
+
+                    System.out.println(MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)));
+
+                    if (ticks % 20 == 0) {
+                        MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) - 150);
                     }
                 }
 

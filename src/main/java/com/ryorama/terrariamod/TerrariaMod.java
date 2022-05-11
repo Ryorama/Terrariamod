@@ -72,6 +72,7 @@ public class TerrariaMod implements ModInitializer {
 		//ParticleRegistry.init();
 		BlocksT.init();
 		ItemsT.init();
+		EntitiesT.init();
 		
 		//ModifyWorldHeight();
 		GeckoLib.initialize();

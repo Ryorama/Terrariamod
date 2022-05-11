@@ -20,7 +20,7 @@ public class SlimeCrown extends ItemT {
 	@Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
 
-		world.playSound((PlayerEntity) null, playerEntity.getY(), playerEntity.getY(), playerEntity.getZ(), TAudio.ROAR_0, SoundCategory.PLAYERS, 100, 1);
+		playerEntity.playSound(TAudio.ROAR_0, SoundCategory.PLAYERS, 1, 1);
         		
 		EntityKingSlime ks = new EntityKingSlime(world);
 		ks.setPosition(playerEntity.getPos().x + 5, playerEntity.getPos().y + 5, playerEntity.getPos().z + 5);

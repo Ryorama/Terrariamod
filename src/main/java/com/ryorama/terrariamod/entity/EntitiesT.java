@@ -105,7 +105,7 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(BLUE_SLIME, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(DEMON_EYE, MobEntity.createMobAttributes());
-		  FabricDefaultAttributeRegistry.register(DEMON, MobEntity.createMobAttributes());
+		  //FabricDefaultAttributeRegistry.register(DEMON, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(SPORE_ZOMBIE, EntitySporeZombie.createZombieAttributes());
 		  FabricDefaultAttributeRegistry.register(SPORE_SKELETON, EntitySporeSkeleton.createZombieAttributes());
 		  FabricDefaultAttributeRegistry.register(DRIPPLER, MobEntity.createMobAttributes());
@@ -115,9 +115,11 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(EOC, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(GRANITE_ELEMETAL, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(HEART, MobEntity.createMobAttributes());
+	}
 
-		  ModelRegistry.registerModels();
-	  }
+	public static void initClient() {
+		ModelRegistry.registerModels();
+	}
  
          @Environment(EnvType.CLIENT)
          public class ModelRegistry {

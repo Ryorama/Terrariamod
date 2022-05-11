@@ -113,7 +113,6 @@ public class EntityDemon extends EntityBaseMob implements IAnimatable, IParticle
 	@Override
 	public void AI() {
 		if (this.isAlive()) {
-			
 		    this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
 			
 	    	double motionY = this.getVelocity().y;

@@ -22,7 +22,7 @@ public class CampfireBlockEntityMixin {
             ClientPlayerEntity player = MinecraftClient.getInstance().player;
 
             if (player.getBlockPos().isWithinDistance(pos, 20)) {
-                player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), 99999);
+                player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), 1000);
             } else {
                 player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), 0);
             }

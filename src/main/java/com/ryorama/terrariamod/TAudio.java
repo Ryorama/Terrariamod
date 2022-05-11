@@ -26,13 +26,6 @@ public class TAudio {
     public static final SoundEvent TITLE_SCREEN = new SoundEvent(new Identifier(TerrariaMod.MODID, "title_screen"));
     public static final SoundEvent BOSS1 = new SoundEvent(new Identifier(TerrariaMod.MODID, "boss1"));
 
-	public static void registerAudio() {
-		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "day1"), DAYONE);
-		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "night"), NIGHT);
-		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "title_screen"), TITLE_SCREEN);
-		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "boss1"), BOSS1);
-     }
-
     public static final SoundEvent HEALTH_CRYSTAL = new SoundEvent(new Identifier(TerrariaMod.MODID, "health_crystal"));
     public static final SoundEvent ROAR_0 = new SoundEvent(new Identifier(TerrariaMod.MODID, "roar_0"));
     public static final SoundEvent STAR_FALL = new SoundEvent(new Identifier(TerrariaMod.MODID, "star_fall"));
@@ -40,6 +33,19 @@ public class TAudio {
     public static final SoundEvent NPC_KILL1 = new SoundEvent(new Identifier(TerrariaMod.MODID, "npc_killed1"));
     public static final SoundEvent TELEPORT = new SoundEvent(new Identifier(TerrariaMod.MODID, "teleport"));
     public static final SoundEvent SUMMON = new SoundEvent(new Identifier(TerrariaMod.MODID, "summon"));
+
+	public static void registerAudio() {
+		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "day1"), DAYONE);
+		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "night"), NIGHT);
+		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "title_screen"), TITLE_SCREEN);
+		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "health_crystal"), HEALTH_CRYSTAL);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "roar_0"), ROAR_0);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "star_fall"), STAR_FALL);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "npc_hit1"), NPC_HIT1);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "npc_killed1"), NPC_KILL1);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "teleport"), TELEPORT);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "summon"), SUMMON);
+    }
 
     /*
     public static void registerAudio() {
