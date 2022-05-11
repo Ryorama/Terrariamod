@@ -65,6 +65,8 @@ public class TerrariaMod implements ModInitializer {
 	public static final Identifier POTION_SICKNESS = new Identifier(MODID, "potion_sickness");
 	public static final Identifier HAPPY = new Identifier(MODID, "happy");
 	public static final Identifier COZY_FIRE = new Identifier(MODID, "cozy_fire");
+	public static final Identifier REGENERATION = new Identifier(MODID, "regeneration");
+	public static final Identifier POISONED = new Identifier(MODID, "poisoned");
 
 	@Override
 	public void onInitialize() {
@@ -94,10 +96,14 @@ public class TerrariaMod implements ModInitializer {
 		Stats.CUSTOM.getOrCreateStat(HAPPY, StatFormatter.DEFAULT);
 		Registry.register(Registry.CUSTOM_STAT, "cozy_fire", COZY_FIRE);
 		Stats.CUSTOM.getOrCreateStat(COZY_FIRE, StatFormatter.DEFAULT);
+		Registry.register(Registry.CUSTOM_STAT, "regeneration", REGENERATION);
+		Stats.CUSTOM.getOrCreateStat(REGENERATION, StatFormatter.DEFAULT);
 
 		//DeBuffs
 		Registry.register(Registry.CUSTOM_STAT, "potion_sickness", POTION_SICKNESS);
 		Stats.CUSTOM.getOrCreateStat(POTION_SICKNESS, StatFormatter.DEFAULT);
+		Registry.register(Registry.CUSTOM_STAT, "poisoned", POISONED);
+		Stats.CUSTOM.getOrCreateStat(POISONED, StatFormatter.DEFAULT);
 	}
 
 	private static void ModifyWorldHeight() {

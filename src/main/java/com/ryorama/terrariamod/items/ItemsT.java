@@ -129,6 +129,7 @@ public class ItemsT {
 	public static HealingPotion HEALING_POTION = new HealingPotion(new FabricItemSettings().group(ItemGroup.BREWING));
 	public static HoneyBottle HONEY_BOTTLE = new HoneyBottle(new FabricItemSettings().group(ItemGroup.BREWING));
 	public static IronSkinPotion IRONSKIN_POTION = new IronSkinPotion(new FabricItemSettings().group(ItemGroup.BREWING));
+	public static RegenerationPotion REGENERATION_POTION = new RegenerationPotion(new FabricItemSettings().group(ItemGroup.BREWING));
 
 	public static Item BAND_OF_REGENERATION;
 	public static Item BAND_OF_STARPOWER;
@@ -153,6 +154,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "healing_potion"), HEALING_POTION);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_bottle"), HONEY_BOTTLE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ironskin_potion"), IRONSKIN_POTION);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "regeneration_potion"), REGENERATION_POTION);
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_bar"), COPPER_BAR);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_bar"), IRON_BAR);
@@ -192,6 +194,9 @@ public class ItemsT {
 
 		
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "grass_block"), new BlockItemT(BlocksT.GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "corrupted_grass"), new BlockItemT(BlocksT.CORRUPTED_GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimson_grass"), new BlockItemT(BlocksT.CRIMSON_GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "jungle_grass"), new BlockItemT(BlocksT.JUNGLE_GRASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "dirt_block"), new BlockItemT(BlocksT.DIRT_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "stone_block"), new BlockItemT(BlocksT.STONE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ash"), new BlockItemT(BlocksT.ASH, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
@@ -202,6 +207,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "granite"), new BlockItemT(BlocksT.GRANITE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_beam"), new BlockItemT(BlocksT.WOODEN_BEAM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ebonstone"), new BlockItemT(BlocksT.EBONSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimstone"), new BlockItemT(BlocksT.CRIMSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom_grass"), new BlockItemT(BlocksT.MUSHROOM_GRASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood"), new BlockItemT(BlocksT.WOOD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 

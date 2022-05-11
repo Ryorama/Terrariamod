@@ -26,10 +26,11 @@ public class TerrariaUIRenderer {
 	public static Identifier iron_skin = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/ironskin.png");
 	public static Identifier happy = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/happy.png");
 	public static Identifier cozy_fire = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/cozy_fire.png");
+	public static Identifier regeneration = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/regeneration.png");
 
 	//DeBuffs
 	public static Identifier potion_sickness = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/potion_sickness.png");
-
+	public static Identifier poisoned = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/poisoned.png");
 
 	public static ClientPlayerEntity player;
 	
@@ -119,6 +120,11 @@ public class TerrariaUIRenderer {
 					effectCounter++;
 				}
 
+				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) > 0) {
+					UIRenderer.instance.renderOverlay(poisoned, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+					effectCounter++;
+				}
+
 				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
 					UIRenderer.instance.renderOverlay(iron_skin, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
 					effectCounter++;
@@ -131,6 +137,11 @@ public class TerrariaUIRenderer {
 
 				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
 					UIRenderer.instance.renderOverlay(cozy_fire, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+					effectCounter++;
+				}
+
+				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) > 0) {
+					UIRenderer.instance.renderOverlay(regeneration, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
 					effectCounter++;
 				}
 			}

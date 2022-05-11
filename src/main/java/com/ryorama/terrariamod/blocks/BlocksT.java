@@ -13,6 +13,7 @@ public class BlocksT {
 		
 	public static BlockT GRASS_BLOCK = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
 	public static BlockT CORRUPTED_GRASS_BLOCK = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
+	public static BlockT CRIMSON_GRASS_BLOCK = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
 	public static BlockT JUNGLE_GRASS = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
 	public static BlockT MUD = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
 	public static BlockT SAND = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
@@ -20,6 +21,7 @@ public class BlocksT {
 	public static BlockT DIRT_BLOCK = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
 	public static BlockT STONE_BLOCK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT EBONSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
+	public static BlockT CRIMSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
 	public static BlockT ASH = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT MARBLE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
 	public static BlockT GRANITE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
@@ -70,10 +72,12 @@ public class BlocksT {
 	public static void init() {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "grass_block"), GRASS_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "corrupted_grass"), CORRUPTED_GRASS_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "crimson_grass"), CRIMSON_GRASS_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "jungle_grass"), JUNGLE_GRASS);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "dirt_block"), DIRT_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "stone_block"), STONE_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "ebonstone"), EBONSTONE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "crimstone"), CRIMSTONE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "mud"), MUD);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "sand"), SAND);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "snow"), SNOW);
