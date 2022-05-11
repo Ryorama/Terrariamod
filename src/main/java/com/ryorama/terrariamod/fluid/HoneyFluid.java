@@ -23,7 +23,7 @@ public abstract class HoneyFluid extends BaseFluid {
 
     @Override
     public Item getBucketItem() {
-        return ItemsT.HONEY_BUCKET;
+        return TerrariaMod.HONEY_BUCKET;
     }
 
     @Override

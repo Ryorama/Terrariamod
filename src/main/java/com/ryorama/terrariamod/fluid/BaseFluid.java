@@ -37,7 +37,7 @@ public abstract class BaseFluid extends FlowableFluid {
 
     @Override
     protected int getFlowSpeed(WorldView worldView) {
-        return 3;
+        return 2;
     }
 
     @Override

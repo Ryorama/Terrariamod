@@ -24,6 +24,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.world.WorldTickCallback;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
@@ -38,6 +39,10 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.item.BucketItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.stat.StatFormatter;
@@ -57,6 +62,8 @@ public class TerrariaMod implements ModInitializer {
 	public static FlowableFluid STILL_HONEY;
 	public static FlowableFluid FLOWING_HONEY;
 	public static Block HONEY;
+
+	public static Item HONEY_BUCKET;
 
 	public static boolean DEBUG = false;
 	public static final Identifier MANA = new Identifier(MODID, "mana");
@@ -83,6 +90,10 @@ public class TerrariaMod implements ModInitializer {
 		STILL_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "still_honey"), new HoneyFluid.Still());
 		FLOWING_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "flowing_honey"), new HoneyFluid.Flowing());
 		HONEY = Registry.register(Registry.BLOCK, new Identifier(MODID, "honey"), new FluidBlock(STILL_HONEY, FabricBlockSettings.copy(Blocks.WATER)){});
+
+		HONEY_BUCKET = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_bucket"),
+				new BucketItem(TerrariaMod.STILL_HONEY, new FabricItemSettings().group(ItemGroup.MISC).recipeRemainder(Items.BUCKET).maxCount(1)));
+
 
 		Registry.register(Registry.CUSTOM_STAT, "mana", MANA);
 		Stats.CUSTOM.getOrCreateStat(MANA, StatFormatter.DEFAULT);

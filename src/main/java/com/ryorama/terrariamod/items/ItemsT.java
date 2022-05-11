@@ -137,8 +137,6 @@ public class ItemsT {
 	public static Item MAGMA_STONE;
 	public static Item SHACKLE;
 
-	public static Item HONEY_BUCKET;
-
 	public static void init() {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gel"), GEL);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "lens"), LENS);
@@ -210,6 +208,8 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimstone"), new BlockItemT(BlocksT.CRIMSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom_grass"), new BlockItemT(BlocksT.MUSHROOM_GRASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood"), new BlockItemT(BlocksT.WOOD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_block"), new BlockItemT(BlocksT.HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crispy_honey_block"), new BlockItemT(BlocksT.CRISPY_HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "empty_bottle"), new BlockItemT(BlocksT.EMPTY_BOTTLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom"), new BlockItemT(BlocksT.MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
@@ -243,9 +243,6 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_bow"), COPPER_BOW);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_bow"), IRON_BOW);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_bow"), GOLD_BOW);
-
-		HONEY_BUCKET = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_bucket"),
-				new BucketItem(TerrariaMod.STILL_HONEY, new Item.Settings().group(ItemGroup.MISC).recipeRemainder(Items.BUCKET).maxCount(1)));
 
 		BAND_OF_REGENERATION = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_regeneration"), new BandOfRegeneration(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
 		BAND_OF_STARPOWER = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_starpower"), new BandOfStarpower(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
