@@ -44,7 +44,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 	
 	public EntityKingSlime(EntityType<? extends EntityKingSlime> entityType, World worldIn) {
 		super(entityType, worldIn);
-		if (world.isClient) {
+		if (world.isClient()) {
 			this.setBossIcon();
 			this.activateBoss();
 		}
@@ -64,7 +64,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 
         public EntityKingSlime(World worldIn) {
 		super(EntitiesT.KING_SLIME, worldIn);
-		if (world.isClient) {
+		if (world.isClient()) {
 			this.setBossIcon();
 			this.activateBoss();
 		}
@@ -225,9 +225,11 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 				jumping = false;
 			}
  	    }
-			
-		this.updateBossHealthBar();
-		
+
+ 	    if (world.isClient()) {
+			this.updateBossHealthBar();
+		}
+
 		if (this.getDataTracker().get(EntityKingSlime.TELEPORTING).booleanValue() == true && startTeleport == true) {
  			playShrinkAnim = true;
  			startTeleport = false;
@@ -291,8 +293,10 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 	
 	public void dropLoot(DamageSource source, boolean b) {
 		 if (this.getHealth() <= 0) {
+		 	if (world.isClient()) {
 				this.defeatedBoss();
-				return;
+			}
+		 	return;
 		 }
 	 }
 

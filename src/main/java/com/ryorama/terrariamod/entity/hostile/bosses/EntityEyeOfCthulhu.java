@@ -121,7 +121,9 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	
 	public void tick() {
 		ticksExisted += 1;
-		this.updateBossHealthBar();
+		if (world.isClient()) {
+			this.updateBossHealthBar();
+		}
 		isEyeAlive2 = isEyeAlive;
 	      this.ALREADY_SPAWNED = true;
 	      boolean despawn = true;
@@ -406,8 +408,10 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	
 	public void dropLoot(DamageSource source, boolean b) {
 		 if (this.getHealth() <= 0) {
+		 	if (world.isClient()) {
 				this.defeatedBoss();
-				return;
+			}
+		 	return;
 		 }
 	 }
 	
