@@ -12,6 +12,7 @@ import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -240,6 +241,13 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 		}
 		
  		super.tick();
+	}
+
+	@Override
+	public void remove(Entity.RemovalReason reason) {
+		if (world.isClient()) {
+			this.defeatedBoss();
+		}
 	}
 
 	private void setTicksBeforeJump(int ticks) {

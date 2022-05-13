@@ -37,7 +37,10 @@ public class TAudio {
 	public static void registerAudio() {
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "day1"), DAYONE);
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "night"), NIGHT);
-		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "title_screen"), TITLE_SCREEN);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "boss1"), BOSS1);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "underground"), UNDERGROUND);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "underworld"), UNDERWORLD);
+        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "title_screen"), TITLE_SCREEN);
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "health_crystal"), HEALTH_CRYSTAL);
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "roar_0"), ROAR_0);
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "star_fall"), STAR_FALL);

@@ -405,6 +405,13 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	         this.setYaw(this.ry);
 	      }
 	}
+
+	@Override
+	public void remove(Entity.RemovalReason reason) {
+		if (world.isClient()) {
+			this.defeatedBoss();
+		}
+	}
 	
 	public void dropLoot(DamageSource source, boolean b) {
 		 if (this.getHealth() <= 0) {

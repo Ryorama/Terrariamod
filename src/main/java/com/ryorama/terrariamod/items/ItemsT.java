@@ -1,9 +1,11 @@
 package com.ryorama.terrariamod.items;
 
+import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.accessories.*;
+import com.ryorama.terrariamod.items.api.AbstractDiscItem;
 import com.ryorama.terrariamod.items.api.BlockItemT;
 import com.ryorama.terrariamod.items.api.ItemT;
 import com.ryorama.terrariamod.items.armor.CopperArmorMaterial;
@@ -137,6 +139,12 @@ public class ItemsT {
 	public static Item MAGMA_STONE;
 	public static Item SHACKLE;
 
+	public static Item TERRARIA_DAYONE_MUSIC;
+	public static Item TERRARIA_NIGHT_MUSIC;
+	public static Item TERRARIA_BOSSONE_MUSIC;
+	public static Item TERRARIA_CAVE_MUSIC;
+	public static Item TERRARIA_UNDERWORLD_MUSIC;
+
 	public static void init() {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gel"), GEL);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "lens"), LENS);
@@ -249,6 +257,12 @@ public class ItemsT {
 		AGLET = Registry.register(Registry.ITEM, new Identifier("terrariamod:aglet"), new Aglet(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
 		MAGMA_STONE = Registry.register(Registry.ITEM, new Identifier("terrariamod:magma_stone"), new MagmaStone(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
 		SHACKLE = Registry.register(Registry.ITEM, new Identifier("terrariamod:shackle"), new Shackle(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
+
+		TERRARIA_DAYONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "day_one_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
+		TERRARIA_NIGHT_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "night_disc"), new AbstractDiscItem(14, TAudio.NIGHT, new FabricItemSettings().group(ItemGroup.MISC)));
+		TERRARIA_BOSSONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "boss_one_disc"), new AbstractDiscItem(14, TAudio.BOSS1, new FabricItemSettings().group(ItemGroup.MISC)));
+		TERRARIA_CAVE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underground_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
+		TERRARIA_UNDERWORLD_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underworld_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
 
 	}
 	
