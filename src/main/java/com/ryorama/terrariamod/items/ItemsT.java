@@ -261,8 +261,8 @@ public class ItemsT {
 		TERRARIA_DAYONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "day_one_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
 		TERRARIA_NIGHT_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "night_disc"), new AbstractDiscItem(14, TAudio.NIGHT, new FabricItemSettings().group(ItemGroup.MISC)));
 		TERRARIA_BOSSONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "boss_one_disc"), new AbstractDiscItem(14, TAudio.BOSS1, new FabricItemSettings().group(ItemGroup.MISC)));
-		TERRARIA_CAVE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underground_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
-		TERRARIA_UNDERWORLD_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underworld_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
+		TERRARIA_CAVE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underground_disc"), new AbstractDiscItem(14, TAudio.UNDERGROUND, new FabricItemSettings().group(ItemGroup.MISC)));
+		TERRARIA_UNDERWORLD_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underworld_disc"), new AbstractDiscItem(14, TAudio.UNDERWORLD, new FabricItemSettings().group(ItemGroup.MISC)));
 
 	}
 	
