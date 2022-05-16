@@ -8,6 +8,7 @@ import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.IBoss;
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
 
+import com.ryorama.terrariamod.ui.BossBar;
 import net.minecraft.command.argument.EntityAnchorArgumentType.EntityAnchor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -121,9 +122,14 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	
 	public void tick() {
 		ticksExisted += 1;
+
 		if (world.isClient()) {
 			this.updateBossHealthBar();
+			if (this.getHealth() <= 0) {
+				BossBar.isRendering = false;
+			}
 		}
+
 		isEyeAlive2 = isEyeAlive;
 	      this.ALREADY_SPAWNED = true;
 	      boolean despawn = true;
@@ -406,8 +412,9 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	      }
 	}
 
-	@Override
 	public void remove(Entity.RemovalReason reason) {
+		super.remove(reason);
+		System.out.println("Test");
 		if (world.isClient()) {
 			this.defeatedBoss();
 		}

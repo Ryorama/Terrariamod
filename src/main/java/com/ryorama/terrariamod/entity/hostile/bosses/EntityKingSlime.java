@@ -10,6 +10,7 @@ import com.ryorama.terrariamod.entity.IBoss;
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
 import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
 
+import com.ryorama.terrariamod.ui.BossBar;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
@@ -229,6 +230,9 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 
  	    if (world.isClient()) {
 			this.updateBossHealthBar();
+			if (this.getHealth() <= 0) {
+				BossBar.isRendering = false;
+			}
 		}
 
 		if (this.getDataTracker().get(EntityKingSlime.TELEPORTING).booleanValue() == true && startTeleport == true) {
@@ -239,15 +243,12 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 		if (this.getDataTracker().get(EntityKingSlime.TELEPORTING).booleanValue() == false) {
  			playGrowAnim = true;
 		}
-		
- 		super.tick();
+
+		super.tick();
 	}
 
-	@Override
 	public void remove(Entity.RemovalReason reason) {
-		if (world.isClient()) {
-			this.defeatedBoss();
-		}
+		super.remove(reason);
 	}
 
 	private void setTicksBeforeJump(int ticks) {
@@ -300,12 +301,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 	}
 	
 	public void dropLoot(DamageSource source, boolean b) {
-		 if (this.getHealth() <= 0) {
-		 	if (world.isClient()) {
-				this.defeatedBoss();
-			}
-		 	return;
-		 }
+
 	 }
 
 	@Override
