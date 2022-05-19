@@ -51,7 +51,8 @@ public class ItemT extends Item {
 			GUN_ANIMATION = "gun";
 		
 	public int potionSickness, manaSickness;
-	
+
+	public String nameFormatting = "";
 	public int speed;
 	
 	public boolean material;
@@ -78,15 +79,21 @@ public class ItemT extends Item {
 		this.rarity = rarity;
 		return this;
 	}
-	
+
+	@Override
+	public String getTranslationKey() {
+		return nameFormatting + this.getName();
+	}
 	@Override
 	public Text getName(ItemStack stack) {
 		if (rarity == 1) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.GREY);
+			nameFormatting = "§525252";
+			return new TranslatableText(this.getTranslationKey(stack)); //.formatted(IRareItem.GREY)
 		} else if (rarity == 2) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.WHITE);
+			return new TranslatableText(this.getTranslationKey(stack)); //.formatted(IRareItem.WHITE)
 		} else if (rarity == 3) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.BLUE);
+			nameFormatting = "§294cff";
+			return new TranslatableText(this.getTranslationKey(stack)); //.formatted(IRareItem.BLUE)
 		} else if (rarity == 4) {
 			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.GREEN);
 		} else if (rarity == 5) {
