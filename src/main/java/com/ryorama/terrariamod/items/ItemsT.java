@@ -11,6 +11,7 @@ import com.ryorama.terrariamod.items.api.ItemT;
 import com.ryorama.terrariamod.items.armor.CopperArmorMaterial;
 import com.ryorama.terrariamod.items.armor.GoldTArmorMaterial;
 import com.ryorama.terrariamod.items.armor.IronTArmorMaterial;
+import com.ryorama.terrariamod.items.armor.NinjaArmorMaterial;
 import com.ryorama.terrariamod.items.arrows.FlamingArrow;
 import com.ryorama.terrariamod.items.arrows.WoodenArrow;
 import com.ryorama.terrariamod.items.boss_summons.SlimeCrown;
@@ -109,7 +110,8 @@ public class ItemsT {
 	public static CopperArmorMaterial COPPER_MATERIAL = new CopperArmorMaterial();
 	public static IronTArmorMaterial IRON_MATERIAL = new IronTArmorMaterial();
 	public static GoldTArmorMaterial GOLD_MATERIAL = new GoldTArmorMaterial();
-	
+	public static NinjaArmorMaterial NINJA_MATERIAL = new NinjaArmorMaterial();
+
 	public static Item COPPER_HELMET = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item COPPER_CHESTPLATE = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item COPPER_LEGGINGS = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
@@ -120,8 +122,12 @@ public class ItemsT {
 	
 	public static Item GOLD_HELMET = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
 	public static Item GOLD_CHESTPLATE = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
-	public static Item GOLD_LEGGINGS = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));	
-	
+	public static Item GOLD_LEGGINGS = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));
+
+	public static Item NINJA_HELMET = new ArmorItem(NINJA_MATERIAL, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
+	public static Item NINJA_CHESTPLATE = new ArmorItem(NINJA_MATERIAL, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
+	public static Item NINJA_LEGGINGS = new ArmorItem(NINJA_MATERIAL, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));
+
 	public static CopperBow COPPER_BOW = new CopperBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1));
 	public static IronBow IRON_BOW = new IronBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1));
 	public static GoldBow GOLD_BOW = new GoldBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1));
@@ -189,6 +195,10 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_helmet"), COPPER_HELMET);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_chestplate"), COPPER_CHESTPLATE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_leggings"), COPPER_LEGGINGS);
+
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ninja_helmet"), NINJA_HELMET);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ninja_chestplate"), NINJA_CHESTPLATE);
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ninja_leggings"), NINJA_LEGGINGS);
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_helmet"), IRON_HELMET);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_chestplate"), IRON_CHESTPLATE);

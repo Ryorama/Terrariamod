@@ -73,6 +73,12 @@ public class ItemT extends Item {
 	
 	public ItemT(Settings settings) {
 		super(settings);
+
+		if (rarity == 1) {
+			nameFormatting = "§525252";
+		} else if (rarity == 3) {
+			nameFormatting = "§294cff";
+		}
 	}
 	
 	public ItemT setRarity(int rarity) {
@@ -80,20 +86,21 @@ public class ItemT extends Item {
 		return this;
 	}
 
+	/*
 	@Override
-	public String getTranslationKey() {
-		return nameFormatting + this.getName();
+	public String getTranslationKey(ItemStack stack) {
+		return nameFormatting + this.getName(stack);
 	}
+	 */
+
 	@Override
 	public Text getName(ItemStack stack) {
 		if (rarity == 1) {
-			nameFormatting = "§525252";
-			return new TranslatableText(this.getTranslationKey(stack)); //.formatted(IRareItem.GREY)
+			return new TranslatableText(nameFormatting + this.getTranslationKey(stack)); //.formatted(IRareItem.GREY)
 		} else if (rarity == 2) {
 			return new TranslatableText(this.getTranslationKey(stack)); //.formatted(IRareItem.WHITE)
 		} else if (rarity == 3) {
-			nameFormatting = "§294cff";
-			return new TranslatableText(this.getTranslationKey(stack)); //.formatted(IRareItem.BLUE)
+			return new TranslatableText(nameFormatting + this.getTranslationKey(stack)); //.formatted(IRareItem.BLUE)
 		} else if (rarity == 4) {
 			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.GREEN);
 		} else if (rarity == 5) {
