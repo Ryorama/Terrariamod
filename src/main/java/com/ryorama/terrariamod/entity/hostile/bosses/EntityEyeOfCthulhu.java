@@ -421,12 +421,18 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	}
 	
 	public void dropLoot(DamageSource source, boolean b) {
-		 if (this.getHealth() <= 0) {
-		 	if (world.isClient()) {
+		if (!world.isClient()) {
+			for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
+				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("The Eye of Cthulhu has been defeated!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+			}
+		}
+
+		if (this.getHealth() <= 0) {
+			if (world.isClient()) {
 				this.defeatedBoss();
 			}
-		 	return;
-		 }
+			return;
+		}
 	 }
 	
 	public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) {

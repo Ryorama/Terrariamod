@@ -27,6 +27,7 @@ import com.ryorama.terrariamod.items.tools.bows.IronBow;
 import com.ryorama.terrariamod.items.tools.picks.CopperPickaxe;
 import com.ryorama.terrariamod.items.tools.picks.GoldPickaxe;
 import com.ryorama.terrariamod.items.tools.picks.IronPickaxe;
+import com.ryorama.terrariamod.items.tresurebags.KingSlimeTresureBag;
 import com.ryorama.terrariamod.items.weapons.broadswords.CopperBroadsword;
 import com.ryorama.terrariamod.items.weapons.broadswords.GoldBroadsword;
 import com.ryorama.terrariamod.items.weapons.broadswords.IronBroadsword;
@@ -139,6 +140,8 @@ public class ItemsT {
 	public static IronSkinPotion IRONSKIN_POTION = new IronSkinPotion(new FabricItemSettings().group(ItemGroup.BREWING));
 	public static RegenerationPotion REGENERATION_POTION = new RegenerationPotion(new FabricItemSettings().group(ItemGroup.BREWING));
 
+	public static KingSlimeTresureBag KING_SLIME_BAG = new KingSlimeTresureBag(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30));
+
 	public static Item BAND_OF_REGENERATION;
 	public static Item BAND_OF_STARPOWER;
 	public static Item AGLET;
@@ -208,7 +211,8 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_chestplate"), GOLD_CHESTPLATE);
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_leggings"), GOLD_LEGGINGS);
 
-		
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "king_slime_bag"), KING_SLIME_BAG);
+
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "grass_block"), new BlockItemT(BlocksT.GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "corrupted_grass"), new BlockItemT(BlocksT.CORRUPTED_GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimson_grass"), new BlockItemT(BlocksT.CRIMSON_GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
