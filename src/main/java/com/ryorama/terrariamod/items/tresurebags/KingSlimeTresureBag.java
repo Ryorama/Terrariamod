@@ -9,10 +9,10 @@ public class KingSlimeTresureBag extends TresureBagT {
     public KingSlimeTresureBag(Settings settings) {
         super(settings);
 
-        addLoot(new ItemStack(ItemsT.NINJA_HELMET, 1));
-        addLoot(new ItemStack(ItemsT.NINJA_CHESTPLATE, 1));
-        addLoot(new ItemStack(ItemsT.NINJA_LEGGINGS, 1));
-        addLoot(new ItemStack(ItemsT.ROYAL_GEL, 1));
+        addLoot(new ItemStack(ItemsT.NINJA_HELMET, 1), 15);
+        addLoot(new ItemStack(ItemsT.NINJA_CHESTPLATE, 1), 15);
+        addLoot(new ItemStack(ItemsT.NINJA_LEGGINGS, 1), 15);
+        addLoot(new ItemStack(ItemsT.ROYAL_GEL, 1), -1);
     }
 
     @Override

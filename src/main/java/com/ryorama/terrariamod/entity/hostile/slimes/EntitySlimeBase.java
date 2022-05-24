@@ -2,6 +2,7 @@ package com.ryorama.terrariamod.entity.hostile.slimes;
 
 import java.util.ArrayList;
 
+import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 
@@ -9,6 +10,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -105,5 +107,21 @@ public abstract class EntitySlimeBase extends EntityBaseMob {
 	@Override
 	public Arm getMainArm() {
 		return Arm.LEFT;
+	}
+
+	@Override
+	public void onPlayerCollision(PlayerEntity playerIn) {
+		super.onPlayerCollision(playerIn);
+
+		if (this.isAlive()) {
+			if (world.isClient()) {
+				ClientPlayerEntity player = MinecraftClient.getInstance().player;
+				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.ROYAL_GEL_EQ)) == 1) {
+					return;
+				}
+			}
+
+			playerIn.damage(DamageSource.mob(this), props.damage);
+		}
 	}
 }
