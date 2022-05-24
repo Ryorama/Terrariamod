@@ -33,6 +33,7 @@ public class TresureBagT extends ItemT {
 
     @Override
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, worldIn, tooltip, context);
         if (isBossBag()) {
             tooltip.add(new TranslatableText("Expert").formatted(Formatting.LIGHT_PURPLE));
         }
