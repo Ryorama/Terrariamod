@@ -79,11 +79,11 @@ public class ItemsT {
 	public static WoodenArrow WOODEN_ARROW = (WoodenArrow) new WoodenArrow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(999)).setRarity(2);
 	public static FlamingArrow FLAMING_ARROW = (FlamingArrow) new FlamingArrow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(999)).setRarity(2);
 
-	public static LifeCrystal HEALTH_CRYSTAL = (LifeCrystal) new LifeCrystal(new FabricItemSettings().group(ItemGroup.MISC).maxCount(99)).setRarity(2);
+	public static LifeCrystal HEALTH_CRYSTAL = (LifeCrystal) new LifeCrystal(new FabricItemSettings().group(ItemGroup.MISC).maxCount(99)).setRarity(2).isConsumable(true);
 	public static MagicMirror MAGIC_MIRROR = (MagicMirror) new MagicMirror(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)).setRarity(2);
 
-	public static ItemT SLIME_CROWN = new SlimeCrown(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30)).setRarity(3);
-	public static ItemT SUSPICIOUS_LOOKING_EYE = new SuspiciousLookingEye(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30)).setRarity(3);
+	public static ItemT SLIME_CROWN = new SlimeCrown(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30)).setRarity(3).isConsumable(true);
+	public static ItemT SUSPICIOUS_LOOKING_EYE = new SuspiciousLookingEye(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30)).setRarity(3).isConsumable(true);
 
 	public static ItemT GOLD_CROWN = new ItemT(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)).setRarity(2).setMaxStack(1);
 
@@ -133,20 +133,21 @@ public class ItemsT {
 	public static IronBow IRON_BOW = new IronBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1));
 	public static GoldBow GOLD_BOW = new GoldBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1));
 
-	public static WaterBottle WATER_BOTTLE = new WaterBottle(new FabricItemSettings().group(ItemGroup.BREWING));
-	public static LesserHealingPotion LESSER_HEALING_POTION = new LesserHealingPotion(new FabricItemSettings().group(ItemGroup.BREWING));
-	public static HealingPotion HEALING_POTION = new HealingPotion(new FabricItemSettings().group(ItemGroup.BREWING));
-	public static HoneyBottle HONEY_BOTTLE = new HoneyBottle(new FabricItemSettings().group(ItemGroup.BREWING));
-	public static IronSkinPotion IRONSKIN_POTION = new IronSkinPotion(new FabricItemSettings().group(ItemGroup.BREWING));
-	public static RegenerationPotion REGENERATION_POTION = new RegenerationPotion(new FabricItemSettings().group(ItemGroup.BREWING));
+	public static WaterBottle WATER_BOTTLE = (WaterBottle) new WaterBottle(new FabricItemSettings().group(ItemGroup.BREWING)).isConsumable(true);
+	public static LesserHealingPotion LESSER_HEALING_POTION = (LesserHealingPotion) new LesserHealingPotion(new FabricItemSettings().group(ItemGroup.BREWING)).isConsumable(true);
+	public static HealingPotion HEALING_POTION = (HealingPotion) new HealingPotion(new FabricItemSettings().group(ItemGroup.BREWING)).isConsumable(true);
+	public static HoneyBottle HONEY_BOTTLE = (HoneyBottle) new HoneyBottle(new FabricItemSettings().group(ItemGroup.BREWING)).isConsumable(true);
+	public static IronSkinPotion IRONSKIN_POTION = (IronSkinPotion) new IronSkinPotion(new FabricItemSettings().group(ItemGroup.BREWING)).isConsumable(true);
+	public static RegenerationPotion REGENERATION_POTION = (RegenerationPotion) new RegenerationPotion(new FabricItemSettings().group(ItemGroup.BREWING)).isConsumable(true);
 
-	public static KingSlimeTresureBag KING_SLIME_BAG = new KingSlimeTresureBag(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30));
+	public static KingSlimeTresureBag KING_SLIME_BAG = (KingSlimeTresureBag) new KingSlimeTresureBag(new FabricItemSettings().group(ItemGroup.MISC).maxCount(30)).isConsumable(true);
 
 	public static Item BAND_OF_REGENERATION;
 	public static Item BAND_OF_STARPOWER;
 	public static Item AGLET;
 	public static Item MAGMA_STONE;
 	public static Item SHACKLE;
+	public static Item ROYAL_GEL;
 
 	public static Item TERRARIA_DAYONE_MUSIC;
 	public static Item TERRARIA_NIGHT_MUSIC;
@@ -271,6 +272,7 @@ public class ItemsT {
 		AGLET = Registry.register(Registry.ITEM, new Identifier("terrariamod:aglet"), new Aglet(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
 		MAGMA_STONE = Registry.register(Registry.ITEM, new Identifier("terrariamod:magma_stone"), new MagmaStone(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
 		SHACKLE = Registry.register(Registry.ITEM, new Identifier("terrariamod:shackle"), new Shackle(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC)));
+		ROYAL_GEL = Registry.register(Registry.ITEM, new Identifier("terrariamod:royal_gel"), new RoyalGel(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.MISC))).isExpert(true);
 
 		TERRARIA_DAYONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "day_one_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
 		TERRARIA_NIGHT_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "night_disc"), new AbstractDiscItem(14, TAudio.NIGHT, new FabricItemSettings().group(ItemGroup.MISC)));

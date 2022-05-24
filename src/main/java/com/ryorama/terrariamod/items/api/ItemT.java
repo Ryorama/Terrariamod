@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
@@ -54,7 +55,7 @@ public class ItemT extends Item {
 
 	public String nameFormatting = "";
 	public int speed;
-	
+	public boolean isExpert;
 	public boolean material;
 	
 	public String itemName;
@@ -83,6 +84,16 @@ public class ItemT extends Item {
 	
 	public ItemT setRarity(int rarity) {
 		this.rarity = rarity;
+		return this;
+	}
+
+	public ItemT isConsumable(boolean consumable) {
+		this.consumable = consumable;
+		return this;
+	}
+
+	public ItemT isExpert(boolean isExpert) {
+		this.isExpert = isExpert;
 		return this;
 	}
 
@@ -127,7 +138,13 @@ public class ItemT extends Item {
 	
 	@Override
 	public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext context) {
-		
+		if (consumable) {
+			tooltip.add(new TranslatableText("Consumable"));
+		}
+		if (isExpert) {
+			tooltip.add(new TranslatableText("Expert").formatted(Formatting.LIGHT_PURPLE));
+		}
+
 		if (pick > 0)
 			tooltip.add(new TranslatableText(pick + "% pickaxe power"));
 		if (axe > 0)
@@ -158,8 +175,6 @@ public class ItemT extends Item {
 			tooltip.add(new TranslatableText("heals " + heal + " health"));
 		if (manaHeal > 0)
 			tooltip.add(new TranslatableText("restores " + manaHeal + " mana"));
-		if (consumable)
-			tooltip.add(new TranslatableText("consumable"));
 		if (accessory)
 			tooltip.add(new TranslatableText("accessory"));
 		if (material)

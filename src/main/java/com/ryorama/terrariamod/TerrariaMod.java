@@ -68,6 +68,9 @@ public class TerrariaMod implements ModInitializer {
 	public static boolean DEBUG = false;
 	public static final Identifier MANA = new Identifier(MODID, "mana");
 	public static final Identifier MAX_MANA = new Identifier(MODID, "max_mana");
+	public static final Identifier ROYAL_GEL_EQ = new Identifier(MODID, "royal_gel_eq");
+
+	//Buffs & Debuffs
 	public static final Identifier IRON_SKIN = new Identifier(MODID, "iron_skin");
 	public static final Identifier POTION_SICKNESS = new Identifier(MODID, "potion_sickness");
 	public static final Identifier HAPPY = new Identifier(MODID, "happy");
@@ -99,6 +102,8 @@ public class TerrariaMod implements ModInitializer {
 		Stats.CUSTOM.getOrCreateStat(MANA, StatFormatter.DEFAULT);
 		Registry.register(Registry.CUSTOM_STAT, "max_mana", MAX_MANA);
 		Stats.CUSTOM.getOrCreateStat(MAX_MANA, StatFormatter.DEFAULT);
+		Registry.register(Registry.CUSTOM_STAT, "royal_gel_eq", ROYAL_GEL_EQ);
+		Stats.CUSTOM.getOrCreateStat(ROYAL_GEL_EQ, StatFormatter.DEFAULT);
 
 		//Buffs
 		Registry.register(Registry.CUSTOM_STAT, "iron_skin", IRON_SKIN);
