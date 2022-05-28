@@ -3,7 +3,6 @@ package com.ryorama.terrariamod.items.potions;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.items.api.ItemT;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stats;

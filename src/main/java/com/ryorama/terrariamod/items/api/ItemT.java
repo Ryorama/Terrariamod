@@ -71,7 +71,9 @@ public class ItemT extends Item {
 	public EnumModifierType MODIFIER_TYPE = EnumModifierType.NONE;
 	
 	public UseAction useAction = UseAction.NONE;
-	
+
+	public Random rand = new Random();
+
 	public ItemT(Settings settings) {
 		super(settings);
 

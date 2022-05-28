@@ -3,33 +3,16 @@ package com.ryorama.terrariamod.entity.hostile.slimes;
 import java.util.ArrayList;
 
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.ingame.InventoryScreen;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Arm;
-import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
 public abstract class EntitySlimeBase extends EntityBaseMob {
@@ -115,8 +98,7 @@ public abstract class EntitySlimeBase extends EntityBaseMob {
 
 		if (this.isAlive()) {
 			if (world.isClient()) {
-				ClientPlayerEntity player = MinecraftClient.getInstance().player;
-				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.ROYAL_GEL_EQ)) == 1) {
+				if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.ROYAL_GEL_EQ)) == 1) {
 					return;
 				}
 			}

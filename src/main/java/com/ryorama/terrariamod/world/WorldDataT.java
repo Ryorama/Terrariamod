@@ -47,7 +47,9 @@ public class WorldDataT {
 	  public static final Set<String> defeatedBosses = new HashSet<>();
 	  
 	  public static final Set<UUID> activeBosses = new HashSet<>();
-	  
+
+	  public static boolean isCorruption = false, isCrimson = false;
+
 	  public static int altarsBroken;
 	  
 	  public static long totalTime;
