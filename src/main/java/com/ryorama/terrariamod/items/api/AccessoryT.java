@@ -40,11 +40,7 @@ public class AccessoryT extends TrinketItem {
     @Override
     public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slotReference, LivingEntity entity, UUID uuid) {
         Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slotReference, entity, uuid);
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc1", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc2", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc3", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc4", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc5", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
+        //SlotAttributes.addSlotModifier(modifiers, "acc1/acc1", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
 
         return  modifiers;
     }
