@@ -27,12 +27,6 @@ public class Aglet extends TrinketItem {
 
         modifiers.put(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier(uuid, "guidemod:movement_speed", 0.1, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc1", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc2", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc3", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc4", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
-        SlotAttributes.addSlotModifier(modifiers, "acc1/acc5", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
-
         return modifiers;
     }
 }
