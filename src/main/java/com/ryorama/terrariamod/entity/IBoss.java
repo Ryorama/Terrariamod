@@ -16,13 +16,13 @@ public abstract interface IBoss {
 	
 	public default void activateBoss() {
 		BossBar.isRendering = true;
-		BossBar.renderBossBar();
+		//BossBar.renderBossBar();
 
 	}
 	
 	public default void defeatedBoss() {
 		BossBar.isRendering = false;
-		BossBar.renderBossBar();
+		//BossBar.renderBossBar();
 
 	}
 	

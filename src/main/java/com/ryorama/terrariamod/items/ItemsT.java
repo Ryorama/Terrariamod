@@ -157,6 +157,7 @@ public class ItemsT {
 	public static Item TERRARIA_BOSSONE_MUSIC;
 	public static Item TERRARIA_CAVE_MUSIC;
 	public static Item TERRARIA_UNDERWORLD_MUSIC;
+	public static Item TERRARIA_TITLE_MUSIC;
 
 	public static void init() {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gel"), GEL);
@@ -284,6 +285,7 @@ public class ItemsT {
 		TERRARIA_BOSSONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "boss_one_disc"), new AbstractDiscItem(14, TAudio.BOSS1, new FabricItemSettings().group(ItemGroup.MISC)));
 		TERRARIA_CAVE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underground_disc"), new AbstractDiscItem(14, TAudio.UNDERGROUND, new FabricItemSettings().group(ItemGroup.MISC)));
 		TERRARIA_UNDERWORLD_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underworld_disc"), new AbstractDiscItem(14, TAudio.UNDERWORLD, new FabricItemSettings().group(ItemGroup.MISC)));
+		TERRARIA_TITLE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "title_disc"), new AbstractDiscItem(14, TAudio.TITLE_SCREEN, new FabricItemSettings().group(ItemGroup.MISC)));
 
 	}
 	
