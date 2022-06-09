@@ -15,23 +15,23 @@ public abstract interface IBoss {
 	public abstract float getBossMaxHealth();
 	
 	public default void activateBoss() {
-		BossBar.isRendering = true;
+		//BossBar.isRendering = true;
 		//BossBar.renderBossBar();
 
 	}
 	
 	public default void defeatedBoss() {
-		BossBar.isRendering = false;
+		//BossBar.isRendering = false;
 		//BossBar.renderBossBar();
 
 	}
 	
 	public default void updateBossHealthBar() {
-		BossBar.bossHealth = getBossHealth();
-		BossBar.maxBossHealth = getBossMaxHealth();
+		//BossBar.bossHealth = getBossHealth();
+		//BossBar.maxBossHealth = getBossMaxHealth();
 	}
 	
 	public default void setBossIcon() {
-		BossBar.setBossIcon(bossIcon());
+		//BossBar.setBossIcon(bossIcon());
 	}
 }
