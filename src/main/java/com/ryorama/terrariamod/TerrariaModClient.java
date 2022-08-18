@@ -1,11 +1,17 @@
 package com.ryorama.terrariamod;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.blocks.api.BlockT;
+import com.ryorama.terrariamod.core.client.CelestialManager;
 import com.ryorama.terrariamod.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
+import com.ryorama.terrariamod.items.api.ItemT;
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
+import com.ryorama.terrariamod.utils.Util;
+import com.ryorama.terrariamod.weather.WeatherBase;
+import com.ryorama.terrariamod.world.EntitySpawner;
 import com.ryorama.terrariamod.world.WorldDataT;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -16,6 +22,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
@@ -23,14 +30,19 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockRenderView;
 
@@ -219,7 +231,7 @@ public class TerrariaModClient implements ClientModInitializer {
                     MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
                 }
 
-                //MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(10);
+                MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(20);
             }
 
             ticks++;
@@ -229,16 +241,15 @@ public class TerrariaModClient implements ClientModInitializer {
 
     public void onTick() {
 
-        //TerrariaUIRenderer.renderTerrariaHealth();
-        //TerrariaUIRenderer.renderTerrariaDefense();
-        //TerrariaUIRenderer.renderTerrariaMana();
+        TerrariaUIRenderer.renderTerrariaHealth();
+        TerrariaUIRenderer.renderTerrariaDefense();
+        TerrariaUIRenderer.renderTerrariaMana();
         TerrariaUIRenderer.renderTerrariaEffects();
 
 
         //TMusicTicker.musicChanged = true;
         //ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
 
-		/*
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!player.isCreative()) {
 				if (world.getBlockState(pos).getBlock() instanceof BlockT) {
@@ -267,15 +278,14 @@ public class TerrariaModClient implements ClientModInitializer {
 				return ActionResult.SUCCESS;
 			}
 		});
-		*/
 
         WorldTickCallback.EVENT.register(world -> {
 
-            //WeatherBase.tickWeather();
-            //CelestialManager.handleMoon(world);
-            //CelestialManager.handleSolarEvents(world);
+            WeatherBase.tickWeather();
+            CelestialManager.handleMoon(world);
+            CelestialManager.handleSolarEvents(world);
 
-			/*
+            /*
 			if (world.isClient()) {
 				if (WorldDataT.bloodMoon) {
 					ModifyWorldColor.changeWorldColor("FF0000", 1, "FF0000", 0.4f); //Fix to be (double) 0.4
@@ -285,7 +295,7 @@ public class TerrariaModClient implements ClientModInitializer {
 			}
 			*/
 
-			/*
+
 			if (world.getRandom().nextInt(700) <= 10) {
 				if (world.getPlayers().size() > 0) {
 					PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
@@ -314,12 +324,11 @@ public class TerrariaModClient implements ClientModInitializer {
 						world.spawnEntity(item);
 
 						while (item.isAlive() && !item.isOnGround()) {
-							world.playSound(item.getX(), item.getY(), item.getZ(), TAudio.STAR_FALL, SoundCategory.AMBIENT, 100f, 1f, false);
+							world.playSound(item.getX(), item.getY(), item.getZ(), TAudio.STAR_FALL, SoundCategory.NEUTRAL, 100f, 1f, false);
 						}
 					}
 				}
 			}
-			*/
         });
 
         ServerWorldEvents.LOAD.register(((server, world) -> {

@@ -1,6 +1,8 @@
 package com.ryorama.terrariamod;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.OptionalLong;
 import java.util.function.Function;
 
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
@@ -47,17 +49,19 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockRenderView;
+import net.minecraft.world.dimension.DimensionType;
 import software.bernie.geckolib3.GeckoLib;
 
 public class TerrariaMod implements ModInitializer {
 
 	public static final String MODID = "terrariamod";
 	
-	//private static final DimensionType MODIFIED_OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -256, 512, 512, BlockTags.INFINIBURN_OVERWORLD, DimensionType.OVERWORLD_ID, 0.0F);
+	private static final DimensionType MODIFIED_OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -256, 512, 512, BlockTags.INFINIBURN_OVERWORLD, DimensionType.OVERWORLD_ID, 0.0F);
 
 	public static FlowableFluid STILL_HONEY;
 	public static FlowableFluid FLOWING_HONEY;
@@ -80,13 +84,13 @@ public class TerrariaMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		//BiomeRegistry.RegisterBiomes();
-		//ParticleRegistry.init();
+		BiomeRegistry.RegisterBiomes();
+		ParticleRegistry.init();
 		BlocksT.init();
 		ItemsT.init();
 		EntitiesT.init();
 		
-		//ModifyWorldHeight();
+		ModifyWorldHeight();
 		GeckoLib.initialize();
 		TAudio.registerAudio();
 
@@ -123,7 +127,6 @@ public class TerrariaMod implements ModInitializer {
 	}
 
 	private static void ModifyWorldHeight() {
-		/*
 		Field[] dimension_fields = DimensionType.class.getDeclaredFields();
 		for (int i = 0; i < dimension_fields.length; i++) {
 			try {
@@ -139,9 +142,8 @@ public class TerrariaMod implements ModInitializer {
 		try {
 			Resources.makeFieldAccessible(overworld_field);
 			overworld_field.set(null, MODIFIED_OVERWORLD);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
 	}
 }
