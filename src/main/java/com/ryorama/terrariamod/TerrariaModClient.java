@@ -28,6 +28,7 @@ import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
@@ -47,6 +48,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockRenderView;
+import net.minecraft.world.chunk.Chunk;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -60,6 +62,12 @@ public class TerrariaModClient implements ClientModInitializer {
     public int tmpMana = 20;
     public int tmpMaxMana = 20;
 
+    public static boolean DEBUG = false;
+
+    public TerrariaModClient() {
+
+    }
+
     @Environment(EnvType.CLIENT)
     @Override
     public void onInitializeClient() {
@@ -72,11 +80,12 @@ public class TerrariaModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
         onTickClient();
 
-		try {
-			Field f = Resources.findField(MinecraftClient.class, "musicTracker", "field_1714");
-			f.set(MinecraftClient.getInstance(), new TMusicTicker(MinecraftClient.getInstance()));
-		} catch (Exception e) {
-            e.printStackTrace();
+        try {
+            Field musicTicker = MinecraftClient.class.getDeclaredField(DEBUG ? "musicTicker" : "field_1714");
+            musicTicker.setAccessible(true);
+            musicTicker.set(MinecraftClient.getInstance(), new TMusicTicker(MinecraftClient.getInstance()));
+        } catch (Exception e1) {
+            e1.printStackTrace();
         }
     }
 
@@ -178,10 +187,10 @@ public class TerrariaModClient implements ClientModInitializer {
 
             int ticks = 0;
 
-            ServerPlayerEntity player = null;
+            ClientPlayerEntity player = null;
 
             for (int p = 0; p < world.getPlayers().size(); p++) {
-                player = (ServerPlayerEntity) world.getPlayers().get(p);
+                player = (ClientPlayerEntity) world.getPlayers().get(p);
             }
 
             if (player != null) {
@@ -243,7 +252,6 @@ public class TerrariaModClient implements ClientModInitializer {
             }
 
             ticks++;
-
         });
     }
 
