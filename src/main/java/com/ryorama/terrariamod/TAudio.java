@@ -9,6 +9,7 @@ import java.util.List;
 
 public class TAudio {
 
+    /*
     public static List<String> musicNames = new ArrayList<>();
 
     public static final SoundEvent DAYONE = new SoundEvent(new Identifier(TerrariaMod.MODID, "day1"));
@@ -25,6 +26,7 @@ public class TAudio {
 
     public static final SoundEvent TITLE_SCREEN = new SoundEvent(new Identifier(TerrariaMod.MODID, "title_screen"));
     public static final SoundEvent BOSS1 = new SoundEvent(new Identifier(TerrariaMod.MODID, "boss1"));
+     */
 
     public static final SoundEvent HEALTH_CRYSTAL = new SoundEvent(new Identifier(TerrariaMod.MODID, "health_crystal"));
     public static final SoundEvent ROAR_0 = new SoundEvent(new Identifier(TerrariaMod.MODID, "roar_0"));
@@ -35,12 +37,15 @@ public class TAudio {
     public static final SoundEvent SUMMON = new SoundEvent(new Identifier(TerrariaMod.MODID, "summon"));
 
 	public static void registerAudio() {
+        /*
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "day1"), DAYONE);
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "night"), NIGHT);
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "boss1"), BOSS1);
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "underground"), UNDERGROUND);
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "underworld"), UNDERWORLD);
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "title_screen"), TITLE_SCREEN);
+         */
+
 		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "health_crystal"), HEALTH_CRYSTAL);
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "roar_0"), ROAR_0);
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "star_fall"), STAR_FALL);
@@ -50,8 +55,8 @@ public class TAudio {
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "summon"), SUMMON);
     }
 
-    /*
-    public static void registerAudio() {
+
+    public static void registerMusic() {
         TAudio.SoundEvents[] var1 = TAudio.SoundEvents.values();
         int var2 = var1.length;
 
@@ -98,5 +103,4 @@ public class TAudio {
             return this.sound;
         }
     }
-    */
 }

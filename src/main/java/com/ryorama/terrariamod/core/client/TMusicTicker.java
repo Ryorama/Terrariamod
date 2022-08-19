@@ -18,12 +18,16 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-/*
+
 @Environment(EnvType.CLIENT)
 public class TMusicTicker extends MusicTracker {
 
-	  private static MinecraftClient client = MinecraftClient.getInstance();
-	  
+    public TMusicTicker(MinecraftClient client) {
+        super(client);
+        this.client = client;
+    }
+
+    /*
 	  public static SoundEvent currentMusic;
 	  public static SoundEvent currentBossTrack;
 	  public static SoundEvent currentWeatherTrack;
@@ -31,12 +35,7 @@ public class TMusicTicker extends MusicTracker {
 	  public static boolean musicChanged;
 	  public static boolean weatherMusicOverride = false;
 	  public static boolean bossMusicOverride = false;
-	  
-	  
-	  public TMusicTicker(MinecraftClient client) {
-	  	super(client);
-	  }
-	  
+
 	  public static void onTickUpdate() {
 		  if (musicChanged) {
 			  if (!bossMusicOverride) {
@@ -77,6 +76,8 @@ public class TMusicTicker extends MusicTracker {
 		  return event;
 	  }
 
+     */
+
 	private final Random random = new Random();
 	private final MinecraftClient client;
 	private SoundEvent currentMusic;
@@ -85,11 +86,6 @@ public class TMusicTicker extends MusicTracker {
 	private int timeUntilNextAmbient = 100;
 	private boolean locked = false;
 	private boolean lockedAmbient = false;
-
-	public TMusicTicker(MinecraftClient client) {
-		super(client);
-		this.client = client;
-	}
 
 	@Override
 	public void tick() {
@@ -425,4 +421,3 @@ public class TMusicTicker extends MusicTracker {
 		}
 	}
 }
-*/

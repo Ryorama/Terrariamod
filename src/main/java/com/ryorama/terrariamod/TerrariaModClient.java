@@ -4,6 +4,7 @@ import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.blocks.api.BlockT;
 import com.ryorama.terrariamod.core.client.CelestialManager;
 import com.ryorama.terrariamod.core.client.ParticleRegistry;
+import com.ryorama.terrariamod.core.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
@@ -37,6 +38,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
@@ -47,6 +49,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockRenderView;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.function.Function;
 
 public class TerrariaModClient implements ClientModInitializer {
@@ -69,14 +72,12 @@ public class TerrariaModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
         onTickClient();
 
-		/*
 		try {
 			Field f = Resources.findField(MinecraftClient.class, "musicTracker", "field_1714");
 			f.set(MinecraftClient.getInstance(), new TMusicTicker(MinecraftClient.getInstance()));
 		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
+            e.printStackTrace();
+        }
     }
 
     public static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color)	 {
@@ -177,61 +178,68 @@ public class TerrariaModClient implements ClientModInitializer {
 
             int ticks = 0;
 
-            if (MinecraftClient.getInstance().player != null) {
+            ServerPlayerEntity player = null;
+
+            for (int p = 0; p < world.getPlayers().size(); p++) {
+                player = (ServerPlayerEntity) world.getPlayers().get(p);
+            }
+
+            if (player != null) {
 
                 if (!firstUpdate && WorldDataT.hasStartingTools) {
-                    MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), tmpMana);
-                    MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), tmpMaxMana);
+                    player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
+                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), tmpMana);
+                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), tmpMaxMana);
                     firstUpdate = true;
                 }
 
-                if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
-                    MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) -1);
+                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
+                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) -1);
 
                     if (!ironSkinJustActivated) {
-                        MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() + 8);
+                        player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() + 8);
                         ironSkinJustActivated = true;
                     }
                 } else {
                     if (ironSkinJustActivated) {
-                        MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(MinecraftClient.getInstance().player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() - 8);
+                        player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() - 8);
                         ironSkinJustActivated = false;
                     }
                 }
 
-                if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) > 0) {
-                    MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) -1);
+                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) > 0) {
+                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) -1);
                 }
 
-                if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
+                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
                     if (ticks % 100 == 0) {
-                        MinecraftClient.getInstance().player.setHealth(MinecraftClient.getInstance().player.getHealth() + 2);
+                        player.setHealth(player.getHealth() + 2);
                     }
 
                     if (ticks % 20 == 0) {
-                        MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) - 150);
+                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) - 150);
                     }
                 }
 
-                if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) > 0) {
+                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) > 0) {
                     if (ticks % 80 == 0) {
-                        MinecraftClient.getInstance().player.setHealth(MinecraftClient.getInstance().player.getHealth() + 2);
+                        player.setHealth(player.getHealth() + 2);
                     }
-                    MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) - 1);
+                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) - 1);
                 }
 
-                if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) > 0) {
+                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) > 0) {
                     if (ticks % 140 == 0) {
-                        MinecraftClient.getInstance().player.setHealth(MinecraftClient.getInstance().player.getHealth() - 2);
+                        player.setHealth(player.getHealth() - 2);
                     }
-                    MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) - 1);
+                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) - 1);
                 }
 
-                if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
-                    MinecraftClient.getInstance().player.getStatHandler().setStat(MinecraftClient.getInstance().player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
+                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
+                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
                 }
 
-                MinecraftClient.getInstance().player.getHungerManager().setFoodLevel(20);
+                player.getHungerManager().setFoodLevel(20);
             }
 
             ticks++;

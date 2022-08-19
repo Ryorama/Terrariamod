@@ -93,6 +93,7 @@ public class TerrariaMod implements ModInitializer {
 		ModifyWorldHeight();
 		GeckoLib.initialize();
 		TAudio.registerAudio();
+		TAudio.registerMusic();
 
 		STILL_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "still_honey"), new HoneyFluid.Still());
 		FLOWING_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "flowing_honey"), new HoneyFluid.Flowing());

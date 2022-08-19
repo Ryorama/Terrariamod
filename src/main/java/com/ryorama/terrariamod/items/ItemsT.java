@@ -264,7 +264,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "green_slime_spawn_egg"), new SpawnEggItem(EntitiesT.GREEN_SLIME, 0x2ec221, 0x5fed53, new FabricItemSettings().group(ItemGroup.MISC)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "blue_slime_spawn_egg"), new SpawnEggItem(EntitiesT.BLUE_SLIME, 0x2f7dc4, 0x53a3ed, new FabricItemSettings().group(ItemGroup.MISC)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "demon_eye_slime_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON_EYE, 0xffffff, 0xff0000, new FabricItemSettings().group(ItemGroup.MISC)));
-		//Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "demon_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON, 0x704b14, 0x703614, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "demon_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON, 0x704b14, 0x703614, new FabricItemSettings().group(ItemGroup.MISC)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "eater_of_souls_spawn_egg"), new SpawnEggItem(EntitiesT.EATER_OF_SOULS, 0x704b14, 0x7a8737, new FabricItemSettings().group(ItemGroup.MISC)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "granite_elemental_spawn_egg"), new SpawnEggItem(EntitiesT.GRANITE_ELEMETAL, 0x0c0833, 0x2c2387, new FabricItemSettings().group(ItemGroup.MISC)));
 
@@ -280,12 +280,12 @@ public class ItemsT {
 		ROYAL_GEL = Registry.register(Registry.ITEM, new Identifier("terrariamod:royal_gel"), new RoyalGel(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS))).isExpert(true);
 		SHIELD_OF_CTHULHU = Registry.register(Registry.ITEM, new Identifier("terrariamod:shield_of_cthulhu"), new ShieldOfCthulhu(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS))).isExpert(true);
 
-		TERRARIA_DAYONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "day_one_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
-		TERRARIA_NIGHT_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "night_disc"), new AbstractDiscItem(14, TAudio.NIGHT, new FabricItemSettings().group(ItemGroup.MISC)));
-		TERRARIA_BOSSONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "boss_one_disc"), new AbstractDiscItem(14, TAudio.BOSS1, new FabricItemSettings().group(ItemGroup.MISC)));
-		TERRARIA_CAVE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underground_disc"), new AbstractDiscItem(14, TAudio.UNDERGROUND, new FabricItemSettings().group(ItemGroup.MISC)));
-		TERRARIA_UNDERWORLD_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underworld_disc"), new AbstractDiscItem(14, TAudio.UNDERWORLD, new FabricItemSettings().group(ItemGroup.MISC)));
-		TERRARIA_TITLE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "title_disc"), new AbstractDiscItem(14, TAudio.TITLE_SCREEN, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_DAYONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "day_one_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_NIGHT_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "night_disc"), new AbstractDiscItem(14, TAudio.NIGHT, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_BOSSONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "boss_one_disc"), new AbstractDiscItem(14, TAudio.BOSS1, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_CAVE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underground_disc"), new AbstractDiscItem(14, TAudio.UNDERGROUND, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_UNDERWORLD_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underworld_disc"), new AbstractDiscItem(14, TAudio.UNDERWORLD, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_TITLE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "title_disc"), new AbstractDiscItem(14, TAudio.TITLE_SCREEN, new FabricItemSettings().group(ItemGroup.MISC)));
 
 	}
 	
