@@ -14,7 +14,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 public class ItemStackT {
 	
@@ -110,7 +110,7 @@ public class ItemStackT {
 	      }
 
 	      if (mod != null) {
-	         tooltips.add(new TranslatableText(mod.name));
+	         tooltips.add(Text.translatable(mod.name));
 	         mod.addTooltips(tooltips);
 	      }
 

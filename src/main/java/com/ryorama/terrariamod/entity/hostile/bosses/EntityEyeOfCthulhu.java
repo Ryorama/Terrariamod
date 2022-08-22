@@ -21,7 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -102,7 +102,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 
 	    if (!world.isClient()) {
 	    	for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
-		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("The Eye of Cthulhu has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(Text.translatable("The Eye of Cthulhu has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
 	    	}
 	    }
 	    
@@ -204,7 +204,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	                        this.world.spawnEntity(eye);
 	                        eye.money = 0;
 	                        eye.noClip = true;
-	                        eye.setCustomName(new TranslatableText("Servant of Cthulhu"));
+	                        eye.setCustomName(Text.translatable("Servant of Cthulhu"));
 	                     }
 	                  } else {
 	                     this.spawnEyes = false;
@@ -395,7 +395,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	            this.world.spawnEntity(eye);
 	            eye.money = 0;
 	            eye.noClip = true;
-	            eye.setCustomName(new TranslatableText("Servant of Cthulhu"));
+	            eye.setCustomName(Text.translatable("Servant of Cthulhu"));
 	         }
 
 	         this.transformedRotation += (1800.0D - this.transformedRotation) * 0.07999999821186066D;
@@ -423,7 +423,7 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	public void dropLoot(DamageSource source, boolean b) {
 		if (!world.isClient()) {
 			for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
-				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("The Eye of Cthulhu has been defeated!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(Text.translatable("The Eye of Cthulhu has been defeated!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
 			}
 		}
 

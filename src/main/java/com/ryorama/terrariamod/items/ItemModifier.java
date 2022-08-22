@@ -15,7 +15,6 @@ import com.ryorama.terrariamod.items.modifiers.UniversalModifer;
 
 import net.minecraft.item.Item;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 
 public class ItemModifier {
 	
@@ -212,7 +211,7 @@ public static HashMap<String, ItemModifier> modifiers = new HashMap<String, Item
 		String str = "";
 		if (a == 0) return;
 		str += getValue(a) + (percent ? "%" : "") + " " + description;
-		tooltips.add(new TranslatableText(str));
+		tooltips.add(Text.translatable(str));
 	}
 	public String getValue(double a) {
 		if (a < 0) return ""+a;

@@ -13,7 +13,7 @@ import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
@@ -125,68 +125,68 @@ public class EntitiesT {
          public class ModelRegistry {
             @Environment(EnvType.CLIENT)
 	  public static void registerModels() {
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.GREEN_SLIME,
+				EntityRendererRegistry.register(EntitiesT.GREEN_SLIME,
 						(context) -> {
 							return new RenderGreenSlime(context);
 						});
 
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.BLUE_SLIME,
+				EntityRendererRegistry.register(EntitiesT.BLUE_SLIME,
 						(context) -> {
 							return new RenderBlueSlime(context);
 						});
 
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_EYE,
+				EntityRendererRegistry.register(EntitiesT.DEMON_EYE,
 						(context) -> {
 							return new RenderDemonEye(context);
 						});
 
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.KING_SLIME,
+				EntityRendererRegistry.register(EntitiesT.KING_SLIME,
 						(context) -> {
 							return new RenderKingSlime(context);
 						});
 
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON,
+				EntityRendererRegistry.register(EntitiesT.DEMON,
 						(context) -> {
 							return new RenderDemon(context);
 						});
 
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.DEMON_SYCTH,
+				EntityRendererRegistry.register(EntitiesT.DEMON_SYCTH,
 						(context) -> {
 							return new RenderDemonSycth(context);
 						});
 
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.EATER_OF_SOULS,
+				EntityRendererRegistry.register(EntitiesT.EATER_OF_SOULS,
 						(context) -> {
 							return new RenderEaterOfSouls(context);
 						});
 
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.EOC,
+				EntityRendererRegistry.register(EntitiesT.EOC,
 						(context) -> {
 							return new RenderEyeOfCthulhu(context);
 						});
 
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.GRANITE_ELEMETAL,
+				EntityRendererRegistry.register(EntitiesT.GRANITE_ELEMETAL,
 						(context) -> {
 							return new RenderGraniteElemental(context);
 						});
 
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.DRIPPLER,
+				EntityRendererRegistry.register(EntitiesT.DRIPPLER,
 						(context) -> {
 							return new RenderDrippler(context);
 						});
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.DRIPPLER,
+				EntityRendererRegistry.register(EntitiesT.DRIPPLER,
 						(context) -> {
 							return new RenderDrippler(context);
 						});
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.SPORE_ZOMBIE,
+				EntityRendererRegistry.register(EntitiesT.SPORE_ZOMBIE,
 						(context) -> {
 							return new RenderSporeZombie(context);
 						});
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.SPORE_SKELETON,
+				EntityRendererRegistry.register(EntitiesT.SPORE_SKELETON,
 						(context) -> {
 							return new RenderSporeSkeleton(context);
 						});
-				EntityRendererRegistry.INSTANCE.register(EntitiesT.HEART,
+				EntityRendererRegistry.register(EntitiesT.HEART,
 						(context) -> {
 							return new RenderHeart(context);
 						});

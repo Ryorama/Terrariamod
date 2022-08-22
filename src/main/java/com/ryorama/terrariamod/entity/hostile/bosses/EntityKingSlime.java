@@ -25,6 +25,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.text.Text;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
@@ -38,7 +39,6 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 
 public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable {
@@ -53,7 +53,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 
 		if (!world.isClient()) {
 			for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
-		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("King Slime has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(Text.translatable("King Slime has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
 			}
 		}
 
@@ -73,7 +73,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 
 		if (!world.isClient()) {
 			for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
-				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("King Slime has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(Text.translatable("King Slime has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
 			}
 		}
 
@@ -305,7 +305,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 	public void dropLoot(DamageSource source, boolean b) {
 		if (!world.isClient()) {
 			for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
-				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(new TranslatableText("King Slime has been defeated!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(Text.translatable("King Slime has been defeated!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
 			}
 		}
 	 }

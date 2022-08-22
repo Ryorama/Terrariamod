@@ -7,7 +7,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -41,7 +40,7 @@ public class TresureBagT extends ItemT {
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, worldIn, tooltip, context);
         if (isBossBag()) {
-            tooltip.add(new TranslatableText("Expert").formatted(Formatting.LIGHT_PURPLE));
+            tooltip.add(Text.translatable("Expert").formatted(Formatting.LIGHT_PURPLE));
         }
     }
 

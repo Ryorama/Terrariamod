@@ -10,7 +10,6 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
@@ -33,7 +32,7 @@ public class AccessoryT extends TrinketItem {
     @Override
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext context) {
         if (isExpert) {
-            tooltip.add(new TranslatableText("Expert").formatted(Formatting.LIGHT_PURPLE));
+            tooltip.add(Text.translatable("Expert").formatted(Formatting.LIGHT_PURPLE));
         }
     }
 

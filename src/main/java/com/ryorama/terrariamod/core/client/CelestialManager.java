@@ -2,7 +2,8 @@ package com.ryorama.terrariamod.core.client;
 
 import com.ryorama.terrariamod.world.WorldDataT;
 import net.minecraft.client.render.WorldRenderer;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -59,7 +60,7 @@ public class CelestialManager {
                 WorldDataT.bloodMoon = true;
                 if (!worldIn.isClient()) {
                     for (int p = 0; p < worldIn.getServer().getPlayerManager().getPlayerList().size() - 1; p++) {
-                        worldIn.getServer().getPlayerManager().getPlayerList().get(p).sendMessage((new TranslatableText("A bloodmoon is rising!")).formatted(Formatting.GREEN).formatted(Formatting.BOLD), false);
+                        worldIn.getServer().getPlayerManager().getPlayerList().get(p).sendMessage((Text.translatable("A bloodmoon is rising!")).formatted(Formatting.GREEN).formatted(Formatting.BOLD), false);
                     }
                 }
             }
@@ -84,7 +85,7 @@ public class CelestialManager {
             if (rand.nextInt(50) <= 5 && WorldDataT.hardmode == true && !alreadyAttemptedSolarEclipse) {
                 WorldDataT.solarEclipse = true;
                 for (int p = 0; p < worldIn.getServer().getPlayerManager().getPlayerList().size() - 1; p++) {
-                    worldIn.getServer().getPlayerManager().getPlayerList().get(p).sendMessage((new TranslatableText("A solar eclipse is happening!")).formatted(Formatting.GREEN, Formatting.BOLD), false);
+                    worldIn.getServer().getPlayerManager().getPlayerList().get(p).sendMessage((Text.translatable("A solar eclipse is happening!")).formatted(Formatting.GREEN, Formatting.BOLD), false);
                 }
             }
 

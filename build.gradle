@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.10-SNAPSHOT'
+	id 'fabric-loom' version '0.12-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -40,6 +40,13 @@ repositories {
 		url = uri("https://raw.github.com/Ryorama/maven/master")
 	}
 	maven { url "https://maven.shedaniel.me/" }
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+		content {
+			includeGroup "maven.modrinth"
+		}
+	}
 }
 
 dependencies {
@@ -52,9 +59,10 @@ dependencies {
 
 	modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
 
-	include modImplementation("software.bernie.geckolib:geckolib-fabric-1.18:${geckolib_version}")
+	include modImplementation("software.bernie.geckolib:geckolib-fabric-1.19:${geckolib_version}")
 	include modImplementation("dev.emi:trinkets:${trinkets_version}")
 	include modImplementation("io.github.cottonmc:LibGui:${libgui_version}")
+	include modImplementation ("maven.modrinth:structureplacerapi:${structureplacerapi_version}")
 	implementation 'javax.vecmath:vecmath:1.5.2'
 
 

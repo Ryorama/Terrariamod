@@ -20,7 +20,8 @@
     "CampfireBlockEntityMixin",
     "ChunkGeneratorSettingsMixin",
     "RavineCarverMixin",
-    "CaveCarverMixin"
+    "CaveCarverMixin",
+    "NoiseChunkGeneratorMixin"
   ],
   "client": [
     "PlayerEntityMixin",

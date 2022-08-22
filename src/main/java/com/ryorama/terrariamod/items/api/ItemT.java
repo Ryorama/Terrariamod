@@ -12,7 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
@@ -109,27 +109,27 @@ public class ItemT extends Item {
 	@Override
 	public Text getName(ItemStack stack) {
 		if (rarity == 1) {
-			return new TranslatableText(nameFormatting + this.getTranslationKey(stack)); //.formatted(IRareItem.GREY)
+			return Text.translatable(nameFormatting + this.getTranslationKey(stack)); //.formatted(IRareItem.GREY)
 		} else if (rarity == 2) {
-			return new TranslatableText(this.getTranslationKey(stack)); //.formatted(IRareItem.WHITE)
+			return Text.translatable(this.getTranslationKey(stack)); //.formatted(IRareItem.WHITE)
 		} else if (rarity == 3) {
-			return new TranslatableText(nameFormatting + this.getTranslationKey(stack)); //.formatted(IRareItem.BLUE)
+			return Text.translatable(nameFormatting + this.getTranslationKey(stack)); //.formatted(IRareItem.BLUE)
 		} else if (rarity == 4) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.GREEN);
+			return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.GREEN);
 		} else if (rarity == 5) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.ORANGE);
+			return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.ORANGE);
 		} else if (rarity == 6) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.LIGHT_RED);
+			return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.LIGHT_RED);
 		} else if (rarity == 7) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.LIGHT_PURPLE);
+			return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.LIGHT_PURPLE);
 		} else if (rarity == 8) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.YELLOW);
+			return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.YELLOW);
 		} else if (rarity == 9) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.RED);
+			return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.RED);
 		} else if (rarity == 10) {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.PURPLE);
+			return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.PURPLE);
 		} else {
-			return new TranslatableText(this.getTranslationKey(stack)).formatted(IRareItem.WHITE);
+			return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.WHITE);
 		}
 	}
 	
@@ -141,48 +141,48 @@ public class ItemT extends Item {
 	@Override
 	public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext context) {
 		if (consumable) {
-			tooltip.add(new TranslatableText("Consumable"));
+			tooltip.add(Text.translatable("Consumable"));
 		}
 		if (isExpert) {
-			tooltip.add(new TranslatableText("Expert").formatted(Formatting.LIGHT_PURPLE));
+			tooltip.add(Text.translatable("Expert").formatted(Formatting.LIGHT_PURPLE));
 		}
 
 		if (pick > 0)
-			tooltip.add(new TranslatableText(pick + "% pickaxe power"));
+			tooltip.add(Text.translatable(pick + "% pickaxe power"));
 		if (axe > 0)
-			tooltip.add(new TranslatableText(axe + "% axe power"));
+			tooltip.add(Text.translatable(axe + "% axe power"));
 		if (hammer > 0)
-			tooltip.add(new TranslatableText(hammer + "% hammer power"));
+			tooltip.add(Text.translatable(hammer + "% hammer power"));
 		if (melee)
-			tooltip.add(new TranslatableText(damage + " melee damage"));
+			tooltip.add(Text.translatable(damage + " melee damage"));
 		if (ranged)
-			tooltip.add(new TranslatableText(damage + " ranged damage"));
+			tooltip.add(Text.translatable(damage + " ranged damage"));
 		if (throwing)
-			tooltip.add(new TranslatableText(damage + " throwing damage"));
+			tooltip.add(Text.translatable(damage + " throwing damage"));
 		if (summon)
-			tooltip.add(new TranslatableText(damage + " summon damage"));
+			tooltip.add(Text.translatable(damage + " summon damage"));
 		if (magic)
-			tooltip.add(new TranslatableText(damage + " magic damage"));
+			tooltip.add(Text.translatable(damage + " magic damage"));
 		if (velocity > 0)
-			tooltip.add(new TranslatableText(velocity + " velocity"));
+			tooltip.add(Text.translatable(velocity + " velocity"));
 		if (defense > 0)
-			tooltip.add(new TranslatableText(defense + " defense"));
+			tooltip.add(Text.translatable(defense + " defense"));
 		if (mana > 0)
-			tooltip.add(new TranslatableText("uses " + damage + " mana"));
+			tooltip.add(Text.translatable("uses " + damage + " mana"));
 		if (critChance > 0 && damage > 0)
-			tooltip.add(new TranslatableText(new String(critChance + "% critical strike chance").replace(".0", "")));
+			tooltip.add(Text.translatable(new String(critChance + "% critical strike chance").replace(".0", "")));
 		if (isAmmo)
-			tooltip.add(new TranslatableText("ammo"));
+			tooltip.add(Text.translatable("ammo"));
 		if (heal > 0)
-			tooltip.add(new TranslatableText("heals " + heal + " health"));
+			tooltip.add(Text.translatable("heals " + heal + " health"));
 		if (manaHeal > 0)
-			tooltip.add(new TranslatableText("restores " + manaHeal + " mana"));
+			tooltip.add(Text.translatable("restores " + manaHeal + " mana"));
 		if (accessory)
-			tooltip.add(new TranslatableText("accessory"));
+			tooltip.add(Text.translatable("accessory"));
 		if (material)
-			tooltip.add(new TranslatableText("material"));
+			tooltip.add(Text.translatable("material"));
 		if (!this.tooltip.equals(""))
-			tooltip.add(new TranslatableText(""+this.tooltip));
+			tooltip.add(Text.translatable(""+this.tooltip));
 	}
 	
 	public ItemStack stack(int i) {

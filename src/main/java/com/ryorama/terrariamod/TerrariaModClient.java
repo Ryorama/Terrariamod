@@ -97,7 +97,7 @@ public class TerrariaModClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (openCraftingScreen.wasPressed()) {
-                client.player.openHandledScreen()
+                //client.player.openHandledScreen()
             }
         });
 
