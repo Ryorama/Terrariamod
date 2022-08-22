@@ -8,6 +8,7 @@ import com.ryorama.terrariamod.items.accessories.*;
 import com.ryorama.terrariamod.items.api.AbstractDiscItem;
 import com.ryorama.terrariamod.items.api.BlockItemT;
 import com.ryorama.terrariamod.items.api.ItemT;
+import com.ryorama.terrariamod.items.api.WingsItemT;
 import com.ryorama.terrariamod.items.armor.CopperArmorMaterial;
 import com.ryorama.terrariamod.items.armor.GoldTArmorMaterial;
 import com.ryorama.terrariamod.items.armor.IronTArmorMaterial;
@@ -151,6 +152,7 @@ public class ItemsT {
 	public static Item SHACKLE;
 	public static Item ROYAL_GEL;
 	public static Item SHIELD_OF_CTHULHU;
+	public static Item FLEDGLING_WINGS;
 
 	public static Item TERRARIA_DAYONE_MUSIC;
 	public static Item TERRARIA_NIGHT_MUSIC;
@@ -279,6 +281,7 @@ public class ItemsT {
 		SHACKLE = Registry.register(Registry.ITEM, new Identifier("terrariamod:shackle"), new Shackle(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
 		ROYAL_GEL = Registry.register(Registry.ITEM, new Identifier("terrariamod:royal_gel"), new RoyalGel(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS))).isExpert(true);
 		SHIELD_OF_CTHULHU = Registry.register(Registry.ITEM, new Identifier("terrariamod:shield_of_cthulhu"), new ShieldOfCthulhu(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS))).isExpert(true);
+		FLEDGLING_WINGS = Registry.register(Registry.ITEM, new Identifier("terrariamod:fledgling_wings"), new WingsItemT(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS), 0.5D, 0.025D, 20, 7));
 
 		//TERRARIA_DAYONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "day_one_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
 		//TERRARIA_NIGHT_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "night_disc"), new AbstractDiscItem(14, TAudio.NIGHT, new FabricItemSettings().group(ItemGroup.MISC)));

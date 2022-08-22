@@ -6,6 +6,8 @@ import com.ryorama.terrariamod.core.client.CelestialManager;
 import com.ryorama.terrariamod.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.core.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.EntitiesT;
+import com.ryorama.terrariamod.gui.crafting.CraftingGuiDescription;
+import com.ryorama.terrariamod.gui.crafting.CraftingGuiScreen;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.items.api.ItemT;
@@ -14,10 +16,14 @@ import com.ryorama.terrariamod.utils.Util;
 import com.ryorama.terrariamod.weather.WeatherBase;
 import com.ryorama.terrariamod.world.EntitySpawner;
 import com.ryorama.terrariamod.world.WorldDataT;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -28,10 +34,13 @@ import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -49,6 +58,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.chunk.Chunk;
+import org.lwjgl.glfw.GLFW;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -62,7 +72,9 @@ public class TerrariaModClient implements ClientModInitializer {
     public int tmpMana = 20;
     public int tmpMaxMana = 20;
 
-    public static boolean DEBUG = false;
+    public static boolean DEBUG = true;
+
+    private static KeyBinding openCraftingScreen;
 
     public TerrariaModClient() {
 
@@ -73,6 +85,7 @@ public class TerrariaModClient implements ClientModInitializer {
     public void onInitializeClient() {
         EntitiesT.initClient();
         ParticleRegistry.initClient();
+        HandledScreens.<CraftingGuiDescription, CraftingGuiScreen>register(TerrariaMod.CRAFTING_TYPE, (gui, inventory, title) -> new CraftingGuiScreen(gui, inventory.player, title));
         ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
         onTick();
         addCutouts();
@@ -80,8 +93,16 @@ public class TerrariaModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
         onTickClient();
 
+        openCraftingScreen = KeyBindingHelper.registerKeyBinding(new KeyBinding("com.ryorama.terrariamod", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "category.terrariamod.crafting"));
+
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            while (openCraftingScreen.wasPressed()) {
+                client.player.openHandledScreen()
+            }
+        });
+
         try {
-            Field musicTicker = MinecraftClient.class.getDeclaredField(DEBUG ? "musicTicker" : "field_1714");
+            Field musicTicker = MinecraftClient.class.getDeclaredField(DEBUG ? "musicTracker" : "field_1714");
             musicTicker.setAccessible(true);
             musicTicker.set(MinecraftClient.getInstance(), new TMusicTicker(MinecraftClient.getInstance()));
         } catch (Exception e1) {
@@ -185,73 +206,82 @@ public class TerrariaModClient implements ClientModInitializer {
     public void onTickClient() {
         WorldTickCallback.EVENT.register(world -> {
 
-            int ticks = 0;
+            if (world.isClient()) {
+                int ticks = 0;
 
-            ClientPlayerEntity player = null;
+                ClientPlayerEntity player = null;
 
-            for (int p = 0; p < world.getPlayers().size(); p++) {
-                player = (ClientPlayerEntity) world.getPlayers().get(p);
+                for (int p = 0; p < world.getPlayers().size(); p++) {
+                    player = (ClientPlayerEntity) world.getPlayers().get(p);
+                }
+
+                if (player != null) {
+
+                    if (!firstUpdate && !WorldDataT.hasStartingTools) {
+                        if (TerrariaMod.CONFIG.modifyPlayerHealth) {
+                            player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
+                            player.setHealth(100);
+                        }
+
+                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), tmpMana);
+                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), tmpMaxMana);
+                        WorldDataT.hasStartingTools = true;
+                        firstUpdate = true;
+                    }
+
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
+                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) - 1);
+
+                        if (!ironSkinJustActivated) {
+                            player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() + 8);
+                            ironSkinJustActivated = true;
+                        }
+                    } else {
+                        if (ironSkinJustActivated) {
+                            player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() - 8);
+                            ironSkinJustActivated = false;
+                        }
+                    }
+
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) > 0) {
+                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) - 1);
+                    }
+
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
+                        if (ticks % 100 == 0) {
+                            player.setHealth(player.getHealth() + 2);
+                        }
+
+                        if (ticks % 20 == 0) {
+                            player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) - 150);
+                        }
+                    }
+
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) > 0) {
+                        if (ticks % 80 == 0) {
+                            player.setHealth(player.getHealth() + 2);
+                        }
+                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) - 1);
+                    }
+
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) > 0) {
+                        if (ticks % 140 == 0) {
+                            player.setHealth(player.getHealth() - 2);
+                        }
+                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) - 1);
+                    }
+
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
+                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
+                    }
+
+                    if (TerrariaMod.CONFIG.disableHunger) {
+                        player.getHungerManager().setFoodLevel(20);
+                    }
+                }
+
+                ticks++;
             }
-
-            if (player != null) {
-
-                if (!firstUpdate && WorldDataT.hasStartingTools) {
-                    player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
-                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), tmpMana);
-                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), tmpMaxMana);
-                    firstUpdate = true;
-                }
-
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
-                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) -1);
-
-                    if (!ironSkinJustActivated) {
-                        player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() + 8);
-                        ironSkinJustActivated = true;
-                    }
-                } else {
-                    if (ironSkinJustActivated) {
-                        player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() - 8);
-                        ironSkinJustActivated = false;
-                    }
-                }
-
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) > 0) {
-                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) -1);
-                }
-
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
-                    if (ticks % 100 == 0) {
-                        player.setHealth(player.getHealth() + 2);
-                    }
-
-                    if (ticks % 20 == 0) {
-                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) - 150);
-                    }
-                }
-
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) > 0) {
-                    if (ticks % 80 == 0) {
-                        player.setHealth(player.getHealth() + 2);
-                    }
-                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) - 1);
-                }
-
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) > 0) {
-                    if (ticks % 140 == 0) {
-                        player.setHealth(player.getHealth() - 2);
-                    }
-                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) - 1);
-                }
-
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
-                    player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
-                }
-
-                player.getHungerManager().setFoodLevel(20);
-            }
-
-            ticks++;
         });
     }
 
@@ -262,10 +292,7 @@ public class TerrariaModClient implements ClientModInitializer {
         TerrariaUIRenderer.renderTerrariaMana();
         TerrariaUIRenderer.renderTerrariaEffects();
 
-
-        //TMusicTicker.musicChanged = true;
-        //ClientTickEvents.START_CLIENT_TICK.register(client -> {TMusicTicker.onTickUpdate();});
-
+        /*
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!player.isCreative()) {
 				if (world.getBlockState(pos).getBlock() instanceof BlockT) {
@@ -283,17 +310,18 @@ public class TerrariaModClient implements ClientModInitializer {
 							if (block.hammer && item.hammer >= block.difficulty) {
 				                return ActionResult.SUCCESS;
 							}
-							return ActionResult.FAIL;
+							return ActionResult.PASS;
 						}
-						return ActionResult.FAIL;
+						return ActionResult.PASS;
 					}
-					return ActionResult.FAIL;
+					return ActionResult.PASS;
 				}
-				return ActionResult.FAIL;
+				return ActionResult.PASS;
 			} else {
 				return ActionResult.SUCCESS;
 			}
 		});
+         */
 
         WorldTickCallback.EVENT.register(world -> {
 

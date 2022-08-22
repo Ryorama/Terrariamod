@@ -24,7 +24,11 @@ import java.util.concurrent.Flow;
 @Mixin(WaterFluid.class)
 public abstract class WaterFluidMixin extends FlowableFluid {
 	@Inject(at = @At("HEAD"), method = "isInfinite", cancellable = true)
-    private void isInfinite(CallbackInfoReturnable<Boolean> bruh) {
-        bruh.setReturnValue(false);
+    private void isInfinite(CallbackInfoReturnable<Boolean> info) {
+        if (!TerrariaMod.CONFIG.useVanillaFluidPhysics) {
+            info.setReturnValue(false);
+        } else {
+            info.setReturnValue(true);
+        }
     }
 }

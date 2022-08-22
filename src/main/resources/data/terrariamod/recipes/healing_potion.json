@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "terrariamod:healing_potion",
+      "item": "terrariamod:lesser_healing_potion",
       "item": "terrariamod:glowing_mushroom"
     }
   ],

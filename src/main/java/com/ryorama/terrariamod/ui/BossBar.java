@@ -38,7 +38,6 @@ public class BossBar extends DrawableHelper {
 	}
 	
 	public static void renderBossBar() {
-			
 		System.out.println("Changing rendering");
 		HudRenderCallback.EVENT.register((matrixstack, delta) -> {
 			if (isRendering) {

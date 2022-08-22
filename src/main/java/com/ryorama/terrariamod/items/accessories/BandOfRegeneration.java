@@ -12,7 +12,7 @@ public class BandOfRegeneration extends AccessoryT {
     }
 
     @Override
-    public void tick(ItemStack stiack, SlotReference slot, LivingEntity entity) {
+    public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         entity.heal(0.02f);
     }
 }

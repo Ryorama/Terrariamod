@@ -1,5 +1,7 @@
 package com.ryorama.terrariamod.mixins;
 
+import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.TerrariaModConfig;
 import net.minecraft.world.gen.chunk.AquiferSampler;
 import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
 import org.jetbrains.annotations.Nullable;
@@ -25,27 +27,17 @@ public class NoiseChunkGeneratorMixin {
 	
 	@Inject(at = @At("HEAD"), method = "getBlockState", cancellable = true)
 	protected void getBlockState(ChunkNoiseSampler chunkNoiseSampler, int x, int y, int z, BlockState state, CallbackInfoReturnable<BlockState> cir) {
-		cir.setReturnValue(Blocks.AIR.getDefaultState());
+		if (TerrariaMod.CONFIG.customWorldGen) {
+			cir.setReturnValue(Blocks.AIR.getDefaultState());
+		}
 	}
 	
 	
 	@Inject(at = @At("HEAD"), method = "getHeight", cancellable = true)
 	public void getHeight(int x, int z, Type heightmap, HeightLimitView world, CallbackInfoReturnable<Integer> info) {
-//		int h = info.getReturnValue();
-//		info.setReturnValue(0);
-//		double distance = Math.sqrt(x * x + z * z);
-//		if (distance > 2500) {
-//			h -= 80;
-//		}
-//		else {
-//			if (distance > 2400) {
-//				double h_mod = (distance - 2400) / 100.0f;
-//				h += 20 - h_mod * 100;
-//			} else {
-//				h += 20;
-//			}
-//		}
-		info.setReturnValue(0);
+		if (TerrariaMod.CONFIG.customWorldGen) {
+			info.setReturnValue(0);
+		}
 	}
 	
 	private Chunk populateNoise(StructureAccessor accessor, Chunk chunk, int minY, int noiseSizeY) {
@@ -54,6 +46,8 @@ public class NoiseChunkGeneratorMixin {
 	
 	@Inject(at = @At("HEAD"), method = "buildSurface", cancellable = true)
 	public void buildSurface(ChunkRegion region, StructureAccessor structures, Chunk chunk, CallbackInfo info) {
-		info.cancel();
+		if (TerrariaMod.CONFIG.customWorldGen) {
+			info.cancel();
+		}
 	}
 }

@@ -32,7 +32,7 @@ public class EntitySpawner {
 	public static EntityType[] caveEntities = {};
 	public static EntityType[] hardmodeCaveEntities = {};
 	public static EntityType[] caveWaterEntities = {};
-	public static EntityType[] underworldEntities = {EntitiesT.DEMON};
+	public static EntityType[] underworldEntities = {};
 	public static EntityType[] rainEntities = {};
 	public static EntityType[] mushroomBiomeEntities = {EntitiesT.SPORE_SKELETON, EntitiesT.SPORE_ZOMBIE};
 	public static EntityType[] oceanEntities = {};
@@ -45,7 +45,7 @@ public class EntitySpawner {
 			if (y > 45 && world.getTimeOfDay() % 24000 > 15000 && world.getTimeOfDay() % 24000 < 22000 && WorldDataT.bloodMoon) {
 				spawnBloodMoonEntity(world, x, y, z);
 			}
-			if (y > 45 && world.getBiome(new BlockPos(x, y, z)).equals(RegistryEntry.of(BiomePurity.PUTITY))) {
+			if (y > 45) {
 				spawnGroundEntity(world, x, y, z);
 			}
 			if (y > 45 && world.getBiome(new BlockPos(x, y, z)).equals(RegistryEntry.of(BiomeCorruption.CORRUPTION))) {

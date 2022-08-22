@@ -8,3 +8,4 @@ mutable field net/minecraft/client/render/WorldRenderer SUN Lnet/minecraft/util/
 
 extendable method net/minecraft/client/world/GeneratorType <init> (Ljava/lang/String;)V
 accessible method net/minecraft/item/MusicDiscItem <init> (ILnet/minecraft/sound/SoundEvent;Lnet/minecraft/item/Item$Settings;)V
+accessible method net/minecraft/world/gen/densityfunction/DensityFunctions method_41103 (Lnet/minecraft/world/gen/chunk/GenerationShapeConfig;Z)Lnet/minecraft/world/gen/noise/SimpleNoiseRouter;

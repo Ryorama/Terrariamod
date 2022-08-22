@@ -8,13 +8,17 @@ import java.util.function.Function;
 import com.ryorama.terrariamod.biomes.BiomeRegistry;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.core.client.ParticleRegistry;
+import com.ryorama.terrariamod.crafting.Recipes;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
+import com.ryorama.terrariamod.gui.crafting.CraftingGuiDescription;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
 
 import com.ryorama.terrariamod.world.WorldDataT;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -47,6 +51,8 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
 import net.minecraft.tag.BlockTags;
@@ -82,18 +88,25 @@ public class TerrariaMod implements ModInitializer {
 	public static final Identifier REGENERATION = new Identifier(MODID, "regeneration");
 	public static final Identifier POISONED = new Identifier(MODID, "poisoned");
 
+	public static TerrariaModConfig CONFIG = new TerrariaModConfig();
+
+	public static ScreenHandlerType CRAFTING_TYPE;
+
 	@Override
 	public void onInitialize() {
-		BiomeRegistry.RegisterBiomes();
+		AutoConfig.register(TerrariaModConfig.class, GsonConfigSerializer::new);
+		CONFIG = AutoConfig.getConfigHolder(TerrariaModConfig.class).getConfig();
 		ParticleRegistry.init();
 		BlocksT.init();
 		ItemsT.init();
 		EntitiesT.init();
-		
+		Recipes.addAllRecipes();
 		ModifyWorldHeight();
 		GeckoLib.initialize();
 		TAudio.registerAudio();
 		TAudio.registerMusic();
+
+		CRAFTING_TYPE = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MODID, "crafting_screen"), new ScreenHandlerType<>((syncId, inventory) -> new CraftingGuiDescription(syncId, inventory, ScreenHandlerContext.EMPTY)));
 
 		STILL_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "still_honey"), new HoneyFluid.Still());
 		FLOWING_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "flowing_honey"), new HoneyFluid.Flowing());

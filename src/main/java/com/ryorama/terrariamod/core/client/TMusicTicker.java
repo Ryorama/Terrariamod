@@ -27,57 +27,6 @@ public class TMusicTicker extends MusicTracker {
         this.client = client;
     }
 
-    /*
-	  public static SoundEvent currentMusic;
-	  public static SoundEvent currentBossTrack;
-	  public static SoundEvent currentWeatherTrack;
-	  
-	  public static boolean musicChanged;
-	  public static boolean weatherMusicOverride = false;
-	  public static boolean bossMusicOverride = false;
-
-	  public static void onTickUpdate() {
-		  if (musicChanged) {
-			  if (!bossMusicOverride) {
-				  client.getMusicTracker().stop();
-				  client.getMusicTracker().play(new MusicSound(currentMusic, 0, 0, true));
-				  musicChanged = false;
-			  } else {
-				  client.getMusicTracker().stop();
-				  client.getMusicTracker().play(new MusicSound(currentBossTrack, 0, 0, true));
-				  musicChanged = false;
-			  }
-		  }
-		  
-		  if (!bossMusicOverride) {
-			  if (!client.getMusicTracker().isPlayingType(new MusicSound(currentMusic, 0, 0, true))) {
-				  musicChanged = true;
-			  }
-		  } else {
-			  if (!client.getMusicTracker().isPlayingType(new MusicSound(currentBossTrack, 0, 0, true))) {
-				  musicChanged = true;
-			  }
-		  }
-	  }
-	  
-	  public static SoundEvent getTrack(SoundEvent event) {
-		  if (!bossMusicOverride) {
-			  if (currentMusic != event) {
-				  currentMusic = event;
-				  musicChanged = true;
-			  } else {
-			  	return event;
-			  }
-		  } else {
-			  if (!client.getMusicTracker().isPlayingType(new MusicSound(currentBossTrack, 0, 0, true))) {
-				  musicChanged = true;
-			  }
-		  }
-		  return event;
-	  }
-
-     */
-
 	private final Random random = new Random();
 	private final MinecraftClient client;
 	private SoundEvent currentMusic;
@@ -92,8 +41,6 @@ public class TMusicTicker extends MusicTracker {
 		System.out.println("Terraria Music Ticker Running!");
 		this.tickMusic();
 		this.tickAmbient();
-
-		super.tick();
 	}
 
 	private TMusicTicker.AmbientTrack getAmbientTrackType() {
@@ -278,7 +225,7 @@ public class TMusicTicker extends MusicTracker {
 		}
 	}
 
-	public void play(MusicType type) {
+	public void play(TMusicTicker.MusicType type) {
 		if (!this.locked) {
 			this.currentMusic = type.getSound();
 			this.client.getMusicTracker().play(new MusicSound(this.currentMusic, 0, 1, true));

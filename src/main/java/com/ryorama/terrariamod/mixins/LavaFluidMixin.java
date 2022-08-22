@@ -21,7 +21,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LavaFluid.class)
 public abstract class LavaFluidMixin extends FlowableFluid {
     @Inject(at = @At("HEAD"), method = "isInfinite", cancellable = true)
-    private void isInfinite(CallbackInfoReturnable<Boolean> bruh) {
-        bruh.setReturnValue(false);
+    private void isInfinite(CallbackInfoReturnable<Boolean> info) {
+        if (!TerrariaMod.CONFIG.useVanillaFluidPhysics) {
+            info.setReturnValue(false);
+        } else {
+            info.setReturnValue(true);
+        }
     }
 }
