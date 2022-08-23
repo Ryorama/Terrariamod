@@ -63,7 +63,7 @@ public class TMusicTicker extends MusicTracker {
 				}
 
 				if (this.client.player != null) {
-					BlockPos cameraPos = this.client.player.getCameraBlockPos();
+					BlockPos cameraPos = this.client.player.getBlockPos();
 					int corruption = 0;
 					int highlands = 0;
 					int dark = 0;
@@ -185,12 +185,12 @@ public class TMusicTicker extends MusicTracker {
 			if (this.currentMusic != null) {
 				if (!musicticker$musictype.getSound().getId().equals(this.currentMusic.getId())) {
 					this.client.getMusicTracker().stop();
-					this.timeUntilNextMusic = MathHelper.nextInt(this.random, 0, musicticker$musictype.getMinDelay() / 2);
+					this.timeUntilNextMusic = MathHelper.nextInt(client.world.getRandom(), 0, musicticker$musictype.getMinDelay() / 2);
 				}
 
 				if (!this.client.getMusicTracker().isPlayingType(new MusicSound(this.currentMusic, 0, 1, true))) {
 					this.currentMusic = null;
-					this.timeUntilNextMusic = Math.min(MathHelper.nextInt(this.random, musicticker$musictype.getMinDelay(), musicticker$musictype.getMaxDelay()), this.timeUntilNextMusic);
+					this.timeUntilNextMusic = Math.min(MathHelper.nextInt(client.world.getRandom(), musicticker$musictype.getMinDelay(), musicticker$musictype.getMaxDelay()), this.timeUntilNextMusic);
 				}
 			}
 
@@ -208,12 +208,12 @@ public class TMusicTicker extends MusicTracker {
 			if (this.currentAmbient != null) {
 				if (!musicticker$musictype.getSound().getId().equals(this.currentAmbient.getId())) {
 					this.client.getMusicTracker().stop();
-					this.timeUntilNextAmbient = MathHelper.nextInt(this.random, 0, musicticker$musictype.getMinDelay() / 2);
+					this.timeUntilNextAmbient = MathHelper.nextInt(client.world.getRandom(), 0, musicticker$musictype.getMinDelay() / 2);
 				}
 
 				if (!this.client.getMusicTracker().isPlayingType(new MusicSound(this.currentAmbient, 0, 1, true))) {
 					this.currentAmbient = null;
-					this.timeUntilNextAmbient = Math.min(MathHelper.nextInt(this.random, musicticker$musictype.getMinDelay(), musicticker$musictype.getMaxDelay()), this.timeUntilNextAmbient);
+					this.timeUntilNextAmbient = Math.min(MathHelper.nextInt(client.world.getRandom(), musicticker$musictype.getMinDelay(), musicticker$musictype.getMaxDelay()), this.timeUntilNextAmbient);
 				}
 			}
 

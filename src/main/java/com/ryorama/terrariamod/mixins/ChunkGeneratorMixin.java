@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.biomes.BiomeCorruption;
 import com.ryorama.terrariamod.blocks.BlocksT;
 
 import net.minecraft.block.BlockState;
@@ -337,7 +336,7 @@ public class ChunkGeneratorMixin {
 								}
 							}
 
-							//Underground Corruption
+							/*
 							if (world.getBiome(pos).equals(RegistryEntry.of(BiomeCorruption.CORRUPTION))) {
 								if (world.getBlockState(pos) == BlocksT.CORRUPTED_GRASS_BLOCK.getDefaultState()) {
 									int depth = 40;
@@ -382,6 +381,8 @@ public class ChunkGeneratorMixin {
 										}
 								}
 							}
+
+							 */
 
 							if (y <= 20) {
 								if (cave_biome == 0) {

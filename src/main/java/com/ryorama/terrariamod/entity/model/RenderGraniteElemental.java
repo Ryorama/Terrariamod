@@ -23,7 +23,7 @@ public class RenderGraniteElemental extends GeoEntityRenderer<EntityGranityEleme
 			Identifier textureLocation) {
     	    	
     	
-		return RenderLayer.getEntityAlpha(getTextureLocation(animatable));
+		return RenderLayer.getEntityAlpha(getTextureResource(animatable));
 	}
     
     @Override

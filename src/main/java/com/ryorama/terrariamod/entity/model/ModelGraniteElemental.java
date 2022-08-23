@@ -4,25 +4,26 @@ import java.util.Random;
 
 import com.ryorama.terrariamod.TerrariaMod;
 
+import com.ryorama.terrariamod.entity.hostile.EntityGranityElemental;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class ModelGraniteElemental extends AnimatedGeoModel {
+public class ModelGraniteElemental extends AnimatedGeoModel<EntityGranityElemental> {
 	
 	public Random rand = new Random(); 
 	
 	@Override
-	public Identifier getAnimationFileLocation(Object entity) {
+	public Identifier getAnimationResource(EntityGranityElemental entity) {
 		return new Identifier(TerrariaMod.MODID, "animations/granite_elemental.animation.json");
 	}
 	
 	@Override
-	public Identifier getModelLocation(Object entity) {
+	public Identifier getModelResource(EntityGranityElemental entity) {
 		return new Identifier(TerrariaMod.MODID, "geo/granite_elemental.geo.json");
 	}
 
 	@Override
-	public Identifier getTextureLocation(Object entity) {
+	public Identifier getTextureResource(EntityGranityElemental entity) {
 		return new Identifier(TerrariaMod.MODID, "textures/entity/granite_elemental.png");
 	}
 }

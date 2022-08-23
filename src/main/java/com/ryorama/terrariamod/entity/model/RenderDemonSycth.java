@@ -21,7 +21,7 @@ public class RenderDemonSycth extends GeoEntityRenderer<DemonScythProjectile> {
 	public RenderLayer getRenderType(DemonScythProjectile animatable, float partialTicks, MatrixStack stack,
 			VertexConsumerProvider renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
 			Identifier textureLocation) {
-		return RenderLayer.getEntityAlpha(getTextureLocation(animatable));
+		return RenderLayer.getEntityAlpha(getTextureResource(animatable));
 	}
     
     @Override

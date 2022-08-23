@@ -2,8 +2,10 @@ package com.ryorama.terrariamod.mixins;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.TerrariaModConfig;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.chunk.AquiferSampler;
 import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
+import net.minecraft.world.gen.noise.NoiseConfig;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,7 +36,7 @@ public class NoiseChunkGeneratorMixin {
 	
 	
 	@Inject(at = @At("HEAD"), method = "getHeight", cancellable = true)
-	public void getHeight(int x, int z, Type heightmap, HeightLimitView world, CallbackInfoReturnable<Integer> info) {
+	public void getHeight(int x, int z, Type heightmap, HeightLimitView world, NoiseConfig noiseConfig, CallbackInfoReturnable<Integer> info) {
 		if (TerrariaMod.CONFIG.customWorldGen) {
 			info.setReturnValue(0);
 		}
@@ -45,7 +47,7 @@ public class NoiseChunkGeneratorMixin {
 	}
 	
 	@Inject(at = @At("HEAD"), method = "buildSurface", cancellable = true)
-	public void buildSurface(ChunkRegion region, StructureAccessor structures, Chunk chunk, CallbackInfo info) {
+	public void buildSurface(ChunkRegion region, StructureAccessor structures, NoiseConfig noiseConfig, Chunk chunk, CallbackInfo info) {
 		if (TerrariaMod.CONFIG.customWorldGen) {
 			info.cancel();
 		}

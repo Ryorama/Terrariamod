@@ -2,23 +2,24 @@ package com.ryorama.terrariamod.entity.model;
 
 import com.ryorama.terrariamod.TerrariaMod;
 
+import com.ryorama.terrariamod.entity.hostile.slimes.EntityGreenSlime;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class ModelGreenSlime extends AnimatedGeoModel {
+public class ModelGreenSlime extends AnimatedGeoModel<EntityGreenSlime> {
 	
 	@Override
-	public Identifier getAnimationFileLocation(Object animatable) {
+	public Identifier getAnimationResource(EntityGreenSlime animatable) {
 		return new Identifier(TerrariaMod.MODID, "animations/slime.animation.json");
 	}
 
 	@Override
-	public Identifier getModelLocation(Object object) {
+	public Identifier getModelResource(EntityGreenSlime object) {
 		return new Identifier(TerrariaMod.MODID, "geo/slime.geo.json");
 	}
 
 	@Override
-	public Identifier getTextureLocation(Object object) {
+	public Identifier getTextureResource(EntityGreenSlime object) {
 		return new Identifier(TerrariaMod.MODID, "textures/entity/green_slime.png");
 	}
 

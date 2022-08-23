@@ -1,8 +1,7 @@
 package com.ryorama.terrariamod.mixins;
 
-import java.util.Random;
-
 import com.ryorama.terrariamod.TerrariaMod;
+import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

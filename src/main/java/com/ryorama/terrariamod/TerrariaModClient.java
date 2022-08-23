@@ -50,6 +50,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockRenderView;
+import net.minecraft.world.World;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.IOException;
@@ -196,83 +197,88 @@ public class TerrariaModClient implements ClientModInitializer {
 
     @Environment(EnvType.CLIENT)
     public void onTickClient() {
-        StartTick.(world -> {
+        ClientTickEvents.START_CLIENT_TICK.register(callbacks -> {
 
-            if (world.isClient()) {
-                int ticks = 0;
+            if (callbacks.world != null) {
 
-                ClientPlayerEntity player = null;
+                World world = callbacks.world;
 
-                for (int p = 0; p < world.getPlayers().size(); p++) {
-                    player = (ClientPlayerEntity) world.getPlayers().get(p);
+                if (world.isClient()) {
+                    int ticks = 0;
+
+                    ClientPlayerEntity player = null;
+
+                    for (int p = 0; p < world.getPlayers().size(); p++) {
+                        player = (ClientPlayerEntity) world.getPlayers().get(p);
+                    }
+
+                    if (player != null) {
+
+                        if (!firstUpdate && !WorldDataT.hasStartingTools) {
+                            if (TerrariaMod.CONFIG.modifyPlayerHealth) {
+                                player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
+                                player.setHealth(100);
+                            }
+
+                            player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), tmpMana);
+                            player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), tmpMaxMana);
+                            WorldDataT.hasStartingTools = true;
+                            firstUpdate = true;
+                        }
+
+                        if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
+                            player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) - 1);
+
+                            if (!ironSkinJustActivated) {
+                                player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() + 8);
+                                ironSkinJustActivated = true;
+                            }
+                        } else {
+                            if (ironSkinJustActivated) {
+                                player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() - 8);
+                                ironSkinJustActivated = false;
+                            }
+                        }
+
+                        if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) > 0) {
+                            player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) - 1);
+                        }
+
+                        if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
+                            if (ticks % 100 == 0) {
+                                player.setHealth(player.getHealth() + 2);
+                            }
+
+                            if (ticks % 20 == 0) {
+                                player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) - 150);
+                            }
+                        }
+
+                        if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) > 0) {
+                            if (ticks % 80 == 0) {
+                                player.setHealth(player.getHealth() + 2);
+                            }
+                            player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) - 1);
+                        }
+
+                        if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) > 0) {
+                            if (ticks % 140 == 0) {
+                                player.setHealth(player.getHealth() - 2);
+                            }
+                            player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) - 1);
+                        }
+
+                        if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
+                            player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
+                        }
+
+                        if (TerrariaMod.CONFIG.disableHunger) {
+                            player.getHungerManager().setFoodLevel(20);
+                        }
+                    }
+
+                    ticks++;
                 }
-
-                if (player != null) {
-
-                    if (!firstUpdate && !WorldDataT.hasStartingTools) {
-                        if (TerrariaMod.CONFIG.modifyPlayerHealth) {
-                            player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
-                            player.setHealth(100);
-                        }
-
-                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), tmpMana);
-                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), tmpMaxMana);
-                        WorldDataT.hasStartingTools = true;
-                        firstUpdate = true;
-                    }
-
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
-                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) - 1);
-
-                        if (!ironSkinJustActivated) {
-                            player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() + 8);
-                            ironSkinJustActivated = true;
-                        }
-                    } else {
-                        if (ironSkinJustActivated) {
-                            player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).getValue() - 8);
-                            ironSkinJustActivated = false;
-                        }
-                    }
-
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) > 0) {
-                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) - 1);
-                    }
-
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
-                        if (ticks % 100 == 0) {
-                            player.setHealth(player.getHealth() + 2);
-                        }
-
-                        if (ticks % 20 == 0) {
-                            player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) - 150);
-                        }
-                    }
-
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) > 0) {
-                        if (ticks % 80 == 0) {
-                            player.setHealth(player.getHealth() + 2);
-                        }
-                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) - 1);
-                    }
-
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) > 0) {
-                        if (ticks % 140 == 0) {
-                            player.setHealth(player.getHealth() - 2);
-                        }
-                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) - 1);
-                    }
-
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) < player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA))) {
-                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA)) + 1);
-                    }
-
-                    if (TerrariaMod.CONFIG.disableHunger) {
-                        player.getHungerManager().setFoodLevel(20);
-                    }
-                }
-
-                ticks++;
             }
         });
     }
@@ -315,11 +321,15 @@ public class TerrariaModClient implements ClientModInitializer {
 		});
          */
 
-        WorldTickCallback.EVENT.register(world -> {
+        ServerTickEvents.START_SERVER_TICK.register(callbacks -> {
 
-            WeatherBase.tickWeather();
-            CelestialManager.handleMoon(world);
-            CelestialManager.handleSolarEvents(world);
+            if (callbacks.getOverworld() != null) {
+
+                World world = callbacks.getOverworld();
+
+                WeatherBase.tickWeather();
+                CelestialManager.handleMoon(world);
+                CelestialManager.handleSolarEvents(world);
 
             /*
 			if (world.isClient()) {
@@ -332,39 +342,40 @@ public class TerrariaModClient implements ClientModInitializer {
 			*/
 
 
-			if (world.getRandom().nextInt(700) <= 10) {
-				if (world.getPlayers().size() > 0) {
-					PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
-					double x = player.getPos().x + world.random.nextInt(80) - 40, y = player.getPos().y + world.random.nextInt(80) - 40, z = player.getPos().z + world.random.nextInt(80) - 40;
+                if (world.getRandom().nextInt(700) <= 10) {
+                    if (world.getPlayers().size() > 0) {
+                        PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
+                        double x = player.getPos().x + world.random.nextInt(80) - 40, y = player.getPos().y + world.random.nextInt(80) - 40, z = player.getPos().z + world.random.nextInt(80) - 40;
 
-					for (PlayerEntity p2 : world.getPlayers()) {
-						if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
-							new Thread() {
-								public void run() {
-									EntitySpawner.spawnEntities(player, x, y, z);
-								}
-							}.start();
-							break;
-						}
-					}
-				}
-			}
+                        for (PlayerEntity p2 : world.getPlayers()) {
+                            if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
+                                new Thread() {
+                                    public void run() {
+                                        EntitySpawner.spawnEntities(player, x, y, z);
+                                    }
+                                }.start();
+                                break;
+                            }
+                        }
+                    }
+                }
 
-			if (world.isNight()) {
-				if (world.getRandom().nextDouble(100) <= Util.starChance) {
-					if (world.getPlayers().size() > 0) {
-						System.out.println("Fallen Star");
-						PlayerEntity player = world.getPlayers().get(world.getRandom().nextInt(world.getPlayers().size()));
-						double x = player.getX() + world.getRandom().nextInt(80) - 40, y = 255, z = player.getZ() + world.getRandom().nextInt(80) - 40;
-						ItemEntity item = new ItemEntity(world, x, y, z, ItemsT.FALLEN_STAR.getDefaultStack());
-						world.spawnEntity(item);
+                if (world.isNight()) {
+                    if (world.getRandom().nextInt(100) <= Util.starChance) {
+                        if (world.getPlayers().size() > 0) {
+                            System.out.println("Fallen Star");
+                            PlayerEntity player = world.getPlayers().get(world.getRandom().nextInt(world.getPlayers().size()));
+                            double x = player.getX() + world.getRandom().nextInt(80) - 40, y = 255, z = player.getZ() + world.getRandom().nextInt(80) - 40;
+                            ItemEntity item = new ItemEntity(world, x, y, z, ItemsT.FALLEN_STAR.getDefaultStack());
+                            world.spawnEntity(item);
 
-						while (item.isAlive() && !item.isOnGround()) {
-							world.playSound(item.getX(), item.getY(), item.getZ(), TAudio.STAR_FALL, SoundCategory.NEUTRAL, 100f, 1f, false);
-						}
-					}
-				}
-			}
+                            while (item.isAlive() && !item.isOnGround()) {
+                                world.playSound(item.getX(), item.getY(), item.getZ(), TAudio.STAR_FALL, SoundCategory.NEUTRAL, 100f, 1f, false);
+                            }
+                        }
+                    }
+                }
+            }
         });
 
         ServerWorldEvents.LOAD.register(((server, world) -> {

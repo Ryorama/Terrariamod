@@ -1,7 +1,5 @@
 package com.ryorama.terrariamod.world;
 
-import com.ryorama.terrariamod.biomes.BiomeCorruption;
-import com.ryorama.terrariamod.biomes.BiomePurity;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.entity.EntitiesT;
 
@@ -48,7 +46,7 @@ public class EntitySpawner {
 			if (y > 45) {
 				spawnGroundEntity(world, x, y, z);
 			}
-			if (y > 45 && world.getBiome(new BlockPos(x, y, z)).equals(RegistryEntry.of(BiomeCorruption.CORRUPTION))) {
+			if (y > 45 && world.getBlockState(new BlockPos(x, y - 1, z)) == BlocksT.CORRUPTED_GRASS_BLOCK.getDefaultState()) {
 				spawnCorruptionGroundEntity(world, x, y, z);
 			}
 			if (y <= 60) {

@@ -1,8 +1,7 @@
 package com.ryorama.terrariamod.mixins;
 
-import java.util.Random;
-
 import com.ryorama.terrariamod.TerrariaMod;
+import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -36,8 +35,7 @@ public class RavineCarverMixin {
 	}
 
 	@Inject(at = @At("HEAD"), method = "getVerticalScale", cancellable = true)
-	private void getVerticalScale(RavineCarverConfig config, Random random, double pitch, float branchCount,
-								  float branchIndex, CallbackInfoReturnable<Double> info) {
+	private void getVerticalScale(RavineCarverConfig config, net.minecraft.util.math.random.Random random, double pitch, float branchCount, float branchIndex, CallbackInfoReturnable<Double> info) {
 		if (TerrariaMod.CONFIG.customWorldGen) {
 			float f = 1.0F - MathHelper.abs(0.5F - branchIndex / branchCount) * 2.0F;
 			float g = config.shape.verticalRadiusDefaultFactor + config.shape.verticalRadiusDefaultFactor * f;

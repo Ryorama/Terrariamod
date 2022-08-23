@@ -20,7 +20,7 @@ public class RenderDrippler extends GeoEntityRenderer<EntityDrippler> {
 	public RenderLayer getRenderType(EntityDrippler animatable, float partialTicks, MatrixStack stack,
 			VertexConsumerProvider renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
 			Identifier textureLocation) {
-		return RenderLayer.getEntityAlpha(getTextureLocation(animatable));
+		return RenderLayer.getEntityAlpha(getTextureResource(animatable));
 	}
     
     @Override

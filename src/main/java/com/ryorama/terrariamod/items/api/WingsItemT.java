@@ -75,8 +75,9 @@ public class WingsItemT extends AccessoryT {
             wingsFinished = true;
             if (InputHandler.isHoldingJump(player)) {
                 if (glideDelay >= 3) {
-                    double currentAccel = speed * (player.getTrackedPosition().getY() < 0.3D ? 2.5D : 1.0D);
-                    double motionY = player.getTrackedPosition().getY();
+                    Vec3d playerPos = player.getPos();
+                    double currentAccel = speed * (player.getTrackedPosition().getDeltaY(playerPos) < 0.3D ? 2.5D : 1.0D);
+                    double motionY = player.getTrackedPosition().getDeltaY(playerPos);
                     double glideFallSpeed = InputHandler.isHoldingShift(player) ? -0.28D : -0.14D;
                     fly(player, Math.min(motionY + currentAccel, glideFallSpeed));
                     player.fallDistance = 0;
@@ -104,12 +105,13 @@ public class WingsItemT extends AccessoryT {
 
         if (timer < wingTime / 2) {
             if (InputHandler.isHoldingJump(player)) {
-                double currentAccel = speed * (player.getTrackedPosition().getY() < 0.3D ? 2.5D : 1.0D);
+                Vec3d playerPos = player.getPos();
+                double currentAccel = speed * (player.getTrackedPosition().getDeltaY(playerPos) < 0.3D ? 2.5D : 1.0D);
                 double currentSpeedVertical = speed * (player.isSubmergedInWater() ? 0.4D : 1.0D);
                 timer++;
                 soundTimer++;
 
-                double motionY = player.getTrackedPosition().getY();
+                double motionY = player.getTrackedPosition().getDeltaY(playerPos);
                 if (InputHandler.isHoldingJump(player)) {
                     fly(player, Math.abs(Math.min(motionY + currentAccel, currentSpeedVertical)));
                 }
@@ -134,7 +136,8 @@ public class WingsItemT extends AccessoryT {
     }
 
     private void fly(PlayerEntity player, double y) {
-        Vec3d motion = player.getTrackedPosition();
+        Vec3d playerPos = player.getPos();
+        Vec3d motion = new Vec3d(player.getTrackedPosition().getDeltaX(playerPos), player.getTrackedPosition().getDeltaY(playerPos), player.getTrackedPosition().getDeltaZ(playerPos));
         player.setVelocity(motion.getX(), y, motion.getZ());
     }
 
