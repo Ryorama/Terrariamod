@@ -1,15 +1,13 @@
 package com.ryorama.terrariamod.mixins;
 
 import java.util.BitSet;
-import java.util.Random;
 
-import com.ryorama.terrariamod.TerrariaModConfig;
 import com.ryorama.terrariamod.utils.math.noise.FastNoise;
-import me.shedaniel.autoconfig.AutoConfig;
+import net.minecraft.util.math.random.CheckedRandom;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.random.SimpleRandom;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -51,7 +49,7 @@ public class ChunkGeneratorMixin {
 
 		if (noise == null) {
 			noise = new FastNoise((int)world.toServerWorld().getSeed());
-			random = new Random(world.toServerWorld().getSeed());
+			random = new CheckedRandom(world.toServerWorld().getSeed());
 			corruption = random.nextInt(10) >= 4;
 			right_jungle = random.nextBoolean();
 		}
@@ -73,7 +71,7 @@ public class ChunkGeneratorMixin {
 		int snow_position = right_jungle ? -1200 : 1200;
 
 		if (terrainNoise == null) {
-			terrainNoise = DoublePerlinNoiseSampler.create(new SimpleRandom(world.getRandom().nextLong()), -8,
+			terrainNoise = DoublePerlinNoiseSampler.create(new CheckedRandom(world.getRandom().nextLong()), -8,
 					new double[]{1.0D});
 		}
 
