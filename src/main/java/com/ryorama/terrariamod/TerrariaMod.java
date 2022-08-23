@@ -30,7 +30,10 @@ import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.ClampedIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
+import net.minecraft.util.math.intprovider.IntProviderType;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
@@ -40,7 +43,7 @@ public class TerrariaMod implements ModInitializer {
 
 	public static final String MODID = "terrariamod";
 	
-	private static final DimensionType MODIFIED_OVERWORLD = new DimensionType(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, 512, 512, 0.0F, BlockTags.INFINIBURN_OVERWORLD, DimensionTypes.OVERWORLD_ID, -256, new DimensionType.MonsterSettings(false, true, IntProvider.createValidatingCodec(0, 5)));
+	private static final DimensionType MODIFIED_OVERWORLD = new DimensionType(OptionalLong.empty(), true, false, false, true, 1.0D, true, false,-256, 512, 512, BlockTags.INFINIBURN_OVERWORLD, DimensionTypes.OVERWORLD_ID, 0.0f, new DimensionType.MonsterSettings(false, true, UniformIntProvider.create(0, 7),0));
 
 	public static FlowableFluid STILL_HONEY;
 	public static FlowableFluid FLOWING_HONEY;

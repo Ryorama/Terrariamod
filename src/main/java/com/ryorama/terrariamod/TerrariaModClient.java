@@ -1,7 +1,6 @@
 package com.ryorama.terrariamod;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.blocks.api.BlockT;
 import com.ryorama.terrariamod.core.client.CelestialManager;
 import com.ryorama.terrariamod.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.core.client.TMusicTicker;
@@ -10,27 +9,23 @@ import com.ryorama.terrariamod.gui.crafting.CraftingGuiDescription;
 import com.ryorama.terrariamod.gui.crafting.CraftingGuiScreen;
 import com.ryorama.terrariamod.items.ItemGelColor;
 import com.ryorama.terrariamod.items.ItemsT;
-import com.ryorama.terrariamod.items.api.ItemT;
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.utils.Util;
 import com.ryorama.terrariamod.weather.WeatherBase;
 import com.ryorama.terrariamod.world.EntitySpawner;
 import com.ryorama.terrariamod.world.WorldDataT;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
-import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
-import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.client.MinecraftClient;
@@ -48,16 +43,13 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockRenderView;
-import net.minecraft.world.chunk.Chunk;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.IOException;
@@ -204,7 +196,7 @@ public class TerrariaModClient implements ClientModInitializer {
 
     @Environment(EnvType.CLIENT)
     public void onTickClient() {
-        WorldTickCallback.EVENT.register(world -> {
+        StartTick.(world -> {
 
             if (world.isClient()) {
                 int ticks = 0;
