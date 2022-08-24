@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class WaterChestBlockEntity extends ChestBlockEntity {
 
-    public WaterChestBlockEntity(BlockEntityType<? extends WaterChestBlockEntity> blockEntityType, BlockPos blockPos, BlockState blockState) {
-        super(EntitiesT.WATER_CHEST, blockPos, blockState);
+    public WaterChestBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(blockPos, blockState);
     }
 }

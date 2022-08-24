@@ -105,7 +105,7 @@ public class EntitiesT {
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HeartEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
-	public static final BlockEntityType<WoodChestBlockEntity> WOOD_CHEST = FabricBlockEntityTypeBuilder.create((BlockEntityType.BlockEntityFactory<WoodChestBlockEntity>) WoodChestBlockEntity::new, BlocksT.WOOD_CHEST).build(null);
+	public static final BlockEntityType<WoodChestBlockEntity> WOOD_CHEST = FabricBlockEntityTypeBuilder.create(WoodChestBlockEntity::new, BlocksT.WOOD_CHEST).build(null);
 	public static final BlockEntityType<GoldChestBlockEntity> GOLD_CHEST = FabricBlockEntityTypeBuilder.create(GoldChestBlockEntity::new, BlocksT.GOLD_CHEST).build(null);
 	public static final BlockEntityType<FrozenChestBlockEntity> FROZEN_CHEST = FabricBlockEntityTypeBuilder.create(FrozenChestBlockEntity::new, BlocksT.FROZEN_CHEST).build(null);
 	public static final BlockEntityType<IvyChestBlockEntity> IVY_CHEST = FabricBlockEntityTypeBuilder.create(IvyChestBlockEntity::new, BlocksT.IVY_CHEST).build(null);

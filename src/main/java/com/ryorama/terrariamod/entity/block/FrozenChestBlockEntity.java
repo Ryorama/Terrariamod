@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class FrozenChestBlockEntity extends ChestBlockEntity {
 
-    public FrozenChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
-        super(blockEntityType, blockPos, blockState);
+    public FrozenChestBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(blockPos, blockState);
     }
 }

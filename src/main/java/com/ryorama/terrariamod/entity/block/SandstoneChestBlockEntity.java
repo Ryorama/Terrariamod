@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class SandstoneChestBlockEntity extends ChestBlockEntity {
 
-    public SandstoneChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
-        super(blockEntityType, blockPos, blockState);
+    public SandstoneChestBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(blockPos, blockState);
     }
 }

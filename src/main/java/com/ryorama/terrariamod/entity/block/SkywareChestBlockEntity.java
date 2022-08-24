@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class SkywareChestBlockEntity extends ChestBlockEntity {
 
-    public SkywareChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
-        super(blockEntityType, blockPos, blockState);
+    public SkywareChestBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(blockPos, blockState);
     }
 }

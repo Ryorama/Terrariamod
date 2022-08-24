@@ -241,6 +241,14 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_block"), new BlockItemT(BlocksT.HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crispy_honey_block"), new BlockItemT(BlocksT.CRISPY_HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood_chest"), new BlockItemT(BlocksT.WOOD_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_chest"), new BlockItemT(BlocksT.GOLD_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ivy_chest"), new BlockItemT(BlocksT.IVY_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "skyware_chest"), new BlockItemT(BlocksT.SKYWARE_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "water_chest"), new BlockItemT(BlocksT.WATER_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "frozen_chest"), new BlockItemT(BlocksT.FROZEN_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sandstone_chest"), new BlockItemT(BlocksT.SANDSTONE_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "empty_bottle"), new BlockItemT(BlocksT.EMPTY_BOTTLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom"), new BlockItemT(BlocksT.MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "glowing_mushroom"), new BlockItemT(BlocksT.GLOWING_MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));

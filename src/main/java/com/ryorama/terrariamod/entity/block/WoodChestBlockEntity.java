@@ -10,8 +10,4 @@ public class WoodChestBlockEntity extends ChestBlockEntity {
     public WoodChestBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(blockPos, blockState);
     }
-
-    public BlockEntityType<? extends ChestBlockEntity> blockEntityType() {
-        return (BlockEntityType)this.blockEntityType();
-    }
 }
