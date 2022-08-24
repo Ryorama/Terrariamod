@@ -1,5 +1,8 @@
 package com.ryorama.terrariamod.entity;
 
+import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.entity.block.*;
 import com.ryorama.terrariamod.entity.collectables.HeartEntity;
 import com.ryorama.terrariamod.entity.hostile.*;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
@@ -14,8 +17,10 @@ import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.Identifier;
@@ -100,6 +105,13 @@ public class EntitiesT {
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HeartEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
+	public static final BlockEntityType<WoodChestBlockEntity> WOOD_CHEST = FabricBlockEntityTypeBuilder.create((BlockEntityType.BlockEntityFactory<WoodChestBlockEntity>) WoodChestBlockEntity::new, BlocksT.WOOD_CHEST).build(null);
+	public static final BlockEntityType<GoldChestBlockEntity> GOLD_CHEST = FabricBlockEntityTypeBuilder.create(GoldChestBlockEntity::new, BlocksT.GOLD_CHEST).build(null);
+	public static final BlockEntityType<FrozenChestBlockEntity> FROZEN_CHEST = FabricBlockEntityTypeBuilder.create(FrozenChestBlockEntity::new, BlocksT.FROZEN_CHEST).build(null);
+	public static final BlockEntityType<IvyChestBlockEntity> IVY_CHEST = FabricBlockEntityTypeBuilder.create(IvyChestBlockEntity::new, BlocksT.IVY_CHEST).build(null);
+	public static final BlockEntityType<SandstoneChestBlockEntity> SANDSTONE_CHEST = FabricBlockEntityTypeBuilder.create(SandstoneChestBlockEntity::new, BlocksT.SANDSTONE_CHEST).build(null);
+	public static final BlockEntityType<WaterChestBlockEntity> WATER_CHEST = FabricBlockEntityTypeBuilder.create(WaterChestBlockEntity::new, BlocksT.WATER_CHEST).build(null);
+	public static final BlockEntityType<SkywareChestBlockEntity> SKYWARE_CHEST = FabricBlockEntityTypeBuilder.create(SkywareChestBlockEntity::new, BlocksT.SKYWARE_CHEST).build(null);
 
 	public static void init() {
 		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, MobEntity.createMobAttributes());
@@ -115,6 +127,14 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(EOC, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(GRANITE_ELEMETAL, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(HEART, MobEntity.createMobAttributes());
+
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "wood_chest"), WOOD_CHEST);
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "gold_chest"), GOLD_CHEST);
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "ivy_chest"), IVY_CHEST);
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "skyware_chest"), SKYWARE_CHEST);
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "water_chest"), WATER_CHEST);
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "sandstone_chest"), SANDSTONE_CHEST);
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "frozen_chest"), FROZEN_CHEST);
 	}
 
 	public static void initClient() {

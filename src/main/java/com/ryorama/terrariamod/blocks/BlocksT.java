@@ -3,6 +3,8 @@ package com.ryorama.terrariamod.blocks;
 import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.blocks.api.*;
+import com.ryorama.terrariamod.blocks.chests.GoldChest;
+import com.ryorama.terrariamod.entity.EntitiesT;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -71,6 +73,15 @@ public class BlocksT {
 	public static GravestoneT TOMBSTONE = (GravestoneT) new GravestoneT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static GravestoneT GOLD_TOMBSTONE = (GravestoneT) new GravestoneT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 
+	public static Block WOOD_CHEST;
+	public static Block GOLD_CHEST;
+	public static Block WATER_CHEST;
+	public static Block IVY_CHEST;
+	public static Block SKYWARE_CHEST;
+	public static Block SANDSTONE_CHEST;
+	public static Block FROZEN_CHEST;
+
+
 	public static void init() {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "grass_block"), GRASS_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "corrupted_grass"), CORRUPTED_GRASS_BLOCK);
@@ -129,6 +140,13 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "gold_tombstone"), GOLD_TOMBSTONE);
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "pot"), FOREST_POT);
+
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "wood_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.WOOD_CHEST));
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "gold_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.GOLD_CHEST));
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "water_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.WATER_CHEST));
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "skyware_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.SKYWARE_CHEST));
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "sandstone_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.SANDSTONE_CHEST));
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "frozen_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.FROZEN_CHEST));
 
 	}
 }
