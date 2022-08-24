@@ -16,11 +16,15 @@ import com.ryorama.terrariamod.entity.model.bosses.RenderKingSlime;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.render.TexturedRenderLayers;
+import net.minecraft.client.render.block.entity.ChestBlockEntityRenderer;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.Identifier;
@@ -105,13 +109,13 @@ public class EntitiesT {
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HeartEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
-	public static final BlockEntityType<WoodChestBlockEntity> WOOD_CHEST = FabricBlockEntityTypeBuilder.create(WoodChestBlockEntity::new, BlocksT.WOOD_CHEST).build(null);
-	public static final BlockEntityType<GoldChestBlockEntity> GOLD_CHEST = FabricBlockEntityTypeBuilder.create(GoldChestBlockEntity::new, BlocksT.GOLD_CHEST).build(null);
-	public static final BlockEntityType<FrozenChestBlockEntity> FROZEN_CHEST = FabricBlockEntityTypeBuilder.create(FrozenChestBlockEntity::new, BlocksT.FROZEN_CHEST).build(null);
-	public static final BlockEntityType<IvyChestBlockEntity> IVY_CHEST = FabricBlockEntityTypeBuilder.create(IvyChestBlockEntity::new, BlocksT.IVY_CHEST).build(null);
-	public static final BlockEntityType<SandstoneChestBlockEntity> SANDSTONE_CHEST = FabricBlockEntityTypeBuilder.create(SandstoneChestBlockEntity::new, BlocksT.SANDSTONE_CHEST).build(null);
-	public static final BlockEntityType<WaterChestBlockEntity> WATER_CHEST = FabricBlockEntityTypeBuilder.create(WaterChestBlockEntity::new, BlocksT.WATER_CHEST).build(null);
-	public static final BlockEntityType<SkywareChestBlockEntity> SKYWARE_CHEST = FabricBlockEntityTypeBuilder.create(SkywareChestBlockEntity::new, BlocksT.SKYWARE_CHEST).build(null);
+	public static final BlockEntityType<WoodChestBlockEntity> WOOD_CHEST = FabricBlockEntityTypeBuilder.create(WoodChestBlockEntity::new, BlocksT.WOOD_CHEST).build();
+	public static final BlockEntityType<GoldChestBlockEntity> GOLD_CHEST = FabricBlockEntityTypeBuilder.create(GoldChestBlockEntity::new, BlocksT.GOLD_CHEST).build();
+	public static final BlockEntityType<FrozenChestBlockEntity> FROZEN_CHEST = FabricBlockEntityTypeBuilder.create(FrozenChestBlockEntity::new, BlocksT.FROZEN_CHEST).build();
+	public static final BlockEntityType<IvyChestBlockEntity> IVY_CHEST = FabricBlockEntityTypeBuilder.create(IvyChestBlockEntity::new, BlocksT.IVY_CHEST).build();
+	public static final BlockEntityType<SandstoneChestBlockEntity> SANDSTONE_CHEST = FabricBlockEntityTypeBuilder.create(SandstoneChestBlockEntity::new, BlocksT.SANDSTONE_CHEST).build();
+	public static final BlockEntityType<WaterChestBlockEntity> WATER_CHEST = FabricBlockEntityTypeBuilder.create(WaterChestBlockEntity::new, BlocksT.WATER_CHEST).build();
+	public static final BlockEntityType<SkywareChestBlockEntity> SKYWARE_CHEST = FabricBlockEntityTypeBuilder.create(SkywareChestBlockEntity::new, BlocksT.SKYWARE_CHEST).build();
 
 	public static void init() {
 		  FabricDefaultAttributeRegistry.register(GREEN_SLIME, MobEntity.createMobAttributes());
@@ -210,6 +214,25 @@ public class EntitiesT {
 						(context) -> {
 							return new RenderHeart(context);
 						});
+
+
+				BlockEntityRendererRegistry.register(GOLD_CHEST, ChestBlockEntityRendererT::new);
+				BlockEntityRendererRegistry.register(FROZEN_CHEST, ChestBlockEntityRendererT::new);
+				BlockEntityRendererRegistry.register(IVY_CHEST, ChestBlockEntityRendererT::new);
+				BlockEntityRendererRegistry.register(SANDSTONE_CHEST, ChestBlockEntityRendererT::new);
+				BlockEntityRendererRegistry.register(WATER_CHEST, ChestBlockEntityRendererT::new);
+				BlockEntityRendererRegistry.register(SKYWARE_CHEST, ChestBlockEntityRendererT::new);
+				BlockEntityRendererRegistry.register(WOOD_CHEST, ChestBlockEntityRendererT::new);
+
+				ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
+					registry.register(new Identifier(TerrariaMod.MODID, "block/chests/gold_chest"));
+					registry.register(new Identifier(TerrariaMod.MODID, "block/chests/frozen_chest"));
+					registry.register(new Identifier(TerrariaMod.MODID, "block/chests/ivy_chest"));
+					registry.register(new Identifier(TerrariaMod.MODID, "block/chests/sandstone_chest"));
+					registry.register(new Identifier(TerrariaMod.MODID, "block/chests/water_chest"));
+					registry.register(new Identifier(TerrariaMod.MODID, "block/chests/skyware_chest"));
+					registry.register(new Identifier(TerrariaMod.MODID, "block/chests/wood_chest"));
+				});
 			}
 	  }
 }

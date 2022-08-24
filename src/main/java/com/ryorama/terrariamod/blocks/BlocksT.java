@@ -3,7 +3,7 @@ package com.ryorama.terrariamod.blocks;
 import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.blocks.api.*;
-import com.ryorama.terrariamod.blocks.chests.GoldChest;
+import com.ryorama.terrariamod.blocks.chests.*;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -73,13 +73,13 @@ public class BlocksT {
 	public static GravestoneT TOMBSTONE = (GravestoneT) new GravestoneT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static GravestoneT GOLD_TOMBSTONE = (GravestoneT) new GravestoneT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 
-	public static Block WOOD_CHEST;
-	public static Block GOLD_CHEST;
-	public static Block WATER_CHEST;
-	public static Block IVY_CHEST;
-	public static Block SKYWARE_CHEST;
-	public static Block SANDSTONE_CHEST;
-	public static Block FROZEN_CHEST;
+	public static Block WOOD_CHEST = new WoodChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.WOOD_CHEST);
+	public static Block GOLD_CHEST = new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.GOLD_CHEST);
+	public static Block WATER_CHEST = new WaterChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.WATER_CHEST);
+	public static Block IVY_CHEST = new IvyChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.IVY_CHEST);
+	public static Block SKYWARE_CHEST = new SkywareChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.SKYWARE_CHEST);
+	public static Block SANDSTONE_CHEST = new SandstoneChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.SANDSTONE_CHEST);
+	public static Block FROZEN_CHEST = new FrozenChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.FROZEN_CHEST);
 
 
 	public static void init() {
@@ -141,12 +141,13 @@ public class BlocksT {
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "pot"), FOREST_POT);
 
-		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "wood_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.WOOD_CHEST));
-		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "gold_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.GOLD_CHEST));
-		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "water_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.WATER_CHEST));
-		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "skyware_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.SKYWARE_CHEST));
-		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "sandstone_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.SANDSTONE_CHEST));
-		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "frozen_chest"), new GoldChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.FROZEN_CHEST));
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "wood_chest"), WOOD_CHEST);
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "gold_chest"), GOLD_CHEST);
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "water_chest"), WATER_CHEST);
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "ivy_chest"), IVY_CHEST);
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "skyware_chest"), SKYWARE_CHEST);
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "sandstone_chest"), SANDSTONE_CHEST);
+		Registry.register(Registry.BLOCK , new Identifier(TerrariaMod.MODID, "frozen_chest"), FROZEN_CHEST);
 
 	}
 }

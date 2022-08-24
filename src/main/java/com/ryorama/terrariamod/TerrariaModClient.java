@@ -327,9 +327,9 @@ public class TerrariaModClient implements ClientModInitializer {
 
                 World world = callbacks.getOverworld();
 
-                WeatherBase.tickWeather();
-                CelestialManager.handleMoon(world);
-                CelestialManager.handleSolarEvents(world);
+                //WeatherBase.tickWeather();
+                //CelestialManager.handleMoon(world);
+                //CelestialManager.handleSolarEvents(world);
 
             /*
 			if (world.isClient()) {
@@ -360,6 +360,7 @@ public class TerrariaModClient implements ClientModInitializer {
                     }
                 }
 
+                /*
                 if (world.isNight()) {
                     if (world.getRandom().nextInt(100) <= Util.starChance) {
                         if (world.getPlayers().size() > 0) {
@@ -375,6 +376,7 @@ public class TerrariaModClient implements ClientModInitializer {
                         }
                     }
                 }
+                 */
             }
         });
 
