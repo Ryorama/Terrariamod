@@ -3,6 +3,8 @@ package com.ryorama.terrariamod.mixins;
 import java.util.BitSet;
 
 import com.ryorama.terrariamod.utils.math.noise.FastNoise;
+import me.emafire003.dev.structureplacerapi.StructurePlacerAPI;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.CheckedRandom;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryEntry;
@@ -241,7 +243,7 @@ public class ChunkGeneratorMixin {
 
 							if (world.getRandom().nextInt(4000) == 0) {
 								if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.GRASS_BLOCK.getDefaultState()) {
-									placeStuff(world, Blocks.CHEST.getDefaultState(), world.getRandom(), pos);
+									placeStuff(world, BlocksT.WOOD_CHEST.getDefaultState(), world.getRandom(), pos);
 									LootableContainerBlockEntity.setLootTable(world, world.getRandom(), pos, new Identifier(TerrariaMod.MODID, "chests/surface_chest"));
 								}
 							}
@@ -333,6 +335,14 @@ public class ChunkGeneratorMixin {
 											world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.FOREST_POT.getDefaultState(), 0);
 										}
 									}
+								}
+							}
+
+							//Structures
+							if (y <= -10) {
+								if (world.getRandom().nextInt(3000) == 0) {
+									StructurePlacerAPI placerAPI = new StructurePlacerAPI(world.toServerWorld(), new Identifier(TerrariaMod.MODID, "underground_house"), pos);
+									placerAPI.loadStructure();
 								}
 							}
 
@@ -597,7 +607,7 @@ public class ChunkGeneratorMixin {
 
 							if (world.getRandom().nextInt(4000) == 0) {
 								if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == Blocks.GRASS_BLOCK.getDefaultState()) {
-									placeStuff(world, Blocks.CHEST.getDefaultState(), world.getRandom(), pos);
+									placeStuff(world, BlocksT.WOOD_CHEST.getDefaultState(), world.getRandom(), pos);
 									LootableContainerBlockEntity.setLootTable(world, world.getRandom(), pos, new Identifier(TerrariaMod.MODID, "chests/surface_chest"));
 								}
 							}
