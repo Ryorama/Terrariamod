@@ -29,6 +29,10 @@ public class BlocksT {
 	public static BlockT ASH = new BlockT(FabricBlockSettings.copyOf(Blocks.STONE), 15, 15).setPick(true);
 	public static BlockT MARBLE = new BlockT(FabricBlockSettings.copyOf(Blocks.STONE), 15, 30).setPick(true);
 	public static BlockT GRANITE = new BlockT(FabricBlockSettings.copyOf(Blocks.STONE), 15, 30).setPick(true);
+	public static BlockT SUNPLATE_BLOCK = new BlockT(FabricBlockSettings.copyOf(Blocks.STONE), 15, 30).setPick(true);
+	public static BlockT CLOUD = new BlockT(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL), 15, 30).setPick(true);
+	public static BlockT RAIN_CLOUD = new BlockT(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL), 15, 30).setPick(true);
+
 	public static BlockT MUSHROOM_GRASS = new BlockT(FabricBlockSettings.copyOf(Blocks.STONE).luminance(15), 15, 15).setPick(true);
 	public static BlockT WOOD = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT WOODEN_BEAM = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
@@ -102,6 +106,9 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "wooden_beam"), WOODEN_BEAM);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "life_crystal_block"), LIFE_CRYSTAL_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "vine"), VINE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "sunplate_block"), SUNPLATE_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "cloud"), CLOUD);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "rain_cloud"), RAIN_CLOUD);
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "empty_bottle"), EMPTY_BOTTLE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "mushroom"), MUSHROOM);

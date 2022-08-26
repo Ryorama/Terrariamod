@@ -240,6 +240,9 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood"), new BlockItemT(BlocksT.WOOD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_block"), new BlockItemT(BlocksT.HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crispy_honey_block"), new BlockItemT(BlocksT.CRISPY_HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sunplate_block"), new BlockItemT(BlocksT.SUNPLATE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "cloud"), new BlockItemT(BlocksT.CLOUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "rain_cloud"), new BlockItemT(BlocksT.RAIN_CLOUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood_chest"), new BlockItemT(BlocksT.WOOD_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_chest"), new BlockItemT(BlocksT.GOLD_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));

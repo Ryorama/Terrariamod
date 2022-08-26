@@ -339,10 +339,12 @@ public class ChunkGeneratorMixin {
 							}
 
 							//Structures
-							if (y <= -10) {
-								if (world.getRandom().nextInt(3000) == 0) {
-									StructurePlacerAPI placerAPI = new StructurePlacerAPI(world.toServerWorld(), new Identifier(TerrariaMod.MODID, "underground_house"), pos);
-									placerAPI.loadStructure();
+							if (!world.isClient()) {
+								if (y <= -10) {
+									if (world.getRandom().nextInt(3000) == 0) {
+										StructurePlacerAPI placerAPI = new StructurePlacerAPI(world.toServerWorld(), new Identifier(TerrariaMod.MODID, "underground_house"), pos);
+										placerAPI.loadStructure();
+									}
 								}
 							}
 
