@@ -15,6 +15,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -37,9 +38,12 @@ public class MusicTrackerMixin {
         this.client = client;
     }
 
-    @Inject(at = @At("HEAD"), method = "tick")
-    public void tick(CallbackInfo ci) {
-        System.out.println("Terraria Music Ticker Running!");
+    /**
+     * @author
+     * @reason
+     */
+    @Overwrite
+    public void tick() {
         this.tickMusic();
         this.tickAmbient();
     }
