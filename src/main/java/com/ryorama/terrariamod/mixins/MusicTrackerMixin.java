@@ -26,7 +26,6 @@ public class MusicTrackerMixin {
     @Shadow
     private final MinecraftClient client;
 
-
     private SoundEvent currentMusic;
     private int timeUntilNextMusic = 100;
     private SoundEvent currentAmbient;
@@ -185,7 +184,7 @@ public class MusicTrackerMixin {
         if (musicticker$musictype != null && client.world != null) {
             if (this.currentMusic != null) {
                 if (!musicticker$musictype.getSound().getId().equals(this.currentMusic.getId())) {
-                   this.client.getMusicTracker().stop();
+                   this.stopT();
                    this.timeUntilNextMusic = MathHelper.nextInt(client.world.getRandom(), 0, musicticker$musictype.getMinDelay() / 2);
                 }
 
@@ -208,7 +207,7 @@ public class MusicTrackerMixin {
         if (musicticker$musictype != null && client.world != null) {
             if (this.currentAmbient != null) {
                 if (!musicticker$musictype.getSound().getId().equals(this.currentAmbient.getId())) {
-                    this.client.getMusicTracker().stop();
+                    this.stopT();
                     this.timeUntilNextAmbient = MathHelper.nextInt(client.world.getRandom(), 0, musicticker$musictype.getMinDelay() / 2);
                 }
 
@@ -242,8 +241,7 @@ public class MusicTrackerMixin {
         }
     }
 
-    @Inject(at = @At("HEAD"), method = "stop")
-    public void stop(CallbackInfo ci) {
+    public void stopT() {
         if (this.currentMusic != null) {
             this.client.getMusicTracker().stop();
             this.currentMusic = null;
