@@ -27,7 +27,8 @@
     "PlayerEntityMixin",
     "TitleScreenMixin",
     "ItemRendererMixin",
-    "InGameHudMixin"
+    "InGameHudMixin",
+    "MusicTrackerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

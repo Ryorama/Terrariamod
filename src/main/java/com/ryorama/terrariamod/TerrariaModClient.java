@@ -197,6 +197,7 @@ public class TerrariaModClient implements ClientModInitializer {
 
     @Environment(EnvType.CLIENT)
     public void onTickClient() {
+
         ClientTickEvents.START_CLIENT_TICK.register(callbacks -> {
 
             if (callbacks.world != null) {

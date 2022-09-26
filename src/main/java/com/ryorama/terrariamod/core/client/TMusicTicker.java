@@ -43,7 +43,7 @@ public class TMusicTicker extends MusicTracker {
 		this.tickAmbient();
 	}
 
-	private TMusicTicker.AmbientTrack getAmbientTrackType() {
+	public static TMusicTicker.AmbientTrack getAmbientTrackType() {
 		return null;
 	}
 

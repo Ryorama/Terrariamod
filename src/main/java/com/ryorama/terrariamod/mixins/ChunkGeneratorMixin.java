@@ -338,15 +338,18 @@ public class ChunkGeneratorMixin {
 								}
 							}
 
+							/*
 							//Structures
 							if (!world.isClient()) {
-								if (y <= -10) {
+								if (y <= -10 && y >= -150) {
 									if (world.getRandom().nextInt(3000) == 0) {
+										System.out.println("Structure Place");
 										StructurePlacerAPI placerAPI = new StructurePlacerAPI(world.toServerWorld(), new Identifier(TerrariaMod.MODID, "underground_house"), pos);
 										placerAPI.loadStructure();
 									}
 								}
 							}
+							 */
 
 							/*
 							if (world.getBiome(pos).equals(RegistryEntry.of(BiomeCorruption.CORRUPTION))) {
