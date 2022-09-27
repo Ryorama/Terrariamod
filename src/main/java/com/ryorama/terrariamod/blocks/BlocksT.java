@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.blocks;
 import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.blocks.api.*;
+import com.ryorama.terrariamod.blocks.boss_summons.Larva;
 import com.ryorama.terrariamod.blocks.chests.*;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -85,6 +86,7 @@ public class BlocksT {
 	public static Block SANDSTONE_CHEST = new SandstoneChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.SANDSTONE_CHEST);
 	public static Block FROZEN_CHEST = new FrozenChest(FabricBlockSettings.of(Material.WOOD).strength(3.0f, 6.0f).requiresTool(), () -> EntitiesT.FROZEN_CHEST);
 
+	public static Larva LARVA = (Larva) new Larva(FabricBlockSettings.of(Material.SPONGE), 15, 15).setPick(true).setAxe(true);
 
 	public static void init() {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "grass_block"), GRASS_BLOCK);
@@ -145,6 +147,7 @@ public class BlocksT {
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "tombstone"), TOMBSTONE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "gold_tombstone"), GOLD_TOMBSTONE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "larva"), LARVA);
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "pot"), FOREST_POT);
 
