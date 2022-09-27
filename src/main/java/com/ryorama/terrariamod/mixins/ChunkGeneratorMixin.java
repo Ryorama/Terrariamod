@@ -339,14 +339,19 @@ public class ChunkGeneratorMixin {
 									}
 								}
 							}
+
+							/*
 							//Structures
-							if (y <= -10 && y >= -150) {
-								if (world.getRandom().nextInt(300) == 0) {
-									AbandonHouse.generateStructure((World) world.toServerWorld(), pos);
+							if (TerrariaMod.serverWorld != null) {
+								if (!world.isClient()) {
+									if (y <= -10 && y >= -150) {
+										if (world.getRandom().nextInt(300) == 0) {
+											AbandonHouse.generateStructure(world.toServerWorld(), pos);
+										}
+									}
 								}
 							}
 
-							/*
 							if (!world.isClient()) {
 								if (y <= -10 && y >= -150) {
 									if (world.getRandom().nextInt(3000) == 0) {

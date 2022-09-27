@@ -311,7 +311,8 @@ public class TMusicTicker extends MusicTracker {
 		GOLEM(TAudio.SoundEvents.GOLEM.getSound(), 20, 20),
 		RAIN(TAudio.SoundEvents.RAIN.getSound(), 20, 20),
 		STORM(TAudio.SoundEvents.STORM.getSound(), 20, 20),
-		SLIME_RAIN(TAudio.SoundEvents.SLIME_RAIN.getSound(), 20, 20);
+		SLIME_RAIN(TAudio.SoundEvents.SLIME_RAIN.getSound(), 20, 20),
+		MUSHROOM(TAudio.SoundEvents.MUSHROOM.getSound(), 20, 20);
 
 		private final SoundEvent sound;
 		private final int minDelay;

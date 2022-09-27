@@ -42,6 +42,9 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import net.minecraft.util.Formatting;
 
 public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable {
+
+	public static boolean isKSAlive = false;
+
 	//PugzAreCute: Looks like constructor missing, Error: Error:(39, 14) All entities must have a constructor that takes one net.minecraft.world.World parameter.
 	
 	public EntityKingSlime(EntityType<? extends EntityKingSlime> entityType, World worldIn) {
@@ -62,6 +65,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 		this.getDataTracker().startTracking(EntityKingSlime.TELEPORTING, false);
 		this.getDataTracker().startTracking(EntityKingSlime.TICKS_BEFORE_JUMP, 0);
 
+		isKSAlive = true;
 	}
 
         public EntityKingSlime(World worldIn) {
@@ -251,6 +255,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 
 	public void remove(Entity.RemovalReason reason) {
 		super.remove(reason);
+		isKSAlive = false;
 	}
 
 	private void setTicksBeforeJump(int ticks) {
@@ -308,6 +313,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(Text.translatable("King Slime has been defeated!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
 			}
 		}
+		isKSAlive = false;
 	 }
 
 	@Override

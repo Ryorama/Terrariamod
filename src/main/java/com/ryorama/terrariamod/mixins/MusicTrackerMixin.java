@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.mixins;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.core.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
+import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
 import com.ryorama.terrariamod.world.WorldDataT;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
@@ -54,7 +55,7 @@ public class MusicTrackerMixin {
             if (MinecraftClient.getInstance().world != null) {
                 World world = MinecraftClient.getInstance().world;
 
-                if (EntityEyeOfCthulhu.isEyeAlive == true) {
+                if (EntityEyeOfCthulhu.isEyeAlive || EntityKingSlime.isKSAlive) {
                     return TMusicTicker.MusicType.BOSS1;
                 }
 
@@ -146,6 +147,10 @@ public class MusicTrackerMixin {
                         return TMusicTicker.MusicType.DESERT;
                     }
 
+                    if (mushroom > 15) {
+                        return TMusicTicker.MusicType.MUSHROOM;
+                    }
+
                     if (snow > 15) {
                         return TMusicTicker.MusicType.SNOW;
                     }
@@ -167,8 +172,8 @@ public class MusicTrackerMixin {
                     return TMusicTicker.MusicType.RAIN;
                 }
 
-                boolean night = !world.isDay();
-                if (night) {
+                boolean day = world.isDay();
+                if (!day) {
                     return TMusicTicker.MusicType.NIGHT;
                 }
 

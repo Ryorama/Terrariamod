@@ -91,7 +91,8 @@ public class TAudio {
         GOLEM("golem"),
         RAIN("rain"),
         STORM("storm"),
-        SLIME_RAIN("slime_rain");
+        SLIME_RAIN("slime_rain"),
+        MUSHROOM("mushroom");
 
         private SoundEvent sound;
 

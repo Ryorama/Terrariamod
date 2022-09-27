@@ -43,6 +43,8 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
@@ -59,7 +61,6 @@ import java.util.function.Function;
 
 public class TerrariaModClient implements ClientModInitializer {
 
-    public boolean firstUpdate = false;
     public boolean ironSkinJustActivated = false;
 
     public int tmpMana = 20;
@@ -80,7 +81,6 @@ public class TerrariaModClient implements ClientModInitializer {
         ParticleRegistry.initClient();
         HandledScreens.<CraftingGuiDescription, CraftingGuiScreen>register(TerrariaMod.CRAFTING_TYPE, (gui, inventory, title) -> new CraftingGuiScreen(gui, inventory.player, title));
         ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
-        onTick();
         addCutouts();
         setupFluidRendering(TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY, new Identifier(TerrariaMod.MODID, "honey"), 0xFFFFFF);
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
@@ -214,17 +214,9 @@ public class TerrariaModClient implements ClientModInitializer {
                     }
 
                     if (player != null) {
-
-                        if (!firstUpdate && !WorldDataT.hasStartingTools) {
-                            if (TerrariaMod.CONFIG.modifyPlayerHealth) {
-                                player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
-                                player.setHealth(100);
-                            }
-
+                        if (!TerrariaMod.firstUpdate && !WorldDataT.hasStartingTools) {
                             player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MANA), tmpMana);
                             player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.MAX_MANA), tmpMaxMana);
-                            WorldDataT.hasStartingTools = true;
-                            firstUpdate = true;
                         }
 
                         if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.IRON_SKIN)) > 0) {
@@ -282,119 +274,5 @@ public class TerrariaModClient implements ClientModInitializer {
                 }
             }
         });
-    }
-
-    public void onTick() {
-
-        TerrariaUIRenderer.renderTerrariaHealth();
-        TerrariaUIRenderer.renderTerrariaDefense();
-        TerrariaUIRenderer.renderTerrariaMana();
-        TerrariaUIRenderer.renderTerrariaEffects();
-
-        /*
-		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-			if (!player.isCreative()) {
-				if (world.getBlockState(pos).getBlock() instanceof BlockT) {
-					BlockT block = (BlockT)world.getBlockState(pos).getBlock();
-
-					if (player.getInventory().getMainHandStack().getItem() instanceof ItemT) {
-						ItemT item = (ItemT)player.getInventory().getMainHandStack().getItem();
-						if (block.difficulty > 0) {
-							if (block.pick && item.pick >= block.difficulty) {
-				                return ActionResult.SUCCESS;
-							}
-							if (block.axe && item.axe >= block.difficulty) {
-				                return ActionResult.SUCCESS;
-							}
-							if (block.hammer && item.hammer >= block.difficulty) {
-				                return ActionResult.SUCCESS;
-							}
-							return ActionResult.PASS;
-						}
-						return ActionResult.PASS;
-					}
-					return ActionResult.PASS;
-				}
-				return ActionResult.PASS;
-			} else {
-				return ActionResult.SUCCESS;
-			}
-		});
-         */
-
-        ServerTickEvents.START_SERVER_TICK.register(callbacks -> {
-
-            if (callbacks.getOverworld() != null) {
-
-                World world = callbacks.getOverworld();
-
-                //WeatherBase.tickWeather();
-                //CelestialManager.handleMoon(world);
-                //CelestialManager.handleSolarEvents(world);
-
-            /*
-			if (world.isClient()) {
-				if (WorldDataT.bloodMoon) {
-					ModifyWorldColor.changeWorldColor("FF0000", 1, "FF0000", 0.4f); //Fix to be (double) 0.4
-				} else {
-					ModifyWorldColor.resetToDefaultColor();
-				}
-			}
-			*/
-
-
-                if (world.getRandom().nextInt(700) <= 10) {
-                    if (world.getPlayers().size() > 0) {
-                        PlayerEntity player = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
-                        double x = player.getPos().x + world.random.nextInt(80) - 40, y = player.getPos().y + world.random.nextInt(80) - 40, z = player.getPos().z + world.random.nextInt(80) - 40;
-
-                        for (PlayerEntity p2 : world.getPlayers()) {
-                            if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
-                                new Thread() {
-                                    public void run() {
-                                        EntitySpawner.spawnEntities(player, x, y, z);
-                                    }
-                                }.start();
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                /*
-                if (world.isNight()) {
-                    if (world.getRandom().nextInt(100) <= Util.starChance) {
-                        if (world.getPlayers().size() > 0) {
-                            System.out.println("Fallen Star");
-                            PlayerEntity player = world.getPlayers().get(world.getRandom().nextInt(world.getPlayers().size()));
-                            double x = player.getX() + world.getRandom().nextInt(80) - 40, y = 255, z = player.getZ() + world.getRandom().nextInt(80) - 40;
-                            ItemEntity item = new ItemEntity(world, x, y, z, ItemsT.FALLEN_STAR.getDefaultStack());
-                            world.spawnEntity(item);
-
-                            while (item.isAlive() && !item.isOnGround()) {
-                                world.playSound(item.getX(), item.getY(), item.getZ(), TAudio.STAR_FALL, SoundCategory.NEUTRAL, 100f, 1f, false);
-                            }
-                        }
-                    }
-                }
-                 */
-            }
-        });
-
-        ServerWorldEvents.LOAD.register(((server, world) -> {
-            try {
-                WorldDataT.loadData(world);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }));
-
-        ServerWorldEvents.UNLOAD.register(((server, world) -> {
-            try {
-                WorldDataT.saveData(world);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }));
     }
 }
