@@ -340,28 +340,13 @@ public class ChunkGeneratorMixin {
 								}
 							}
 
-							/*
-							//Structures
-							if (TerrariaMod.serverWorld != null) {
-								if (!world.isClient()) {
-									if (y <= -10 && y >= -150) {
-										if (world.getRandom().nextInt(300) == 0) {
-											AbandonHouse.generateStructure(world.toServerWorld(), pos);
-										}
-									}
-								}
-							}
 
-							if (!world.isClient()) {
-								if (y <= -10 && y >= -150) {
-									if (world.getRandom().nextInt(3000) == 0) {
-										System.out.println("Structure Place");
-										StructurePlacerAPI placerAPI = new StructurePlacerAPI(world.toServerWorld(), new Identifier(TerrariaMod.MODID, "underground_house"), pos);
-										placerAPI.loadStructure();
-									}
+							//Structures
+							if (y <= -10 && y >= -150) {
+								if (world.getRandom().nextInt(7000) == 0) {
+									AbandonHouse.generateStructure(world, pos);
 								}
 							}
-							 */
 
 							/*
 							if (world.getBiome(pos).equals(RegistryEntry.of(BiomeCorruption.CORRUPTION))) {

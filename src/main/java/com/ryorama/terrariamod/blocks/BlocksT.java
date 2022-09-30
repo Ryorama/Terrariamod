@@ -147,6 +147,7 @@ public class BlocksT {
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "tombstone"), TOMBSTONE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "gold_tombstone"), GOLD_TOMBSTONE);
+		
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "larva"), LARVA);
 
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "pot"), FOREST_POT);
