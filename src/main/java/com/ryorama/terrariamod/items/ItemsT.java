@@ -229,6 +229,7 @@ public class ItemsT {
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "jungle_grass"), new BlockItemT(BlocksT.JUNGLE_GRASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "dirt_block"), new BlockItemT(BlocksT.DIRT_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "stone_block"), new BlockItemT(BlocksT.STONE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "spike"), new BlockItemT(BlocksT.SPIKE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "blue_brick"), new BlockItemT(BlocksT.BLUE_BRICK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "green_brick"), new BlockItemT(BlocksT.GREEN_BRICK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "purple_brick"), new BlockItemT(BlocksT.PURPLE_BRICK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
