@@ -3,8 +3,8 @@ package com.ryorama.terrariamod.mixins;
 import java.util.BitSet;
 
 import com.ryorama.terrariamod.utils.math.noise.FastNoise;
+import com.ryorama.terrariamod.world.structures.StructurePlacerAPI;
 import com.ryorama.terrariamod.world.structures.underground.AbandonHouse;
-import me.emafire003.dev.structureplacerapi.StructurePlacerAPI;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.CheckedRandom;
 import net.minecraft.util.math.random.Random;
@@ -340,11 +340,14 @@ public class ChunkGeneratorMixin {
 								}
 							}
 
-
 							//Structures
-							if (y <= -10 && y >= -150) {
-								if (world.getRandom().nextInt(7000) == 0) {
-									AbandonHouse.generateStructure(world, pos);
+							if (!world.isClient()) {
+								if (y <= -10 && y >= -150) {
+									if (world.getRandom().nextInt() == 0) {
+										System.out.println("Structure Place");
+										StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MODID, "underground_house"), pos);
+										placerAPI.loadStructure();
+									}
 								}
 							}
 

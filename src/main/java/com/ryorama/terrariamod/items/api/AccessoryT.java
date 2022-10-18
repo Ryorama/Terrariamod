@@ -8,6 +8,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class AccessoryT extends TrinketItem {
-
+    public boolean effectEnabled = true;
     public boolean isExpert;
 
     public AccessoryT(Settings settings) {
