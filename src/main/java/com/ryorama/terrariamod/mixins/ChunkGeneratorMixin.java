@@ -4,13 +4,9 @@ import java.util.BitSet;
 
 import com.ryorama.terrariamod.utils.math.noise.FastNoise;
 import com.ryorama.terrariamod.world.structures.StructurePlacerAPI;
-import com.ryorama.terrariamod.world.structures.underground.AbandonHouse;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.CheckedRandom;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
