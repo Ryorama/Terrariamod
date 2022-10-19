@@ -76,6 +76,8 @@ public class TerrariaMod implements ModInitializer {
 	public static final Identifier REGENERATION = new Identifier(MODID, "regeneration");
 	public static final Identifier POISONED = new Identifier(MODID, "poisoned");
 
+	public static final Identifier BLEEDING = new Identifier(MODID, "bleeding");
+
 	public static TerrariaModConfig CONFIG = new TerrariaModConfig();
 
 	public static ScreenHandlerType CRAFTING_TYPE;
@@ -131,6 +133,8 @@ public class TerrariaMod implements ModInitializer {
 		Stats.CUSTOM.getOrCreateStat(POTION_SICKNESS, StatFormatter.DEFAULT);
 		Registry.register(Registry.CUSTOM_STAT, "poisoned", POISONED);
 		Stats.CUSTOM.getOrCreateStat(POISONED, StatFormatter.DEFAULT);
+		Registry.register(Registry.CUSTOM_STAT, "bleeding", BLEEDING);
+		Stats.CUSTOM.getOrCreateStat(BLEEDING, StatFormatter.DEFAULT);
 	}
 
 	private static void ModifyWorldHeight() {

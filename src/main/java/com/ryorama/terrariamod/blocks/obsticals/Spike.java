@@ -4,6 +4,8 @@ import com.ryorama.terrariamod.blocks.api.BlockT;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -30,5 +32,9 @@ public class Spike extends BlockT {
 
     public VoxelShape getVisualShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.empty();
+    }
+
+    public void onEntityCollision(World world, BlockPos pos, Entity entity) {
+        entity.damage(DamageSource.GENERIC, 40);
     }
 }

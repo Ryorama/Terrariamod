@@ -33,6 +33,8 @@ public class TerrariaUIRenderer {
 	public static Identifier potion_sickness = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/potion_sickness.png");
 	public static Identifier poisoned = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/poisoned.png");
 
+	public static Identifier bleeding = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/bleeding.png");
+
 	public static ClientPlayerEntity player;
 	
 	public static void renderTerrariaHealth() {
@@ -146,6 +148,11 @@ public class TerrariaUIRenderer {
 
 				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) > 0) {
 					UIRenderer.instance.renderOverlay(regeneration, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+					effectCounter++;
+				}
+
+				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.BLEEDING)) > 0) {
+					UIRenderer.instance.renderOverlay(bleeding, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
 					effectCounter++;
 				}
 			}
