@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "spike",
 	"textures": {
-		"0": "spike",
-		"particle": "spike"
+		"0": "terrariamod:block/spike",
+		"particle": "terrariamod:block/spike"
 	},
 	"elements": [
 		{

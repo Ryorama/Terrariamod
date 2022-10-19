@@ -77,6 +77,7 @@ public class TerrariaMod implements ModInitializer {
 	public static final Identifier POISONED = new Identifier(MODID, "poisoned");
 
 	public static final Identifier BLEEDING = new Identifier(MODID, "bleeding");
+	public static final Identifier WATER_CANDLE = new Identifier(MODID, "water_candle");
 
 	public static TerrariaModConfig CONFIG = new TerrariaModConfig();
 
@@ -135,6 +136,8 @@ public class TerrariaMod implements ModInitializer {
 		Stats.CUSTOM.getOrCreateStat(POISONED, StatFormatter.DEFAULT);
 		Registry.register(Registry.CUSTOM_STAT, "bleeding", BLEEDING);
 		Stats.CUSTOM.getOrCreateStat(BLEEDING, StatFormatter.DEFAULT);
+		Registry.register(Registry.CUSTOM_STAT, "water_candle", WATER_CANDLE);
+		Stats.CUSTOM.getOrCreateStat(WATER_CANDLE, StatFormatter.DEFAULT);
 	}
 
 	private static void ModifyWorldHeight() {
@@ -236,19 +239,37 @@ public class TerrariaMod implements ModInitializer {
 					}
 				}
 
-				if (world.getRandom().nextInt(700) <= 10) {
-					if (world.getPlayers().size() > 0) {
-						PlayerEntity player2 = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
-						double x = player2.getPos().x + world.random.nextInt(80) - 40, y = player2.getPos().y + world.random.nextInt(80) - 40, z = player2.getPos().z + world.random.nextInt(80) - 40;
+				if (world.getPlayers().size() > 0) {
+					PlayerEntity player2 = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
+					ServerPlayerEntity serverPlayerEntity = ((ServerPlayerEntity) player2);
+					if (serverPlayerEntity.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.WATER_CANDLE)) <= 0) {
+						if (world.getRandom().nextInt(700) <= 10) {
+							double x = player2.getPos().x + world.random.nextInt(80) - 40, y = player2.getPos().y + world.random.nextInt(80) - 40, z = player2.getPos().z + world.random.nextInt(80) - 40;
 
-						for (PlayerEntity p2 : world.getPlayers()) {
-							if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
-								new Thread() {
-									public void run() {
-										EntitySpawner.spawnEntities(player2, x, y, z);
-									}
-								}.start();
-								break;
+							for (PlayerEntity p2 : world.getPlayers()) {
+								if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
+									new Thread() {
+										public void run() {
+											EntitySpawner.spawnEntities(player2, x, y, z);
+										}
+									}.start();
+									break;
+								}
+							}
+						}
+					} else {
+						if (world.getRandom().nextInt(300) <= 10) {
+							double x = player2.getPos().x + world.random.nextInt(80) - 40, y = player2.getPos().y + world.random.nextInt(80) - 40, z = player2.getPos().z + world.random.nextInt(80) - 40;
+
+							for (PlayerEntity p2 : world.getPlayers()) {
+								if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
+									new Thread() {
+										public void run() {
+											EntitySpawner.spawnEntities(player2, x, y, z);
+										}
+									}.start();
+									break;
+								}
 							}
 						}
 					}

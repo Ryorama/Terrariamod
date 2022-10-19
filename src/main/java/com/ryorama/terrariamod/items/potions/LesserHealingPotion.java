@@ -23,7 +23,7 @@ public class LesserHealingPotion extends ItemT {
 	@Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
 		if (world.isClient()) {
-			if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) <= 0) {
+			if (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS)) <= 0 && (MinecraftClient.getInstance().player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.BLEEDING)) <= 0)) {
 				playerEntity.setHealth(playerEntity.getHealth() + 50);
 				playerEntity.getInventory().getMainHandStack().decrement(1);
 				MinecraftClient.getInstance().player.getStatHandler().setStat(playerEntity, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POTION_SICKNESS), 1200);

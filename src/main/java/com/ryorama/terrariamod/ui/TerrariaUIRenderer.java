@@ -34,6 +34,7 @@ public class TerrariaUIRenderer {
 	public static Identifier poisoned = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/poisoned.png");
 
 	public static Identifier bleeding = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/bleeding.png");
+	public static Identifier water_candle = new Identifier(TerrariaMod.MODID, "textures/ui/buffs/water_candle.png");
 
 	public static ClientPlayerEntity player;
 	
@@ -153,6 +154,10 @@ public class TerrariaUIRenderer {
 
 				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.BLEEDING)) > 0) {
 					UIRenderer.instance.renderOverlay(bleeding, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+					effectCounter++;
+				}
+				if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.WATER_CANDLE)) > 0) {
+					UIRenderer.instance.renderOverlay(water_candle, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
 					effectCounter++;
 				}
 			}

@@ -5,6 +5,7 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.api.*;
 import com.ryorama.terrariamod.blocks.boss_summons.Larva;
 import com.ryorama.terrariamod.blocks.chests.*;
+import com.ryorama.terrariamod.blocks.furniture.WaterCandle;
 import com.ryorama.terrariamod.blocks.obsticals.Spike;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -29,7 +30,8 @@ public class BlocksT {
 	public static BlockT BLUE_BRICK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT GREEN_BRICK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT PURPLE_BRICK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
-	public static Spike SPIKE = (Spike) new Spike(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true); //ToDo: Add functionality
+	public static Spike SPIKE = (Spike) new Spike(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
+	public static WaterCandle WATER_CANDLE = (WaterCandle) new WaterCandle(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 
 	public static BlockT EBONSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
 	public static BlockT CRIMSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 30).setPick(true);
@@ -102,6 +104,7 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "dirt_block"), DIRT_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "stone_block"), STONE_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "spike"), SPIKE);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "water_candle"), WATER_CANDLE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "blue_brick"), BLUE_BRICK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "green_brick"), GREEN_BRICK);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "purple_brick"), PURPLE_BRICK);
