@@ -38,6 +38,7 @@ import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -81,7 +82,6 @@ public class TerrariaModClient implements ClientModInitializer {
         ParticleRegistry.initClient();
         HandledScreens.<CraftingGuiDescription, CraftingGuiScreen>register(TerrariaMod.CRAFTING_TYPE, (gui, inventory, title) -> new CraftingGuiScreen(gui, inventory.player, title));
         ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
-        addCutouts();
         setupFluidRendering(TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY, new Identifier(TerrariaMod.MODID, "honey"), 0xFFFFFF);
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
         onTickClient();
@@ -153,55 +153,6 @@ public class TerrariaModClient implements ClientModInitializer {
         FluidRenderHandlerRegistry.INSTANCE.register(flowing, renderHandler);
     }
 
-    public void addCutouts() {
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STUMP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STUMP, RenderLayer.getTranslucent());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STEM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_STEM, RenderLayer.getTranslucent());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_TOP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_TOP, RenderLayer.getTranslucent());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_STEM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_STEM, RenderLayer.getTranslucent());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_TOP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_TOP, RenderLayer.getTranslucent());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.TOMBSTONE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.TOMBSTONE, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GOLD_TOMBSTONE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GOLD_TOMBSTONE, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.SPIKE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.SPIKE, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.WATER_CANDLE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.WATER_CANDLE, RenderLayer.getTranslucent());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.LARVA, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.LARVA, RenderLayer.getTranslucent());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_POT, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FOREST_POT, RenderLayer.getTranslucent());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.BLINKROOT, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.DAYBLOOM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.DEATHWEED, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.FIREBLOSSOM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MOONGLOW, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.SHIVERTHORN, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.WATERLEAF, RenderLayer.getCutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MUSHROOM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GLOWING_MUSHROOM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.JUNGLE_SPORES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.VINE, RenderLayer.getCutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.LIFE_CRYSTAL_BLOCK, RenderLayer.getCutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.EMPTY_BOTTLE, RenderLayer.getCutout());
-    }
-
     @Environment(EnvType.CLIENT)
     public void onTickClient() {
 
@@ -246,7 +197,7 @@ public class TerrariaModClient implements ClientModInitializer {
 
                         if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.COZY_FIRE)) > 0) {
                             if (ticks % 100 == 0) {
-                                player.setHealth(player.getHealth() + 2);
+                                player.heal(player.getHealth() + 2);
                             }
 
                             if (ticks % 20 == 0) {
@@ -256,14 +207,14 @@ public class TerrariaModClient implements ClientModInitializer {
 
                         if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) > 0) {
                             if (ticks % 80 == 0) {
-                                player.setHealth(player.getHealth() + 2);
+                                player.heal(player.getHealth() + 2);
                             }
                             player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.REGENERATION)) - 1);
                         }
 
                         if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) > 0) {
                             if (ticks % 140 == 0) {
-                                player.setHealth(player.getHealth() - 2);
+                                player.damage(DamageSource.GENERIC, player.getHealth() - 2);
                             }
                             player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED), player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(TerrariaMod.POISONED)) - 1);
                         }

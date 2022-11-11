@@ -38,7 +38,7 @@ public class Spike extends BlockT {
         return VoxelShapes.empty();
     }
 
-    public void onEntityCollision(World world, BlockPos pos, Entity entity) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof PlayerEntity) {
             if (world.isClient()) {
                 ClientPlayerEntity clientPlayerEntity = ((ClientPlayerEntity) entity);

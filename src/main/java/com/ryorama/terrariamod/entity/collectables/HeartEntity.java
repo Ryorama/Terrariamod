@@ -46,7 +46,6 @@ public class HeartEntity extends MobEntity implements IAnimatable {
         setHealth(getMaxHealth());
     }
 
-    /*
     public boolean isInvulnerable() {
         return true;
     }
@@ -54,10 +53,8 @@ public class HeartEntity extends MobEntity implements IAnimatable {
     public boolean damage(DamageSource source, float amount) {
         return false;
     }
-    */
 
     public void tick() {
-        /*
         super.tick();
         this.setNoGravity(false);
         ++this.age;
@@ -93,6 +90,5 @@ public class HeartEntity extends MobEntity implements IAnimatable {
                 this.remove(RemovalReason.DISCARDED);
             }
         }
-        */
     }
 }

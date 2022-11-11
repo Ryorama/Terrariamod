@@ -1,8 +1,7 @@
 package com.ryorama.terrariamod.world;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
@@ -71,8 +70,34 @@ public class WorldDataT {
 	  public static ServerWorld worldMP;
 
 	  public static void saveData(World world) throws IOException {
+
+	  		File worldDif = new File("WorldSettinsDif");
+	  		if (worldDif.exists()) {
+				BufferedReader reader = new BufferedReader(new FileReader(worldDif));
+				String content = reader.readLine();
+
+				int diff = Integer.parseInt(content);
+
+				switch (diff) {
+					case 0:
+						expert = false;
+						master = false;
+					case 1:
+						expert = false;
+						master = false;
+					case 2:
+						expert = true;
+						master = false;
+					case 3:
+						expert = false;
+						master = true;
+				}
+			}
+
 			NbtCompound nbtCompound = new NbtCompound();
 
+	  		nbtCompound.putBoolean("expert", expert);
+	  		nbtCompound.putBoolean("master", master);
 			nbtCompound.putBoolean("bloodmoon", bloodMoon);
 			nbtCompound.putBoolean("solarEclipse", solarEclipse);
 			nbtCompound.putBoolean("hasStartingTools", hasStartingTools);
@@ -92,6 +117,8 @@ public class WorldDataT {
 			nbtCompound = NbtIo.readCompressed(dataFile);
 		}
 
+		expert = nbtCompound.getBoolean("expert");
+		master = nbtCompound.getBoolean("master");
 		hasStartingTools = nbtCompound.getBoolean("hasStartingTools");
 		bloodMoon = nbtCompound.getBoolean("bloodmoon");
 		solarEclipse = nbtCompound.getBoolean("solarEclipse");
