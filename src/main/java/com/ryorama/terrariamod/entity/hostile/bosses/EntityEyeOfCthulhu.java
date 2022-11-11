@@ -6,6 +6,7 @@ import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.IBoss;
+import com.ryorama.terrariamod.entity.ITerrariaEntity;
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
 
 import com.ryorama.terrariamod.ui.BossBar;
@@ -36,7 +37,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatable {
+public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatable, ITerrariaEntity {
 	//PugzAreCute: Looks like constructor missing, Error: Error:(38, 14) All entities must have a constructor that takes one net.minecraft.world.World parameter.
 
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
@@ -106,9 +107,9 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 	    	}
 	    }
 	    
-	    this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(1024);
+	    this.setMaxHealth(this, 2800, 3640, 4641);
 	    this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(35);
-		setHealth(getMaxHealth());
+		heal(getMaxHealth());
 	    phase = 0;
 	    isEyeAlive = true;
 	}

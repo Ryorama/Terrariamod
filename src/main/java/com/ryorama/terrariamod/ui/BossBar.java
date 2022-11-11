@@ -7,6 +7,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.util.Identifier;
 
@@ -39,9 +40,9 @@ public class BossBar extends DrawableHelper {
 	
 	public static void renderBossBar() {
 		System.out.println("Changing rendering");
+		TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
 		HudRenderCallback.EVENT.register((matrixstack, delta) -> {
 			if (isRendering) {
-				
 				float percent = bossHealth / maxBossHealth;
 				
 				float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
@@ -52,6 +53,7 @@ public class BossBar extends DrawableHelper {
 				}
 				UIRenderer.instance.renderOverlay(boss_health_bar, 1f, 200, 25, scaledWidth / 2 - 130, 0, -90);
 				UIRenderer.instance.renderOverlay(boss_health_bar_icon, 1f, 10, 10, scaledWidth / 2 - 128.5f, 9, -90);
+				textRenderer.draw(matrixstack, ((int)bossHealth) + " / " + ((int)maxBossHealth), scaledWidth / 2 - 130, 16, 0xffffff);
 			}
 		});
 	}

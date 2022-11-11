@@ -7,6 +7,7 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.entity.IBoss;
+import com.ryorama.terrariamod.entity.ITerrariaEntity;
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
 import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
 
@@ -41,7 +42,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import net.minecraft.util.Formatting;
 
-public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable {
+public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable, ITerrariaEntity {
 
 	public static boolean isKSAlive = false;
 
@@ -60,34 +61,13 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable 
 			}
 		}
 
-		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(2000);
-		setHealth(getMaxHealth());
+		this.setMaxHealth(this, 2000, 2800, 3570);
+		heal(getMaxHealth());
 		this.getDataTracker().startTracking(EntityKingSlime.TELEPORTING, false);
 		this.getDataTracker().startTracking(EntityKingSlime.TICKS_BEFORE_JUMP, 0);
 
 		isKSAlive = true;
 	}
-
-        public EntityKingSlime(World worldIn) {
-		super(EntitiesT.KING_SLIME, worldIn);
-		if (world.isClient()) {
-			this.setBossIcon();
-			this.activateBoss();
-		}
-
-		if (!world.isClient()) {
-			for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
-				this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(Text.translatable("King Slime has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
-			}
-		}
-
-		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(2000);
-		setHealth(getMaxHealth());
-		this.getDataTracker().startTracking(EntityKingSlime.TELEPORTING, false);
-		this.getDataTracker().startTracking(EntityKingSlime.TICKS_BEFORE_JUMP, 0);
-
-	}
-	
 	 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return TAudio.NPC_HIT1;
