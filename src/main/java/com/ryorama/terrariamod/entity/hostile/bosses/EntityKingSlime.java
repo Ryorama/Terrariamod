@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.api.entity.IHostile;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.entity.IBoss;
@@ -42,7 +43,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import net.minecraft.util.Formatting;
 
-public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable, ITerrariaEntity {
+public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable, ITerrariaEntity, IHostile {
 
 	public static boolean isKSAlive = false;
 
@@ -50,6 +51,27 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable,
 	
 	public EntityKingSlime(EntityType<? extends EntityKingSlime> entityType, World worldIn) {
 		super(entityType, worldIn);
+		if (world.isClient()) {
+			this.setBossIcon();
+			this.activateBoss();
+		}
+
+		if (!world.isClient()) {
+			for (int i = 0; i <= this.world.getServer().getPlayerManager().getPlayerList().size() - 1; i++) {
+		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(Text.translatable("King Slime has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
+			}
+		}
+
+		this.setMaxHealth(this, 2000, 2800, 3570);
+		heal(getMaxHealth());
+		this.getDataTracker().startTracking(EntityKingSlime.TELEPORTING, false);
+		this.getDataTracker().startTracking(EntityKingSlime.TICKS_BEFORE_JUMP, 0);
+
+		isKSAlive = true;
+	}
+
+	public EntityKingSlime(World worldIn) {
+		super(EntitiesT.KING_SLIME, worldIn);
 		if (world.isClient()) {
 			this.setBossIcon();
 			this.activateBoss();
@@ -82,7 +104,9 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable,
 	public void onPlayerCollision(PlayerEntity playerIn) {
 		super.onPlayerCollision(playerIn);
 		
-		playerIn.damage(DamageSource.mob(this), 40);
+		if (this.isAlive()) {
+			this.dealDamage(playerIn, DamageSource.mob(this), 40);
+		}
 	}
 	
 	private AnimationFactory factory = new AnimationFactory(this);

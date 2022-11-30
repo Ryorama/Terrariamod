@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ryorama.terrariamod.TAudio;
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.api.entity.IHostile;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.IBoss;
 import com.ryorama.terrariamod.entity.ITerrariaEntity;
@@ -37,7 +38,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatable, ITerrariaEntity {
+public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatable, ITerrariaEntity, IHostile {
 	//PugzAreCute: Looks like constructor missing, Error: Error:(38, 14) All entities must have a constructor that takes one net.minecraft.world.World parameter.
 
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
@@ -120,7 +121,16 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 
 	public void setFire(int seconds) {
 	}
-	
+
+	@Override
+	public void onPlayerCollision(PlayerEntity playerIn) {
+		super.onPlayerCollision(playerIn);
+		
+		if (this.isAlive()) {
+			this.dealDamage(playerIn, DamageSource.mob(this), damage);
+		}
+	}
+
 	public void tick() {
 		ticksExisted += 1;
 

@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.entity.hostile;
 
+import com.ryorama.terrariamod.api.entity.IHostile;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
@@ -27,7 +28,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.ArrayList;
 
-public class EntityDrippler extends EntityBaseMob implements IAnimatable, AnimationController.IParticleListener {
+public class EntityDrippler extends EntityBaseMob implements IAnimatable, IHostile, AnimationController.IParticleListener {
 
     public int damage = 20;
 
@@ -66,7 +67,7 @@ public class EntityDrippler extends EntityBaseMob implements IAnimatable, Animat
         super.onPlayerCollision(playerIn);
 
         if (this.isAlive()) {
-            playerIn.damage(DamageSource.mob(this), damage);
+            this.dealDamage(playerIn, DamageSource.mob(this), damage);
         }
     }
 

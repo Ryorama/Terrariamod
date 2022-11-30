@@ -2,6 +2,7 @@ package com.ryorama.terrariamod.entity.hostile;
 
 import java.util.ArrayList;
 
+import com.ryorama.terrariamod.api.entity.IHostile;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
 import com.ryorama.terrariamod.items.ItemsT;
@@ -33,7 +34,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityEaterOfSouls extends EntityBaseMob implements IAnimatable, IParticleListener {
+public class EntityEaterOfSouls extends EntityBaseMob implements IAnimatable, IParticleListener, IHostile {
 
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
 	
@@ -296,7 +297,7 @@ public class EntityEaterOfSouls extends EntityBaseMob implements IAnimatable, IP
 		super.onPlayerCollision(playerIn);
 		
 		if (this.isAlive()) {
-			playerIn.damage(DamageSource.mob(this), damage);
+			this.dealDamage(playerIn, DamageSource.mob(this), damage);
 		}
 	}
 	

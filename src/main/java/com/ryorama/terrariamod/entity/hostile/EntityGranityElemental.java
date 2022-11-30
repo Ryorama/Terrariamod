@@ -2,6 +2,7 @@ package com.ryorama.terrariamod.entity.hostile;
 
 import java.util.ArrayList;
 
+import com.ryorama.terrariamod.api.entity.IHostile;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
@@ -27,7 +28,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityGranityElemental extends EntityBaseMob implements IAnimatable, IParticleListener {
+public class EntityGranityElemental extends EntityBaseMob implements IHostile, IAnimatable, IParticleListener {
 
 	public EntityGranityElemental(EntityType<? extends EntityBaseMob> entityType, World worldIn) {
 		super(entityType, worldIn);
@@ -54,7 +55,7 @@ public class EntityGranityElemental extends EntityBaseMob implements IAnimatable
 		super.onPlayerCollision(playerIn);
 		
 		if (this.isAlive()) {
-			playerIn.damage(DamageSource.mob(this), 15);
+			this.dealDamage(playerIn, DamageSource.mob(this), 15);
 		}
 	}
 	
