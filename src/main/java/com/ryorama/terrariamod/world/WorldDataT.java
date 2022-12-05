@@ -1,34 +1,25 @@
 package com.ryorama.terrariamod.world;
 
-import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
-import com.mojang.datafixers.DataFixer;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.command.argument.DimensionArgumentType;
-import net.minecraft.entity.player.PlayerEntity;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
 import net.minecraft.util.WorldSavePath;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldSaveHandler;
-import net.minecraft.world.dimension.DimensionOptions;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.level.storage.LevelStorage;
-import org.jetbrains.annotations.Nullable;
 
 public class WorldDataT {
 	
+	  public static Random random = new Random();
+
 	  public static boolean hardmode = false;
 	  
 	  public static boolean expert = false, master = false;
@@ -69,6 +60,16 @@ public class WorldDataT {
 	  	  
 	  public static ServerWorld worldMP;
 
+	  public static int worldEvil = 0;
+
+	  public static void setupWorldData() {
+		 	ServerTickEvents.START_WORLD_TICK.register(callbacks -> {
+				if (firstUpdate) {
+					worldEvil = random.nextInt(1);
+				}
+			});
+	  }
+
 	  public static void saveData(World world) throws IOException {
 
 	  		File worldDif = new File("WorldSettinsDif");
@@ -101,6 +102,7 @@ public class WorldDataT {
 			nbtCompound.putBoolean("bloodmoon", bloodMoon);
 			nbtCompound.putBoolean("solarEclipse", solarEclipse);
 			nbtCompound.putBoolean("hasStartingTools", hasStartingTools);
+			nbtCompound.putInt("worldEvil", worldEvil);
 
 			File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
 			if (!dataFile.exists()) {
@@ -122,6 +124,6 @@ public class WorldDataT {
 		hasStartingTools = nbtCompound.getBoolean("hasStartingTools");
 		bloodMoon = nbtCompound.getBoolean("bloodmoon");
 		solarEclipse = nbtCompound.getBoolean("solarEclipse");
-
+		worldEvil = nbtCompound.getInt("worldEvil");
 	}
 }

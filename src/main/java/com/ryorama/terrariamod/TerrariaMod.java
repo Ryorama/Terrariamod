@@ -104,6 +104,7 @@ public class TerrariaMod implements ModInitializer {
 		TAudio.registerAudio();
 		TAudio.registerMusic();
 		addCutouts();
+		WorldDataT.setupWorldData();
 
 		CRAFTING_TYPE = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MODID, "crafting_screen"), new ScreenHandlerType<>((syncId, inventory) -> new CraftingGuiDescription(syncId, inventory, ScreenHandlerContext.EMPTY)));
 

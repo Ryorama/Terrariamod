@@ -1,13 +1,10 @@
 package com.ryorama.terrariamod.entity.collectables;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -16,9 +13,6 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-
-import java.util.Iterator;
-import java.util.List;
 
 public class HeartEntity extends MobEntity implements IAnimatable {
 
@@ -54,41 +48,9 @@ public class HeartEntity extends MobEntity implements IAnimatable {
         return false;
     }
 
-    public void tick() {
-        super.tick();
-        this.setNoGravity(false);
-        ++this.age;
-        if (this.age > 6000 || this.dead) {
-            this.remove(RemovalReason.DISCARDED);
-        }
-
-        if (this.age > 6000) {
-            this.dead = true;
-        }
-
-        if (this.dead) {
-            this.remove(RemovalReason.DISCARDED);
-        } else {
-            World world = this.world;
-            List players = world.getPlayers();
-            double dist = 2.147483647E9D;
-            PlayerEntity closest = null;
-            Iterator var7 = players.iterator();
-
-            while(var7.hasNext()) {
-                PlayerEntity player = (PlayerEntity)var7.next();
-                double d = player.getPos().distanceTo(this.getPos());
-                if (d < dist) {
-                    dist = d;
-                    closest = player;
-                }
-            }
-
-            if (this.collidesWith(closest) && !world.isClient()) {
-                ServerPlayerEntity player = (ServerPlayerEntity)closest;
-                player.heal(20.0F);
-                this.remove(RemovalReason.DISCARDED);
-            }
-        }
+    @Override
+    public void onPlayerCollision(PlayerEntity entity) {
+        entity.heal(20);
+        this.remove(RemovalReason.DISCARDED);
     }
 }

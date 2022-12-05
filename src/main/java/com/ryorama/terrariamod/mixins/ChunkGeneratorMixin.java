@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.mixins;
 import java.util.BitSet;
 
 import com.ryorama.terrariamod.utils.math.noise.FastNoise;
+import com.ryorama.terrariamod.world.WorldDataT;
 import com.ryorama.terrariamod.world.structures.StructurePlacerAPI;
 import net.minecraft.util.math.random.CheckedRandom;
 import net.minecraft.util.math.random.Random;
@@ -347,8 +348,7 @@ public class ChunkGeneratorMixin {
 								}
 							}
 
-							/*
-							if (world.getBiome(pos).equals(RegistryEntry.of(BiomeCorruption.CORRUPTION))) {
+							if (x >= 1000 || x <= -1000 && WorldDataT.worldEvil == 0) {
 								if (world.getBlockState(pos) == BlocksT.CORRUPTED_GRASS_BLOCK.getDefaultState()) {
 									int depth = 40;
 									int depth2 = 50;
@@ -391,9 +391,9 @@ public class ChunkGeneratorMixin {
 											}
 										}
 								}
+							} else if (x >= 1000 || x <= -1000 && WorldDataT.worldEvil == 1) {
+								//ToDo: Crimson Generation
 							}
-
-							 */
 
 							if (y <= 20) {
 								if (cave_biome == 0) {
