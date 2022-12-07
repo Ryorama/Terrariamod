@@ -1,7 +1,6 @@
 package com.ryorama.terrariamod.entity.model;
 
 import com.ryorama.terrariamod.entity.collectables.HeartEntity;
-import com.ryorama.terrariamod.entity.hostile.EntitySporeZombie;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;

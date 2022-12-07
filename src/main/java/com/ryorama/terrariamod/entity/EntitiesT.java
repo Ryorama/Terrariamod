@@ -4,6 +4,7 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.entity.block.*;
 import com.ryorama.terrariamod.entity.collectables.HeartEntity;
+import com.ryorama.terrariamod.entity.collectables.ManaStarEntity;
 import com.ryorama.terrariamod.entity.hostile.*;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
@@ -109,6 +110,12 @@ public class EntitiesT {
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HeartEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
+	public static final EntityType<ManaStarEntity> MANA_STAR = Registry.register(
+			Registry.ENTITY_TYPE,
+			new Identifier("terrariamod", "mana_star"),
+			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ManaStarEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build()
+	);
+
 	public static final BlockEntityType<WoodChestBlockEntity> WOOD_CHEST = FabricBlockEntityTypeBuilder.create(WoodChestBlockEntity::new, BlocksT.WOOD_CHEST).build();
 	public static final BlockEntityType<GoldChestBlockEntity> GOLD_CHEST = FabricBlockEntityTypeBuilder.create(GoldChestBlockEntity::new, BlocksT.GOLD_CHEST).build();
 	public static final BlockEntityType<FrozenChestBlockEntity> FROZEN_CHEST = FabricBlockEntityTypeBuilder.create(FrozenChestBlockEntity::new, BlocksT.FROZEN_CHEST).build();
@@ -131,6 +138,7 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(EOC, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(GRANITE_ELEMETAL, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(HEART, MobEntity.createMobAttributes());
+		  FabricDefaultAttributeRegistry.register(MANA_STAR, MobEntity.createMobAttributes());
 
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "wood_chest"), WOOD_CHEST);
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "gold_chest"), GOLD_CHEST);
@@ -213,6 +221,10 @@ public class EntitiesT {
 				EntityRendererRegistry.register(EntitiesT.HEART,
 						(context) -> {
 							return new RenderHeart(context);
+						});
+				EntityRendererRegistry.register(EntitiesT.MANA_STAR,
+						(context) -> {
+							return new RenderManaStar(context);
 						});
 
 

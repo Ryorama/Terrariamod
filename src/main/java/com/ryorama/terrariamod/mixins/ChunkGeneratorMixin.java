@@ -349,6 +349,13 @@ public class ChunkGeneratorMixin {
 							}
 
 							if (x >= 1000 || x <= -1000 && WorldDataT.worldEvil == 0) {
+								if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
+									world.setBlockState(pos, BlocksT.CORRUPTED_GRASS_BLOCK.getDefaultState(), 0);
+								}
+								if (world.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+									world.setBlockState(pos, BlocksT.EBONSTONE.getDefaultState(), 0);
+								}
+
 								if (world.getBlockState(pos) == BlocksT.CORRUPTED_GRASS_BLOCK.getDefaultState()) {
 									int depth = 40;
 									int depth2 = 50;
@@ -358,7 +365,7 @@ public class ChunkGeneratorMixin {
 										pos2.set(pos.getX(), pos.getY() - i, pos.getZ());
 										if (i >= depth - 3 && i <= depth || i >= depth2) {
 											if (world.getRandom().nextInt(100) <= 95)
-												world.setBlockState(pos2, BlocksT.STONE_BLOCK.getDefaultState(), 0);
+												world.setBlockState(pos2, BlocksT.EBONSTONE.getDefaultState(), 0);
 										}
 										if (i > depth && i < depth2) {
 											world.setBlockState(pos2, Blocks.AIR.getDefaultState(), 0);
@@ -382,7 +389,7 @@ public class ChunkGeneratorMixin {
 															} else {
 																if (world.getBlockState(pos2).getBlock() != Blocks.AIR &&
 																		world.getBlockState(pos2).getBlock() != Blocks.AIR) {
-																	world.setBlockState(pos2, BlocksT.STONE_BLOCK.getDefaultState(), 0);
+																	world.setBlockState(pos2, BlocksT.EBONSTONE.getDefaultState(), 0);
 																}
 															}
 														}
@@ -392,7 +399,12 @@ public class ChunkGeneratorMixin {
 										}
 								}
 							} else if (x >= 1000 || x <= -1000 && WorldDataT.worldEvil == 1) {
-								//ToDo: Crimson Generation
+								if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
+									world.setBlockState(pos, BlocksT.CRIMSON_GRASS_BLOCK.getDefaultState(), 0);
+								}
+								if (world.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState()) {
+									world.setBlockState(pos, BlocksT.CRIMSTONE.getDefaultState(), 0);
+								}
 							}
 
 							if (y <= 20) {
