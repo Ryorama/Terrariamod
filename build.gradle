@@ -61,8 +61,6 @@ dependencies {
 
 	include modImplementation("software.bernie.geckolib:geckolib-fabric-1.19:${geckolib_version}")
 	include modImplementation("dev.emi:trinkets:${trinkets_version}")
-	include modImplementation("io.github.cottonmc:LibGui:${libgui_version}")
-	include modImplementation ("maven.modrinth:structureplacerapi:${structureplacerapi_version}")
 	implementation 'javax.vecmath:vecmath:1.5.2'
 
 

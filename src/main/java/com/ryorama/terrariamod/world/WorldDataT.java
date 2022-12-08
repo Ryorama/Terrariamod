@@ -44,7 +44,7 @@ public class WorldDataT {
 	  
 	  public static long totalTime;
 	  	  
-	  public static boolean firstUpdate;
+	  public static boolean firstUpdate = true;
 	  
 	  public static Identifier bossMusicOverride;
 	  	  
@@ -63,38 +63,47 @@ public class WorldDataT {
 	  public static int worldEvil = 0;
 
 	  public static void setupWorldData() {
-		 	ServerTickEvents.START_WORLD_TICK.register(callbacks -> {
-				if (firstUpdate) {
-					worldEvil = random.nextInt(1);
-				}
-			});
-	  }
-
-	  public static void saveData(World world) throws IOException {
-
-	  		File worldDif = new File("WorldSettinsDif");
+	  	if (firstUpdate) {
+	  		File worldDif = new File("WorldSettingsDif.txt");
+	  		System.out.println(worldDif.exists());
+	  		System.out.println(worldDif.getAbsolutePath());
 	  		if (worldDif.exists()) {
-				BufferedReader reader = new BufferedReader(new FileReader(worldDif));
-				String content = reader.readLine();
+	  			BufferedReader reader = null;
+	  			try {
+	  				reader = new BufferedReader(new FileReader(worldDif));
+	  			} catch (FileNotFoundException e) {
+	  				e.printStackTrace();
+	  			}
+	  			String content = null;
+	  			try {
+	  				content = reader.readLine();
+	  			} catch (IOException e) {
+	  				e.printStackTrace();
+	  			}
 
-				int diff = Integer.parseInt(content);
+	  			int diff = Integer.parseInt(content);
 
-				switch (diff) {
-					case 0:
-						expert = false;
-						master = false;
-					case 1:
-						expert = false;
-						master = false;
+	  			switch (diff) {
+	  				case 0:
+	  					expert = false;
+	  					master = false;
+	  				case 1:
+	  					expert = false;
+	  					master = false;
 					case 2:
 						expert = true;
 						master = false;
 					case 3:
 						expert = false;
 						master = true;
-				}
-			}
+	  			}
+	  		}
 
+	  		worldEvil = random.nextInt(1);
+	  	}
+	  }
+
+	  public static void saveData(World world) throws IOException {
 			NbtCompound nbtCompound = new NbtCompound();
 
 	  		nbtCompound.putBoolean("expert", expert);
@@ -102,7 +111,8 @@ public class WorldDataT {
 			nbtCompound.putBoolean("bloodmoon", bloodMoon);
 			nbtCompound.putBoolean("solarEclipse", solarEclipse);
 			nbtCompound.putBoolean("hasStartingTools", hasStartingTools);
-			nbtCompound.putInt("worldEvil", worldEvil);
+		  	nbtCompound.putBoolean("firstUpdate", firstUpdate);
+		  	nbtCompound.putInt("worldEvil", worldEvil);
 
 			File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
 			if (!dataFile.exists()) {
@@ -124,6 +134,7 @@ public class WorldDataT {
 		hasStartingTools = nbtCompound.getBoolean("hasStartingTools");
 		bloodMoon = nbtCompound.getBoolean("bloodmoon");
 		solarEclipse = nbtCompound.getBoolean("solarEclipse");
+		firstUpdate = nbtCompound.getBoolean("firstUpdate");
 		worldEvil = nbtCompound.getInt("worldEvil");
 	}
 }

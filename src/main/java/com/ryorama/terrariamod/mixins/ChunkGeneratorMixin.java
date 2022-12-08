@@ -37,6 +37,7 @@ public class ChunkGeneratorMixin {
 	public FastNoise noise;
 	public Random random;
 
+	private boolean evil = false;
 	private boolean corruption = true;
 	private boolean right_jungle = true;
 
@@ -68,7 +69,8 @@ public class ChunkGeneratorMixin {
 		int biome_width = 900;
 		int biome_length = 1200;
 
-		int snow_position = right_jungle ? -1200 : 1200;
+		int snow_position = right_jungle ? -4200 : 4200;
+		int evil_position = right_jungle ? -1200 : 1200;
 
 		if (terrainNoise == null) {
 			terrainNoise = DoublePerlinNoiseSampler.create(new CheckedRandom(world.getRandom().nextLong()), -8,
@@ -91,6 +93,8 @@ public class ChunkGeneratorMixin {
 
 					boolean snow = ((x + snow_position) * (x + snow_position)) / (float)(biome_width * biome_width) + (z * z) / (float)(biome_length * biome_length) <= 1;
 					boolean desert = ((x - snow_position) * (x - snow_position)) / (float)(biome_width * biome_width) + (z * z) / (float)(biome_length * biome_length) <= 1;
+					boolean isEvil = ((x + evil_position) * (x + evil_position)) / (float)(biome_width * biome_width) + (z * z) / (float)(biome_length * biome_length) <= 1;
+					evil = isEvil;
 
 					if (world_distance >= 2400) {
 						height_offset = (int)(60.0f * (world_distance - 2400) / 300.0f);
@@ -238,8 +242,6 @@ public class ChunkGeneratorMixin {
 								}
 							}
 
-							GeneratePurityTrees(world, x, y, z, pos);
-
 							if (world.getRandom().nextInt(4000) == 0) {
 								if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.GRASS_BLOCK.getDefaultState()) {
 									placeStuff(world, BlocksT.WOOD_CHEST.getDefaultState(), world.getRandom(), pos);
@@ -247,18 +249,29 @@ public class ChunkGeneratorMixin {
 								}
 							}
 
-							if (y <= -5) {
-								if (world.getRandom().nextInt(3500) == 0) {
-									if (world.getBlockState(pos) == Blocks.AIR.getDefaultState()) {
-										if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.STONE_BLOCK.getDefaultState()) {
-											placeStuff(world, BlocksT.LIFE_CRYSTAL_BLOCK.getDefaultState(), world.getRandom(), pos);
+							if (!evil) {
+								GeneratePurityTrees(world, x, y, z, pos);
+
+								if (world.getRandom().nextInt(100) == 0 && y > 60 && y < 80) {
+									PlaceVine(world, pos);
+								}
+
+								//Foliage
+								if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
+									if (world.getRandom().nextInt(100) == 0) {
+										world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.MUSHROOM.getDefaultState(), 0);
+									}
+								}
+
+								if (y <= -5) {
+									if (world.getRandom().nextInt(3500) == 0) {
+										if (world.getBlockState(pos) == Blocks.AIR.getDefaultState()) {
+											if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.STONE_BLOCK.getDefaultState()) {
+												placeStuff(world, BlocksT.LIFE_CRYSTAL_BLOCK.getDefaultState(), world.getRandom(), pos);
+											}
 										}
 									}
 								}
-							}
-
-							if (world.getRandom().nextInt(100) == 0 && y > 60 && y < 80) {
-								PlaceVine(world, pos);
 							}
 
 							//Ores
@@ -319,13 +332,6 @@ public class ChunkGeneratorMixin {
 								}
 							}
 
-							//Foliage
-							if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
-								if (world.getRandom().nextInt(100) == 0) {
-									world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.MUSHROOM.getDefaultState(), 0);
-								}
-							}
-
 							//Underground Objects
 							if (world.getBlockState(pos) == BlocksT.STONE_BLOCK.getDefaultState() || world.getBlockState(pos) == BlocksT.DIRT_BLOCK.getDefaultState()) {
 								if (y <= 50) {
@@ -348,7 +354,7 @@ public class ChunkGeneratorMixin {
 								}
 							}
 
-							if (x >= 1000 || x <= -1000 && WorldDataT.worldEvil == 0) {
+							if (evil && WorldDataT.worldEvil == 0) {
 								if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
 									world.setBlockState(pos, BlocksT.CORRUPTED_GRASS_BLOCK.getDefaultState(), 0);
 								}
@@ -398,7 +404,7 @@ public class ChunkGeneratorMixin {
 											}
 										}
 								}
-							} else if (x >= 1000 || x <= -1000 && WorldDataT.worldEvil == 1) {
+							} else if (evil && WorldDataT.worldEvil == 1) {
 								if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
 									world.setBlockState(pos, BlocksT.CRIMSON_GRASS_BLOCK.getDefaultState(), 0);
 								}

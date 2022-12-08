@@ -261,30 +261,6 @@ public class TMusicTicker extends MusicTracker {
 		this.locked = false;
 	}
 
-	public void lock() {
-		this.locked = true;
-	}
-
-	public void unlock() {
-		this.locked = false;
-	}
-
-	public void lockAmbient() {
-		this.lockedAmbient = true;
-	}
-
-	public void unlockAmbient() {
-		this.lockedAmbient = false;
-	}
-
-	public boolean isPlaying(MusicType type) {
-		return this.currentMusic == null ? false : type.getSound().getId().equals(this.currentMusic.getId());
-	}
-
-	public boolean isPlayingAmbient(TMusicTicker.AmbientTrack type) {
-		return this.currentAmbient == null ? false : type.getSound().getId().equals(this.currentAmbient.getId());
-	}
-
 	@Environment(EnvType.CLIENT)
 	public static enum MusicType {
 		MENU(TAudio.SoundEvents.MENU_MUSIC.getSound(), 20, 20),

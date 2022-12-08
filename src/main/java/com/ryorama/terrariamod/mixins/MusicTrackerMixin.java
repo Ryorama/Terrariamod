@@ -18,9 +18,6 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MusicTracker.class)
 public class MusicTrackerMixin {
@@ -79,9 +76,9 @@ public class MusicTrackerMixin {
                     int crimson = 0;
                     int hallow = 0;
                     if (world != null) {
-                        for(int x = -15; x < 15; ++x) {
-                            for(int y = -15; y < 15; ++y) {
-                                for(int z = -15; z < 15; ++z) {
+                        for (int x = -15; x < 15; ++x) {
+                            for (int y = -15; y < 15; ++y) {
+                                for (int z = -15; z < 15; ++z) {
                                     BlockPos pos2 = new BlockPos(cameraPos.getX() + x, cameraPos.getY() + y, cameraPos.getZ() + z);
                                     Block block = world.getBlockState(pos2).getBlock();
                                     if (block == BlocksT.GRASS_BLOCK) {
@@ -104,11 +101,11 @@ public class MusicTrackerMixin {
                                         ++mushroom;
                                     }
 
-                                    if (block == BlocksT.SAND && (new Vec3d((double)cameraPos.getX(), (double)cameraPos.getY(), (double)cameraPos.getZ())).distanceTo(new Vec3d(0.0D, (double)cameraPos.getY(), 0.0D)) < 4500.0D) {
+                                    if (block == BlocksT.SAND && (new Vec3d((double) cameraPos.getX(), (double) cameraPos.getY(), (double) cameraPos.getZ())).distanceTo(new Vec3d(0.0D, (double) cameraPos.getY(), 0.0D)) < 4500.0D) {
                                         ++desert;
                                     }
 
-                                    if (block == BlocksT.STONE_BLOCK  && MinecraftClient.getInstance().player.getY() <= 20.0D) {
+                                    if (block == BlocksT.STONE_BLOCK && MinecraftClient.getInstance().player.getY() <= 20.0D) {
                                         ++cave;
                                     }
 
@@ -178,6 +175,8 @@ public class MusicTrackerMixin {
                 }
 
                 return TMusicTicker.MusicType.DAY1;
+            } else {
+                this.stopT();
             }
         }
 
@@ -193,7 +192,7 @@ public class MusicTrackerMixin {
                    this.timeUntilNextMusic = MathHelper.nextInt(client.world.getRandom(), 0, musicticker$musictype.getMinDelay() / 2);
                 }
 
-                if (!this.client.getMusicTracker().isPlayingType(new MusicSound(this.currentMusic, 0, 1, true))) {
+                if (!this.client.getMusicTracker().isPlayingType(new MusicSound(this.currentMusic, musicticker$musictype.getMinDelay(), musicticker$musictype.getMaxDelay(), false))) {
                     this.currentMusic = null;
                     this.timeUntilNextMusic = Math.min(MathHelper.nextInt(client.world.getRandom(), musicticker$musictype.getMinDelay(), musicticker$musictype.getMaxDelay()), this.timeUntilNextMusic);
                 }
@@ -203,7 +202,6 @@ public class MusicTrackerMixin {
             if (this.currentMusic == null && this.timeUntilNextMusic-- <= 0) {
                 this.play(musicticker$musictype);
             }
-
         }
     }
 
@@ -212,7 +210,7 @@ public class MusicTrackerMixin {
         if (musicticker$musictype != null && client.world != null) {
             if (this.currentAmbient != null) {
                 if (!musicticker$musictype.getSound().getId().equals(this.currentAmbient.getId())) {
-                    this.stopT();
+                    this.stopAmbient();
                     this.timeUntilNextAmbient = MathHelper.nextInt(client.world.getRandom(), 0, musicticker$musictype.getMinDelay() / 2);
                 }
 

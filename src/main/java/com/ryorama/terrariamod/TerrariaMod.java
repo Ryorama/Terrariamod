@@ -9,7 +9,6 @@ import com.ryorama.terrariamod.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.crafting.Recipes;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
-import com.ryorama.terrariamod.gui.crafting.CraftingGuiDescription;
 import com.ryorama.terrariamod.items.ItemsT;
 
 import com.ryorama.terrariamod.ui.TerrariaUIRenderer;
@@ -87,8 +86,6 @@ public class TerrariaMod implements ModInitializer {
 
 	public static ServerWorld serverWorld;
 
-	public static boolean firstUpdate = false;
-
 	@Override
 	public void onInitialize() {
 		AutoConfig.register(TerrariaModConfig.class, GsonConfigSerializer::new);
@@ -105,8 +102,6 @@ public class TerrariaMod implements ModInitializer {
 		TAudio.registerMusic();
 		addCutouts();
 		WorldDataT.setupWorldData();
-
-		CRAFTING_TYPE = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MODID, "crafting_screen"), new ScreenHandlerType<>((syncId, inventory) -> new CraftingGuiDescription(syncId, inventory, ScreenHandlerContext.EMPTY)));
 
 		STILL_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "still_honey"), new HoneyFluid.Still());
 		FLOWING_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "flowing_honey"), new HoneyFluid.Flowing());
@@ -281,18 +276,6 @@ public class TerrariaMod implements ModInitializer {
 					player = (ServerPlayerEntity) world.getPlayers().get(p);
 				}
 
-				if (player != null) {
-					if (!firstUpdate && !WorldDataT.hasStartingTools) {
-						if (TerrariaMod.CONFIG.modifyPlayerHealth) {
-							player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
-							player.heal(100);
-						}
-
-						WorldDataT.hasStartingTools = true;
-						firstUpdate = true;
-					}
-				}
-
 				if (world.getPlayers().size() > 0) {
 					PlayerEntity player2 = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
 					ServerPlayerEntity serverPlayerEntity = ((ServerPlayerEntity) player2);
@@ -351,6 +334,7 @@ public class TerrariaMod implements ModInitializer {
 
 		ServerWorldEvents.LOAD.register(((server, world) -> {
 			try {
+				WorldDataT.setupWorldData();
 				WorldDataT.loadData(world);
 			} catch (IOException e) {
 				e.printStackTrace();
