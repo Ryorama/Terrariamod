@@ -93,8 +93,7 @@ public class EntityDemonEye extends EntityBaseMob implements IAnimatable, IParti
 		this.getDataTracker().startTracking(EntityDemonEye.typed_data, 1);
     	this.getDataTracker().set(EntityDemonEye.typed_data, random.nextInt(6));
 
-		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(60);
-		this.setHealth(60);
+    	this.setMaxHealth(this, 60, 20, false);
 		this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(2);
 		this.damage = 18;
 		this.kbResist = 0.2f;

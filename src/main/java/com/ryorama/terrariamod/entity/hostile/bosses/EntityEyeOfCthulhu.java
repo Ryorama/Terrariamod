@@ -107,10 +107,9 @@ public class EntityEyeOfCthulhu extends FlyingEntity implements IBoss, IAnimatab
 		    	this.world.getServer().getPlayerManager().getPlayerList().get(i).sendMessage(Text.translatable("The Eye of Cthulhu has awoken!").formatted(Formatting.BOLD).formatted(Formatting.LIGHT_PURPLE), false);
 	    	}
 	    }
-	    
-	    this.setMaxHealth(this, 2800, 3640, 4641);
+
+	    this.setMaxHealth(this, 2800, 2, true);
 	    this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(35);
-		heal(getMaxHealth());
 	    phase = 0;
 	    isEyeAlive = true;
 	}

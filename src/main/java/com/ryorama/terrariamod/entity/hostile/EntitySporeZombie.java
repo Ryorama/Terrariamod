@@ -45,7 +45,7 @@ public class EntitySporeZombie extends ZombieEntity implements IAnimatable, IHos
     }
 
     public void onInitSpawn() {
-        this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(80);
+        this.setMaxHealth(this, 80, 20, false);
         this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(4);
     }
 

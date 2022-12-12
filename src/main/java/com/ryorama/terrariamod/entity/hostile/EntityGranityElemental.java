@@ -32,8 +32,7 @@ public class EntityGranityElemental extends EntityBaseMob implements IHostile, I
 
 	public EntityGranityElemental(EntityType<? extends EntityBaseMob> entityType, World worldIn) {
 		super(entityType, worldIn);
-		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(120);
-		this.setHealth(120);
+		this.setMaxHealth(this, 120, 30, false);
 		this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(5);
 	}
 

@@ -62,8 +62,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable,
 			}
 		}
 
-		this.setMaxHealth(this, 2000, 2800, 3570);
-		heal(getMaxHealth());
+		this.setMaxHealth(this, 2000, 2, true);
 		this.getDataTracker().startTracking(EntityKingSlime.TELEPORTING, false);
 		this.getDataTracker().startTracking(EntityKingSlime.TICKS_BEFORE_JUMP, 0);
 
@@ -83,8 +82,7 @@ public class EntityKingSlime extends LivingEntity implements IBoss, IAnimatable,
 			}
 		}
 
-		this.setMaxHealth(this, 2000, 2800, 3570);
-		heal(getMaxHealth());
+		this.setMaxHealth(this, 2000, 2, true);
 		this.getDataTracker().startTracking(EntityKingSlime.TELEPORTING, false);
 		this.getDataTracker().startTracking(EntityKingSlime.TICKS_BEFORE_JUMP, 0);
 

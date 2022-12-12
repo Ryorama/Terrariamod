@@ -78,8 +78,7 @@ public class EntityEaterOfSouls extends EntityBaseMob implements IAnimatable, IP
 	}
 	
 	public void onInitialSpawn() {
-		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(60);
-		this.setHealth(60);
+		this.setMaxHealth(this, 60, 15, false);
 		this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).setBaseValue(2);
 		this.damage = 18;
 		this.kbResist = 0.2f;
