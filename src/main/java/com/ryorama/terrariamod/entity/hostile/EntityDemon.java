@@ -6,6 +6,7 @@ import com.ryorama.terrariamod.api.entity.IHostile;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
+import com.ryorama.terrariamod.entity.ITerrariaEntity;
 import com.ryorama.terrariamod.entity.hostile.projectiles.DemonScythProjectile;
 
 import net.minecraft.block.Blocks;
@@ -32,7 +33,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityDemon extends EntityBaseMob implements IAnimatable, IParticleListener, IHostile {
+public class EntityDemon extends EntityBaseMob implements IAnimatable, IParticleListener, IHostile, ITerrariaEntity {
 
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
 	

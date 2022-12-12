@@ -6,6 +6,7 @@ import com.ryorama.terrariamod.api.entity.IHostile;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
+import com.ryorama.terrariamod.entity.ITerrariaEntity;
 import com.ryorama.terrariamod.items.ItemsT;
 
 import net.minecraft.entity.EntityType;
@@ -28,7 +29,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityGranityElemental extends EntityBaseMob implements IHostile, IAnimatable, IParticleListener {
+public class EntityGranityElemental extends EntityBaseMob implements IHostile, IAnimatable, IParticleListener, ITerrariaEntity {
 
 	public EntityGranityElemental(EntityType<? extends EntityBaseMob> entityType, World worldIn) {
 		super(entityType, worldIn);

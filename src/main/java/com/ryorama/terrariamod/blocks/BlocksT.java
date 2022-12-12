@@ -24,7 +24,9 @@ public class BlocksT {
 	public static BlockT JUNGLE_GRASS = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
 	public static BlockT MUD = new BlockT(FabricBlockSettings.copyOf(Blocks.STONE), 15, 15).setPick(true);
 	public static BlockT SAND = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
+	public static BlockT SANDSTONE = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT SNOW = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
+	public static BlockT ICE = new BlockT(FabricBlockSettings.of(Material.ICE), 15, 15).setPick(true);
 	public static BlockT DIRT_BLOCK = new BlockT(FabricBlockSettings.of(Material.SOIL), 15, 15).setPick(true);
 	public static BlockT STONE_BLOCK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
 	public static BlockT BLUE_BRICK = new BlockT(FabricBlockSettings.of(Material.STONE), 15, 15).setPick(true);
@@ -112,7 +114,9 @@ public class BlocksT {
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "crimstone"), CRIMSTONE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "mud"), MUD);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "sand"), SAND);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "sandstone"), SANDSTONE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "snow"), SNOW);
+		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "ice"), ICE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "ash"), ASH);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "marble"), MARBLE);
 		Registry.register(Registry.BLOCK, new Identifier(TerrariaMod.MODID, "granite"), GRANITE);

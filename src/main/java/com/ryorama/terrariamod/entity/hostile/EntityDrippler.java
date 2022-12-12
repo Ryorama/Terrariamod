@@ -4,6 +4,8 @@ import com.ryorama.terrariamod.api.entity.IHostile;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.entity.EntityBaseMob;
 import com.ryorama.terrariamod.entity.EntityProps;
+import com.ryorama.terrariamod.entity.ITerrariaEntity;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -28,7 +30,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.ArrayList;
 
-public class EntityDrippler extends EntityBaseMob implements IAnimatable, IHostile, AnimationController.IParticleListener {
+public class EntityDrippler extends EntityBaseMob implements IAnimatable, IHostile, AnimationController.IParticleListener, ITerrariaEntity {
 
     public int damage = 20;
 

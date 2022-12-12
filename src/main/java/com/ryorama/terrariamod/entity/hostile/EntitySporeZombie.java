@@ -2,6 +2,8 @@ package com.ryorama.terrariamod.entity.hostile;
 
 import com.ryorama.terrariamod.api.entity.IHostile;
 import com.ryorama.terrariamod.entity.EntitiesT;
+import com.ryorama.terrariamod.entity.ITerrariaEntity;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -18,7 +20,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.ArrayList;
 
-public class EntitySporeZombie extends ZombieEntity implements IAnimatable, IHostile {
+public class EntitySporeZombie extends ZombieEntity implements IAnimatable, IHostile, ITerrariaEntity {
 
     public int damage = 17;
 

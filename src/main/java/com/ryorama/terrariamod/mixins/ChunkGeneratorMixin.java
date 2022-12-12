@@ -64,12 +64,12 @@ public class ChunkGeneratorMixin {
 
 		int purity_radius = 350;
 
-		int world_radius = 2400;
+		int world_radius = 4800;
 
 		int biome_width = 900;
 		int biome_length = 1200;
 
-		int snow_position = right_jungle ? -4200 : 4200;
+		int snow_position = right_jungle ? -2400 : 2400;
 		int evil_position = right_jungle ? -1200 : 1200;
 
 		if (terrainNoise == null) {
@@ -88,16 +88,16 @@ public class ChunkGeneratorMixin {
 
 					double world_distance = Math.sqrt(x * x + z * z);
 
-					boolean beach = world_distance >= 2400;
-					boolean jungle = world_distance > 1900 && (right_jungle ? (x > 0) : (x < 0)) && !beach;
+					boolean beach = world_distance >= 4800;
+					boolean jungle = world_distance > 3200 && (right_jungle ? (x > 0) : (x < 0)) && !beach;
 
 					boolean snow = ((x + snow_position) * (x + snow_position)) / (float)(biome_width * biome_width) + (z * z) / (float)(biome_length * biome_length) <= 1;
 					boolean desert = ((x - snow_position) * (x - snow_position)) / (float)(biome_width * biome_width) + (z * z) / (float)(biome_length * biome_length) <= 1;
 					boolean isEvil = ((x + evil_position) * (x + evil_position)) / (float)(biome_width * biome_width) + (z * z) / (float)(biome_length * biome_length) <= 1;
 					evil = isEvil;
 
-					if (world_distance >= 2400) {
-						height_offset = (int)(60.0f * (world_distance - 2400) / 300.0f);
+					if (world_distance >= 4800) {
+						height_offset = (int)(60.0f * (world_distance - 4800) / 300.0f);
 						if (height_offset < 0) height_offset = 0;
 						if (height_offset > 60) height_offset = 60;
 					}
@@ -162,8 +162,7 @@ public class ChunkGeneratorMixin {
 											state = BlocksT.SNOW.getDefaultState();
 										} else {
 											if (desert) {
-												state = BlocksT.SAND.getDefaultState();
-												//state = sandstone;
+												state = BlocksT.SANDSTONE.getDefaultState();
 											} else {
 												state = BlocksT.STONE_BLOCK.getDefaultState();
 											}
@@ -351,6 +350,13 @@ public class ChunkGeneratorMixin {
 										StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MODID, "underground_house"), pos);
 										placerAPI.loadStructure();
 									}
+								}
+							}
+
+							//Ice generation
+							if (world.getBlockState(pos) == BlocksT.SNOW.getDefaultState()) {
+								if (random.nextInt(1000) == 0) {
+									placeOre(world, random, pos, 30, BlocksT.SNOW.getDefaultState(), BlocksT.ICE.getDefaultState());
 								}
 							}
 
