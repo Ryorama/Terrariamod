@@ -257,8 +257,6 @@ public class TerrariaMod implements ModInitializer {
 				serverWorld = callbacks.getOverworld();
 
 				//WeatherBase.tickWeather();
-				//CelestialManager.handleMoon(world);
-				//CelestialManager.handleSolarEvents(world);
 
             /*
 			if (world.isClient()) {

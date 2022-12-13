@@ -28,7 +28,12 @@ public class CelestialManager {
     private static Identifier SUN_TEXTURES = new Identifier("terrariamod:textures/environment/sun.png");
     private static Identifier SOLAR_ECLIPSE_SUN_TEXTURES = new Identifier("terrariamod:textures/environment/sun_eclipse.png");
 
-    public static void handleMoon(World worldIn) {
+    public static void tick(World world) {
+        handleSolarEvents(world);
+        handleLunarEvents(world);
+    }
+
+    public static void handleLunarEvents(World worldIn) {
 
         boolean night = worldIn.isNight();
         //worldIn.getTimeOfDay() % 24000L > 15000L && worldIn.getTimeOfDay() % 24000L < 22000L;

@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod;
 
+import com.ryorama.terrariamod.core.client.CelestialManager;
 import com.ryorama.terrariamod.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.core.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.EntitiesT;
@@ -68,12 +69,6 @@ public class TerrariaModClient implements ClientModInitializer {
 
         openCraftingScreen = KeyBindingHelper.registerKeyBinding(new KeyBinding("com.ryorama.terrariamod", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "category.terrariamod.crafting"));
 
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (openCraftingScreen.wasPressed()) {
-                //client.player.openHandledScreen()
-            }
-        });
-
         try {
             Field musicTicker = MinecraftClient.class.getDeclaredField(DEBUG ? "musicTracker" : "field_1714");
             musicTicker.setAccessible(true);
@@ -141,6 +136,7 @@ public class TerrariaModClient implements ClientModInitializer {
             if (callbacks.world != null) {
 
                 World world = callbacks.world;
+                CelestialManager.tick(world);
 
                 if (world.isClient()) {
                     int ticks = 0;
