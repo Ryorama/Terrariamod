@@ -39,7 +39,7 @@ public class CelestialManager {
         //worldIn.getTimeOfDay() % 24000L > 15000L && worldIn.getTimeOfDay() % 24000L < 22000L;
         if (!WorldDataT.bloodMoon && night) {
 
-            alreadyAttemptedSolarEclipse = false;
+            alreadyAttemptedBloodMoon = false;
 
             if (!alreadyNight) {
                 int moonTextureIndex = rand.nextInt(5);
@@ -79,9 +79,9 @@ public class CelestialManager {
     }
 
     public static void handleSolarEvents(World worldIn) {
-        boolean night = worldIn.isDay();
+        boolean day = worldIn.isDay();
 
-        if (!WorldDataT.solarEclipse && night) {
+        if (!WorldDataT.solarEclipse && day) {
             WorldRenderer.SUN = SUN_TEXTURES;
 
             alreadyAttemptedBloodMoon = false;
@@ -97,13 +97,12 @@ public class CelestialManager {
             alreadyAttemptedSolarEclipse = true;
         }
 
-        if (!night) {
+        if (!day) {
             WorldDataT.solarEclipse = false;
         }
 
         if (WorldDataT.solarEclipse) {
             WorldRenderer.SUN = SOLAR_ECLIPSE_SUN_TEXTURES;
         }
-
     }
 }
