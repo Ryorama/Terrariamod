@@ -4,9 +4,9 @@ import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.entity.hostile.slimes.EntityBlueSlime;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ModelBlueSlime extends AnimatedGeoModel<EntityBlueSlime> {
+public class ModelBlueSlime extends GeoModel<EntityBlueSlime> {
 	
 	@Override
 	public Identifier getAnimationResource(EntityBlueSlime animatable) {

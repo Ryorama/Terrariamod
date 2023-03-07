@@ -6,9 +6,9 @@ import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.entity.hostile.EntityDemonEye;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ModelDemonEye extends AnimatedGeoModel<EntityDemonEye> {
+public class ModelDemonEye extends GeoModel<EntityDemonEye> {
 	
 	public Random rand = new Random(); 
 	

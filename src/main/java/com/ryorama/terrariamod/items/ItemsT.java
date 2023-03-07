@@ -41,8 +41,9 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class ItemsT {
 			
@@ -50,9 +51,9 @@ public class ItemsT {
 		if (item == null) {
 			return "null";
 		}
-		String str = Registry.ITEM.getId(item).getNamespace()+":"+Registry.ITEM.getId(item).getPath();
-		if (Registry.ITEM.getId(item).toString().contains(Registry.ITEM.getId(item).getNamespace())) {
-			str = Registry.ITEM.getId(item).toString();
+		String str = Registries.ITEM.getId(item).getNamespace()+":"+Registries.ITEM.getId(item).getPath();
+		if (Registries.ITEM.getId(item).toString().contains(Registries.ITEM.getId(item).getNamespace())) {
+			str = Registries.ITEM.getId(item).toString();
 		}
 		return str;
 	}
@@ -60,13 +61,13 @@ public class ItemsT {
 	public static Item getItemFromString(String name) {
 		
 		try {
-			return Registry.ITEM.get(new Identifier(name));
+			return Registries.ITEM.get(new Identifier(name));
 		}catch (Exception e) {
 //			e.printStackTrace();
 		}
 		
 		try {
-			return Registry.ITEM.get(new Identifier("trewrite:"+name));
+			return Registries.ITEM.get(new Identifier("trewrite:"+name));
 		}catch (Exception e) {
 //			e.printStackTrace();
 		}
@@ -164,152 +165,152 @@ public class ItemsT {
 	public static Item TERRARIA_TITLE_MUSIC;
 
 	public static void init() {
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gel"), GEL);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "lens"), LENS);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "fallen_star"), FALLEN_STAR);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "life_crystal"), HEALTH_CRYSTAL);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_arrow"), WOODEN_ARROW);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "flaming_arrow"), FLAMING_ARROW);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "magic_mirror"), MAGIC_MIRROR);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_crown"), GOLD_CROWN);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gel"), GEL);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "lens"), LENS);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "fallen_star"), FALLEN_STAR);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "life_crystal"), HEALTH_CRYSTAL);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "wooden_arrow"), WOODEN_ARROW);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "flaming_arrow"), FLAMING_ARROW);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "magic_mirror"), MAGIC_MIRROR);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_crown"), GOLD_CROWN);
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "water_bottle"), WATER_BOTTLE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "lesser_healing_potion"), LESSER_HEALING_POTION);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "healing_potion"), HEALING_POTION);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_bottle"), HONEY_BOTTLE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ironskin_potion"), IRONSKIN_POTION);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "regeneration_potion"), REGENERATION_POTION);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "water_bottle"), WATER_BOTTLE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "lesser_healing_potion"), LESSER_HEALING_POTION);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "healing_potion"), HEALING_POTION);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "honey_bottle"), HONEY_BOTTLE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "ironskin_potion"), IRONSKIN_POTION);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "regeneration_potion"), REGENERATION_POTION);
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_bar"), COPPER_BAR);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_bar"), IRON_BAR);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_bar"), GOLD_BAR);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "demonite_bar"), DEMONITE_BAR);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimtane_bar"), CRIMTANE_BAR);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_bar"), COPPER_BAR);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_bar"), IRON_BAR);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_bar"), GOLD_BAR);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "demonite_bar"), DEMONITE_BAR);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "crimtane_bar"), CRIMTANE_BAR);
 		
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "slime_crown"), SLIME_CROWN);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "suspicious_looking_eye"), SUSPICIOUS_LOOKING_EYE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "slime_crown"), SLIME_CROWN);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "suspicious_looking_eye"), SUSPICIOUS_LOOKING_EYE);
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_shortsword"), COPPER_SHORTSWORD);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_pickaxe"), COPPER_PICKAXE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_axe"), COPPER_AXE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_broadsword"), COPPER_BROADSWORD);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_shortsword"), COPPER_SHORTSWORD);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_pickaxe"), COPPER_PICKAXE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_axe"), COPPER_AXE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_broadsword"), COPPER_BROADSWORD);
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_shortsword"), IRON_SHORTSWORD);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_pickaxe"), IRON_PICKAXE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_axe"), IRON_AXE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_broadsword"), IRON_BROADSWORD);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_shortsword"), IRON_SHORTSWORD);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_pickaxe"), IRON_PICKAXE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_axe"), IRON_AXE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_broadsword"), IRON_BROADSWORD);
 		
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_shortsword"), GOLD_SHORTSWORD);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_pickaxe"), GOLD_PICKAXE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_axe"), GOLD_AXE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_broadsword"), GOLD_BROADSWORD);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_shortsword"), GOLD_SHORTSWORD);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_pickaxe"), GOLD_PICKAXE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_axe"), GOLD_AXE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_broadsword"), GOLD_BROADSWORD);
 		
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_helmet"), COPPER_HELMET);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_chestplate"), COPPER_CHESTPLATE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_leggings"), COPPER_LEGGINGS);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_helmet"), COPPER_HELMET);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_chestplate"), COPPER_CHESTPLATE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_leggings"), COPPER_LEGGINGS);
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ninja_helmet"), NINJA_HELMET);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ninja_chestplate"), NINJA_CHESTPLATE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ninja_leggings"), NINJA_LEGGINGS);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "ninja_helmet"), NINJA_HELMET);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "ninja_chestplate"), NINJA_CHESTPLATE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "ninja_leggings"), NINJA_LEGGINGS);
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_helmet"), IRON_HELMET);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_chestplate"), IRON_CHESTPLATE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_leggings"), IRON_LEGGINGS);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_helmet"), IRON_HELMET);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_chestplate"), IRON_CHESTPLATE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_leggings"), IRON_LEGGINGS);
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_helmet"), GOLD_HELMET);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_chestplate"), GOLD_CHESTPLATE);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_leggings"), GOLD_LEGGINGS);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_helmet"), GOLD_HELMET);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_chestplate"), GOLD_CHESTPLATE);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_leggings"), GOLD_LEGGINGS);
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "king_slime_bag"), KING_SLIME_BAG);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "eoc_bag"), EOC_BAG);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "king_slime_bag"), KING_SLIME_BAG);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "eoc_bag"), EOC_BAG);
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "grass_block"), new BlockItemT(BlocksT.GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "corrupted_grass"), new BlockItemT(BlocksT.CORRUPTED_GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimson_grass"), new BlockItemT(BlocksT.CRIMSON_GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "jungle_grass"), new BlockItemT(BlocksT.JUNGLE_GRASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "dirt_block"), new BlockItemT(BlocksT.DIRT_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "stone_block"), new BlockItemT(BlocksT.STONE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "water_candle"), new BlockItemT(BlocksT.WATER_CANDLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "spike"), new BlockItemT(BlocksT.SPIKE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "blue_brick"), new BlockItemT(BlocksT.BLUE_BRICK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "green_brick"), new BlockItemT(BlocksT.GREEN_BRICK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "purple_brick"), new BlockItemT(BlocksT.PURPLE_BRICK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ash"), new BlockItemT(BlocksT.ASH, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mud"), new BlockItemT(BlocksT.MUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sand"), new BlockItemT(BlocksT.SAND, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sandstone"), new BlockItemT(BlocksT.SANDSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "snow"), new BlockItemT(BlocksT.SNOW, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ice"), new BlockItemT(BlocksT.ICE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "marble"), new BlockItemT(BlocksT.MARBLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "granite"), new BlockItemT(BlocksT.GRANITE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wooden_beam"), new BlockItemT(BlocksT.WOODEN_BEAM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ebonstone"), new BlockItemT(BlocksT.EBONSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimstone"), new BlockItemT(BlocksT.CRIMSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom_grass"), new BlockItemT(BlocksT.MUSHROOM_GRASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood"), new BlockItemT(BlocksT.WOOD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_block"), new BlockItemT(BlocksT.HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crispy_honey_block"), new BlockItemT(BlocksT.CRISPY_HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sunplate_block"), new BlockItemT(BlocksT.SUNPLATE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "cloud"), new BlockItemT(BlocksT.CLOUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "rain_cloud"), new BlockItemT(BlocksT.RAIN_CLOUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "grass_block"), new BlockItemT(BlocksT.GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "corrupted_grass"), new BlockItemT(BlocksT.CORRUPTED_GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "crimson_grass"), new BlockItemT(BlocksT.CRIMSON_GRASS_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "jungle_grass"), new BlockItemT(BlocksT.JUNGLE_GRASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "dirt_block"), new BlockItemT(BlocksT.DIRT_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "stone_block"), new BlockItemT(BlocksT.STONE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "water_candle"), new BlockItemT(BlocksT.WATER_CANDLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "spike"), new BlockItemT(BlocksT.SPIKE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "blue_brick"), new BlockItemT(BlocksT.BLUE_BRICK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "green_brick"), new BlockItemT(BlocksT.GREEN_BRICK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "purple_brick"), new BlockItemT(BlocksT.PURPLE_BRICK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "ash"), new BlockItemT(BlocksT.ASH, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "mud"), new BlockItemT(BlocksT.MUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "sand"), new BlockItemT(BlocksT.SAND, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "sandstone"), new BlockItemT(BlocksT.SANDSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "snow"), new BlockItemT(BlocksT.SNOW, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "ice"), new BlockItemT(BlocksT.ICE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "marble"), new BlockItemT(BlocksT.MARBLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "granite"), new BlockItemT(BlocksT.GRANITE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "wooden_beam"), new BlockItemT(BlocksT.WOODEN_BEAM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "ebonstone"), new BlockItemT(BlocksT.EBONSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "crimstone"), new BlockItemT(BlocksT.CRIMSTONE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "mushroom_grass"), new BlockItemT(BlocksT.MUSHROOM_GRASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "wood"), new BlockItemT(BlocksT.WOOD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "honey_block"), new BlockItemT(BlocksT.HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "crispy_honey_block"), new BlockItemT(BlocksT.CRISPY_HONEY_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "sunplate_block"), new BlockItemT(BlocksT.SUNPLATE_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "cloud"), new BlockItemT(BlocksT.CLOUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "rain_cloud"), new BlockItemT(BlocksT.RAIN_CLOUD, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "wood_chest"), new BlockItemT(BlocksT.WOOD_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_chest"), new BlockItemT(BlocksT.GOLD_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ivy_chest"), new BlockItemT(BlocksT.IVY_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "skyware_chest"), new BlockItemT(BlocksT.SKYWARE_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "water_chest"), new BlockItemT(BlocksT.WATER_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "frozen_chest"), new BlockItemT(BlocksT.FROZEN_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sandstone_chest"), new BlockItemT(BlocksT.SANDSTONE_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "wood_chest"), new BlockItemT(BlocksT.WOOD_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_chest"), new BlockItemT(BlocksT.GOLD_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "ivy_chest"), new BlockItemT(BlocksT.IVY_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "skyware_chest"), new BlockItemT(BlocksT.SKYWARE_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "water_chest"), new BlockItemT(BlocksT.WATER_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "frozen_chest"), new BlockItemT(BlocksT.FROZEN_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "sandstone_chest"), new BlockItemT(BlocksT.SANDSTONE_CHEST, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(99)).setRarity(2));
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "empty_bottle"), new BlockItemT(BlocksT.EMPTY_BOTTLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "mushroom"), new BlockItemT(BlocksT.MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "glowing_mushroom"), new BlockItemT(BlocksT.GLOWING_MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "empty_bottle"), new BlockItemT(BlocksT.EMPTY_BOTTLE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "mushroom"), new BlockItemT(BlocksT.MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "glowing_mushroom"), new BlockItemT(BlocksT.GLOWING_MUSHROOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "blinkroot"), new BlockItemT(BlocksT.BLINKROOT, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "daybloom"), new BlockItemT(BlocksT.DAYBLOOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "deathweed"), new BlockItemT(BlocksT.DEATHWEED, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "fireblossom"), new BlockItemT(BlocksT.FIREBLOSSOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "moonglow"), new BlockItemT(BlocksT.MOONGLOW, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "shiverthorn"), new BlockItemT(BlocksT.SHIVERTHORN, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "waterleaf"), new BlockItemT(BlocksT.WATERLEAF, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "blinkroot"), new BlockItemT(BlocksT.BLINKROOT, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "daybloom"), new BlockItemT(BlocksT.DAYBLOOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "deathweed"), new BlockItemT(BlocksT.DEATHWEED, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "fireblossom"), new BlockItemT(BlocksT.FIREBLOSSOM, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "moonglow"), new BlockItemT(BlocksT.MOONGLOW, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "shiverthorn"), new BlockItemT(BlocksT.SHIVERTHORN, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "waterleaf"), new BlockItemT(BlocksT.WATERLEAF, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_ore"), new BlockItemT(BlocksT.COPPER_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_ore"), new BlockItemT(BlocksT.IRON_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_ore"), new BlockItemT(BlocksT.GOLD_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "demonite_ore"), new BlockItemT(BlocksT.DEMONITE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "crimtane_ore"), new BlockItemT(BlocksT.CRIMTANE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "hellstone_ore"), new BlockItemT(BlocksT.HELLSTONE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_ore"), new BlockItemT(BlocksT.COPPER_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_ore"), new BlockItemT(BlocksT.IRON_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_ore"), new BlockItemT(BlocksT.GOLD_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "demonite_ore"), new BlockItemT(BlocksT.DEMONITE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "crimtane_ore"), new BlockItemT(BlocksT.CRIMTANE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "hellstone_ore"), new BlockItemT(BlocksT.HELLSTONE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 	
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "ruby_ore"), new BlockItemT(BlocksT.RUBY_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "sapphire_ore"), new BlockItemT(BlocksT.SAPPHIRE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "ruby_ore"), new BlockItemT(BlocksT.RUBY_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "sapphire_ore"), new BlockItemT(BlocksT.SAPPHIRE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).maxCount(999)));
 		
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "green_slime_spawn_egg"), new SpawnEggItem(EntitiesT.GREEN_SLIME, 0x2ec221, 0x5fed53, new FabricItemSettings().group(ItemGroup.MISC)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "blue_slime_spawn_egg"), new SpawnEggItem(EntitiesT.BLUE_SLIME, 0x2f7dc4, 0x53a3ed, new FabricItemSettings().group(ItemGroup.MISC)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "demon_eye_slime_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON_EYE, 0xffffff, 0xff0000, new FabricItemSettings().group(ItemGroup.MISC)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "demon_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON, 0x704b14, 0x703614, new FabricItemSettings().group(ItemGroup.MISC)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "eater_of_souls_spawn_egg"), new SpawnEggItem(EntitiesT.EATER_OF_SOULS, 0x704b14, 0x7a8737, new FabricItemSettings().group(ItemGroup.MISC)));
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "granite_elemental_spawn_egg"), new SpawnEggItem(EntitiesT.GRANITE_ELEMETAL, 0x0c0833, 0x2c2387, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "green_slime_spawn_egg"), new SpawnEggItem(EntitiesT.GREEN_SLIME, 0x2ec221, 0x5fed53, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "blue_slime_spawn_egg"), new SpawnEggItem(EntitiesT.BLUE_SLIME, 0x2f7dc4, 0x53a3ed, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "demon_eye_slime_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON_EYE, 0xffffff, 0xff0000, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "demon_spawn_egg"), new SpawnEggItem(EntitiesT.DEMON, 0x704b14, 0x703614, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "eater_of_souls_spawn_egg"), new SpawnEggItem(EntitiesT.EATER_OF_SOULS, 0x704b14, 0x7a8737, new FabricItemSettings().group(ItemGroup.MISC)));
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "granite_elemental_spawn_egg"), new SpawnEggItem(EntitiesT.GRANITE_ELEMETAL, 0x0c0833, 0x2c2387, new FabricItemSettings().group(ItemGroup.MISC)));
 
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "copper_bow"), COPPER_BOW);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "iron_bow"), IRON_BOW);
-		Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "gold_bow"), GOLD_BOW);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "copper_bow"), COPPER_BOW);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "iron_bow"), IRON_BOW);
+		Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "gold_bow"), GOLD_BOW);
 
-		BAND_OF_REGENERATION = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_regeneration"), new BandOfRegeneration(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
-		BAND_OF_STARPOWER = Registry.register(Registry.ITEM, new Identifier("terrariamod:band_of_starpower"), new BandOfStarpower(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
-		AGLET = Registry.register(Registry.ITEM, new Identifier("terrariamod:aglet"), new Aglet(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
-		MAGMA_STONE = Registry.register(Registry.ITEM, new Identifier("terrariamod:magma_stone"), new MagmaStone(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
-		SHACKLE = Registry.register(Registry.ITEM, new Identifier("terrariamod:shackle"), new Shackle(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
-		ROYAL_GEL = Registry.register(Registry.ITEM, new Identifier("terrariamod:royal_gel"), new RoyalGel(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS))).isExpert(true);
-		SHIELD_OF_CTHULHU = Registry.register(Registry.ITEM, new Identifier("terrariamod:shield_of_cthulhu"), new ShieldOfCthulhu(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS))).isExpert(true);
-		FLEDGLING_WINGS = Registry.register(Registry.ITEM, new Identifier("terrariamod:fledgling_wings"), new WingsItemT(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS), 0.5D, 0.025D, 20, 7));
-		SHINY_RED_BALLOON = Registry.register(Registry.ITEM, new Identifier("terrariamod:shiny_red_balloon"), new ShinyRedBalloon(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
+		BAND_OF_REGENERATION = Registry.register(Registries.ITEM, new Identifier("terrariamod:band_of_regeneration"), new BandOfRegeneration(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
+		BAND_OF_STARPOWER = Registry.register(Registries.ITEM, new Identifier("terrariamod:band_of_starpower"), new BandOfStarpower(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
+		AGLET = Registry.register(Registries.ITEM, new Identifier("terrariamod:aglet"), new Aglet(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
+		MAGMA_STONE = Registry.register(Registries.ITEM, new Identifier("terrariamod:magma_stone"), new MagmaStone(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
+		SHACKLE = Registry.register(Registries.ITEM, new Identifier("terrariamod:shackle"), new Shackle(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
+		ROYAL_GEL = Registry.register(Registries.ITEM, new Identifier("terrariamod:royal_gel"), new RoyalGel(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS))).isExpert(true);
+		SHIELD_OF_CTHULHU = Registry.register(Registries.ITEM, new Identifier("terrariamod:shield_of_cthulhu"), new ShieldOfCthulhu(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS))).isExpert(true);
+		FLEDGLING_WINGS = Registry.register(Registries.ITEM, new Identifier("terrariamod:fledgling_wings"), new WingsItemT(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS), 0.5D, 0.025D, 20, 7));
+		SHINY_RED_BALLOON = Registry.register(Registries.ITEM, new Identifier("terrariamod:shiny_red_balloon"), new ShinyRedBalloon(new Item.Settings().maxCount(1).maxDamage(1).group(ItemGroup.TOOLS)));
 
-		//TERRARIA_DAYONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "day_one_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
-		//TERRARIA_NIGHT_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "night_disc"), new AbstractDiscItem(14, TAudio.NIGHT, new FabricItemSettings().group(ItemGroup.MISC)));
-		//TERRARIA_BOSSONE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "boss_one_disc"), new AbstractDiscItem(14, TAudio.BOSS1, new FabricItemSettings().group(ItemGroup.MISC)));
-		//TERRARIA_CAVE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underground_disc"), new AbstractDiscItem(14, TAudio.UNDERGROUND, new FabricItemSettings().group(ItemGroup.MISC)));
-		//TERRARIA_UNDERWORLD_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "underworld_disc"), new AbstractDiscItem(14, TAudio.UNDERWORLD, new FabricItemSettings().group(ItemGroup.MISC)));
-		//TERRARIA_TITLE_MUSIC = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "title_disc"), new AbstractDiscItem(14, TAudio.TITLE_SCREEN, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_DAYONE_MUSIC = Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "day_one_disc"), new AbstractDiscItem(14, TAudio.DAYONE, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_NIGHT_MUSIC = Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "night_disc"), new AbstractDiscItem(14, TAudio.NIGHT, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_BOSSONE_MUSIC = Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "boss_one_disc"), new AbstractDiscItem(14, TAudio.BOSS1, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_CAVE_MUSIC = Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "underground_disc"), new AbstractDiscItem(14, TAudio.UNDERGROUND, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_UNDERWORLD_MUSIC = Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "underworld_disc"), new AbstractDiscItem(14, TAudio.UNDERWORLD, new FabricItemSettings().group(ItemGroup.MISC)));
+		//TERRARIA_TITLE_MUSIC = Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "title_disc"), new AbstractDiscItem(14, TAudio.TITLE_SCREEN, new FabricItemSettings().group(ItemGroup.MISC)));
 
 	}
 	

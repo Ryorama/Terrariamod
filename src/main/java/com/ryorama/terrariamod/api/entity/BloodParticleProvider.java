@@ -1,3 +1,4 @@
+/*
 package com.ryorama.terrariamod.api.entity;
 
 import net.minecraft.client.particle.Particle;
@@ -6,7 +7,9 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 
 public class BloodParticleProvider implements ParticleEffect, ParticleFactory<BloodParticleProvider> {
 
@@ -25,8 +28,10 @@ public class BloodParticleProvider implements ParticleEffect, ParticleFactory<Bl
 	public void write(PacketByteBuf buf) {		
 	}
 
+	/*
 	@Override
 	public String asString() {
-		return Registry.PARTICLE_TYPE.getId(this.getType()).toString();
+		return RegistryKeys.PARTICLE_TYPE.(this.getType()).toString();
 	}
 }
+*/

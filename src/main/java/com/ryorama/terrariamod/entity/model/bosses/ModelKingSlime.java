@@ -4,9 +4,9 @@ import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityKingSlime;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ModelKingSlime extends AnimatedGeoModel<EntityKingSlime> {
+public class ModelKingSlime extends GeoModel<EntityKingSlime> {
 	
 	@Override
 	public Identifier getAnimationResource(EntityKingSlime animatable) {

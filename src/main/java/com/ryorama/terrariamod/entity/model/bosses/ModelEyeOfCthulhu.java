@@ -4,9 +4,9 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entity.hostile.bosses.EntityEyeOfCthulhu;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ModelEyeOfCthulhu extends AnimatedGeoModel<EntityEyeOfCthulhu> {
+public class ModelEyeOfCthulhu extends GeoModel<EntityEyeOfCthulhu> {
 	
 	@Override
 	public Identifier getAnimationResource(EntityEyeOfCthulhu animatable) {

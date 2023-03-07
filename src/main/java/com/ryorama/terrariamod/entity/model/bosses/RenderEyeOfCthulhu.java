@@ -10,9 +10,9 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory.Context;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RenderEyeOfCthulhu extends GeoEntityRenderer<EntityEyeOfCthulhu> {
+public class RenderEyeOfCthulhu extends GeoModel<EntityEyeOfCthulhu> {
  
     public RenderEyeOfCthulhu(Context context) {
         super(context, new ModelEyeOfCthulhu());

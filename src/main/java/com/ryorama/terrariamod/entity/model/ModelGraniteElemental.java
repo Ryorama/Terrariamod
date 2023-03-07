@@ -6,9 +6,9 @@ import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.entity.hostile.EntityGranityElemental;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ModelGraniteElemental extends AnimatedGeoModel<EntityGranityElemental> {
+public class ModelGraniteElemental extends GeoModel<EntityGranityElemental> {
 	
 	public Random rand = new Random(); 
 	

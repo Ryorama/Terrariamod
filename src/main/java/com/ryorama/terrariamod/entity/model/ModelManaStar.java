@@ -5,9 +5,9 @@ import com.ryorama.terrariamod.entity.collectables.HeartEntity;
 import com.ryorama.terrariamod.entity.collectables.ManaStarEntity;
 
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ModelManaStar extends AnimatedGeoModel<ManaStarEntity> {
+public class ModelManaStar extends GeoModel<ManaStarEntity> {
 
     @Override
     public Identifier getAnimationResource(ManaStarEntity entity) {

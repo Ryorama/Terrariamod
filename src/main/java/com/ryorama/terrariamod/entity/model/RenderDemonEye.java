@@ -10,9 +10,9 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory.Context;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RenderDemonEye extends GeoEntityRenderer<EntityDemonEye> {
+public class RenderDemonEye extends GeoModel<EntityDemonEye> {
 	
 	public Random rand = new Random();
 	

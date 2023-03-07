@@ -63,7 +63,7 @@ dependencies {
 	modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
 
 	//include modImplementation("com.lowdragmc.shimmer:Shimmer-fabric:${minecraft_version}-${shimmer_version}")
-	include modImplementation("software.bernie.geckolib:geckolib-fabric-1.19:${geckolib_version}")
+	include modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
 	include modImplementation("dev.emi:trinkets:${trinkets_version}")
 	implementation 'javax.vecmath:vecmath:1.5.2'
 

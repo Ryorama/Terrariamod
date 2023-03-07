@@ -3,11 +3,11 @@ package com.ryorama.terrariamod.entity.model;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entity.hostile.EntitySporeZombie;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
 import java.util.Random;
 
-public class ModelSporeZombie extends AnimatedGeoModel<EntitySporeZombie> {
+public class ModelSporeZombie extends GeoModel<EntitySporeZombie> {
 	
 	public Random rand = new Random(); 
 	

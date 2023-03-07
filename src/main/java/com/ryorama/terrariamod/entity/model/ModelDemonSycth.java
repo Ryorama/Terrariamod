@@ -4,9 +4,9 @@ import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.entity.hostile.projectiles.DemonScythProjectile;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ModelDemonSycth extends AnimatedGeoModel<DemonScythProjectile> {
+public class ModelDemonSycth extends GeoModel<DemonScythProjectile> {
 		
 	@Override
 	public Identifier getAnimationResource(DemonScythProjectile entity) {

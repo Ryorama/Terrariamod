@@ -2,9 +2,9 @@ package com.ryorama.terrariamod.entity;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class EntityProps {
 
@@ -60,7 +60,7 @@ public class EntityProps {
 			  this.damage = nbt.getFloat("Damage");
 			  this.maxAI = nbt.getInt("MaxAI");
 			  this.knockBackResist = nbt.getFloat("KBResist");
-			  this.hitSound = (SoundEvent)Registry.SOUND_EVENT.get(new Identifier(nbt.getString("HitSound")));
-			  this.deathSound = (SoundEvent)Registry.SOUND_EVENT.get(new Identifier(nbt.getString("DeathSound")));
+			  this.hitSound = (SoundEvent) Registries.SOUND_EVENT.get(new Identifier(nbt.getString("HitSound")));
+			  this.deathSound = (SoundEvent)Registries.SOUND_EVENT.get(new Identifier(nbt.getString("DeathSound")));
 		  }
 }

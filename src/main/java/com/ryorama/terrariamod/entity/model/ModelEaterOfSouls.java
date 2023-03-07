@@ -6,9 +6,9 @@ import com.ryorama.terrariamod.TerrariaMod;
 
 import com.ryorama.terrariamod.entity.hostile.EntityEaterOfSouls;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ModelEaterOfSouls extends AnimatedGeoModel<EntityEaterOfSouls> {
+public class ModelEaterOfSouls extends GeoModel<EntityEaterOfSouls> {
 	
 	public Random rand = new Random(); 
 	

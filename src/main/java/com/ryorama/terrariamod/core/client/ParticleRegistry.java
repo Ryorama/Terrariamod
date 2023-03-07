@@ -1,3 +1,4 @@
+/*
 package com.ryorama.terrariamod.core.client;
 
 import com.ryorama.terrariamod.TerrariaMod;
@@ -29,3 +30,4 @@ public class ParticleRegistry {
         ParticleFactoryRegistry.getInstance().register(ParticleRegistry.FOREST_LEAF, LeafParticle.Factory::new);
     }
 }
+ */

@@ -8,9 +8,9 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory.Context;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RenderDrippler extends GeoEntityRenderer<EntityDrippler> {
+public class RenderDrippler extends GeoModel<EntityDrippler> {
 
     public RenderDrippler(Context context) {
         super(context, new ModelDrippler());

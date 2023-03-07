@@ -19,7 +19,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -28,90 +27,91 @@ import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.block.entity.ChestBlockEntityRenderer;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class EntitiesT {
 	  public static final EntityType<EntityGreenSlime> GREEN_SLIME = Registry.register(
-	            Registry.ENTITY_TYPE,
+	            Registries.ENTITY_TYPE,
 	            new Identifier("terrariamod", "green_slime"),
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityGreenSlime::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 	  
 	  public static final EntityType<EntityBlueSlime> BLUE_SLIME = Registry.register(
-	            Registry.ENTITY_TYPE,
+			  Registries.ENTITY_TYPE,
 	            new Identifier("terrariamod", "blue_slime"),
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityBlueSlime::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 	  
 	  public static final EntityType<EntityDemonEye> DEMON_EYE = Registry.register(
-	            Registry.ENTITY_TYPE,
+			  Registries.ENTITY_TYPE,
 	            new Identifier("terrariamod", "demon_eye"),
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityDemonEye::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 	  
 	  public static final EntityType<EntityKingSlime> KING_SLIME = Registry.register(
-	            Registry.ENTITY_TYPE,
+			  Registries.ENTITY_TYPE,
 	            new Identifier("terrariamod", "king_slime"),
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, (EntityType.EntityFactory<EntityKingSlime>) EntityKingSlime::new).dimensions(EntityDimensions.fixed(10, 10)).build()
 	    );
 	  
 	  public static final EntityType<EntityDemon> DEMON = Registry.register(
-	            Registry.ENTITY_TYPE,
+			  Registries.ENTITY_TYPE,
 	            new Identifier("terrariamod", "demon"),
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityDemon::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 	  
 	  public static final EntityType<DemonScythProjectile> DEMON_SYCTH = Registry.register(
-	            Registry.ENTITY_TYPE,
+			  Registries.ENTITY_TYPE,
 	            new Identifier("terrariamod", "demon_sycth"),
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, DemonScythProjectile::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 	  
 	  public static final EntityType<EntityEaterOfSouls> EATER_OF_SOULS = Registry.register(
-	            Registry.ENTITY_TYPE,
+			  Registries.ENTITY_TYPE,
 	            new Identifier("terrariamod", "eater_of_souls"),
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityEaterOfSouls::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 	  
 	  public static final EntityType<EntityEyeOfCthulhu> EOC = Registry.register(
-	            Registry.ENTITY_TYPE,
+			  Registries.ENTITY_TYPE,
 	            new Identifier("terrariamod", "eoc"),
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityEyeOfCthulhu::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 	  
 	  public static final EntityType<EntityGranityElemental> GRANITE_ELEMETAL = Registry.register(
-	            Registry.ENTITY_TYPE,
+			  Registries.ENTITY_TYPE,
 	            new Identifier("terrariamod", "granite_elemental"),
 	            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityGranityElemental::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	    );
 
 	public static final EntityType<EntityDrippler> DRIPPLER = Registry.register(
-			Registry.ENTITY_TYPE,
+			Registries.ENTITY_TYPE,
 			new Identifier("terrariamod", "drippler"),
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntityDrippler::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
 	public static final EntityType<EntitySporeZombie> SPORE_ZOMBIE = Registry.register(
-			Registry.ENTITY_TYPE,
+			Registries.ENTITY_TYPE,
 			new Identifier("terrariamod", "spore_zombie"),
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, (EntityType.EntityFactory<EntitySporeZombie>) EntitySporeZombie::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
 	public static final EntityType<EntitySporeSkeleton> SPORE_SKELETON = Registry.register(
-			Registry.ENTITY_TYPE,
+			Registries.ENTITY_TYPE,
 			new Identifier("terrariamod", "spore_skeleton"),
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, (EntityType.EntityFactory<EntitySporeSkeleton>) EntitySporeSkeleton::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
 	public static final EntityType<HeartEntity> HEART = Registry.register(
-			Registry.ENTITY_TYPE,
+			Registries.ENTITY_TYPE,
 			new Identifier("terrariamod", "heart"),
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HeartEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
 
 	public static final EntityType<ManaStarEntity> MANA_STAR = Registry.register(
-			Registry.ENTITY_TYPE,
+			Registries.ENTITY_TYPE,
 			new Identifier("terrariamod", "mana_star"),
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ManaStarEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build()
 	);
@@ -140,13 +140,13 @@ public class EntitiesT {
 		  FabricDefaultAttributeRegistry.register(HEART, MobEntity.createMobAttributes());
 		  FabricDefaultAttributeRegistry.register(MANA_STAR, MobEntity.createMobAttributes());
 
-		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "wood_chest"), WOOD_CHEST);
-		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "gold_chest"), GOLD_CHEST);
-		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "ivy_chest"), IVY_CHEST);
-		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "skyware_chest"), SKYWARE_CHEST);
-		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "water_chest"), WATER_CHEST);
-		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "sandstone_chest"), SANDSTONE_CHEST);
-		Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "frozen_chest"), FROZEN_CHEST);
+		Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "wood_chest"), WOOD_CHEST);
+		Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "gold_chest"), GOLD_CHEST);
+		Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "ivy_chest"), IVY_CHEST);
+		Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "skyware_chest"), SKYWARE_CHEST);
+		Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "water_chest"), WATER_CHEST);
+		Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "sandstone_chest"), SANDSTONE_CHEST);
+		Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(TerrariaMod.MODID, "frozen_chest"), FROZEN_CHEST);
 	}
 
 	public static void initClient() {

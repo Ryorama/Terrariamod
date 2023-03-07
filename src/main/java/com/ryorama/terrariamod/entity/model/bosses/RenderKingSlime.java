@@ -8,9 +8,9 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory.Context;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RenderKingSlime extends GeoEntityRenderer<EntityKingSlime> {
+public class RenderKingSlime extends GeoModel<EntityKingSlime> {
  
     public RenderKingSlime(Context context) {
         super(context, new ModelKingSlime());

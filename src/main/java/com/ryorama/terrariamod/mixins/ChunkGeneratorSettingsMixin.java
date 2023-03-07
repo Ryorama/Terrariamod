@@ -3,10 +3,8 @@ package com.ryorama.terrariamod.mixins;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.world.biome.source.util.VanillaTerrainParametersCreator;
-
+import net.minecraft.registry.BuiltinRegistries;
+import net.minecraft.registry.Registerable;
 import net.minecraft.world.gen.densityfunction.DensityFunctions;
 import net.minecraft.world.gen.surfacebuilder.VanillaSurfaceRules;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +21,7 @@ import net.minecraft.world.gen.chunk.GenerationShapeConfig;
 public class ChunkGeneratorSettingsMixin {
 	
 	@Inject(at = @At("HEAD"), method = "createSurfaceSettings", cancellable = true)
-	private static void createSurfaceSettings(boolean amplified, boolean largeBiomes, CallbackInfoReturnable<ChunkGeneratorSettings> info) {
+	private static void createSurfaceSettings(Registerable<?> registerable, boolean amplified, boolean largeBiomes, CallbackInfoReturnable<ChunkGeneratorSettings> info) {
 
 		Constructor<?> construct = ChunkGeneratorSettings.class.getDeclaredConstructors()[0];
 		

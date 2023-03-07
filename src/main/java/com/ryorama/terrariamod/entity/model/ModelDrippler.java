@@ -3,11 +3,11 @@ package com.ryorama.terrariamod.entity.model;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entity.hostile.EntityDrippler;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
 import java.util.Random;
 
-public class ModelDrippler extends AnimatedGeoModel<EntityDrippler> {
+public class ModelDrippler extends GeoModel<EntityDrippler> {
 	
 	public Random rand = new Random(); 
 	

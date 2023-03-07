@@ -9,9 +9,9 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory.Context;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.geckolib.model.GeoModel;
 
-public class RenderBlueSlime extends GeoEntityRenderer<EntityBlueSlime> {
+public class RenderBlueSlime extends GeoModel<EntityBlueSlime> {
  
     public RenderBlueSlime(Context context) {
         super(context, new ModelBlueSlime());
