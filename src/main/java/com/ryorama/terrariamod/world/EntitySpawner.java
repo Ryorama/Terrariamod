@@ -9,7 +9,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction.Location;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.World;
 

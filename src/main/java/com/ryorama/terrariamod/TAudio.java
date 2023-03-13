@@ -1,8 +1,9 @@
 package com.ryorama.terrariamod;
 
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,13 +47,13 @@ public class TAudio {
         Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "title_screen"), TITLE_SCREEN);
          */
 
-		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "health_crystal"), HEALTH_CRYSTAL);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "roar_0"), ROAR_0);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "star_fall"), STAR_FALL);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "npc_hit1"), NPC_HIT1);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "npc_killed1"), NPC_KILL1);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "teleport"), TELEPORT);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "summon"), SUMMON);
+		Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "health_crystal"), HEALTH_CRYSTAL);
+        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "roar_0"), ROAR_0);
+        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "star_fall"), STAR_FALL);
+        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "npc_hit1"), NPC_HIT1);
+        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "npc_killed1"), NPC_KILL1);
+        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "teleport"), TELEPORT);
+        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "summon"), SUMMON);
     }
 
 

@@ -1,7 +1,6 @@
 package com.ryorama.terrariamod;
 
 import com.ryorama.terrariamod.core.client.CelestialManager;
-import com.ryorama.terrariamod.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.core.client.TMusicTicker;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.items.ItemGelColor;
@@ -16,7 +15,6 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.client.MinecraftClient;
@@ -32,6 +30,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.stat.Stats;
@@ -61,7 +60,6 @@ public class TerrariaModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         EntitiesT.initClient();
-        ParticleRegistry.initClient();
         ColorProviderRegistry.ITEM.register(new ItemGelColor(), ItemsT.GEL);
         setupFluidRendering(TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY, new Identifier(TerrariaMod.MODID, "honey"), 0xFFFFFF);
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), TerrariaMod.STILL_HONEY, TerrariaMod.FLOWING_HONEY);
@@ -88,7 +86,7 @@ public class TerrariaModClient implements ClientModInitializer {
             registry.register(flowingSpriteId);
         });
 
-        final Identifier fluidId = Registry.FLUID.getId(still);
+        final Identifier fluidId = Registries.FLUID.getId(still);
         final Identifier listenerId = new Identifier(fluidId.getNamespace(), fluidId.getPath() + "_reload_listener");
 
         final Sprite[] fluidSprites = { null, null };

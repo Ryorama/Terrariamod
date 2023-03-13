@@ -5,7 +5,6 @@ import java.lang.reflect.Field;
 import java.util.OptionalLong;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.core.client.ParticleRegistry;
 import com.ryorama.terrariamod.crafting.Recipes;
 import com.ryorama.terrariamod.entity.EntitiesT;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
@@ -33,24 +32,24 @@ import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.intprovider.ClampedIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.IntProviderType;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
-import software.bernie.geckolib3.GeckoLib;
 
 public class TerrariaMod implements ModInitializer {
 
@@ -90,7 +89,6 @@ public class TerrariaMod implements ModInitializer {
 	public void onInitialize() {
 		AutoConfig.register(TerrariaModConfig.class, GsonConfigSerializer::new);
 		CONFIG = AutoConfig.getConfigHolder(TerrariaModConfig.class).getConfig();
-		ParticleRegistry.init();
 		BlocksT.init();
 		ItemsT.init();
 		onTick();
@@ -103,39 +101,39 @@ public class TerrariaMod implements ModInitializer {
 		addCutouts();
 		WorldDataT.setupWorldData();
 
-		STILL_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "still_honey"), new HoneyFluid.Still());
-		FLOWING_HONEY = Registry.register(Registry.FLUID, new Identifier(MODID, "flowing_honey"), new HoneyFluid.Flowing());
-		HONEY = Registry.register(Registry.BLOCK, new Identifier(MODID, "honey"), new FluidBlock(STILL_HONEY, FabricBlockSettings.copy(Blocks.WATER)){});
+		STILL_HONEY = Registry.register(Registries.FLUID, new Identifier(MODID, "still_honey"), new HoneyFluid.Still());
+		FLOWING_HONEY = Registry.register(Registries.FLUID, new Identifier(MODID, "flowing_honey"), new HoneyFluid.Flowing());
+		HONEY = Registry.register(Registries.BLOCK, new Identifier(MODID, "honey"), new FluidBlock(STILL_HONEY, FabricBlockSettings.copy(Blocks.WATER)){});
 
-		HONEY_BUCKET = Registry.register(Registry.ITEM, new Identifier(TerrariaMod.MODID, "honey_bucket"),
+		HONEY_BUCKET = Registry.register(Registries.ITEM, new Identifier(TerrariaMod.MODID, "honey_bucket"),
 				new BucketItem(TerrariaMod.STILL_HONEY, new FabricItemSettings().group(ItemGroup.MISC).recipeRemainder(Items.BUCKET).maxCount(1)));
 
 
-		Registry.register(Registry.CUSTOM_STAT, "mana", MANA);
+		Registry.register(Registries.CUSTOM_STAT, "mana", MANA);
 		Stats.CUSTOM.getOrCreateStat(MANA, StatFormatter.DEFAULT);
-		Registry.register(Registry.CUSTOM_STAT, "max_mana", MAX_MANA);
+		Registry.register(Registries.CUSTOM_STAT, "max_mana", MAX_MANA);
 		Stats.CUSTOM.getOrCreateStat(MAX_MANA, StatFormatter.DEFAULT);
-		Registry.register(Registry.CUSTOM_STAT, "royal_gel_eq", ROYAL_GEL_EQ);
+		Registry.register(Registries.CUSTOM_STAT, "royal_gel_eq", ROYAL_GEL_EQ);
 		Stats.CUSTOM.getOrCreateStat(ROYAL_GEL_EQ, StatFormatter.DEFAULT);
 
 		//Buffs
-		Registry.register(Registry.CUSTOM_STAT, "iron_skin", IRON_SKIN);
+		Registry.register(Registries.CUSTOM_STAT, "iron_skin", IRON_SKIN);
 		Stats.CUSTOM.getOrCreateStat(IRON_SKIN, StatFormatter.DEFAULT);
-		Registry.register(Registry.CUSTOM_STAT, "happy", HAPPY);
+		Registry.register(Registries.CUSTOM_STAT, "happy", HAPPY);
 		Stats.CUSTOM.getOrCreateStat(HAPPY, StatFormatter.DEFAULT);
-		Registry.register(Registry.CUSTOM_STAT, "cozy_fire", COZY_FIRE);
+		Registry.register(Registries.CUSTOM_STAT, "cozy_fire", COZY_FIRE);
 		Stats.CUSTOM.getOrCreateStat(COZY_FIRE, StatFormatter.DEFAULT);
-		Registry.register(Registry.CUSTOM_STAT, "regeneration", REGENERATION);
+		Registry.register(Registries.CUSTOM_STAT, "regeneration", REGENERATION);
 		Stats.CUSTOM.getOrCreateStat(REGENERATION, StatFormatter.DEFAULT);
 
 		//DeBuffs
-		Registry.register(Registry.CUSTOM_STAT, "potion_sickness", POTION_SICKNESS);
+		Registry.register(Registries.CUSTOM_STAT, "potion_sickness", POTION_SICKNESS);
 		Stats.CUSTOM.getOrCreateStat(POTION_SICKNESS, StatFormatter.DEFAULT);
-		Registry.register(Registry.CUSTOM_STAT, "poisoned", POISONED);
+		Registry.register(Registries.CUSTOM_STAT, "poisoned", POISONED);
 		Stats.CUSTOM.getOrCreateStat(POISONED, StatFormatter.DEFAULT);
-		Registry.register(Registry.CUSTOM_STAT, "bleeding", BLEEDING);
+		Registry.register(Registries.CUSTOM_STAT, "bleeding", BLEEDING);
 		Stats.CUSTOM.getOrCreateStat(BLEEDING, StatFormatter.DEFAULT);
-		Registry.register(Registry.CUSTOM_STAT, "water_candle", WATER_CANDLE);
+		Registry.register(Registries.CUSTOM_STAT, "water_candle", WATER_CANDLE);
 		Stats.CUSTOM.getOrCreateStat(WATER_CANDLE, StatFormatter.DEFAULT);
 	}
 

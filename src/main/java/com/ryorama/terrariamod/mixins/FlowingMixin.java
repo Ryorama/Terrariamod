@@ -7,7 +7,7 @@ import com.ryorama.terrariamod.fluid.FlowLava;
 import com.ryorama.terrariamod.fluid.HoneyFluid;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.*;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -45,7 +45,7 @@ public abstract class FlowingMixin extends Fluid {
 	}
 
 	@Inject(at = @At("HEAD"), method = "tryFlow", cancellable = true)
-	private void tryFlow(WorldAccess world, BlockPos fluidPos, FluidState state, CallbackInfo bruh) {
+	private void tryFlow(World world, BlockPos fluidPos, FluidState state, CallbackInfo info) {
 		if (!TerrariaMod.CONFIG.useVanillaFluidPhysics) {
 			if ((state.getFluid() instanceof WaterFluid.Flowing || state.getFluid() instanceof LavaFluid.Flowing || state.getFluid() instanceof HoneyFluid.Flowing) || (state.getFluid() instanceof WaterFluid.Still || state.getFluid() instanceof LavaFluid.Still || state.getFluid() instanceof HoneyFluid.Still)) {
 				if (state.getFluid() instanceof WaterFluid) {
@@ -56,23 +56,23 @@ public abstract class FlowingMixin extends Fluid {
 					FlowHoney.flowhoney(world, fluidPos, state);
 				}
 
-				bruh.cancel();
+				info.cancel();
 			}
 		}
 	}
 
 	@Inject(at = @At("HEAD"), method = "getUpdatedState", cancellable = true)
-	private void getUpdatedState(WorldView world, BlockPos pos, BlockState state, CallbackInfoReturnable<FluidState> bruh) {
+	private void getUpdatedState(World world, BlockPos pos, BlockState state, CallbackInfoReturnable<FluidState> info) {
 		if (!TerrariaMod.CONFIG.useVanillaFluidPhysics) {
 			FluidState fluidstate = state.getFluidState();
 			if (fluidstate.getFluid() instanceof WaterFluid.Flowing || fluidstate.getFluid() instanceof LavaFluid.Flowing || fluidstate.getFluid() instanceof HoneyFluid.Flowing) {
 
 				if (fluidstate.getFluid() instanceof WaterFluid) {
-					bruh.setReturnValue(Fluids.FLOWING_WATER.getFlowing(state.getFluidState().getLevel(), false));
+					info.setReturnValue(Fluids.FLOWING_WATER.getFlowing(state.getFluidState().getLevel(), false));
 				} else if (fluidstate.getFluid() instanceof LavaFluid) {
-					bruh.setReturnValue(Fluids.FLOWING_LAVA.getFlowing(state.getFluidState().getLevel(), false));
+					info.setReturnValue(Fluids.FLOWING_LAVA.getFlowing(state.getFluidState().getLevel(), false));
 				} else if (fluidstate.getFluid() instanceof HoneyFluid) {
-					bruh.setReturnValue(TerrariaMod.FLOWING_HONEY.getFlowing(state.getFluidState().getLevel(), false));
+					info.setReturnValue(TerrariaMod.FLOWING_HONEY.getFlowing(state.getFluidState().getLevel(), false));
 				}
 			}
 		}
