@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "": [
-            { "model": "terrariamod:block/trees/forest_stem", "weight": 20 },
-            { "model": "terrariamod:block/trees/forest_stem", "weight": 5 },
-            { "model": "terrariamod:block/trees/forest_stem", "weight": 1 }
-        ]
-    }
-}

@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "": [
-            { "model": "terrariamod:block/stone_block", "weight": 20 },
-            { "model": "terrariamod:block/stone_block", "weight": 5 },
-            { "model": "terrariamod:block/stone_block", "weight": 1 }
-        ]
-    }
-}

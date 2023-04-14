@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "mixin": [
+    "terrariamod.mixins.json",
+    "terrariamod-common.mixins.json"
+  ],
+  "quilt_loader": {
+    "group": "${group}",
+    "id": "terrariamod",
+    "version": "${version}",
+    "name": "TerrariaMod",
+    "description": "This is an example description! Tell everyone what your mod is about!",
+    "authors": ["Ryorama"],
+    "contact": {
+      "sources": "https://github.com/architectury/architectury-templates"
+    },
+    "license": "Insert License Here",
+    "icon": "assets/terrariamod/icon.png",
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "environment": "*",
+    "entrypoints": {
+      "init": [
+        "com.ryorama.terrariamod.quilt.TerrariaModQuilt"
+      ]
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "version": "*"
+      },
+      {
+        "id": "quilt_base",
+        "version": "*"
+      },
+      {
+        "id": "minecraft",
+        "version": ">=1.19.4"
+      },
+      {
+        "id": "architectury",
+        "version": ">=8.1.79"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "terrariamod",
+  "version": "${version}",
+  "name": "TerrariaMod",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Ryorama"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "Insert License Here",
+  "icon": "assets/terrariamod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.ryorama.terrariamod.fabric.TerrariaModFabric"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.19.4",
+    "architectury": ">=8.1.79"
+  }
+}
