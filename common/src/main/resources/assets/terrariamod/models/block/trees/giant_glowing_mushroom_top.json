@@ -1,0 +1,55 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "terrariamod:block/trees/giant_glowing_mushroom_top"
+	},
+	"elements": [
+		{
+			"name": "bb_main",
+			"from": [-1.856, 0, -1.856],
+			"to": [17.856, 12.32, 17.856],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "bb_main",
+			"from": [0.608, 12.32, 0.608],
+			"to": [15.392, 17.248, 15.392],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 12], "texture": "#1"},
+				"east": {"uv": [0, 0, 16, 12], "texture": "#1"},
+				"south": {"uv": [16, 0, 0, 11], "texture": "#1"},
+				"west": {"uv": [16, 0, 0, 12], "texture": "#1"},
+				"up": {"uv": [16, 16, 0, 0], "texture": "#1"},
+				"down": {"uv": [36, 0, 24, 12], "texture": "#1"}
+			}
+		},
+		{
+			"name": "bb_main",
+			"from": [3.072, 17.248, 3.072],
+			"to": [12.928, 19.712, 12.928],
+			"faces": {
+				"north": {"uv": [16, 0, 0, 14], "texture": "#1"},
+				"east": {"uv": [16, 0, 0, 14], "texture": "#1"},
+				"south": {"uv": [16, 0, 0, 16], "texture": "#1"},
+				"west": {"uv": [16, 0, 0, 14], "texture": "#1"},
+				"up": {"uv": [16, 0, 0, 16], "texture": "#1"},
+				"down": {"uv": [16, 0, 0, 14], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "bb_main",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [0, 1, 2]
+		}
+	]
+}

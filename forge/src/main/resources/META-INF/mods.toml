@@ -27,8 +27,8 @@ versionRange = "[1.19.4,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
-modId = "terrariamod"
+[[dependencies.terrariamod]]
+modId = "architectury"
 mandatory = true
 versionRange = "[8.1.79,)"
 ordering = "AFTER"

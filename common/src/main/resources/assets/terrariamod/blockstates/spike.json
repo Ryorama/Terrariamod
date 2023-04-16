@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "terrariamod:block/spike" },
+            { "model": "terrariamod:block/spike", "y": 90 },
+            { "model": "terrariamod:block/spike", "y": 180 },
+            { "model": "terrariamod:block/spike", "y": 270 }
+        ]
+    }
+}

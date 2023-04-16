@@ -1,0 +1,7 @@
+{
+  "parent": "terrariamod:block/chest_base",
+  "textures": {
+    "0": "terrariamod:block/chests/wood_chest",
+    "particle": "terrariamod:block/chests/wood_chest"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "terrariamod:block/skyware_chest" },
+    "facing=east":  { "model": "terrariamod:block/skyware_chest", "y":  90},
+    "facing=south": { "model": "terrariamod:block/skyware_chest", "y": 180 },
+    "facing=west":  { "model": "terrariamod:block/skyware_chest", "y": 270 }
+  }
+}

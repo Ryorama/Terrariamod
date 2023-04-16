@@ -1,0 +1,83 @@
+{
+  "ColorReference" : {
+    "red" : {
+      "r": 255,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "green" : {
+      "r": 8,
+      "g": 255,
+      "b": 0,
+      "a": 255
+    },
+    "pink": {
+      "r": 255,
+      "g": 0,
+      "b": 109,
+      "a": 255
+    },
+    "blue": {
+      "r": 0,
+      "g": 45,
+      "b": 255,
+      "a": 255
+    },
+    "orange": {
+      "r": 255,
+      "g": 88,
+      "b": 0,
+      "a": 255
+    }
+  },
+  "LightBlock": [
+    {
+      "block": "terrariamod:hellstone_ore",
+      "color": "#red",
+      "radius": 5
+    },
+    {
+      "block": "terrariamod:jungle_spores",
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "terrariamod:mushroom_grass",
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "terrariamod:life_crystal_block",
+      "color": "#pink",
+      "radius": 5
+    },
+    {
+      "block": "terrariamod:giant_glowing_mushroom_top",
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "terrariamod:glowing_mushroom",
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "minecraft:torch",
+      "color": "#orange",
+      "radius": 5
+    },
+    {
+      "block": "minecraft:lava",
+      "color": "#orange",
+      "radius": 5
+    }
+  ],
+  "LightItem": [
+    {
+      "item_id" : "minecraft:torch",
+      "color": "#orange",
+      "radius": 8
+    }
+  ]
+}

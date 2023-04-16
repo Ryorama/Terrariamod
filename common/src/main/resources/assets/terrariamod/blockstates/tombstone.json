@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "": [
+            { "model": "terrariamod:block/tombstone" }
+        ]
+    }
+}

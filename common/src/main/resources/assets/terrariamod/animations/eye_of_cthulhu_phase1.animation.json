@@ -1,0 +1,32 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.eye_of_cthulhu_phase1.fly": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"bb_main": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				}
+			}
+		},
+		"animation.eye_of_cthulhu_phase1.transition": {
+			"animation_length": 0.79167,
+			"bones": {
+				"bb_main": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2083": [90.00096, -167.50021, 89.99903],
+						"0.5": [270.00022, -42.50021, -89.99969],
+						"0.7917": [0, 0, 0]
+					},
+					"position": [0, 0, 0],
+					"scale": 1
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

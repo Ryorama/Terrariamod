@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "": [
+            { "model": "terrariamod:block/trees/forest_stump", "weight": 20 },
+            { "model": "terrariamod:block/trees/forest_stump", "weight": 5 },
+            { "model": "terrariamod:block/trees/forest_stump", "weight": 1 }
+        ]
+    }
+}

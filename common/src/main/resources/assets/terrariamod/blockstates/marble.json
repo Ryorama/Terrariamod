@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "terrariamod:block/marble" },
+            { "model": "terrariamod:block/marble", "y": 90 },
+            { "model": "terrariamod:block/marble", "y": 180 },
+            { "model": "terrariamod:block/marble", "y": 270 }
+        ]
+    }
+}
