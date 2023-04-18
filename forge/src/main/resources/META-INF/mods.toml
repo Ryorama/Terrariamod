@@ -9,9 +9,9 @@ version = "${version}"
 displayName = "TerrariaMod"
 authors = "Ryorama"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+A recreation of the popular game Terraria for Minecraft!
 '''
-#logoFile = ""
+logoFile = "icon.png"
 
 [[dependencies.terrariamod]]
 modId = "forge"

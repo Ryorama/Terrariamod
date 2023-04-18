@@ -3,22 +3,26 @@
   "id": "terrariamod",
   "version": "${version}",
   "name": "TerrariaMod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "A recreation of the popular game Terraria for Minecraft!",
   "authors": [
     "Ryorama"
   ],
+  "icon": "icon.png",
   "contact": {
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "Insert License Here",
-  "icon": "assets/terrariamod/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       "com.ryorama.terrariamod.fabric.TerrariaModFabric"
     ]
   },
+  "mixins": [
+    "terrariamod.mixins.json",
+    "terrariamod-common.mixins.json"
+  ],
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.19.4",

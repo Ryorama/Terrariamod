@@ -4,6 +4,14 @@ plugins {
 
 repositories {
     maven { url "https://maven.quiltmc.org/repository/release/" }
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
+    }
+    maven {
+        name = "Ladysnake Libs"
+        url = "https://ladysnake.jfrog.io/artifactory/mods"
+    }
 }
 
 architectury {
@@ -13,6 +21,7 @@ architectury {
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
+    mixin.defaultRefmapName = 'terrariamod.mixin.refmap.json'
 }
 
 configurations {
@@ -35,6 +44,12 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionQuilt")) { transitive false }
+    modImplementation "software.bernie.geckolib:geckolib-quilt-1.19.4:${rootProject.geckolib_version_quilt}"
+    modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+
+    modImplementation "dev.emi:trinkets:${trinkets_version}"
 }
 
 processResources {

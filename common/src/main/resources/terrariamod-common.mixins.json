@@ -5,6 +5,11 @@
   "client": [
   ],
   "mixins": [
+    "CraftingInventoryMixin",
+    "InventoryMixin",
+    "ItemScattererMixin",
+    "ScreenHandlerMixin",
+    "ServerNetworkPlayerHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

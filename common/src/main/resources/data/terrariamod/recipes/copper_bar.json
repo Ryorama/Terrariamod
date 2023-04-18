@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "!!!",
+    "!!!",
+    "!!!"
+  ],
+  "key": {
+    "!": {
+      "item": "terrariamod:copper_ore"
+    }
+  },
+  "result": {
+    "item": "terrariamod:copper_bar",
+    "count": 1
+  }
+}

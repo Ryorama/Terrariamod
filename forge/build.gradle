@@ -7,6 +7,12 @@ architectury {
     forge()
 }
 
+repositories {
+    maven {
+        url = "https://maven.theillusivec4.top/"
+    }
+}
+
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 
@@ -14,7 +20,6 @@ loom {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-        mixinConfig "terrariamod-common.mixins.json"
         mixinConfig "terrariamod.mixins.json"
     }
 }
@@ -34,6 +39,10 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+    modImplementation ("software.bernie.geckolib:geckolib-forge-1.19.4:${rootProject.geckolib_version_forge}")
+    modImplementation ("me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}")
+    modImplementation ("top.theillusivec4.curios:curios-forge:${curios_version}")
+    modImplementation ("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 }
 
 processResources {

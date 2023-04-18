@@ -7,7 +7,7 @@ public class TerrariaMod {
     public static final String MOD_ID = "terrariamod";
 
     public static void init() {
-        ItemsT.init();
         BlocksT.init();
+        ItemsT.init();
     }
 }

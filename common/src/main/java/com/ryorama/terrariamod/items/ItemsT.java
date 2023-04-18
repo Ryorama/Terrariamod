@@ -13,6 +13,7 @@ import com.ryorama.terrariamod.items.terraria.bows.IronBow;
 import com.ryorama.terrariamod.items.terraria.broadswords.CopperBroadsword;
 import com.ryorama.terrariamod.items.terraria.broadswords.GoldBroadsword;
 import com.ryorama.terrariamod.items.terraria.broadswords.IronBroadsword;
+import com.ryorama.terrariamod.items.terraria.consumable.misc.LifeCrystal;
 import com.ryorama.terrariamod.items.terraria.picks.CopperPickaxe;
 import com.ryorama.terrariamod.items.terraria.picks.GoldPickaxe;
 import com.ryorama.terrariamod.items.terraria.picks.IronPickaxe;
@@ -22,7 +23,6 @@ import com.ryorama.terrariamod.items.terraria.shortswords.IronShortsword;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
@@ -90,15 +90,16 @@ public class ItemsT {
     public static Item TERRARIA_UNDERWORLD_MUSIC;
     public static Item TERRARIA_TITLE_MUSIC;
 
-    public static final RegistrySupplier<Item> GEL = register("gel", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2));
-    public static final RegistrySupplier<Item> LENS = register("lens", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2));
-    public static final RegistrySupplier<Item> FALLEN_STAR = register("fallen_star", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2));
-    public static final RegistrySupplier<Item> GOLD_CROWN = register("gold_crown", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS).maxCount(1)).setRarity(2).setMaxStack(1));
-    public static final RegistrySupplier<Item> COPPER_BAR = register("copper_bar", () ->  new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2));
-    public static final RegistrySupplier<Item> IRON_BAR = register("iron_bar", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2));
-    public static final RegistrySupplier<Item> GOLD_BAR = register("gold_bar", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2));
-    public static final RegistrySupplier<Item> DEMONITE_BAR = register("demonite_bar", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2));
-    public static final RegistrySupplier<Item> CRIMTANE_BAR = register("crimtane_bar", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2));
+    public static final RegistrySupplier<Item> GEL = register("gel", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2).setMaxStack(999));
+    public static final RegistrySupplier<Item> LENS = register("lens", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2).setMaxStack(999));
+    public static final RegistrySupplier<Item> FALLEN_STAR = register("fallen_star", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2).setMaxStack(999));
+    public static final RegistrySupplier<Item> LIFE_CRYSTAL = register("life_crystal", () -> new LifeCrystal(new Item.Settings().arch$tab(ItemGroups.FOOD_AND_DRINK)).setRarity(4));
+    public static final RegistrySupplier<Item> GOLD_CROWN = register("gold_crown", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS).maxCount(1)).setRarity(2).setMaxStack(1).setMaxStack(999));
+    public static final RegistrySupplier<Item> COPPER_BAR = register("copper_bar", () ->  new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2).setMaxStack(999));
+    public static final RegistrySupplier<Item> IRON_BAR = register("iron_bar", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2).setMaxStack(999));
+    public static final RegistrySupplier<Item> GOLD_BAR = register("gold_bar", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2).setMaxStack(999));
+    public static final RegistrySupplier<Item> DEMONITE_BAR = register("demonite_bar", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2).setMaxStack(999));
+    public static final RegistrySupplier<Item> CRIMTANE_BAR = register("crimtane_bar", () -> new ItemT(new Item.Settings().arch$tab(ItemGroups.INGREDIENTS)).setRarity(2).setMaxStack(999));
     public static final RegistrySupplier<Item> COPPER_SHORTSWORD = register("copper_shortsword", () -> new CopperShortsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_BROADSWORD = register("copper_broadsword", () -> new CopperBroadsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_PICKAXE = register("copper_pickaxe", () -> new CopperPickaxe().setMaxStack(1).setRarity(3));
@@ -150,6 +151,19 @@ public class ItemsT {
     public static final RegistrySupplier<Item> HELLSTONE_ORE = register("hellstone_ore", () -> new BlockItemT(BlocksT.HELLSTONE_ORE.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)).setRarity(2));
     public static final RegistrySupplier<Item> RUBY_ORE = register("ruby_ore", () -> new BlockItemT(BlocksT.RUBY_ORE.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)).setRarity(2));
     public static final RegistrySupplier<Item> SAPPHIRE_ORE = register("sapphire_ore", () -> new BlockItemT(BlocksT.SAPPHIRE_ORE.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)).setRarity(2));
+
+    public static final RegistrySupplier<Item> EMPTY_BOTTLE = register("empty_bottle", () -> new BlockItemT(BlocksT.EMPTY_BOTTLE.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> VINE = register("vine", () -> new BlockItemT(BlocksT.VINE.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> MUSHROOM = register("mushroom", () -> new BlockItemT(BlocksT.MUSHROOM.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> GLOWING_MUSHROOM = register("glowing_mushroom", () -> new BlockItemT(BlocksT.GLOWING_MUSHROOM.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> JUNGLE_SPORES = register("jungle_spores", () -> new BlockItemT(BlocksT.JUNGLE_SPORES.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> BLINKROOT = register("blinkroot", () -> new BlockItemT(BlocksT.BLINKROOT.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> DAYBLOOM = register("daybloom", () -> new BlockItemT(BlocksT.DAYBLOOM.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> DEATHWEED = register("deathweed", () -> new BlockItemT(BlocksT.DEATHWEED.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> FIREBLOSSOM = register("fireblossom", () -> new BlockItemT(BlocksT.FIREBLOSSOM.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> MOONGLOW = register("moonglow", () -> new BlockItemT(BlocksT.MOONGLOW.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> SHIVERTHORN = register("shiverthorn", () -> new BlockItemT(BlocksT.SHIVERTHORN.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
+    public static final RegistrySupplier<Item> WATERLEAF = register("waterleaf", () -> new BlockItemT(BlocksT.WATERLEAF.get(), new Item.Settings().arch$tab(ItemGroups.BUILDING_BLOCKS)));
 
     public static void init() {
         ITEMS.register();

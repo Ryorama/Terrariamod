@@ -2,9 +2,11 @@ package com.ryorama.terrariamod.blocks.impl;
 
 import com.ryorama.terrariamod.items.impl.ItemT;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.ToIntFunction;
 
 public class BlockT extends Block {
 
@@ -30,6 +32,16 @@ public class BlockT extends Block {
 
     public BlockT(Settings properties, float hardness, float difficulty) {
         super(properties.hardness(hardness * 0.03f));
+        this.difficulty = difficulty;
+    }
+
+    public BlockT(Settings properties, float hardness, float difficulty, int luminance) {
+        super(properties.hardness(hardness * 0.03f).nonOpaque().noCollision().luminance(new ToIntFunction<BlockState>() {
+            @Override
+            public int applyAsInt(BlockState value) {
+                return luminance;
+            }
+        }));
         this.difficulty = difficulty;
     }
 

@@ -9,13 +9,13 @@
     "id": "terrariamod",
     "version": "${version}",
     "name": "TerrariaMod",
-    "description": "This is an example description! Tell everyone what your mod is about!",
+    "description": "A recreation of the popular game Terraria for Minecraft!",
     "authors": ["Ryorama"],
     "contact": {
       "sources": "https://github.com/architectury/architectury-templates"
     },
     "license": "Insert License Here",
-    "icon": "assets/terrariamod/icon.png",
+    "icon": "icon.png",
     "intermediate_mappings": "net.fabricmc:intermediary",
     "environment": "*",
     "entrypoints": {
