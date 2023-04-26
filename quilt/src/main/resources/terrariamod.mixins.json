@@ -3,6 +3,7 @@
   "package": "com.ryorama.terrariamod.quilt.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "InGameHudMixin"
   ],
   "mixins": [
   ],

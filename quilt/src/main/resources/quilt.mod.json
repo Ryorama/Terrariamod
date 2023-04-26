@@ -21,6 +21,9 @@
     "entrypoints": {
       "init": [
         "com.ryorama.terrariamod.quilt.TerrariaModQuilt"
+      ],
+      "client": [
+        "com.ryorama.terrariamod.quilt.TerrariaModQuiltClient"
       ]
     },
     "depends": [

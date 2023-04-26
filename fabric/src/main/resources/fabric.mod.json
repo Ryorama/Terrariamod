@@ -17,6 +17,9 @@
   "entrypoints": {
     "main": [
       "com.ryorama.terrariamod.fabric.TerrariaModFabric"
+    ],
+    "client": [
+      "com.ryorama.terrariamod.fabric.TerrariaModFabricClient"
     ]
   },
   "mixins": [

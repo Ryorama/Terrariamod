@@ -1,14 +1,21 @@
 package com.ryorama.terrariamod.fabric;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.fabric.client.ui.TerrariaUIRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
 
 public class TerrariaModFabricClient implements ClientModInitializer {
+
     @Override
     public void onInitializeClient() {
         addCutouts();
+
+        TerrariaUIRenderer.renderTerrariaHealth();
+        TerrariaUIRenderer.renderTerrariaDefense();
+        TerrariaUIRenderer.renderTerrariaMana();
+        TerrariaUIRenderer.renderTerrariaEffects();
     }
 
     public void addCutouts() {
