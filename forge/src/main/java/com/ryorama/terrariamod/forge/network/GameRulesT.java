@@ -2,8 +2,8 @@ package com.ryorama.terrariamod.forge.network;
 
 import com.google.common.base.CaseFormat;
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.forge.mixin.BooleanValueInvoker;
-import com.ryorama.terrariamod.forge.mixin.IntValueInvoker;
+import com.ryorama.terrariamod.mixin.BooleanValueInvoker;
+import com.ryorama.terrariamod.mixin.IntValueInvoker;
 import com.ryorama.terrariamod.items.ItemsT;
 import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;

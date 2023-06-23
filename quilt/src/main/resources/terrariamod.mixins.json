@@ -13,7 +13,10 @@
     "ItemMaxCountAccess",
     "OOMFixin",
     "PlayerInventoryMixin",
-    "SerializationFixin"
+    "SerializationFixin",
+    "FlowingMixin",
+    "LavaFluidMixin",
+    "WaterFluidMixin"
   ],
   "client": [
     "InGameHudMixin",

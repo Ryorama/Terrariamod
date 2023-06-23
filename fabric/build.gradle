@@ -44,6 +44,7 @@ dependencies {
         exclude(group: "net.fabricmc.fabric-api")
     }
     modImplementation "dev.emi:trinkets:${trinkets_version}"
+    modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
 }
 
 processResources {

@@ -14,7 +14,10 @@
     "ItemMaxCountAccess",
     "OOMFixin",
     "PlayerInventoryMixin",
-    "SerializationFixin"
+    "SerializationFixin",
+    "FlowingMixin",
+    "LavaFluidMixin",
+    "WaterFluidMixin"
   ],
   "mixins": [
     "RenderItemCountFixin",

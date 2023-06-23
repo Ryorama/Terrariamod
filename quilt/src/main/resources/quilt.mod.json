@@ -23,6 +23,9 @@
       ],
       "client": [
         "com.ryorama.terrariamod.quilt.TerrariaModQuiltClient"
+      ],
+      "modmenu": [
+        "com.ryorama.terrariamod.fabric.ModMenuIntegration"
       ]
     },
     "depends": [
