@@ -13,7 +13,6 @@ public class TerrariaModFabricClient implements ClientModInitializer {
         addCutouts();
 
         TerrariaUIRenderer.renderTerrariaHealth();
-        TerrariaUIRenderer.renderTerrariaDefense();
         TerrariaUIRenderer.renderTerrariaMana();
         TerrariaUIRenderer.renderTerrariaEffects();
     }

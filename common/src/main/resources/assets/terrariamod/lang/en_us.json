@@ -5,6 +5,7 @@
 	"text.autoconfig.terrariamod.option.useVanillaFluidPhysics": "Use Vanilla Fluid Physics",
 	"text.autoconfig.terrariamod.option.modifyPlayerHealth": "Modify Player Starting Health (Player will start with 100 instead of 20 if true)",
 	"text.autoconfig.terrariamod.option.disableHunger": "Disable Hunger",
+	"itemGroup.terrariamod.terrariamod_tab": "TerrariaMod",
 	"item.terrariamod.green_slime_spawn_egg": "Spawn Green Slime",
 	"item.terrariamod.blue_slime_spawn_egg": "Spawn Blue Slime",
 	"item.terrariamod.demon_eye_slime_spawn_egg": "Spawn Demon Eye",

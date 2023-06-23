@@ -1,23 +1,22 @@
 {
   "schema_version": 1,
   "mixin": [
-    "terrariamod.mixins.json",
-    "terrariamod-common.mixins.json"
+    "terrariamod.mixins.json"
   ],
   "quilt_loader": {
     "group": "${group}",
     "id": "terrariamod",
     "version": "${version}",
-    "name": "TerrariaMod",
-    "description": "A recreation of the popular game Terraria for Minecraft!",
-    "authors": ["Ryorama"],
-    "contact": {
-      "sources": "https://github.com/architectury/architectury-templates"
+    "metadata": {
+      "name": "TerrariaMod",
+      "description": "A recreation of the popular game Terraria for Minecraft!",
+      "authors": ["Ryorama"],
+      "contact": {
+        "sources": "https://github.com/architectury/architectury-templates"
+      },
+      "icon": "icon.png"
     },
-    "license": "Insert License Here",
-    "icon": "icon.png",
     "intermediate_mappings": "net.fabricmc:intermediary",
-    "environment": "*",
     "entrypoints": {
       "init": [
         "com.ryorama.terrariamod.quilt.TerrariaModQuilt"
@@ -37,11 +36,11 @@
       },
       {
         "id": "minecraft",
-        "version": ">=1.19.4"
+        "version": ">=1.20"
       },
       {
         "id": "architectury",
-        "version": ">=8.1.79"
+        "version": ">=9.0.8"
       }
     ]
   }

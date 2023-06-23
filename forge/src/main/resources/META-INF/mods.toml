@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[45,)"
+loaderVersion = "[47,)"
 #issueTrackerURL = ""
 license = "Insert License Here"
 
@@ -23,13 +23,13 @@ side = "BOTH"
 [[dependencies.terrariamod]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19.4,)"
+versionRange = "[1.20.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.terrariamod]]
 modId = "architectury"
 mandatory = true
-versionRange = "[8.1.79,)"
+versionRange = "[9.0.8,)"
 ordering = "AFTER"
 side = "BOTH"

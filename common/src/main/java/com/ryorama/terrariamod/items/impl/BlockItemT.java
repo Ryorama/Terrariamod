@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.items.impl;
 
+import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.items.impl.interfaces.IRareItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -10,7 +11,7 @@ public class BlockItemT extends BlockItem {
     public int rarity;
 
     public BlockItemT(Block block, Settings settings) {
-        super(block, settings);
+        super(block, settings.arch$tab(ItemsT.TERRARIAMOD_GROUP));
     }
 
     public BlockItemT setRarity(int rarity) {

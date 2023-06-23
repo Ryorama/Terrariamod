@@ -1,12 +1,24 @@
 {
   "required": true,
-  "package": "com.ryorama.terrariamod.forge.mixin",
+  "package": "com.ryorama.terrariamod.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "terrariamod.mixins.refmap.json",
   "client": [
-    "InGameHudMixin"
+    "BundleItemMixin",
+    "ClearCommandBugFixin",
+    "CraftingInventoryMixin_LimitStackSize",
+    "CreativeDesyncFixin",
+    "DesktopHandSplayedDuplicationFixin",
+    "DesyncFixin",
+    "InventoryMixin",
+    "ItemMaxCountAccess",
+    "OOMFixin",
+    "PlayerInventoryMixin",
+    "SerializationFixin"
   ],
   "mixins": [
+    "RenderItemCountFixin",
+    "InGameHud",
     "IntValueInvoker",
     "BooleanValueInvoker"
   ],

@@ -5,7 +5,7 @@ import net.minecraft.item.ItemGroups;
 public class ShortswordT extends ItemT {
 
     public ShortswordT() {
-        super(new Settings().arch$tab(ItemGroups.COMBAT).maxCount(1));
+        super(new Settings().maxCount(1));
         this.melee = true;
         this.maxStack = 1;
 

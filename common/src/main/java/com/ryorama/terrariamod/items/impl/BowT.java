@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 public class BowT extends ItemT {
 
     public BowT(Settings settings, int damage) {
-        super(settings);
+        super(settings.maxCount(1));
         this.damage = damage;
     }
 

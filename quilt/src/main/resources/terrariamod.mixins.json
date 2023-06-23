@@ -1,11 +1,23 @@
 {
   "required": true,
-  "package": "com.ryorama.terrariamod.quilt.mixin",
+  "package": "com.ryorama.terrariamod.mixin",
   "compatibilityLevel": "JAVA_17",
-  "client": [
-    "InGameHudMixin"
-  ],
   "mixins": [
+    "BundleItemMixin",
+    "ClearCommandBugFixin",
+    "CraftingInventoryMixin_LimitStackSize",
+    "CreativeDesyncFixin",
+    "DesktopHandSplayedDuplicationFixin",
+    "DesyncFixin",
+    "InventoryMixin",
+    "ItemMaxCountAccess",
+    "OOMFixin",
+    "PlayerInventoryMixin",
+    "SerializationFixin"
+  ],
+  "client": [
+    "InGameHudMixin",
+    "RenderItemCountFixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -30,7 +30,7 @@ public class TerraruaUIRenderer {
 
     public static ClientPlayerEntity player;
 
-    public static void renderTerrariaHealth(MatrixStack matrixstack) {
+    public static void renderTerrariaHealth() {
         float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
 
         if (MinecraftClient.getInstance().player != null) {
@@ -39,21 +39,18 @@ public class TerraruaUIRenderer {
 
         if (player != null) {
             for (int h = 0; h < player.getHealth() + 20; h++) {
-                TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
-                textRenderer.draw(matrixstack, "Life: " + (int)player.getHealth() + "/" + (int)player.getMaxHealth(), scaledWidth - 113, 2, 0xffffff);
-
                 if (h % 20 == 0) {
                     if (h < 200) {
                         UIRenderer.renderOverlay(health_icon, 50, 8, 8, scaledWidth - 125 + h / 2, 10, -90);
                     } else if (h > 200) {
-                            UIRenderer.renderOverlay(health_icon, 50, 8, 8, scaledWidth - 125 + h / 2 - 110, 20, -90);
+                        UIRenderer.renderOverlay(health_icon, 50, 8, 8, scaledWidth - 125 + h / 2 - 110, 20, -90);
                     }
                 }
             }
         }
     }
 
-    public static void renderTerrariaDefense(MatrixStack matrixstack) {
+    public static void renderTerrariaDefense() {
         float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
 
         if (MinecraftClient.getInstance().player != null) {
@@ -62,17 +59,10 @@ public class TerraruaUIRenderer {
 
         if (player != null) {
             UIRenderer.renderOverlay(shield, 50, 16, 16, scaledWidth - 100 / 2 - 70, 220, -90);
-            TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
-
-            if ((int)player.getAttributeValue(EntityAttributes.GENERIC_ARMOR) >= 10) {
-                textRenderer.draw(matrixstack, Integer.toString((int)player.getAttributeValue(EntityAttributes.GENERIC_ARMOR)), scaledWidth - 100 / 2 - 66, 224, 0xffffff);
-            } else {
-                textRenderer.draw(matrixstack, Integer.toString((int)player.getAttributeValue(EntityAttributes.GENERIC_ARMOR)), scaledWidth - 100 / 2 - 64, 224, 0xffffff);
-            }
         }
     }
 
-    public static void renderTerrariaMana(MatrixStack matrixstack) {
+    public static void renderTerrariaMana() {
         float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
 
         if (MinecraftClient.getInstance().player != null) {
@@ -80,8 +70,6 @@ public class TerraruaUIRenderer {
         }
 
         if (player != null) {
-            MinecraftClient.getInstance().textRenderer.draw(matrixstack, "Mana", (int) (scaledWidth - 25), 3, 0xffffff);
-
             for (int i = 0; i <= GameRulesT.MANA.get() - 20; i++) {
                 if (i % 20 == 0) {
                     UIRenderer.renderOverlay(mana, 50, 10, 10, scaledWidth - 18, 10 + i / 2, -90);
@@ -90,7 +78,7 @@ public class TerraruaUIRenderer {
         }
     }
 
-    public static void renderTerrariaEffects(MatrixStack matrixstack) {
+    public static void renderTerrariaEffects() {
         if (MinecraftClient.getInstance().player != null) {
             player = MinecraftClient.getInstance().player;
         }

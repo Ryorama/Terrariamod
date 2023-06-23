@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.forge.mixin;
+package com.ryorama.terrariamod.mixin;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.GameRules;
@@ -7,11 +7,11 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 import java.util.function.BiConsumer;
 
-@Mixin(GameRules.IntRule.class)
-public interface IntValueInvoker {
+@Mixin(GameRules.BooleanRule.class)
+public interface BooleanValueInvoker {
 
     @Invoker("create")
-    static GameRules.Type<GameRules.IntRule> invokeCreate(int defaultValue, BiConsumer<MinecraftServer, GameRules.IntRule> onChanged) {
+    static GameRules.Type<GameRules.BooleanRule> invokeCreate(boolean defaultValue, BiConsumer<MinecraftServer, GameRules.BooleanRule> onChanged) {
         throw new AssertionError();
     }
 }

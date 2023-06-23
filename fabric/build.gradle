@@ -9,7 +9,7 @@ architectury {
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
-    mixin.defaultRefmapName = 'terrariamod.mixin.refmap.json'
+    mixin.defaultRefmapName = 'terrariamod.mixins.refmap.json'
 }
 
 configurations {
@@ -39,7 +39,7 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
-    modImplementation "software.bernie.geckolib:geckolib-fabric-1.19.4:${rootProject.geckolib_version_fabric}"
+    modImplementation "software.bernie.geckolib:geckolib-fabric-1.20:${rootProject.geckolib_version_fabric}"
     modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }

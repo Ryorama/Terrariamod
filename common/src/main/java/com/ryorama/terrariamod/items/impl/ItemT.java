@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.items.impl;
 
+import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.items.impl.enums.EnumModifierType;
 import com.ryorama.terrariamod.items.impl.interfaces.IRareItem;
 import net.minecraft.client.item.TooltipContext;
@@ -74,7 +75,7 @@ public class ItemT extends Item {
     public Random rand = new Random();
 
     public ItemT(Item.Settings settings) {
-        super(settings);
+        super(settings.arch$tab(ItemsT.TERRARIAMOD_GROUP));
 
         if (rarity == 1) {
             nameFormatting = "§525252";
