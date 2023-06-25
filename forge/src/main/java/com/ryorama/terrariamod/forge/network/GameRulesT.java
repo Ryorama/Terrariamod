@@ -108,6 +108,10 @@ public class GameRulesT {
             return value;
         }
 
+        public void set(boolean newValue) {
+            value = newValue;
+        }
+
         private void update(MinecraftServer server) {
             update(server.getGameRules().getBoolean(key));
         }
@@ -124,6 +128,10 @@ public class GameRulesT {
 
         public Integer get() {
             return value;
+        }
+
+        public void set(int newValue) {
+            value = newValue;
         }
 
         private void update(MinecraftServer server) {

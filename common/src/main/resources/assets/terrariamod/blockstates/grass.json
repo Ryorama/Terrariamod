@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "": [
+			{ "model": "terrariamod:block/grass/01" },
+			{ "model": "terrariamod:block/grass/02" },
+			{ "model": "terrariamod:block/grass/03" },
+			{ "model": "terrariamod:block/grass/04" },
+			{ "model": "terrariamod:block/grass/05" },
+			{ "model": "terrariamod:block/grass/06" },
+			{ "model": "terrariamod:block/grass/07" },
+			{ "model": "terrariamod:block/grass/08" },
+			{ "model": "terrariamod:block/grass/09" },
+			{ "model": "terrariamod:block/grass/10" },
+			{ "model": "terrariamod:block/grass/11" },
+			{ "model": "terrariamod:block/grass/12" },
+			{ "model": "terrariamod:block/grass/13" },
+			{ "model": "terrariamod:block/grass/14" },
+			{ "model": "terrariamod:block/grass/15" },
+			{ "model": "terrariamod:block/grass/16" },
+			{ "model": "terrariamod:block/grass/17" },
+			{ "model": "terrariamod:block/grass/18" },
+			{ "model": "terrariamod:block/grass/19" },
+			{ "model": "terrariamod:block/grass/20" },
+			{ "model": "terrariamod:block/grass/21" },
+			{ "model": "terrariamod:block/grass/22" }
+		]
+    }
+}

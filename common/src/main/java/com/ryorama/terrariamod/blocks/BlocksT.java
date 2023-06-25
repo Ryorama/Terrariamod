@@ -4,46 +4,37 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.impl.BlockT;
 import com.ryorama.terrariamod.blocks.impl.CMBlockT;
 import com.ryorama.terrariamod.blocks.impl.PlantT;
+import com.ryorama.terrariamod.blocks.impl.TreeSegment;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 public class BlocksT {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(TerrariaMod.MOD_ID, RegistryKeys.BLOCK);
 
     //public static Spike SPIKE = (Spike) new Spike(AbstractBlock.Settings.of), 15, 15).setPick(true);
     //public static WaterCandle WATER_CANDLE = (WaterCandle) new WaterCandle(AbstractBlock.Settings.of), 15, 15).setPick(true);
-
-    //public static PlantT LIFE_CRYSTAL_BLOCK = (PlantT) new PlantT(AbstractBlock.Settings.copy(Blocks.STONE).luminance(10), 15, 15).setPick(true);
-    //public static PlantT VINE = (PlantT) new PlantT(AbstractBlock.Settings.of), 0.1f, 0.1f).setPick(true).setAxe(true);
     //public static Pot FOREST_POT = new Pot(AbstractBlock.Settings.of().sounds(BlockSoundGroup.GLASS), 0.1f, 0.1f);
 
-    //public static PlantT MUSHROOM = (PlantT) new PlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f).setPick(true);
-    //public static LightPlantT GLOWING_MUSHROOM = (LightPlantT) new LightPlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f, 15).setPick(true);
-    //public static LightPlantT JUNGLE_SPORES = (LightPlantT) new LightPlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f, 10).setPick(true);
+    public static final RegistrySupplier<Block> FOREST_STUMP = register("forest_stump", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
+    public static final RegistrySupplier<Block> FOREST_STEM = register("forest_stem", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
+    public static final RegistrySupplier<Block> FOREST_TOP = register("forest_top", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
 
-    //public static PlantT BLINKROOT = (PlantT) new PlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f).setPick(true);
-    //public static PlantT DAYBLOOM = (PlantT) new PlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f).setPick(true);
-    //public static PlantT DEATHWEED = (PlantT) new PlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f).setPick(true);
-    //public static PlantT FIREBLOSSOM = (PlantT) new PlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f).setPick(true);
-    //public static PlantT MOONGLOW = (PlantT) new PlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f).setPick(true);
-    //public static PlantT SHIVERTHORN = (PlantT) new PlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f).setPick(true);
-    //public static PlantT WATERLEAF = (PlantT) new PlantT(AbstractBlock.Settings.of(), 0.1f, 0.1f).setPick(true);
-
-    //public static PlantT EMPTY_BOTTLE = (PlantT) new PlantT(AbstractBlock.Settings.of(), 0.5f, 0.5f).setPick(true);
-
-    //public static TreeSegment FOREST_STUMP = (TreeSegment) new TreeSegment(AbstractBlock.Settings.of(), 15, 15).setAxe(true);
-    //public static TreeSegment FOREST_STEM = (TreeSegment) new TreeSegment(AbstractBlock.Settings.of(), 15, 15).setAxe(true);
-    //public static TreeSegment FOREST_TOP = (TreeSegment) new TreeSegment(AbstractBlock.Settings.of(), 15, 15).setAxe(true);
-
-    //public static TreeSegment GIANT_GLOWING_MUSHROOM_STEM = (TreeSegment) new TreeSegment(AbstractBlock.Settings.of(), 15, 15).setAxe(true);
-    //public static TreeSegment GIANT_GLOWING_MUSHROOM_TOP = (TreeSegment) new TreeSegment(AbstractBlock.Settings.of().luminance(20), 15, 15).setAxe(true);
+    public static RegistrySupplier<Block> GIANT_GLOWING_MUSHROOM_STEM = register("giant_glowing_mushroom_stem", () -> new TreeSegment(AbstractBlock.Settings.create(), 15, 15).setAxe(true));
+    public static RegistrySupplier<Block> GIANT_GLOWING_MUSHROOM_TOP = register("giant_glowing_mushroom_top", () -> new TreeSegment(AbstractBlock.Settings.create().luminance(new ToIntFunction<BlockState>() {
+        @Override
+        public int applyAsInt(BlockState value) {
+            return 20;
+        }
+    }), 15, 15).setAxe(true));
 
     //public static GravestoneT TOMBSTONE = (GravestoneT) new GravestoneT(AbstractBlock.Settings.of), 15, 15).setPick(true);
     //public static GravestoneT GOLD_TOMBSTONE = (GravestoneT) new GravestoneT(AbstractBlock.Settings.of), 15, 15).setPick(true);
@@ -98,6 +89,7 @@ public class BlocksT {
     public static final RegistrySupplier<Block> LIFE_CRYSTAL_BLOCK = register("life_crystal_block", () -> new CMBlockT(AbstractBlock.Settings.create().mapColor(DyeColor.PINK), 15, 15, 10).setPick(true));
     public static final RegistrySupplier<Block> VINE = register("vine", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.GREEN), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> MUSHROOM = register("mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE), 0.1f, 0.1f).setPick(true));
+    public static final RegistrySupplier<Block> GRASS = register("grass", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.GREEN), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> GLOWING_MUSHROOM = register("glowing_mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f, 15).setPick(true));
     public static final RegistrySupplier<Block> JUNGLE_SPORES = register("jungle_spores", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.LIME), 0.1f, 0.1f, 10).setPick(true));
     public static final RegistrySupplier<Block> BLINKROOT = register("blinkroot", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 0.1f, 0.1f).setPick(true));

@@ -16,7 +16,11 @@
     "SerializationFixin",
     "FlowingMixin",
     "LavaFluidMixin",
-    "WaterFluidMixin"
+    "WaterFluidMixin",
+    "NoiseChunkGeneratorMixin",
+    "RavineCarverMixin",
+    "CaveCarverMixin",
+    "ChunkGeneratorMixin"
   ],
   "client": [
     "InGameHudMixin",

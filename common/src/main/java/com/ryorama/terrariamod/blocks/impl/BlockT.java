@@ -36,7 +36,7 @@ public class BlockT extends Block {
     }
 
     public BlockT(Settings properties, float hardness, float difficulty, int luminance) {
-        super(properties.hardness(hardness * 0.03f).nonOpaque().noCollision().luminance(new ToIntFunction<BlockState>() {
+        super(properties.hardness(hardness * 0.03f).nonOpaque().luminance(new ToIntFunction<BlockState>() {
             @Override
             public int applyAsInt(BlockState value) {
                 return luminance;
