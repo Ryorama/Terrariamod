@@ -13,20 +13,18 @@ import java.io.IOException;
 
 public class TerrariaModFabric implements ModInitializer {
 
-    public static boolean firstUpdate = false;
-
     @Override
     public void onInitialize() {
         TerrariaMod.init();
         StatsT.init();
         onTick();
-        WorldDataT.setupWorldData();
         handleSaveData();
     }
 
     public void onTick() {
         ServerTickEvents.START_SERVER_TICK.register(world -> {
-                PlayerEntity player = null;
+            WorldDataT.setupWorldData();
+            PlayerEntity player = null;
 
                 for (int p = 0; p < world.getPlayerManager().getPlayerList().size(); p++) {
                     player = world.getPlayerManager().getPlayerList().get(p);
@@ -34,14 +32,13 @@ public class TerrariaModFabric implements ModInitializer {
 
                 if (player != null) {
 
-                    if (!firstUpdate && !WorldDataT.hasStartingTools) {
+                    if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                         if (TerrariaMod.CONFIG.modifyPlayerHealth) {
                             player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
                             player.setHealth(100);
                         }
 
                         WorldDataT.hasStartingTools = true;
-                        firstUpdate = true;
                     }
 
                     if (TerrariaMod.CONFIG.disableHunger) {

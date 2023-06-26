@@ -1,6 +1,7 @@
 package com.ryorama.terrariamod;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.items.ItemsT;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
@@ -14,6 +15,7 @@ public class TerrariaMod {
         CONFIG = AutoConfig.getConfigHolder(TerrariaModConfig.class).getConfig();
 
         BlocksT.init();
+        EntitiesT.init();
         ItemsT.init();
     }
 }

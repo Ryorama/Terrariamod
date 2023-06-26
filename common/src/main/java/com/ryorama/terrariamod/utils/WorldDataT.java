@@ -99,7 +99,7 @@ public class WorldDataT {
                 }
             }
 
-            worldEvil = random.nextInt(1);
+            worldEvil = random.nextInt(2);
             firstUpdate = false;
         }
     }

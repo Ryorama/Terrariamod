@@ -28,6 +28,17 @@ repositories {
         name = "Ladysnake Libs"
         url = "https://ladysnake.jfrog.io/artifactory/mods"
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 dependencies {
@@ -44,6 +55,7 @@ dependencies {
     }
     modImplementation "dev.emi:trinkets:${trinkets_version}"
     modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
+    modImplementation "maven.modrinth:fusion-connected-textures:${rootProject.fusion_version}-fabric-mc1.20"
 }
 
 processResources {

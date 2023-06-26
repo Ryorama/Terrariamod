@@ -1,5 +1,12 @@
 {
-    "parent": "block/cube_all",
+    "type": "fusion:connecting",
+    "parent": "minecraft:block/cube_all",
+    "connections": [
+        {
+            "type": "fusion:is_same_block"
+        }
+    ],
+    "loader": "fusion:model",
     "textures": {
         "all": "terrariamod:block/sunplate_block"
     }

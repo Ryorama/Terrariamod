@@ -20,7 +20,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.io.IOException;
 
 public class TerrariaModEvents {
-    public static boolean firstUpdate = false;
     public int tmpMana = 20;
     public int tmpMaxMana = 20;
 
@@ -35,14 +34,13 @@ public class TerrariaModEvents {
 
         if (player != null) {
 
-            if (!firstUpdate && !WorldDataT.hasStartingTools) {
+            if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                 if (TerrariaMod.CONFIG.modifyPlayerHealth) {
                     player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
-                    player.setHealth(100);
+                    player.setHealth(20);
                 }
 
                 WorldDataT.hasStartingTools = true;
-                firstUpdate = true;
             }
 
             if (TerrariaMod.CONFIG.disableHunger) {
@@ -89,7 +87,7 @@ public class TerrariaModEvents {
             ClientPlayerEntity player = MinecraftClient.getInstance().player;
 
             if (player != null) {
-                if (!firstUpdate && !WorldDataT.hasStartingTools) {
+                if (WorldDataT.firstUpdate) {
                     GameRulesT.MAX_MANA.set(100);
                     GameRulesT.MANA.set(GameRulesT.MAX_MANA.get());
                 }

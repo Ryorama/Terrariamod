@@ -2,10 +2,12 @@ package com.ryorama.terrariamod.mixin;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.utils.StructurePlacerAPI;
 import com.ryorama.terrariamod.utils.WorldDataT;
 import com.ryorama.terrariamod.utils.math.noise.FastNoise;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -237,14 +239,13 @@ public class ChunkGeneratorMixin {
                                 }
                             }
 
-                            /*
+
                             if (world.getRandom().nextInt(4000) == 0) {
                                 if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.GRASS_BLOCK.get().getDefaultState()) {
                                     placeStuff(world, BlocksT.WOOD_CHEST.get().getDefaultState(), world.getRandom(), pos);
                                     LootableContainerBlockEntity.setLootTable(world, world.getRandom(), pos, new Identifier(TerrariaMod.MOD_ID, "chests/surface_chest"));
                                 }
                             }
-                            */
 
                             if (!evil) {
                                 //Foliage
@@ -347,18 +348,25 @@ public class ChunkGeneratorMixin {
                                 }
                             }
 
-                            /*
                             //Structures
                             if (!world.isClient()) {
                                 if (y <= -10 && y >= -150) {
-                                    if (world.getRandom().nextInt() == 0) {
-                                        System.out.println("Structure Place");
-                                        StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MODID, "underground_house"), pos);
+                                    if (world.getRandom().nextInt(10000) == 0) {
+                                        StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "underground_house"), pos);
                                         placerAPI.loadStructure();
                                     }
                                 }
                             }
-                            */
+
+                            if (!world.isClient()) {
+                                if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.get().getDefaultState()) {
+                                    if (world.getRandom().nextInt(15000) == 0) {
+                                        int height = 40 + world.getRandom().nextInt(10);
+                                        StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "cloud"), new BlockPos(pos.getX(), pos.getY() + height, pos.getZ()));
+                                        placerAPI.loadStructure();
+                                    }
+                                }
+                            }
 
                             //Ice generation
                             if (world.getBlockState(pos) == BlocksT.SNOW.get().getDefaultState()) {
@@ -637,14 +645,12 @@ public class ChunkGeneratorMixin {
                         if (world.isChunkLoaded(pos)) {
                             pos.set(x, y + 1, z);
 
-                            /*
                             if (world.getRandom().nextInt(4000) == 0) {
-                                if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == Blocks.GRASS_BLOCK.get().getDefaultState()) {
+                                if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == Blocks.GRASS_BLOCK.getDefaultState()) {
                                     placeStuff(world, BlocksT.WOOD_CHEST.get().getDefaultState(), world.getRandom(), pos);
-                                    LootableContainerBlockEntity.setLootTable(world, world.getRandom(), pos, new Identifier(TerrariaMod.MODID, "chests/surface_chest"));
+                                    LootableContainerBlockEntity.setLootTable(world, world.getRandom(), pos, new Identifier(TerrariaMod.MOD_ID, "chests/surface_chest"));
                                 }
                             }
-                            */
 
                             if (y <= -5) {
                                 if (world.getRandom().nextInt(3500) == 0) {

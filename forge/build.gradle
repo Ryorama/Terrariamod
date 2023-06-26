@@ -11,6 +11,17 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top/"
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 loom {
@@ -43,6 +54,7 @@ dependencies {
     modImplementation ("me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}")
     modImplementation ("top.theillusivec4.curios:curios-forge:${curios_version}")
     modImplementation ("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+    modImplementation "maven.modrinth:fusion-connected-textures:${rootProject.fusion_version}-forge-mc1.20"
 }
 
 processResources {

@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.forge;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.forge.network.GameRulesT;
+import com.ryorama.terrariamod.forge.network.client.rendering.ChestRenderManager;
 import com.ryorama.terrariamod.forge.network.client.ui.TerraruaUIRenderer;
 import com.ryorama.terrariamod.stats.StatsT;
 import com.ryorama.terrariamod.utils.WorldDataT;
@@ -56,5 +57,7 @@ public class TerrariaModForgeClient {
         RenderLayers.setRenderLayer(BlocksT.LIFE_CRYSTAL_BLOCK.get(), RenderLayer.getCutout());
 
         RenderLayers.setRenderLayer(BlocksT.EMPTY_BOTTLE.get(), RenderLayer.getCutout());
+
+        ChestRenderManager.init();
     }
 }

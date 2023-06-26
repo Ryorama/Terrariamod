@@ -5,6 +5,8 @@ import com.ryorama.terrariamod.blocks.impl.BlockT;
 import com.ryorama.terrariamod.blocks.impl.CMBlockT;
 import com.ryorama.terrariamod.blocks.impl.PlantT;
 import com.ryorama.terrariamod.blocks.impl.TreeSegment;
+import com.ryorama.terrariamod.blocks.terraria.chests.*;
+import com.ryorama.terrariamod.entities.EntitiesT;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.block.AbstractBlock;
@@ -39,13 +41,13 @@ public class BlocksT {
     //public static GravestoneT TOMBSTONE = (GravestoneT) new GravestoneT(AbstractBlock.Settings.of), 15, 15).setPick(true);
     //public static GravestoneT GOLD_TOMBSTONE = (GravestoneT) new GravestoneT(AbstractBlock.Settings.of), 15, 15).setPick(true);
 
-    //public static final RegistrySupplier<Block> WOOD_CHEST = register("wood_chest", () -> new WoodChest(AbstractBlock.Settings.of().strength(3, 6), EntitiesT.WOOD_CHEST));
-    //public static final RegistrySupplier<Block> GOLD_CHEST = register("gold_chest", () -> new GoldChest(AbstractBlock.Settings.of().strength(3, 6), EntitiesT.GOLD_CHEST));
-    //public static final RegistrySupplier<Block> WATER_CHEST = register("water_chest", () -> new WaterChest(AbstractBlock.Settings.of().strength(3, 6), EntitiesT.WATER_CHEST));
-    //public static final RegistrySupplier<Block> IVY_CHEST = register("ivy_chest",() -> new IvyChest(AbstractBlock.Settings.of().strength(3, 6), EntitiesT.IVY_CHEST));
-    //public static final RegistrySupplier<Block> SKYWARE_CHEST = register("skyware_chest", () -> new SkywareChest(AbstractBlock.Settings.of().strength(3, 6), EntitiesT.SKYWARE_CHEST);
-    //public static final RegistrySupplier<Block> SANDSTONE_CHEST = register("sandstone_chest", () -> new SandstoneChest(AbstractBlock.Settings.of().strength(3, 6), EntitiesT.SANDSTONE_CHEST));
-    //public static final RegistrySupplier<Block> FROZEN_CHEST = register("frozen_chest", () -> new FrozenChest(AbstractBlock.Settings.of().strength(3, 6), EntitiesT.FROZEN_CHEST));
+    public static final RegistrySupplier<Block> WOOD_CHEST = register("wood_chest", () -> new WoodChest(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final RegistrySupplier<Block> GOLD_CHEST = register("gold_chest", () -> new GoldChest(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final RegistrySupplier<Block> WATER_CHEST = register("water_chest", () -> new WaterChest(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final RegistrySupplier<Block> IVY_CHEST = register("ivy_chest",() -> new IvyChest(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final RegistrySupplier<Block> SKYWARE_CHEST = register("skyware_chest", () -> new SkywareChest(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final RegistrySupplier<Block> SANDSTONE_CHEST = register("sandstone_chest", () -> new SandstoneChest(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final RegistrySupplier<Block> FROZEN_CHEST = register("frozen_chest", () -> new FrozenChest(AbstractBlock.Settings.create().strength(3, 6)));
 
     //public static Larva LARVA = (Larva) new Larva(AbstractBlock.Settings.of(Material.SPONGE), 15, 15).setPick(true).setAxe(true);
 

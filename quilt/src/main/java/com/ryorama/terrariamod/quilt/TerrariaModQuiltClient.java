@@ -1,6 +1,7 @@
 package com.ryorama.terrariamod.quilt;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.quilt.client.rendering.ChestRenderManager;
 import com.ryorama.terrariamod.quilt.client.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.stats.StatsT;
 import com.ryorama.terrariamod.utils.WorldDataT;
@@ -16,11 +17,11 @@ import net.minecraft.stat.Stats;
 
 public class TerrariaModQuiltClient implements ClientModInitializer {
     public int tmpMana = 20;
-    public int tmpMaxMana = 20;
     @Override
     public void onInitializeClient() {
         addCutouts();
         onTickClient();
+        ChestRenderManager.init();
 
         TerrariaUIRenderer.renderTerrariaHealth();
         TerrariaUIRenderer.renderTerrariaMana();
@@ -118,9 +119,9 @@ public class TerrariaModQuiltClient implements ClientModInitializer {
 
                 if (player != null) {
 
-                    if (!TerrariaModQuilt.firstUpdate && !WorldDataT.hasStartingTools) {
+                    if (WorldDataT.firstUpdate) {
                         player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(StatsT.MANA), tmpMana);
-                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(StatsT.MAX_MANA), tmpMaxMana);
+                        player.getStatHandler().setStat(player, Stats.CUSTOM.getOrCreateStat(StatsT.MAX_MANA), tmpMana);
                     }
 
                     if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.POTION_SICKNESS)) > 0) {

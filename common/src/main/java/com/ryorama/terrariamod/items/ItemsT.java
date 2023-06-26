@@ -4,6 +4,10 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.items.impl.BlockItemT;
 import com.ryorama.terrariamod.items.impl.ItemT;
+import com.ryorama.terrariamod.items.terraria.armor.CopperArmorMaterial;
+import com.ryorama.terrariamod.items.terraria.armor.GoldTArmorMaterial;
+import com.ryorama.terrariamod.items.terraria.armor.IronTArmorMaterial;
+import com.ryorama.terrariamod.items.terraria.armor.NinjaArmorMaterial;
 import com.ryorama.terrariamod.items.terraria.axes.CopperAxe;
 import com.ryorama.terrariamod.items.terraria.axes.GoldAxe;
 import com.ryorama.terrariamod.items.terraria.axes.IronAxe;
@@ -23,6 +27,8 @@ import com.ryorama.terrariamod.items.terraria.shortswords.IronShortsword;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
@@ -98,6 +104,28 @@ public class ItemsT {
     public static Item TERRARIA_CAVE_MUSIC;
     public static Item TERRARIA_UNDERWORLD_MUSIC;
     public static Item TERRARIA_TITLE_MUSIC;
+
+    public static final CopperArmorMaterial COPPER_MATERIAL = new CopperArmorMaterial();
+    public static final IronTArmorMaterial IRON_MATERIAL = new IronTArmorMaterial();
+    public static final GoldTArmorMaterial GOLD_MATERIAL = new GoldTArmorMaterial();
+    public static final NinjaArmorMaterial NINJA_MATERIAL = new NinjaArmorMaterial();
+
+    public static final RegistrySupplier<Item> COPPER_HELMET = register("copper_helmet", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()));
+    public static final RegistrySupplier<Item> COPPER_CHESTPLATE = register("copper_chestplate", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()));
+    public static final RegistrySupplier<Item> COPPER_LEGGINGS = register("copper_leggings", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()));
+
+    public static final RegistrySupplier<Item> IRON_HELMET = register("iron_helmet", () -> new ArmorItem(IRON_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()));
+    public static final RegistrySupplier<Item> IRON_CHESTPLATE = register("iron_chestplate", () -> new ArmorItem(IRON_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()));
+    public static final RegistrySupplier<Item> IRON_LEGGINGS = register("iron_leggings", () -> new ArmorItem(IRON_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()));
+
+    public static final RegistrySupplier<Item> GOLD_HELMET = register("gold_helmet", () -> new ArmorItem(GOLD_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()));
+    public static final RegistrySupplier<Item> GOLD_CHESTPLATE = register("gold_chestplate", () -> new ArmorItem(GOLD_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()));
+    public static final RegistrySupplier<Item> GOLD_LEGGINGS = register("gold_leggings", () -> new ArmorItem(GOLD_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()));
+
+    public static final RegistrySupplier<Item> NINJA_HELMET = register("ninja_helmet", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()));
+    public static final RegistrySupplier<Item> NINJA_CHESTPLATE = register("ninja_chestplate", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()));
+    public static final RegistrySupplier<Item> NINJA_LEGGINGS = register("ninja_leggings", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()));
+
 
     public static final RegistrySupplier<Item> GEL = register("gel", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> LENS = register("lens", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
