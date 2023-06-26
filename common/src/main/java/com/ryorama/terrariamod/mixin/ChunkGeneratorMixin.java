@@ -351,7 +351,7 @@ public class ChunkGeneratorMixin {
                             //Structures
                             if (!world.isClient()) {
                                 if (y <= -10 && y >= -150) {
-                                    if (world.getRandom().nextInt(10000) == 0) {
+                                    if (world.getRandom().nextInt(20000) == 0) {
                                         StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "underground_house"), pos);
                                         placerAPI.loadStructure();
                                     }
@@ -360,10 +360,12 @@ public class ChunkGeneratorMixin {
 
                             if (!world.isClient()) {
                                 if (world.getBlockState(pos) == BlocksT.GRASS_BLOCK.get().getDefaultState()) {
-                                    if (world.getRandom().nextInt(15000) == 0) {
-                                        int height = 40 + world.getRandom().nextInt(10);
-                                        StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "cloud"), new BlockPos(pos.getX(), pos.getY() + height, pos.getZ()));
-                                        placerAPI.loadStructure();
+                                    if (world.isChunkLoaded(pos)) {
+                                        if (world.getRandom().nextInt(30000) == 0) {
+                                            int height = 40 + world.getRandom().nextInt(10);
+                                            StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "cloud"), new BlockPos(pos.getX(), pos.getY() + height, pos.getZ()));
+                                            placerAPI.loadStructure();
+                                        }
                                     }
                                 }
                             }

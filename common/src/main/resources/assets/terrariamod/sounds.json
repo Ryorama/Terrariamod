@@ -238,6 +238,11 @@
 		"subtitle": "terrariamod.star_fall",
 		"sounds": [ "terrariamod:star_fall" ]
 	},
+	"run": {
+		"category": "players",
+		"subtitle": "terrariamod.run",
+		"sounds": [ "terrariamod:run" ]
+	},
   "roar_0": {
 	"category": "players",
 	"subtitle": "terrariamod.roar_0",
@@ -273,16 +278,41 @@
 	"subtitle": "terrariamod.crystal_destroy",
 	"sounds": [ "terrariamod:crystal_destroy" ]
   },
+	"grass": {
+		"category": "players",
+		"subtitle": "terrariamod.grass",
+		"sounds": [ "terrariamod:grass" ]
+	},
   "tink0": {
 	"category": "block",
 	"subtitle": "terrariamod.tink0",
 	"sounds": [ "terrariamod:tink0" ]
   },
+	"tink1": {
+		"category": "block",
+		"subtitle": "terrariamod.tink1",
+		"sounds": [ "terrariamod:tink1" ]
+  },
+	"tink2": {
+		"category": "block",
+		"subtitle": "terrariamod.tink2",
+		"sounds": [ "terrariamod:tink2" ]
+	},
   "dig0": {
 	"category": "block",
 	"subtitle": "terrariamod.dig0",
 	"sounds": [ "terrariamod:dig0" ]
   },
+	"icehit": {
+		"category": "block",
+		"subtitle": "terrariamod.icehit",
+		"sounds": [ "terrariamod:icehit" ]
+  },
+	"snowhit1": {
+		"category": "block",
+		"subtitle": "terrariamod.snowhit1",
+		"sounds": [ "terrariamod:snowhit1" ]
+	},
   "shatter": {
 	"category": "sounds",
 	"subtitle": "terrariamod.shatter",

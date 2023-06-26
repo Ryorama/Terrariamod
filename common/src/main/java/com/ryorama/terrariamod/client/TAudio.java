@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.client;
 import com.ryorama.terrariamod.TerrariaMod;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
@@ -37,23 +38,23 @@ public class TAudio {
     public static final SoundEvent NPC_KILL1 = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "npc_killed1"));
     public static final SoundEvent TELEPORT = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "teleport"));
     public static final SoundEvent SUMMON = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "summon"));
+    public static final SoundEvent CRYSTAL_DESTROY = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "crystal_destroy"));
 
-	public static void registerAudio() {
-        /*
-		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "day1"), DAYONE);
-		Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "night"), NIGHT);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "boss1"), BOSS1);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "underground"), UNDERGROUND);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "underworld"), UNDERWORLD);
-        Registry.register(Registry.SOUND_EVENT, new Identifier(TerrariaMod.MODID, "title_screen"), TITLE_SCREEN);
-         */
+    public static final SoundEvent GRASS = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "grass"));
 
-		Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MOD_ID, "health_crystal"), HEALTH_CRYSTAL);
-        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MOD_ID, "roar_0"), ROAR_0);
-        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MOD_ID, "star_fall"), STAR_FALL);
-        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MOD_ID, "npc_hit1"), NPC_HIT1);
-        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MOD_ID, "npc_killed1"), NPC_KILL1);
-        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MOD_ID, "teleport"), TELEPORT);
-        Registry.register(Registries.SOUND_EVENT, new Identifier(TerrariaMod.MOD_ID, "summon"), SUMMON);
-    }
+    public static final SoundEvent DIG_0 = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "dig0"));
+    public static final SoundEvent TINK_0 = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "tink0"));
+    public static final SoundEvent TINK_1 = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "tink1"));
+    public static final SoundEvent TINK_2 = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "tink2"));
+    public static final SoundEvent SNOW_HIT1 = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "snowhit1"));
+    public static final SoundEvent ICE_HIT = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "icehit"));
+    public static final SoundEvent RUN = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "run"));
+
+    public static final BlockSoundGroup DIRT = new BlockSoundGroup(1, 1, DIG_0, RUN, DIG_0, DIG_0, DIG_0);
+    public static final BlockSoundGroup STONE = new BlockSoundGroup(1, 1, TINK_1, RUN, TINK_0, TINK_0, TINK_0);
+    public static final BlockSoundGroup GRASS_GRP = new BlockSoundGroup(1, 1, GRASS, RUN, GRASS, GRASS, GRASS);
+    public static final BlockSoundGroup SNOW = new BlockSoundGroup(1, 1, SNOW_HIT1, RUN, SNOW_HIT1, SNOW_HIT1, SNOW_HIT1);
+    public static final BlockSoundGroup ICE = new BlockSoundGroup(1, 1, ICE_HIT, RUN, ICE_HIT, ICE_HIT, ICE_HIT);
+    public static final BlockSoundGroup LIFE_CRYSTAL_GRP = new BlockSoundGroup(1, 1, CRYSTAL_DESTROY, RUN, CRYSTAL_DESTROY, CRYSTAL_DESTROY, CRYSTAL_DESTROY);
+
 }
