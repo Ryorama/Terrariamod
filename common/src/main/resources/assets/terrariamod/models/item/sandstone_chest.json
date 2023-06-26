@@ -1,3 +1,6 @@
 {
-    "parent": "terrariamod:block/sandstone_chest"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "terrariamod:item/sandstone_chest"
+    }
 }

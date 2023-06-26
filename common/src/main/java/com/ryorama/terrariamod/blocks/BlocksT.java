@@ -96,7 +96,11 @@ public class BlocksT {
     public static final RegistrySupplier<Block> LIFE_CRYSTAL_BLOCK = register("life_crystal_block", () -> new CMBlockT(AbstractBlock.Settings.create().mapColor(DyeColor.PINK).sounds(TAudio.LIFE_CRYSTAL_GRP), 15, 15, 10).setPick(true));
     public static final RegistrySupplier<Block> VINE = register("vine", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.GREEN), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> MUSHROOM = register("mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE), 0.1f, 0.1f).setPick(true));
+    public static final RegistrySupplier<Block> VILE_MUSHROOM = register("vile_mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE), 0.1f, 0.1f).setPick(true));
+    public static final RegistrySupplier<Block> VICIOUS_MUSHROOM = register("vicious_mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> GRASS = register("grass", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.GREEN), 0.1f, 0.1f).setPick(true));
+    public static final RegistrySupplier<Block> DEAD_GRASS = register("dead_grass", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.PURPLE), 0.1f, 0.1f).setPick(true));
+    public static final RegistrySupplier<Block> BLOODY_GRASS = register("bloody_grass", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.RED), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> GLOWING_MUSHROOM = register("glowing_mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f, 15).setPick(true));
     public static final RegistrySupplier<Block> JUNGLE_SPORES = register("jungle_spores", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.LIME), 0.1f, 0.1f, 10).setPick(true));
     public static final RegistrySupplier<Block> BLINKROOT = register("blinkroot", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 0.1f, 0.1f).setPick(true));

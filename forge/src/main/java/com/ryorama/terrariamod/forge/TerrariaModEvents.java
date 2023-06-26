@@ -41,6 +41,7 @@ public class TerrariaModEvents {
                 }
 
                 WorldDataT.hasStartingTools = true;
+                WorldDataT.firstUpdate = false;
             }
 
             if (TerrariaMod.CONFIG.disableHunger) {

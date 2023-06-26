@@ -49,10 +49,14 @@ public class TerrariaModForgeClient {
         RenderLayers.setRenderLayer(BlocksT.WATERLEAF.get(), RenderLayer.getCutout());
 
         RenderLayers.setRenderLayer(BlocksT.MUSHROOM.get(), RenderLayer.getCutout());
+        RenderLayers.setRenderLayer(BlocksT.VILE_MUSHROOM.get(), RenderLayer.getCutout());
+        RenderLayers.setRenderLayer(BlocksT.VICIOUS_MUSHROOM.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(BlocksT.GLOWING_MUSHROOM.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(BlocksT.JUNGLE_SPORES.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(BlocksT.VINE.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(BlocksT.GRASS.get(), RenderLayer.getCutout());
+        RenderLayers.setRenderLayer(BlocksT.BLOODY_GRASS.get(), RenderLayer.getCutout());
+        RenderLayers.setRenderLayer(BlocksT.DEAD_GRASS.get(), RenderLayer.getCutout());
 
         RenderLayers.setRenderLayer(BlocksT.LIFE_CRYSTAL_BLOCK.get(), RenderLayer.getCutout());
 

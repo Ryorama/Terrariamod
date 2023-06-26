@@ -24,9 +24,9 @@ public class CrimsonGrass extends BlockT {
             }
             if (world.getBlockState(pos2).getBlock().getDefaultState() == Blocks.AIR.getDefaultState()) {
                 if (random.nextInt(100 * 10) <= 2) {
-                    world.setBlockState(pos2, BlocksT.GRASS.get().getDefaultState());
+                    world.setBlockState(pos2, BlocksT.BLOODY_GRASS.get().getDefaultState());
                     if (random.nextInt(15) == 0) {
-                        world.setBlockState(pos2, BlocksT.MUSHROOM.get().getDefaultState());
+                        world.setBlockState(pos2, BlocksT.VICIOUS_MUSHROOM.get().getDefaultState());
                     }
                 }
             }

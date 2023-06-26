@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "terrariamod:block/plants/dead_grass/23"
+  }
+}

@@ -279,6 +279,31 @@ public class ChunkGeneratorMixin {
                                 }
                             }
 
+                            //Foliage
+                            if (world.getBlockState(pos) == BlocksT.CORRUPTED_GRASS_BLOCK.get().getDefaultState()) {
+                                if (world.getRandom().nextInt(500) == 0) {
+                                    world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.VILE_MUSHROOM.get().getDefaultState(), 0);
+                                }
+                            }
+
+                            if (world.getBlockState(pos) == BlocksT.CRIMSON_GRASS_BLOCK.get().getDefaultState()) {
+                                if (world.getRandom().nextInt(500) == 0) {
+                                    world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.VICIOUS_MUSHROOM.get().getDefaultState(), 0);
+                                }
+                            }
+
+                            if (world.getBlockState(pos) == BlocksT.CORRUPTED_GRASS_BLOCK.get().getDefaultState()) {
+                                if (world.getRandom().nextInt(5) == 0) {
+                                    world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.DEAD_GRASS.get().getDefaultState(), 0);
+                                }
+                            }
+
+                            if (world.getBlockState(pos) == BlocksT.CRIMSON_GRASS_BLOCK.get().getDefaultState()) {
+                                if (world.getRandom().nextInt(5) == 0) {
+                                    world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.BLOODY_GRASS.get().getDefaultState(), 0);
+                                }
+                            }
+
                             //Ores
                             if (y <= 80) {
                                 if (world.getRandom().nextInt(1200) == 0) {
@@ -352,8 +377,8 @@ public class ChunkGeneratorMixin {
                             if (!world.isClient()) {
                                 if (y <= -10 && y >= -150) {
                                     if (world.getRandom().nextInt(20000) == 0) {
-                                        StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "underground_house"), pos);
-                                        placerAPI.loadStructure();
+                                        //StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "underground_house"), pos);
+                                        //placerAPI.loadStructure();
                                     }
                                 }
                             }
@@ -363,8 +388,8 @@ public class ChunkGeneratorMixin {
                                     if (world.isChunkLoaded(pos)) {
                                         if (world.getRandom().nextInt(30000) == 0) {
                                             int height = 40 + world.getRandom().nextInt(10);
-                                            StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "cloud"), new BlockPos(pos.getX(), pos.getY() + height, pos.getZ()));
-                                            placerAPI.loadStructure();
+                                            //StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "cloud"), new BlockPos(pos.getX(), pos.getY() + height, pos.getZ()));
+                                            //placerAPI.loadStructure();
                                         }
                                     }
                                 }

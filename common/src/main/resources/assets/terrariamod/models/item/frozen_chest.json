@@ -1,3 +1,6 @@
 {
-    "parent": "terrariamod:block/frozen_chest"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "terrariamod:item/frozen_chest"
+    }
 }

@@ -41,6 +41,7 @@ public class TerrariaModQuilt implements ModInitializer {
                     }
 
                     WorldDataT.hasStartingTools = true;
+                    WorldDataT.firstUpdate = false;
                 }
 
                 if (TerrariaMod.CONFIG.disableHunger) {

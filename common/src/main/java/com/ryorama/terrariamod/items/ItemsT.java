@@ -192,6 +192,8 @@ public class ItemsT {
     public static final RegistrySupplier<Item> EMPTY_BOTTLE = register("empty_bottle", () -> new BlockItemT(BlocksT.EMPTY_BOTTLE.get(), new Item.Settings().maxCount(9999)));
     public static final RegistrySupplier<Item> VINE = register("vine", () -> new BlockItemT(BlocksT.VINE.get(), new Item.Settings().maxCount(9999)));
     public static final RegistrySupplier<Item> MUSHROOM = register("mushroom", () -> new BlockItemT(BlocksT.MUSHROOM.get(), new Item.Settings().maxCount(9999)));
+    public static final RegistrySupplier<Item> VILE_MUSHROOM = register("vile_mushroom", () -> new BlockItemT(BlocksT.VILE_MUSHROOM.get(), new Item.Settings().maxCount(9999)));
+    public static final RegistrySupplier<Item> VICIOUS_MUSHROOM = register("vicious_mushroom", () -> new BlockItemT(BlocksT.VICIOUS_MUSHROOM.get(), new Item.Settings().maxCount(9999)));
     public static final RegistrySupplier<Item> GLOWING_MUSHROOM = register("glowing_mushroom", () -> new BlockItemT(BlocksT.GLOWING_MUSHROOM.get(), new Item.Settings().maxCount(9999)));
     public static final RegistrySupplier<Item> JUNGLE_SPORES = register("jungle_spores", () -> new BlockItemT(BlocksT.JUNGLE_SPORES.get(), new Item.Settings().maxCount(9999)));
     public static final RegistrySupplier<Item> BLINKROOT = register("blinkroot", () -> new BlockItemT(BlocksT.BLINKROOT.get(), new Item.Settings().maxCount(9999)));
@@ -201,6 +203,14 @@ public class ItemsT {
     public static final RegistrySupplier<Item> MOONGLOW = register("moonglow", () -> new BlockItemT(BlocksT.MOONGLOW.get(), new Item.Settings().maxCount(9999)));
     public static final RegistrySupplier<Item> SHIVERTHORN = register("shiverthorn", () -> new BlockItemT(BlocksT.SHIVERTHORN.get(), new Item.Settings().maxCount(9999)));
     public static final RegistrySupplier<Item> WATERLEAF = register("waterleaf", () -> new BlockItemT(BlocksT.WATERLEAF.get(), new Item.Settings().maxCount(9999)));
+
+    public static final RegistrySupplier<Item> WOOD_CHEST = register("wood_chest", () -> new BlockItemT(BlocksT.WOOD_CHEST.get(), new Item.Settings().maxCount(9999)));
+    public static final RegistrySupplier<Item> GOLD_CHEST = register("gold_chest", () -> new BlockItemT(BlocksT.GOLD_CHEST.get(), new Item.Settings().maxCount(9999)));
+    public static final RegistrySupplier<Item> IVY_CHEST = register("ivy_chest", () -> new BlockItemT(BlocksT.IVY_CHEST.get(), new Item.Settings().maxCount(9999)));
+    public static final RegistrySupplier<Item> FROZEN_CHEST = register("frozen_chest", () -> new BlockItemT(BlocksT.FROZEN_CHEST.get(), new Item.Settings().maxCount(9999)));
+    public static final RegistrySupplier<Item> SANDSTONE_CHEST = register("sandstone_chest", () -> new BlockItemT(BlocksT.SANDSTONE_CHEST.get(), new Item.Settings().maxCount(9999)));
+    public static final RegistrySupplier<Item> SKYWARE_CHEST = register("skyware_chest", () -> new BlockItemT(BlocksT.SKYWARE_CHEST.get(), new Item.Settings().maxCount(9999)));
+    public static final RegistrySupplier<Item> WATER_CHEST = register("water_chest", () -> new BlockItemT(BlocksT.WATER_CHEST.get(), new Item.Settings().maxCount(9999)));
 
     public static void init() {
         ITEMS.register();

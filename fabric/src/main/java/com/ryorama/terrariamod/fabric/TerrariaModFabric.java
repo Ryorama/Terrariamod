@@ -31,7 +31,6 @@ public class TerrariaModFabric implements ModInitializer {
                 }
 
                 if (player != null) {
-
                     if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                         if (TerrariaMod.CONFIG.modifyPlayerHealth) {
                             player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
@@ -39,6 +38,7 @@ public class TerrariaModFabric implements ModInitializer {
                         }
 
                         WorldDataT.hasStartingTools = true;
+                        WorldDataT.firstUpdate = false;
                     }
 
                     if (TerrariaMod.CONFIG.disableHunger) {

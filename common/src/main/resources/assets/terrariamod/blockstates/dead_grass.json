@@ -1,0 +1,36 @@
+{
+	"variants": {
+		"": [
+			{ "model": "terrariamod:block/dead_grass/01" },
+			{ "model": "terrariamod:block/dead_grass/02" },
+			{ "model": "terrariamod:block/dead_grass/03" },
+			{ "model": "terrariamod:block/dead_grass/04" },
+			{ "model": "terrariamod:block/dead_grass/05" },
+			{ "model": "terrariamod:block/dead_grass/06" },
+			{ "model": "terrariamod:block/dead_grass/07" },
+			{ "model": "terrariamod:block/dead_grass/08" },
+			{ "model": "terrariamod:block/dead_grass/09" },
+			{ "model": "terrariamod:block/dead_grass/10" },
+			{ "model": "terrariamod:block/dead_grass/11" },
+			{ "model": "terrariamod:block/dead_grass/12" },
+			{ "model": "terrariamod:block/dead_grass/13" },
+			{ "model": "terrariamod:block/dead_grass/14" },
+			{ "model": "terrariamod:block/dead_grass/15" },
+			{ "model": "terrariamod:block/dead_grass/16" },
+			{ "model": "terrariamod:block/dead_grass/17" },
+			{ "model": "terrariamod:block/dead_grass/18" },
+			{ "model": "terrariamod:block/dead_grass/19" },
+			{ "model": "terrariamod:block/dead_grass/20" },
+			{ "model": "terrariamod:block/dead_grass/21" },
+			{ "model": "terrariamod:block/dead_grass/22" },
+			{ "model": "terrariamod:block/dead_grass/23" },
+			{ "model": "terrariamod:block/dead_grass/24" },
+			{ "model": "terrariamod:block/dead_grass/25" },
+			{ "model": "terrariamod:block/dead_grass/26" },
+			{ "model": "terrariamod:block/dead_grass/27" },
+			{ "model": "terrariamod:block/dead_grass/28" },
+			{ "model": "terrariamod:block/dead_grass/29" },
+			{ "model": "terrariamod:block/dead_grass/30" }
+		]
+	}
+}

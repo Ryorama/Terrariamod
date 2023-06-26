@@ -100,7 +100,6 @@ public class WorldDataT {
             }
 
             worldEvil = random.nextInt(2);
-            firstUpdate = false;
         }
     }
 

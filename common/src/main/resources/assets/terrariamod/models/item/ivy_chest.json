@@ -1,3 +1,6 @@
 {
-    "parent": "terrariamod:block/ivy_chest"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "terrariamod:item/ivy_chest"
+    }
 }

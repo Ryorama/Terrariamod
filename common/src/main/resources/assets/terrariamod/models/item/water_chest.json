@@ -1,3 +1,6 @@
 {
-    "parent": "terrariamod:block/water_chest"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "terrariamod:item/water_chest"
+    }
 }

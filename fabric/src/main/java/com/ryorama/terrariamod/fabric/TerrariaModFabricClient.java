@@ -74,10 +74,14 @@ public class TerrariaModFabricClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.WATERLEAF.get(), RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.MUSHROOM.get(), RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.VILE_MUSHROOM.get(), RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.VICIOUS_MUSHROOM.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GLOWING_MUSHROOM.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.JUNGLE_SPORES.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.VINE.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GRASS.get(), RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.BLOODY_GRASS.get(), RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.DEAD_GRASS.get(), RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.LIFE_CRYSTAL_BLOCK.get(), RenderLayer.getCutout());
 
