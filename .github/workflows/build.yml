@@ -24,7 +24,18 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - uses: actions/upload-artifact@v2
+    - name: Upload Artifacts - Forge
+      uses: actions/upload-artifact@v2
       with:
         name: Package
-        path: build/libs
+        path: ./forge/build/libs
+    - name: Upload Artifacts - Fabric
+      uses: actions/upload-artifact@v2
+      with:
+        name: Package
+        path: ./fabric/build/libs
+    - name: Upload Artifacts - Quilt
+      uses: actions/upload-artifact@v2
+      with:
+        name: Package
+        path: ./quilt/build/libs

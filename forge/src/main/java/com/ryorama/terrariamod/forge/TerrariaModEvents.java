@@ -1,6 +1,7 @@
 package com.ryorama.terrariamod.forge;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.buffs.BuffsT;
 import com.ryorama.terrariamod.forge.network.GameRulesT;
 import com.ryorama.terrariamod.forge.network.client.ui.TerraruaUIRenderer;
 import com.ryorama.terrariamod.utils.WorldDataT;
@@ -27,6 +28,10 @@ public class TerrariaModEvents {
     public static void WorldTickEvent(TickEvent.LevelTickEvent event) {
         PlayerEntity player = null;
         World world = event.level;
+
+        for (int b = 0; b < BuffsT.buffs.size(); b++) {
+            BuffsT.buffs.get(b).tick();
+        }
 
         for (int p = 0; p < world.getPlayers().size(); p++) {
             player = world.getPlayers().get(p);

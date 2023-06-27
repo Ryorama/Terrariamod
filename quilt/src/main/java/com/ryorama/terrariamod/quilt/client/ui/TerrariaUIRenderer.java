@@ -1,6 +1,7 @@
 package com.ryorama.terrariamod.quilt.client.ui;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.buffs.BuffT;
 import com.ryorama.terrariamod.client.ui.UIRenderer;
 import com.ryorama.terrariamod.stats.StatsT;
 import net.fabricmc.api.EnvType;
@@ -90,6 +91,9 @@ public class TerrariaUIRenderer {
 
     public static void renderTerrariaEffects() {
         HudRenderCallback.EVENT.register((matrixstack, delta) -> {
+
+            BuffT.renderIcon();
+
             if (MinecraftClient.getInstance().player != null) {
                 player = MinecraftClient.getInstance().player;
             }

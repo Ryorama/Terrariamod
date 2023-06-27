@@ -1,6 +1,7 @@
 package com.ryorama.terrariamod.quilt;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.buffs.BuffsT;
 import com.ryorama.terrariamod.stats.StatsT;
 import com.ryorama.terrariamod.utils.WorldDataT;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -26,6 +27,11 @@ public class TerrariaModQuilt implements ModInitializer {
     public void onTick() {
         ServerTickEvents.START_SERVER_TICK.register(world -> {
             WorldDataT.setupWorldData();
+
+            for (int b = 0; b < BuffsT.buffs.size(); b++) {
+                BuffsT.buffs.get(b).tick();
+            }
+
             PlayerEntity player = null;
 
             for (int p = 0; p < world.getPlayerManager().getPlayerList().size(); p++) {

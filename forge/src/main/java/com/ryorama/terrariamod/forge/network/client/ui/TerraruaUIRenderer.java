@@ -1,6 +1,7 @@
 package com.ryorama.terrariamod.forge.network.client.ui;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.buffs.BuffT;
 import com.ryorama.terrariamod.client.ui.UIRenderer;
 import com.ryorama.terrariamod.forge.network.GameRulesT;
 import net.minecraft.client.MinecraftClient;
@@ -79,6 +80,9 @@ public class TerraruaUIRenderer {
     }
 
     public static void renderTerrariaEffects() {
+
+        BuffT.renderIcon();
+
         if (MinecraftClient.getInstance().player != null) {
             player = MinecraftClient.getInstance().player;
         }

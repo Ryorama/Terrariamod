@@ -20,7 +20,8 @@
     "NoiseChunkGeneratorMixin",
     "RavineCarverMixin",
     "CaveCarverMixin",
-    "ChunkGeneratorMixin"
+    "ChunkGeneratorMixin",
+    "LivingEntityMixin"
   ],
   "client": [
     "InGameHudMixin",

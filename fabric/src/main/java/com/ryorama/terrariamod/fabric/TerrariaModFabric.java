@@ -1,6 +1,7 @@
 package com.ryorama.terrariamod.fabric;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.buffs.BuffsT;
 import com.ryorama.terrariamod.stats.StatsT;
 import com.ryorama.terrariamod.utils.WorldDataT;
 import net.fabricmc.api.ModInitializer;
@@ -26,25 +27,29 @@ public class TerrariaModFabric implements ModInitializer {
             WorldDataT.setupWorldData();
             PlayerEntity player = null;
 
-                for (int p = 0; p < world.getPlayerManager().getPlayerList().size(); p++) {
-                    player = world.getPlayerManager().getPlayerList().get(p);
-                }
+            for (int b = 0; b < BuffsT.buffs.size(); b++) {
+                BuffsT.buffs.get(b).tick();
+            }
 
-                if (player != null) {
-                    if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
-                        if (TerrariaMod.CONFIG.modifyPlayerHealth) {
-                            player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
-                            player.setHealth(100);
-                        }
+            for (int p = 0; p < world.getPlayerManager().getPlayerList().size(); p++) {
+                player = world.getPlayerManager().getPlayerList().get(p);
+            }
 
-                        WorldDataT.hasStartingTools = true;
-                        WorldDataT.firstUpdate = false;
+            if (player != null) {
+                if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
+                    if (TerrariaMod.CONFIG.modifyPlayerHealth) {
+                        player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
+                        player.setHealth(100);
                     }
 
-                    if (TerrariaMod.CONFIG.disableHunger) {
-                        player.getHungerManager().setFoodLevel(20);
-                    }
+                    WorldDataT.hasStartingTools = true;
+                    WorldDataT.firstUpdate = false;
                 }
+
+                if (TerrariaMod.CONFIG.disableHunger) {
+                    player.getHungerManager().setFoodLevel(20);
+                }
+            }
         });
     }
 
