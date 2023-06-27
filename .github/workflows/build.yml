@@ -27,15 +27,15 @@ jobs:
     - name: Upload Artifacts - Forge
       uses: actions/upload-artifact@v2
       with:
-        name: Package
+        name: Forge
         path: ./forge/build/libs
     - name: Upload Artifacts - Fabric
       uses: actions/upload-artifact@v2
       with:
-        name: Package
+        name: Fabric
         path: ./fabric/build/libs
     - name: Upload Artifacts - Quilt
       uses: actions/upload-artifact@v2
       with:
-        name: Package
+        name: Quilt
         path: ./quilt/build/libs

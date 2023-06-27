@@ -21,9 +21,7 @@ public class LifeCrystal extends ItemT {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
 
 		//Test code, To be removed
-		if (playerEntity instanceof CustomBuffAccessor) {
-			((CustomBuffAccessor)playerEntity).AddBuff(1000, BuffsT.REGENERATION);
-		}
+		BuffsT.AddBuffToEntity(playerEntity, 1000, BuffsT.REGENERATION);
 		//
 
 		if (playerEntity.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH) < 400) {
