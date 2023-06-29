@@ -28,10 +28,6 @@ public class TerrariaModQuilt implements ModInitializer {
         ServerTickEvents.START_SERVER_TICK.register(world -> {
             WorldDataT.setupWorldData();
 
-            for (int b = 0; b < BuffsT.buffs.size(); b++) {
-                BuffsT.buffs.get(b).tick();
-            }
-
             PlayerEntity player = null;
 
             for (int p = 0; p < world.getPlayerManager().getPlayerList().size(); p++) {
@@ -39,7 +35,9 @@ public class TerrariaModQuilt implements ModInitializer {
             }
 
             if (player != null) {
-
+                for (int b = 0; b < BuffsT.GetEntityActiveBuffs(player).size(); b++) {
+                    BuffsT.GetEntityActiveBuffs(player).get(b).tick();
+                }
                 if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                     if (TerrariaMod.CONFIG.modifyPlayerHealth) {
                         player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);

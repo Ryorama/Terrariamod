@@ -18,6 +18,7 @@ import com.ryorama.terrariamod.items.terraria.broadswords.CopperBroadsword;
 import com.ryorama.terrariamod.items.terraria.broadswords.GoldBroadsword;
 import com.ryorama.terrariamod.items.terraria.broadswords.IronBroadsword;
 import com.ryorama.terrariamod.items.terraria.consumable.misc.LifeCrystal;
+import com.ryorama.terrariamod.items.terraria.consumable.potions.LesserHealingPotion;
 import com.ryorama.terrariamod.items.terraria.picks.CopperPickaxe;
 import com.ryorama.terrariamod.items.terraria.picks.GoldPickaxe;
 import com.ryorama.terrariamod.items.terraria.picks.IronPickaxe;
@@ -152,6 +153,8 @@ public class ItemsT {
     public static final RegistrySupplier<Item> GOLD_PICKAXE = register("gold_pickaxe", () -> new GoldPickaxe().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> GOLD_AXE = register("gold_axe", () -> new GoldAxe().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> GOLD_BOW = register("gold_bow", () -> new GoldBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+
+    public static final RegistrySupplier<Item> LESSER_HEALING_POTION = register("lesser_healing_potion", () -> new LesserHealingPotion(new Item.Settings()).setMaxStack(9999).setRarity(2).isConsumable(true));
 
     public static final RegistrySupplier<Item> GRASS_BLOCK = register("grass_block", () -> new BlockItemT(BlocksT.GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CORRUPTED_GRASS_BLOCK = register("corrupted_grass", () -> new BlockItemT(BlocksT.CORRUPTED_GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));

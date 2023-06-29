@@ -80,9 +80,6 @@ public class TerraruaUIRenderer {
     }
 
     public static void renderTerrariaEffects() {
-
-        BuffT.renderIcon();
-
         if (MinecraftClient.getInstance().player != null) {
             player = MinecraftClient.getInstance().player;
         }

@@ -1,11 +1,14 @@
 package com.ryorama.terrariamod.buffs;
 
 import com.ryorama.terrariamod.buffs.BuffT;
+import net.minecraft.util.Identifier;
 
 import java.util.List;
 
 public interface CustomBuffAccessor {
-    public List<BuffT> GetActiveBuffs();
+    List<BuffT> GetActiveBuffs();
+    List<Identifier> GetActiveBuffIcons();
+    void SetActiveBuffs(List<BuffT> buffs);
 
-    public void AddBuff(float duration, BuffT buff);
+    void AddBuff(float duration, BuffT buff);
 }

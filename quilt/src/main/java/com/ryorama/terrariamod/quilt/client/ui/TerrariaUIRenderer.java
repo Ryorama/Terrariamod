@@ -2,6 +2,7 @@ package com.ryorama.terrariamod.quilt.client.ui;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.buffs.BuffT;
+import com.ryorama.terrariamod.buffs.BuffsT;
 import com.ryorama.terrariamod.client.ui.UIRenderer;
 import com.ryorama.terrariamod.stats.StatsT;
 import net.fabricmc.api.EnvType;
@@ -9,6 +10,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
 
@@ -91,9 +93,6 @@ public class TerrariaUIRenderer {
 
     public static void renderTerrariaEffects() {
         HudRenderCallback.EVENT.register((matrixstack, delta) -> {
-
-            BuffT.renderIcon();
-
             if (MinecraftClient.getInstance().player != null) {
                 player = MinecraftClient.getInstance().player;
             }
@@ -140,6 +139,26 @@ public class TerrariaUIRenderer {
                 if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.WATER_CANDLE)) > 0) {
                     UIRenderer.renderOverlay(water_candle, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
                     effectCounter++;
+                }
+            }
+        });
+    }
+
+    public static void newRenderTerrariaEffects(LivingEntity entity) {
+        HudRenderCallback.EVENT.register((matrixstack, delta) -> {
+            int effectCount = 0;
+
+            if (BuffsT.GetEntityActiveBuffs(entity).size() != 0) {
+                effectCount = BuffsT.GetEntityActiveBuffs(entity).size();
+
+                for (int i = 0; i < effectCount; i++) {
+                    boolean isActive = BuffsT.GetEntityActiveBuffs(entity).get(i).IsActive();
+
+                    if (isActive) {
+                        Identifier icon = BuffsT.GetEntityActiveBuffIcons(entity).get(i);
+
+                        UIRenderer.renderOverlay(icon, 50, 16, 16, 17 + i * 20f, 27, -90);
+                    }
                 }
             }
         });

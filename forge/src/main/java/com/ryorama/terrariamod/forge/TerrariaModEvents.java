@@ -29,15 +29,14 @@ public class TerrariaModEvents {
         PlayerEntity player = null;
         World world = event.level;
 
-        for (int b = 0; b < BuffsT.buffs.size(); b++) {
-            BuffsT.buffs.get(b).tick();
-        }
-
         for (int p = 0; p < world.getPlayers().size(); p++) {
             player = world.getPlayers().get(p);
         }
 
         if (player != null) {
+            for (int b = 0; b < BuffsT.GetEntityActiveBuffs(player).size(); b++) {
+                BuffsT.GetEntityActiveBuffs(player).get(b).tick();
+            }
 
             if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                 if (TerrariaMod.CONFIG.modifyPlayerHealth) {
