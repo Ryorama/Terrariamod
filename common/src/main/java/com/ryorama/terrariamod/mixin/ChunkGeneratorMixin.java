@@ -186,8 +186,10 @@ public class ChunkGeneratorMixin {
                                     state = Blocks.LAVA.getDefaultState();
                                 }
 
-                                if (combined_underworld_base < threshold) {
+                                if (combined_underworld_base - 1 < threshold) {
                                     state = BlocksT.ASH.get().getDefaultState();
+                                } else if (combined_underworld_base < threshold) {
+                                    state = BlocksT.ASH_GRASS_BLOCK.get().getDefaultState();
                                 }
 
                                 if (y <= -253) {

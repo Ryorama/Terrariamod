@@ -35,9 +35,6 @@ public class TerrariaModQuilt implements ModInitializer {
             }
 
             if (player != null) {
-                for (int b = 0; b < BuffsT.GetEntityActiveBuffs(player).size(); b++) {
-                    BuffsT.GetEntityActiveBuffs(player).get(b).tick();
-                }
                 if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                     if (TerrariaMod.CONFIG.modifyPlayerHealth) {
                         player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);

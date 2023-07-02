@@ -17,6 +17,8 @@ import com.ryorama.terrariamod.items.terraria.bows.IronBow;
 import com.ryorama.terrariamod.items.terraria.broadswords.CopperBroadsword;
 import com.ryorama.terrariamod.items.terraria.broadswords.GoldBroadsword;
 import com.ryorama.terrariamod.items.terraria.broadswords.IronBroadsword;
+import com.ryorama.terrariamod.items.terraria.consumable.ammo.arrows.FlamingArrow;
+import com.ryorama.terrariamod.items.terraria.consumable.ammo.arrows.WoodenArrow;
 import com.ryorama.terrariamod.items.terraria.consumable.misc.LifeCrystal;
 import com.ryorama.terrariamod.items.terraria.consumable.potions.LesserHealingPotion;
 import com.ryorama.terrariamod.items.terraria.picks.CopperPickaxe;
@@ -154,12 +156,16 @@ public class ItemsT {
     public static final RegistrySupplier<Item> GOLD_AXE = register("gold_axe", () -> new GoldAxe().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> GOLD_BOW = register("gold_bow", () -> new GoldBow(new Item.Settings()).setMaxStack(1).setRarity(3));
 
+    public static final RegistrySupplier<Item> WOODEN_ARROW = register("wooden_arrow", () -> new WoodenArrow(new Item.Settings()).setMaxStack(9999).setRarity(3));
+    public static final RegistrySupplier<Item> FLAMING_ARROW = register("flaming_arrow", () -> new FlamingArrow(new Item.Settings()).setMaxStack(9999).setRarity(3));
+
     public static final RegistrySupplier<Item> LESSER_HEALING_POTION = register("lesser_healing_potion", () -> new LesserHealingPotion(new Item.Settings()).setMaxStack(9999).setRarity(2).isConsumable(true));
 
     public static final RegistrySupplier<Item> GRASS_BLOCK = register("grass_block", () -> new BlockItemT(BlocksT.GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CORRUPTED_GRASS_BLOCK = register("corrupted_grass", () -> new BlockItemT(BlocksT.CORRUPTED_GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CRIMSON_GRASS_BLOCK = register("crimson_grass", () -> new BlockItemT(BlocksT.CRIMSON_GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> JUNGLE_GRASS_BLOCK = register("jungle_grass", () -> new BlockItemT(BlocksT.JUNGLE_GRASS.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> ASH_GRASS_BLOCK = register("ash_grass_block", () -> new BlockItemT(BlocksT.ASH_GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> DIRT_BLOCK = register("dirt_block", () -> new BlockItemT(BlocksT.DIRT_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> STONE_BLOCK = register("stone_block", () -> new BlockItemT(BlocksT.STONE_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> BLUE_BRICK = register("blue_brick", () -> new BlockItemT(BlocksT.BLUE_BRICK.get(), new Item.Settings().maxCount(9999)).setRarity(2));

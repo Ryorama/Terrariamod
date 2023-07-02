@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.buffs;
+package com.ryorama.terrariamod.entities.impl;
 
 import com.ryorama.terrariamod.buffs.BuffT;
 import net.minecraft.util.Identifier;

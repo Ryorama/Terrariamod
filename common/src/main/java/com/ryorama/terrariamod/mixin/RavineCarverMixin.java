@@ -16,29 +16,25 @@ public class RavineCarverMixin {
 
     @Inject(at = @At("HEAD"), method = "createHorizontalStretchFactors", cancellable = true)
     private void createHorizontalStretchFactors(CarverContext context, RavineCarverConfig config, Random random, CallbackInfoReturnable<float[]> info) {
-        if (TerrariaMod.CONFIG.customWorldGen) {
-            int i = context.getHeight();
-            float[] fs = new float[i];
-            float f = 1.0F;
+        int i = context.getHeight();
+        float[] fs = new float[i];
+        float f = 1.0F;
 
-            for (int j = 0; j < i; ++j) {
-                if (j == 0 || random.nextInt(config.shape.widthSmoothness) == 0) {
-                    f = 1.0F + random.nextFloat() * random.nextFloat();
-                }
-
-                fs[j] = f * f * 2;
+        for (int j = 0; j < i; ++j) {
+            if (j == 0 || random.nextInt(config.shape.widthSmoothness) == 0) {
+                f = 1.0F + random.nextFloat() * random.nextFloat();
             }
 
-            info.setReturnValue(fs);
+            fs[j] = f * f * 2;
         }
+
+        info.setReturnValue(fs);
     }
 
     @Inject(at = @At("HEAD"), method = "getVerticalScale", cancellable = true)
     private void getVerticalScale(RavineCarverConfig config, Random random, double pitch, float branchCount, float branchIndex, CallbackInfoReturnable<Double> info) {
-        if (TerrariaMod.CONFIG.customWorldGen) {
-            float f = 1.0F - MathHelper.abs(0.5F - branchIndex / branchCount) * 2.0F;
-            float g = config.shape.verticalRadiusDefaultFactor + config.shape.verticalRadiusDefaultFactor * f;
-            info.setReturnValue((double) g * pitch * (double) MathHelper.nextBetween(random, 0.75F, 1.0F) * 2);
-        }
+        float f = 1.0F - MathHelper.abs(0.5F - branchIndex / branchCount) * 2.0F;
+        float g = config.shape.verticalRadiusDefaultFactor + config.shape.verticalRadiusDefaultFactor * f;
+        info.setReturnValue((double) g * pitch * (double) MathHelper.nextBetween(random, 0.75F, 1.0F) * 2);
     }
 }

@@ -1,10 +1,14 @@
 package com.ryorama.terrariamod.quilt;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.client.particles.Flame;
+import com.ryorama.terrariamod.client.particles.Leaf;
+import com.ryorama.terrariamod.client.particles.ParticlesT;
 import com.ryorama.terrariamod.quilt.client.rendering.ChestRenderManager;
 import com.ryorama.terrariamod.quilt.client.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.stats.StatsT;
 import com.ryorama.terrariamod.utils.WorldDataT;
+import dev.architectury.registry.client.particle.ParticleProviderRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -22,6 +26,7 @@ public class TerrariaModQuiltClient implements ClientModInitializer {
         addCutouts();
         onTickClient();
         ChestRenderManager.init();
+        registerParticles();
 
         TerrariaUIRenderer.renderTerrariaHealth();
         TerrariaUIRenderer.renderTerrariaMana();
@@ -113,6 +118,11 @@ public class TerrariaModQuiltClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.LIFE_CRYSTAL_BLOCK.get(), RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.EMPTY_BOTTLE.get(), RenderLayer.getCutout());
+    }
+
+    public void registerParticles() {
+        ParticleProviderRegistry.register(ParticlesT.FLAME.get(), Flame.Factory::new);
+        ParticleProviderRegistry.register(ParticlesT.LEAF.get(), Leaf.Factory::new);
     }
 
     @Environment(EnvType.CLIENT)

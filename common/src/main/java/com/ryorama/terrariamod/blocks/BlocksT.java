@@ -91,6 +91,7 @@ public class BlocksT {
     public static final RegistrySupplier<Block> SAPPHIRE_ORE = register("sapphire_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> HONEY_BLOCK = register("honey_block", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.DIRT), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> CRISPY_HONEY_BLOCK = register("crispy_honey_block", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.DIRT), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> ASH_GRASS_BLOCK = register("ash_grass_block", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE).sounds(TAudio.DIRT), 15, 15).setPick(true));
 
     public static final RegistrySupplier<Block> EMPTY_BOTTLE = register("empty_bottle", () -> new CMBlockT(AbstractBlock.Settings.create().mapColor(DyeColor.WHITE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> LIFE_CRYSTAL_BLOCK = register("life_crystal_block", () -> new CMBlockT(AbstractBlock.Settings.create().mapColor(DyeColor.PINK).sounds(TAudio.LIFE_CRYSTAL_GRP), 15, 15, 10).setPick(true));

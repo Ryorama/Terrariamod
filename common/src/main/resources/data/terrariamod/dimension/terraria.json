@@ -1,0 +1,11 @@
+{
+  "generator":{
+    "type":"terrariamod:terraria_chunk_generator",
+    "biome_source":{
+      "type":"minecraft:multi_noise",
+      "preset":"minecraft:overworld"
+    },
+    "settings": "minecraft:overworld"
+  },
+  "type":"terrariamod:terraria_type"
+}

@@ -1,0 +1,9 @@
+{
+  "block": "minecraft:stone",
+  "dim": "terrariamod:terraria",
+  "ignitionType": "ITEM",
+  "ignitionSource": "minecraft:copper_ingot",
+  "r": 0,
+  "g": 255,
+  "b": 0
+}

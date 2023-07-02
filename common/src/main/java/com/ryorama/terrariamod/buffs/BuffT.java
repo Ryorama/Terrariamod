@@ -24,7 +24,7 @@ public class BuffT {
         setIcon(icon);
     }
 
-    public void tick() {
+    public void tick(LivingEntity entity) {
         if (duration > 0) {
             isActive = true;
             int ticks;

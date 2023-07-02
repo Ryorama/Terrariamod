@@ -21,7 +21,9 @@
     "RavineCarverMixin",
     "CaveCarverMixin",
     "ChunkGeneratorMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "DefaultParticleTypeMixin",
+    "ArrowEntityMixin"
   ],
   "client": [
     "InGameHudMixin",

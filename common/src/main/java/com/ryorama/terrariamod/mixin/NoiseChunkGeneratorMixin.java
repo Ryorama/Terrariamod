@@ -6,6 +6,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.ChunkRegion;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
@@ -18,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(NoiseChunkGenerator.class)
-public class NoiseChunkGeneratorMixin {
+public abstract class NoiseChunkGeneratorMixin {
 
     @Inject(at = @At("HEAD"), method = "getBlockState", cancellable = true)
     protected void getBlockState(ChunkNoiseSampler chunkNoiseSampler, int x, int y, int z, BlockState state, CallbackInfoReturnable<BlockState> info) {
@@ -33,10 +34,6 @@ public class NoiseChunkGeneratorMixin {
         if (TerrariaMod.CONFIG.customWorldGen) {
             info.setReturnValue(0);
         }
-    }
-
-    private Chunk populateNoise(StructureAccessor accessor, Chunk chunk, int minY, int noiseSizeY) {
-        return chunk;
     }
 
     @Inject(at = @At("HEAD"), method = "buildSurface", cancellable = true)

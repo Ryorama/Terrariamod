@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.items.impl;
 
+import com.ryorama.terrariamod.entities.impl.ArrowEntityT;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -40,11 +41,12 @@ public class BowT extends ItemT {
         if (inventory.getStack(arrowSlotId).getCount() > 0 && gotFirstArrowStack) {
             ArrowT arrowItem = (ArrowT)inventory.getStack(arrowSlotId).getItem();
             PersistentProjectileEntity arrow = ProjectileUtil.createArrowProjectile(playerIn, inventory.getStack(arrowSlotId), 0);
-            arrow.setDamage(this.damage + arrowItem.damage);
-            arrow.setOnFire(arrowItem.fireDamage);
             if (arrowItem.fireDamage) {
-                arrow.setOnFireFor(10000);
+                if (arrow instanceof ArrowEntityT) {
+                    ((ArrowEntityT)arrow).SetFireDamage(true);
+                }
             }
+            arrow.setDamage(this.damage + arrowItem.damage);
             arrow.setVelocity(playerIn, playerIn.getPitch(), playerIn.getYaw(), 0.0F, 3.0F, 1.0F);
             worldIn.spawnEntity(arrow);
 

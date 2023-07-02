@@ -5,6 +5,7 @@ accessible field net/minecraft/client/render/WorldRenderer SUN Lnet/minecraft/ut
 accessible field net/minecraft/world/gen/chunk/GenerationShapeConfig SURFACE Lnet/minecraft/world/gen/chunk/GenerationShapeConfig;
 mutable field net/minecraft/client/render/WorldRenderer MOON_PHASES Lnet/minecraft/util/Identifier;
 mutable field net/minecraft/client/render/WorldRenderer SUN Lnet/minecraft/util/Identifier;
+extendable class net/minecraft/world/gen/chunk/NoiseChunkGenerator
 
 accessible method net/minecraft/world/gen/densityfunction/DensityFunctions createSurfaceNoiseRouter (Lnet/minecraft/registry/RegistryEntryLookup;Lnet/minecraft/registry/RegistryEntryLookup;ZZ)Lnet/minecraft/world/gen/noise/NoiseRouter;
 

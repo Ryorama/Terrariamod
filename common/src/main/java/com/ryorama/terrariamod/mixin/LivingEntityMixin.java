@@ -2,17 +2,15 @@ package com.ryorama.terrariamod.mixin;
 
 import com.ryorama.terrariamod.buffs.BuffT;
 import com.ryorama.terrariamod.buffs.BuffsT;
-import com.ryorama.terrariamod.buffs.CustomBuffAccessor;
+import com.ryorama.terrariamod.entities.impl.CustomBuffAccessor;
 import net.minecraft.entity.Attackable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -46,14 +44,23 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Cu
             }
         }
 
-        if (this.getEntityWorld().isClient) {
-            if (!calledBuffIconRenderer) {
-                BuffT.renderIcon(thisLivingEntity);
-                calledBuffIconRenderer = true;
+
+        if (this.thisLivingEntity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) thisLivingEntity;
+            World playerWorld = player.getWorld();
+
+            if (playerWorld.isClient()) {
+                if (player.isMainPlayer()) {
+                    if (!calledBuffIconRenderer) {
+                        BuffT.renderIcon(thisLivingEntity);
+                        calledBuffIconRenderer = true;
+                    }
+                }
             }
         }
 
         for (int b = 0; b < activeBuffs.size(); b++) {
+            activeBuffs.get(b).tick(thisLivingEntity);
             if (activeBuffs.get(b).getDuration() <= 0) {
                 RemoveBuff(activeBuffs.get(b));
                 return;

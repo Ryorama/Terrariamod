@@ -2,6 +2,9 @@ package com.ryorama.terrariamod.forge;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.client.particles.Flame;
+import com.ryorama.terrariamod.client.particles.Leaf;
+import com.ryorama.terrariamod.client.particles.ParticlesT;
 import com.ryorama.terrariamod.forge.network.GameRulesT;
 import com.ryorama.terrariamod.forge.network.client.rendering.ChestRenderManager;
 import com.ryorama.terrariamod.forge.network.client.ui.TerraruaUIRenderer;
@@ -15,6 +18,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -63,5 +67,11 @@ public class TerrariaModForgeClient {
         RenderLayers.setRenderLayer(BlocksT.EMPTY_BOTTLE.get(), RenderLayer.getCutout());
 
         ChestRenderManager.init();
+    }
+
+    @SubscribeEvent
+    public static void registerParticles(RegisterParticleProvidersEvent event) {
+        event.registerSpriteSet(ParticlesT.FLAME.get(), Flame.Factory::new);
+        event.registerSpriteSet(ParticlesT.LEAF.get(), Leaf.Factory::new);
     }
 }

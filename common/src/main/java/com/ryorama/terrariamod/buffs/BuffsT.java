@@ -1,7 +1,9 @@
 package com.ryorama.terrariamod.buffs;
 
+import com.ryorama.terrariamod.buffs.terraria.harmful.OnFireDebuff;
 import com.ryorama.terrariamod.buffs.terraria.harmful.PotionSicknessDebuff;
 import com.ryorama.terrariamod.buffs.terraria.helpful.RegenerationBuff;
+import com.ryorama.terrariamod.entities.impl.CustomBuffAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 
@@ -16,10 +18,12 @@ public class BuffsT {
 
     //Debuffs
     public static PotionSicknessDebuff POTION_SICKNESS = new PotionSicknessDebuff();
+    public static OnFireDebuff ON_FIRE = new OnFireDebuff();
 
     public static void init() {
         buffs.add(REGENERATION);
         buffs.add(POTION_SICKNESS);
+        buffs.add(ON_FIRE);
     }
 
 

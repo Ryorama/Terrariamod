@@ -4,11 +4,15 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.buffs.BuffsT;
 import com.ryorama.terrariamod.stats.StatsT;
 import com.ryorama.terrariamod.utils.WorldDataT;
+import com.ryorama.terrariamod.world.TerrariaChunkGenerator;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 
@@ -32,10 +36,6 @@ public class TerrariaModFabric implements ModInitializer {
             }
 
             if (player != null) {
-                for (int b = 0; b < BuffsT.GetEntityActiveBuffs(player).size(); b++) {
-                    BuffsT.GetEntityActiveBuffs(player).get(b).tick();
-                }
-
                 if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                     if (TerrariaMod.CONFIG.modifyPlayerHealth) {
                         player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
