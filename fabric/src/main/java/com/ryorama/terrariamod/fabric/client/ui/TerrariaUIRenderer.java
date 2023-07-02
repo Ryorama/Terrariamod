@@ -41,19 +41,21 @@ public class TerrariaUIRenderer {
 
     public static void renderTerrariaHealth() {
         HudRenderCallback.EVENT.register((matrixstack, delta) -> {
-            float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
+            if (!TerrariaMod.CONFIG.useVanillaHud) {
+                float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
 
-            if (MinecraftClient.getInstance().player != null) {
-                player = MinecraftClient.getInstance().player;
-            }
+                if (MinecraftClient.getInstance().player != null) {
+                    player = MinecraftClient.getInstance().player;
+                }
 
-            if (player != null) {
-                for (int h = 0; h < player.getHealth() + 20; h++) {
-                    if (h % 20 == 0) {
-                        if (h < 200) {
-                            UIRenderer.renderOverlay(health_icon, 50, 8, 8, scaledWidth - 125 + h / 2, 10, -90);
-                        } else if (h > 200) {
-                            UIRenderer.renderOverlay(health_icon, 50, 8, 8, scaledWidth - 125 + h / 2 - 110, 20, -90);
+                if (player != null) {
+                    for (int h = 0; h < player.getHealth() + 20; h++) {
+                        if (h % 20 == 0) {
+                            if (h < 200) {
+                                UIRenderer.renderOverlay(health_icon, 50, 8, 8, scaledWidth - 125 + h / 2, 10, -90);
+                            } else if (h > 200) {
+                                UIRenderer.renderOverlay(health_icon, 50, 8, 8, scaledWidth - 125 + h / 2 - 110, 20, -90);
+                            }
                         }
                     }
                 }
@@ -78,17 +80,18 @@ public class TerrariaUIRenderer {
 
     public static void renderTerrariaMana() {
         HudRenderCallback.EVENT.register((matrixstack, delta) -> {
+            if (!TerrariaMod.CONFIG.useVanillaHud) {
+                float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
 
-            float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
+                if (MinecraftClient.getInstance().player != null) {
+                    player = MinecraftClient.getInstance().player;
+                }
 
-            if (MinecraftClient.getInstance().player != null) {
-                player = MinecraftClient.getInstance().player;
-            }
-
-            if (player != null) {
-                for (int i = 0; i <= player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.MANA)) - 20; i++) {
-                    if (i % 20 == 0) {
-                        UIRenderer.renderOverlay(mana, 50, 10, 10, scaledWidth - 18, 10 + i / 2, -90);
+                if (player != null) {
+                    for (int i = 0; i <= player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.MANA)) - 20; i++) {
+                        if (i % 20 == 0) {
+                            UIRenderer.renderOverlay(mana, 50, 10, 10, scaledWidth - 18, 10 + i / 2, -90);
+                        }
                     }
                 }
             }

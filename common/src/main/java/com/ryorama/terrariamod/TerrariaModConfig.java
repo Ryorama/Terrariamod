@@ -7,17 +7,15 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 @Config(name = "terrariamod")
 public class TerrariaModConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
-    public boolean customWorldGen = true;
+    public boolean customWorldGen = false;
     @ConfigEntry.Gui.Tooltip
-    public boolean generateExtrasInVanilla = true;
+    public boolean generateExtrasInVanilla = false;
     @ConfigEntry.Gui.Tooltip
-    public boolean useVanillaHud = false;
+    public boolean useVanillaHud = true;
     @ConfigEntry.Gui.Tooltip
-    public boolean useVanillaFluidPhysics = false;
+    public boolean useVanillaFluidPhysics = true;
     @ConfigEntry.Gui.Tooltip
-    public boolean modifyPlayerHealth = true;
+    public boolean modifyPlayerHealth = false;
     @ConfigEntry.Gui.Tooltip
-    public boolean disableHunger = true;
-    @ConfigEntry.Gui.Tooltip
-    public boolean useCustomInventory = true;
+    public boolean disableHunger = false;
 }

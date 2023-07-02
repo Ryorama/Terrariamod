@@ -25,7 +25,7 @@
         "com.ryorama.terrariamod.quilt.TerrariaModQuiltClient"
       ],
       "modmenu": [
-        "com.ryorama.terrariamod.fabric.ModMenuIntegration"
+        "com.ryorama.terrariamod.quilt.ModMenuIntegration"
       ]
     },
     "depends": [
