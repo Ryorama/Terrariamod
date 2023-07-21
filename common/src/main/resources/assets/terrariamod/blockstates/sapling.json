@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "": [
+      { "model": "terrariamod:block/trees/saplings/forest/1" },
+      { "model": "terrariamod:block/trees/saplings/forest/2" },
+      { "model": "terrariamod:block/trees/saplings/forest/3" }
+    ]
+  }
+}

@@ -6,6 +6,8 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "max": 3.0,
+          "min": 1.0,
           "name": "terrariamod:wood"
         }
       ],

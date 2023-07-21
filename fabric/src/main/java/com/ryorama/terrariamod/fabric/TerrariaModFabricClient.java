@@ -5,7 +5,7 @@ import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.particles.Flame;
 import com.ryorama.terrariamod.client.particles.Leaf;
 import com.ryorama.terrariamod.client.particles.ParticlesT;
-import com.ryorama.terrariamod.fabric.client.rendering.ChestRenderManager;
+import com.ryorama.terrariamod.fabric.client.rendering.EntityRenderManager;
 import com.ryorama.terrariamod.fabric.client.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.stats.StatsT;
 import com.ryorama.terrariamod.utils.WorldDataT;
@@ -29,7 +29,7 @@ public class TerrariaModFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
         addCutouts();
         onTickClient();
-        ChestRenderManager.init();
+        EntityRenderManager.init();
         registerParticles();
 
         TerrariaUIRenderer.renderTerrariaHealth();
@@ -87,6 +87,9 @@ public class TerrariaModFabricClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GRASS.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.BLOODY_GRASS.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.DEAD_GRASS.get(), RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.SAPLING.get(), RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.CORRUPTED_SAPLING.get(), RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.CRIMSON_SAPLING.get(), RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.LIFE_CRYSTAL_BLOCK.get(), RenderLayer.getCutout());
 

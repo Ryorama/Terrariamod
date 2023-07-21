@@ -6,10 +6,7 @@ import com.ryorama.terrariamod.blocks.impl.CMBlockT;
 import com.ryorama.terrariamod.blocks.impl.PlantT;
 import com.ryorama.terrariamod.blocks.impl.TreeSegment;
 import com.ryorama.terrariamod.blocks.terraria.chests.*;
-import com.ryorama.terrariamod.blocks.terraria.world.CorruptionGrass;
-import com.ryorama.terrariamod.blocks.terraria.world.CrimsonGrass;
-import com.ryorama.terrariamod.blocks.terraria.world.GrassBlockT;
-import com.ryorama.terrariamod.blocks.terraria.world.JungleGrass;
+import com.ryorama.terrariamod.blocks.terraria.world.*;
 import com.ryorama.terrariamod.client.TAudio;
 import com.ryorama.terrariamod.entities.EntitiesT;
 import dev.architectury.registry.registries.DeferredRegister;
@@ -35,6 +32,14 @@ public class BlocksT {
     public static final RegistrySupplier<Block> FOREST_STEM = register("forest_stem", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
     public static final RegistrySupplier<Block> FOREST_TOP = register("forest_top", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
 
+    public static final RegistrySupplier<Block> CORRUPTED_STUMP = register("corrupted_stump", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
+    public static final RegistrySupplier<Block> CORRUPTED_STEM = register("corrupted_stem", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
+    public static final RegistrySupplier<Block> CORRUPTED_TOP = register("corrupted_top", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
+
+    public static final RegistrySupplier<Block> CRIMSON_STUMP = register("crimson_stump", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
+    public static final RegistrySupplier<Block> CRIMSON_STEM = register("crimson_stem", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
+    public static final RegistrySupplier<Block> CRIMSON_TOP = register("crimson_top", () -> new TreeSegment(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setAxe(true));
+
     public static RegistrySupplier<Block> GIANT_GLOWING_MUSHROOM_STEM = register("giant_glowing_mushroom_stem", () -> new TreeSegment(AbstractBlock.Settings.create(), 15, 15).setAxe(true));
     public static RegistrySupplier<Block> GIANT_GLOWING_MUSHROOM_TOP = register("giant_glowing_mushroom_top", () -> new TreeSegment(AbstractBlock.Settings.create().luminance(new ToIntFunction<BlockState>() {
         @Override
@@ -59,6 +64,7 @@ public class BlocksT {
     public static final RegistrySupplier<Block> GRASS_BLOCK = register("grass_block", () -> new GrassBlockT(AbstractBlock.Settings.create().mapColor(DyeColor.GREEN).sounds(TAudio.DIRT)).setPick(true));
     public static final RegistrySupplier<Block> CORRUPTED_GRASS_BLOCK = register("corrupted_grass", () -> new CorruptionGrass(AbstractBlock.Settings.create().mapColor(DyeColor.MAGENTA).sounds(TAudio.DIRT)).setPick(true));
     public static final RegistrySupplier<Block> CRIMSON_GRASS_BLOCK = register("crimson_grass", () -> new CrimsonGrass(AbstractBlock.Settings.create().mapColor(DyeColor.RED).sounds(TAudio.DIRT)).setPick(true));
+    public static final RegistrySupplier<Block> MUSHROOM_GRASS = register("mushroom_grass", () -> new MushroomGrass(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.DIRT)).setPick(true));
     public static final RegistrySupplier<Block> JUNGLE_GRASS = register("jungle_grass", () -> new JungleGrass(AbstractBlock.Settings.create().mapColor(DyeColor.LIME).sounds(TAudio.DIRT)).setPick(true));
     public static final RegistrySupplier<Block> DIRT_BLOCK = register("dirt_block", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN).sounds(TAudio.DIRT), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> STONE_BLOCK = register("stone_block", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.GRAY).sounds(TAudio.STONE), 15, 15).setPick(true));
@@ -75,8 +81,10 @@ public class BlocksT {
     public static final RegistrySupplier<Block> ASH = register("ash", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.GRAY).sounds(TAudio.DIRT), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> MARBLE = register("marble", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.WHITE).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> GRANITE = register("granite", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));
-    public static final RegistrySupplier<Block> MUSHROOM_GRASS = register("mushroom_grass", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.DIRT), 15, 15, 15).setPick(true));
     public static final RegistrySupplier<Block> WOOD = register("wood", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> CORRUPTED_WOOD = register("corrupted_wood", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> CRIMSON_WOOD = register("crimson_wood", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setPick(true));
+
     public static final RegistrySupplier<Block> WOODEN_BEAM = register("wooden_beam", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> SUNPLATE_BLOCK = register("sunplate_block", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> CLOUD = register("cloud", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.WHITE).sounds(TAudio.DIRT), 15, 15).setPick(true));
@@ -99,17 +107,21 @@ public class BlocksT {
     public static final RegistrySupplier<Block> MUSHROOM = register("mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> VILE_MUSHROOM = register("vile_mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> VICIOUS_MUSHROOM = register("vicious_mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE), 0.1f, 0.1f).setPick(true));
+    public static final RegistrySupplier<Block> SAPLING = register("sapling", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.GREEN), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> CORRUPTED_SAPLING = register("corrupted_sapling", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.GREEN), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> CRIMSON_SAPLING = register("crimson_sapling", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.GREEN), 15, 15).setPick(true));
+
     public static final RegistrySupplier<Block> GRASS = register("grass", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.GREEN), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> DEAD_GRASS = register("dead_grass", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.PURPLE), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> BLOODY_GRASS = register("bloody_grass", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.RED), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> GLOWING_MUSHROOM = register("glowing_mushroom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f, 15).setPick(true));
     public static final RegistrySupplier<Block> JUNGLE_SPORES = register("jungle_spores", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.LIME), 0.1f, 0.1f, 10).setPick(true));
-    public static final RegistrySupplier<Block> BLINKROOT = register("blinkroot", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 0.1f, 0.1f).setPick(true));
+    public static final RegistrySupplier<Block> BLINKROOT = register("blinkroot", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN), 0.1f, 0.1f, 3).setPick(true));
     public static final RegistrySupplier<Block> DAYBLOOM = register("daybloom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> DEATHWEED = register("deathweed", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.MAGENTA), 0.1f, 0.1f).setPick(true));
     public static final RegistrySupplier<Block> FIREBLOSSOM = register("fireblossom", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE), 0.1f, 0.1f).setPick(true));
-    public static final RegistrySupplier<Block> MOONGLOW = register("moonglow", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f).setPick(true));
-    public static final RegistrySupplier<Block> SHIVERTHORN = register("shiverthorn", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.LIGHT_BLUE), 0.1f, 0.1f).setPick(true));
+    public static final RegistrySupplier<Block> MOONGLOW = register("moonglow", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f, 5).setPick(true));
+    public static final RegistrySupplier<Block> SHIVERTHORN = register("shiverthorn", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.LIGHT_BLUE), 0.1f, 0.1f, 5).setPick(true));
     public static final RegistrySupplier<Block> WATERLEAF = register("waterleaf", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f).setPick(true));
 
     public static void init() {

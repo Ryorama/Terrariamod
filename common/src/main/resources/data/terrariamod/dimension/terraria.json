@@ -5,7 +5,7 @@
       "type":"minecraft:multi_noise",
       "preset":"minecraft:overworld"
     },
-    "settings": "minecraft:overworld"
+    "settings": "terrariamod:terraria"
   },
   "type":"terrariamod:terraria_type"
 }

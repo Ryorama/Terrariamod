@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "terrariamod:block/trees/forest_leaves2",
-		"particle": "terrariamod:block/trees/forest_leaves2"
+		"0": "terrariamod:block/trees/forest_leaves",
+		"particle": "terrariamod:block/trees/forest_leaves"
 	},
 	"elements": [
 		{

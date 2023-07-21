@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "terrariamod:block/trees/forest_log",
+		"0": "terrariamod:block/trees/forest_log_side",
 		"1": "terrariamod:block/trees/forest_log_top",
-		"particle": "terrariamod:block/trees/forest_log"
+		"particle": "terrariamod:block/trees/forest_log_side"
 	},
 	"elements": [
 		{

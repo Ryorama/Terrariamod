@@ -1,0 +1,11 @@
+{
+  "only_if_present": "terrariamod",
+  "name": "marble",
+  "base_block": "terrariamod:marble",
+  "textures": "terrariamod:block/marble",
+  "recipes": "sawing",
+  "map_color": "fire",
+  "types_to_generate": [
+    "arch", "octagonal_column", "round_arch", "wall_column", "wall_post", "roof"
+  ]
+}

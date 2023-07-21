@@ -1,8 +1,16 @@
 package com.ryorama.terrariamod.blocks.impl;
 
+import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.items.impl.ItemT;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -75,5 +83,26 @@ public class BlockT extends Block {
     public BlockT setAxe(boolean axe) {
         this.axe = axe;
         return this;
+    }
+
+    @Override
+    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+        for (int t = 0; t <= 20; t++) {
+            BlockPos abovePos = new BlockPos(pos.getX(), pos.getY() + t, pos.getZ());
+            Block aboveBlock = world.getBlockState(abovePos).getBlock();
+
+            if (aboveBlock instanceof PlantT && aboveBlock != BlocksT.VINE.get() || aboveBlock instanceof TreeSegment) {
+                world.breakBlock(abovePos, true);
+            }
+        }
+
+        for (int t = 0; t <= 20; t++) {
+            BlockPos bottomPos = new BlockPos(pos.getX(), pos.getY() - t, pos.getZ());
+            Block bottomBlock = world.getBlockState(bottomPos).getBlock();
+
+            if (bottomBlock == BlocksT.VINE.get()) {
+                world.breakBlock(bottomPos, false);
+            }
+        }
     }
 }

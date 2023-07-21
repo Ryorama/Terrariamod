@@ -4,14 +4,11 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.mixin.NoiseChunkGeneratorMixin;
 import com.ryorama.terrariamod.utils.WorldDataT;
 import com.ryorama.terrariamod.utils.math.noise.FastNoise;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryOps;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -20,18 +17,22 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.util.math.random.CheckedRandom;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.ChunkRegion;
+import net.minecraft.world.HeightLimitView;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
+import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
+import net.minecraft.world.gen.noise.NoiseConfig;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.BitSet;
-import java.util.function.Function;
 
 public class TerrariaChunkGenerator extends NoiseChunkGenerator {
     public static final Codec<NoiseChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> {
@@ -61,6 +62,20 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
     @Override
     protected Codec<? extends ChunkGenerator> getCodec() {
         return CODEC;
+    }
+
+    @Override
+    public int getHeight(int x, int z, Heightmap.Type heightmap, HeightLimitView world, NoiseConfig noiseConfig) {
+        return 0;
+    }
+
+    @Override
+    public void buildSurface(ChunkRegion region, StructureAccessor structures, NoiseConfig noiseConfig, Chunk chunk) {
+
+    }
+
+    private BlockState getBlockState(ChunkNoiseSampler chunkNoiseSampler, int x, int y, int z, BlockState state) {
+        return Blocks.AIR.getDefaultState();
     }
 
     @Override
@@ -128,6 +143,10 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
                     pos.set(x, y, z);
 
                     if (world.isChunkLoaded(pos)) {
+                        if (world.getBlockState(pos) == Blocks.WATER.getDefaultState() || world.getBlockState(pos) == Blocks.LAVA.getDefaultState()) {
+                            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 0);
+                        }
+
                         if (world.getBlockState(pos) != Blocks.WATER.getDefaultState() && world.getBlockState(pos) != Blocks.LAVA.getDefaultState()) {
                             pos.set(x, y, z);
                             BlockState state = Blocks.AIR.getDefaultState();;
@@ -530,10 +549,8 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
                                             }
 
                                             if (world.getBlockState(pos) == BlocksT.MUSHROOM_GRASS.get().getDefaultState()) {
-                                                if (world.getRandom().nextInt(70) == 0) {
-                                                    if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ())) == Blocks.AIR.getDefaultState()) {
-                                                        world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.GLOWING_MUSHROOM.get().getDefaultState(), 0);
-                                                    }
+                                                if (world.getRandom().nextInt(100) == 0) {
+                                                    world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.GLOWING_MUSHROOM.get().getDefaultState(), 0);
                                                 }
                                             }
                                         }

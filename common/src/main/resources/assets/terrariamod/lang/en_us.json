@@ -28,6 +28,12 @@
 	"block.terrariamod.forest_stump": "Forest Stump",
 	"block.terrariamod.forest_stem": "Forest Stem",
 	"block.terrariamod.forest_top": "Forest Top",
+	"block.terrariamod.corrupted_stump": "Ebonwood Stump",
+	"block.terrariamod.corrupted_stem": "Ebonwood Stem",
+	"block.terrariamod.corrupted_top": "Ebonwood Top",
+	"block.terrariamod.crimson_stump": "Shadewood Stump",
+	"block.terrariamod.crimson_stem": "Shadewood Stem",
+	"block.terrariamod.crimson_top": "Shadewood Top",
 	"block.terrariamod.giant_glowing_mushroom_stem": "Giant Glowing Mushroom Stem",
 	"block.terrariamod.giant_glowing_mushroom_top": "Giant Glowing Mushroom Top",
 	"block.terrariamod.crimtane_ore": "Crimtane Ore",
@@ -57,6 +63,8 @@
 	"item.terrariamod.shackle": "Shackle",
 	"item.terrariamod.gold_crown": "Gold Crown",
 	"block.terrariamod.wood": "Wood",
+	"block.terrariamod.corrupted_wood": "Ebonwood",
+	"block.terrariamod.crimson_wood": "Shadewood",
 	"item.terrariamod.slime_crown": "Slime Crown",
 	"item.terrariamod.lucky_horseshoe": "Lucky Horseshoe",
 	"item.terrariamod.excalibur": "Excalibur",
@@ -225,6 +233,7 @@
 	"item.terrariamod.hellfire_arrow": "Hellfire Arrow",
 	"item.terrariamod.grenade": "Grenade",
 	"item.terrariamod.glowstick": "Glowstick",
+	"item.terrariamod.acorn": "Acorn",
 	"item.terrariamod.bomb": "Bomb",
 	"item.terrariamod.rope_coil": "Rope Coil",
 	"item.terrariamod.musket": "Musket",
@@ -433,5 +442,5 @@
 	"key.terrariamod.hotbareight.desc": "Hotbar Slot 8",
 	"key.terrariamod.hotbarnine.desc": "Hotbar Slot 9",
 	"key.terrariamod.clearsummons.desc": "Clear Summons",
-	"generator.terrariamod": "Terraria"
+	"generator.terrariamod.terraria": "Terraria"
 }

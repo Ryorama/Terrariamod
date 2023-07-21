@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.utils;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 import com.ryorama.terrariamod.buffs.BuffT;
@@ -115,9 +116,16 @@ public class WorldDataT {
         nbtCompound.putInt("worldEvil", worldEvil);
 
         File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
+        Path savesPath = Path.of(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName());
+
+        if (!Files.exists(savesPath)) {
+            Files.createDirectory(savesPath);
+        }
+
         if (!dataFile.exists()) {
             Files.createFile(Path.of(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat"));
         }
+
         NbtIo.writeCompressed(nbtCompound, dataFile);
     }
 
@@ -125,6 +133,7 @@ public class WorldDataT {
         NbtCompound nbtCompound = new NbtCompound();
 
         File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
+
         if (dataFile.exists()) {
             nbtCompound = NbtIo.readCompressed(dataFile);
         }

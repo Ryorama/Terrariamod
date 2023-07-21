@@ -1,0 +1,11 @@
+{
+  "only_if_present": "terrariamod",
+  "name": "stone",
+  "base_block": "terrariamod:stone",
+  "textures": "terrariamod:block/stone",
+  "recipes": "sawing",
+  "map_color": "fire",
+  "types_to_generate": [
+    "arch", "octagonal_column", "round_arch", "wall_column", "wall_post", "roof"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "only_if_present": "terrariamod",
+  "name": "green_brick",
+  "base_block": "terrariamod:green_brick",
+  "textures": "terrariamod:block/green_brick",
+  "recipes": "sawing",
+  "map_color": "fire",
+  "types_to_generate": [
+    "arch", "octagonal_column", "round_arch", "wall_column", "wall_post", "roof"
+  ]
+}

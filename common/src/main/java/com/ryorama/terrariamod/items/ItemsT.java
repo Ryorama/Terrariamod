@@ -2,12 +2,10 @@ package com.ryorama.terrariamod.items;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.items.impl.BlockItemT;
 import com.ryorama.terrariamod.items.impl.ItemT;
-import com.ryorama.terrariamod.items.terraria.armor.CopperArmorMaterial;
-import com.ryorama.terrariamod.items.terraria.armor.GoldTArmorMaterial;
-import com.ryorama.terrariamod.items.terraria.armor.IronTArmorMaterial;
-import com.ryorama.terrariamod.items.terraria.armor.NinjaArmorMaterial;
+import com.ryorama.terrariamod.items.terraria.armor.*;
 import com.ryorama.terrariamod.items.terraria.axes.CopperAxe;
 import com.ryorama.terrariamod.items.terraria.axes.GoldAxe;
 import com.ryorama.terrariamod.items.terraria.axes.IronAxe;
@@ -31,10 +29,7 @@ import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemGroups;
+import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -112,29 +107,30 @@ public class ItemsT {
     public static final IronTArmorMaterial IRON_MATERIAL = new IronTArmorMaterial();
     public static final GoldTArmorMaterial GOLD_MATERIAL = new GoldTArmorMaterial();
     public static final NinjaArmorMaterial NINJA_MATERIAL = new NinjaArmorMaterial();
+    public static final CrownMaterial CROWN_MATERIAL = new CrownMaterial();
 
-    public static final RegistrySupplier<Item> COPPER_HELMET = register("copper_helmet", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()));
-    public static final RegistrySupplier<Item> COPPER_CHESTPLATE = register("copper_chestplate", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()));
-    public static final RegistrySupplier<Item> COPPER_LEGGINGS = register("copper_leggings", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()));
+    public static final RegistrySupplier<Item> COPPER_HELMET = register("copper_helmet", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> COPPER_CHESTPLATE = register("copper_chestplate", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> COPPER_LEGGINGS = register("copper_leggings", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
 
-    public static final RegistrySupplier<Item> IRON_HELMET = register("iron_helmet", () -> new ArmorItem(IRON_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()));
-    public static final RegistrySupplier<Item> IRON_CHESTPLATE = register("iron_chestplate", () -> new ArmorItem(IRON_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()));
-    public static final RegistrySupplier<Item> IRON_LEGGINGS = register("iron_leggings", () -> new ArmorItem(IRON_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()));
+    public static final RegistrySupplier<Item> IRON_HELMET = register("iron_helmet", () -> new ArmorItem(IRON_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> IRON_CHESTPLATE = register("iron_chestplate", () -> new ArmorItem(IRON_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> IRON_LEGGINGS = register("iron_leggings", () -> new ArmorItem(IRON_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
 
-    public static final RegistrySupplier<Item> GOLD_HELMET = register("gold_helmet", () -> new ArmorItem(GOLD_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()));
-    public static final RegistrySupplier<Item> GOLD_CHESTPLATE = register("gold_chestplate", () -> new ArmorItem(GOLD_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()));
-    public static final RegistrySupplier<Item> GOLD_LEGGINGS = register("gold_leggings", () -> new ArmorItem(GOLD_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()));
+    public static final RegistrySupplier<Item> GOLD_HELMET = register("gold_helmet", () -> new ArmorItem(GOLD_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> GOLD_CHESTPLATE = register("gold_chestplate", () -> new ArmorItem(GOLD_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> GOLD_LEGGINGS = register("gold_leggings", () -> new ArmorItem(GOLD_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
 
-    public static final RegistrySupplier<Item> NINJA_HELMET = register("ninja_helmet", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()));
-    public static final RegistrySupplier<Item> NINJA_CHESTPLATE = register("ninja_chestplate", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()));
-    public static final RegistrySupplier<Item> NINJA_LEGGINGS = register("ninja_leggings", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()));
+    public static final RegistrySupplier<Item> NINJA_HELMET = register("ninja_helmet", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> NINJA_CHESTPLATE = register("ninja_chestplate", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> NINJA_LEGGINGS = register("ninja_leggings", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
 
-
+    public static final RegistrySupplier<Item> ACORN = register("acorn", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> GEL = register("gel", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> LENS = register("lens", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> FALLEN_STAR = register("fallen_star", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> LIFE_CRYSTAL = register("life_crystal", () -> new LifeCrystal(new Item.Settings().maxCount(9999)).setRarity(4));
-    public static final RegistrySupplier<Item> GOLD_CROWN = register("gold_crown", () -> new ItemT(new Item.Settings().maxCount(1).maxCount(9999)).setRarity(2).setMaxStack(1));
+    public static final RegistrySupplier<Item> GOLD_CROWN = register("gold_crown", () -> new ArmorItem(CROWN_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
     public static final RegistrySupplier<Item> COPPER_BAR = register("copper_bar", () ->  new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> IRON_BAR = register("iron_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> GOLD_BAR = register("gold_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
@@ -161,6 +157,10 @@ public class ItemsT {
 
     public static final RegistrySupplier<Item> LESSER_HEALING_POTION = register("lesser_healing_potion", () -> new LesserHealingPotion(new Item.Settings()).setMaxStack(9999).setRarity(2).isConsumable(true));
 
+    public static final RegistrySupplier<Item> GREEN_SLIME_SPAWN_EGG = register("green_slime_spawn_egg", () -> new SpawnEggItem(EntitiesT.GREEN_SLIME.get(), 0x2ec221, 0x5fed53, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
+    public static final RegistrySupplier<Item> BLUE_SLIME_SPAWN_EGG = register("blue_slime_spawn_egg", () -> new SpawnEggItem(EntitiesT.BLUE_SLIME.get(), 0x2f7dc4, 0x53a3ed, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
+
+
     public static final RegistrySupplier<Item> GRASS_BLOCK = register("grass_block", () -> new BlockItemT(BlocksT.GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CORRUPTED_GRASS_BLOCK = register("corrupted_grass", () -> new BlockItemT(BlocksT.CORRUPTED_GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CRIMSON_GRASS_BLOCK = register("crimson_grass", () -> new BlockItemT(BlocksT.CRIMSON_GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
@@ -180,6 +180,9 @@ public class ItemsT {
     public static final RegistrySupplier<Item> MARBLE = register("marble", () -> new BlockItemT(BlocksT.MARBLE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> GRANITE = register("granite", () -> new BlockItemT(BlocksT.GRANITE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> WOOD = register("wood", () -> new BlockItemT(BlocksT.WOOD.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> CORRUPTED_WOOD = register("corrupted_wood", () -> new BlockItemT(BlocksT.CORRUPTED_WOOD.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> CRIMSON_WOOD = register("crimson_wood", () -> new BlockItemT(BlocksT.CRIMSON_WOOD.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+
     public static final RegistrySupplier<Item> WOODEN_BEAM = register("wooden_beam", () -> new BlockItemT(BlocksT.WOODEN_BEAM.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> EBONSTONE = register("ebonstone", () -> new BlockItemT(BlocksT.EBONSTONE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CRIMSTONE = register("crimstone", () -> new BlockItemT(BlocksT.CRIMSTONE.get(), new Item.Settings().maxCount(9999)).setRarity(2));

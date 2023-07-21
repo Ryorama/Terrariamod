@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "": [
+      { "model": "terrariamod:block/trees/saplings/crimson/1" },
+      { "model": "terrariamod:block/trees/saplings/crimson/2" },
+      { "model": "terrariamod:block/trees/saplings/crimson/3" }
+    ]
+  }
+}

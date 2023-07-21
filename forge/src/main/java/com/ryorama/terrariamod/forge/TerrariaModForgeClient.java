@@ -5,27 +5,14 @@ import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.particles.Flame;
 import com.ryorama.terrariamod.client.particles.Leaf;
 import com.ryorama.terrariamod.client.particles.ParticlesT;
-import com.ryorama.terrariamod.forge.network.GameRulesT;
-import com.ryorama.terrariamod.forge.network.client.rendering.ChestRenderManager;
-import com.ryorama.terrariamod.forge.network.client.ui.TerraruaUIRenderer;
-import com.ryorama.terrariamod.stats.StatsT;
-import com.ryorama.terrariamod.utils.WorldDataT;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
+import com.ryorama.terrariamod.forge.network.client.rendering.EntityRenderManager;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
-import net.minecraft.stat.Stats;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod.EventBusSubscriber(modid = TerrariaMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TerrariaModForgeClient {
@@ -61,12 +48,15 @@ public class TerrariaModForgeClient {
         RenderLayers.setRenderLayer(BlocksT.GRASS.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(BlocksT.BLOODY_GRASS.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(BlocksT.DEAD_GRASS.get(), RenderLayer.getCutout());
+        RenderLayers.setRenderLayer(BlocksT.SAPLING.get(), RenderLayer.getCutout());
+        RenderLayers.setRenderLayer(BlocksT.CORRUPTED_SAPLING.get(), RenderLayer.getCutout());
+        RenderLayers.setRenderLayer(BlocksT.CRIMSON_SAPLING.get(), RenderLayer.getCutout());
 
         RenderLayers.setRenderLayer(BlocksT.LIFE_CRYSTAL_BLOCK.get(), RenderLayer.getCutout());
 
         RenderLayers.setRenderLayer(BlocksT.EMPTY_BOTTLE.get(), RenderLayer.getCutout());
 
-        ChestRenderManager.init();
+        EntityRenderManager.init();
     }
 
     @SubscribeEvent

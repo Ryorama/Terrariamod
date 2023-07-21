@@ -1,20 +1,24 @@
 package com.ryorama.terrariamod.forge;
 
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.buffs.BuffsT;
+import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.forge.network.GameRulesT;
 import com.ryorama.terrariamod.forge.network.client.ui.TerraruaUIRenderer;
 import com.ryorama.terrariamod.utils.WorldDataT;
+import com.ryorama.terrariamod.world.EntitySpawner;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -48,6 +52,31 @@ public class TerrariaModEvents {
                 player.getHungerManager().setFoodLevel(20);
             }
         }
+
+        if (world.getPlayers().size() > 0) {
+            PlayerEntity player2 = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
+            ServerPlayerEntity serverPlayerEntity = ((ServerPlayerEntity) player2);
+            if (world.getRandom().nextInt(700) <= 10) {
+                int x = (int) (player2.getPos().x + world.random.nextInt(80) - 40), y = (int) (player2.getPos().y + world.random.nextInt(80) - 40), z = (int) (player2.getPos().z + world.random.nextInt(80) - 40);
+
+                for (PlayerEntity p2 : world.getPlayers()) {
+                    if (p2.getPos().distanceTo(new Vec3d(x, y, z)) >= 5) {
+                        new Thread() {
+                            public void run() {
+                                EntitySpawner.spawnEntities(player2, x, y, z);
+                            }
+                        }.start();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void RegisterEntityAttributesEvent(EntityAttributeCreationEvent event) {
+        event.put(EntitiesT.GREEN_SLIME.get(), MobEntity.createMobAttributes().build());
+        event.put(EntitiesT.BLUE_SLIME.get(), MobEntity.createMobAttributes().build());
     }
 
     @SubscribeEvent

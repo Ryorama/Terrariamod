@@ -17,10 +17,6 @@
     "FlowingMixin",
     "LavaFluidMixin",
     "WaterFluidMixin",
-    "NoiseChunkGeneratorMixin",
-    "RavineCarverMixin",
-    "CaveCarverMixin",
-    "ChunkGeneratorMixin",
     "LivingEntityMixin",
     "DefaultParticleTypeMixin",
     "ArrowEntityMixin"

@@ -21,7 +21,7 @@ public class PlantT extends BlockT {
     }
 
     public PlantT(AbstractBlock.Settings properties, float hardness, float difficulty, int luminance) {
-        super(properties.nonOpaque().noCollision().luminance(new ToIntFunction<BlockState>() {
+        super(properties.nonOpaque().sounds(TAudio.GRASS_GRP).noCollision().luminance(new ToIntFunction<BlockState>() {
             @Override
             public int applyAsInt(BlockState value) {
                 return luminance;

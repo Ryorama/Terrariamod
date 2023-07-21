@@ -1,0 +1,11 @@
+{
+  "only_if_present": "terrariamod",
+  "name": "wood",
+  "base_block": "terrariamod:wood",
+  "textures": "terrariamod:block/wood",
+  "recipes": "sawing",
+  "map_color": "fire",
+  "types_to_generate": [
+    "arch", "beam", "crown_molding", "fence_post", "joist", "lattice", "round_fence_post", "transom", "post_cap", "post_lantern", "roof"
+  ]
+}

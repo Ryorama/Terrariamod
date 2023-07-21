@@ -52,7 +52,7 @@ public class TAudio {
 
     public static final BlockSoundGroup DIRT = new BlockSoundGroup(1, 1, DIG_0, RUN, DIG_0, DIG_0, DIG_0);
     public static final BlockSoundGroup STONE = new BlockSoundGroup(1, 1, TINK_1, RUN, TINK_0, TINK_0, TINK_0);
-    public static final BlockSoundGroup GRASS_GRP = new BlockSoundGroup(1, 1, GRASS, RUN, GRASS, GRASS, GRASS);
+    public static final BlockSoundGroup GRASS_GRP = new BlockSoundGroup(1, 0, GRASS, RUN, GRASS, GRASS, GRASS);
     public static final BlockSoundGroup SNOW = new BlockSoundGroup(1, 1, SNOW_HIT1, RUN, SNOW_HIT1, SNOW_HIT1, SNOW_HIT1);
     public static final BlockSoundGroup ICE = new BlockSoundGroup(1, 1, ICE_HIT, RUN, ICE_HIT, ICE_HIT, ICE_HIT);
     public static final BlockSoundGroup LIFE_CRYSTAL_GRP = new BlockSoundGroup(1, 1, CRYSTAL_DESTROY, RUN, CRYSTAL_DESTROY, CRYSTAL_DESTROY, CRYSTAL_DESTROY);
