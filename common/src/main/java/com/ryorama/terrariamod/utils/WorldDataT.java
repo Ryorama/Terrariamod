@@ -66,8 +66,6 @@ public class WorldDataT {
     public static void setupWorldData() {
         if (firstUpdate) {
             File worldDif = new File("WorldSettingsDif.txt");
-            System.out.println(worldDif.exists());
-            System.out.println(worldDif.getAbsolutePath());
             if (worldDif.exists()) {
                 BufferedReader reader = null;
                 try {
@@ -116,17 +114,12 @@ public class WorldDataT {
         nbtCompound.putInt("worldEvil", worldEvil);
 
         File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
-        Path savesPath = Path.of(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName());
-
-        if (!Files.exists(savesPath)) {
-            Files.createDirectory(savesPath);
-        }
 
         if (!dataFile.exists()) {
-            Files.createFile(Path.of(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat"));
+            //Files.createFile(Path.of(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat"));
         }
 
-        NbtIo.writeCompressed(nbtCompound, dataFile);
+        //NbtIo.writeCompressed(nbtCompound, dataFile);
     }
 
     public static void loadData(World world) throws IOException {
@@ -135,16 +128,16 @@ public class WorldDataT {
         File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
 
         if (dataFile.exists()) {
-            nbtCompound = NbtIo.readCompressed(dataFile);
+            //nbtCompound = NbtIo.readCompressed(dataFile);
         }
 
-        expert = nbtCompound.getBoolean("expert");
-        master = nbtCompound.getBoolean("master");
-        hasStartingTools = nbtCompound.getBoolean("hasStartingTools");
-        bloodMoon = nbtCompound.getBoolean("bloodmoon");
-        solarEclipse = nbtCompound.getBoolean("solarEclipse");
-        firstUpdate = nbtCompound.getBoolean("firstUpdate");
-        worldEvil = nbtCompound.getInt("worldEvil");
+        //expert = nbtCompound.getBoolean("expert");
+        //master = nbtCompound.getBoolean("master");
+        //hasStartingTools = nbtCompound.getBoolean("hasStartingTools");
+        //bloodMoon = nbtCompound.getBoolean("bloodmoon");
+        //solarEclipse = nbtCompound.getBoolean("solarEclipse");
+        //firstUpdate = nbtCompound.getBoolean("firstUpdate");
+        //worldEvil = nbtCompound.getInt("worldEvil");
     }
 
     public static void saveData(WorldAccess world) throws IOException {
