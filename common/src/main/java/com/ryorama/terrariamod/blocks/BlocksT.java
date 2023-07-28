@@ -1,10 +1,7 @@
 package com.ryorama.terrariamod.blocks;
 
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.blocks.impl.BlockT;
-import com.ryorama.terrariamod.blocks.impl.CMBlockT;
-import com.ryorama.terrariamod.blocks.impl.PlantT;
-import com.ryorama.terrariamod.blocks.impl.TreeSegment;
+import com.ryorama.terrariamod.blocks.impl.*;
 import com.ryorama.terrariamod.blocks.terraria.chests.*;
 import com.ryorama.terrariamod.blocks.terraria.world.*;
 import com.ryorama.terrariamod.client.TAudio;
@@ -98,10 +95,10 @@ public class BlocksT {
     public static final RegistrySupplier<Block> PLATINUM_ORE = register("platinum_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> SILVER_ORE = register("silver_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> TUNGSTEN_ORE = register("tungsten_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
-    public static final RegistrySupplier<Block> METEORITE_ORE = register("meteorite_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> METEORITE_ORE = register("meteorite_ore", () -> new HotBlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 50, 50).setPick(true));
     public static final RegistrySupplier<Block> DEMONITE_ORE = register("demonite_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.PURPLE).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> CRIMTANE_ORE = register("crimtane_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.RED).sounds(TAudio.STONE), 15, 15).setPick(true));
-    public static final RegistrySupplier<Block> HELLSTONE_ORE = register("hellstone_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE).sounds(TAudio.STONE), 50, 50, 10).setPick(true));
+    public static final RegistrySupplier<Block> HELLSTONE_ORE = register("hellstone_ore", () -> new HotBlockT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE).sounds(TAudio.STONE), 50, 50).setPick(true));
     public static final RegistrySupplier<Block> RUBY_ORE = register("ruby_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.RED).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> SAPPHIRE_ORE = register("sapphire_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> DIAMOND_ORE = register("diamond_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));

@@ -107,7 +107,8 @@ public class ItemsT {
     public static final IronTArmorMaterial IRON_MATERIAL = new IronTArmorMaterial();
     public static final GoldTArmorMaterial GOLD_MATERIAL = new GoldTArmorMaterial();
     public static final NinjaArmorMaterial NINJA_MATERIAL = new NinjaArmorMaterial();
-    public static final CrownMaterial CROWN_MATERIAL = new CrownMaterial();
+    public static final GoldCrownMaterial GOLD_CROWN_MATERIAL = new GoldCrownMaterial();
+    public static final PlatinumCrownMaterial PLATINUM_CROWN_MATERIAL = new PlatinumCrownMaterial();
 
     public static final RegistrySupplier<Item> COPPER_HELMET = register("copper_helmet", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
     public static final RegistrySupplier<Item> COPPER_CHESTPLATE = register("copper_chestplate", () -> new ArmorItem(COPPER_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
@@ -130,7 +131,8 @@ public class ItemsT {
     public static final RegistrySupplier<Item> LENS = register("lens", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> FALLEN_STAR = register("fallen_star", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> LIFE_CRYSTAL = register("life_crystal", () -> new LifeCrystal(new Item.Settings().maxCount(9999)).setRarity(4));
-    public static final RegistrySupplier<Item> GOLD_CROWN = register("gold_crown", () -> new ArmorItem(CROWN_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> GOLD_CROWN = register("gold_crown", () -> new ArmorItem(GOLD_CROWN_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
+    public static final RegistrySupplier<Item> PLATINUM_CROWN = register("platinum_crown", () -> new ArmorItem(PLATINUM_CROWN_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
     public static final RegistrySupplier<Item> COPPER_BAR = register("copper_bar", () ->  new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> IRON_BAR = register("iron_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> GOLD_BAR = register("gold_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));

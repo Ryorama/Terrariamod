@@ -5,7 +5,7 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 
-public class CrownMaterial implements ArmorMaterial {
+public class PlatinumCrownMaterial implements ArmorMaterial {
 
 	@Override
 	public int getDurability(ArmorItem.Type type) {
@@ -34,7 +34,7 @@ public class CrownMaterial implements ArmorMaterial {
 
 	@Override
 	public String getName() {
-		return "gold_crown";
+		return "platinum_crown";
 	}
 
 	@Override
