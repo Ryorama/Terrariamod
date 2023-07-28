@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/gold_pickaxe"
+    "layer0": "terrariamod:item/tools/pickaxes/gold_pickaxe"
   }
 }

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "terrariamod:block/empty_bottle" }
+        "": { "model": "terrariamod:block/furniture/empty_bottle" }
     }
 }

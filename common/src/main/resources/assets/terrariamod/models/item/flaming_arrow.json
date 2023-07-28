@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/flaming_arrow"
+    "layer0": "terrariamod:item/ammo/arrows/flaming_arrow"
   }
 }

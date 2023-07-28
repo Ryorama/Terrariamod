@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/ninja_leggings"
+    "layer0": "terrariamod:item/armor/ninja_leggings"
   }
 }

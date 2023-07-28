@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/iron_bar"
+    "layer0": "terrariamod:item/bars/iron"
   }
 }

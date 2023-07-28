@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/regeneration_potion"
+    "layer0": "terrariamod:item/consumables/potions/regeneration_potion"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/crimson_wood"
+    "layer0": "terrariamod:item/wood/crimson_wood"
   }
 }

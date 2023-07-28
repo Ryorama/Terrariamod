@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/gold_shortsword"
+    "layer0": "terrariamod:item/tools/swords/gold_shortsword"
   }
 }

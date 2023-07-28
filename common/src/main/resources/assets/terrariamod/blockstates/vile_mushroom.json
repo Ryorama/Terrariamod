@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "terrariamod:block/vile_mushroom" }
+        "": { "model": "terrariamod:block/plants/vile_mushroom" }
     }
 }

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "terrariamod:block/jungle_spores" }
+        "": { "model": "terrariamod:block/plants/jungle_spores" }
     }
 }

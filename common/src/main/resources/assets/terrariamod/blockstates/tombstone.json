@@ -1,7 +1,7 @@
 {
     "variants": {
         "": [
-            { "model": "terrariamod:block/tombstone" }
+            { "model": "terrariamod:block/furniture/gravestones/tombstone" }
         ]
     }
 }

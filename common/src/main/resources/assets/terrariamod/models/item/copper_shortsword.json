@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/copper_shortsword"
+    "layer0": "terrariamod:item/tools/swords/copper_shortsword"
   },
   "display": {
     "thirdperson_righthand": {

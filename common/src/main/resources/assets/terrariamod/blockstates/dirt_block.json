@@ -1,9 +1,9 @@
 {
     "variants": {
         "": [
-            { "model": "terrariamod:block/dirt_block", "weight": 20 },
-            { "model": "terrariamod:block/dirt_block", "weight": 5 },
-            { "model": "terrariamod:block/dirt_block", "weight": 1 }
+            { "model": "terrariamod:block/natural/dirt_block", "weight": 20 },
+            { "model": "terrariamod:block/natural/dirt_block", "weight": 5 },
+            { "model": "terrariamod:block/natural/dirt_block", "weight": 1 }
         ]
     }
 }

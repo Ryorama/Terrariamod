@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/crimson_wood" },
-            { "model": "terrariamod:block/crimson_wood", "y": 90 },
-            { "model": "terrariamod:block/crimson_wood", "y": 180 },
-            { "model": "terrariamod:block/crimson_wood", "y": 270 }
+            { "model": "terrariamod:block/wood/crimson_wood" },
+            { "model": "terrariamod:block/wood/crimson_wood", "y": 90 },
+            { "model": "terrariamod:block/wood/crimson_wood", "y": 180 },
+            { "model": "terrariamod:block/wood/crimson_wood", "y": 270 }
         ]
     }
 }

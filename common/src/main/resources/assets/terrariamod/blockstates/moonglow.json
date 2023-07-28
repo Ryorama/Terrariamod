@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "terrariamod:block/moonglow" }
+        "": { "model": "terrariamod:block/plants/herbs/moonglow" }
     }
 }

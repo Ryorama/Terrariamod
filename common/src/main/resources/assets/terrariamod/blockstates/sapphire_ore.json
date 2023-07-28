@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/sapphire_ore" },
-            { "model": "terrariamod:block/sapphire_ore", "y": 90 },
-            { "model": "terrariamod:block/sapphire_ore", "y": 180 },
-            { "model": "terrariamod:block/sapphire_ore", "y": 270 }
+            { "model": "terrariamod:block/ores/sapphire_ore" },
+            { "model": "terrariamod:block/ores/sapphire_ore", "y": 90 },
+            { "model": "terrariamod:block/ores/sapphire_ore", "y": 180 },
+            { "model": "terrariamod:block/ores/sapphire_ore", "y": 270 }
         ]
     }
 }

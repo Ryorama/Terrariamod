@@ -1,8 +1,8 @@
 {
   "variants": {
-    "facing=north": { "model": "terrariamod:block/saandstone_chest" },
-    "facing=east":  { "model": "terrariamod:block/saandstone_chest", "y":  90},
-    "facing=south": { "model": "terrariamod:block/saandstone_chest", "y": 180 },
-    "facing=west":  { "model": "terrariamod:block/saandstone_chest", "y": 270 }
+    "facing=north": { "model": "terrariamod:block/furniture/chests/sandstone_chest" },
+    "facing=east":  { "model": "terrariamod:block/furniture/chests/sandstone_chest", "y":  90},
+    "facing=south": { "model": "terrariamod:block/furniture/chests/sandstone_chest", "y": 180 },
+    "facing=west":  { "model": "terrariamod:block/furniture/chests/sandstone_chest", "y": 270 }
   }
 }

@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/wooden_beam" },
-            { "model": "terrariamod:block/wooden_beam", "y": 90 },
-            { "model": "terrariamod:block/wooden_beam", "y": 180 },
-            { "model": "terrariamod:block/wooden_beam", "y": 270 }
+            { "model": "terrariamod:block/furniture/beams/wooden_beam" },
+            { "model": "terrariamod:block/furniture/beams/wooden_beam", "y": 90 },
+            { "model": "terrariamod:block/furniture/beams/wooden_beam", "y": 180 },
+            { "model": "terrariamod:block/furniture/beams/wooden_beam", "y": 270 }
         ]
     }
 }

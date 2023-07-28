@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/royal_gel"
+    "layer0": "terrariamod:item/accessories/royal_gel"
   }
 }

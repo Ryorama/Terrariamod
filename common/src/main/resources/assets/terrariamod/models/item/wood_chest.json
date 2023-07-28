@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "terrariamod:item/wood_chest"
+        "layer0": "terrariamod:item/furniture/chests/wood_chest"
     }
 }

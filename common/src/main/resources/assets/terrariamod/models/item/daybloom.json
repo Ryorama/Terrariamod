@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/daybloom"
+    "layer0": "terrariamod:item/plants/herbs/daybloom"
   }
 }

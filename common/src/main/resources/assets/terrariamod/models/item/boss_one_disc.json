@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/boss_one_disc"
+    "layer0": "terrariamod:item/music_discs/boss_one_disc"
   }
 }

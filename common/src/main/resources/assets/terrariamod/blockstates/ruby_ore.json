@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/ruby_ore" },
-            { "model": "terrariamod:block/ruby_ore", "y": 90 },
-            { "model": "terrariamod:block/ruby_ore", "y": 180 },
-            { "model": "terrariamod:block/ruby_ore", "y": 270 }
+            { "model": "terrariamod:block/ores/ruby_ore" },
+            { "model": "terrariamod:block/ores/ruby_ore", "y": 90 },
+            { "model": "terrariamod:block/ores/ruby_ore", "y": 180 },
+            { "model": "terrariamod:block/ores/ruby_ore", "y": 270 }
         ]
     }
 }

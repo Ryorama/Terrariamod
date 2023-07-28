@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/iron_pickaxe"
+    "layer0": "terrariamod:item/tools/pickaxes/iron_pickaxe"
   }
 }

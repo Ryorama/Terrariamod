@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/blue_brick" },
-            { "model": "terrariamod:block/blue_brick", "y": 90 },
-            { "model": "terrariamod:block/blue_brick", "y": 180 },
-            { "model": "terrariamod:block/blue_brick", "y": 270 }
+            { "model": "terrariamod:block/building/blue_brick" },
+            { "model": "terrariamod:block/building/blue_brick", "y": 90 },
+            { "model": "terrariamod:block/building/blue_brick", "y": 180 },
+            { "model": "terrariamod:block/building/blue_brick", "y": 270 }
         ]
     }
 }

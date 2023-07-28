@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "terrariamod:block/fireblossom" }
+        "": { "model": "terrariamod:block/plants/herbs/fireblossom" }
     }
 }

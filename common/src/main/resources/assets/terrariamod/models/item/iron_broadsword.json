@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/iron_broadsword"
+    "layer0": "terrariamod:item/tools/swords/iron_broadsword"
   }
 }

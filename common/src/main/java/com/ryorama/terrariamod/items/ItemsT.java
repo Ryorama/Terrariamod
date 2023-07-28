@@ -136,6 +136,8 @@ public class ItemsT {
     public static final RegistrySupplier<Item> GOLD_BAR = register("gold_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> DEMONITE_BAR = register("demonite_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CRIMTANE_BAR = register("crimtane_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> HELLSTONE_BAR = register("hellstone_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(4));
+
     public static final RegistrySupplier<Item> COPPER_SHORTSWORD = register("copper_shortsword", () -> new CopperShortsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_BROADSWORD = register("copper_broadsword", () -> new CopperBroadsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_PICKAXE = register("copper_pickaxe", () -> new CopperPickaxe().setMaxStack(1).setRarity(3));

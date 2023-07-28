@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/spike" },
-            { "model": "terrariamod:block/spike", "y": 90 },
-            { "model": "terrariamod:block/spike", "y": 180 },
-            { "model": "terrariamod:block/spike", "y": 270 }
+            { "model": "terrariamod:block/furniture/spike" },
+            { "model": "terrariamod:block/furniture/spike", "y": 90 },
+            { "model": "terrariamod:block/furniture/spike", "y": 180 },
+            { "model": "terrariamod:block/furniture/spike", "y": 270 }
         ]
     }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/copper_axe"
+    "layer0": "terrariamod:item/tools/axes/copper_axe"
   }
 }

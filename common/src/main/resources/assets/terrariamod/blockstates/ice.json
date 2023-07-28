@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/ice" },
-            { "model": "terrariamod:block/ice", "y": 90 },
-            { "model": "terrariamod:block/ice", "y": 180 },
-            { "model": "terrariamod:block/ice", "y": 270 }
+            { "model": "terrariamod:block/natural/ice" },
+            { "model": "terrariamod:block/natural/ice", "y": 90 },
+            { "model": "terrariamod:block/natural/ice", "y": 180 },
+            { "model": "terrariamod:block/natural/ice", "y": 270 }
         ]
     }
 }

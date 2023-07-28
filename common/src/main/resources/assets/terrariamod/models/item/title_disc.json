@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/underworld_disc"
+    "layer0": "terrariamod:item/music_discs/underworld_disc"
   }
 }

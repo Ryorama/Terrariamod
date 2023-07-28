@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/copper_broadsword"
+    "layer0": "terrariamod:item/tools/swords/copper_broadsword"
   }
 }

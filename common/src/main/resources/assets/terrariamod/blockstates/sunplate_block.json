@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/sunplate_block" },
-            { "model": "terrariamod:block/sunplate_block", "y": 90 },
-            { "model": "terrariamod:block/sunplate_block", "y": 180 },
-            { "model": "terrariamod:block/sunplate_block", "y": 270 }
+            { "model": "terrariamod:block/natural/sunplate_block" },
+            { "model": "terrariamod:block/natural/sunplate_block", "y": 90 },
+            { "model": "terrariamod:block/natural/sunplate_block", "y": 180 },
+            { "model": "terrariamod:block/natural/sunplate_block", "y": 270 }
         ]
     }
 }

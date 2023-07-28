@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "terrariamod:block/glowing_mushroom" }
+        "": { "model": "terrariamod:block/plants/glowing_mushroom" }
     }
 }

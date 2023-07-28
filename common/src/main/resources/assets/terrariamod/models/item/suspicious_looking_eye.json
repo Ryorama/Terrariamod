@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/suspicious_looking_eye"
+    "layer0": "terrariamod:item/consumables/boss_summons/suspicious_looking_eye"
   }
 }

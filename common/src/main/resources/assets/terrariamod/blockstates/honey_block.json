@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/honey_block" },
-            { "model": "terrariamod:block/honey_block", "y": 90 },
-            { "model": "terrariamod:block/honey_block", "y": 180 },
-            { "model": "terrariamod:block/honey_block", "y": 270 }
+            { "model": "terrariamod:block/natural/honey_block" },
+            { "model": "terrariamod:block/natural/honey_block", "y": 90 },
+            { "model": "terrariamod:block/natural/honey_block", "y": 180 },
+            { "model": "terrariamod:block/natural/honey_block", "y": 270 }
         ]
     }
 }

@@ -1,10 +1,10 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/snow" },
-            { "model": "terrariamod:block/snow", "y": 90 },
-            { "model": "terrariamod:block/snow", "y": 180 },
-            { "model": "terrariamod:block/snow", "y": 270 }
+            { "model": "terrariamod:block/natural/snow" },
+            { "model": "terrariamod:block/natural/snow", "y": 90 },
+            { "model": "terrariamod:block/natural/snow", "y": 180 },
+            { "model": "terrariamod:block/natural/snow", "y": 270 }
         ]
     }
 }

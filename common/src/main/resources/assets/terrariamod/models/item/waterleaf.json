@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/waterleaf"
+    "layer0": "terrariamod:item/plants/herbs/waterleaf"
   }
 }

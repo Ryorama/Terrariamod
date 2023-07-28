@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "terrariamod:item/demonite"
+    "layer0": "terrariamod:item/ores/demonite"
   }
 }
