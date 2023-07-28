@@ -137,7 +137,12 @@ public class ItemsT {
     public static final RegistrySupplier<Item> DEMONITE_BAR = register("demonite_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CRIMTANE_BAR = register("crimtane_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> HELLSTONE_BAR = register("hellstone_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(4));
-
+    public static final RegistrySupplier<Item> TIN_BAR = register("tin_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> LEAD_BAR = register("lead_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> PLATINUM_BAR = register("platinum_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> TUNGSTEN_BAR = register("tungsten_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> SILVER_BAR = register("silver_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> METEORITE_BAR = register("meteorite_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(4));
     public static final RegistrySupplier<Item> COPPER_SHORTSWORD = register("copper_shortsword", () -> new CopperShortsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_BROADSWORD = register("copper_broadsword", () -> new CopperBroadsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_PICKAXE = register("copper_pickaxe", () -> new CopperPickaxe().setMaxStack(1).setRarity(3));
@@ -200,8 +205,19 @@ public class ItemsT {
     public static final RegistrySupplier<Item> DEMONITE_ORE = register("demonite_ore", () -> new BlockItemT(BlocksT.DEMONITE_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CRIMTANE_ORE = register("crimtane_ore", () -> new BlockItemT(BlocksT.CRIMTANE_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> HELLSTONE_ORE = register("hellstone_ore", () -> new BlockItemT(BlocksT.HELLSTONE_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> TIN_ORE = register("tin_ore", () -> new BlockItemT(BlocksT.TIN_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> LEAD_ORE = register("lead_ore", () -> new BlockItemT(BlocksT.LEAD_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> PLATINUM_ORE = register("platinum_ore", () -> new BlockItemT(BlocksT.PLATINUM_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> SILVER_ORE = register("silver_ore", () -> new BlockItemT(BlocksT.SILVER_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> TUNGSTEN_ORE = register("tungsten_ore", () -> new BlockItemT(BlocksT.TUNGSTEN_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> METEORITE_ORE = register("meteorite_ore", () -> new BlockItemT(BlocksT.METEORITE_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> OBSIDIAN = register("obsidian", () -> new BlockItemT(BlocksT.OBSIDIAN.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> RUBY_ORE = register("ruby_ore", () -> new BlockItemT(BlocksT.RUBY_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> SAPPHIRE_ORE = register("sapphire_ore", () -> new BlockItemT(BlocksT.SAPPHIRE_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> EMERALD_ORE = register("emerald_ore", () -> new BlockItemT(BlocksT.EMERALD_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> DIAMOND_ORE = register("diamond_ore", () -> new BlockItemT(BlocksT.DIAMOND_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> TOPAZ_ORE = register("topaz_ore", () -> new BlockItemT(BlocksT.TOPAZ_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> AMETHYST_ORE = register("amethyst_ore", () -> new BlockItemT(BlocksT.AMETHYST_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
 
     public static final RegistrySupplier<Item> EMPTY_BOTTLE = register("empty_bottle", () -> new BlockItemT(BlocksT.EMPTY_BOTTLE.get(), new Item.Settings().maxCount(9999)));
     public static final RegistrySupplier<Item> VINE = register("vine", () -> new BlockItemT(BlocksT.VINE.get(), new Item.Settings().maxCount(9999)));

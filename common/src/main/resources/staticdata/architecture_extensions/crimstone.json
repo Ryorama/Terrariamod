@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "crimstone",
   "base_block": "terrariamod:crimstone",
-  "textures": "terrariamod:block/crimstone",
+  "textures": "terrariamod:block/natural/crimstone",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [

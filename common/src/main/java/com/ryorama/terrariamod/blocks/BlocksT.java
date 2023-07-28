@@ -90,13 +90,25 @@ public class BlocksT {
     public static final RegistrySupplier<Block> CLOUD = register("cloud", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.WHITE).sounds(TAudio.DIRT), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> RAIN_CLOUD = register("rain_cloud", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.GRAY).sounds(TAudio.DIRT), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> COPPER_ORE = register("copper_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> TIN_ORE = register("tin_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BROWN).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> IRON_ORE = register("iron_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.WHITE).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> LEAD_ORE = register("lead_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.WHITE).sounds(TAudio.STONE), 15, 15).setPick(true));
+
     public static final RegistrySupplier<Block> GOLD_ORE = register("gold_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> PLATINUM_ORE = register("platinum_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> SILVER_ORE = register("silver_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> TUNGSTEN_ORE = register("tungsten_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> METEORITE_ORE = register("meteorite_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> DEMONITE_ORE = register("demonite_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.PURPLE).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> CRIMTANE_ORE = register("crimtane_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.RED).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> HELLSTONE_ORE = register("hellstone_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE).sounds(TAudio.STONE), 50, 50, 10).setPick(true));
     public static final RegistrySupplier<Block> RUBY_ORE = register("ruby_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.RED).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> SAPPHIRE_ORE = register("sapphire_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> DIAMOND_ORE = register("diamond_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> EMERALD_ORE = register("emerald_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> TOPAZ_ORE = register("topaz_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> AMETHYST_ORE = register("amethyst_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));
+    public static final RegistrySupplier<Block> OBSIDIAN = register("obsidian", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> HONEY_BLOCK = register("honey_block", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.DIRT), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> CRISPY_HONEY_BLOCK = register("crispy_honey_block", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.DIRT), 15, 15).setPick(true));
     public static final RegistrySupplier<Block> ASH_GRASS_BLOCK = register("ash_grass_block", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE).sounds(TAudio.DIRT), 15, 15).setPick(true));

@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "marble",
   "base_block": "terrariamod:marble",
-  "textures": "terrariamod:block/marble",
+  "textures": "terrariamod:block/natural/marble",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [

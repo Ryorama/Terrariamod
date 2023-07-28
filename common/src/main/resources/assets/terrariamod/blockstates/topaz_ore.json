@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "terrariamod:block/ores/topaz_ore" },
+            { "model": "terrariamod:block/ores/topaz_ore", "y": 90 },
+            { "model": "terrariamod:block/ores/topaz_ore", "y": 180 },
+            { "model": "terrariamod:block/ores/topaz_ore", "y": 270 }
+        ]
+    }
+}

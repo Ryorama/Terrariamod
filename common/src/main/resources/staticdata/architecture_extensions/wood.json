@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "wood",
   "base_block": "terrariamod:wood",
-  "textures": "terrariamod:block/wood",
+  "textures": "terrariamod:block/wood/wood",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [

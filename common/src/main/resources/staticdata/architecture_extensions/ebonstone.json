@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "ebonstone",
   "base_block": "terrariamod:ebonstone",
-  "textures": "terrariamod:block/ebonstone",
+  "textures": "terrariamod:block/natural/ebonstone",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [

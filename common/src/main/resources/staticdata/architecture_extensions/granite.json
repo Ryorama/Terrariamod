@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "granite",
   "base_block": "terrariamod:granite",
-  "textures": "terrariamod:block/granite",
+  "textures": "terrariamod:block/natural/granite",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [

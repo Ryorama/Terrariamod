@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "crimson_wood",
   "base_block": "terrariamod:crimson_wood",
-  "textures": "terrariamod:block/crimson_wood",
+  "textures": "terrariamod:block/wood/crimson_wood",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [

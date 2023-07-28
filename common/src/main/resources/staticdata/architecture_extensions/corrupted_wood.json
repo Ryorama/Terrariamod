@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "corrupted_wood",
   "base_block": "terrariamod:corrupted_wood",
-  "textures": "terrariamod:block/corrupted_wood",
+  "textures": "terrariamod:block/wood/corrupted_wood",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [

@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "stone",
   "base_block": "terrariamod:stone",
-  "textures": "terrariamod:block/stone",
+  "textures": "terrariamod:block/natural/stone",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [

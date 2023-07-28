@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "purple_brick",
   "base_block": "terrariamod:purple_brick",
-  "textures": "terrariamod:block/purple_brick",
+  "textures": "terrariamod:block/building/purple_brick",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [

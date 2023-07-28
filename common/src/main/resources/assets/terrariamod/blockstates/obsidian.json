@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [ 
+            { "model": "terrariamod:block/ores/obsidian" },
+            { "model": "terrariamod:block/ores/obsidian", "y": 90 },
+            { "model": "terrariamod:block/ores/obsidian", "y": 180 },
+            { "model": "terrariamod:block/ores/obsidian", "y": 270 }
+        ]
+    }
+}

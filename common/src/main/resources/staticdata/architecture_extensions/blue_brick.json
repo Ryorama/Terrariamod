@@ -2,7 +2,7 @@
   "only_if_present": "terrariamod",
   "name": "blue_brick",
   "base_block": "terrariamod:blue_brick",
-  "textures": "terrariamod:block/blue_brick",
+  "textures": "terrariamod:block/building/blue_brick",
   "recipes": "sawing",
   "map_color": "fire",
   "types_to_generate": [
