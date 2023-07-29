@@ -1,0 +1,2 @@
+REMINDER:
+Convert audio from stereo to mono using Audacity
