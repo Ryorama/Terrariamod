@@ -1,10 +1,7 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/ores/silver_ore" },
-            { "model": "terrariamod:block/ores/silver_ore", "y": 90 },
-            { "model": "terrariamod:block/ores/silver_ore", "y": 180 },
-            { "model": "terrariamod:block/ores/silver_ore", "y": 270 }
+            { "model": "terrariamod:block/ores/silver_ore" }
         ]
     }
 }

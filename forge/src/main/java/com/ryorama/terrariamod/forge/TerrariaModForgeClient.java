@@ -30,6 +30,8 @@ public class TerrariaModForgeClient {
         RenderLayers.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_STEM.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_STEM.get(), RenderLayer.getTranslucent());
 
+        RenderLayers.setRenderLayer(BlocksT.CACTUS.get(), RenderLayer.getCutout());
+        RenderLayers.setRenderLayer(BlocksT.CACTUS.get(), RenderLayer.getTranslucent());
 
         RenderLayers.setRenderLayer(BlocksT.BLINKROOT.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(BlocksT.DAYBLOOM.get(), RenderLayer.getCutout());

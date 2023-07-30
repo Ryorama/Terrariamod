@@ -19,7 +19,7 @@ public class MushroomGrass extends BlockT {
             public int applyAsInt(BlockState value) {
                 return 15;
             }
-        }), 15, 15);
+        }), BlocksT.GROUND_HARDNESS, 10);
     }
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {

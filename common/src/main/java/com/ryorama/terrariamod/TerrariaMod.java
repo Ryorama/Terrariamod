@@ -31,7 +31,6 @@ public class TerrariaMod {
     public static void init() {
         AutoConfig.register(TerrariaModConfig.class, GsonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(TerrariaModConfig.class).getConfig();
-
         CHUNK_GENERATORS.register();
         BuffsT.init();
         ParticlesT.init();

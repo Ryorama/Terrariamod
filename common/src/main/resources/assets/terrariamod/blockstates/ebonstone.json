@@ -1,10 +1,7 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/natural/ebonstone" },
-            { "model": "terrariamod:block/natural/ebonstone", "y": 90 },
-            { "model": "terrariamod:block/natural/ebonstone", "y": 180 },
-            { "model": "terrariamod:block/natural/ebonstone", "y": 270 }
+            { "model": "terrariamod:block/natural/ebonstone" }
         ]
     }
 }

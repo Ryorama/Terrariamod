@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class GrassBlockT extends BlockT {
     public GrassBlockT(AbstractBlock.Settings settings) {
-        super(settings.ticksRandomly(), 15, 15);
+        super(settings.ticksRandomly(), BlocksT.GROUND_HARDNESS, 10);
     }
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {

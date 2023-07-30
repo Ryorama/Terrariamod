@@ -11,7 +11,7 @@ import net.minecraft.util.math.random.Random;
 
 public class CorruptionGrass extends BlockT {
     public CorruptionGrass(Settings settings) {
-        super(settings.ticksRandomly(), 15, 15);
+        super(settings.ticksRandomly(), BlocksT.GROUND_HARDNESS, 10);
     }
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {

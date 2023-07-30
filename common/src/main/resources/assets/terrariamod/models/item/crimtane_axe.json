@@ -1,0 +1,7 @@
+{
+	"parent": "item/handheld",
+	"textures":
+	{
+		"layer0": "terrariamod:item/tools/axes/crimtane_axe"
+	}
+}

@@ -2,13 +2,18 @@ package com.ryorama.terrariamod.entities.terraria.hostile.slime;
 
 import java.util.ArrayList;
 
+import com.ryorama.terrariamod.client.TAudio;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Arm;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -75,6 +80,16 @@ public abstract class EntitySlimeBase extends MobEntity implements GeoAnimatable
 		if (!this.isOnGround() && jumping) {
 			jumping = false;
 		}
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return TAudio.NPC_HIT1;
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return TAudio.NPC_KILL1;
 	}
 
 	public void lookRandomly() {

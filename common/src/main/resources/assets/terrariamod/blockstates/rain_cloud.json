@@ -1,10 +1,7 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/natural/rain_cloud" },
-            { "model": "terrariamod:block/natural/rain_cloud", "y": 90 },
-            { "model": "terrariamod:block/natural/rain_cloud", "y": 180 },
-            { "model": "terrariamod:block/natural/rain_cloud", "y": 270 }
+            { "model": "terrariamod:block/natural/rain_cloud" }
         ]
     }
 }

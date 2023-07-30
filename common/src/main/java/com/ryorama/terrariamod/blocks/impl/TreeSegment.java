@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.blocks.impl;
 
+import com.ryorama.terrariamod.client.TAudio;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -15,7 +16,7 @@ public class TreeSegment extends BlockT {
     public static Random rand = new Random();
 
     public TreeSegment(AbstractBlock.Settings properties, float hardness, float difficulty) {
-        super(properties.nonOpaque(), hardness, difficulty);
+        super(properties.nonOpaque().sounds(TAudio.DIRT), hardness, difficulty);
     }
 
     public boolean isFullCube(BlockState state) {

@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures":
+	{
+		"layer0": "terrariamod:item/tools/bows/tungsten_bow"
+	}
+}

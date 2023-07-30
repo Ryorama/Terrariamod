@@ -1,13 +1,14 @@
 package com.ryorama.terrariamod.blocks.impl;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.items.impl.ItemT;
+import com.ryorama.terrariamod.items.impl.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
@@ -61,15 +62,15 @@ public class BlockT extends Block {
 
     public float getMiningSpeed(ItemT item) {
         if (pick && item.pick >= difficulty) {
-            return item.pick / difficulty;
+            return item.pick / difficulty / 30;
         }
 
         if (axe && item.axe >= difficulty) {
-            return item.axe / difficulty;
+            return item.axe / difficulty / 30;
         }
 
         if (hammer && item.hammer >= difficulty) {
-            return item.hammer / difficulty;
+            return item.hammer / difficulty / 30;
         }
 
         return -1;
@@ -103,6 +104,15 @@ public class BlockT extends Block {
             if (bottomBlock == BlocksT.VINE.get()) {
                 world.breakBlock(bottomPos, false);
             }
+        }
+    }
+
+    @Override
+    public float calcBlockBreakingDelta(BlockState state, PlayerEntity player, BlockView world, BlockPos pos) {
+        if (player.getMainHandStack().getItem() instanceof ItemT || player.getMainHandStack().getItem() instanceof PickaxeT || player.getMainHandStack().getItem() instanceof AxeT || player.getMainHandStack().getItem() instanceof ShortswordT || player.getMainHandStack().getItem() instanceof BroadswordT) {
+            return getMiningSpeed((ItemT) player.getMainHandStack().getItem());
+        } else {
+            return -1;
         }
     }
 }

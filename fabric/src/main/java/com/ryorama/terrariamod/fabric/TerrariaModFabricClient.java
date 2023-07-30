@@ -18,13 +18,19 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.stat.Stats;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class TerrariaModFabricClient implements ClientModInitializer {
 
     public int tmpMana = 20;
+    public static Random rand = new Random();
+
     @Override
     public void onInitializeClient() {
         addCutouts();
@@ -35,6 +41,26 @@ public class TerrariaModFabricClient implements ClientModInitializer {
         TerrariaUIRenderer.renderTerrariaHealth();
         TerrariaUIRenderer.renderTerrariaMana();
         TerrariaUIRenderer.renderTerrariaEffects();
+
+        if (TerrariaMod.CONFIG.useCustomTitles) {
+            MinecraftClient.getInstance().execute(this::SetRandomTitle);
+        }
+    }
+
+    public void SetRandomTitle() {
+        InputStream stream = TerrariaMod.class.getClassLoader().getResourceAsStream("assets/terrariamod/splash_texts.txt");
+        Scanner scanner = new Scanner(stream);
+        List<String> splashTexts = new ArrayList<>();
+
+        while (scanner.hasNextLine()) {
+            splashTexts.add(scanner.nextLine());
+        }
+
+        int id = rand.nextInt(splashTexts.size());
+
+        if (MinecraftClient.getInstance().getWindow() != null) {
+            MinecraftClient.getInstance().getWindow().setTitle(splashTexts.get(id));
+        }
     }
 
     public void addCutouts() {
@@ -69,6 +95,9 @@ public class TerrariaModFabricClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_TOP.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_TOP.get(), RenderLayer.getTranslucent());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.CACTUS.get(), RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.CACTUS.get(), RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.BLINKROOT.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.DAYBLOOM.get(), RenderLayer.getCutout());

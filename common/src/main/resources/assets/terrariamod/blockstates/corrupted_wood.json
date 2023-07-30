@@ -1,10 +1,7 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/wood/corrupted_wood" },
-            { "model": "terrariamod:block/wood/corrupted_wood", "y": 90 },
-            { "model": "terrariamod:block/wood/corrupted_wood", "y": 180 },
-            { "model": "terrariamod:block/wood/corrupted_wood", "y": 270 }
+            { "model": "terrariamod:block/wood/corrupted_wood" }
         ]
     }
 }

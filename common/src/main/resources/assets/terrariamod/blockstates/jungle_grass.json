@@ -1,10 +1,7 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/natural/jungle_grass" },
-            { "model": "terrariamod:block/natural/jungle_grass", "y": 90 },
-            { "model": "terrariamod:block/natural/jungle_grass", "y": 180 },
-            { "model": "terrariamod:block/natural/jungle_grass", "y": 270 }
+            { "model": "terrariamod:block/natural/jungle_grass" }
         ]
     }
 }

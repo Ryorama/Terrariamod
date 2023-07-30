@@ -1,5 +1,6 @@
 package com.ryorama.terrariamod.quilt;
 
+import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.client.particles.Flame;
 import com.ryorama.terrariamod.client.particles.Leaf;
@@ -19,8 +20,15 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.stat.Stats;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
 public class TerrariaModQuiltClient implements ClientModInitializer {
     public int tmpMana = 20;
+    public static Random rand = new Random();
     @Override
     public void onInitializeClient() {
         addCutouts();
@@ -31,6 +39,26 @@ public class TerrariaModQuiltClient implements ClientModInitializer {
         TerrariaUIRenderer.renderTerrariaHealth();
         TerrariaUIRenderer.renderTerrariaMana();
         TerrariaUIRenderer.renderTerrariaEffects();
+
+        if (TerrariaMod.CONFIG.useCustomTitles) {
+            MinecraftClient.getInstance().execute(this::SetRandomTitle);
+        }
+    }
+
+    public void SetRandomTitle() {
+        InputStream stream = TerrariaMod.class.getClassLoader().getResourceAsStream("assets/terrariamod/splash_texts.txt");
+        Scanner scanner = new Scanner(stream);
+        List<String> splashTexts = new ArrayList<>();
+
+        while (scanner.hasNextLine()) {
+            splashTexts.add(scanner.nextLine());
+        }
+
+        int id = rand.nextInt(splashTexts.size());
+
+        if (MinecraftClient.getInstance().getWindow() != null) {
+            MinecraftClient.getInstance().getWindow().setTitle(splashTexts.get(id));
+        }
     }
 
     public void addCutouts() {
@@ -96,6 +124,9 @@ public class TerrariaModQuiltClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_TOP.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.GIANT_GLOWING_MUSHROOM_TOP.get(), RenderLayer.getTranslucent());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.CACTUS.get(), RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.CACTUS.get(), RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.BLINKROOT.get(), RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlocksT.DAYBLOOM.get(), RenderLayer.getCutout());

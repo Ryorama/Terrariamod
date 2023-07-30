@@ -1,7 +1,5 @@
 package com.ryorama.terrariamod.items.impl;
 
-import net.minecraft.item.ItemGroups;
-
 public class PickaxeT extends ItemT {
 
     public PickaxeT() {

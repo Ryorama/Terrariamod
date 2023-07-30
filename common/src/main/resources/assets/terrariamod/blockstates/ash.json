@@ -1,10 +1,7 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/natural/ash" },
-            { "model": "terrariamod:block/natural/ash", "y": 90 },
-            { "model": "terrariamod:block/natural/ash", "y": 180 },
-            { "model": "terrariamod:block/natural/ash", "y": 270 }
+            { "model": "terrariamod:block/natural/ash" }
         ]
     }
 }

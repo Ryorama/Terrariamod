@@ -6,25 +6,15 @@ import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.items.impl.BlockItemT;
 import com.ryorama.terrariamod.items.impl.ItemT;
 import com.ryorama.terrariamod.items.terraria.armor.*;
-import com.ryorama.terrariamod.items.terraria.axes.CopperAxe;
-import com.ryorama.terrariamod.items.terraria.axes.GoldAxe;
-import com.ryorama.terrariamod.items.terraria.axes.IronAxe;
-import com.ryorama.terrariamod.items.terraria.bows.CopperBow;
-import com.ryorama.terrariamod.items.terraria.bows.GoldBow;
-import com.ryorama.terrariamod.items.terraria.bows.IronBow;
-import com.ryorama.terrariamod.items.terraria.broadswords.CopperBroadsword;
-import com.ryorama.terrariamod.items.terraria.broadswords.GoldBroadsword;
-import com.ryorama.terrariamod.items.terraria.broadswords.IronBroadsword;
+import com.ryorama.terrariamod.items.terraria.axes.*;
+import com.ryorama.terrariamod.items.terraria.bows.*;
+import com.ryorama.terrariamod.items.terraria.broadswords.*;
 import com.ryorama.terrariamod.items.terraria.consumable.ammo.arrows.FlamingArrow;
 import com.ryorama.terrariamod.items.terraria.consumable.ammo.arrows.WoodenArrow;
 import com.ryorama.terrariamod.items.terraria.consumable.misc.LifeCrystal;
 import com.ryorama.terrariamod.items.terraria.consumable.potions.LesserHealingPotion;
-import com.ryorama.terrariamod.items.terraria.picks.CopperPickaxe;
-import com.ryorama.terrariamod.items.terraria.picks.GoldPickaxe;
-import com.ryorama.terrariamod.items.terraria.picks.IronPickaxe;
-import com.ryorama.terrariamod.items.terraria.shortswords.CopperShortsword;
-import com.ryorama.terrariamod.items.terraria.shortswords.GoldShortsword;
-import com.ryorama.terrariamod.items.terraria.shortswords.IronShortsword;
+import com.ryorama.terrariamod.items.terraria.picks.*;
+import com.ryorama.terrariamod.items.terraria.shortswords.*;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -85,23 +75,6 @@ public class ItemsT {
             () -> ItemsT.GRASS_BLOCK.get().getDefaultStack()
     ));
 
-    public static Item BAND_OF_REGENERATION;
-    public static Item BAND_OF_STARPOWER;
-    public static Item AGLET;
-    public static Item MAGMA_STONE;
-    public static Item SHACKLE;
-    public static Item ROYAL_GEL;
-    public static Item SHIELD_OF_CTHULHU;
-    public static Item FLEDGLING_WINGS;
-
-    public static Item SHINY_RED_BALLOON;
-
-    public static Item TERRARIA_DAYONE_MUSIC;
-    public static Item TERRARIA_NIGHT_MUSIC;
-    public static Item TERRARIA_BOSSONE_MUSIC;
-    public static Item TERRARIA_CAVE_MUSIC;
-    public static Item TERRARIA_UNDERWORLD_MUSIC;
-    public static Item TERRARIA_TITLE_MUSIC;
 
     public static final CopperArmorMaterial COPPER_MATERIAL = new CopperArmorMaterial();
     public static final IronTArmorMaterial IRON_MATERIAL = new IronTArmorMaterial();
@@ -145,24 +118,72 @@ public class ItemsT {
     public static final RegistrySupplier<Item> TUNGSTEN_BAR = register("tungsten_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> SILVER_BAR = register("silver_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> METEORITE_BAR = register("meteorite_bar", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(4));
+    public static final RegistrySupplier<Item> TIN_SHORTSWORD = register("tin_shortsword", () -> new TinShortsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_SHORTSWORD = register("copper_shortsword", () -> new CopperShortsword().setMaxStack(1).setRarity(3));
+
+    public static final RegistrySupplier<Item> TIN_BROADSWORD = register("tin_broadsword", () -> new TinBroadsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_BROADSWORD = register("copper_broadsword", () -> new CopperBroadsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_PICKAXE = register("copper_pickaxe", () -> new CopperPickaxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> TIN_PICKAXE = register("tin_pickaxe", () -> new TinPickaxe().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_AXE = register("copper_axe", () -> new CopperAxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> TIN_AXE = register("tin_axe", () -> new TinAxe().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> COPPER_BOW = register("copper_bow", () -> new CopperBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> TIN_BOW = register("tin_bow", () -> new TinBow(new Item.Settings()).setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> IRON_SHORTSWORD = register("iron_shortsword", () -> new IronShortsword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> LEAD_SHORTSWORD = register("lead_shortsword", () -> new LeadShortsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> IRON_BROADSWORD = register("iron_broadsword", () -> new IronBroadsword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> LEAD_BROADSWORD = register("lead_broadsword", () -> new LeadBroadsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> IRON_PICKAXE = register("iron_pickaxe", () -> new IronPickaxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> LEAD_PICKAXE = register("lead_pickaxe", () -> new LeadPickaxe().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> IRON_AXE = register("iron_axe", () -> new IronAxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> LEAD_AXE = register("lead_axe", () -> new LeadAxe().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> IRON_BOW = register("iron_bow", () -> new IronBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> LEAD_BOW = register("lead_bow", () -> new IronBow(new Item.Settings()).setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> GOLD_SHORTSWORD = register("gold_shortsword", () -> new GoldShortsword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> PLATINUM_SHORTSWORD = register("platinum_shortsword", () -> new PlatinumShortsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> GOLD_BROADSWORD = register("gold_broadsword", () -> new GoldBroadsword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> PLATINUM_BROADSWORD = register("platinum_broadsword", () -> new PlatinumBroadsword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> GOLD_PICKAXE = register("gold_pickaxe", () -> new GoldPickaxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> PLATINUM_PICKAXE = register("platinum_pickaxe", () -> new PlatinumPickaxe().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> GOLD_AXE = register("gold_axe", () -> new GoldAxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> PLATINUM_AXE = register("platinum_axe", () -> new PlatinumAxe().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> GOLD_BOW = register("gold_bow", () -> new GoldBow(new Item.Settings()).setMaxStack(1).setRarity(3));
-
+    public static final RegistrySupplier<Item> PLATINUM_BOW = register("platinum_bow", () -> new PlatinumBow(new Item.Settings()).setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> WOODEN_ARROW = register("wooden_arrow", () -> new WoodenArrow(new Item.Settings()).setMaxStack(9999).setRarity(3));
     public static final RegistrySupplier<Item> FLAMING_ARROW = register("flaming_arrow", () -> new FlamingArrow(new Item.Settings()).setMaxStack(9999).setRarity(3));
+
+
+    public static final RegistrySupplier<Item> SILVER_PICKAXE = register("silver_pickaxe", () -> new SilverPickaxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> SILVER_AXE = register("silver_axe", () -> new SilverAxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> SILVER_BROADSWORD = register("silver_broadsword", () -> new SilverBroadsword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> SILVER_SHORTSWORD = register("silver_shortsword", () -> new SilverShortsword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> SILVER_BOW = register("silver_bow", () -> new SilverBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+
+    public static final RegistrySupplier<Item> TUNGSTEN_PICKAXE = register("tungsten_pickaxe", () -> new TungstenPickaxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> TUNGSTEN_AXE = register("tungsten_axe", () -> new TungstenAxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> TUNGSTEN_BROADSWORD = register("tungsten_broadsword", () -> new TungstenBroadsword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> TUNGSTEN_SHORTSWORD = register("tungsten_shortsword", () -> new TungstenShortsword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> TUNGSTEN_BOW = register("tungsten_bow", () -> new TungstenBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+
+    public static final RegistrySupplier<Item> DEMONITE_PICKAXE = register("demonite_pickaxe", () -> new DemonitePickaxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> DEMONITE_AXE = register("demonite_axe", () -> new SilverAxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> LIGHTS_BANE = register("lights_bane", () -> new LightsBane().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> DEMONITE_BOW = register("demonite_bow", () -> new DemoniteBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+
+    public static final RegistrySupplier<Item> CRIMTANE_PICKAXE = register("crimtane_pickaxe", () -> new DeathbringerPickaxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> CRIMTANE_AXE = register("crimtane_axe", () -> new CrimtaneAxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> BLOOD_BUTCHER = register("blood_butcher", () -> new BloodButcher().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> CRIMTANE_BOW = register("crimtane_bow", () -> new CrimtaneBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+
+    public static final RegistrySupplier<Item> WOODEN_BOW = register("wooden_bow", () -> new WoodenBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> EBONWOOD_BOW = register("ebonwood_bow", () -> new EbonwoodBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> SHADEWOOD_BOW = register("shadewood_bow", () -> new ShadewoodBow(new Item.Settings()).setMaxStack(1).setRarity(3));
+
+    public static final RegistrySupplier<Item> CACTUS_PICKAXE = register("cactus_pickaxe", () -> new CactusPickaxe().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> CACTUS_SWORD = register("cactus_sword", () -> new CactusSword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> WOODEN_SWORD = register("wooden_sword", () -> new WoodenSword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> EBONWOOD_SWORD = register("ebonwood_sword", () -> new EbonwoodSword().setMaxStack(1).setRarity(3));
+    public static final RegistrySupplier<Item> SHADEWOOD_SWORD = register("shadewood_sword", () -> new ShadewoodSword().setMaxStack(1).setRarity(3));
 
     public static final RegistrySupplier<Item> LESSER_HEALING_POTION = register("lesser_healing_potion", () -> new LesserHealingPotion(new Item.Settings()).setMaxStack(9999).setRarity(2).isConsumable(true));
 
@@ -191,6 +212,7 @@ public class ItemsT {
     public static final RegistrySupplier<Item> WOOD = register("wood", () -> new BlockItemT(BlocksT.WOOD.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CORRUPTED_WOOD = register("corrupted_wood", () -> new BlockItemT(BlocksT.CORRUPTED_WOOD.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CRIMSON_WOOD = register("crimson_wood", () -> new BlockItemT(BlocksT.CRIMSON_WOOD.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> CACTUS = register("cactus", () -> new BlockItemT(BlocksT.CACTUS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
 
     public static final RegistrySupplier<Item> WOODEN_BEAM = register("wooden_beam", () -> new BlockItemT(BlocksT.WOODEN_BEAM.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> EBONSTONE = register("ebonstone", () -> new BlockItemT(BlocksT.EBONSTONE.get(), new Item.Settings().maxCount(9999)).setRarity(2));

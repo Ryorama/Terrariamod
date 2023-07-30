@@ -18,4 +18,6 @@ public class TerrariaModConfig implements ConfigData {
     public boolean modifyPlayerHealth = false;
     @ConfigEntry.Gui.Tooltip
     public boolean disableHunger = false;
+    @ConfigEntry.Gui.Tooltip
+    public boolean useCustomTitles = false;
 }

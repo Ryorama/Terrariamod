@@ -1,10 +1,7 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/building/purple_brick" },
-            { "model": "terrariamod:block/building/purple_brick", "y": 90 },
-            { "model": "terrariamod:block/building/purple_brick", "y": 180 },
-            { "model": "terrariamod:block/building/purple_brick", "y": 270 }
+            { "model": "terrariamod:block/building/purple_brick" }
         ]
     }
 }

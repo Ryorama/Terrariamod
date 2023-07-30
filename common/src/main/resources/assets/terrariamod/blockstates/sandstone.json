@@ -1,10 +1,7 @@
 {
     "variants": {
         "": [ 
-            { "model": "terrariamod:block/natural/sandstone" },
-            { "model": "terrariamod:block/natural/sandstone", "y": 90 },
-            { "model": "terrariamod:block/natural/sandstone", "y": 180 },
-            { "model": "terrariamod:block/natural/sandstone", "y": 270 }
+            { "model": "terrariamod:block/natural/sandstone" }
         ]
     }
 }
