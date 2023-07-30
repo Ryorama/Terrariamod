@@ -24,7 +24,7 @@ public class JungleGrass extends BlockT {
             }
             if (world.getBlockState(pos2).getBlock().getDefaultState() == Blocks.AIR.getDefaultState()) {
                 if (random.nextInt(100 * 10) <= 2) {
-                    world.setBlockState(pos2, BlocksT.GRASS.get().getDefaultState());
+                    //world.setBlockState(pos2, BlocksT.GRASS.get().getDefaultState());
                     if (random.nextInt(15) == 0) {
                         world.setBlockState(pos2, BlocksT.MUSHROOM.get().getDefaultState());
                     }
@@ -36,8 +36,8 @@ public class JungleGrass extends BlockT {
                     return;
                 }
                 if (world.getBlockState(blockpos.up()).getBlock() == Blocks.AIR) {
-                    if (world.getBlockState(blockpos).getBlock() == BlocksT.MUD) {
-                        world.setBlockState(blockpos, this.getDefaultState());
+                    if (world.getBlockState(blockpos).getBlock() == BlocksT.MUD.get()) {
+                        world.setBlockState(blockpos, BlocksT.JUNGLE_GRASS.get().getDefaultState());
                     }
                 }
             }

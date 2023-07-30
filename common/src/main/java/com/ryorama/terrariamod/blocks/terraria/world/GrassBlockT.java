@@ -2,10 +2,10 @@ package com.ryorama.terrariamod.blocks.terraria.world;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.blocks.impl.BlockT;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.AirBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import com.ryorama.terrariamod.blocks.impl.ChestT;
+import com.ryorama.terrariamod.blocks.impl.PlantT;
+import com.ryorama.terrariamod.blocks.impl.TreeSegment;
+import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -32,14 +32,15 @@ public class GrassBlockT extends BlockT {
                     }
                 }
             }
+
             for (int i = 0; i < 4; ++i) {
                 BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                 if (blockpos.getY() == pos.getY() - 1) {
                     return;
                 }
-                if (world.getBlockState(blockpos.up()).getBlock() == Blocks.AIR) {
-                    if (world.getBlockState(blockpos).getBlock() == BlocksT.DIRT_BLOCK) {
-                        world.setBlockState(blockpos, this.getDefaultState());
+                if (world.getBlockState(blockpos.up()).getBlock() == Blocks.AIR || world.getBlockState(blockpos.up()).getBlock() instanceof PlantT) {
+                    if (world.getBlockState(blockpos).getBlock() == BlocksT.DIRT_BLOCK.get()) {
+                        world.setBlockState(blockpos, BlocksT.GRASS_BLOCK.get().getDefaultState());
                     }
                 }
             }

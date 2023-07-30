@@ -268,6 +268,11 @@
 	"subtitle": "terrariamod.grab",
 	"sounds": [ "terrariamod:grab" ]
   },
+	"drink": {
+		"category": "players",
+		"subtitle": "terrariamod.drink",
+		"sounds": [ "terrariamod:drink" ]
+	},
   "health_crystal": {
 	"category": "players",
 	"subtitle": "terrariamod.health_crystal",

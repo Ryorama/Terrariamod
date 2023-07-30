@@ -35,6 +35,7 @@ public class TAudio {
      */
 
     public static final SoundEvent HEALTH_CRYSTAL = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "health_crystal"));
+    public static final SoundEvent DRINK = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "drink"));
     public static final SoundEvent ROAR_0 = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "roar_0"));
     public static final SoundEvent STAR_FALL = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "star_fall"));
     public static final SoundEvent NPC_HIT1 = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "npc_hit1"));

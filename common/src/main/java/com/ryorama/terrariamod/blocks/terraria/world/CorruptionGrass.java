@@ -36,8 +36,8 @@ public class CorruptionGrass extends BlockT {
                     return;
                 }
                 if (world.getBlockState(blockpos.up()).getBlock() == Blocks.AIR) {
-                    if (world.getBlockState(blockpos).getBlock() == BlocksT.DIRT_BLOCK) {
-                        world.setBlockState(blockpos, this.getDefaultState());
+                    if (world.getBlockState(blockpos).getBlock() == BlocksT.DIRT_BLOCK.get()) {
+                        world.setBlockState(blockpos, BlocksT.CORRUPTED_GRASS_BLOCK.get().getDefaultState());
                     }
                 }
             }

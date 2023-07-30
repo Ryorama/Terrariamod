@@ -44,8 +44,8 @@ public class MushroomGrass extends BlockT {
                     return;
                 }
                 if (world.getBlockState(blockpos.up()).getBlock() == Blocks.AIR) {
-                    if (world.getBlockState(blockpos).getBlock() == BlocksT.MUD) {
-                        world.setBlockState(blockpos, this.getDefaultState());
+                    if (world.getBlockState(blockpos).getBlock() == BlocksT.MUD.get()) {
+                        world.setBlockState(blockpos, BlocksT.MUSHROOM_GRASS.get().getDefaultState());
                     }
                 }
             }
