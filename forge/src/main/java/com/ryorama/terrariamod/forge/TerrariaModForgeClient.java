@@ -2,9 +2,6 @@ package com.ryorama.terrariamod.forge;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.client.particles.Flame;
-import com.ryorama.terrariamod.client.particles.Leaf;
-import com.ryorama.terrariamod.client.particles.ParticlesT;
 import com.ryorama.terrariamod.forge.network.client.rendering.EntityRenderManager;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
@@ -63,7 +60,6 @@ public class TerrariaModForgeClient {
 
     @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ParticlesT.FLAME.get(), Flame.Factory::new);
-        event.registerSpriteSet(ParticlesT.LEAF.get(), Leaf.Factory::new);
+
     }
 }

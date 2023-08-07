@@ -50,11 +50,11 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
-    modImplementation ("software.bernie.geckolib:geckolib-forge-1.20:${rootProject.geckolib_version_forge}")
-    modImplementation ("me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}")
-    modImplementation ("top.theillusivec4.curios:curios-forge:${curios_version}")
-    modImplementation ("top.theillusivec4.curios:curios-forge:${curios_version}:api")
-    modImplementation "maven.modrinth:fusion-connected-textures:${rootProject.fusion_version}-forge-mc1.20"
+    modImplementation include("software.bernie.geckolib:geckolib-forge-1.20:${rootProject.geckolib_version_forge}")
+    modImplementation include("me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}")
+    modImplementation include("top.theillusivec4.curios:curios-forge:${curios_version}")
+    modImplementation include("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+    modImplementation include("maven.modrinth:fusion-connected-textures:${rootProject.fusion_version}-forge-mc1.20")
 }
 
 processResources {

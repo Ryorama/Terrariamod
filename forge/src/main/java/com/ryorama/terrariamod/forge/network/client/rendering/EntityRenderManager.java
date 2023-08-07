@@ -18,7 +18,7 @@ public class EntityRenderManager {
         BlockEntityRendererRegistry.register(EntitiesT.SKYWARE_CHEST.get(), ChestBlockEntityRendererT::new);
         BlockEntityRendererRegistry.register(EntitiesT.WOOD_CHEST.get(), ChestBlockEntityRendererT::new);
 
-        //EntityRendererRegistry.register(EntitiesT.GREEN_SLIME.get(), RenderGreenSlime::new);
-        //EntityRendererRegistry.register(EntitiesT.BLUE_SLIME.get(), RenderBlueSlime::new);
+        EntityRendererRegistry.register(EntitiesT.GREEN_SLIME, RenderGreenSlime::new);
+        EntityRendererRegistry.register(EntitiesT.BLUE_SLIME, RenderBlueSlime::new);
     }
 }

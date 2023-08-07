@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": [
+      {
+        "item": "terrariamod:iron_bar"
+      },
+      {
+        "item": "terrariamod:lead_bar"
+      }
+    ]
+  },
+  "pattern": [
+    "# #",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "item": "minecraft:bucket"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "  #",
+    " !!"
+  ],
+  "key": {
+    "!": {
+      "item": "terrariamod:lesser_healing_potion"
+    },
+    "#": {
+      "item": "terrariamod:glowing_mushroom"
+    }
+  },
+  "result": {
+    "item": "terrariamod:healing_potion",
+    "count": 1
+  }
+}

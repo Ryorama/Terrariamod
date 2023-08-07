@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "terrariamod:block/adventure_plate"
+    },
+    "powered=true": {
+      "model": "terrariamod:block/adventure_plate"
+    }
+  }
+}

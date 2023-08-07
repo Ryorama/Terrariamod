@@ -9,7 +9,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 
-public class EntityBlueSlime extends EntitySlimeBase implements GeoAnimatable {
+public class EntityBlueSlime extends EntitySlimeBase {
 	public EntityBlueSlime(EntityType<? extends EntityBlueSlime> entityType, World world) {
 		super(entityType, world);
 		this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(24);

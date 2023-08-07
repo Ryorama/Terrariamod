@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "terrariamod:gel"
+    },
+    "!": [
+      {
+        "item": "terrariamod:wood"
+      },
+      {
+        "item": "terrariamod:corrupted_wood"
+      },
+      {
+        "item": "terrariamod:crimson_wood"
+      }
+    ]
+  },
+  "pattern": [
+    "#",
+    "!"
+  ],
+  "result": {
+    "count": 3,
+    "item": "minecraft:torch"
+  }
+}

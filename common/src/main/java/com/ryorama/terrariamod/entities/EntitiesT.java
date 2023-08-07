@@ -3,6 +3,7 @@ package com.ryorama.terrariamod.entities;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.entities.terraria.block.*;
+import com.ryorama.terrariamod.entities.terraria.hostile.EntityDemonEye;
 import com.ryorama.terrariamod.entities.terraria.hostile.slime.EntityBlueSlime;
 import com.ryorama.terrariamod.entities.terraria.hostile.slime.EntityGreenSlime;
 import dev.architectury.registry.registries.DeferredRegister;
@@ -32,6 +33,7 @@ public class EntitiesT {
 
     public static final RegistrySupplier<EntityType<EntityGreenSlime>> GREEN_SLIME = registerEntity("green_slime", () -> EntityType.Builder.create(EntityGreenSlime::new, SpawnGroup.MONSTER).build("green_slime"));
     public static final RegistrySupplier<EntityType<EntityBlueSlime>> BLUE_SLIME = registerEntity("blue_slime", () -> EntityType.Builder.create(EntityBlueSlime::new, SpawnGroup.MONSTER).build("blue_slime"));
+    public static final RegistrySupplier<EntityType<EntityDemonEye>> DEMON_EYE = registerEntity("demon_eye", () -> EntityType.Builder.create(EntityDemonEye::new, SpawnGroup.MONSTER).build("demon_eye"));
 
     public static void init() {
         ENTITY_TYPES.register();

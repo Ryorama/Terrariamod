@@ -77,6 +77,7 @@ public class TerrariaModEvents {
     public static void RegisterEntityAttributesEvent(EntityAttributeCreationEvent event) {
         event.put(EntitiesT.GREEN_SLIME.get(), MobEntity.createMobAttributes().build());
         event.put(EntitiesT.BLUE_SLIME.get(), MobEntity.createMobAttributes().build());
+        event.put(EntitiesT.DEMON_EYE.get(), MobEntity.createMobAttributes().build());
     }
 
     @SubscribeEvent

@@ -3,7 +3,6 @@ package com.ryorama.terrariamod;
 import com.mojang.serialization.Codec;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.buffs.BuffsT;
-import com.ryorama.terrariamod.client.particles.ParticlesT;
 import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.world.TerrariaChunkGenerator;
@@ -12,12 +11,12 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class TerrariaMod {
@@ -33,7 +32,6 @@ public class TerrariaMod {
         CONFIG = AutoConfig.getConfigHolder(TerrariaModConfig.class).getConfig();
         CHUNK_GENERATORS.register();
         BuffsT.init();
-        ParticlesT.init();
         BlocksT.init();
         EntitiesT.init();
         ItemsT.init();

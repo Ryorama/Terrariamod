@@ -12,6 +12,7 @@ import com.ryorama.terrariamod.items.terraria.broadswords.*;
 import com.ryorama.terrariamod.items.terraria.consumable.ammo.arrows.FlamingArrow;
 import com.ryorama.terrariamod.items.terraria.consumable.ammo.arrows.WoodenArrow;
 import com.ryorama.terrariamod.items.terraria.consumable.misc.LifeCrystal;
+import com.ryorama.terrariamod.items.terraria.consumable.potions.HealingPotion;
 import com.ryorama.terrariamod.items.terraria.consumable.potions.LesserHealingPotion;
 import com.ryorama.terrariamod.items.terraria.picks.*;
 import com.ryorama.terrariamod.items.terraria.shortswords.*;
@@ -24,48 +25,12 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ItemsT {
-    //public static WoodenArrow WOODEN_ARROW = (WoodenArrow) new WoodenArrow(new Item.Settings().maxCount(999)).setRarity(2);
-    //public static FlamingArrow FLAMING_ARROW = (FlamingArrow) new FlamingArrow(new Item.Settings().maxCount(999)).setRarity(2);
-
-    //public static LifeCrystal HEALTH_CRYSTAL = (LifeCrystal) new LifeCrystal(new Item.Settings().maxCount(99)).setRarity(2).isConsumable(true);
-    //public static MagicMirror MAGIC_MIRROR = (MagicMirror) new MagicMirror(new Item.Settings().maxCount(1)).setRarity(2);
-
-    //public static ItemT SLIME_CROWN = new SlimeCrown(new Item.Settings().maxCount(30)).setRarity(3).isConsumable(true);
-    //public static ItemT SUSPICIOUS_LOOKING_EYE = new SuspiciousLookingEye(new Item.Settings().maxCount(30)).setRarity(3).isConsumable(true);
-
-    //public static CopperArmorMaterial COPPER_MATERIAL = new CopperArmorMaterial();
-    //public static IronTArmorMaterial IRON_MATERIAL = new IronTArmorMaterial();
-    //public static GoldTArmorMaterial GOLD_MATERIAL = new GoldTArmorMaterial();
-    //public static NinjaArmorMaterial NINJA_MATERIAL = new NinjaArmorMaterial();
-
-    //public static Item COPPER_HELMET = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.HEAD, new Item.Settings());
-    //public static Item COPPER_CHESTPLATE = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.CHEST, new Item.Settings());
-    //public static Item COPPER_LEGGINGS = new ArmorItem(COPPER_MATERIAL, EquipmentSlot.LEGS, new Item.Settings());
-
-    //public static Item IRON_HELMET = new ArmorItem(IRON_MATERIAL, EquipmentSlot.HEAD, new Item.Settings());
-    //public static Item IRON_CHESTPLATE = new ArmorItem(IRON_MATERIAL, EquipmentSlot.CHEST, new Item.Settings());
-    //public static Item IRON_LEGGINGS = new ArmorItem(IRON_MATERIAL, EquipmentSlot.LEGS, new Item.Settings());
-
-    //public static Item GOLD_HELMET = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.HEAD, new Item.Settings());
-    //public static Item GOLD_CHESTPLATE = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.CHEST, new Item.Settings());
-    //public static Item GOLD_LEGGINGS = new ArmorItem(GOLD_MATERIAL, EquipmentSlot.LEGS, new Item.Settings());
-
-    //public static Item NINJA_HELMET = new ArmorItem(NINJA_MATERIAL, EquipmentSlot.HEAD, new Item.Settings());
-    //public static Item NINJA_CHESTPLATE = new ArmorItem(NINJA_MATERIAL, EquipmentSlot.CHEST, new Item.Settings());
-    //public static Item NINJA_LEGGINGS = new ArmorItem(NINJA_MATERIAL, EquipmentSlot.LEGS, new Item.Settings());
-
-    //public static WaterBottle WATER_BOTTLE = (WaterBottle) new WaterBottle(new Item.Settings().arch$tab(ItemGroups.FOOD_AND_DRINK)).isConsumable(true);
-    //public static LesserHealingPotion LESSER_HEALING_POTION = (LesserHealingPotion) new LesserHealingPotion(new Item.Settings().arch$tab(ItemGroups.FOOD_AND_DRINK)).isConsumable(true);
-    //public static HealingPotion HEALING_POTION = (HealingPotion) new HealingPotion(new Item.Settings().arch$tab(ItemGroups.FOOD_AND_DRINK)).isConsumable(true);
-    //public static HoneyBottle HONEY_BOTTLE = (HoneyBottle) new HoneyBottle(new Item.Settings().arch$tab(ItemGroups.FOOD_AND_DRINK)).isConsumable(true);
-    //public static IronSkinPotion IRONSKIN_POTION = (IronSkinPotion) new IronSkinPotion(new Item.Settings().arch$tab(ItemGroups.FOOD_AND_DRINK)).isConsumable(true);
-    //public static RegenerationPotion REGENERATION_POTION = (RegenerationPotion) new RegenerationPotion(new Item.Settings().arch$tab(ItemGroups.FOOD_AND_DRINK)).isConsumable(true);
-
-    //public static KingSlimeTresureBag KING_SLIME_BAG = (KingSlimeTresureBag) new KingSlimeTresureBag(new Item.Settings().maxCount(30)).isConsumable(true);
-    //public static EyeOfCthulhuTresureBag EOC_BAG = (EyeOfCthulhuTresureBag) new EyeOfCthulhuTresureBag(new Item.Settings().maxCount(30)).isConsumable(true);
+    public static List<Item> fixedRenders = new ArrayList<>();
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(TerrariaMod.MOD_ID, RegistryKeys.ITEM);
     public static final DeferredRegister<ItemGroup> ITEM_GROUPS = DeferredRegister.create(TerrariaMod.MOD_ID, RegistryKeys.ITEM_GROUP);
@@ -98,10 +63,11 @@ public class ItemsT {
     public static final RegistrySupplier<Item> NINJA_HELMET = register("ninja_helmet", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
     public static final RegistrySupplier<Item> NINJA_CHESTPLATE = register("ninja_chestplate", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
     public static final RegistrySupplier<Item> NINJA_LEGGINGS = register("ninja_leggings", () -> new ArmorItem(NINJA_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
-
+    public static final RegistrySupplier<Item> SUNGLASSES = register("sunglasses", () -> new ArmorItem(new SunglassesMaterial(), ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
     public static final RegistrySupplier<Item> ACORN = register("acorn", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> GEL = register("gel", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> LENS = register("lens", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> BLACK_LENS = register("black_lens", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> FALLEN_STAR = register("fallen_star", () -> new ItemT(new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> LIFE_CRYSTAL = register("life_crystal", () -> new LifeCrystal(new Item.Settings().maxCount(9999)).setRarity(4));
     public static final RegistrySupplier<Item> GOLD_CROWN = register("gold_crown", () -> new ArmorItem(GOLD_CROWN_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings().arch$tab(TERRARIAMOD_GROUP).maxCount(1)));
@@ -185,10 +151,12 @@ public class ItemsT {
     public static final RegistrySupplier<Item> EBONWOOD_SWORD = register("ebonwood_sword", () -> new EbonwoodSword().setMaxStack(1).setRarity(3));
     public static final RegistrySupplier<Item> SHADEWOOD_SWORD = register("shadewood_sword", () -> new ShadewoodSword().setMaxStack(1).setRarity(3));
 
-    public static final RegistrySupplier<Item> LESSER_HEALING_POTION = register("lesser_healing_potion", () -> new LesserHealingPotion(new Item.Settings()).setMaxStack(9999).setRarity(2).isConsumable(true));
+    public static final RegistrySupplier<Item> LESSER_HEALING_POTION = register("lesser_healing_potion", () -> new LesserHealingPotion(new Item.Settings()).setRarity(2).isConsumable(true));
+    public static final RegistrySupplier<Item> HEALING_POTION = register("healing_potion", () -> new HealingPotion(new Item.Settings()).setRarity(2).isConsumable(true));
 
     public static final RegistrySupplier<Item> GREEN_SLIME_SPAWN_EGG = register("green_slime_spawn_egg", () -> new SpawnEggItem(EntitiesT.GREEN_SLIME.get(), 0x2ec221, 0x5fed53, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
     public static final RegistrySupplier<Item> BLUE_SLIME_SPAWN_EGG = register("blue_slime_spawn_egg", () -> new SpawnEggItem(EntitiesT.BLUE_SLIME.get(), 0x2f7dc4, 0x53a3ed, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
+    public static final RegistrySupplier<Item> DEMON_EYE_SPAWN_EGG = register("demon_eye_spawn_egg", () -> new SpawnEggItem(EntitiesT.DEMON_EYE.get(), 0xffffff, 0xff0000, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
 
 
     public static final RegistrySupplier<Item> GRASS_BLOCK = register("grass_block", () -> new BlockItemT(BlocksT.GRASS_BLOCK.get(), new Item.Settings().maxCount(9999)).setRarity(2));
@@ -228,7 +196,7 @@ public class ItemsT {
     public static final RegistrySupplier<Item> GOLD_ORE = register("gold_ore", () -> new BlockItemT(BlocksT.GOLD_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> DEMONITE_ORE = register("demonite_ore", () -> new BlockItemT(BlocksT.DEMONITE_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> CRIMTANE_ORE = register("crimtane_ore", () -> new BlockItemT(BlocksT.CRIMTANE_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
-    public static final RegistrySupplier<Item> HELLSTONE_ORE = register("hellstone_ore", () -> new BlockItemT(BlocksT.HELLSTONE_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
+    public static final RegistrySupplier<Item> HELLSTONE_ORE = register("hellstone_ore", () -> new BlockItemT(BlocksT.HELLSTONE_ORE.get(), new Item.Settings().fireproof().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> TIN_ORE = register("tin_ore", () -> new BlockItemT(BlocksT.TIN_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> LEAD_ORE = register("lead_ore", () -> new BlockItemT(BlocksT.LEAD_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
     public static final RegistrySupplier<Item> PLATINUM_ORE = register("platinum_ore", () -> new BlockItemT(BlocksT.PLATINUM_ORE.get(), new Item.Settings().maxCount(9999)).setRarity(2));
@@ -269,6 +237,9 @@ public class ItemsT {
     public static void init() {
         ITEMS.register();
         ITEM_GROUPS.register();
+
+        fixedRenders.add(LIGHTS_BANE.get());
+        fixedRenders.add(CRIMTANE_AXE.get());
     }
 
     static RegistrySupplier<ItemGroup> registerTab(String name, Supplier<ItemGroup> group) {

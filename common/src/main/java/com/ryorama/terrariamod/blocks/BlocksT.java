@@ -1,9 +1,12 @@
 package com.ryorama.terrariamod.blocks;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.blocks.blanketcon.AdventurePlate;
+import com.ryorama.terrariamod.blocks.blanketcon.SurvivalPlate;
 import com.ryorama.terrariamod.blocks.impl.*;
 import com.ryorama.terrariamod.blocks.terraria.chests.*;
 import com.ryorama.terrariamod.blocks.terraria.world.*;
+import com.ryorama.terrariamod.blocks.terraria.world.ores.HellstoneOre;
 import com.ryorama.terrariamod.client.TAudio;
 import com.ryorama.terrariamod.entities.EntitiesT;
 import dev.architectury.registry.registries.DeferredRegister;
@@ -103,7 +106,7 @@ public class BlocksT {
     public static final RegistrySupplier<Block> METEORITE_ORE = register("meteorite_ore", () -> new HotBlockT(AbstractBlock.Settings.create().mapColor(DyeColor.YELLOW).sounds(TAudio.STONE), ORE_HARDNESS, 55).setPick(true));
     public static final RegistrySupplier<Block> DEMONITE_ORE = register("demonite_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.PURPLE).sounds(TAudio.STONE), ORE_HARDNESS, 55).setPick(true));
     public static final RegistrySupplier<Block> CRIMTANE_ORE = register("crimtane_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.RED).sounds(TAudio.STONE), ORE_HARDNESS, 55).setPick(true));
-    public static final RegistrySupplier<Block> HELLSTONE_ORE = register("hellstone_ore", () -> new HotBlockT(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE).sounds(TAudio.STONE), ORE_HARDNESS, 60).setPick(true));
+    public static final RegistrySupplier<Block> HELLSTONE_ORE = register("hellstone_ore", () -> new HellstoneOre(AbstractBlock.Settings.create().mapColor(DyeColor.ORANGE).sounds(TAudio.STONE), ORE_HARDNESS, 60).setPick(true));
     public static final RegistrySupplier<Block> RUBY_ORE = register("ruby_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.RED).sounds(TAudio.STONE), ORE_HARDNESS, 20).setPick(true));
     public static final RegistrySupplier<Block> SAPPHIRE_ORE = register("sapphire_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), ORE_HARDNESS, 20).setPick(true));
     public static final RegistrySupplier<Block> DIAMOND_ORE = register("diamond_ore", () -> new BlockT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE).sounds(TAudio.STONE), ORE_HARDNESS, 20).setPick(true));
@@ -137,6 +140,9 @@ public class BlocksT {
     public static final RegistrySupplier<Block> MOONGLOW = register("moonglow", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f, 5).setPick(true).setAxe(true));
     public static final RegistrySupplier<Block> SHIVERTHORN = register("shiverthorn", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.LIGHT_BLUE), 0.1f, 0.1f, 5).setPick(true).setAxe(true));
     public static final RegistrySupplier<Block> WATERLEAF = register("waterleaf", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f).setPick(true).setAxe(true));
+
+    public static final RegistrySupplier<Block> SURVIVAL_PLATE = register("survival_plate", () -> new SurvivalPlate(AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> ADVENTURE = register("adventure_plate", () -> new AdventurePlate(AbstractBlock.Settings.create()));
 
     public static void init() {
         BLOCKS.register();

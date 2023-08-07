@@ -2,7 +2,6 @@ package com.ryorama.terrariamod.buffs.terraria.helpful;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.buffs.BuffT;
-import com.ryorama.terrariamod.client.particles.ParticlesT;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 

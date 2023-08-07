@@ -34,6 +34,7 @@ public class TerrariaModQuilt implements ModInitializer {
     public void registerEntityAttributes() {
         FabricDefaultAttributeRegistry.register(EntitiesT.GREEN_SLIME.get(), MobEntity.createMobAttributes());
         FabricDefaultAttributeRegistry.register(EntitiesT.BLUE_SLIME.get(), MobEntity.createMobAttributes());
+        FabricDefaultAttributeRegistry.register(EntitiesT.DEMON_EYE.get(), MobEntity.createMobAttributes());
     }
 
     public void onTick() {

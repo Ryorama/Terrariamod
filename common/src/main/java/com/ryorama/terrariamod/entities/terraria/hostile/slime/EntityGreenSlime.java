@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 
-public class EntityGreenSlime extends EntitySlimeBase implements GeoAnimatable {
+public class EntityGreenSlime extends EntitySlimeBase {
 
 	public EntityGreenSlime(EntityType<? extends EntityGreenSlime> entityType, World world) {
 		super(entityType, world);

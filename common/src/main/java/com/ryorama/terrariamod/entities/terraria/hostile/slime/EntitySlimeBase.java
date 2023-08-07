@@ -26,9 +26,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public abstract class EntitySlimeBase extends MobEntity implements GeoAnimatable {
 	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-	private static final RawAnimation IDLE = RawAnimation.begin().thenPlay("animation.slime.squish");
-	private static final RawAnimation DEATH = RawAnimation.begin().thenPlay("animation.slime.death");
-
+	private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.slime.squish");
 	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
 	
 	public boolean onGroundLastTick;
@@ -126,8 +124,7 @@ public abstract class EntitySlimeBase extends MobEntity implements GeoAnimatable
 
 	@Override
 	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<>(this, "Idle", 5, this::idle));
-		controllers.add(new AnimationController<>(this, "Death", 5, this::death));
+		controllers.add(new AnimationController<>(this, "Idle", 1, this::idle));
 	}
 
 	@Override
@@ -141,18 +138,6 @@ public abstract class EntitySlimeBase extends MobEntity implements GeoAnimatable
 	}
 
 	public PlayState idle(AnimationState state) {
-		if (!isAlive()) {
-			return PlayState.STOP;
-		}
-
 		return state.setAndContinue(IDLE);
-	}
-
-	public PlayState death(AnimationState state) {
-		if (!isAlive()) {
-			return state.setAndContinue(DEATH);
-		}
-
-		return PlayState.STOP;
 	}
 }

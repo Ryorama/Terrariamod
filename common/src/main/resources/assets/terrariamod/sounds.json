@@ -134,15 +134,6 @@
 		}
 	]
   },
-  "sc": {
-	"category": "music",
-	"sounds": [
-		{
-			"name": "terrariamod:music/sc",
-			"stream": true
-		}
-	]
-  },
   "hallow": {
 	"category": "music",
 	"sounds": [

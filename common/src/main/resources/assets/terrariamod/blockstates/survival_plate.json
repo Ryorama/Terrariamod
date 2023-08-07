@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "terrariamod:block/survival_plate"
+    },
+    "powered=true": {
+      "model": "terrariamod:block/survival_plate"
+    }
+  }
+}

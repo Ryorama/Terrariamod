@@ -549,7 +549,7 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
                                             }
 
                                             if (world.getBlockState(pos) == BlocksT.MUSHROOM_GRASS.get().getDefaultState()) {
-                                                if (world.getRandom().nextInt(100) == 0) {
+                                                if (world.getRandom().nextInt(40) == 0) {
                                                     world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.GLOWING_MUSHROOM.get().getDefaultState(), 0);
                                                 }
                                             }

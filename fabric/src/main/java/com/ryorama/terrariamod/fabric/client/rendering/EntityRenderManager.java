@@ -2,6 +2,7 @@ package com.ryorama.terrariamod.fabric.client.rendering;
 
 import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.entities.renderers.block.ChestBlockEntityRendererT;
+import com.ryorama.terrariamod.entities.renderers.hostile.RenderDemonEye;
 import com.ryorama.terrariamod.entities.renderers.hostile.slime.RenderBlueSlime;
 import com.ryorama.terrariamod.entities.renderers.hostile.slime.RenderGreenSlime;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
@@ -20,5 +21,6 @@ public class EntityRenderManager {
 
         EntityRendererRegistry.register(EntitiesT.GREEN_SLIME.get(), RenderGreenSlime::new);
         EntityRendererRegistry.register(EntitiesT.BLUE_SLIME.get(), RenderBlueSlime::new);
+        EntityRendererRegistry.register(EntitiesT.DEMON_EYE.get(), RenderDemonEye::new);
     }
 }

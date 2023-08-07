@@ -2,9 +2,6 @@ package com.ryorama.terrariamod.quilt;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.client.particles.Flame;
-import com.ryorama.terrariamod.client.particles.Leaf;
-import com.ryorama.terrariamod.client.particles.ParticlesT;
 import com.ryorama.terrariamod.quilt.client.rendering.EntityRendererManager;
 import com.ryorama.terrariamod.quilt.client.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.stats.StatsT;
@@ -155,8 +152,6 @@ public class TerrariaModQuiltClient implements ClientModInitializer {
     }
 
     public void registerParticles() {
-        ParticleProviderRegistry.register(ParticlesT.FLAME.get(), Flame.Factory::new);
-        ParticleProviderRegistry.register(ParticlesT.LEAF.get(), Leaf.Factory::new);
     }
 
     @Environment(EnvType.CLIENT)

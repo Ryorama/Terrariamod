@@ -21,7 +21,7 @@ public class EntitySpawner {
     public static EntityType[] bloodMoon = {};
     public static EntityType[] hardmodeGroundDaytime = {};
     public static EntityType[] hardmodeGroundNighttime = {};
-    public static EntityType[] groundNighttime = {};
+    public static EntityType[] groundNighttime = {EntitiesT.DEMON_EYE.get(), EntityType.ZOMBIE};
     public static EntityType[] groundWaterDaytime = {};
     public static EntityType[] groundWaterNighttime = {};
     public static EntityType[] skyEntities = {};
