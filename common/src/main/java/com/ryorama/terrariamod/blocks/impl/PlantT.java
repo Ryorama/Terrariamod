@@ -17,7 +17,7 @@ import java.util.function.ToIntFunction;
 
 public class PlantT extends BlockT {
     public PlantT(AbstractBlock.Settings properties, float hardness, float difficulty) {
-        super(properties.nonOpaque().sounds(TAudio.GRASS_GRP).noCollision(), hardness, difficulty);
+        super(properties.nonOpaque().sounds(TAudio.GRASS_GRP).noCollision().notSolid(), hardness, difficulty);
     }
 
     public PlantT(AbstractBlock.Settings properties, float hardness, float difficulty, int luminance) {
@@ -29,19 +29,15 @@ public class PlantT extends BlockT {
         }), hardness, difficulty);
     }
 
-    public boolean isFullCube(BlockState state) {
+    public boolean isFullCube(BlockView world, BlockPos pos) {
         return false;
     }
 
-    public int getOpacity(BlockState state, World worldIn, BlockPos pos) {
+    public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
         return 0;
     }
 
-    public boolean isOpaqueCube(BlockState state) {
-        return false;
-    }
-
-    public VoxelShape getVisualShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.empty();
     }
 }

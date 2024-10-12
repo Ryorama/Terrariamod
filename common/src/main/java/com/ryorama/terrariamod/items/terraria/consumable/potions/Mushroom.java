@@ -9,9 +9,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class HealingPotion extends ItemT {
+public class Mushroom extends ItemT {
 
-    public HealingPotion(Settings settings) {
+    public Mushroom(Settings settings) {
         super(settings.maxCount(64));
     }
 
@@ -19,7 +19,7 @@ public class HealingPotion extends ItemT {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         if (!BuffsT.EntityHasBuff(playerEntity, BuffsT.POTION_SICKNESS)) {
             playerEntity.playSound(TAudio.DRINK, 1, 1);
-            playerEntity.heal(100);
+            playerEntity.heal(15);
             BuffsT.AddBuffToEntity(playerEntity, 1000, BuffsT.POTION_SICKNESS);
             return TypedActionResult.success(playerEntity.getStackInHand(hand));
         }

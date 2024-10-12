@@ -15,24 +15,22 @@ import java.util.List;
 
 public class TAudio {
 
-    /*
     public static List<String> musicNames = new ArrayList<>();
 
-    public static final SoundEvent DAYONE = new SoundEvent(new Identifier(TerrariaMod.MODID, "day1"));
-    public static final SoundEvent NIGHT = new SoundEvent(new Identifier(TerrariaMod.MODID, "night"));
-    public static final SoundEvent UNDERGROUND = new SoundEvent(new Identifier(TerrariaMod.MODID, "underground"));
-    public static final SoundEvent UNDERWORLD = new SoundEvent(new Identifier(TerrariaMod.MODID, "underworld"));
-    public static final SoundEvent CORRUPTION = new SoundEvent(new Identifier(TerrariaMod.MODID, "corruption"));
-    public static final SoundEvent UNDERGROUND_CORRUPTION = new SoundEvent(new Identifier(TerrariaMod.MODID, "underground_corruption"));
-    public static final SoundEvent DESERT = new SoundEvent(new Identifier(TerrariaMod.MODID, "desert"));
-    public static final SoundEvent SNOW = new SoundEvent(new Identifier(TerrariaMod.MODID, "snow"));
-    public static final SoundEvent JUNGLE = new SoundEvent(new Identifier(TerrariaMod.MODID, "jungle"));
-    public static final SoundEvent MUSHROOM = new SoundEvent(new Identifier(TerrariaMod.MODID, "mushroom"));
-    public static final SoundEvent WINDY_DAY = new SoundEvent(new Identifier(TerrariaMod.MODID, "windy_day"));
+    public static final SoundEvent DAYONE = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "day1"));
+    public static final SoundEvent NIGHT = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "night"));
+    public static final SoundEvent UNDERGROUND = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "underground"));
+    public static final SoundEvent UNDERWORLD = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "underworld"));
+    public static final SoundEvent CORRUPTION = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "corruption"));
+    public static final SoundEvent UNDERGROUND_CORRUPTION = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "underground_corruption"));
+    public static final SoundEvent DESERT = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "desert"));
+    public static final SoundEvent TUNDRA = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "snow"));
+    public static final SoundEvent JUNGLE = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "jungle"));
+    public static final SoundEvent MUSHROOM = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "mushroom"));
+    public static final SoundEvent WINDY_DAY = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "windy_day"));
 
-    public static final SoundEvent TITLE_SCREEN = new SoundEvent(new Identifier(TerrariaMod.MODID, "title_screen"));
-    public static final SoundEvent BOSS1 = new SoundEvent(new Identifier(TerrariaMod.MODID, "boss1"));
-     */
+    public static final SoundEvent TITLE_SCREEN = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "title_screen"));
+    public static final SoundEvent BOSS1 = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "boss1"));
 
     public static final SoundEvent HEALTH_CRYSTAL = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "health_crystal"));
     public static final SoundEvent DRINK = SoundEvent.of(new Identifier(TerrariaMod.MOD_ID, "drink"));

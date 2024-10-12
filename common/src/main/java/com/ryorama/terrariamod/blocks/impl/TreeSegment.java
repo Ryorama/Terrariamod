@@ -13,21 +13,15 @@ import java.util.Random;
 
 public class TreeSegment extends BlockT {
 
-    public static Random rand = new Random();
-
     public TreeSegment(AbstractBlock.Settings properties, float hardness, float difficulty) {
-        super(properties.nonOpaque().sounds(TAudio.DIRT), hardness, difficulty);
+        super(properties.nonOpaque().sounds(TAudio.DIRT).notSolid(), hardness, difficulty);
     }
 
-    public boolean isFullCube(BlockState state) {
+    public boolean isFullCube(BlockView world, BlockPos pos) {
         return false;
     }
 
-    public boolean isOpaqueCube(BlockState state) {
-        return false;
-    }
-
-    public VoxelShape getVisualShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.empty();
     }
 

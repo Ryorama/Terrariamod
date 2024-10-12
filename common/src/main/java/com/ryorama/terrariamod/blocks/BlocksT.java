@@ -1,8 +1,6 @@
 package com.ryorama.terrariamod.blocks;
 
 import com.ryorama.terrariamod.TerrariaMod;
-import com.ryorama.terrariamod.blocks.blanketcon.AdventurePlate;
-import com.ryorama.terrariamod.blocks.blanketcon.SurvivalPlate;
 import com.ryorama.terrariamod.blocks.impl.*;
 import com.ryorama.terrariamod.blocks.terraria.chests.*;
 import com.ryorama.terrariamod.blocks.terraria.world.*;
@@ -140,9 +138,6 @@ public class BlocksT {
     public static final RegistrySupplier<Block> MOONGLOW = register("moonglow", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f, 5).setPick(true).setAxe(true));
     public static final RegistrySupplier<Block> SHIVERTHORN = register("shiverthorn", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.LIGHT_BLUE), 0.1f, 0.1f, 5).setPick(true).setAxe(true));
     public static final RegistrySupplier<Block> WATERLEAF = register("waterleaf", () -> new PlantT(AbstractBlock.Settings.create().mapColor(DyeColor.BLUE), 0.1f, 0.1f).setPick(true).setAxe(true));
-
-    public static final RegistrySupplier<Block> SURVIVAL_PLATE = register("survival_plate", () -> new SurvivalPlate(AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> ADVENTURE = register("adventure_plate", () -> new AdventurePlate(AbstractBlock.Settings.create()));
 
     public static void init() {
         BLOCKS.register();

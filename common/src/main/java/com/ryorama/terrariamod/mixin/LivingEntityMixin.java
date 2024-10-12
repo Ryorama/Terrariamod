@@ -44,7 +44,6 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Cu
             }
         }
 
-
         if (this.thisLivingEntity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) thisLivingEntity;
             World playerWorld = player.getWorld();

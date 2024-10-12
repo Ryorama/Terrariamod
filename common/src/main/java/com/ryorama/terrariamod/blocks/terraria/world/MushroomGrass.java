@@ -26,13 +26,13 @@ public class MushroomGrass extends BlockT {
         if (!world.isClient()) {
             if (!world.isChunkLoaded(pos)) return;
             BlockPos pos2 = pos.add(0, 1, 0);
-            if (world.getBlockState(pos2).isSolid() && world.getBlockState(pos2).getBlock() instanceof AirBlock == false) {
+            if (world.getBlockState(pos2).isSolid()) {
                 world.setBlockState(pos, BlocksT.MUD.get().getDefaultState());
                 return;
             }
             if (world.getBlockState(pos2).getBlock().getDefaultState() == Blocks.AIR.getDefaultState()) {
                 if (random.nextInt(100 * 10) <= 2) {
-                    //world.setBlockState(pos2, BlocksT.DEAD_GRASS.get().getDefaultState());
+                    world.setBlockState(pos2, BlocksT.MUSHROOM_GRASS.get().getDefaultState());
                     if (random.nextInt(15) == 0) {
                         world.setBlockState(pos2, BlocksT.GLOWING_MUSHROOM.get().getDefaultState());
                     }

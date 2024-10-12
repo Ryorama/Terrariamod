@@ -6,6 +6,7 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.utils.WorldDataT;
 import com.ryorama.terrariamod.utils.math.noise.FastNoise;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -24,17 +25,16 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.StructureAccessor;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
-import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
-import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
+import net.minecraft.world.gen.chunk.*;
 import net.minecraft.world.gen.noise.NoiseConfig;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.List;
 
 public class TerrariaChunkGenerator extends NoiseChunkGenerator {
+    //public static final ChunkGeneratorSettings settings = new ChunkGeneratorSettings(GenerationShapeConfig.SURFACE, BlocksT.STONE_BLOCK.get().getDefaultState(), Blocks.WATER.getDefaultState(), DensityFunctions.createSurfaceNoiseRouter(registerable.getRegistryLookup(RegistryKeys.DENSITY_FUNCTION), registerable.getRegistryLookup(RegistryKeys.NOISE_PARAMETERS), false, false), VanillaSurfaceRules.createOverworldSurfaceRule(), (new VanillaBiomeParameters()).getSpawnSuitabilityNoises(), 63, true, false, false, false);
+
     public static final Codec<NoiseChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(BiomeSource.CODEC.fieldOf("biome_source").forGetter((generator) -> {
             return generator.getBiomeSource();
@@ -51,8 +51,22 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
     private boolean corruption = true;
     private boolean right_jungle = true;
 
+    public static List<Block> customOres = new ArrayList<>();
+    public static List<List<Block>> customOreReplacements = new ArrayList<>();
+    public static List<Float> customBlockChances = new ArrayList<>();
+    public static List<Integer> customBlockMin = new ArrayList<>();
+    public static List<Integer> customBlockMax = new ArrayList<>();
+
     public TerrariaChunkGenerator(BiomeSource biomeSource, RegistryEntry<ChunkGeneratorSettings> settings) {
         super(biomeSource, settings);
+    }
+
+    public static void addCustomOreToWorldGen(Block ore, List<Block> replacableBlocks, float chance, int minValue, int maxValue) {
+        customOres.add(ore);
+        customOreReplacements.add(replacableBlocks);
+        customBlockChances.add(chance);
+        customBlockMin.add(minValue);
+        customBlockMax.add(maxValue);
     }
 
     private float GetTerrainNoise(int x, int y, int z) {
@@ -380,7 +394,7 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
                                 }
                             }
                         }
-                        if (y <= -150) {
+                        if (y <= -250) {
                             if (world.getRandom().nextInt(1340) == 0) {
                                 if (world.getBlockState(pos) == BlocksT.ASH.get().getDefaultState()) {
                                     placeOre(world, world.getRandom(), pos, world.getRandom().nextInt(12) + 3, BlocksT.ASH.get().getDefaultState(), BlocksT.HELLSTONE_ORE.get().getDefaultState());
@@ -415,7 +429,7 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
 
                         //Structures
                         if (!world.isClient()) {
-                            if (y <= -10 && y >= -150) {
+                            if (y <= -10 && y >= -250) {
                                 if (world.getRandom().nextInt(20000) == 0) {
                                     //StructurePlacerAPI placerAPI = new StructurePlacerAPI(world, new Identifier(TerrariaMod.MOD_ID, "underground_house"), pos);
                                     //placerAPI.loadStructure();
@@ -656,7 +670,7 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
                                 }
                             }
                         }
-                        if (y <= -150) {
+                        if (y <= -250) {
                             if (world.getRandom().nextInt(1340) == 0) {
                                 if (world.getBlockState(pos) == BlocksT.ASH.get().getDefaultState()) {
                                     placeOre(world, world.getRandom(), pos, world.getRandom().nextInt(12) + 3, BlocksT.ASH.get().getDefaultState(), BlocksT.HELLSTONE_ORE.get().getDefaultState());
@@ -697,8 +711,8 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
                                                     for (int j = y; j < y + height; j++) {
                                                         pos.set(x, j, z);
                                                     }
-                                                    for (int i = - 2; i <= + 2; i++) {
-                                                        for (int j = - 2; j <= + 2; j++) {
+                                                    for (int i = -2; i <= +2; i++) {
+                                                        for (int j = -2; j <= +2; j++) {
                                                             pos.set(x + i, y + height, z + j);
 
                                                             if (Math.abs(i) == 2 && Math.abs(j) == 2) {
@@ -749,8 +763,7 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
                                             pos.set(x, y, z);
 
                                             if (world.getBlockState(pos) == BlocksT.EBONSTONE.get().getDefaultState() ||
-                                                    world.getBlockState(pos) == Blocks.STONE.getDefaultState())
-                                            {
+                                                    world.getBlockState(pos) == Blocks.STONE.getDefaultState()) {
                                                 //Stuff
                                             }
 
@@ -759,12 +772,10 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
                                                 if (world.getBlockState(pos) == BlocksT.EBONSTONE.get().getDefaultState() ||
                                                         world.getBlockState(pos) == Blocks.STONE.getDefaultState() ||
                                                         world.getBlockState(pos) == Blocks.COBWEB.getDefaultState() ||
-                                                        world.getBlockState(pos) == Blocks.DEEPSLATE.getDefaultState())
-                                                {
+                                                        world.getBlockState(pos) == Blocks.DEEPSLATE.getDefaultState()) {
                                                     pos.set(x, y + 1, z);
                                                     if (world.getBlockState(pos) == Blocks.AIR.getDefaultState() ||
-                                                            world.getBlockState(pos) == Blocks.CAVE_AIR.getDefaultState())
-                                                    {
+                                                            world.getBlockState(pos) == Blocks.CAVE_AIR.getDefaultState()) {
                                                         if (random.nextInt(10) <= 4) {
                                                             world.setBlockState(pos, Blocks.COBWEB.getDefaultState(), 0);
                                                         }
@@ -772,6 +783,18 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
                                                 }
 
                                             }
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int o = 1; o <= customOres.size(); o++) {
+                                int selectedOre = random.nextInt(customOres.size());
+                                Block ore = customOres.get(selectedOre);
+                                if (random.nextInt(customBlockChances.get(selectedOre).intValue() + 1) == 0) {
+                                    for (int r = 1; r <= customOreReplacements.get(selectedOre).size(); r++) {
+                                        if (world.getBlockState(pos) == customOreReplacements.get(selectedOre).get(r).getDefaultState()) {
+                                            placeOre(world, random,  pos,random.nextBetween(customBlockMin.get(selectedOre).intValue(), customBlockMax.get(selectedOre).intValue()), customOreReplacements.get(selectedOre).get(r).getDefaultState(), ore.getDefaultState());
                                         }
                                     }
                                 }
@@ -795,30 +818,43 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
         }
     }
 
-    private void GeneratePurityTrees(StructureWorldAccess world, int x, int y, int z, BlockPos.Mutable pos) {
+    private boolean GeneratePurityTrees(StructureWorldAccess world, int x, int y, int z, BlockPos.Mutable pos) {
         pos.set(x, y, z);
         if (world.getBlockState(pos).getBlock() == BlocksT.GRASS_BLOCK.get() || world.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK) {
             if (world.getRandom().nextInt(80) == 0) {
                 int height = world.getRandom().nextInt(10) + 4;
+                for (int h = 0; h <= height; h++) {
+                    if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() + h, pos.getZ())) != Blocks.AIR.getDefaultState()) {
+                        return false;
+                    }
+                }
                 world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.FOREST_STUMP.get().getDefaultState(), 0);
-                for (int h = 2; h <= height; h++) {
-                    world.setBlockState(new BlockPos(pos.getX(), pos.getY() + h, pos.getZ()), BlocksT.FOREST_STEM.get().getDefaultState(), 0);
+                for (int h2 = 2; h2 <= height; h2++) {
+                    world.setBlockState(new BlockPos(pos.getX(), pos.getY() + h2, pos.getZ()), BlocksT.FOREST_STEM.get().getDefaultState(), 0);
                 }
                 world.setBlockState(new BlockPos(pos.getX(), pos.getY() + height + 1, pos.getZ()), BlocksT.FOREST_TOP.get().getDefaultState(), 0);
             }
         }
+        return true;
     }
 
-    private void GenerateGiantMushroom(StructureWorldAccess world, int x, int y, int z, BlockPos.Mutable pos) {
+    private boolean GenerateGiantMushroom(StructureWorldAccess world, int x, int y, int z, BlockPos.Mutable pos) {
         pos.set(x, y, z);
         if (world.getBlockState(pos).getBlock() == BlocksT.MUSHROOM_GRASS.get()) {
-            int height = world.getRandom().nextInt(6) + 4;
+            int height = world.getRandom().nextInt(4) + 2
+                    ;
+            for (int h = 0; h <= height; h++) {
+                if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() + h, pos.getZ())) != Blocks.AIR.getDefaultState()) {
+                    return false;
+                }
+            }
             world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), BlocksT.GIANT_GLOWING_MUSHROOM_STEM.get().getDefaultState(), 0);
-            for (int h = 2; h <= height; h++) {
-                world.setBlockState(new BlockPos(pos.getX(), pos.getY() + h, pos.getZ()), BlocksT.GIANT_GLOWING_MUSHROOM_STEM.get().getDefaultState(), 0);
+            for (int h2 = 2; h2 <= height; h2++) {
+                world.setBlockState(new BlockPos(pos.getX(), pos.getY() + h2, pos.getZ()), BlocksT.GIANT_GLOWING_MUSHROOM_STEM.get().getDefaultState(), 0);
             }
             world.setBlockState(new BlockPos(pos.getX(), pos.getY() + height + 1, pos.getZ()), BlocksT.GIANT_GLOWING_MUSHROOM_TOP.get().getDefaultState(), 0);
         }
+        return true;
     }
 
     public boolean placeOre(StructureWorldAccess worldIn, Random rand, BlockPos pos, int size, BlockState target, BlockState state) {
@@ -827,13 +863,13 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
             float f = rand.nextFloat() * (float)Math.PI;
             float f1 = (float)size / 8.0F;
             int i = MathHelper.ceil(((float)size / 16.0F * 2.0F + 1.0F) / 2.0F);
-            double d0 = (double)((float)pos.getX() + MathHelper.sin(f) * f1);
-            double d1 = (double)((float)pos.getX() - MathHelper.sin(f) * f1);
-            double d2 = (double)((float)pos.getZ() + MathHelper.cos(f) * f1);
-            double d3 = (double)((float)pos.getZ() - MathHelper.cos(f) * f1);
+            double d0 = ((float)pos.getX() + MathHelper.sin(f) * f1);
+            double d1 = ((float)pos.getX() - MathHelper.sin(f) * f1);
+            double d2 = ((float)pos.getZ() + MathHelper.cos(f) * f1);
+            double d3 = ((float)pos.getZ() - MathHelper.cos(f) * f1);
             int j = 2;
-            double d4 = (double)(pos.getY() + rand.nextInt(3) - 2);
-            double d5 = (double)(pos.getY() + rand.nextInt(3) - 2);
+            double d4 = (pos.getY() + rand.nextInt(3) - 2);
+            double d5 = (pos.getY() + rand.nextInt(3) - 2);
             int k = pos.getX() - MathHelper.ceil(f1) - i;
             int l = pos.getY() - 2 - i;
             int i1 = pos.getZ() - MathHelper.ceil(f1) - i;
@@ -857,9 +893,9 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
 
         for(int j = 0; j < size; ++j) {
             float f = (float)j / (float)size;
-            double d0 = MathHelper.lerp((double)f, p_207803_4_, p_207803_6_);
-            double d2 = MathHelper.lerp((double)f, p_207803_12_, p_207803_14_);
-            double d4 = MathHelper.lerp((double)f, p_207803_8_, p_207803_10_);
+            double d0 = MathHelper.lerp(f, p_207803_4_, p_207803_6_);
+            double d2 = MathHelper.lerp(f, p_207803_12_, p_207803_14_);
+            double d4 = MathHelper.lerp(f, p_207803_8_, p_207803_10_);
             double d6 = random.nextDouble() * (double)size / 16.0D;
             double d7 = ((double)(MathHelper.sin((float)Math.PI * f) + 1.0F) * d6 + 1.0D) / 2.0D;
             adouble[j * 4 + 0] = d0;
@@ -929,19 +965,6 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
         }
         return i > 0;
     }
-
-	/*
-	private void GeneratePurityGrass(Chunkworld world, int x, int y, int z, BlockPos.Mutable pos, BlockPos.Mutable pos) {
-		pos.set(x, y, z);
-		if (world.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK) {
-			if (world.getRandom().nextInt(10) == 0) {
-				pos.set(x, y + 1, z);
-				if (world.isChunkLoaded(pos))
-				world.setBlockState(pos, Blocks.GRASS.get().getDefaultState(), 0);
-			}
-		}
-	}
-	*/
 
     public boolean placeOre2(StructureWorldAccess worldIn, Random rand, BlockPos pos, int size, BlockState target, BlockState state) {
 
