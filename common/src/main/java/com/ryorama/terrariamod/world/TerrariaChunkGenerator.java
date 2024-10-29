@@ -323,7 +323,7 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
 
                             //Misc
                             if (y <= -5) {
-                                if (world.getRandom().nextInt(3500) == 0) {
+                                if (world.getRandom().nextInt(1500) == 0) {
                                     if (world.getBlockState(pos) == Blocks.AIR.getDefaultState()) {
                                         if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ())) == BlocksT.STONE_BLOCK.get().getDefaultState()) {
                                             placeStuff(world, BlocksT.LIFE_CRYSTAL_BLOCK.get().getDefaultState(), world.getRandom(), pos);
@@ -841,10 +841,9 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator {
     private boolean GenerateGiantMushroom(StructureWorldAccess world, int x, int y, int z, BlockPos.Mutable pos) {
         pos.set(x, y, z);
         if (world.getBlockState(pos).getBlock() == BlocksT.MUSHROOM_GRASS.get()) {
-            int height = world.getRandom().nextInt(4) + 2
-                    ;
+            int height = world.getRandom().nextInt(4) + 2;
             for (int h = 0; h <= height; h++) {
-                if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() + h, pos.getZ())) != Blocks.AIR.getDefaultState()) {
+                if (world.getBlockState(new BlockPos(pos.getX(), pos.getY() + h, pos.getZ())) != Blocks.AIR.getDefaultState() || world.getBlockState(new BlockPos(pos.getX(), pos.getY() + h, pos.getZ())) != Blocks.CAVE_AIR.getDefaultState()) {
                     return false;
                 }
             }

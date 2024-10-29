@@ -32,8 +32,8 @@ public class TerrariaMod {
         CONFIG = AutoConfig.getConfigHolder(TerrariaModConfig.class).getConfig();
         CHUNK_GENERATORS.register();
         BuffsT.init();
-        BlocksT.init();
         EntitiesT.init();
+        BlocksT.init();
         ItemsT.init();
     }
 

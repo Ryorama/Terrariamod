@@ -14,6 +14,7 @@ public class HotBlockT extends BlockT {
         super(properties, hardness, difficulty);
     }
 
+    @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if (!entity.bypassesSteppingEffects() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity)) {
             if (TerrariaMod.CONFIG.replaceSpecialDamageWithDebuffs) {

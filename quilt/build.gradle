@@ -32,15 +32,22 @@ architectury {
 }
 
 loom {
-    accessWidenerPath = project(":common").loom.accessWidenerPath
+    mixin.defaultRefmapName = 'terrariamod.mixins.refmap.json'
 }
 
 configurations {
-    common
-    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentQuilt.extendsFrom common
+    developmentFabric.extendsFrom common
+
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
 }
 
 dependencies {
@@ -54,7 +61,7 @@ dependencies {
     }
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionQuilt")) { transitive false }
+    shadowBundle(project(path: ":common", configuration: "transformProductionQuilt")) { transitive false }
     modImplementation include("software.bernie.geckolib:geckolib-fabric-1.20:${rootProject.geckolib_version_quilt}")
     modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
@@ -78,33 +85,12 @@ processResources {
 }
 
 shadowJar {
-    exclude "architectury.common.json"
-
-    configurations = [project.configurations.shadowCommon]
-    classifier "dev-shadow"
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = "dev-shadow"
 }
 
 remapJar {
-    injectAccessWidener = true
     input.set shadowJar.archiveFile
-    dependsOn shadowJar
-    classifier null
-}
-
-jar {
-    classifier "dev"
-}
-
-sourcesJar {
-    def commonSources = project(":common").sourcesJar
-    dependsOn commonSources
-    from commonSources.archiveFile.map { zipTree(it) }
-}
-
-components.java {
-    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
-        skip()
-    }
 }
 
 publishing {

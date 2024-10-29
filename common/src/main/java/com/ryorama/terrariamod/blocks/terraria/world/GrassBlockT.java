@@ -20,7 +20,6 @@ public class GrassBlockT extends BlockT {
         if (!world.isClient()) {
             if (!world.isChunkLoaded(pos)) return;
             BlockPos pos2 = pos.add(0, 1, 0);
-            System.out.println("Is " + world.getBlockState(pos2).getBlock().getName() + " Solid: " + world.getBlockState(pos2).isSolid());
             if (world.getBlockState(pos2).isSolid()) {
                 world.setBlockState(pos, BlocksT.DIRT_BLOCK.get().getDefaultState());
                 return;

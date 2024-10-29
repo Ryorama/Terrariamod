@@ -31,8 +31,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ItemsT {
-    public static List<Item> fixedRenders = new ArrayList<>();
-
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(TerrariaMod.MOD_ID, RegistryKeys.ITEM);
     public static final DeferredRegister<ItemGroup> ITEM_GROUPS = DeferredRegister.create(TerrariaMod.MOD_ID, RegistryKeys.ITEM_GROUP);
 
@@ -167,11 +165,6 @@ public class ItemsT {
     public static final RegistrySupplier<Item> LESSER_HEALING_POTION = register("lesser_healing_potion", () -> new LesserHealingPotion(new Item.Settings()).setRarity(2).isConsumable(true));
     public static final RegistrySupplier<Item> HEALING_POTION = register("healing_potion", () -> new HealingPotion(new Item.Settings()).setRarity(2).isConsumable(true));
 
-    public static final RegistrySupplier<Item> GREEN_SLIME_SPAWN_EGG = register("green_slime_spawn_egg", () -> new SpawnEggItem(EntitiesT.GREEN_SLIME.get(), 0x2ec221, 0x5fed53, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
-    public static final RegistrySupplier<Item> BLUE_SLIME_SPAWN_EGG = register("blue_slime_spawn_egg", () -> new SpawnEggItem(EntitiesT.BLUE_SLIME.get(), 0x2f7dc4, 0x53a3ed, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
-    public static final RegistrySupplier<Item> DEMON_EYE_SPAWN_EGG = register("demon_eye_spawn_egg", () -> new SpawnEggItem(EntitiesT.DEMON_EYE.get(), 0xffffff, 0xff0000, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
-
-
     public static final RegistrySupplier<Item> GRASS_BLOCK = register("grass_block", () -> new BlockItemT(BlocksT.GRASS_BLOCK.get(), new Item.Settings().maxCount(64)).setRarity(2));
     public static final RegistrySupplier<Item> CORRUPTED_GRASS_BLOCK = register("corrupted_grass", () -> new BlockItemT(BlocksT.CORRUPTED_GRASS_BLOCK.get(), new Item.Settings().maxCount(64)).setRarity(2));
     public static final RegistrySupplier<Item> CRIMSON_GRASS_BLOCK = register("crimson_grass", () -> new BlockItemT(BlocksT.CRIMSON_GRASS_BLOCK.get(), new Item.Settings().maxCount(64)).setRarity(2));
@@ -235,12 +228,17 @@ public class ItemsT {
     public static final RegistrySupplier<Item> SKYWARE_CHEST = register("skyware_chest", () -> new BlockItemT(BlocksT.SKYWARE_CHEST.get(), new Item.Settings().maxCount(64)));
     public static final RegistrySupplier<Item> WATER_CHEST = register("water_chest", () -> new BlockItemT(BlocksT.WATER_CHEST.get(), new Item.Settings().maxCount(64)));
 
+    //public static RegistrySupplier<Item> GREEN_SLIME_SPAWN_EGG;
+    //public static RegistrySupplier<Item> BLUE_SLIME_SPAWN_EGG;
+    //public static RegistrySupplier<Item> DEMON_EYE_SPAWN_EGG;
+
     public static void init() {
+        //GREEN_SLIME_SPAWN_EGG = register("green_slime_spawn_egg", () -> new SpawnEggItem(EntitiesT.GREEN_SLIME.get(), 0x2ec221, 0x5fed53, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
+        //BLUE_SLIME_SPAWN_EGG = register("blue_slime_spawn_egg", () -> new SpawnEggItem(EntitiesT.BLUE_SLIME.get(), 0x2f7dc4, 0x53a3ed, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
+        //DEMON_EYE_SPAWN_EGG = register("demon_eye_spawn_egg", () -> new SpawnEggItem(EntitiesT.DEMON_EYE.get(), 0xffffff, 0xff0000, new Item.Settings().arch$tab(TERRARIAMOD_GROUP)));
+
         ITEMS.register();
         ITEM_GROUPS.register();
-
-        fixedRenders.add(LIGHTS_BANE.get());
-        fixedRenders.add(CRIMTANE_AXE.get());
     }
 
     static RegistrySupplier<ItemGroup> registerTab(String name, Supplier<ItemGroup> group) {

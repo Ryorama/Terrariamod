@@ -26,9 +26,19 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
         if (TerrariaMod.CONFIG.replaceSpecialDamageWithDebuffs) {
             fireTicks = 0;
             if (((Entity) (Object) this) instanceof LivingEntity) {
-                BuffsT.AddBuffToEntity(((LivingEntity)(Object)this), 1, BuffsT.ON_FIRE);
+                BuffsT.AddBuffToEntity(((LivingEntity) (Object) this), 1, BuffsT.ON_FIRE);
             }
-            ci.cancel();
+            return;
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "setOnFireFor")
+    public void setOnFireFor(int seconds, CallbackInfo ci) {
+        if (TerrariaMod.CONFIG.replaceSpecialDamageWithDebuffs) {
+            if (((Entity) (Object) this) instanceof LivingEntity) {
+                BuffsT.AddBuffToEntity(((LivingEntity) (Object) this), 1, BuffsT.ON_FIRE);
+            }
+            return;
         }
     }
 }

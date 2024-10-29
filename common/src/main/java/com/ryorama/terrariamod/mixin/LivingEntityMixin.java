@@ -24,10 +24,6 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Cu
     public List<BuffT> activeBuffs = new ArrayList<>();
     public List<Identifier> activeBuffsIcons = new ArrayList<>();
 
-    public Entity thisEntity;
-
-    public LivingEntity thisLivingEntity;
-
     public boolean calledBuffIconRenderer = false;
 
     public LivingEntityMixin(EntityType<?> type, World world) {
@@ -36,22 +32,16 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Cu
 
     @Inject(at = @At("TAIL"), method = "tick")
     public void tick(CallbackInfo info) {
-        thisEntity = this.getEntityWorld().getEntityById(this.getId());
+        LivingEntity thisEntity = ((LivingEntity) (Object) this);
 
-        if (thisEntity != null) {
-            if(thisEntity instanceof LivingEntity) {
-                thisLivingEntity = (LivingEntity) this.getEntityWorld().getEntityById(this.getId());
-            }
-        }
-
-        if (this.thisLivingEntity instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) thisLivingEntity;
+        if (thisEntity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) thisEntity;
             World playerWorld = player.getWorld();
 
             if (playerWorld.isClient()) {
                 if (player.isMainPlayer()) {
                     if (!calledBuffIconRenderer) {
-                        BuffT.renderIcon(thisLivingEntity);
+                        BuffT.renderIcon(thisEntity);
                         calledBuffIconRenderer = true;
                     }
                 }
@@ -59,7 +49,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Cu
         }
 
         for (int b = 0; b < activeBuffs.size(); b++) {
-            activeBuffs.get(b).tick(thisLivingEntity);
+            activeBuffs.get(b).tick(thisEntity);
             if (activeBuffs.get(b).getDuration() <= 0) {
                 RemoveBuff(activeBuffs.get(b));
                 return;

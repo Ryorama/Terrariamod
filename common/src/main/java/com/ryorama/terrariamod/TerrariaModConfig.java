@@ -17,5 +17,5 @@ public class TerrariaModConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean useCustomTitles = false;
     @ConfigEntry.Gui.Tooltip
-    public boolean replaceSpecialDamageWithDebuffs = false;
+    public boolean replaceSpecialDamageWithDebuffs = true;
 }

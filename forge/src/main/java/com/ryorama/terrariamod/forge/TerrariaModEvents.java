@@ -53,9 +53,9 @@ public class TerrariaModEvents {
             }
         }
 
+        /*
         if (world.getPlayers().size() > 0) {
             PlayerEntity player2 = world.getPlayers().get(world.random.nextInt(world.getPlayers().size()));
-            ServerPlayerEntity serverPlayerEntity = ((ServerPlayerEntity) player2);
             if (world.getRandom().nextInt(700) <= 10) {
                 int x = (int) (player2.getPos().x + world.random.nextInt(80) - 40), y = (int) (player2.getPos().y + world.random.nextInt(80) - 40), z = (int) (player2.getPos().z + world.random.nextInt(80) - 40);
 
@@ -71,6 +71,7 @@ public class TerrariaModEvents {
                 }
             }
         }
+        */
     }
 
     @SubscribeEvent
