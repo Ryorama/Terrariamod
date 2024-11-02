@@ -10,8 +10,10 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class TerraruaUIRenderer {
+public class TerrariaUIRenderer {
     public static Identifier health_icon = new Identifier(TerrariaMod.MOD_ID, "textures/ui/heart.png");
     public static Identifier shield = new Identifier(TerrariaMod.MOD_ID, "textures/ui/shield.png");
     public static Identifier mana = new Identifier(TerrariaMod.MOD_ID, "textures/ui/mana.png");
@@ -31,6 +33,7 @@ public class TerraruaUIRenderer {
 
     public static ClientPlayerEntity player;
 
+    @OnlyIn(Dist.CLIENT)
     public static void renderTerrariaHealth() {
         if (!TerrariaMod.CONFIG.useVanillaHud) {
             float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
@@ -53,6 +56,7 @@ public class TerraruaUIRenderer {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void renderTerrariaDefense() {
         float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
 
@@ -65,6 +69,7 @@ public class TerraruaUIRenderer {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void renderTerrariaMana() {
         if (!TerrariaMod.CONFIG.useVanillaHud) {
             float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
@@ -83,53 +88,56 @@ public class TerraruaUIRenderer {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void renderTerrariaEffects() {
-        if (MinecraftClient.getInstance().player != null) {
-            player = MinecraftClient.getInstance().player;
-        }
-
-        int i3 = 17;
-        int j3 = 27;
-        int effectCounter = 0;
-
-        if (player != null) {
-            if (GameRulesT.POTION_SICKNESS.get() > 0) {
-                UIRenderer.renderOverlay(potion_sickness, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                effectCounter++;
+        if (TerrariaMod.CONFIG.showTerrariaBuffs) {
+            if (MinecraftClient.getInstance().player != null) {
+                player = MinecraftClient.getInstance().player;
             }
 
-            if (GameRulesT.POISONED.get() > 0) {
-                UIRenderer.renderOverlay(poisoned, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                effectCounter++;
-            }
+            int i3 = 17;
+            int j3 = 27;
+            int effectCounter = 0;
 
-            if (GameRulesT.IRON_SKIN.get() > 0) {
-                UIRenderer.renderOverlay(iron_skin, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                effectCounter++;
-            }
+            if (player != null) {
+                if (GameRulesT.POTION_SICKNESS.get() > 0) {
+                    UIRenderer.renderOverlay(potion_sickness, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                    effectCounter++;
+                }
 
-            if (GameRulesT.HAPPY.get() > 0) {
-                UIRenderer.renderOverlay(happy, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                effectCounter++;
-            }
+                if (GameRulesT.POISONED.get() > 0) {
+                    UIRenderer.renderOverlay(poisoned, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                    effectCounter++;
+                }
 
-            if (GameRulesT.COZY_FIRE.get() > 0) {
-                UIRenderer.renderOverlay(cozy_fire, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                effectCounter++;
-            }
+                if (GameRulesT.IRON_SKIN.get() > 0) {
+                    UIRenderer.renderOverlay(iron_skin, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                    effectCounter++;
+                }
 
-            if (GameRulesT.REGENERATION.get() > 0) {
-                UIRenderer.renderOverlay(regeneration, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                effectCounter++;
-            }
+                if (GameRulesT.HAPPY.get() > 0) {
+                    UIRenderer.renderOverlay(happy, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                    effectCounter++;
+                }
 
-            if (GameRulesT.BLEEDING.get() > 0) {
-                UIRenderer.renderOverlay(bleeding, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                effectCounter++;
-            }
-            if (GameRulesT.WATER_CANDLE.get() > 0) {
-                UIRenderer.renderOverlay(water_candle, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                effectCounter++;
+                if (GameRulesT.COZY_FIRE.get() > 0) {
+                    UIRenderer.renderOverlay(cozy_fire, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                    effectCounter++;
+                }
+
+                if (GameRulesT.REGENERATION.get() > 0) {
+                    UIRenderer.renderOverlay(regeneration, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                    effectCounter++;
+                }
+
+                if (GameRulesT.BLEEDING.get() > 0) {
+                    UIRenderer.renderOverlay(bleeding, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                    effectCounter++;
+                }
+                if (GameRulesT.WATER_CANDLE.get() > 0) {
+                    UIRenderer.renderOverlay(water_candle, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                    effectCounter++;
+                }
             }
         }
     }

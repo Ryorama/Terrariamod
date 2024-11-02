@@ -96,52 +96,54 @@ public class TerrariaUIRenderer {
 
     public static void renderTerrariaEffects() {
         HudRenderCallback.EVENT.register((matrixstack, delta) -> {
-            if (MinecraftClient.getInstance().player != null) {
-                player = MinecraftClient.getInstance().player;
-            }
-
-            int i3 = 17;
-            int j3 = 27;
-            int effectCounter = 0;
-
-            if (player != null) {
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.POTION_SICKNESS)) > 0) {
-                    UIRenderer.renderOverlay(potion_sickness, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                    effectCounter++;
+            if (TerrariaMod.CONFIG.showTerrariaBuffs) {
+                if (MinecraftClient.getInstance().player != null) {
+                    player = MinecraftClient.getInstance().player;
                 }
 
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.POISONED)) > 0) {
-                    UIRenderer.renderOverlay(poisoned, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                    effectCounter++;
-                }
+                int i3 = 17;
+                int j3 = 27;
+                int effectCounter = 0;
 
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.IRON_SKIN)) > 0) {
-                    UIRenderer.renderOverlay(iron_skin, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                    effectCounter++;
-                }
+                if (player != null) {
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.POTION_SICKNESS)) > 0) {
+                        UIRenderer.renderOverlay(potion_sickness, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                        effectCounter++;
+                    }
 
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.HAPPY)) > 0) {
-                    UIRenderer.renderOverlay(happy, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                    effectCounter++;
-                }
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.POISONED)) > 0) {
+                        UIRenderer.renderOverlay(poisoned, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                        effectCounter++;
+                    }
 
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.COZY_FIRE)) > 0) {
-                    UIRenderer.renderOverlay(cozy_fire, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                    effectCounter++;
-                }
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.IRON_SKIN)) > 0) {
+                        UIRenderer.renderOverlay(iron_skin, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                        effectCounter++;
+                    }
 
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.REGENERATION)) > 0) {
-                    UIRenderer.renderOverlay(regeneration, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                    effectCounter++;
-                }
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.HAPPY)) > 0) {
+                        UIRenderer.renderOverlay(happy, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                        effectCounter++;
+                    }
 
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.BLEEDING)) > 0) {
-                    UIRenderer.renderOverlay(bleeding, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                    effectCounter++;
-                }
-                if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.WATER_CANDLE)) > 0) {
-                    UIRenderer.renderOverlay(water_candle, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
-                    effectCounter++;
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.COZY_FIRE)) > 0) {
+                        UIRenderer.renderOverlay(cozy_fire, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                        effectCounter++;
+                    }
+
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.REGENERATION)) > 0) {
+                        UIRenderer.renderOverlay(regeneration, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                        effectCounter++;
+                    }
+
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.BLEEDING)) > 0) {
+                        UIRenderer.renderOverlay(bleeding, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                        effectCounter++;
+                    }
+                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.WATER_CANDLE)) > 0) {
+                        UIRenderer.renderOverlay(water_candle, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
+                        effectCounter++;
+                    }
                 }
             }
         });

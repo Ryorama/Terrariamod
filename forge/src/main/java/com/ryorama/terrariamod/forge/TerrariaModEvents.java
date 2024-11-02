@@ -3,16 +3,13 @@ package com.ryorama.terrariamod.forge;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.forge.network.GameRulesT;
-import com.ryorama.terrariamod.forge.network.client.ui.TerraruaUIRenderer;
+import com.ryorama.terrariamod.forge.network.client.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.utils.WorldDataT;
-import com.ryorama.terrariamod.world.EntitySpawner;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -106,9 +103,9 @@ public class TerrariaModEvents {
     @SubscribeEvent
     @OnlyIn(value= Dist.CLIENT)
     public static void renderGuiOverlayEvent(RenderGuiOverlayEvent.Pre event) {
-        TerraruaUIRenderer.renderTerrariaHealth();
-        TerraruaUIRenderer.renderTerrariaEffects();
-        TerraruaUIRenderer.renderTerrariaMana();
+        TerrariaUIRenderer.renderTerrariaHealth();
+        TerrariaUIRenderer.renderTerrariaEffects();
+        TerrariaUIRenderer.renderTerrariaMana();
     }
 
     @SubscribeEvent

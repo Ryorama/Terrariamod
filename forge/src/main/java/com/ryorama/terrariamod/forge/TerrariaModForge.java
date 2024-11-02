@@ -1,30 +1,22 @@
 package com.ryorama.terrariamod.forge;
 
+import com.ryorama.terrariamod.TerrariaModConfig;
 import com.ryorama.terrariamod.forge.network.NetworkHandler;
-import com.ryorama.terrariamod.stats.StatsT;
-import com.ryorama.terrariamod.utils.WorldDataT;
 import dev.architectury.platform.forge.EventBuses;
 import com.ryorama.terrariamod.TerrariaMod;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.telemetry.WorldLoadedEvent;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-import net.minecraft.world.tick.Tick;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.IExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.network.NetworkConstants;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +37,8 @@ public class TerrariaModForge {
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::clientSetup);
         MinecraftForge.EVENT_BUS.register(TerrariaModEvents.class);
+        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> TerrariaModConfig::new);
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
