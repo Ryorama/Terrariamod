@@ -41,13 +41,9 @@ public class TerrariaModFabric implements ModInitializer {
 
     public void onTick() {
         ServerTickEvents.START_SERVER_TICK.register(world -> {
-            PlayerEntity player = null;
-
             for (int p = 0; p < world.getPlayerManager().getPlayerList().size(); p++) {
-                player = world.getPlayerManager().getPlayerList().get(p);
-            }
+                PlayerEntity player = world.getPlayerManager().getPlayerList().get(p);
 
-            if (player != null) {
                 if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                     if (TerrariaMod.CONFIG.modifyPlayerHealth) {
                         player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
