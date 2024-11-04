@@ -99,13 +99,6 @@ public class ItemT extends Item {
         return this;
     }
 
-	/*
-	@Override
-	public String getTranslationKey(ItemStack stack) {
-		return nameFormatting + this.getName(stack);
-	}
-	 */
-
     @Override
     public Text getName(ItemStack stack) {
         if (rarity == 1) {

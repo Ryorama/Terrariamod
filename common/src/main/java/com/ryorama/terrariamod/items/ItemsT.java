@@ -2,7 +2,6 @@ package com.ryorama.terrariamod.items;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
-import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.items.impl.BlockItemT;
 import com.ryorama.terrariamod.items.impl.ItemT;
 import com.ryorama.terrariamod.items.terraria.armor.*;
@@ -14,20 +13,17 @@ import com.ryorama.terrariamod.items.terraria.consumable.ammo.arrows.WoodenArrow
 import com.ryorama.terrariamod.items.terraria.consumable.misc.LifeCrystal;
 import com.ryorama.terrariamod.items.terraria.consumable.potions.HealingPotion;
 import com.ryorama.terrariamod.items.terraria.consumable.potions.LesserHealingPotion;
-import com.ryorama.terrariamod.items.terraria.consumable.potions.Mushroom;
+import com.ryorama.terrariamod.items.terraria.consumable.food.Mushroom;
 import com.ryorama.terrariamod.items.terraria.picks.*;
 import com.ryorama.terrariamod.items.terraria.shortswords.*;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class ItemsT {

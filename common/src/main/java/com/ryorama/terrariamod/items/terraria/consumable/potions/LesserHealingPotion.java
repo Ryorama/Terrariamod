@@ -13,6 +13,7 @@ public class LesserHealingPotion extends ItemT {
 
     public LesserHealingPotion(Settings settings) {
         super(settings.maxCount(64));
+        this.isConsumable(true);
     }
 
     @Override

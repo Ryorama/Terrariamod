@@ -13,6 +13,7 @@ public class HealingPotion extends ItemT {
 
     public HealingPotion(Settings settings) {
         super(settings.maxCount(64));
+        this.isConsumable(true);
     }
 
     @Override

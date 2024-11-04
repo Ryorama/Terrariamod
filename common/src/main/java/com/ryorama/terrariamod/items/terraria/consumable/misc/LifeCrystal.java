@@ -13,6 +13,7 @@ public class LifeCrystal extends ItemT {
 
 	public LifeCrystal(Settings settings) {
 		super(settings);
+		this.isConsumable(true);
 	}
 	
 	@Override
