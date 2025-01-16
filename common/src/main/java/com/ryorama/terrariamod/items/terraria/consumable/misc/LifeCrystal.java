@@ -20,11 +20,11 @@ public class LifeCrystal extends ItemT {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
 		if (playerEntity.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH) < 400) {
 			playerEntity.playSound(TAudio.HEALTH_CRYSTAL, 1, 1);
-
 			playerEntity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(playerEntity.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH) + 20);
 			playerEntity.setHealth((float)(playerEntity.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH) + 20));
-	        
-			playerEntity.getInventory().getMainHandStack().decrement(1);
+			if (!playerEntity.isCreative()) {
+				playerEntity.getStackInHand(hand).decrement(1);
+			}
 			
 			return TypedActionResult.success(playerEntity.getStackInHand(hand));	
 		}

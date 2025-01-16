@@ -22,6 +22,9 @@ public class HealingPotion extends ItemT {
             playerEntity.playSound(TAudio.DRINK, 1, 1);
             playerEntity.heal(100);
             BuffsT.AddBuffToEntity(playerEntity, 1000, BuffsT.POTION_SICKNESS);
+            if (!playerEntity.isCreative()) {
+                playerEntity.getStackInHand(hand).decrement(1);
+            }
             return TypedActionResult.success(playerEntity.getStackInHand(hand));
         }
 

@@ -24,6 +24,9 @@ public class Mushroom extends ItemT implements IFoodItem {
             playerEntity.heal(15);
             addBuffOnEaten(playerEntity, BuffsT.POTION_SICKNESS,1000);
             handlePlayerHunger(playerEntity, 4, 2);
+            if (!playerEntity.isCreative()) {
+                playerEntity.getStackInHand(hand).decrement(1);
+            }
             return TypedActionResult.success(playerEntity.getStackInHand(hand));
         }
 

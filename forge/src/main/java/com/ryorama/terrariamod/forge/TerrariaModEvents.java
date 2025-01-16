@@ -26,7 +26,7 @@ public class TerrariaModEvents {
     public int tmpMaxMana = 20;
 
     @SubscribeEvent
-    public static void WorldTickEvent(TickEvent.LevelTickEvent event) {
+    public static void worldTickEvent(TickEvent.LevelTickEvent event) {
         PlayerEntity player = null;
         World world = event.level;
 
@@ -72,14 +72,15 @@ public class TerrariaModEvents {
     }
 
     @SubscribeEvent
-    public static void RegisterEntityAttributesEvent(EntityAttributeCreationEvent event) {
+    public static void registerEntityAttributesEvent(EntityAttributeCreationEvent event) {
+        TerrariaMod.LOGGER.info("Creating TerrariaMod Entity Attributes");
         event.put(EntitiesT.GREEN_SLIME.get(), MobEntity.createMobAttributes().build());
         event.put(EntitiesT.BLUE_SLIME.get(), MobEntity.createMobAttributes().build());
         event.put(EntitiesT.DEMON_EYE.get(), MobEntity.createMobAttributes().build());
     }
 
     @SubscribeEvent
-    public static void WorldLoadEvent(LevelEvent.Load event) {
+    public static void worldLoadEvent(LevelEvent.Load event) {
         if (event.getLevel().getServer() != null) {
             try {
                 WorldDataT.setupWorldData();
@@ -92,7 +93,7 @@ public class TerrariaModEvents {
         }
     }
     @SubscribeEvent
-    public static void WorldUnloadEvent(LevelEvent.Save event) {
+    public static void worldUnloadEvent(LevelEvent.Save event) {
         try {
             WorldDataT.saveData(event.getLevel());
         } catch (IOException e) {

@@ -10,17 +10,17 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class TerrariaMod {
     public static final String MOD_ID = "terrariamod";
+    public static final Logger LOGGER  = LogManager.getLogger(TerrariaMod.class);
     public static TerrariaModConfig CONFIG = new TerrariaModConfig();
 
     public static final DeferredRegister<Codec<? extends ChunkGenerator>> CHUNK_GENERATORS = DeferredRegister.create(TerrariaMod.MOD_ID, RegistryKeys.CHUNK_GENERATOR);
@@ -32,8 +32,8 @@ public class TerrariaMod {
         CONFIG = AutoConfig.getConfigHolder(TerrariaModConfig.class).getConfig();
         CHUNK_GENERATORS.register();
         BuffsT.init();
-        EntitiesT.init();
         BlocksT.init();
+        EntitiesT.init();
         ItemsT.init();
     }
 
