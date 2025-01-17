@@ -1,19 +1,14 @@
 package com.ryorama.terrariamod.entities.terraria.hostile.slime;
-
-import java.util.ArrayList;
-
 import com.ryorama.terrariamod.client.TAudio;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Arm;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -23,18 +18,21 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public abstract class EntitySlimeBase extends MobEntity implements GeoAnimatable {
+import java.util.ArrayList;
+
+public abstract class EntitySlimeBase extends Mob implements GeoAnimatable {
 	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
 	private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.slime.squish");
-	public static ArrayList<ItemStack> armorItems = new ArrayList<ItemStack>();
+	public static ArrayList<ItemStack> armorItems = new ArrayList<>();
 	
 	public boolean onGroundLastTick;
 	
 	public boolean jumping = false;
 	public float jumpCooldown;
-	
-	public EntitySlimeBase(EntityType<? extends EntitySlimeBase> entityType, World world) {
+
+	public float damage = 3;
+	public EntitySlimeBase(EntityType<? extends EntitySlimeBase> entityType, Level world) {
 		super(entityType, world);
 	}
 	
@@ -49,10 +47,10 @@ public abstract class EntitySlimeBase extends MobEntity implements GeoAnimatable
 			}
 		}
 		
-		double motionY = getVelocity().getY();
-	    double motionX = getVelocity().getX();
-	    double motionZ = getVelocity().getZ();
-		if (this.isOnGround() && jumping) {
+		double motionY = getDeltaMovement().y();
+	    double motionX = getDeltaMovement().x();
+	    double motionZ = getDeltaMovement().z();
+		if (this.onGround() && jumping) {
 		    lookRandomly();
 		   
 		    if (this.random.nextInt(1) == 0) {
@@ -72,10 +70,10 @@ public abstract class EntitySlimeBase extends MobEntity implements GeoAnimatable
 			    	motionZ = -0.5f;
 			    }
 		    }
-		    this.setVelocity(motionX, motionY, motionZ);
+		    this.setDeltaMovement(motionX, motionY, motionZ);
 		}
 		
-		if (!this.isOnGround() && jumping) {
+		if (!this.onGround() && jumping) {
 			jumping = false;
 		}
 	}
@@ -91,7 +89,7 @@ public abstract class EntitySlimeBase extends MobEntity implements GeoAnimatable
 	}
 
 	public void lookRandomly() {
-		this.setRotation(this.headYaw + this.random.nextInt(3), this.getPitch());
+		this.setRot(this.yHeadRot + this.random.nextInt(3), this.getXRot());
 	}
 	
 	public Iterable<ItemStack> getArmorItems() {
@@ -99,26 +97,24 @@ public abstract class EntitySlimeBase extends MobEntity implements GeoAnimatable
 	}
 
 	@Override
-	public ItemStack getEquippedStack(EquipmentSlot slot) {
+	public ItemStack getItemBySlot(EquipmentSlot slot) {
 		return ItemStack.EMPTY;
 	}
 
 	@Override
-	public void equipStack(EquipmentSlot slot, ItemStack stack) {
-		
+	public void setItemSlot(EquipmentSlot slot, ItemStack stack) {}
+
+	@Override
+	public HumanoidArm getMainArm() {
+		return HumanoidArm.LEFT;
 	}
 
 	@Override
-	public Arm getMainArm() {
-		return Arm.LEFT;
-	}
-
-	@Override
-	public void onPlayerCollision(PlayerEntity playerIn) {
-		super.onPlayerCollision(playerIn);
+	public void playerTouch(Player playerIn) {
+		super.playerTouch(playerIn);
 
 		if (this.isAlive()) {
-			playerIn.damage(getWorld().getDamageSources().generic(), 3);
+			playerIn.hurt(level().damageSources().generic(), damage);
 		}
 	}
 

@@ -1,14 +1,13 @@
 package com.ryorama.terrariamod.fluids;
-
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidFillable;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.LavaFluid;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlockContainer;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.LavaFluid;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,63 +15,63 @@ import java.util.Collections;
 
 public class FlowLava {
 
-    public static void flowlava(WorldAccess world, BlockPos fluidPos, FluidState state) {
-        if (world.getBlockState(fluidPos).getBlock() instanceof FluidFillable) {
+    public static void flowlava(LevelAccessor world, BlockPos fluidPos, FluidState state) {
+        if (world.getBlockState(fluidPos).getBlock() instanceof LiquidBlockContainer) {
             return;
         }
-        if ((world.getBlockState(fluidPos.down()).canBucketPlace(Fluids.LAVA)) && (getLavaLevel(fluidPos.down(), world) != 8)) {
+        if ((world.getBlockState(fluidPos.below()).canBeReplaced(Fluids.LAVA)) && (getLavaLevel(fluidPos.below(), world) != 8)) {
             int centerlevel = getLavaLevel(fluidPos, world);
-            world.setBlockState(fluidPos, Blocks.AIR.getDefaultState(), 11);
-            addLava(centerlevel, fluidPos.down(), world);
+            world.setBlock(fluidPos, Blocks.AIR.defaultBlockState(), 11);
+            addLava(centerlevel, fluidPos.below(), world);
         } else {
             ArrayList<BlockPos> blocks = new ArrayList<BlockPos>(4);
-            for (Direction dir : Direction.Type.HORIZONTAL) {
-                blocks.add(fluidPos.offset(dir));
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                blocks.add(fluidPos.offset(dir.getNormal()));
             }
-            blocks.removeIf(pos -> !world.getBlockState(pos).canBucketPlace(Fluids.LAVA));
+            blocks.removeIf(pos -> !world.getBlockState(pos).canBeReplaced(Fluids.LAVA));
             Collections.shuffle(blocks);
             equalizeLava(blocks, fluidPos, world);
         }
     }
 
-    public static int getLavaLevel(BlockPos pos, WorldAccess world) {
+    public static int getLavaLevel(BlockPos pos, LevelAccessor world) {
         BlockState blockstate = world.getBlockState(pos);
         FluidState fluidstate = blockstate.getFluidState();
         int lavalevel = 0;
-        if (fluidstate.getFluid() instanceof LavaFluid.Still){
+        if (fluidstate.getType() instanceof LavaFluid.Source){
             lavalevel = 8;
-        } else if (fluidstate.getFluid() instanceof LavaFluid.Flowing) {
-            lavalevel = fluidstate.getLevel();
+        } else if (fluidstate.getType() instanceof LavaFluid.Flowing) {
+            lavalevel = fluidstate.getAmount();
         }
         return lavalevel;
     }
 
-    public static void setLavaLevel(int level, BlockPos pos, WorldAccess world) {
+    public static void setLavaLevel(int level, BlockPos pos, LevelAccessor world) {
         if (level == 8) {
-            if (!(world.getBlockState(pos).getBlock() instanceof FluidFillable)) { // Don't fill kelp etc
-                world.setBlockState(pos, Fluids.LAVA.getDefaultState().getBlockState(), 11);
+            if (!(world.getBlockState(pos).getBlock() instanceof LiquidBlockContainer)) { // Don't fill kelp etc
+                world.setBlock(pos, Fluids.LAVA.defaultFluidState().createLegacyBlock(), 11);
             }
         } else if (level == 0) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
+            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
         } else if (level < 8) {
-            world.setBlockState(pos, Fluids.FLOWING_LAVA.getFlowing(level, false).getBlockState(), 11);
+            world.setBlock(pos, Fluids.FLOWING_LAVA.getFlowing(level, false).createLegacyBlock(), 11);
         } else {
             System.out.println("Can't set lava >8 something went very wrong!");
         }
     }
 
-    public static void addLava(int level, BlockPos pos, WorldAccess world) {
+    public static void addLava(int level, BlockPos pos, LevelAccessor world) {
         int existinglava = getLavaLevel(pos, world);
         int totallava = existinglava + level;
         if (totallava > 8) {
-            setLavaLevel(totallava - 8, pos.up(), world);
+            setLavaLevel(totallava - 8, pos.above(), world);
             setLavaLevel(8, pos, world);
         } else {
             setLavaLevel(totallava, pos, world);
         }
     }
 
-    public static void equalizeLava(ArrayList<BlockPos> blocks, BlockPos center, WorldAccess world) {
+    public static void equalizeLava(ArrayList<BlockPos> blocks, BlockPos center, LevelAccessor world) {
         int[] lavalevels = new int[4];
         Arrays.fill(lavalevels, -1);
         int centerlavalevel = getLavaLevel(center, world);

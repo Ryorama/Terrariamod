@@ -4,7 +4,7 @@ import com.ryorama.terrariamod.items.impl.BowT;
 
 public class WoodenBow extends BowT {
 
-	public WoodenBow(Settings settings) {
+	public WoodenBow(Properties settings) {
 		super(settings, 4);
 	}
 

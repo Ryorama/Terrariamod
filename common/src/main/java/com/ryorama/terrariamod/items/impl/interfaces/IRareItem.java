@@ -1,16 +1,16 @@
 package com.ryorama.terrariamod.items.impl.interfaces;
 
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 
 public interface IRareItem {
-    Formatting GREY = Formatting.GRAY;
-    Formatting WHITE = Formatting.WHITE;
-    Formatting BLUE = Formatting.BLUE;
-    Formatting GREEN = Formatting.GREEN;
-    Formatting ORANGE = Formatting.GOLD;
-    Formatting LIGHT_RED = Formatting.RED;
-    Formatting LIGHT_PURPLE = Formatting.LIGHT_PURPLE;
-    Formatting YELLOW = Formatting.YELLOW;
-    Formatting RED = Formatting.DARK_RED;
-    Formatting PURPLE = Formatting.DARK_PURPLE;
+    ChatFormatting GREY = ChatFormatting.GRAY;
+    ChatFormatting WHITE = ChatFormatting.WHITE;
+    ChatFormatting BLUE = ChatFormatting.BLUE;
+    ChatFormatting GREEN = ChatFormatting.GREEN;
+    ChatFormatting ORANGE = ChatFormatting.GOLD;
+    ChatFormatting LIGHT_RED = ChatFormatting.RED;
+    ChatFormatting LIGHT_PURPLE = ChatFormatting.LIGHT_PURPLE;
+    ChatFormatting YELLOW = ChatFormatting.YELLOW;
+    ChatFormatting RED = ChatFormatting.DARK_RED;
+    ChatFormatting PURPLE = ChatFormatting.DARK_PURPLE;
 }

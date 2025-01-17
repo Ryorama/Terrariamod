@@ -4,8 +4,8 @@ import com.ryorama.terrariamod.buffs.terraria.harmful.OnFireDebuff;
 import com.ryorama.terrariamod.buffs.terraria.harmful.PotionSicknessDebuff;
 import com.ryorama.terrariamod.buffs.terraria.helpful.RegenerationBuff;
 import com.ryorama.terrariamod.entities.impl.CustomBuffAccessor;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class BuffsT {
         }
     }
 
-    public static List<Identifier> GetEntityActiveBuffIcons(LivingEntity entity) {
+    public static List<ResourceLocation> GetEntityActiveBuffIcons(LivingEntity entity) {
         if (entity instanceof CustomBuffAccessor) {
             return ((CustomBuffAccessor)entity).GetActiveBuffIcons();
         } else {

@@ -4,7 +4,7 @@ import com.ryorama.terrariamod.items.impl.BowT;
 
 public class IronBow extends BowT {
 
-	public IronBow(Settings settings) {
+	public IronBow(Properties settings) {
 		super(settings, 14);
 	}
 

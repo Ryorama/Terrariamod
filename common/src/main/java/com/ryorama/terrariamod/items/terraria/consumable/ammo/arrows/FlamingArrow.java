@@ -5,7 +5,7 @@ import com.ryorama.terrariamod.items.impl.ArrowT;
 
 public class FlamingArrow extends ArrowT {
 
-	public FlamingArrow(Settings settings) {
+	public FlamingArrow(Properties settings) {
 		super(settings);
 		this.arrowDamage = 6;
 		this.fireDamage = true;

@@ -4,7 +4,7 @@ import com.ryorama.terrariamod.items.impl.BowT;
 
 public class SilverBow extends BowT {
 
-	public SilverBow(Settings settings) {
+	public SilverBow(Properties settings) {
 		super(settings, 9);
 	}
 

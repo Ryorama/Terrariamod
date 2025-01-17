@@ -1,8 +1,8 @@
 package com.ryorama.terrariamod.buffs;
 
 import com.ryorama.terrariamod.client.ui.UIRenderer;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -12,15 +12,15 @@ public class BuffT {
 
     public String name;
     public boolean isHarmful;
-    public static Identifier icon;
+    public static ResourceLocation icon;
 
     public static boolean isActive;
 
     public static float duration = 0;
 
-    public static List<Identifier> buffIcons = new ArrayList<>();
+    public static List<ResourceLocation> buffIcons = new ArrayList<>();
 
-    public BuffT(Identifier icon) {
+    public BuffT(ResourceLocation icon) {
         setIcon(icon);
     }
 
@@ -54,11 +54,11 @@ public class BuffT {
         return duration;
     }
 
-    public Identifier getIcon() {
+    public ResourceLocation getIcon() {
         return icon;
     }
 
-    public void setIcon(Identifier icon) {
+    public void setIcon(ResourceLocation icon) {
         buffIcons.add(icon);
     }
 

@@ -2,12 +2,12 @@ package com.ryorama.terrariamod.buffs.terraria.helpful;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.buffs.BuffT;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 
 public class RegenerationBuff extends BuffT {
     public RegenerationBuff() {
-        super(new Identifier(TerrariaMod.MOD_ID, "textures/ui/buffs/regeneration.png"));
+        super(new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/buffs/regeneration.png"));
     }
 
     @Override

@@ -2,16 +2,13 @@ package com.ryorama.terrariamod.blocks.impl;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.items.impl.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -37,15 +34,15 @@ public class BlockT extends Block {
     public String name;
     public String shape = "";
 
-    protected ArrayList<String> allowed = new ArrayList<String>();
+    protected ArrayList<String> allowed = new ArrayList<>();
 
-    public BlockT(Settings properties, float hardness, float difficulty) {
-        super(properties.hardness(hardness * 0.03f));
+    public BlockT(BlockBehaviour.Properties properties, float hardness, float difficulty) {
+        super(properties.destroyTime(hardness * 0.03f));
         this.difficulty = difficulty;
     }
 
-    public BlockT(Settings properties, float hardness, float difficulty, int luminance) {
-        super(properties.hardness(hardness * 0.03f).nonOpaque().luminance(new ToIntFunction<BlockState>() {
+    public BlockT(BlockBehaviour.Properties properties, float hardness, float difficulty, int luminance) {
+        super(properties.destroyTime(hardness * 0.03f).noOcclusion().lightLevel(new ToIntFunction<BlockState>() {
             @Override
             public int applyAsInt(BlockState value) {
                 return luminance;
@@ -87,13 +84,13 @@ public class BlockT extends Block {
     }
 
     @Override
-    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+    public void onBroken(LevelAccessor world, BlockPos pos, BlockState state) {
         for (int t = 0; t <= 20; t++) {
             BlockPos abovePos = new BlockPos(pos.getX(), pos.getY() + t, pos.getZ());
             Block aboveBlock = world.getBlockState(abovePos).getBlock();
 
             if (aboveBlock instanceof PlantT && aboveBlock != BlocksT.VINE.get() || aboveBlock instanceof TreeSegment) {
-                world.breakBlock(abovePos, true);
+                world.destroyBlock(abovePos, true);
             }
         }
 
@@ -102,15 +99,15 @@ public class BlockT extends Block {
             Block bottomBlock = world.getBlockState(bottomPos).getBlock();
 
             if (bottomBlock == BlocksT.VINE.get()) {
-                world.breakBlock(bottomPos, false);
+                world.destroyBlock(bottomPos, false);
             }
         }
     }
 
     @Override
-    public float calcBlockBreakingDelta(BlockState state, PlayerEntity player, BlockView world, BlockPos pos) {
-        if (player.getMainHandStack().getItem() instanceof ItemT || player.getMainHandStack().getItem() instanceof PickaxeT || player.getMainHandStack().getItem() instanceof AxeT || player.getMainHandStack().getItem() instanceof ShortswordT || player.getMainHandStack().getItem() instanceof BroadswordT) {
-            return getMiningSpeed((ItemT) player.getMainHandStack().getItem());
+    public float calcBlockBreakingDelta(BlockState state, Player player, BlockGetter world, BlockPos pos) {
+        if (player.getMainHandItem().getItem() instanceof ItemT || player.getMainHandItem().getItem() instanceof PickaxeT || player.getMainHandStack().getItem() instanceof AxeT || player.getMainHandItem().getItem() instanceof ShortswordT || player.getMainHandItem().getItem() instanceof BroadswordT) {
+            return getMiningSpeed((ItemT) player.getMainHandItem().getItem());
         } else {
             return -1;
         }

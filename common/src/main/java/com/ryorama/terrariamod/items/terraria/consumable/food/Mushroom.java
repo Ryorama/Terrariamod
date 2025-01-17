@@ -4,32 +4,32 @@ import com.ryorama.terrariamod.buffs.BuffsT;
 import com.ryorama.terrariamod.client.TAudio;
 import com.ryorama.terrariamod.items.impl.ItemT;
 import com.ryorama.terrariamod.items.impl.interfaces.IFoodItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class Mushroom extends ItemT implements IFoodItem {
 
-    public Mushroom(Settings settings) {
-        super(settings.maxCount(64));
+    public Mushroom(Properties settings) {
+        super(settings);
         this.isConsumable(true);
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player playerEntity, InteractionHand hand) {
         if (!BuffsT.EntityHasBuff(playerEntity, BuffsT.POTION_SICKNESS)) {
             playerEntity.playSound(TAudio.EAT, 1, 1);
             playerEntity.heal(15);
             addBuffOnEaten(playerEntity, BuffsT.POTION_SICKNESS,1000);
             handlePlayerHunger(playerEntity, 4, 2);
             if (!playerEntity.isCreative()) {
-                playerEntity.getStackInHand(hand).decrement(1);
+                playerEntity.getItemInHand(hand).shrink(1);
             }
-            return TypedActionResult.success(playerEntity.getStackInHand(hand));
+            return InteractionResultHolder.success(playerEntity.getItemInHand(hand));
         }
 
-        return TypedActionResult.fail(playerEntity.getStackInHand(hand));
+        return InteractionResultHolder.fail(playerEntity.getItemInHand(hand));
     }
 }

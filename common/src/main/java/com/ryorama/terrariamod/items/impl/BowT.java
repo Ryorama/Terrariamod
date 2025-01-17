@@ -1,27 +1,27 @@
 package com.ryorama.terrariamod.items.impl;
 
 import com.ryorama.terrariamod.entities.impl.ArrowEntityT;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class BowT extends ItemT {
 
-    public BowT(Settings settings, int damage) {
-        super(settings.maxCount(1));
+    public BowT(Properties settings, int damage) {
+        super(settings.stacksTo(1));
         this.damage = damage;
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
 
-        ItemStack itemstack = playerIn.getMainHandStack();
+        ItemStack itemstack = playerIn.getMainHandItem();
 
         Inventory inventory = playerIn.getInventory();
 
@@ -29,32 +29,32 @@ public class BowT extends ItemT {
         boolean gotFirstArrowStack = false;
         int arrowSlotId = 0;
 
-        for (int i = 0; i <= inventory.size(); i++) {
-            if (inventory.getStack(i).getItem() instanceof ArrowT && !gotFirstArrowStack) {
+        for (int i = 0; i <= inventory.getContainerSize(); i++) {
+            if (inventory.getItem(i).getItem() instanceof ArrowT && !gotFirstArrowStack) {
                 gotFirstArrowStack = true;
                 arrowSlotId = i;
-            } else if (inventory.getStack(arrowSlotId).getCount() <= 0 && gotFirstArrowStack) {
+            } else if (inventory.getItem(arrowSlotId).getCount() <= 0 && gotFirstArrowStack) {
                 gotFirstArrowStack = false;
             }
         }
 
-        if (inventory.getStack(arrowSlotId).getCount() > 0 && gotFirstArrowStack) {
-            ArrowT arrowItem = (ArrowT)inventory.getStack(arrowSlotId).getItem();
-            PersistentProjectileEntity arrow = ProjectileUtil.createArrowProjectile(playerIn, inventory.getStack(arrowSlotId), 0);
+        if (inventory.getItem(arrowSlotId).getCount() > 0 && gotFirstArrowStack) {
+            ArrowT arrowItem = (ArrowT)inventory.getItem(arrowSlotId).getItem();
+            AbstractArrow arrow = ProjectileUtil.getMobArrow(playerIn, inventory.getItem(arrowSlotId), 0);
             if (arrowItem.fireDamage) {
                 if (arrow instanceof ArrowEntityT) {
                     ((ArrowEntityT)arrow).SetFireDamage(true);
                 }
             }
-            arrow.setDamage(this.damage + arrowItem.damage);
-            arrow.setVelocity(playerIn, playerIn.getPitch(), playerIn.getYaw(), 0.0F, 3.0F, 1.0F);
-            worldIn.spawnEntity(arrow);
+            arrow.setBaseDamage(this.damage + arrowItem.damage);
+            arrow.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 3.0F, 1.0F);
+            worldIn.addFreshEntity(arrow);
 
-            inventory.getStack(arrowSlotId).decrement(1);
+            inventory.getItem(arrowSlotId).shrink(1);
         }
 
-        playerIn.getItemCooldownManager().set(this, (int) ((this.useTime - this.useTime * speed) * (30.0 / 60.0)));
+        playerIn.getCooldowns().addCooldown(this, (int) ((this.useTime - this.useTime * speed) * (30.0 / 60.0)));
 
-        return new TypedActionResult<>(ActionResult.SUCCESS, itemstack);
+        return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
     }
 }

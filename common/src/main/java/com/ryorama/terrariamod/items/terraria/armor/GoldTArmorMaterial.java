@@ -1,25 +1,24 @@
 package com.ryorama.terrariamod.items.terraria.armor;
 
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class GoldTArmorMaterial implements ArmorMaterial {
 
 	@Override
-	public int getDurability(ArmorItem.Type type) {
+	public int getDurabilityForType(ArmorItem.Type type) {
 		return 9999999;
 	}
 
 	@Override
-	public int getProtection(ArmorItem.Type type) {
+	public int getDefenseForType(ArmorItem.Type type) {
 		return 24;
 	}
 
 	@Override
-	public int getEnchantability() {
+	public int getEnchantmentValue() {
 		return 0;
 	}
 

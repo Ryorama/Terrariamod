@@ -3,16 +3,16 @@ package com.ryorama.terrariamod.items.impl;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.items.impl.enums.EnumModifierType;
 import com.ryorama.terrariamod.items.impl.interfaces.IRareItem;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSources;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.UseAction;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.Level;
 
 import java.util.List;
 import java.util.Random;
@@ -70,11 +70,11 @@ public class ItemT extends Item {
 
     public EnumModifierType MODIFIER_TYPE = EnumModifierType.NONE;
 
-    public UseAction useAction = UseAction.NONE;
+    public UseAnim useAction = UseAnim.NONE;
 
     public Random rand = new Random();
 
-    public ItemT(Item.Settings settings) {
+    public ItemT(Properties settings) {
         super(settings.arch$tab(ItemsT.TERRARIAMOD_GROUP));
 
         if (rarity == 1) {
@@ -100,29 +100,29 @@ public class ItemT extends Item {
     }
 
     @Override
-    public Text getName(ItemStack stack) {
+    public Component getName(ItemStack stack) {
         if (rarity == 1) {
-            return Text.translatable(nameFormatting + this.getTranslationKey(stack)); //.formatted(IRareItem.GREY)
+            return Component.translatable(nameFormatting + this.getDescriptionId(stack)); //.formatted(IRareItem.GREY)
         } else if (rarity == 2) {
-            return Text.translatable(this.getTranslationKey(stack)); //.formatted(IRareItem.WHITE)
+            return Component.translatable(this.getDescriptionId(stack)); //.formatted(IRareItem.WHITE)
         } else if (rarity == 3) {
-            return Text.translatable(nameFormatting + this.getTranslationKey(stack)); //.formatted(IRareItem.BLUE)
+            return Component.translatable(nameFormatting + this.getDescriptionId(stack)); //.formatted(IRareItem.BLUE)
         } else if (rarity == 4) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.GREEN);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.GREEN);
         } else if (rarity == 5) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.ORANGE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.ORANGE);
         } else if (rarity == 6) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.LIGHT_RED);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.LIGHT_RED);
         } else if (rarity == 7) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.LIGHT_PURPLE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.LIGHT_PURPLE);
         } else if (rarity == 8) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.YELLOW);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.YELLOW);
         } else if (rarity == 9) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.RED);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.RED);
         } else if (rarity == 10) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.PURPLE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.PURPLE);
         } else {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.WHITE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.WHITE);
         }
     }
 
@@ -132,50 +132,50 @@ public class ItemT extends Item {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext context) {
+    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag context) {
         if (consumable) {
-            tooltip.add(Text.translatable("Consumable"));
+            tooltip.add(Component.translatable("Consumable"));
         }
         if (isExpert) {
-            tooltip.add(Text.translatable("Expert").formatted(Formatting.LIGHT_PURPLE));
+            tooltip.add(Component.translatable("Expert").withStyle(ChatFormatting.LIGHT_PURPLE));
         }
 
         if (pick > 0)
-            tooltip.add(Text.translatable(pick + "% pickaxe power"));
+            tooltip.add(Component.translatable(pick + "% pickaxe power"));
         if (axe > 0)
-            tooltip.add(Text.translatable(axe + "% axe power"));
+            tooltip.add(Component.translatable(axe + "% axe power"));
         if (hammer > 0)
-            tooltip.add(Text.translatable(hammer + "% hammer power"));
+            tooltip.add(Component.translatable(hammer + "% hammer power"));
         if (melee)
-            tooltip.add(Text.translatable(damage + " melee damage"));
+            tooltip.add(Component.translatable(damage + " melee damage"));
         if (ranged)
-            tooltip.add(Text.translatable(damage + " ranged damage"));
+            tooltip.add(Component.translatable(damage + " ranged damage"));
         if (throwing)
-            tooltip.add(Text.translatable(damage + " throwing damage"));
+            tooltip.add(Component.translatable(damage + " throwing damage"));
         if (summon)
-            tooltip.add(Text.translatable(damage + " summon damage"));
+            tooltip.add(Component.translatable(damage + " summon damage"));
         if (magic)
-            tooltip.add(Text.translatable(damage + " magic damage"));
+            tooltip.add(Component.translatable(damage + " magic damage"));
         if (velocity > 0)
-            tooltip.add(Text.translatable(velocity + " velocity"));
+            tooltip.add(Component.translatable(velocity + " velocity"));
         if (defense > 0)
-            tooltip.add(Text.translatable(defense + " defense"));
+            tooltip.add(Component.translatable(defense + " defense"));
         if (mana > 0)
-            tooltip.add(Text.translatable("uses " + damage + " mana"));
+            tooltip.add(Component.translatable("uses " + damage + " mana"));
         if (critChance > 0 && damage > 0)
-            tooltip.add(Text.translatable(new String(critChance + "% critical strike chance").replace(".0", "")));
+            tooltip.add(Component.translatable(new String(critChance + "% critical strike chance").replace(".0", "")));
         if (isAmmo)
-            tooltip.add(Text.translatable("ammo"));
+            tooltip.add(Component.translatable("ammo"));
         if (heal > 0)
-            tooltip.add(Text.translatable("heals " + heal + " health"));
+            tooltip.add(Component.translatable("heals " + heal + " health"));
         if (manaHeal > 0)
-            tooltip.add(Text.translatable("restores " + manaHeal + " mana"));
+            tooltip.add(Component.translatable("restores " + manaHeal + " mana"));
         if (accessory)
-            tooltip.add(Text.translatable("accessory"));
+            tooltip.add(Component.translatable("accessory"));
         if (material)
-            tooltip.add(Text.translatable("material"));
+            tooltip.add(Component.translatable("material"));
         if (!this.tooltip.equals(""))
-            tooltip.add(Text.translatable(""+this.tooltip));
+            tooltip.add(Component.translatable(""+this.tooltip));
     }
 
     public ItemStack stack(int i) {
@@ -186,20 +186,20 @@ public class ItemT extends Item {
         return useTime;
     }
 
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAnim getUseAnimation(ItemStack stack) {
         return useAction;
     }
 
     @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (target != null) {
-            DamageSources source = target.getWorld().getDamageSources();
-            if (attacker instanceof PlayerEntity)
+            DamageSources source = target.level().damageSources();
+            if (attacker instanceof Player)
                 if (new Random().nextInt(100) <= critChance) {
-                    target.damage(source.playerAttack((PlayerEntity) attacker), damage * 2);
+                    target.hurt(source.playerAttack((Player) attacker), damage * 2);
                 }
                 else {
-                    target.damage(source.playerAttack((PlayerEntity) attacker), damage);
+                    target.hurt(source.playerAttack((Player) attacker), damage);
                 }
         }
         return true;

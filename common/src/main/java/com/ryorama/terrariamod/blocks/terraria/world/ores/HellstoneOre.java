@@ -1,20 +1,21 @@
 package com.ryorama.terrariamod.blocks.terraria.world.ores;
 
 import com.ryorama.terrariamod.blocks.impl.HotBlockT;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class HellstoneOre extends HotBlockT {
-    public HellstoneOre(Settings properties, float hardness, float difficulty) {
+    public HellstoneOre(BlockBehaviour.Properties properties, float hardness, float difficulty) {
         super(properties, hardness, difficulty);
     }
 
     @Override
-    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+    public void onBroken(LevelAccessor world, BlockPos pos, BlockState state) {
         super.onBroken(world, pos, state);
 
-        world.setBlockState(pos, Blocks.LAVA.getDefaultState(), 0);
+        world.setBlock(pos, Blocks.LAVA.defaultBlockState(), 0);
     }
 }

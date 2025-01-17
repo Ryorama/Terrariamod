@@ -4,7 +4,7 @@ import com.ryorama.terrariamod.items.impl.BowT;
 
 public class LeadBow extends BowT {
 
-	public LeadBow(Settings settings) {
+	public LeadBow(Properties settings) {
 		super(settings, 9);
 	}
 

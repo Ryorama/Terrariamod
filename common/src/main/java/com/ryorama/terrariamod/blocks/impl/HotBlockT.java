@@ -2,28 +2,29 @@ package com.ryorama.terrariamod.blocks.impl;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.buffs.BuffsT;
-import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class HotBlockT extends BlockT {
-    public HotBlockT(Settings properties, float hardness, float difficulty) {
+    public HotBlockT(BlockBehaviour.Properties properties, float hardness, float difficulty) {
         super(properties, hardness, difficulty);
     }
 
     @Override
-    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        if (!entity.bypassesSteppingEffects() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity)) {
+    public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
+        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity)) {
             if (TerrariaMod.CONFIG.replaceSpecialDamageWithDebuffs) {
                 BuffsT.AddBuffToEntity((LivingEntity) entity, 1, BuffsT.ON_FIRE);
             } else {
-                entity.damage(world.getDamageSources().hotFloor(), 1);
+                entity.hurt(world.damageSources().hotFloor(), 1);
             }
         }
 
-        super.onSteppedOn(world, pos, state, entity);
+        super.stepOn(world, pos, state, entity);
     }
 }

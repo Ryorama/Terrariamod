@@ -4,7 +4,7 @@ import com.ryorama.terrariamod.items.impl.BowT;
 
 public class TinBow extends BowT {
 
-	public TinBow(Settings settings) {
+	public TinBow(Properties settings) {
 		super(settings, 7);
 	}
 

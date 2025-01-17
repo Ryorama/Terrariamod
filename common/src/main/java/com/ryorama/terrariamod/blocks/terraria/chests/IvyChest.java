@@ -4,28 +4,25 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.impl.ChestT;
 import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.entities.terraria.block.IvyChestBlockEntity;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-
-import java.util.function.Supplier;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class IvyChest extends ChestT {
 
-    public IvyChest(Settings settings) {
+    public IvyChest(BlockBehaviour.Properties settings) {
         super(settings, () -> EntitiesT.IVY_CHEST.get());
     }
 
     @Override
-    public Identifier getTexture() {
-        return new Identifier(TerrariaMod.MOD_ID, "entity/chest/ivy_chest");
+    public ResourceLocation getTexture() {
+        return new ResourceLocation(TerrariaMod.MOD_ID, "entity/chest/ivy_chest");
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new IvyChestBlockEntity(pos, state);
     }
 }

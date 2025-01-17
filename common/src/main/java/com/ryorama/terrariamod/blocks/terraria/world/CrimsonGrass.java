@@ -2,42 +2,42 @@ package com.ryorama.terrariamod.blocks.terraria.world;
 
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.blocks.impl.BlockT;
-import net.minecraft.block.AirBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class CrimsonGrass extends BlockT {
-    public CrimsonGrass(Settings settings) {
-        super(settings.ticksRandomly(), BlocksT.GROUND_HARDNESS, 10);
+    public CrimsonGrass(BlockBehaviour.Properties settings) {
+        super(settings.randomTicks(), BlocksT.GROUND_HARDNESS, 10);
     }
 
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (!world.isClient()) {
-            if (!world.isChunkLoaded(pos)) return;
-            BlockPos pos2 = pos.add(0, 1, 0);
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (!world.isClientSide()) {
+            if (!world.hasChunkAt(pos)) return;
+            BlockPos pos2 = pos.offset(0, 1, 0);
             if (world.getBlockState(pos2).isSolid()) {
-                world.setBlockState(pos, BlocksT.DIRT_BLOCK.get().getDefaultState());
+                world.setBlock(pos, BlocksT.DIRT_BLOCK.get().defaultBlockState(), 0);
                 return;
             }
-            if (world.getBlockState(pos2).getBlock().getDefaultState() == Blocks.AIR.getDefaultState()) {
+            if (world.getBlockState(pos2).getBlock().defaultBlockState() == Blocks.AIR.defaultBlockState()) {
                 if (random.nextInt(100 * 10) <= 2) {
-                    world.setBlockState(pos2, BlocksT.BLOODY_GRASS.get().getDefaultState());
+                    world.setBlock(pos2, BlocksT.BLOODY_GRASS.get().defaultBlockState(), 0);
                     if (random.nextInt(15) == 0) {
-                        world.setBlockState(pos2, BlocksT.VICIOUS_MUSHROOM.get().getDefaultState());
+                        world.setBlock(pos2, BlocksT.VICIOUS_MUSHROOM.get().defaultBlockState(), 0);
                     }
                 }
             }
             for (int i = 0; i < 4; ++i) {
-                BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+                BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                 if (blockpos.getY() == pos.getY() - 1) {
                     return;
                 }
-                if (world.getBlockState(blockpos.up()).getBlock() == Blocks.AIR) {
+                if (world.getBlockState(blockpos.above()).getBlock() == Blocks.AIR) {
                     if (world.getBlockState(blockpos).getBlock() == BlocksT.DIRT_BLOCK.get()) {
-                        world.setBlockState(blockpos, BlocksT.CRIMSON_GRASS_BLOCK.get().getDefaultState());
+                        world.setBlock(blockpos, BlocksT.CRIMSON_GRASS_BLOCK.get().defaultBlockState(), 0);
                     }
                 }
             }

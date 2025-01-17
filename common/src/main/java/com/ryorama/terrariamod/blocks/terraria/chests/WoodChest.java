@@ -4,26 +4,25 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.impl.ChestT;
 import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.entities.terraria.block.WoodChestBlockEntity;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-
-import java.util.function.Supplier;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class WoodChest extends ChestT {
 
-    public WoodChest(Settings settings) {
+    public WoodChest(BlockBehaviour.Properties settings) {
         super(settings, () -> EntitiesT.WOOD_CHEST.get());
     }
 
     @Override
-    public Identifier getTexture() {
-        return new Identifier(TerrariaMod.MOD_ID, "entity/chest/wood_chest");
+    public ResourceLocation getTexture() {
+        return new ResourceLocation(TerrariaMod.MOD_ID, "entity/chest/wood_chest");
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new WoodChestBlockEntity(pos, state);
     }
 }

@@ -1,26 +1,26 @@
 package com.ryorama.terrariamod.client.ui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import com.mojang.blaze3d.vertex.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.resources.ResourceLocation;
 
 public class UIRenderer {
 
     public static int scaledWidth;
     public static int scaledHeight;
 
-    public static final MinecraftClient client = MinecraftClient.getInstance();
+    public static final Minecraft client = Minecraft.getInstance();
 
-    public static void renderOverlay(Identifier texture, float opacity, float width, float height, float x, float y, int zPos) {
+    public static void renderOverlay(ResourceLocation texture, float opacity, float width, float height, float x, float y, int zPos) {
 
-        scaledWidth = client.getWindow().getScaledWidth();
-        scaledHeight = client.getWindow().getScaledHeight();
+        scaledWidth = client.getWindow().getGuiScaledWidth();
+        scaledHeight = client.getWindow().getGuiScaledHeight();
 
-        MatrixStack matrixStack = RenderSystem.getModelViewStack();
+        PoseStack matrixStack = RenderSystem.getModelViewStack();
 
-        matrixStack.push();
+        matrixStack.pushPose();
         matrixStack.translate(x, y, zPos);
         RenderSystem.applyModelViewMatrix();
         RenderSystem.setShaderTexture(0, texture);
@@ -29,22 +29,22 @@ public class UIRenderer {
         RenderSystem.disableDepthTest();
         RenderSystem.depthMask(false);
         RenderSystem.defaultBlendFunc();
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, opacity);
         RenderSystem.setShaderTexture(0, texture);
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferBuilder = tessellator.getBuffer();
-        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
+        Tesselator tessellator = Tesselator.getInstance();
+        BufferBuilder bufferBuilder = tessellator.getBuilder();
+        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferBuilder.color(0, 0, 0, opacity);
-        bufferBuilder.vertex(0, (double)height, zPos).texture(0.0F, 1.0F).next();
-        bufferBuilder.vertex((double)width, (double)height, zPos).texture(1.0F, 1.0F).next();
-        bufferBuilder.vertex((double)width, 0, zPos).texture(1.0F, 0.0F).next();
-        bufferBuilder.vertex(0, 0, zPos).texture(0.0F, 0.0F).next();
-        tessellator.draw();
+        bufferBuilder.vertex(0, (double)height, zPos).uv(0.0F, 1.0F).endVertex();
+        bufferBuilder.vertex((double)width, (double)height, zPos).uv(1.0F, 1.0F).endVertex();
+        bufferBuilder.vertex((double)width, 0, zPos).uv(1.0F, 0.0F).endVertex();
+        bufferBuilder.vertex(0, 0, zPos).uv(0.0F, 0.0F).endVertex();
+        tessellator.end();
         RenderSystem.depthMask(true);
         RenderSystem.enableDepthTest();
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        matrixStack.pop();
+        matrixStack.popPose();
         RenderSystem.applyModelViewMatrix();
         RenderSystem.disableColorLogicOp();
     }

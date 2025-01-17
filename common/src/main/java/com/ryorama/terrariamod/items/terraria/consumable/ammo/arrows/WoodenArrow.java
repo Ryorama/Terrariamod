@@ -4,7 +4,7 @@ import com.ryorama.terrariamod.items.impl.ArrowT;
 
 public class WoodenArrow extends ArrowT {
 
-	public WoodenArrow(Settings settings) {
+	public WoodenArrow(Properties settings) {
 		super(settings);
 		this.arrowDamage = 4;
 	}

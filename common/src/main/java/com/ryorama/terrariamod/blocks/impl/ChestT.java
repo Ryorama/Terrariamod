@@ -1,18 +1,20 @@
 package com.ryorama.terrariamod.blocks.impl;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.util.Identifier;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Supplier;
 
 public class ChestT extends ChestBlock {
 
-    public ChestT(Settings settings, Supplier<BlockEntityType<? extends ChestBlockEntity>> supplier) {
+    public ChestT(BlockBehaviour.Properties settings, Supplier<BlockEntityType<? extends ChestBlockEntity>> supplier) {
         super(settings, supplier);
     }
 
-    public Identifier getTexture() {
+    public ResourceLocation getTexture() {
         return null;
     }
 }

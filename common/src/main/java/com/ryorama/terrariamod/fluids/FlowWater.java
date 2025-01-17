@@ -1,14 +1,14 @@
 package com.ryorama.terrariamod.fluids;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidFillable;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.WaterFluid;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlockContainer;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.WaterFluid;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,63 +16,63 @@ import java.util.Collections;
 
 public class FlowWater {
 
-    public static void flowwater(WorldAccess world, BlockPos fluidPos, FluidState state) {
-        if (world.getBlockState(fluidPos).getBlock() instanceof FluidFillable) {
+    public static void flowwater(LevelAccessor world, BlockPos fluidPos, FluidState state) {
+        if (world.getBlockState(fluidPos).getBlock() instanceof LiquidBlockContainer) {
             return;
         }
-        if ((world.getBlockState(fluidPos.down()).canBucketPlace(Fluids.WATER)) && (getWaterLevel(fluidPos.down(), world) != 8)) {
+        if ((world.getBlockState(fluidPos.below()).canBeReplaced(Fluids.WATER)) && (getWaterLevel(fluidPos.below(), world) != 8)) {
             int centerlevel = getWaterLevel(fluidPos, world);
-            world.setBlockState(fluidPos, Blocks.AIR.getDefaultState(), 11);
-            addWater(centerlevel, fluidPos.down(), world);
+            world.setBlock(fluidPos, Blocks.AIR.defaultBlockState(), 11);
+            addWater(centerlevel, fluidPos.below(), world);
         } else {
             ArrayList<BlockPos> blocks = new ArrayList<BlockPos>(4);
-            for (Direction dir : Direction.Type.HORIZONTAL) {
-                blocks.add(fluidPos.offset(dir));
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                blocks.add(fluidPos.offset(dir.getNormal()));
             }
-            blocks.removeIf(pos -> !world.getBlockState(pos).canBucketPlace(Fluids.WATER));
+            blocks.removeIf(pos -> !world.getBlockState(pos).canBeReplaced(Fluids.WATER));
             Collections.shuffle(blocks);
             equalizeWater(blocks, fluidPos, world);
         }
     }
 
-    public static int getWaterLevel(BlockPos pos, WorldAccess world) {
+    public static int getWaterLevel(BlockPos pos, LevelAccessor world) {
         BlockState blockstate = world.getBlockState(pos);
         FluidState fluidstate = blockstate.getFluidState();
         int waterlevel = 0;
-        if (fluidstate.getFluid() instanceof WaterFluid.Still){
+        if (fluidstate.getType() instanceof WaterFluid.Source){
             waterlevel = 8;
-        } else if (fluidstate.getFluid() instanceof WaterFluid.Flowing) {
-            waterlevel = fluidstate.getLevel();
+        } else if (fluidstate.getType() instanceof WaterFluid.Flowing) {
+            waterlevel = fluidstate.getAmount();
         }
         return waterlevel;
     }
 
-    public static void setWaterLevel(int level, BlockPos pos, WorldAccess world) {
+    public static void setWaterLevel(int level, BlockPos pos, LevelAccessor world) {
         if (level == 8) {
-            if (!(world.getBlockState(pos).getBlock() instanceof FluidFillable)) { // Don't fill kelp etc
-                world.setBlockState(pos, Fluids.WATER.getDefaultState().getBlockState(), 11);
+            if (!(world.getBlockState(pos).getBlock() instanceof LiquidBlockContainer)) { // Don't fill kelp etc
+                world.setBlock(pos, Fluids.WATER.defaultFluidState().createLegacyBlock(), 11);
             }
         } else if (level == 0) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
+            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
         } else if (level < 8) {
-            world.setBlockState(pos, Fluids.FLOWING_WATER.getFlowing(level, false).getBlockState(), 11);
+            world.setBlock(pos, Fluids.FLOWING_WATER.getFlowing(level, false).createLegacyBlock(), 11);
         } else {
             System.out.println("Can't set water >8 something went very wrong!");
         }
     }
 
-    public static void addWater(int level, BlockPos pos, WorldAccess world) {
+    public static void addWater(int level, BlockPos pos, LevelAccessor world) {
         int existingwater = getWaterLevel(pos, world);
         int totalwater = existingwater + level;
         if (totalwater > 8) {
-            setWaterLevel(totalwater - 8, pos.up(), world);
+            setWaterLevel(totalwater - 8, pos.above(), world);
             setWaterLevel(8, pos, world);
         } else {
             setWaterLevel(totalwater, pos, world);
         }
     }
 
-    public static void equalizeWater(ArrayList<BlockPos> blocks, BlockPos center, WorldAccess world) {
+    public static void equalizeWater(ArrayList<BlockPos> blocks, BlockPos center, LevelAccessor world) {
         int[] waterlevels = new int[4];
         Arrays.fill(waterlevels, -1);
         int centerwaterlevel = getWaterLevel(center, world);

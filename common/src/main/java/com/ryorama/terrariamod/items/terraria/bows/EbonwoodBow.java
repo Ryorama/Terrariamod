@@ -4,7 +4,7 @@ import com.ryorama.terrariamod.items.impl.BowT;
 
 public class EbonwoodBow extends BowT {
 
-	public EbonwoodBow(Settings settings) {
+	public EbonwoodBow(Properties settings) {
 		super(settings, 8);
 	}
 

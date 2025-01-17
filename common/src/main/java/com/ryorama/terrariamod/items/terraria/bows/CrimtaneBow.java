@@ -4,7 +4,7 @@ import com.ryorama.terrariamod.items.impl.BowT;
 
 public class CrimtaneBow extends BowT {
 
-	public CrimtaneBow(Settings settings) {
+	public CrimtaneBow(Properties settings) {
 		super(settings, 19);
 	}
 

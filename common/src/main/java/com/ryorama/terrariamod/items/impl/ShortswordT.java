@@ -1,11 +1,9 @@
 package com.ryorama.terrariamod.items.impl;
 
-import net.minecraft.item.ItemGroups;
-
 public class ShortswordT extends ItemT {
 
     public ShortswordT() {
-        super(new Settings().maxCount(1));
+        super(new Properties().stacksTo(1));
         this.melee = true;
         this.maxStack = 1;
 

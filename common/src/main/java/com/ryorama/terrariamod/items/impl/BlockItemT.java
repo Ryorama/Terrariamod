@@ -2,15 +2,15 @@ package com.ryorama.terrariamod.items.impl;
 
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.items.impl.interfaces.IRareItem;
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 
 public class BlockItemT extends BlockItem {
     public int rarity;
 
-    public BlockItemT(Block block, Settings settings) {
+    public BlockItemT(Block block, Properties settings) {
         super(block, settings.arch$tab(ItemsT.TERRARIAMOD_GROUP));
     }
 
@@ -20,29 +20,29 @@ public class BlockItemT extends BlockItem {
     }
 
     @Override
-    public Text getName(ItemStack stack) {
+    public Component getName(ItemStack stack) {
         if (rarity == 1) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.GREY);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.GREY);
         } else if (rarity == 2) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.WHITE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.WHITE);
         } else if (rarity == 3) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.BLUE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.BLUE);
         } else if (rarity == 4) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.GREEN);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.GREEN);
         } else if (rarity == 5) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.ORANGE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.ORANGE);
         } else if (rarity == 6) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.LIGHT_RED);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.LIGHT_RED);
         } else if (rarity == 7) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.LIGHT_PURPLE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.LIGHT_PURPLE);
         } else if (rarity == 8) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.YELLOW);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.YELLOW);
         } else if (rarity == 9) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.RED);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.RED);
         } else if (rarity == 10) {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.PURPLE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.PURPLE);
         } else {
-            return Text.translatable(this.getTranslationKey(stack)).formatted(IRareItem.WHITE);
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(IRareItem.WHITE);
         }
     }
 }
