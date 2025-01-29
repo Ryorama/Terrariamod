@@ -3,19 +3,15 @@ package com.ryorama.terrariamod.utils;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
+import java.util.logging.Level;
 
-import com.ryorama.terrariamod.buffs.BuffT;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.WorldSavePath;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.storage.LevelResource;
 
 public class WorldDataT {
 
@@ -47,7 +43,7 @@ public class WorldDataT {
 
     public static boolean firstUpdate = true;
 
-    public static Identifier bossMusicOverride;
+    public static ResourceLocation bossMusicOverride;
 
     public static boolean night;
 
@@ -59,7 +55,7 @@ public class WorldDataT {
 
     public static boolean windyDay;
 
-    public static ServerWorld worldMP;
+    public static ServerLevel worldMP;
 
     public static int worldEvil = 0;
 
@@ -102,76 +98,38 @@ public class WorldDataT {
         }
     }
 
-    public static void saveData(World world) throws IOException {
-        NbtCompound nbtCompound = new NbtCompound();
+    public static void saveData(LevelAccessor world) throws IOException {
+        CompoundTag compoundTag = new CompoundTag();
 
-        nbtCompound.putBoolean("expert", expert);
-        nbtCompound.putBoolean("master", master);
-        nbtCompound.putBoolean("bloodmoon", bloodMoon);
-        nbtCompound.putBoolean("solarEclipse", solarEclipse);
-        nbtCompound.putBoolean("hasStartingTools", hasStartingTools);
-        nbtCompound.putBoolean("firstUpdate", firstUpdate);
-        nbtCompound.putInt("worldEvil", worldEvil);
+        compoundTag.putBoolean("expert", expert);
+        compoundTag.putBoolean("master", master);
+        compoundTag.putBoolean("bloodmoon", bloodMoon);
+        compoundTag.putBoolean("solarEclipse", solarEclipse);
+        compoundTag.putBoolean("hasStartingTools", hasStartingTools);
+        compoundTag.putBoolean("firstUpdate", firstUpdate);
+        compoundTag.putInt("worldEvil", worldEvil);
 
-        File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
-
+        File dataFile = new File(LevelResource.ROOT.getId() + "/saves/" + world.getServer().getWorldData().getLevelName() + "/worldSaveData.dat");
         if (!dataFile.exists()) {
-            //Files.createFile(Path.of(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat"));
+            Files.createFile(Path.of(LevelResource.ROOT.getId() + "/saves/" + world.getServer().getWorldData().getLevelName() + "/worldSaveData.dat"));
         }
-
-        //NbtIo.writeCompressed(nbtCompound, dataFile);
+        NbtIo.writeCompressed(compoundTag, dataFile);
     }
 
-    public static void loadData(World world) throws IOException {
-        NbtCompound nbtCompound = new NbtCompound();
+    public static void loadData(LevelAccessor world) throws IOException {
+        CompoundTag compoundTag = new CompoundTag();
 
-        File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
-
+        File dataFile = new File(LevelResource.ROOT.getId() + "/saves/" + world.getServer().getWorldData().getLevelName() + "/worldSaveData.dat");
         if (dataFile.exists()) {
-            //nbtCompound = NbtIo.readCompressed(dataFile);
+            compoundTag = NbtIo.readCompressed(dataFile);
         }
 
-        //expert = nbtCompound.getBoolean("expert");
-        //master = nbtCompound.getBoolean("master");
-        //hasStartingTools = nbtCompound.getBoolean("hasStartingTools");
-        //bloodMoon = nbtCompound.getBoolean("bloodmoon");
-        //solarEclipse = nbtCompound.getBoolean("solarEclipse");
-        //firstUpdate = nbtCompound.getBoolean("firstUpdate");
-        //worldEvil = nbtCompound.getInt("worldEvil");
-    }
-
-    public static void saveData(WorldAccess world) throws IOException {
-        NbtCompound nbtCompound = new NbtCompound();
-
-        nbtCompound.putBoolean("expert", expert);
-        nbtCompound.putBoolean("master", master);
-        nbtCompound.putBoolean("bloodmoon", bloodMoon);
-        nbtCompound.putBoolean("solarEclipse", solarEclipse);
-        nbtCompound.putBoolean("hasStartingTools", hasStartingTools);
-        nbtCompound.putBoolean("firstUpdate", firstUpdate);
-        nbtCompound.putInt("worldEvil", worldEvil);
-
-        File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
-        if (!dataFile.exists()) {
-            Files.createFile(Path.of(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat"));
-        }
-        NbtIo.writeCompressed(nbtCompound, dataFile);
-    }
-
-    public static void loadData(WorldAccess world) throws IOException {
-        NbtCompound nbtCompound = new NbtCompound();
-
-        File dataFile = new File(WorldSavePath.ROOT.getRelativePath() + "/saves/" + world.getServer().getSaveProperties().getLevelName() + "/worldSaveData.dat");
-        if (dataFile.exists()) {
-            nbtCompound = NbtIo.readCompressed(dataFile);
-        }
-
-        expert = nbtCompound.getBoolean("expert");
-        master = nbtCompound.getBoolean("master");
-        hasStartingTools = nbtCompound.getBoolean("hasStartingTools");
-        bloodMoon = nbtCompound.getBoolean("bloodmoon");
-        solarEclipse = nbtCompound.getBoolean("solarEclipse");
-        firstUpdate = nbtCompound.getBoolean("firstUpdate");
-        worldEvil = nbtCompound.getInt("worldEvil");
+        expert = compoundTag.getBoolean("expert");
+        master = compoundTag.getBoolean("master");
+        hasStartingTools = compoundTag.getBoolean("hasStartingTools");
+        bloodMoon = compoundTag.getBoolean("bloodmoon");
+        solarEclipse = compoundTag.getBoolean("solarEclipse");
+        firstUpdate = compoundTag.getBoolean("firstUpdate");
+        worldEvil = compoundTag.getInt("worldEvil");
     }
 }

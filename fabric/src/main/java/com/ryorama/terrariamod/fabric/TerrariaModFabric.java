@@ -4,17 +4,13 @@ import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.stats.StatsT;
 import com.ryorama.terrariamod.utils.WorldDataT;
-import com.ryorama.terrariamod.world.EntitySpawner;
-import com.ryorama.terrariamod.world.WorldEvents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 
 import java.io.IOException;
 import java.util.Random;
@@ -34,19 +30,19 @@ public class TerrariaModFabric implements ModInitializer {
     }
 
     public void registerEntityAttributes() {
-        FabricDefaultAttributeRegistry.register(EntitiesT.GREEN_SLIME.get(), MobEntity.createMobAttributes());
-        FabricDefaultAttributeRegistry.register(EntitiesT.BLUE_SLIME.get(), MobEntity.createMobAttributes());
-        FabricDefaultAttributeRegistry.register(EntitiesT.DEMON_EYE.get(), MobEntity.createMobAttributes());
+        FabricDefaultAttributeRegistry.register(EntitiesT.GREEN_SLIME.get(), Mob.createMobAttributes());
+        FabricDefaultAttributeRegistry.register(EntitiesT.BLUE_SLIME.get(), Mob.createMobAttributes());
+        FabricDefaultAttributeRegistry.register(EntitiesT.DEMON_EYE.get(), Mob.createMobAttributes());
     }
 
     public void onTick() {
         ServerTickEvents.START_SERVER_TICK.register(world -> {
-            for (int p = 0; p < world.getPlayerManager().getPlayerList().size(); p++) {
-                PlayerEntity player = world.getPlayerManager().getPlayerList().get(p);
+            for (int p = 0; p < world.getPlayerList().getPlayers().size(); p++) {
+                Player player = world.getPlayerList().getPlayers().get(p);
 
                 if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                     if (TerrariaMod.CONFIG.modifyPlayerHealth) {
-                        player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
+                        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100);
                         player.setHealth(100);
                     }
 
@@ -55,7 +51,7 @@ public class TerrariaModFabric implements ModInitializer {
                 }
 
                 if (TerrariaMod.CONFIG.disableHunger) {
-                    player.getHungerManager().setFoodLevel(20);
+                    player.getFoodData().setFoodLevel(20);
                 }
             }
 

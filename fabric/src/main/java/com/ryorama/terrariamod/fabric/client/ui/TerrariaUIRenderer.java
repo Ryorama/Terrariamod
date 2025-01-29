@@ -8,44 +8,42 @@ import com.ryorama.terrariamod.stats.StatsT;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class TerrariaUIRenderer {
-    public static Identifier health_icon = new Identifier(TerrariaMod.MOD_ID, "textures/ui/heart.png");
-    public static Identifier shield = new Identifier(TerrariaMod.MOD_ID, "textures/ui/shield.png");
-    public static Identifier mana = new Identifier(TerrariaMod.MOD_ID, "textures/ui/mana.png");
+    public static ResourceLocation health_icon = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/heart.png");
+    public static ResourceLocation shield = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/shield.png");
+    public static ResourceLocation mana = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/mana.png");
 
     //Buffs
-    public static Identifier iron_skin = new Identifier(TerrariaMod.MOD_ID, "textures/ui/buffs/ironskin.png");
-    public static Identifier happy = new Identifier(TerrariaMod.MOD_ID, "textures/ui/buffs/happy.png");
-    public static Identifier cozy_fire = new Identifier(TerrariaMod.MOD_ID, "textures/ui/buffs/cozy_fire.png");
-    public static Identifier regeneration = new Identifier(TerrariaMod.MOD_ID, "textures/ui/buffs/regeneration.png");
+    public static ResourceLocation iron_skin = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/buffs/ironskin.png");
+    public static ResourceLocation happy = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/buffs/happy.png");
+    public static ResourceLocation cozy_fire = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/buffs/cozy_fire.png");
+    public static ResourceLocation regeneration = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/buffs/regeneration.png");
 
     //DeBuffs
-    public static Identifier potion_sickness = new Identifier(TerrariaMod.MOD_ID, "textures/ui/buffs/potion_sickness.png");
-    public static Identifier poisoned = new Identifier(TerrariaMod.MOD_ID, "textures/ui/buffs/poisoned.png");
+    public static ResourceLocation potion_sickness = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/buffs/potion_sickness.png");
+    public static ResourceLocation poisoned = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/buffs/poisoned.png");
 
-    public static Identifier bleeding = new Identifier(TerrariaMod.MOD_ID, "textures/ui/buffs/bleeding.png");
-    public static Identifier water_candle = new Identifier(TerrariaMod.MOD_ID, "textures/ui/buffs/water_candle.png");
+    public static ResourceLocation bleeding = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/buffs/bleeding.png");
+    public static ResourceLocation water_candle = new ResourceLocation(TerrariaMod.MOD_ID, "textures/ui/buffs/water_candle.png");
 
-    public static ClientPlayerEntity player;
+    public static LocalPlayer player;
 
     public static void renderTerrariaHealth() {
         HudRenderCallback.EVENT.register((matrixstack, delta) -> {
             if (!TerrariaMod.CONFIG.useVanillaHud) {
-                float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
+                float scaledWidth = Minecraft.getInstance().getWindow().getGuiScaledWidth();
 
-                if (MinecraftClient.getInstance().player != null) {
-                    player = MinecraftClient.getInstance().player;
+                if (Minecraft.getInstance().player != null) {
+                    player = Minecraft.getInstance().player;
                 }
 
                 if (player != null) {
@@ -66,10 +64,10 @@ public class TerrariaUIRenderer {
     public static void renderTerrariaDefense() {
         HudRenderCallback.EVENT.register((matrixstack, delta) -> {
 
-            float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
+            float scaledWidth = Minecraft.getInstance().getWindow().getGuiScaledWidth();
 
-            if (MinecraftClient.getInstance().player != null) {
-                player = MinecraftClient.getInstance().player;
+            if (Minecraft.getInstance().player != null) {
+                player = Minecraft.getInstance().player;
             }
 
             if (player != null) {
@@ -81,14 +79,14 @@ public class TerrariaUIRenderer {
     public static void renderTerrariaMana() {
         HudRenderCallback.EVENT.register((matrixstack, delta) -> {
             if (!TerrariaMod.CONFIG.useVanillaHud) {
-                float scaledWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
+                float scaledWidth = Minecraft.getInstance().getWindow().getGuiScaledWidth();
 
-                if (MinecraftClient.getInstance().player != null) {
-                    player = MinecraftClient.getInstance().player;
+                if (Minecraft.getInstance().player != null) {
+                    player = Minecraft.getInstance().player;
                 }
 
                 if (player != null) {
-                    for (int i = 0; i <= player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.MANA)) - 20; i++) {
+                    for (int i = 0; i <= player.getStats().getValue(Stats.CUSTOM.get(StatsT.MANA)) - 20; i++) {
                         if (i % 20 == 0) {
                             UIRenderer.renderOverlay(mana, 50, 10, 10, scaledWidth - 18, 10 + i / 2, -90);
                         }
@@ -101,8 +99,8 @@ public class TerrariaUIRenderer {
     public static void renderTerrariaEffects() {
         HudRenderCallback.EVENT.register((matrixstack, delta) -> {
             if (TerrariaMod.CONFIG.showTerrariaBuffs) {
-                if (MinecraftClient.getInstance().player != null) {
-                    player = MinecraftClient.getInstance().player;
+                if (Minecraft.getInstance().player != null) {
+                    player = Minecraft.getInstance().player;
                 }
 
                 int i3 = 17;
@@ -110,41 +108,41 @@ public class TerrariaUIRenderer {
                 int effectCounter = 0;
 
                 if (player != null) {
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.POTION_SICKNESS)) > 0) {
+                    if (player.getStats().getValue(Stats.CUSTOM.get(StatsT.POTION_SICKNESS)) > 0) {
                         UIRenderer.renderOverlay(potion_sickness, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
                         effectCounter++;
                     }
 
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.POISONED)) > 0) {
+                    if (player.getStats().getValue(Stats.CUSTOM.get(StatsT.POISONED)) > 0) {
                         UIRenderer.renderOverlay(poisoned, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
                         effectCounter++;
                     }
 
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.IRON_SKIN)) > 0) {
+                    if (player.getStats().getValue(Stats.CUSTOM.get(StatsT.IRON_SKIN)) > 0) {
                         UIRenderer.renderOverlay(iron_skin, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
                         effectCounter++;
                     }
 
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.HAPPY)) > 0) {
+                    if (player.getStats().getValue(Stats.CUSTOM.get(StatsT.HAPPY)) > 0) {
                         UIRenderer.renderOverlay(happy, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
                         effectCounter++;
                     }
 
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.COZY_FIRE)) > 0) {
+                    if (player.getStats().getValue(Stats.CUSTOM.get(StatsT.COZY_FIRE)) > 0) {
                         UIRenderer.renderOverlay(cozy_fire, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
                         effectCounter++;
                     }
 
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.REGENERATION)) > 0) {
+                    if (player.getStats().getValue(Stats.CUSTOM.get(StatsT.REGENERATION)) > 0) {
                         UIRenderer.renderOverlay(regeneration, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
                         effectCounter++;
                     }
 
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.BLEEDING)) > 0) {
+                    if (player.getStats().getValue(Stats.CUSTOM.get(StatsT.BLEEDING)) > 0) {
                         UIRenderer.renderOverlay(bleeding, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
                         effectCounter++;
                     }
-                    if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(StatsT.WATER_CANDLE)) > 0) {
+                    if (player.getStats().getValue(Stats.CUSTOM.get(StatsT.WATER_CANDLE)) > 0) {
                         UIRenderer.renderOverlay(water_candle, 50, 16, 16, i3 + effectCounter * 20f, j3, -90);
                         effectCounter++;
                     }
@@ -164,7 +162,7 @@ public class TerrariaUIRenderer {
                     boolean isActive = BuffsT.GetEntityActiveBuffs(entity).get(i).IsActive();
 
                     if (isActive) {
-                        Identifier icon = BuffsT.GetEntityActiveBuffIcons(entity).get(i);
+                        ResourceLocation icon = BuffsT.GetEntityActiveBuffIcons(entity).get(i);
 
                         UIRenderer.renderOverlay(icon, 50, 16, 16, 17 + i * 20f, 27, -90);
                     }

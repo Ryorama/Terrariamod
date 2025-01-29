@@ -1,17 +1,17 @@
 package com.ryorama.terrariamod.mixin;
 
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.level.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 import java.util.function.BiConsumer;
 
-@Mixin(GameRules.IntRule.class)
+@Mixin(GameRules.IntegerValue.class)
 public interface IntValueInvoker {
 
     @Invoker("create")
-    static GameRules.Type<GameRules.IntRule> invokeCreate(int defaultValue, BiConsumer<MinecraftServer, GameRules.IntRule> onChanged) {
+    static GameRules.Type<GameRules.IntegerValue> invokeCreate(int defaultValue, BiConsumer<MinecraftServer, GameRules.IntegerValue> onChanged) {
         throw new AssertionError();
     }
 }

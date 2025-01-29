@@ -3,13 +3,13 @@ package com.ryorama.terrariamod.mixin;
 import com.ryorama.terrariamod.buffs.BuffT;
 import com.ryorama.terrariamod.buffs.BuffsT;
 import com.ryorama.terrariamod.entities.impl.CustomBuffAccessor;
-import net.minecraft.entity.Attackable;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Attackable;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -22,11 +22,11 @@ import java.util.List;
 public abstract class LivingEntityMixin extends Entity implements Attackable, CustomBuffAccessor {
 
     public List<BuffT> activeBuffs = new ArrayList<>();
-    public List<Identifier> activeBuffsIcons = new ArrayList<>();
+    public List<ResourceLocation> activeBuffsIcons = new ArrayList<>();
 
     public boolean calledBuffIconRenderer = false;
 
-    public LivingEntityMixin(EntityType<?> type, World world) {
+    public LivingEntityMixin(EntityType<?> type, Level world) {
         super(type, world);
     }
 
@@ -34,12 +34,12 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Cu
     public void tick(CallbackInfo info) {
         LivingEntity thisEntity = ((LivingEntity) (Object) this);
 
-        if (thisEntity instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) thisEntity;
-            World playerWorld = player.getWorld();
+        if (thisEntity instanceof Player) {
+            Player player = (Player) thisEntity;
+            Level playerWorld = player.level();
 
-            if (playerWorld.isClient()) {
-                if (player.isMainPlayer()) {
+            if (playerWorld.isClientSide()) {
+                if (player.isLocalPlayer()) {
                     if (!calledBuffIconRenderer) {
                         BuffT.renderIcon(thisEntity);
                         calledBuffIconRenderer = true;
@@ -63,7 +63,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Cu
     }
 
     @Override
-    public List<Identifier> GetActiveBuffIcons() {
+    public List<ResourceLocation> GetActiveBuffIcons() {
         return activeBuffsIcons;
     }
 

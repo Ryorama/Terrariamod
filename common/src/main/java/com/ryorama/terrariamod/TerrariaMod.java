@@ -10,9 +10,9 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +23,7 @@ public class TerrariaMod {
     public static final Logger LOGGER  = LogManager.getLogger(TerrariaMod.class);
     public static TerrariaModConfig CONFIG = new TerrariaModConfig();
 
-    public static final DeferredRegister<Codec<? extends ChunkGenerator>> CHUNK_GENERATORS = DeferredRegister.create(TerrariaMod.MOD_ID, RegistryKeys.CHUNK_GENERATOR);
+    public static final DeferredRegister<Codec<? extends ChunkGenerator>> CHUNK_GENERATORS = DeferredRegister.create(TerrariaMod.MOD_ID, Registries.CHUNK_GENERATOR);
 
     public static final RegistrySupplier<Codec<? extends ChunkGenerator>> TERRARIA_CHUNK_GENERATOR = registerChunkGenerator("terraria_chunk_generator", () -> TerrariaChunkGenerator.CODEC);
 
@@ -38,6 +38,6 @@ public class TerrariaMod {
     }
 
     static RegistrySupplier<Codec<? extends ChunkGenerator>> registerChunkGenerator(String name, Supplier<Codec<? extends ChunkGenerator>> generator) {
-        return CHUNK_GENERATORS.register(new Identifier(TerrariaMod.MOD_ID, name), generator);
+        return CHUNK_GENERATORS.register(new ResourceLocation(TerrariaMod.MOD_ID, name), generator);
     }
 }

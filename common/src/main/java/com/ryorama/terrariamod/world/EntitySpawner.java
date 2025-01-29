@@ -4,14 +4,14 @@ import com.ryorama.terrariamod.blocks.BlocksT;
 
 import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.utils.WorldDataT;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnRestriction.Location;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.SpawnHelper;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.NaturalSpawner;
+import net.minecraft.world.level.block.Blocks;
 
 public class EntitySpawner {
 
@@ -35,18 +35,18 @@ public class EntitySpawner {
     public static EntityType[] mushroomBiomeEntities = {};
     public static EntityType[] oceanEntities = {};
 
-    public static void spawnEntities(PlayerEntity player, int x, int y, int z) {
-        World world = player.getEntityWorld();
+    public static void spawnEntities(Player player, int x, int y, int z) {
+        Level world = player.level();
         if (y >= 190) {
             spawnSkyEntity(world, x, y, z);
         }
-        if (y > 45 && world.getTimeOfDay() % 24000 > 15000 && world.getTimeOfDay() % 24000 < 22000 && WorldDataT.bloodMoon) {
+        if (y > 45 && world.getDayTime() % 24000 > 15000 && world.getDayTime() % 24000 < 22000 && WorldDataT.bloodMoon) {
             spawnBloodMoonEntity(world, x, y, z);
         }
         if (y > 45) {
             spawnGroundEntity(world, x, y, z);
         }
-        if (y > 45 && world.getBlockState(new BlockPos(x, y - 1, z)) == BlocksT.CORRUPTED_GRASS_BLOCK.get().getDefaultState()) {
+        if (y > 45 && world.getBlockState(new BlockPos(x, y - 1, z)) == BlocksT.CORRUPTED_GRASS_BLOCK.get().defaultBlockState()) {
             spawnCorruptionGroundEntity(world, x, y, z);
         }
         if (y <= 60) {
@@ -62,11 +62,11 @@ public class EntitySpawner {
         }
     }
 
-    public static boolean spawnSkyEntity(World world, int x, int y, int z) {
+    public static boolean spawnSkyEntity(Level world, int x, int y, int z) {
         BlockPos pos = new BlockPos(x, y, z);
         EntityType[] list = EntitySpawner.skyEntities;
 
-        if (world.getBlockState(pos) == Blocks.WATER.getDefaultState()) {
+        if (world.getBlockState(pos) == Blocks.WATER.defaultBlockState()) {
             list = EntitySpawner.skyWaterEntities;
         }
         
@@ -79,7 +79,7 @@ public class EntitySpawner {
         return true;
     }
 
-    public static boolean spawnBloodMoonEntity(World world, int x, int y, int z) {
+    public static boolean spawnBloodMoonEntity(Level world, int x, int y, int z) {
         BlockPos pos = new BlockPos(x, y, z);
         EntityType[] list = EntitySpawner.bloodMoon;
 
@@ -92,11 +92,11 @@ public class EntitySpawner {
         return true;
     }
 
-    public static boolean spawnHardmodeSkyEntity(World world, int x, int y, int z) {
+    public static boolean spawnHardmodeSkyEntity(Level world, int x, int y, int z) {
         BlockPos pos = new BlockPos(x, y, z);
         EntityType[] list = EntitySpawner.hardmodeSkyEntities;
 
-        if (world.getBlockState(pos) == Blocks.WATER.getDefaultState()) {
+        if (world.getBlockState(pos) == Blocks.WATER.defaultBlockState()) {
             list = EntitySpawner.skyWaterEntities;
         }
         if (list == null) return false;
@@ -108,19 +108,19 @@ public class EntitySpawner {
         return true;
     }
 
-    public static boolean spawnGroundEntity(World world, int x, int y, int z) {
+    public static boolean spawnGroundEntity(Level world, int x, int y, int z) {
         BlockPos spawnpoint = getSuitableEntitySpawnpoint(world, x, y, z);
         if (spawnpoint == null) return false;
 
         EntityType[] list = null;
-        if (world.getTimeOfDay() % 24000 > 15000 && world.getTimeOfDay() % 24000 < 22000) {
+        if (world.getDayTime() % 24000 > 15000 && world.getDayTime() % 24000 < 22000) {
             list = EntitySpawner.groundNighttime;
-            if (world.getBlockState(spawnpoint) == Blocks.WATER.getDefaultState()) {
+            if (world.getBlockState(spawnpoint) == Blocks.WATER.defaultBlockState()) {
                 list = EntitySpawner.groundWaterNighttime;
             }
         } else if (y < 190) {
             list = EntitySpawner.groundDaytime;
-            if (world.getBlockState(spawnpoint) == Blocks.WATER.getDefaultState()) {
+            if (world.getBlockState(spawnpoint) == Blocks.WATER.defaultBlockState()) {
                 list = EntitySpawner.groundWaterDaytime;
             }
         }
@@ -133,12 +133,12 @@ public class EntitySpawner {
         return true;
     }
 
-    public static boolean spawnCorruptionGroundEntity(World world, int x, int y, int z) {
+    public static boolean spawnCorruptionGroundEntity(Level world, int x, int y, int z) {
         BlockPos spawnpoint = getSuitableEntitySpawnpoint(world, x, y, z);
         if (spawnpoint == null) return false;
 
         EntityType[] list = null;
-        if (world.getTimeOfDay() % 24000 > 15000 && world.getTimeOfDay() % 24000 < 22000) {
+        if (world.getDayTime() % 24000 > 15000 && world.getDayTime() % 24000 < 22000) {
             return false;
         } else if (y < 190) {
             list = EntitySpawner.groundCorruptionDaytime;
@@ -152,7 +152,7 @@ public class EntitySpawner {
         return true;
     }
 
-    public static boolean spawnRainEntity(World world, int x, int y, int z) {
+    public static boolean spawnRainEntity(Level world, int x, int y, int z) {
         BlockPos spawnpoint = getSuitableEntitySpawnpoint(world, x, y, z);
         if (spawnpoint == null) return false;
         EntityType[] list = EntitySpawner.rainEntities;
@@ -165,19 +165,19 @@ public class EntitySpawner {
         return true;
     }
 
-    public static boolean spawnHardmodeGroundEntity(World world, int x, int y, int z) {
+    public static boolean spawnHardmodeGroundEntity(Level world, int x, int y, int z) {
         BlockPos spawnpoint = getSuitableEntitySpawnpoint(world, x, y, z);
         if (spawnpoint == null) return false;
 
         EntityType[] list = null;
-        if (world.getTimeOfDay() % 24000 > 15000 && world.getTimeOfDay() % 24000 < 22000) {
+        if (world.getDayTime() % 24000 > 15000 && world.getDayTime() % 24000 < 22000) {
             list = EntitySpawner.hardmodeGroundNighttime;
-            if (world.getBlockState(spawnpoint) == Blocks.WATER.getDefaultState()) {
+            if (world.getBlockState(spawnpoint) == Blocks.WATER.defaultBlockState()) {
                 list = EntitySpawner.groundWaterNighttime;
             }
         } else if (y < -190) {
             list = EntitySpawner.hardmodeGroundDaytime;
-            if (world.getBlockState(spawnpoint) == Blocks.WATER.getDefaultState()) {
+            if (world.getBlockState(spawnpoint) == Blocks.WATER.defaultBlockState()) {
                 list = EntitySpawner.groundWaterDaytime;
             }
         }
@@ -190,16 +190,16 @@ public class EntitySpawner {
         return true;
     }
 
-    public static boolean spawnCaveEntity(World world, int x, int y, int z) {
+    public static boolean spawnCaveEntity(Level world, int x, int y, int z) {
         BlockPos spawnpoint = getSuitableEntitySpawnpoint(world, x, y, z);
         System.out.println("Attempt spawn cave entity");
         if (spawnpoint == null) return false;
         for (int i = 1; i <= world.getRandom().nextInt(10); i++) {
             EntityType[] list = EntitySpawner.caveEntities;
-            if (world.getBlockState(spawnpoint) == Blocks.WATER.getDefaultState()) {
+            if (world.getBlockState(spawnpoint) == Blocks.WATER.defaultBlockState()) {
                 list = EntitySpawner.caveWaterEntities;
             }
-            if (world.getBlockState(new BlockPos(spawnpoint.getX(), spawnpoint.getY() - 1, spawnpoint.getZ())) == BlocksT.MUSHROOM_GRASS.get().getDefaultState()) {
+            if (world.getBlockState(new BlockPos(spawnpoint.getX(), spawnpoint.getY() - 1, spawnpoint.getZ())) == BlocksT.MUSHROOM_GRASS.get().defaultBlockState()) {
                 list = EntitySpawner.mushroomBiomeEntities;
             }
             if (list == null) return false;
@@ -214,7 +214,7 @@ public class EntitySpawner {
         return true;
     }
 
-    public static boolean spawnHardmodeCaveEntity(World world, int x, int y, int z) {
+    public static boolean spawnHardmodeCaveEntity(Level world, int x, int y, int z) {
         BlockPos spawnpoint = getSuitableEntitySpawnpoint(world, x, y, z);
         if (spawnpoint == null) return false;
         EntityType[] list = EntitySpawner.hardmodeCaveEntities;
@@ -227,7 +227,7 @@ public class EntitySpawner {
         return true;
     }
 
-    public static boolean spawnUnderworldEntity(World world, int x, int y, int z) {
+    public static boolean spawnUnderworldEntity(Level world, int x, int y, int z) {
         BlockPos spawnpoint = getSuitableEntitySpawnpoint(world, x, y, z);
         if (spawnpoint == null) return false;
         EntityType[] list = EntitySpawner.underworldEntities;
@@ -241,48 +241,48 @@ public class EntitySpawner {
         return true;
     }
 
-    public static void spawnEntityAt(EntityType type, BlockPos pos, World world) {
+    public static void spawnEntityAt(EntityType type, BlockPos pos, Level world) {
 
-        if (SpawnHelper.canSpawn(Location.ON_GROUND, world, pos, type)) {
+        if (NaturalSpawner.isSpawnPositionOk(SpawnPlacements.Type.ON_GROUND, world, pos, type)) {
             Entity e = type.create(world);
-            e.setPosition(pos.getX(), pos.getY(), pos.getZ());
-            world.spawnEntity(e);
+            e.setPos(pos.getX(), pos.getY(), pos.getZ());
+            world.addFreshEntity(e);
         }
     }
 
-    public static BlockPos getSuitableEntitySpawnpoint(World world, int x, int y, int z) {
+    public static BlockPos getSuitableEntitySpawnpoint(Level world, int x, int y, int z) {
 
         BlockPos pos = new BlockPos(x, y, z);
-        if (!world.getBlockState(pos).blocksMovement()) {
-            if (!world.getBlockState(new BlockPos(x, y + 1, z)).blocksMovement()) {
-                if (world.getBlockState(new BlockPos(x, y - 1, z)).blocksMovement()) {
+        if (!world.getBlockState(pos).blocksMotion()) {
+            if (!world.getBlockState(new BlockPos(x, y + 1, z)).blocksMotion()) {
+                if (world.getBlockState(new BlockPos(x, y - 1, z)).blocksMotion()) {
                     return pos;
                 }
             }
         }
 
-        if (!world.getBlockState(pos).blocksMovement()) {
+        if (!world.getBlockState(pos).blocksMotion()) {
             for (int i = 0; i < 20; i++) {
-                if (world.getBlockState(new BlockPos(x, y - i, z)).blocksMovement()) {
+                if (world.getBlockState(new BlockPos(x, y - i, z)).blocksMotion()) {
                     return new BlockPos(x, y - i + 1, z);
                 }
             }
         }
 
-        if (world.getBlockState(new BlockPos(x, y, z)).blocksMovement())
+        if (world.getBlockState(new BlockPos(x, y, z)).blocksMotion())
         {
             int closestUpAir = 0;
             int closestDownAir = 0;
             for (closestUpAir = 0; closestUpAir < 10; closestUpAir++) {
-                if (world.getBlockState(new BlockPos(x, y + closestUpAir, z)).blocksMovement() == false) {
-                    if (world.getBlockState(new BlockPos(x, y + closestUpAir + 1, z)).blocksMovement() == false) {
+                if (world.getBlockState(new BlockPos(x, y + closestUpAir, z)).blocksMotion() == false) {
+                    if (world.getBlockState(new BlockPos(x, y + closestUpAir + 1, z)).blocksMotion() == false) {
                         break;
                     }
                 }
             }
             for (closestDownAir = 0; closestDownAir < 10; closestDownAir++) {
-                if (world.getBlockState(new BlockPos(x, y - closestUpAir, z)).blocksMovement() == false) {
-                    if (world.getBlockState(new BlockPos(x, y - closestUpAir + 1, z)).blocksMovement() == false) {
+                if (world.getBlockState(new BlockPos(x, y - closestUpAir, z)).blocksMotion() == false) {
+                    if (world.getBlockState(new BlockPos(x, y - closestUpAir + 1, z)).blocksMotion() == false) {
                         break;
                     }
                 }
@@ -293,9 +293,9 @@ public class EntitySpawner {
                 y = y - closestDownAir;
             }
         }
-        if (world.getBlockState(new BlockPos(x, y, z)).blocksMovement())
+        if (world.getBlockState(new BlockPos(x, y, z)).blocksMotion())
             return null;
-        if (!world.getBlockState(new BlockPos(x, y - 1, z)).blocksMovement())
+        if (!world.getBlockState(new BlockPos(x, y - 1, z)).blocksMotion())
             return null;
         return new BlockPos(x, y, z);
     }
