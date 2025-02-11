@@ -3,10 +3,9 @@ package com.ryorama.terrariamod.forge;
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.forge.network.client.rendering.EntityRenderManager;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.RenderLayers;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -16,50 +15,45 @@ public class TerrariaModForgeClient {
 
     @SubscribeEvent
     public static void setup(FMLClientSetupEvent event) {
-        RenderLayers.setRenderLayer(BlocksT.FOREST_STEM.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.FOREST_STEM.get(), RenderLayer.getTranslucent());
-        RenderLayers.setRenderLayer(BlocksT.FOREST_TOP.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.FOREST_TOP.get(), RenderLayer.getTranslucent());
-        RenderLayers.setRenderLayer(BlocksT.FOREST_STUMP.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.FOREST_STUMP.get(), RenderLayer.getTranslucent());
-        RenderLayers.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_TOP.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_TOP.get(), RenderLayer.getTranslucent());
-        RenderLayers.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_STEM.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_STEM.get(), RenderLayer.getTranslucent());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.FOREST_STEM.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.FOREST_STEM.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.FOREST_TOP.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.FOREST_TOP.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.FOREST_STUMP.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.FOREST_STUMP.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_TOP.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_TOP.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_STEM.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.GIANT_GLOWING_MUSHROOM_STEM.get(), RenderType.translucent());
 
-        RenderLayers.setRenderLayer(BlocksT.CACTUS.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.CACTUS.get(), RenderLayer.getTranslucent());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.CACTUS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.CACTUS.get(), RenderType.translucent());
 
-        RenderLayers.setRenderLayer(BlocksT.BLINKROOT.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.DAYBLOOM.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.DEATHWEED.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.FIREBLOSSOM.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.MOONGLOW.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.SHIVERTHORN.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.WATERLEAF.get(), RenderLayer.getCutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.BLINKROOT.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.DAYBLOOM.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.DEATHWEED.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.FIREBLOSSOM.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.MOONGLOW.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.SHIVERTHORN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.WATERLEAF.get(), RenderType.cutout());
 
-        RenderLayers.setRenderLayer(BlocksT.MUSHROOM.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.VILE_MUSHROOM.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.VICIOUS_MUSHROOM.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.GLOWING_MUSHROOM.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.JUNGLE_SPORES.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.VINE.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.GRASS.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.BLOODY_GRASS.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.DEAD_GRASS.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.SAPLING.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.CORRUPTED_SAPLING.get(), RenderLayer.getCutout());
-        RenderLayers.setRenderLayer(BlocksT.CRIMSON_SAPLING.get(), RenderLayer.getCutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.MUSHROOM.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.VILE_MUSHROOM.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.VICIOUS_MUSHROOM.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.GLOWING_MUSHROOM.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.JUNGLE_SPORES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.VINE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.GRASS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.BLOODY_GRASS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.DEAD_GRASS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.SAPLING.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.CORRUPTED_SAPLING.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.CRIMSON_SAPLING.get(), RenderType.cutout());
 
-        RenderLayers.setRenderLayer(BlocksT.LIFE_CRYSTAL_BLOCK.get(), RenderLayer.getCutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.LIFE_CRYSTAL_BLOCK.get(), RenderType.cutout());
 
-        RenderLayers.setRenderLayer(BlocksT.EMPTY_BOTTLE.get(), RenderLayer.getCutout());
+        ItemBlockRenderTypes.setRenderLayer(BlocksT.EMPTY_BOTTLE.get(), RenderType.cutout());
 
         EntityRenderManager.init();
-    }
-
-    @SubscribeEvent
-    public static void registerParticles(RegisterParticleProvidersEvent event) {
-
     }
 }

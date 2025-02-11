@@ -1,16 +1,15 @@
 package com.ryorama.terrariamod.forge;
 
 import com.ryorama.terrariamod.TerrariaMod;
+import com.ryorama.terrariamod.client.ui.TerrariaUI;
 import com.ryorama.terrariamod.entities.EntitiesT;
-import com.ryorama.terrariamod.forge.network.GameRulesT;
-import com.ryorama.terrariamod.forge.network.client.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.utils.WorldDataT;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
@@ -27,17 +26,17 @@ public class TerrariaModEvents {
 
     @SubscribeEvent
     public static void worldTickEvent(TickEvent.LevelTickEvent event) {
-        PlayerEntity player = null;
-        World world = event.level;
+        Player player = null;
+        Level world = event.level;
 
-        for (int p = 0; p < world.getPlayers().size(); p++) {
-            player = world.getPlayers().get(p);
+        for (int p = 0; p < world.players().size(); p++) {
+            player = world.players().get(p);
         }
 
         if (player != null) {
             if (WorldDataT.firstUpdate && !WorldDataT.hasStartingTools) {
                 if (TerrariaMod.CONFIG.modifyPlayerHealth) {
-                    player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(100);
+                    player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100);
                     player.setHealth(20);
                 }
 
@@ -46,7 +45,7 @@ public class TerrariaModEvents {
             }
 
             if (TerrariaMod.CONFIG.disableHunger) {
-                player.getHungerManager().setFoodLevel(20);
+                player.getFoodData().setFoodLevel(20);
             }
         }
 
@@ -74,9 +73,9 @@ public class TerrariaModEvents {
     @SubscribeEvent
     public static void registerEntityAttributesEvent(EntityAttributeCreationEvent event) {
         TerrariaMod.LOGGER.info("Creating TerrariaMod Entity Attributes");
-        event.put(EntitiesT.GREEN_SLIME.get(), MobEntity.createMobAttributes().build());
-        event.put(EntitiesT.BLUE_SLIME.get(), MobEntity.createMobAttributes().build());
-        event.put(EntitiesT.DEMON_EYE.get(), MobEntity.createMobAttributes().build());
+        event.put(EntitiesT.GREEN_SLIME.get(), Mob.createMobAttributes().build());
+        event.put(EntitiesT.BLUE_SLIME.get(), Mob.createMobAttributes().build());
+        event.put(EntitiesT.DEMON_EYE.get(), Mob.createMobAttributes().build());
     }
 
     @SubscribeEvent
@@ -104,32 +103,8 @@ public class TerrariaModEvents {
     @SubscribeEvent
     @OnlyIn(value= Dist.CLIENT)
     public static void renderGuiOverlayEvent(RenderGuiOverlayEvent.Pre event) {
-        TerrariaUIRenderer.renderTerrariaHealth();
-        TerrariaUIRenderer.renderTerrariaEffects();
-        TerrariaUIRenderer.renderTerrariaMana();
-    }
-
-    @SubscribeEvent
-    @OnlyIn(value=Dist.CLIENT)
-    public static void ClientWorldTickEvent(TickEvent.LevelTickEvent event) {
-        World world = event.level;
-        if (world.isClient) {
-            ClientPlayerEntity player = MinecraftClient.getInstance().player;
-
-            if (player != null) {
-                if (WorldDataT.firstUpdate) {
-                    GameRulesT.MAX_MANA.set(100);
-                    GameRulesT.MANA.set(GameRulesT.MAX_MANA.get());
-                }
-
-                if (GameRulesT.POTION_SICKNESS.get() > 0) {
-                    GameRulesT.POTION_SICKNESS.set(GameRulesT.POTION_SICKNESS.get() - 1);
-                }
-
-                if (GameRulesT.MANA.get() < GameRulesT.MAX_MANA.get()) {
-                    GameRulesT.MANA.set(GameRulesT.MANA.get() + 1);
-                }
-            }
-        }
+        TerrariaUI.renderTerrariaHealth();
+        TerrariaUI.renderTerrariaEffects();
+        TerrariaUI.renderTerrariaMana();
     }
 }

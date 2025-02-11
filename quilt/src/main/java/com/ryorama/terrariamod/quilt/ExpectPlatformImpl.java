@@ -1,4 +1,4 @@
-package com.ryorama.terrariamod.fabric;
+package com.ryorama.terrariamod.quilt;
 
 import org.quiltmc.loader.api.QuiltLoader;
 

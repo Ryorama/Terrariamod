@@ -36,9 +36,9 @@ public class UIRenderer {
         BufferBuilder bufferBuilder = tessellator.getBuilder();
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferBuilder.color(0, 0, 0, opacity);
-        bufferBuilder.vertex(0, (double)height, zPos).uv(0.0F, 1.0F).endVertex();
-        bufferBuilder.vertex((double)width, (double)height, zPos).uv(1.0F, 1.0F).endVertex();
-        bufferBuilder.vertex((double)width, 0, zPos).uv(1.0F, 0.0F).endVertex();
+        bufferBuilder.vertex(0, (double) height, zPos).uv(0.0F, 1.0F).endVertex();
+        bufferBuilder.vertex((double) width, (double) height, zPos).uv(1.0F, 1.0F).endVertex();
+        bufferBuilder.vertex((double) width, 0, zPos).uv(1.0F, 0.0F).endVertex();
         bufferBuilder.vertex(0, 0, zPos).uv(0.0F, 0.0F).endVertex();
         tessellator.end();
         RenderSystem.depthMask(true);

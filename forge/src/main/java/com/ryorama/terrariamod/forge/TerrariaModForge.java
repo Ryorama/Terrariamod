@@ -1,10 +1,9 @@
 package com.ryorama.terrariamod.forge;
 
 import com.ryorama.terrariamod.TerrariaModConfig;
-import com.ryorama.terrariamod.forge.network.NetworkHandler;
 import dev.architectury.platform.forge.EventBuses;
 import com.ryorama.terrariamod.TerrariaMod;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,21 +32,15 @@ public class TerrariaModForge {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         EventBuses.registerModEventBus(TerrariaMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         TerrariaMod.init();
-
-        modBus.addListener(this::commonSetup);
         modBus.addListener(this::clientSetup);
         MinecraftForge.EVENT_BUS.register(TerrariaModEvents.class);
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> TerrariaModConfig::new);
     }
 
-    public void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(NetworkHandler::register);
-    }
-
     public void clientSetup(FMLClientSetupEvent event) {
         if (TerrariaMod.CONFIG.useCustomTitles) {
-            MinecraftClient.getInstance().execute(this::SetRandomTitle);
+            Minecraft.getInstance().execute(this::SetRandomTitle);
         }
     }
 
@@ -62,8 +55,8 @@ public class TerrariaModForge {
 
         int id = rand.nextInt(splashTexts.size());
 
-        if (MinecraftClient.getInstance().getWindow() != null) {
-            MinecraftClient.getInstance().getWindow().setTitle(splashTexts.get(id));
+        if (Minecraft.getInstance().getWindow() != null) {
+            Minecraft.getInstance().getWindow().setTitle(splashTexts.get(id));
         }
     }
 }

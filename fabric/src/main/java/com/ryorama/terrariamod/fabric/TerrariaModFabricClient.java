@@ -2,6 +2,7 @@ package com.ryorama.terrariamod.fabric;
 
 import com.ryorama.terrariamod.TerrariaMod;
 import com.ryorama.terrariamod.blocks.BlocksT;
+import com.ryorama.terrariamod.client.ui.TerrariaUI;
 import com.ryorama.terrariamod.fabric.client.rendering.EntityRenderManager;
 import com.ryorama.terrariamod.fabric.client.ui.TerrariaUIRenderer;
 import com.ryorama.terrariamod.stats.StatsT;
@@ -10,6 +11,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -34,9 +36,11 @@ public class TerrariaModFabricClient implements ClientModInitializer {
         EntityRenderManager.init();
         registerParticles();
 
-        TerrariaUIRenderer.renderTerrariaHealth();
-        TerrariaUIRenderer.renderTerrariaMana();
-        TerrariaUIRenderer.renderTerrariaEffects();
+        HudRenderCallback.EVENT.register((matrixstack, delta) -> {
+            TerrariaUI.renderTerrariaHealth();
+            TerrariaUI.renderTerrariaMana();
+            TerrariaUI.renderTerrariaEffects();
+        });
 
         if (TerrariaMod.CONFIG.useCustomTitles) {
             Minecraft.getInstance().execute(this::SetRandomTitle);

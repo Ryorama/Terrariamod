@@ -3,6 +3,7 @@ package com.ryorama.terrariamod;
 import com.mojang.serialization.Codec;
 import com.ryorama.terrariamod.blocks.BlocksT;
 import com.ryorama.terrariamod.buffs.BuffsT;
+import com.ryorama.terrariamod.client.ui.TerrariaUI;
 import com.ryorama.terrariamod.entities.EntitiesT;
 import com.ryorama.terrariamod.items.ItemsT;
 import com.ryorama.terrariamod.world.TerrariaChunkGenerator;
